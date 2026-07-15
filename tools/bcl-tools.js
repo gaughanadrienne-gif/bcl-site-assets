@@ -167,7 +167,7 @@
       '<li><a href="https://www.weather.gov/mtr/" target="_blank" rel="noopener">National Weather Service, Bay Area</a> for forecasts and warnings</li>' +
       '<li><a href="https://www.cruzaware.org/" target="_blank" rel="noopener">CruzAware</a> for county emergency alerts</li>' +
       '<li><a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">Caltrans QuickMap</a> for Highway 9 and state routes</li>' +
-      '<li><a href="https://sccroadclosure.org/" target="_blank" rel="noopener">Santa Cruz County road closures</a> for county roads</li>' +
+      '<li><a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/" target="_blank" rel="noopener">Santa Cruz County Road Closure Dashboard</a> for county roads</li>' +
       '<li><a href="https://pgealerts.alerts.pge.com/outage-tools/outage-map/" target="_blank" rel="noopener">PG&amp;E outage map</a> for power</li>' +
       '<li><a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a> for air quality</li>' +
       '<li><a href="https://www.fire.ca.gov/incidents" target="_blank" rel="noopener">CAL FIRE incidents</a> for wildfire</li>' +
