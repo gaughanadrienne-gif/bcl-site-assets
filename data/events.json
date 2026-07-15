@@ -1,5 +1,528 @@
 {
  "updated": "2026-07-15",
  "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category.",
- "events": []
+ "events": [
+  {
+   "title": "Exhibit: Retrospect",
+   "start": "2026-07-16",
+   "end": null,
+   "location": "Grace Gallery, San Lorenzo Valley Museum, 12547 Hwy 9, Boulder Creek",
+   "url": "https://www.slvmuseum.org/",
+   "description": "Ongoing exhibit looking back at the first 50 years of the San Lorenzo Valley Historical Society, on view through late 2026 during gallery hours, Wednesday to Sunday 1 to 4 pm.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Exhibit: The Road I Call Home",
+   "start": "2026-07-16",
+   "end": "2026-09-20",
+   "location": "Belardi Gallery, San Lorenzo Valley Museum, 6299 Gushee St, Felton",
+   "url": "https://www.slvmuseum.org/",
+   "description": "Ongoing photography exhibit by Randy Bacon on the lives of people experiencing homelessness, on view through September 20 during gallery hours, Thursday, Saturday and Sunday 1 to 4 pm.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Boulder Creek Book Group",
+   "start": "2026-07-16T11:00",
+   "end": "2026-07-16T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15401183",
+   "description": "Monthly library book group meeting in person and via Zoom, 11 am to noon.",
+   "category": "Community"
+  },
+  {
+   "title": "Volunteer Fuel Reduction Workday at Big Basin",
+   "start": "2026-07-17",
+   "end": null,
+   "location": "Big Basin Redwoods State Park, Boulder Creek",
+   "url": "https://sempervirens.org/events/",
+   "description": "Hands-on volunteer workday with Sempervirens Fund helping with fuel reduction in Big Basin Redwoods State Park; registration details on the Sempervirens events page.",
+   "category": "Outdoors"
+  },
+  {
+   "title": "Discovery Zone Playgroup",
+   "start": "2026-07-17T11:00",
+   "end": "2026-07-17T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15607411",
+   "description": "Drop-in playgroup for young children and caregivers at the library, 11 am to noon.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-07-17T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "Flick and Soak Community Night",
+   "start": "2026-07-17T16:00",
+   "end": "2026-07-17T20:00",
+   "location": "Bear Creek Pool, 15685 Forest Hill Dr, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Community night at Bear Creek Pool with the pool open 12:30 to 8 pm, crafts and games 4 to 8 pm, and a movie from 6:30 to 8 pm.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Heritage Demonstrations at the SLV Museum",
+   "start": "2026-07-18",
+   "end": null,
+   "location": "Grace Gallery, San Lorenzo Valley Museum, 12547 Hwy 9, Boulder Creek",
+   "url": "https://www.slvmuseum.org/",
+   "description": "Third Saturday heritage demonstration series celebrating the San Lorenzo Valley Historical Society's 50th year, running monthly April through August; the gallery is open 1 to 4 pm.",
+   "category": "Community"
+  },
+  {
+   "title": "Print Transfer Workshop with Community Crafters",
+   "start": "2026-07-18T10:00",
+   "end": "2026-07-18T13:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/16863694",
+   "description": "Hands-on print transfer craft workshop with the Boulder Creek Community Crafters, 10 am to 1 pm.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Rancho del Oso Nature and History Center 40th Anniversary",
+   "start": "2026-07-18T18:00",
+   "end": null,
+   "location": "Rancho del Oso, Big Basin Redwoods State Park, Hwy 1 at Waddell Creek",
+   "url": "https://www.parks.ca.gov/Events/?parkUnit=406",
+   "description": "State Parks marks 40 years of the Rancho del Oso Nature and History Center, the former home of naturalist Hulda Hoover McLean, with an evening program at 6 pm.",
+   "category": "Outdoors"
+  },
+  {
+   "title": "Rancho del Oso Nature and History Center 40th Anniversary",
+   "start": "2026-07-19T15:00",
+   "end": null,
+   "location": "Rancho del Oso, Big Basin Redwoods State Park, Hwy 1 at Waddell Creek",
+   "url": "https://www.parks.ca.gov/Events/?parkUnit=406",
+   "description": "Second day of the Rancho del Oso Nature and History Center 40th anniversary celebration, with an afternoon program at 3 pm.",
+   "category": "Outdoors"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-07-21T13:30",
+   "end": "2026-07-21T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Toddler and Preschool Storytime",
+   "start": "2026-07-22T11:00",
+   "end": "2026-07-22T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/16356818",
+   "description": "Weekly storytime for toddlers and preschoolers at the library, Wednesdays 11 am to noon in July.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Make and Explore STEAM Program",
+   "start": "2026-07-22T13:30",
+   "end": "2026-07-22T14:30",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/16357062",
+   "description": "Weekly STEAM building and exploration program for kids 6 and up, with a new project each week.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Discovery Zone Playgroup",
+   "start": "2026-07-24T11:00",
+   "end": "2026-07-24T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15607412",
+   "description": "Drop-in playgroup for young children and caregivers at the library, 11 am to noon.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-07-24T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "Community Crafters",
+   "start": "2026-07-25T10:00",
+   "end": "2026-07-25T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15202663",
+   "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Write Now! Writing Group",
+   "start": "2026-07-25T15:00",
+   "end": "2026-07-25T16:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/16111355",
+   "description": "Monthly writing group at the library, 3 to 4 pm.",
+   "category": "Community"
+  },
+  {
+   "title": "Mobile Health Clinic",
+   "start": "2026-07-28T10:00",
+   "end": "2026-07-28T15:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15201583",
+   "description": "Mobile health clinic visit at the library, 10 am to 3 pm.",
+   "category": "Community"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-07-28T13:30",
+   "end": "2026-07-28T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Toddler and Preschool Storytime",
+   "start": "2026-07-29T11:00",
+   "end": "2026-07-29T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/16356819",
+   "description": "Weekly storytime for toddlers and preschoolers at the library, Wednesdays 11 am to noon in July.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Make and Explore STEAM Program",
+   "start": "2026-07-29T13:30",
+   "end": "2026-07-29T14:30",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/16357063",
+   "description": "Weekly STEAM building and exploration program for kids 6 and up, with a new project each week.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Cascada de Flores Bilingual Performance",
+   "start": "2026-07-30T10:30",
+   "end": "2026-07-30T11:30",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/16193825",
+   "description": "Bilingual music performance by Cascada de Flores at the library, 10:30 to 11:30 am.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Discovery Zone Playgroup",
+   "start": "2026-07-31T11:00",
+   "end": "2026-07-31T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15607413",
+   "description": "Drop-in playgroup for young children and caregivers at the library, 11 am to noon.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-07-31T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "Community Crafters",
+   "start": "2026-08-01T10:00",
+   "end": "2026-08-01T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15202664",
+   "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-08-04T13:30",
+   "end": "2026-08-04T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-08-07T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "First Friday Boulder Creek: Summer Carnival",
+   "start": "2026-08-07T17:00",
+   "end": "2026-08-07T20:00",
+   "location": "Downtown Boulder Creek",
+   "url": "https://www.bcba.net/events",
+   "description": "Monthly First Friday evening with local shops and specialty vendors along downtown Boulder Creek, 5 to 8 pm, with a summer carnival theme this month.",
+   "category": "Community"
+  },
+  {
+   "title": "Sempervirens Guided Hike at Big Basin",
+   "start": "2026-08-08",
+   "end": null,
+   "location": "Big Basin Redwoods State Park, Boulder Creek",
+   "url": "https://sempervirens.org/events/",
+   "description": "Guided hike through the redwoods of Big Basin with Sempervirens Fund; registration details on the Sempervirens events page.",
+   "category": "Outdoors"
+  },
+  {
+   "title": "Community Crafters",
+   "start": "2026-08-08T10:00",
+   "end": "2026-08-08T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15202665",
+   "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Understanding Alzheimer's and Dementia",
+   "start": "2026-08-11T11:00",
+   "end": "2026-08-11T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/16433589",
+   "description": "Educational talk on Alzheimer's and dementia at the library, 11 am to noon.",
+   "category": "Community"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-08-11T13:30",
+   "end": "2026-08-11T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-08-14T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "Heritage Demonstrations at the SLV Museum",
+   "start": "2026-08-15",
+   "end": null,
+   "location": "Grace Gallery, San Lorenzo Valley Museum, 12547 Hwy 9, Boulder Creek",
+   "url": "https://www.slvmuseum.org/",
+   "description": "Third Saturday heritage demonstration series celebrating the San Lorenzo Valley Historical Society's 50th year, running monthly April through August; the gallery is open 1 to 4 pm.",
+   "category": "Community"
+  },
+  {
+   "title": "Community Crafters",
+   "start": "2026-08-15T10:00",
+   "end": "2026-08-15T14:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15451984",
+   "description": "Extended Saturday craft session with the Community Crafters, 10 am to 2 pm.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-08-18T13:30",
+   "end": "2026-08-18T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Boulder Creek Book Group",
+   "start": "2026-08-20T11:00",
+   "end": "2026-08-20T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15401184",
+   "description": "Monthly library book group meeting in person and via Zoom, 11 am to noon.",
+   "category": "Community"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-08-21T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "Community Crafters",
+   "start": "2026-08-22T10:00",
+   "end": "2026-08-22T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15202667",
+   "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Mobile Health Clinic",
+   "start": "2026-08-25T10:00",
+   "end": "2026-08-25T15:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15201584",
+   "description": "Mobile health clinic visit at the library, 10 am to 3 pm.",
+   "category": "Community"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-08-25T13:30",
+   "end": "2026-08-25T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-08-28T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "Community Crafters",
+   "start": "2026-08-29T10:00",
+   "end": "2026-08-29T12:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/15202668",
+   "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "KBCZ Music Fest",
+   "start": "2026-08-29T13:00",
+   "end": "2026-08-29T19:00",
+   "location": "Garrahan Park, 15501 Hwy 9, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Music festival with Boulder Creek community radio KBCZ 89.3 FM at Garrahan Park, 1 to 7 pm.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Write Now! Writing Group",
+   "start": "2026-08-29T15:00",
+   "end": "2026-08-29T16:00",
+   "location": "Boulder Creek Branch Library, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/16111356",
+   "description": "Monthly writing group at the library, 3 to 4 pm.",
+   "category": "Community"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-09-01T13:30",
+   "end": "2026-09-01T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-09-04T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "First Friday Boulder Creek: Shop and Swap",
+   "start": "2026-09-04T17:00",
+   "end": "2026-09-04T20:00",
+   "location": "Downtown Boulder Creek",
+   "url": "https://www.bcba.net/events",
+   "description": "Monthly First Friday evening with local shops and specialty vendors along downtown Boulder Creek, 5 to 8 pm, with a shop and swap theme this month.",
+   "category": "Community"
+  },
+  {
+   "title": "SPLASHFEST",
+   "start": "2026-09-05T12:00",
+   "end": "2026-09-05T15:00",
+   "location": "Garrahan Park, 15501 Hwy 9, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Water play day for kids and teens from BCRPD and Messy Play Kits, noon to 3 pm with a low sensory hour from 11 am to noon, with food and drinks for purchase.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-09-08T13:30",
+   "end": "2026-09-08T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-09-11T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-09-15T13:30",
+   "end": "2026-09-15T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-09-18T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-09-22T13:30",
+   "end": "2026-09-22T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-09-25T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+   "category": "Community"
+  },
+  {
+   "title": "Santa Cruz Mountain Harvest Festival",
+   "start": "2026-09-26T13:00",
+   "end": "2026-09-26T18:00",
+   "location": "Junction Park and Downtown Rec Center, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "BCRPD's fall harvest festival at Junction Park and the Downtown Rec Center, 1 to 6 pm, with vendor applications open now.",
+   "category": "Community"
+  },
+  {
+   "title": "Felton Farmers Market",
+   "start": "2026-09-29T13:30",
+   "end": "2026-09-29T17:30",
+   "location": "St. John's Church lot, 120 Russell Ave, Felton",
+   "url": "https://santacruzfarmersmarket.org/markets/",
+   "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+   "category": "Market"
+  }
+ ]
 }
