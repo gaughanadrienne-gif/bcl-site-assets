@@ -1,0 +1,5 @@
+{
+ "updated": "2026-07-15",
+ "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category.",
+ "events": []
+}
