@@ -162,6 +162,18 @@
 
   /* ---------- mountain status ---------- */
 
+  function sirensLinks() {
+    return '<h3>What was that siren?</h3>' +
+      '<p style="font-size:.92rem;color:#1c2a26 !important;">These are the same official screens dispatchers feed. They tell you what the responders were sent to; they never replace official instructions.</p>' +
+      '<ul class="bcl-links">' +
+      '<li><a href="https://web.pulsepoint.org/?agencies=44020" target="_blank" rel="noopener">PulsePoint: Boulder Creek FPD live calls</a>: active and recent fire and medical calls with the units responding. Same feed on your phone via the <a href="https://www.pulsepoint.org/download" target="_blank" rel="noopener">PulsePoint Respond app</a> (follow Boulder Creek FPD).</li>' +
+      '<li><a href="https://www.watchduty.org/" target="_blank" rel="noopener">Watch Duty</a>: nonprofit wildfire map with human-verified updates for Santa Cruz County.</li>' +
+      '<li><a href="https://cad.chp.ca.gov/" target="_blank" rel="noopener">CHP live dispatch log</a>: pick the Monterey Communications Center for Highway 9 and 236 incidents.</li>' +
+      '<li><a href="https://www2.santacruzcountyca.gov/SHF/CristaPublic/" target="_blank" rel="noopener">Sheriff calls-for-service lookup</a>: past calls by address (not live; some incident types excluded).</li>' +
+      "</ul>" +
+      '<p style="font-size:.85rem;color:#67716b !important;">Law enforcement calls generally are not shown live anywhere public. An empty feed means "not shown," not "nothing happening." For evacuation decisions, rely on <a href="https://www.cruzaware.org/" target="_blank" rel="noopener" style="color:#2e6b46 !important;">CruzAware</a> and official orders.</p>';
+  }
+
   function officialLinks() {
     return '<h3>Official sources</h3><ul class="bcl-links">' +
       '<li><a href="https://www.weather.gov/mtr/" target="_blank" rel="noopener">National Weather Service, Bay Area</a> for forecasts and warnings</li>' +
@@ -178,6 +190,7 @@
     root.innerHTML =
       '<div class="bcl-alert">If this is an emergency, call 911. This page links to official sources; it never replaces them.</div>' +
       '<div class="bcl-nws"><div class="bcl-count">Checking National Weather Service…</div></div>' +
+      sirensLinks() +
       officialLinks();
 
     var nwsRoot = root.querySelector(".bcl-nws");
