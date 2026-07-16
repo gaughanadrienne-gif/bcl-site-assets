@@ -64,7 +64,25 @@
       ".bcl-dir-verified{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#67716b !important;margin-top:auto;padding-top:6px;}",
       ".bcl-links li{margin:6px 0;font-size:.92rem;}",
       ".bcl-links a{color:#2e6b46 !important;}",
-      "@media (max-width:640px){.bcl-controls{flex-direction:column;}}"
+      ".bcl-range{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px;}",
+      ".bcl-range button{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:8px 14px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;text-transform:uppercase;}",
+      ".bcl-range button.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
+      ".bcl-maptoggle{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:10px 14px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;text-transform:uppercase;}",
+      ".bcl-map{height:480px;width:100%;border:1px solid #e3ddcf;display:none;margin:0 0 14px;}",
+      ".bcl-map .leaflet-popup-content{font-family:Inter,Arial,sans-serif;font-size:.85rem;}",
+      ".bcl-today{background:#0d2c26 !important;color:#f5f1e7 !important;padding:22px 24px;font-family:Inter,Arial,sans-serif;}",
+      ".bcl-today-head{display:flex;align-items:center;gap:10px;margin:0 0 12px;}",
+      ".bcl-today-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
+      ".bcl-today-head h2{font-family:'Cormorant Garamond',Georgia,serif;color:#f5f1e7 !important;font-size:1.7rem;margin:0 !important;line-height:1;}",
+      ".bcl-today-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:#e4b957 !important;margin-left:auto;text-transform:uppercase;}",
+      ".bcl-today-row{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.9rem;color:#f5f1e7 !important;margin:0 0 4px;}",
+      ".bcl-today-row b{color:#a8bd7f !important;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px;font-weight:500;}",
+      ".bcl-today-ev{margin:10px 0 0;padding-top:10px;border-top:1px solid rgba(245,241,231,.18);}",
+      ".bcl-today-ev div{font-size:.9rem;margin:3px 0;color:#f5f1e7 !important;}",
+      ".bcl-today-ev span{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#e4b957 !important;margin-right:8px;}",
+      ".bcl-today a{color:#a8bd7f !important;text-decoration:underline;}",
+      ".bcl-today-links{margin-top:12px;font-size:.82rem;}",
+      "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-today-head span{margin-left:0;}}"
     ].join("");
     var el = document.createElement("style");
     el.id = "bcl-tools-css";
@@ -103,6 +121,24 @@
     return h + "</div>";
   }
 
+  var leafletLoading = null;
+  function loadLeaflet() {
+    if (window.L) return Promise.resolve();
+    if (leafletLoading) return leafletLoading;
+    leafletLoading = new Promise(function (resolve, reject) {
+      var css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css";
+      document.head.appendChild(css);
+      var s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js";
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+    return leafletLoading;
+  }
+
   function initListings(root, dataFile, label) {
     root.innerHTML = '<div class="bcl-count">Loading ' + esc(label) + "…</div>";
     fetchJSON(REPO + "/data/" + dataFile).then(function (data) {
@@ -110,13 +146,17 @@
       var cats = [];
       all.forEach(function (l) { if (cats.indexOf(l.category) < 0) cats.push(l.category); });
       cats.sort();
+      var pinned = all.filter(function (l) { return l.lat && l.lon; });
 
       root.innerHTML =
         '<div class="bcl-controls">' +
         '<input type="search" placeholder="Search by name or service" aria-label="Search listings">' +
         '<select aria-label="Jump to category"><option value="">All categories</option>' +
         cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") +
-        "</select></div>" +
+        "</select>" +
+        (pinned.length ? '<button class="bcl-maptoggle" type="button">Map view</button>' : "") +
+        "</div>" +
+        '<div class="bcl-map"></div>' +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
         '<div class="bcl-note">Something wrong or missing? <a href="/submit">Send an update</a>.</div>';
 
@@ -124,6 +164,41 @@
       var select = root.querySelector("select");
       var count = root.querySelector(".bcl-count");
       var list = root.querySelector(".bcl-list");
+      var mapDiv = root.querySelector(".bcl-map");
+      var mapBtn = root.querySelector(".bcl-maptoggle");
+      var map = null, showingMap = false;
+
+      if (mapBtn) mapBtn.addEventListener("click", function () {
+        showingMap = !showingMap;
+        mapBtn.textContent = showingMap ? "List view" : "Map view";
+        mapDiv.style.display = showingMap ? "block" : "none";
+        list.style.display = showingMap ? "none" : "";
+        if (showingMap && !map) {
+          loadLeaflet().then(function () {
+            map = window.L.map(mapDiv).setView([37.1261, -122.1222], 14);
+            window.L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              maxZoom: 19,
+              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            var bounds = [];
+            pinned.forEach(function (l) {
+              var pop = "<strong>" + esc(l.name) + "</strong><br>" + esc(l.subcategory || l.category) +
+                (l.address ? "<br>" + esc(l.address) : "") +
+                (l.website ? '<br><a href="' + esc(l.website) + '" target="_blank" rel="noopener">Website</a>' : "");
+              window.L.marker([l.lat, l.lon]).addTo(map).bindPopup(pop);
+              bounds.push([l.lat, l.lon]);
+            });
+            if (bounds.length) map.fitBounds(bounds, { padding: [30, 30], maxZoom: 16 });
+          }).catch(function () {
+            mapDiv.style.display = "none";
+            list.style.display = "";
+            showingMap = false;
+            mapBtn.textContent = "Map view";
+          });
+        } else if (showingMap && map) {
+          setTimeout(function () { map.invalidateSize(); }, 60);
+        }
+      });
 
       function render() {
         var q = (input.value || "").toLowerCase();
@@ -199,6 +274,7 @@
       cats.sort();
 
       root.innerHTML =
+        '<div class="bcl-range"><button data-r="all" class="bcl-on">All upcoming</button><button data-r="today">Today</button><button data-r="weekend">This weekend</button></div>' +
         '<div class="bcl-controls">' +
         '<input type="search" placeholder="Search events" aria-label="Search events">' +
         '<select class="bcl-ev-cat" aria-label="Filter by type"><option value="">All types</option>' +
@@ -213,11 +289,32 @@
       var sortSel = root.querySelector(".bcl-ev-sort");
       var count = root.querySelector(".bcl-count");
       var grid = root.querySelector(".bcl-event-grid");
+      var range = "all";
+      var rangeBtns = [].slice.call(root.querySelectorAll(".bcl-range button"));
+
+      function inRange(e) {
+        if (range === "all") return true;
+        var p = evParts(e.start);
+        if (!p) return false;
+        var d = new Date(p.y, p.mo - 1, p.d).getTime();
+        var today = new Date(); today.setHours(0, 0, 0, 0);
+        if (range === "today") return d === today.getTime();
+        // weekend: upcoming (or current) Friday through Sunday, never before today
+        var dow = today.getDay();
+        var fri = new Date(today);
+        if (dow === 6) fri.setDate(today.getDate() - 1);
+        else if (dow === 0) fri.setDate(today.getDate() - 2);
+        else fri.setDate(today.getDate() + (5 - dow));
+        var sun = new Date(fri); sun.setDate(fri.getDate() + 2);
+        var lo = Math.max(fri.getTime(), today.getTime());
+        return d >= lo && d <= sun.getTime();
+      }
 
       function render() {
         var q = (input.value || "").toLowerCase();
         var cat = catSel.value;
         var rows = all.filter(function (e) {
+          if (!inRange(e)) return false;
           if (cat && (e.category || "Community") !== cat) return false;
           if (!q) return true;
           return (e.title + " " + (e.location || "") + " " + (e.description || "")).toLowerCase().indexOf(q) >= 0;
@@ -239,6 +336,13 @@
           return h + "</div>";
         }).join("") : '<div class="bcl-unavailable">No events match. Try clearing the search or type filter.</div>';
       }
+      rangeBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          range = btn.getAttribute("data-r");
+          rangeBtns.forEach(function (b) { b.className = b === btn ? "bcl-on" : ""; });
+          render();
+        });
+      });
       input.addEventListener("input", render);
       catSel.addEventListener("change", render);
       sortSel.addEventListener("change", render);
@@ -386,6 +490,65 @@
     });
   }
 
+  /* ---------- today module (home page) ---------- */
+
+  function initToday(root) {
+    var now = new Date();
+    var days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    var mons = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    var stamp = days[now.getDay()] + " " + mons[now.getMonth()] + " " + now.getDate();
+    root.innerHTML =
+      '<div class="bcl-today">' +
+      '<div class="bcl-today-head"><h2>Today in Boulder Creek</h2><span>' + stamp + "</span></div>" +
+      '<div class="bcl-today-row">' +
+      '<div class="bcl-td-wx"><b>Weather</b>Checking…</div>' +
+      '<div class="bcl-td-air"><b>Air</b>Checking…</div>' +
+      "</div>" +
+      '<div class="bcl-today-ev"><div>Checking the calendar…</div></div>' +
+      '<div class="bcl-today-links"><a href="/events">Full calendar</a> &nbsp;·&nbsp; <a href="/mountain-status">Roads, power, and conditions</a></div>' +
+      "</div>";
+
+    var wx = root.querySelector(".bcl-td-wx");
+    var air = root.querySelector(".bcl-td-air");
+    var ev = root.querySelector(".bcl-today-ev");
+
+    fetchJSON("https://api.weather.gov/points/" + NWS_POINT.lat + "," + NWS_POINT.lon)
+      .then(function (p) { return fetchJSON(p.properties.forecast); })
+      .then(function (f) {
+        var p0 = ((f.properties || {}).periods || [])[0];
+        if (!p0) throw new Error("no period");
+        wx.innerHTML = "<b>Weather</b>" + esc(p0.shortForecast) + ", " + (p0.isDaytime ? "high" : "low") + " " + esc(String(p0.temperature)) + "°";
+      }).catch(function () { wx.innerHTML = '<b>Weather</b><a href="https://www.weather.gov/mtr/" target="_blank" rel="noopener">weather.gov</a>'; });
+
+    fetchJSON("https://air-quality-api.open-meteo.com/v1/air-quality?latitude=" + NWS_POINT.lat + "&longitude=" + NWS_POINT.lon + "&current=us_aqi&timezone=America%2FLos_Angeles")
+      .then(function (d) {
+        var v = (d.current || {}).us_aqi;
+        var cat = aqiCategory(v);
+        if (cat === null) throw new Error("no aqi");
+        air.innerHTML = "<b>Air</b>" + esc(cat) + " (AQI " + Math.round(v) + ")";
+      }).catch(function () { air.innerHTML = '<b>Air</b><a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow map</a>'; });
+
+    fetchJSON(REPO + "/data/events.json").then(function (data) {
+      var t = new Date(); t.setHours(0, 0, 0, 0);
+      var todayKey = t.getFullYear() + "-" + (t.getMonth() < 9 ? "0" : "") + (t.getMonth() + 1) + "-" + (t.getDate() < 10 ? "0" : "") + t.getDate();
+      var upcoming = (data.events || []).filter(function (e) {
+        var p = evParts(e.end || e.start);
+        return p && new Date(p.y, p.mo - 1, p.d, 23, 59) >= t;
+      }).sort(function (a, b) { return String(a.start).localeCompare(String(b.start)); });
+      var todays = upcoming.filter(function (e) { return String(e.start).slice(0, 10) === todayKey; }).slice(0, 3);
+      if (todays.length) {
+        ev.innerHTML = todays.map(function (e) {
+          return "<div><span>" + evDateChip(e.start).replace(/^[A-Z]{3} [A-Z]{3} \d+( · )?/, "") + (evParts(e.start).h == null ? "TODAY" : "") + "</span>" + esc(e.title) + (e.location ? " · " + esc(String(e.location).split(",")[0]) : "") + "</div>";
+        }).join("");
+      } else if (upcoming.length) {
+        var n = upcoming[0];
+        ev.innerHTML = "<div><span>NEXT · " + evDateChip(n.start) + "</span>" + esc(n.title) + (n.location ? " · " + esc(String(n.location).split(",")[0]) : "") + "</div>";
+      } else {
+        ev.innerHTML = "<div>No verified upcoming events on the calendar.</div>";
+      }
+    }).catch(function () { ev.innerHTML = '<div><a href="/events">See the calendar</a></div>'; });
+  }
+
   /* ---------- boot ---------- */
 
   function boot() {
@@ -398,6 +561,8 @@
     if (e) initEvents(e);
     var s = document.getElementById("bcl-status");
     if (s) initStatus(s);
+    var t = document.getElementById("bcl-today");
+    if (t) initToday(t);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

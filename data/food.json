@@ -40,7 +40,9 @@
    "website": "https://www.bigbasinvineyards.com/visit-2/",
    "hours_text": "Saturday-Sunday 12:00-5:00 p.m.",
    "service_area": "Boulder Creek and Santa Cruz Mountains visitors",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.181908,
+   "lon": -122.159846
   },
   {
    "name": "Johnnie's Super Market & Liquor",
@@ -53,7 +55,9 @@
    "website": "https://www.johnniesmarket.com/",
    "hours_text": "Monday-Thursday 8:00 a.m.-9:00 p.m.; Friday-Saturday 8:00 a.m.-10:00 p.m.; Sunday 8:00 a.m.-9:00 p.m.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.125551,
+   "lon": -122.122821
   },
   {
    "name": "Wild Roots Market - Boulder Creek",
@@ -66,7 +70,9 @@
    "website": "https://wildrootsmarket.com/",
    "hours_text": "Daily 9:00 a.m.-9:00 p.m.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.124756,
+   "lon": -122.122518
   },
   {
    "name": "El Rey Leon",
@@ -79,7 +85,9 @@
    "website": "https://elreyleonca.com/",
    "hours_text": "Monday-Saturday 11:00 a.m.-3:00 p.m. and 4:00-7:00 p.m.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.121223,
+   "lon": -122.120809
   },
   {
    "name": "Red Pearl Chinese Cuisine",
@@ -92,7 +100,9 @@
    "website": "https://www.redpearlonline.com/",
    "hours_text": "Wednesday-Sunday 11:00 a.m.-9:00 p.m.; Monday-Tuesday closed.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.124614,
+   "lon": -122.122248
   },
   {
    "name": "Scopazzi's Restaurant & Lounge",
@@ -105,7 +115,9 @@
    "website": "https://www.scopazzisbc.com/",
    "hours_text": "Breakfast Wednesday-Sunday 10:30 a.m.-2:00 p.m.; lunch Wednesday-Saturday 11:30 a.m.-3:00 p.m.; dinner Wednesday-Sunday 4:00 p.m.-closing; Monday-Tuesday closed.",
    "service_area": "Boulder Creek and private-event customers",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.125146,
+   "lon": -122.124363
   },
   {
    "name": "Tae's Edo Sushi Bar",
@@ -118,7 +130,9 @@
    "website": "https://edosushibc.com/",
    "hours_text": "Tuesday-Thursday and Sunday 4:00-8:00 p.m.; Friday-Saturday 12:00-3:00 p.m. and 4:00-8:00 p.m.; Monday closed.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.152322,
+   "lon": -122.134518
   },
   {
    "name": "The Sawmill Restaurant & Alehouse",
@@ -131,7 +145,9 @@
    "website": "https://www.thesawmillbc.com/",
    "hours_text": null,
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.152322,
+   "lon": -122.134518
   },
   {
    "name": "River Dogs of Boulder Creek",
@@ -144,7 +160,9 @@
    "website": "https://riverdogsofbc.com/",
    "hours_text": "Winter: Tuesday-Thursday 11:30 a.m.-3:00 p.m.; Friday-Sunday 11:30 a.m.-5:00 p.m.; weather and event closures possible.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.124132,
+   "lon": -122.121676
   }
  ]
 }

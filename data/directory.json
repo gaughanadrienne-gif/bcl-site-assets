@@ -14,7 +14,9 @@
    "website": "https://www.hennigstudios.com/",
    "hours_text": "First Sunday of each month 12pm-5pm; other times by appointment",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.117883,
+   "lon": -122.119038
   },
   {
    "name": "San Lorenzo Valley Museum - Grace Episcopal Gallery",
@@ -27,7 +29,9 @@
    "website": "https://www.slvmuseum.org/",
    "hours_text": "Office Wednesday-Saturday 1:00-4:00 p.m.; call or email for an appointment.",
    "service_area": "San Lorenzo Valley",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.116717,
+   "lon": -122.120682
   },
   {
    "name": "Viscosity Glass",
@@ -40,7 +44,9 @@
    "website": "https://www.viscositystudio.com/gallery/",
    "hours_text": "Friday 1pm-3pm; Saturday 1pm-5pm; other times by appointment",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.125845,
+   "lon": -122.122454
   },
   {
    "name": "lille aeske arthouse",
@@ -53,7 +59,9 @@
    "website": "https://www.lilleaeske.com/",
    "hours_text": null,
    "service_area": "Boulder Creek and the Santa Cruz Mountains arts community",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.124852,
+   "lon": -122.12197
   },
   {
    "name": "Mountain Mechanics",
@@ -66,7 +74,9 @@
    "website": "https://www.mountainmechanics.net/",
    "hours_text": "Monday-Friday 8am-5pm; Saturday-Sunday closed",
    "service_area": "Boulder Creek and surrounding mountain communities",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.124918,
+   "lon": -122.123622
   },
   {
    "name": "211 Santa Cruz County",
@@ -92,7 +102,9 @@
    "website": "https://bce.slvusd.org/",
    "hours_text": "See school calendar",
    "service_area": "Assigned SLVUSD attendance area",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.123033,
+   "lon": -122.123622
   },
   {
    "name": "Little People's School",
@@ -105,7 +117,9 @@
    "website": null,
    "hours_text": null,
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.124371,
+   "lon": -122.123723
   },
   {
    "name": "San Lorenzo Valley Unified School District",
@@ -118,7 +132,9 @@
    "website": "https://www.slvusd.org/",
    "hours_text": null,
    "service_area": "San Lorenzo Valley, including Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.082077,
+   "lon": -122.073289
   },
   {
    "name": "Santa Cruz County Child Development Resource Center",
@@ -131,7 +147,9 @@
    "website": "https://childcare.santacruzcoe.org/",
    "hours_text": "Monday-Friday 8:00 AM-5:00 PM",
    "service_area": "County families, including Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 36.987194,
+   "lon": -122.036725
   },
   {
    "name": "Seeds of Knowledge Preschool",
@@ -144,7 +162,9 @@
    "website": "https://seedsofknowledgeprek.com/",
    "hours_text": "Monday-Friday 7am-5pm",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.156864,
+   "lon": -122.134118
   },
   {
    "name": "9-1-1 Emergency Dispatch",
@@ -170,7 +190,9 @@
    "website": "https://www.bcfd.com/",
    "hours_text": "Office Monday-Friday 8:00 AM-5:00 PM; emergency response through 911",
    "service_area": "Boulder Creek and Brookdale",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.125844,
+   "lon": -122.122176
   },
   {
    "name": "Boulder Creek Sheriff's Service Center",
@@ -183,7 +205,9 @@
    "website": "https://shf.santacruzcountyca.gov/SheriffHome/MyCommunity/BoulderCreek.aspx",
    "hours_text": null,
    "service_area": "Boulder Creek area",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.125541,
+   "lon": -122.122089
   },
   {
    "name": "CAL FIRE CZU / Santa Cruz County Fire",
@@ -196,7 +220,9 @@
    "website": "https://www.fire.ca.gov/",
    "hours_text": null,
    "service_area": "Santa Cruz County and CAL FIRE CZU area",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.048693,
+   "lon": -122.073437
   },
   {
    "name": "CruzAware Emergency Alerts",
@@ -248,7 +274,9 @@
    "website": "https://cdi.santacruzcountyca.gov/PublicWorks/ContactUs.aspx",
    "hours_text": "24/7",
    "service_area": "County-maintained roads, including Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 36.969833,
+   "lon": -121.97632
   },
   {
    "name": "Santa Cruz County Sheriff Non-Emergency Dispatch",
@@ -274,7 +302,9 @@
    "website": "https://www.wafwc.org/domestic-violence",
    "hours_text": "24/7 including holidays",
    "service_area": "Santa Cruz County, including Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 36.972419,
+   "lon": -122.030755
   },
   {
    "name": "Santa Cruz County Benefits Customer Service",
@@ -326,7 +356,9 @@
    "website": "https://www.santacruzhumanservices.org/AdultLongTermCare/VeteransServices/VeteransServicesOffice",
    "hours_text": "Monday-Thursday 8:00 AM-noon and 1:00-5:00 PM; closed Friday",
    "service_area": "Santa Cruz County veterans and families",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 36.976098,
+   "lon": -122.026094
   },
   {
    "name": "988 Suicide & Crisis Lifeline",
@@ -352,7 +384,9 @@
    "website": "https://www.bouldercreekdental.com/",
    "hours_text": "Monday-Thursday 9am-5pm; Friday-Sunday closed",
    "service_area": "Boulder Creek and surrounding communities",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.125247,
+   "lon": -122.123751
   },
   {
    "name": "Elevated Wellness Massage & Bodywork",
@@ -365,7 +399,9 @@
    "website": "https://www.elevatedwellnessmassage.com/",
    "hours_text": "By appointment",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.12385,
+   "lon": -122.122066
   },
   {
    "name": "Mountain Sangha",
@@ -378,7 +414,9 @@
    "website": "https://www.mountainsangha.com/",
    "hours_text": "Monday-Friday 6am-7:30pm; Saturday-Sunday 8am-1pm; class schedule controls access",
    "service_area": "Boulder Creek and the San Lorenzo Valley",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.119802,
+   "lon": -122.120402
   },
   {
    "name": "Redwood Mountain Spa",
@@ -391,7 +429,9 @@
    "website": "https://redwoodmountainspa.com/",
    "hours_text": "By appointment",
    "service_area": "Boulder Creek and surrounding communities",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.116951,
+   "lon": -122.120263
   },
   {
    "name": "Santa Cruz County Behavioral Health Access & Crisis Line",
@@ -443,7 +483,9 @@
    "website": null,
    "hours_text": null,
    "service_area": "Boulder Creek and San Lorenzo Valley",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.123663,
+   "lon": -122.127375
   },
   {
    "name": "Christianson Tree Experts",
@@ -456,7 +498,9 @@
    "website": "https://christiansontreeexperts.com/",
    "hours_text": null,
    "service_area": "Boulder Creek and Santa Cruz County",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.122998,
+   "lon": -122.12239
   },
   {
    "name": "Geist Builders Group",
@@ -469,7 +513,9 @@
    "website": "https://geistbuildersgroup.com/",
    "hours_text": "Monday-Friday 9am-5pm",
    "service_area": "Boulder Creek and Santa Cruz County",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.124159,
+   "lon": -122.122096
   },
   {
    "name": "Jeff Vedder Painting",
@@ -508,7 +554,9 @@
    "website": "https://robertbimbiconstruction.com/",
    "hours_text": null,
    "service_area": "Santa Cruz and Santa Clara counties",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.152322,
+   "lon": -122.134518
   },
   {
    "name": "SE Electric",
@@ -573,7 +621,9 @@
    "website": "https://rcp.camp/",
    "hours_text": null,
    "service_area": "Church groups, retreats, and registered family-camp participants",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.149454,
+   "lon": -122.121631
   },
   {
    "name": "Redwood Resort RV Park and Campground",
@@ -586,7 +636,9 @@
    "website": "https://www.redwoodresort.net/",
    "hours_text": null,
    "service_area": "Boulder Creek visitors and extended-stay RV guests",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.11775,
+   "lon": -122.119568
   },
   {
    "name": "Barbara Day Park (Dam Park)",
@@ -612,7 +664,9 @@
    "website": "https://www.parks.ca.gov/?page_id=540",
    "hours_text": "Daily 8:00 a.m.-sunset.",
    "service_area": "Santa Cruz Mountains",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.126536,
+   "lon": -122.130662
   },
   {
    "name": "Boulder Creek Golf & Country Club",
@@ -638,7 +692,9 @@
    "website": "https://www.bcrpd.org/",
    "hours_text": "Downtown office Tuesday-Friday 10:00 a.m.-2:00 p.m.; Bear Creek Community Center hours vary.",
    "service_area": "Boulder Creek Recreation and Park District",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.126117,
+   "lon": -122.121578
   },
   {
    "name": "Camp Harmon",
@@ -651,7 +707,9 @@
    "website": "https://www.campharmon.org/",
    "hours_text": "Office Monday-Friday 9:00 a.m.-5:00 p.m.; Saturday-Sunday closed.",
    "service_area": "Program participants and families",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.156864,
+   "lon": -122.134118
   },
   {
    "name": "Garrahan Park",
@@ -664,7 +722,9 @@
    "website": "https://www.bcrpd.org/parks",
    "hours_text": "Sunrise-sunset.",
    "service_area": "Boulder Creek Recreation and Park District",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.156864,
+   "lon": -122.134118
   },
   {
    "name": "Junction Park",
@@ -690,7 +750,9 @@
    "website": "https://www.ymcasv.org/camp-campbell",
    "hours_text": "Facility listing: Monday-Sunday 8:00 a.m.-5:30 p.m.",
    "service_area": "Youth, families, schools, and retreat groups",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.156864,
+   "lon": -122.134118
   },
   {
    "name": "Boulder Creek Veterinary Clinic",
@@ -703,7 +765,9 @@
    "website": "https://bouldercreekveterinaryclinic.com/",
    "hours_text": "Monday and Wednesday 8am-8pm; Tuesday, Thursday, and Friday 8am-6pm; Saturday 8am-5pm; Sunday closed",
    "service_area": "Boulder Creek and surrounding communities",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.120916,
+   "lon": -122.120778
   },
   {
    "name": "CENTURY 21 Masters - Boulder Creek",
@@ -716,7 +780,9 @@
    "website": "https://c21masters.com/offices/",
    "hours_text": null,
    "service_area": "San Lorenzo Valley and Santa Cruz County",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.124223,
+   "lon": -122.122198
   },
   {
    "name": "Schwarzbach Associates",
@@ -729,7 +795,9 @@
    "website": "https://www.schwarzbachassociatesinc.com/",
    "hours_text": null,
    "service_area": "Boulder Creek, San Lorenzo Valley, and Santa Cruz County",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.130229,
+   "lon": -122.123619
   },
   {
    "name": "Air & Fire: A Mystical Bazaar",
@@ -742,7 +810,9 @@
    "website": "https://www.airandfire.com/home.html",
    "hours_text": "Tuesday-Sunday 11am-6:30pm; Monday 11am-4pm; hours may vary seasonally",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.131781,
+   "lon": -122.124812
   },
   {
    "name": "Beck's Shoes - Boulder Creek",
@@ -755,7 +825,9 @@
    "website": "https://www.beckshoes.com/stores/boulder-creek-ca-boulder-creek",
    "hours_text": "Thursday-Sunday 10am-6pm; Monday-Wednesday closed",
    "service_area": "Boulder Creek and the Santa Cruz Mountains",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.116622,
+   "lon": -122.120185
   },
   {
    "name": "Boulder Creek Pharmacy",
@@ -768,7 +840,9 @@
    "website": "https://www.bouldercreekrx.com/",
    "hours_text": "Monday-Friday 9am-6pm; Saturday 10am-4pm; Sunday closed",
    "service_area": "Boulder Creek and the San Lorenzo Valley",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.123699,
+   "lon": -122.122138
   },
   {
    "name": "Creekside Wellness",
@@ -781,7 +855,9 @@
    "website": "https://creeksidewellness.co/",
    "hours_text": "Monday-Saturday 10am-7pm; Sunday 12pm-6pm",
    "service_area": "Boulder Creek and surrounding communities",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.11718,
+   "lon": -122.120697
   },
   {
    "name": "SWAG",
@@ -794,7 +870,9 @@
    "website": "https://www.swagbouldercreek.com/",
    "hours_text": null,
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.152322,
+   "lon": -122.134518
   },
   {
    "name": "Scarborough Building Supply",
@@ -807,7 +885,9 @@
    "website": "https://www.scarboroughlumber.com/pages/scarborough-building-supply",
    "hours_text": "Monday-Friday 7:30am-6pm; Saturday 8am-5pm; Sunday 9am-5pm",
    "service_area": "Boulder Creek and surrounding mountain communities",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.122595,
+   "lon": -122.121042
   },
   {
    "name": "Scarborough Home & Garden",
@@ -820,7 +900,9 @@
    "website": "https://www.scarboroughlumber.com/pages/scarborough-home-garden",
    "hours_text": "Monday-Saturday 8am-5pm; Sunday 9am-5pm",
    "service_area": "Boulder Creek and surrounding mountain communities",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.124215,
+   "lon": -122.121634
   },
   {
    "name": "Stumptown Supply",
@@ -859,7 +941,9 @@
    "website": "https://scmtd.com/en/metro-paracruz/customer-guide",
    "hours_text": "See current guide",
    "service_area": "METRO ADA service area, including eligible SLV trips",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 36.985685,
+   "lon": -121.968171
   },
   {
    "name": "Santa Cruz METRO",
@@ -872,7 +956,9 @@
    "website": "https://scmtd.com/",
    "hours_text": "Customer center Monday-Friday 8:00 AM-5:00 PM",
    "service_area": "Santa Cruz County, including Boulder Creek",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 36.97336,
+   "lon": -122.024698
   },
   {
    "name": "GreenWaste Recovery - Santa Cruz County",
@@ -911,7 +997,9 @@
    "website": "https://www.slvwd.com/",
    "hours_text": "Monday-Friday 8:30 AM-noon and 1:00-5:00 PM; emergency routing 24/7",
    "service_area": "SLVWD customers",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "lat": 37.123547,
+   "lon": -122.121408
   }
  ]
 }
