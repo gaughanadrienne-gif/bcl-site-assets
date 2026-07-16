@@ -544,21 +544,6 @@
    "verified_at": "2026-07-15"
   },
   {
-   "name": "Robert Bimbi Construction",
-   "category": "Home & Property Services",
-   "subcategory": "General contractor and remodeling",
-   "description": "Licensed general contractor specializing in residential remodeling, additions, and custom construction.",
-   "address": "13200 Highway 9, Suite 2",
-   "locality": "Boulder Creek",
-   "phone": "408-833-2096",
-   "website": "https://robertbimbiconstruction.com/",
-   "hours_text": null,
-   "service_area": "Santa Cruz and Santa Clara counties",
-   "verified_at": "2026-07-15",
-   "lat": 37.152322,
-   "lon": -122.134518
-  },
-  {
    "name": "SE Electric",
    "category": "Home & Property Services",
    "subcategory": "Electrical contractor",
