@@ -186,12 +186,86 @@
       "</ul>";
   }
 
+  function aqiCategory(v) {
+    if (v == null || isNaN(v)) return null;
+    if (v <= 50) return "Good";
+    if (v <= 100) return "Moderate";
+    if (v <= 150) return "Unhealthy for sensitive groups";
+    if (v <= 200) return "Unhealthy";
+    if (v <= 300) return "Very unhealthy";
+    return "Hazardous";
+  }
+
+  function fillAQI(el) {
+    fetchJSON("https://air-quality-api.open-meteo.com/v1/air-quality?latitude=" + NWS_POINT.lat + "&longitude=" + NWS_POINT.lon + "&current=us_aqi,pm2_5&timezone=America%2FLos_Angeles")
+      .then(function (d) {
+        var c = d.current || {};
+        var cat = aqiCategory(c.us_aqi);
+        if (cat === null) throw new Error("no aqi");
+        el.innerHTML =
+          '<div class="bcl-name">Air quality: ' + esc(cat) + "</div>" +
+          '<div class="bcl-sub">US AQI ' + Math.round(c.us_aqi) + (c.pm2_5 != null ? " · PM2.5 " + Math.round(c.pm2_5) + " µg/m³" : "") + "</div>" +
+          '<p>Modeled estimate for Boulder Creek from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. During smoke events, confirm with the <a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a>, which uses ground monitors.</p>';
+      })
+      .catch(function () {
+        el.innerHTML = '<div class="bcl-name">Air quality: unavailable</div><p>The estimate didn\'t load; that is not an all-clear. Check the <a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a>.</p>';
+      });
+  }
+
+  function fillCaltrans(el) {
+    var ROUTES = { "SR-9": 1, "SR-236": 1, "SR-35": 1, "SR-17": 1, "SR-1": 1 };
+    fetchJSON("https://cwwp2.dot.ca.gov/data/d5/lcs/lcsStatusD05.json")
+      .then(function (d) {
+        var rows = (d.data || []).map(function (r) { return r.lcs; }).filter(function (l) {
+          var b = (l.location || {}).begin || {};
+          var c = l.closure || {};
+          var active = c.code1097 && String(c.code1097).trim() !== "" && (!c.code1098 || String(c.code1098).trim() === "");
+          return active && b.beginCounty === "Santa Cruz" && ROUTES[b.beginRoute];
+        }).slice(0, 6);
+        var h = "";
+        if (rows.length) {
+          h = '<div class="bcl-name">Caltrans closures on state highways: ' + rows.length + "</div>";
+          rows.forEach(function (l) {
+            var b = l.location.begin, c = l.closure;
+            h += '<div class="bcl-meta">' + esc(b.beginRoute) + " near " + esc(b.beginNearbyPlace || b.beginLocationName || "?") + ": " +
+              esc((c.typeOfClosure || "closure").toLowerCase()) + (c.estimatedDelay && c.estimatedDelay !== "None" ? ", est. delay " + esc(c.estimatedDelay) : "") + "</div>";
+          });
+        } else {
+          h = '<div class="bcl-name">No active Caltrans closures reported</div><div class="bcl-meta">Highways 1, 9, 17, 35, and 236 in Santa Cruz County, per the Caltrans lane closure feed.</div>';
+        }
+        h += '<p>State highways only; county roads like Bear Creek and Jamison Creek are not in this feed. Check <a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">QuickMap</a> and the <a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/" target="_blank" rel="noopener">county road dashboard</a> before you drive.</p>';
+        el.innerHTML = h;
+      })
+      .catch(function () {
+        el.innerHTML = '<div class="bcl-name">Road closures: feed unavailable</div><p>That is not an all-clear. Check <a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">Caltrans QuickMap</a> and the <a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/" target="_blank" rel="noopener">county road dashboard</a>.</p>';
+      });
+  }
+
+  function rightNowStatic() {
+    return '<div class="bcl-card">' +
+      '<div class="bcl-name">Power: check PG&amp;E for your address</div>' +
+      '<p>PG&amp;E doesn\'t offer a public feed this page can safely embed, so check the <a href="https://pgealerts.alerts.pge.com/outage-tools/outage-map/" target="_blank" rel="noopener">live outage map</a> for 95006, and sign up for <a href="https://www.pge.com/en/outages-and-safety/outage-preparedness-and-support/outage-alerts.html" target="_blank" rel="noopener">address-based outage alerts</a>. Downed line: call 911, then PG&amp;E at 1-800-743-5000.</p></div>' +
+      '<div class="bcl-card">' +
+      '<div class="bcl-name">Fire and medical calls: PulsePoint</div>' +
+      '<p>Active and recent Boulder Creek FPD calls are on the <a href="https://web.pulsepoint.org/?agencies=44020" target="_blank" rel="noopener">live PulsePoint feed</a> with the units responding. Wildfire: <a href="https://www.watchduty.org/" target="_blank" rel="noopener">Watch Duty</a> and <a href="https://www.fire.ca.gov/incidents" target="_blank" rel="noopener">CAL FIRE incidents</a>.</p></div>';
+  }
+
   function initStatus(root) {
     root.innerHTML =
       '<div class="bcl-alert">If this is an emergency, call 911. This page links to official sources; it never replaces them.</div>' +
-      '<div class="bcl-nws"><div class="bcl-count">Checking National Weather Service…</div></div>' +
+      '<h3>Right now</h3>' +
+      '<div class="bcl-status-grid">' +
+      '<div class="bcl-card bcl-aqi"><div class="bcl-count">Checking air quality…</div></div>' +
+      '<div class="bcl-card bcl-roads"><div class="bcl-count">Checking Caltrans closures…</div></div>' +
+      rightNowStatic() +
+      "</div>" +
+      '<div class="bcl-count" style="margin-top:10px;">LIVE ITEMS RETRIEVED WHEN YOU LOADED THIS PAGE · ' + esc(new Date().toLocaleString()) + "</div>" +
+      '<div class="bcl-nws" style="margin-top:18px;"><div class="bcl-count">Checking National Weather Service…</div></div>' +
       sirensLinks() +
       officialLinks();
+
+    fillAQI(root.querySelector(".bcl-aqi"));
+    fillCaltrans(root.querySelector(".bcl-roads"));
 
     var nwsRoot = root.querySelector(".bcl-nws");
     var pt = "https://api.weather.gov/points/" + NWS_POINT.lat + "," + NWS_POINT.lon;
