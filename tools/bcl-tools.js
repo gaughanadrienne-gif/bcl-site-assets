@@ -42,6 +42,13 @@
       ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;border-radius:10px;padding:14px 18px;margin:0 0 14px;}",
       ".bcl-alert a{color:#fffdf8 !important;font-weight:600;}",
       ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}",
+      ".bcl-event-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;}",
+      ".bcl-event-card{background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:10px;padding:14px 15px;display:flex;flex-direction:column;gap:5px;}",
+      ".bcl-event-date{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:#d56e47 !important;text-transform:uppercase;}",
+      ".bcl-event-title{font-weight:600;color:#173f36 !important;font-size:.96rem;line-height:1.3;}",
+      ".bcl-event-meta{font-size:.8rem;color:#67716b !important;line-height:1.4;}",
+      ".bcl-event-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;margin-top:auto;padding-top:6px;}",
+      ".bcl-event-card a{color:#2e6b46 !important;font-size:.82rem;}",
       ".bcl-links li{margin:6px 0;font-size:.92rem;}",
       ".bcl-links a{color:#2e6b46 !important;}",
       "@media (max-width:640px){.bcl-controls{flex-direction:column;}}"
@@ -128,33 +135,93 @@
 
   /* ---------- events ---------- */
 
+  function evParts(s) {
+    // parse "YYYY-MM-DD" or "YYYY-MM-DDTHH:MM" as LOCAL date parts (avoid UTC off-by-one)
+    var m = String(s).match(/^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/);
+    if (!m) return null;
+    return { y: +m[1], mo: +m[2], d: +m[3], h: m[4] != null ? +m[4] : null, mi: m[5] != null ? +m[5] : null };
+  }
+
+  function evDateChip(s) {
+    var p = evParts(s);
+    if (!p) return esc(s);
+    var dt = new Date(p.y, p.mo - 1, p.d);
+    var days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    var mons = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    var out = days[dt.getDay()] + " " + mons[p.mo - 1] + " " + p.d;
+    if (p.h != null) {
+      var h12 = p.h % 12 === 0 ? 12 : p.h % 12;
+      out += " · " + h12 + (p.mi ? ":" + (p.mi < 10 ? "0" : "") + p.mi : "") + (p.h < 12 ? " AM" : " PM");
+    }
+    return out;
+  }
+
   function initEvents(root) {
     root.innerHTML = '<div class="bcl-count">Loading events…</div>';
     fetchJSON(REPO + "/data/events.json").then(function (data) {
       var now = new Date();
       now.setHours(0, 0, 0, 0);
-      var rows = (data.events || []).filter(function (e) {
-        var d = new Date(e.end || e.start);
-        return !isNaN(d) && d >= now;
-      }).sort(function (a, b) { return new Date(a.start) - new Date(b.start); });
+      var all = (data.events || []).filter(function (e) {
+        var p = evParts(e.end || e.start);
+        return p && new Date(p.y, p.mo - 1, p.d, 23, 59) >= now;
+      });
 
-      if (!rows.length) {
+      if (!all.length) {
         root.innerHTML =
           '<div class="bcl-unavailable">No verified upcoming events right now. Events appear here only after a person confirms the details with the organizer. ' +
           'Know of one? <a href="/submit">Tell us</a>.</div>';
         return;
       }
-      root.innerHTML = '<div class="bcl-count">' + rows.length + " UPCOMING · UPDATED " + esc(data.updated || "") + '</div><div class="bcl-list"></div>' +
-        '<div class="bcl-note">Details change. Confirm with the organizer before you go. <a href="/submit">Send a correction</a>.</div>';
-      root.querySelector(".bcl-list").innerHTML = rows.map(function (e) {
-        var h = '<div class="bcl-card">';
-        h += '<div class="bcl-name">' + esc(e.title) + "</div>";
-        h += '<div class="bcl-sub">' + esc(e.category || "Community") + "</div>";
-        h += '<div class="bcl-meta">' + esc(e.start) + (e.end ? " to " + esc(e.end) : "") + (e.location ? " · " + esc(e.location) : "") + "</div>";
-        if (e.description) h += "<p>" + esc(e.description) + "</p>";
-        if (e.url) h += '<div class="bcl-meta"><a href="' + esc(e.url) + '" target="_blank" rel="noopener">Event details</a></div>';
-        return h + "</div>";
-      }).join("");
+
+      var cats = [];
+      all.forEach(function (e) { var c = e.category || "Community"; if (cats.indexOf(c) < 0) cats.push(c); });
+      cats.sort();
+
+      root.innerHTML =
+        '<div class="bcl-controls">' +
+        '<input type="search" placeholder="Search events" aria-label="Search events">' +
+        '<select class="bcl-ev-cat" aria-label="Filter by type"><option value="">All types</option>' +
+        cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") + "</select>" +
+        '<select class="bcl-ev-sort" aria-label="Sort events"><option value="date">Soonest first</option><option value="name">Name A to Z</option><option value="type">By type</option></select>' +
+        "</div>" +
+        '<div class="bcl-count"></div><div class="bcl-event-grid"></div>' +
+        '<div class="bcl-note">Details change. Confirm with the organizer before you go. <a href="/submit">Send a correction or add an event</a>.</div>';
+
+      var input = root.querySelector("input");
+      var catSel = root.querySelector(".bcl-ev-cat");
+      var sortSel = root.querySelector(".bcl-ev-sort");
+      var count = root.querySelector(".bcl-count");
+      var grid = root.querySelector(".bcl-event-grid");
+
+      function render() {
+        var q = (input.value || "").toLowerCase();
+        var cat = catSel.value;
+        var rows = all.filter(function (e) {
+          if (cat && (e.category || "Community") !== cat) return false;
+          if (!q) return true;
+          return (e.title + " " + (e.location || "") + " " + (e.description || "")).toLowerCase().indexOf(q) >= 0;
+        });
+        var mode = sortSel.value;
+        rows.sort(function (a, b) {
+          if (mode === "name") return a.title.localeCompare(b.title) || String(a.start).localeCompare(String(b.start));
+          if (mode === "type") return (a.category || "").localeCompare(b.category || "") || String(a.start).localeCompare(String(b.start));
+          return String(a.start).localeCompare(String(b.start));
+        });
+        count.textContent = rows.length + " OF " + all.length + " UPCOMING · UPDATED " + (data.updated || "");
+        grid.innerHTML = rows.length ? rows.map(function (e) {
+          var h = '<div class="bcl-event-card">';
+          h += '<div class="bcl-event-date">' + evDateChip(e.start) + "</div>";
+          h += '<div class="bcl-event-title">' + esc(e.title) + "</div>";
+          if (e.location) h += '<div class="bcl-event-meta">' + esc(e.location) + "</div>";
+          if (e.url) h += '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">Details</a>';
+          h += '<div class="bcl-event-cat">' + esc(e.category || "Community") + "</div>";
+          return h + "</div>";
+        }).join("") : '<div class="bcl-unavailable">No events match. Try clearing the search or type filter.</div>';
+      }
+      input.addEventListener("input", render);
+      catSel.addEventListener("change", render);
+      sortSel.addEventListener("change", render);
+      render();
     }).catch(function () {
       unavailable(root, "The events calendar", "");
     });
