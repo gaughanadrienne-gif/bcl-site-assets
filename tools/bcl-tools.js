@@ -56,6 +56,7 @@
       ".bcl-event-title{font-weight:600;color:#173f36 !important;font-size:.96rem;line-height:1.3;}",
       ".bcl-event-meta{font-size:.8rem;color:#67716b !important;line-height:1.4;}",
       ".bcl-event-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;margin-top:auto;padding-top:6px;}",
+      ".bcl-event-notice{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#8f4f45 !important;text-transform:uppercase;font-weight:700;}",
       ".bcl-event-card a{color:#2e6b46 !important;font-size:.82rem;}",
       ".bcl-cat-head{display:flex;align-items:center;gap:10px;margin:28px 0 12px;}",
       ".bcl-cat-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
@@ -275,6 +276,9 @@
     h += '<div class="bcl-event-date">' + evDateChip(e.start) + "</div>";
     h += '<div class="bcl-event-title">' + esc(e.title) + "</div>";
     if (e.location) h += '<div class="bcl-event-meta">' + esc(e.location) + "</div>";
+    /* Event cards deliberately don't render descriptions, so anything a reader must
+       know BEFORE turning up (age limits, ticket-only) goes here or it is invisible. */
+    if (e.notice) h += '<div class="bcl-event-notice">' + esc(e.notice) + "</div>";
     if (e.url) h += '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">Details</a>';
     h += '<div class="bcl-event-cat">' + esc(e.category || "Community") + "</div>";
     return h + "</div>";
