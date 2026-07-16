@@ -128,6 +128,9 @@
     if (l.description) h += '<div class="bcl-dir-desc">' + esc(l.description) + "</div>";
     if (l.address) h += '<div class="bcl-dir-meta">' + esc(l.address) + "</div>";
     else if (l.service_area) h += '<div class="bcl-dir-meta">Serves: ' + esc(l.service_area) + "</div>";
+    /* Owner policy: these trades work out of their homes. We never publish a
+       home address, so say why the address is missing instead of leaving a gap. */
+    if (l.no_storefront) h += '<div class="bcl-dir-meta">Service based, no public storefront. Contact them directly.</div>';
     if (l.hours_text) h += '<div class="bcl-dir-meta">' + esc(String(l.hours_text).replace(/\s*\(?confirm with the business\)?\.?/gi, "")) + "</div>";
     var links = [];
     if (l.phone) links.push('<a href="tel:' + esc(String(l.phone).replace(/[^0-9+]/g, "")) + '">' + esc(l.phone) + "</a>");

@@ -226,7 +226,8 @@
    "hours_text": null,
    "verified_at": "2026-07-16",
    "lat": 37.1236572,
-   "lon": -122.1214797
+   "lon": -122.1214797,
+   "tile": "taqueria-los-gallos.jpg"
   },
   {
    "name": "Redwood Keg Liquor & Deli",
@@ -237,7 +238,8 @@
    "phone": "(831) 338-2727",
    "website": "https://www.facebook.com/RedwoodKeg/",
    "hours_text": null,
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "redwood-keg-liquor-deli.jpg"
   }
  ]
 }
