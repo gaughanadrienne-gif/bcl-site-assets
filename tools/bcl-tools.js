@@ -19,10 +19,14 @@
     });
   }
 
+  var CSS_ID = "bcl-tools-css-v3";
   function injectCSS() {
-    if (document.getElementById("bcl-tools-css")) return;
+    if (document.getElementById(CSS_ID)) return;
+    /* An older cached copy of this script may have injected its stylesheet
+       already; stale CSS with new markup renders unstyled. Replace it. */
+    [].slice.call(document.querySelectorAll("style[id^='bcl-tools-css']")).forEach(function (n) { n.remove(); });
     var css = [
-      ".bcl-tool{font-family:Inter,Arial,sans-serif;color:#1c2a26 !important;line-height:1.5;max-width:960px;margin:0 auto;}",
+      ".bcl-tool{font-family:Inter,Arial,sans-serif;color:#1c2a26 !important;line-height:1.5;margin:0 auto;}",
       ".bcl-tool *{box-sizing:border-box;}",
       ".bcl-tool h3{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.5rem;margin:1.6em 0 .5em;}",
       ".bcl-controls{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px;}",
@@ -41,7 +45,11 @@
       ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#67716b !important;}",
       ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;padding:14px 18px;margin:0 0 14px;}",
       ".bcl-alert a{color:#fffdf8 !important;font-weight:600;}",
+      ".bcl-actionrow{font-size:.9rem;margin:6px 0;padding-left:16px;position:relative;}",
+      ".bcl-actionrow:before{content:'';position:absolute;left:0;top:.45em;width:7px;height:11px;background:#d56e47;}",
+      ".bcl-actionrow a{color:#2e6b46 !important;font-weight:600;}",
       ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}",
+      ".bcl-event-flow .bcl-event-grid{margin:0 0 6px;}",
       ".bcl-event-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;}",
       ".bcl-event-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:14px 15px;display:flex;flex-direction:column;gap:5px;}",
       ".bcl-event-date{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:#d56e47 !important;text-transform:uppercase;}",
@@ -56,8 +64,8 @@
       ".bcl-dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}",
       ".bcl-dir-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:13px 14px;display:flex;flex-direction:column;gap:4px;}",
       ".bcl-dir-head{display:flex;align-items:center;gap:10px;}",
-      ".bcl-dir-tile{width:48px;height:48px;flex:0 0 48px;border:1px solid #e3ddcf;object-fit:cover;display:block;}",
-      ".bcl-dir-mono{width:48px;height:48px;flex:0 0 48px;border:1px solid #e3ddcf;background:#f5f1e7;color:#173f36;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:600;}",
+      ".bcl-dir-tile{width:42px;height:42px;flex:0 0 42px;border:1px solid #e3ddcf;object-fit:cover;display:block;}",
+      ".bcl-dir-mono{width:42px;height:42px;flex:0 0 42px;border:1px solid #e3ddcf;background:#f5f1e7;color:#173f36;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;font-weight:600;}",
       ".bcl-dir-name{font-weight:600;color:#173f36 !important;font-size:.94rem;line-height:1.3;}",
       ".bcl-dir-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;}",
       ".bcl-dir-desc{font-size:.8rem;color:#1c2a26 !important;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}",
@@ -88,7 +96,7 @@
       "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-today-head span{margin-left:0;}}"
     ].join("");
     var el = document.createElement("style");
-    el.id = "bcl-tools-css";
+    el.id = CSS_ID;
     el.textContent = css;
     document.head.appendChild(el);
   }
@@ -259,6 +267,16 @@
     return out;
   }
 
+  function eventCard(e) {
+    var h = '<div class="bcl-event-card">';
+    h += '<div class="bcl-event-date">' + evDateChip(e.start) + "</div>";
+    h += '<div class="bcl-event-title">' + esc(e.title) + "</div>";
+    if (e.location) h += '<div class="bcl-event-meta">' + esc(e.location) + "</div>";
+    if (e.url) h += '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">Details</a>';
+    h += '<div class="bcl-event-cat">' + esc(e.category || "Community") + "</div>";
+    return h + "</div>";
+  }
+
   function initEvents(root) {
     root.innerHTML = '<div class="bcl-count">Loading events…</div>';
     fetchJSON(REPO + "/data/events.json").then(function (data) {
@@ -333,15 +351,29 @@
           return String(a.start).localeCompare(String(b.start));
         });
         count.textContent = rows.length + " OF " + all.length + " UPCOMING · UPDATED " + (data.updated || "");
-        grid.innerHTML = rows.length ? rows.map(function (e) {
-          var h = '<div class="bcl-event-card">';
-          h += '<div class="bcl-event-date">' + evDateChip(e.start) + "</div>";
-          h += '<div class="bcl-event-title">' + esc(e.title) + "</div>";
-          if (e.location) h += '<div class="bcl-event-meta">' + esc(e.location) + "</div>";
-          if (e.url) h += '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">Details</a>';
-          h += '<div class="bcl-event-cat">' + esc(e.category || "Community") + "</div>";
-          return h + "</div>";
-        }).join("") : '<div class="bcl-unavailable">No events match. Try clearing the search or type filter.</div>';
+        var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        function monthKey(e) {
+          var p = evParts(e.start);
+          return p ? MONTHS[p.mo - 1] + " " + p.y : "Undated";
+        }
+        if (mode === "date" && rows.length) {
+          var html = "", lastKey = null;
+          rows.forEach(function (e) {
+            var k = monthKey(e);
+            if (k !== lastKey) {
+              if (lastKey !== null) html += "</div>";
+              html += '<div class="bcl-cat-head"><h3>' + esc(k) + "</h3></div>" + '<div class="bcl-event-grid">';
+              lastKey = k;
+            }
+            html += eventCard(e);
+          });
+          html += "</div>";
+          grid.innerHTML = html;
+          grid.className = "bcl-event-flow";
+          return;
+        }
+        grid.className = "bcl-event-grid";
+        grid.innerHTML = rows.length ? rows.map(eventCard).join("") : '<div class="bcl-unavailable">No events match. Try clearing the search or type filter.</div>';
       }
       rangeBtns.forEach(function (btn) {
         btn.addEventListener("click", function () {
@@ -415,20 +447,35 @@
     var ROUTES = { "SR-9": 1, "SR-236": 1, "SR-35": 1, "SR-17": 1, "SR-1": 1 };
     fetchJSON("https://cwwp2.dot.ca.gov/data/d5/lcs/lcsStatusD05.json")
       .then(function (d) {
-        var rows = (d.data || []).map(function (r) { return r.lcs; }).filter(function (l) {
+        /* Only "no rows in a feed we actually parsed" may render an all-clear.
+           Any other shape has to fall through to the unavailable message. */
+        if (!d || !Array.isArray(d.data)) throw new Error("unexpected feed shape");
+        var rows = d.data.map(function (r) { return r.lcs; }).filter(function (l) {
+          if (!l) return false;
           var b = (l.location || {}).begin || {};
           var c = l.closure || {};
-          var active = c.code1097 && String(c.code1097).trim() !== "" && (!c.code1098 || String(c.code1098).trim() === "");
+          /* code1097/code1098 are objects, not strings. 1097 = closure in effect,
+             1098 = closure finished, so active means 1097 set and 1098 not yet. */
+          var active = (c.code1097 || {}).isCode1097 === "true" && (c.code1098 || {}).isCode1098 !== "true";
           return active && b.beginCounty === "Santa Cruz" && ROUTES[b.beginRoute];
-        }).slice(0, 6);
+        });
+        var total = rows.length;
+        rows = rows.slice(0, 6);
         var h = "";
-        if (rows.length) {
-          h = '<div class="bcl-name">Caltrans closures on state highways: ' + rows.length + "</div>";
+        if (total) {
+          h = '<div class="bcl-name">Caltrans closures on state highways: ' + total + "</div>";
           rows.forEach(function (l) {
             var b = l.location.begin, c = l.closure;
+            /* estimatedDelay is bare minutes as a string; it also arrives as
+               "Not Reported" or "0", neither of which is worth saying out loud. */
+            var mins = parseInt(c.estimatedDelay, 10);
+            var delay = mins > 0 ? ", est. delay " + mins + " min" : "";
             h += '<div class="bcl-meta">' + esc(b.beginRoute) + " near " + esc(b.beginNearbyPlace || b.beginLocationName || "?") + ": " +
-              esc((c.typeOfClosure || "closure").toLowerCase()) + (c.estimatedDelay && c.estimatedDelay !== "None" ? ", est. delay " + esc(c.estimatedDelay) : "") + "</div>";
+              esc((c.typeOfClosure || "closure").toLowerCase()) + delay + "</div>";
           });
+          if (total > rows.length) {
+            h += '<div class="bcl-meta">Showing ' + rows.length + " of " + total + ". See QuickMap for the rest.</div>";
+          }
         } else {
           h = '<div class="bcl-name">No active Caltrans closures reported</div><div class="bcl-meta">Highways 1, 9, 17, 35, and 236 in Santa Cruz County, per the Caltrans lane closure feed.</div>';
         }
@@ -442,11 +489,17 @@
 
   function rightNowStatic() {
     return '<div class="bcl-card">' +
-      '<div class="bcl-name">Power: check PG&amp;E for your address</div>' +
-      '<p>PG&amp;E doesn\'t offer a public feed this page can safely embed, so check the <a href="https://pgealerts.alerts.pge.com/outage-tools/outage-map/" target="_blank" rel="noopener">live outage map</a> for 95006, and sign up for <a href="https://www.pge.com/en/outages-and-safety/outage-preparedness-and-support/outage-alerts.html" target="_blank" rel="noopener">address-based outage alerts</a>. Downed line: call 911, then PG&amp;E at 1-800-743-5000.</p></div>' +
+      '<div class="bcl-name">Power</div>' +
+      '<div class="bcl-actionrow"><a href="https://pgealerts.alerts.pge.com/outage-tools/outage-map/" target="_blank" rel="noopener">See the 95006 outage map</a></div>' +
+      '<div class="bcl-actionrow"><a href="https://www.pge.com/en/outages-and-safety/outage-preparedness-and-support/outage-alerts.html" target="_blank" rel="noopener">Get outage alerts for your address</a></div>' +
+      '<div class="bcl-actionrow">Report an outage: <a href="tel:18007435002">1-800-743-5002</a></div>' +
+      '<div class="bcl-meta">Downed line? Call 911 first, then PG&amp;E at 1-800-743-5000.</div></div>' +
       '<div class="bcl-card">' +
-      '<div class="bcl-name">Fire and medical calls: PulsePoint</div>' +
-      '<p>Active and recent Boulder Creek FPD calls are on the <a href="https://web.pulsepoint.org/?agencies=44020" target="_blank" rel="noopener">live PulsePoint feed</a> with the units responding. Wildfire: <a href="https://www.watchduty.org/" target="_blank" rel="noopener">Watch Duty</a> and <a href="https://www.fire.ca.gov/incidents" target="_blank" rel="noopener">CAL FIRE incidents</a>.</p></div>';
+      '<div class="bcl-name">Sirens and smoke</div>' +
+      '<div class="bcl-actionrow"><a href="https://web.pulsepoint.org/?agencies=44020" target="_blank" rel="noopener">See what the fire trucks are on: live BCFD calls</a></div>' +
+      '<div class="bcl-actionrow"><a href="https://www.watchduty.org/" target="_blank" rel="noopener">Check for wildfire near you: Watch Duty</a></div>' +
+      '<div class="bcl-actionrow"><a href="https://www.fire.ca.gov/incidents" target="_blank" rel="noopener">CAL FIRE incident list</a></div>' +
+      '<div class="bcl-meta">Evacuation decisions come from <a href="https://www.cruzaware.org/" target="_blank" rel="noopener">CruzAware</a> and official orders only.</div></div>';
   }
 
   function initStatus(root) {
