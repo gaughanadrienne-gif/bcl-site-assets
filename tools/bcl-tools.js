@@ -55,6 +55,9 @@
       ".bcl-cat-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#67716b !important;}",
       ".bcl-dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}",
       ".bcl-dir-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:13px 14px;display:flex;flex-direction:column;gap:4px;}",
+      ".bcl-dir-head{display:flex;align-items:center;gap:10px;}",
+      ".bcl-dir-tile{width:48px;height:48px;flex:0 0 48px;border:1px solid #e3ddcf;object-fit:cover;display:block;}",
+      ".bcl-dir-mono{width:48px;height:48px;flex:0 0 48px;border:1px solid #e3ddcf;background:#f5f1e7;color:#173f36;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:600;}",
       ".bcl-dir-name{font-weight:600;color:#173f36 !important;font-size:.94rem;line-height:1.3;}",
       ".bcl-dir-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;}",
       ".bcl-dir-desc{font-size:.8rem;color:#1c2a26 !important;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}",
@@ -108,8 +111,12 @@
 
   function listingCard(l) {
     var h = '<div class="bcl-dir-card">';
-    h += '<div class="bcl-dir-name">' + esc(l.name) + "</div>";
+    var tile = l.tile
+      ? '<img class="bcl-dir-tile" src="' + REPO + "/brand/listings/" + esc(l.tile) + '" alt="" loading="lazy">'
+      : '<div class="bcl-dir-mono" aria-hidden="true">' + esc((l.name || "?").charAt(0)) + "</div>";
+    h += '<div class="bcl-dir-head">' + tile + '<div><div class="bcl-dir-name">' + esc(l.name) + "</div>";
     if (l.subcategory) h += '<div class="bcl-dir-sub">' + esc(l.subcategory) + "</div>";
+    h += "</div></div>";
     if (l.description) h += '<div class="bcl-dir-desc">' + esc(l.description) + "</div>";
     if (l.address) h += '<div class="bcl-dir-meta">' + esc(l.address) + "</div>";
     else if (l.service_area) h += '<div class="bcl-dir-meta">Serves: ' + esc(l.service_area) + "</div>";

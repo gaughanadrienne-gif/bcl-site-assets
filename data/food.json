@@ -14,7 +14,8 @@
    "website": "https://www.butterlatethannever.com/",
    "hours_text": null,
    "service_area": "Local delivery and California distribution",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "tile": "butter-late-than-never-baking-co.png"
   },
   {
    "name": "Wildstone Bakery",
@@ -27,7 +28,8 @@
    "website": "https://www.wildstonebakery.com/",
    "hours_text": "Downtown Santa Cruz Farmers Market Wednesdays 12:30-5:00 p.m.; Ben Lomond Village Market first Saturdays June-October 2026, 10:00 a.m.-2:00 p.m.",
    "service_area": "Boulder Creek base; Santa Cruz and Ben Lomond farmers markets",
-   "verified_at": "2026-07-15"
+   "verified_at": "2026-07-15",
+   "tile": "wildstone-bakery.png"
   },
   {
    "name": "Big Basin Vineyards Estate Vineyard & Tasting Room",
@@ -42,7 +44,8 @@
    "service_area": "Boulder Creek and Santa Cruz Mountains visitors",
    "verified_at": "2026-07-15",
    "lat": 37.181908,
-   "lon": -122.159846
+   "lon": -122.159846,
+   "tile": "big-basin-vineyards-estate-vineyard-tasting-room.png"
   },
   {
    "name": "Johnnie's Super Market & Liquor",
@@ -57,7 +60,8 @@
    "service_area": "Boulder Creek",
    "verified_at": "2026-07-15",
    "lat": 37.125551,
-   "lon": -122.122821
+   "lon": -122.122821,
+   "tile": "johnnie-s-super-market-liquor.png"
   },
   {
    "name": "Wild Roots Market - Boulder Creek",
@@ -72,7 +76,8 @@
    "service_area": "Boulder Creek",
    "verified_at": "2026-07-15",
    "lat": 37.124756,
-   "lon": -122.122518
+   "lon": -122.122518,
+   "tile": "wild-roots-market-boulder-creek.png"
   },
   {
    "name": "El Rey Leon",
@@ -87,7 +92,8 @@
    "service_area": "Boulder Creek",
    "verified_at": "2026-07-15",
    "lat": 37.121223,
-   "lon": -122.120809
+   "lon": -122.120809,
+   "tile": "el-rey-leon.png"
   },
   {
    "name": "Red Pearl Chinese Cuisine",
@@ -102,7 +108,8 @@
    "service_area": "Boulder Creek",
    "verified_at": "2026-07-15",
    "lat": 37.124614,
-   "lon": -122.122248
+   "lon": -122.122248,
+   "tile": "red-pearl-chinese-cuisine.png"
   },
   {
    "name": "Scopazzi's Restaurant & Lounge",
@@ -117,7 +124,8 @@
    "service_area": "Boulder Creek and private-event customers",
    "verified_at": "2026-07-15",
    "lat": 37.125146,
-   "lon": -122.124363
+   "lon": -122.124363,
+   "tile": "scopazzi-s-restaurant-lounge.png"
   },
   {
    "name": "Tae's Edo Sushi Bar",
@@ -132,7 +140,8 @@
    "service_area": "Boulder Creek",
    "verified_at": "2026-07-15",
    "lat": 37.152322,
-   "lon": -122.134518
+   "lon": -122.134518,
+   "tile": "tae-s-edo-sushi-bar.jpg"
   },
   {
    "name": "The Sawmill Restaurant & Alehouse",
@@ -147,7 +156,8 @@
    "service_area": "Boulder Creek",
    "verified_at": "2026-07-15",
    "lat": 37.152322,
-   "lon": -122.134518
+   "lon": -122.134518,
+   "tile": "the-sawmill-restaurant-alehouse.png"
   },
   {
    "name": "River Dogs of Boulder Creek",
@@ -162,7 +172,8 @@
    "service_area": "Boulder Creek",
    "verified_at": "2026-07-15",
    "lat": 37.124132,
-   "lon": -122.121676
+   "lon": -122.121676,
+   "tile": "river-dogs-of-boulder-creek.png"
   }
  ]
 }
