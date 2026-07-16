@@ -26,34 +26,35 @@
       ".bcl-tool *{box-sizing:border-box;}",
       ".bcl-tool h3{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.5rem;margin:1.6em 0 .5em;}",
       ".bcl-controls{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px;}",
-      ".bcl-controls input,.bcl-controls select{font-family:Inter,Arial,sans-serif;font-size:.95rem;padding:10px 14px;border:1px solid #cfc9b8;border-radius:8px;background:#fffdf8 !important;color:#1c2a26 !important;}",
+      ".bcl-controls input,.bcl-controls select{font-family:Inter,Arial,sans-serif;font-size:.95rem;padding:10px 14px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;}",
       ".bcl-controls input{flex:1 1 220px;}",
       ".bcl-controls select{flex:0 1 auto;max-width:100%;}",
       ".bcl-count{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:#67716b !important;margin:0 0 14px;}",
-      ".bcl-card{background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:10px;padding:16px 18px;margin:0 0 12px;}",
+      ".bcl-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
       ".bcl-card .bcl-name{font-weight:600;font-size:1.05rem;color:#173f36 !important;}",
       ".bcl-card .bcl-sub{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;margin:2px 0 8px;}",
       ".bcl-card p{margin:0 0 8px;font-size:.92rem;color:#1c2a26 !important;}",
       ".bcl-meta{font-size:.85rem;color:#67716b !important;margin:2px 0;}",
       ".bcl-card a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-verified{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#67716b !important;margin-top:10px;}",
-      ".bcl-note{background:#dde2d8;border-radius:8px;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
-      ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;border-radius:10px;padding:18px;font-size:.92rem;color:#67716b !important;}",
-      ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;border-radius:10px;padding:14px 18px;margin:0 0 14px;}",
+      ".bcl-note{background:#dde2d8;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
+      ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#67716b !important;}",
+      ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;padding:14px 18px;margin:0 0 14px;}",
       ".bcl-alert a{color:#fffdf8 !important;font-weight:600;}",
       ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}",
       ".bcl-event-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;}",
-      ".bcl-event-card{background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:10px;padding:14px 15px;display:flex;flex-direction:column;gap:5px;}",
+      ".bcl-event-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:14px 15px;display:flex;flex-direction:column;gap:5px;}",
       ".bcl-event-date{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:#d56e47 !important;text-transform:uppercase;}",
       ".bcl-event-title{font-weight:600;color:#173f36 !important;font-size:.96rem;line-height:1.3;}",
       ".bcl-event-meta{font-size:.8rem;color:#67716b !important;line-height:1.4;}",
       ".bcl-event-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;margin-top:auto;padding-top:6px;}",
       ".bcl-event-card a{color:#2e6b46 !important;font-size:.82rem;}",
-      ".bcl-cat-head{display:flex;align-items:baseline;gap:10px;margin:26px 0 10px;border-bottom:2px solid #dde2d8;padding-bottom:6px;}",
+      ".bcl-cat-head{display:flex;align-items:center;gap:10px;margin:28px 0 12px;}",
+      ".bcl-cat-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
       ".bcl-cat-head h3{margin:0 !important;font-size:1.3rem !important;}",
       ".bcl-cat-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#67716b !important;}",
       ".bcl-dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}",
-      ".bcl-dir-card{background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:10px;padding:13px 14px;display:flex;flex-direction:column;gap:4px;}",
+      ".bcl-dir-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:13px 14px;display:flex;flex-direction:column;gap:4px;}",
       ".bcl-dir-name{font-weight:600;color:#173f36 !important;font-size:.94rem;line-height:1.3;}",
       ".bcl-dir-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;}",
       ".bcl-dir-desc{font-size:.8rem;color:#1c2a26 !important;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}",
@@ -94,12 +95,11 @@
     if (l.description) h += '<div class="bcl-dir-desc">' + esc(l.description) + "</div>";
     if (l.address) h += '<div class="bcl-dir-meta">' + esc(l.address) + "</div>";
     else if (l.service_area) h += '<div class="bcl-dir-meta">Serves: ' + esc(l.service_area) + "</div>";
-    if (l.hours_text) h += '<div class="bcl-dir-meta">' + esc(l.hours_text) + "</div>";
+    if (l.hours_text) h += '<div class="bcl-dir-meta">' + esc(String(l.hours_text).replace(/\s*\(?confirm with the business\)?\.?/gi, "")) + "</div>";
     var links = [];
     if (l.phone) links.push('<a href="tel:' + esc(String(l.phone).replace(/[^0-9+]/g, "")) + '">' + esc(l.phone) + "</a>");
     if (l.website) links.push('<a href="' + esc(l.website) + '" target="_blank" rel="noopener">Website</a>');
     if (links.length) h += '<div class="bcl-dir-links">' + links.join(" · ") + "</div>";
-    if (l.verified_at) h += '<div class="bcl-dir-verified">VERIFIED ' + esc(l.verified_at) + "</div>";
     return h + "</div>";
   }
 
@@ -118,8 +118,7 @@
         cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") +
         "</select></div>" +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
-        '<div class="bcl-note">Every listing is verified by a person before it appears here. Inclusion is not endorsement. ' +
-        'Spot something wrong or missing? <a href="/submit">Send an update</a>.</div>';
+        '<div class="bcl-note">Something wrong or missing? <a href="/submit">Send an update</a>.</div>';
 
       var input = root.querySelector("input");
       var select = root.querySelector("select");
