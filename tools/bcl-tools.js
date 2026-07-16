@@ -49,6 +49,18 @@
       ".bcl-event-meta{font-size:.8rem;color:#67716b !important;line-height:1.4;}",
       ".bcl-event-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;margin-top:auto;padding-top:6px;}",
       ".bcl-event-card a{color:#2e6b46 !important;font-size:.82rem;}",
+      ".bcl-cat-head{display:flex;align-items:baseline;gap:10px;margin:26px 0 10px;border-bottom:2px solid #dde2d8;padding-bottom:6px;}",
+      ".bcl-cat-head h3{margin:0 !important;font-size:1.3rem !important;}",
+      ".bcl-cat-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#67716b !important;}",
+      ".bcl-dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}",
+      ".bcl-dir-card{background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:10px;padding:13px 14px;display:flex;flex-direction:column;gap:4px;}",
+      ".bcl-dir-name{font-weight:600;color:#173f36 !important;font-size:.94rem;line-height:1.3;}",
+      ".bcl-dir-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;}",
+      ".bcl-dir-desc{font-size:.8rem;color:#1c2a26 !important;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}",
+      ".bcl-dir-meta{font-size:.78rem;color:#67716b !important;line-height:1.35;}",
+      ".bcl-dir-links{font-size:.8rem;margin-top:2px;}",
+      ".bcl-dir-links a{color:#2e6b46 !important;text-decoration:underline;}",
+      ".bcl-dir-verified{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#67716b !important;margin-top:auto;padding-top:6px;}",
       ".bcl-links li{margin:6px 0;font-size:.92rem;}",
       ".bcl-links a{color:#2e6b46 !important;}",
       "@media (max-width:640px){.bcl-controls{flex-direction:column;}}"
@@ -76,16 +88,18 @@
   /* ---------- listings (directory + food) ---------- */
 
   function listingCard(l) {
-    var h = '<div class="bcl-card">';
-    h += '<div class="bcl-name">' + esc(l.name) + "</div>";
-    h += '<div class="bcl-sub">' + esc(l.category) + (l.subcategory ? " · " + esc(l.subcategory) : "") + "</div>";
-    if (l.description) h += "<p>" + esc(l.description) + "</p>";
-    if (l.address) h += '<div class="bcl-meta">' + esc(l.address) + ", " + esc(l.locality || "Boulder Creek") + "</div>";
-    if (l.phone) h += '<div class="bcl-meta"><a href="tel:' + esc(String(l.phone).replace(/[^0-9+]/g, "")) + '">' + esc(l.phone) + "</a></div>";
-    if (l.website) h += '<div class="bcl-meta"><a href="' + esc(l.website) + '" target="_blank" rel="noopener">Visit website</a></div>';
-    if (l.hours_text) h += '<div class="bcl-meta">Hours: ' + esc(l.hours_text) + " (confirm with the business)</div>";
-    if (l.service_area && !l.address) h += '<div class="bcl-meta">Serves: ' + esc(l.service_area) + "</div>";
-    if (l.verified_at) h += '<div class="bcl-verified">VERIFIED ' + esc(l.verified_at) + "</div>";
+    var h = '<div class="bcl-dir-card">';
+    h += '<div class="bcl-dir-name">' + esc(l.name) + "</div>";
+    if (l.subcategory) h += '<div class="bcl-dir-sub">' + esc(l.subcategory) + "</div>";
+    if (l.description) h += '<div class="bcl-dir-desc">' + esc(l.description) + "</div>";
+    if (l.address) h += '<div class="bcl-dir-meta">' + esc(l.address) + "</div>";
+    else if (l.service_area) h += '<div class="bcl-dir-meta">Serves: ' + esc(l.service_area) + "</div>";
+    if (l.hours_text) h += '<div class="bcl-dir-meta">' + esc(l.hours_text) + "</div>";
+    var links = [];
+    if (l.phone) links.push('<a href="tel:' + esc(String(l.phone).replace(/[^0-9+]/g, "")) + '">' + esc(l.phone) + "</a>");
+    if (l.website) links.push('<a href="' + esc(l.website) + '" target="_blank" rel="noopener">Website</a>');
+    if (links.length) h += '<div class="bcl-dir-links">' + links.join(" · ") + "</div>";
+    if (l.verified_at) h += '<div class="bcl-dir-verified">VERIFIED ' + esc(l.verified_at) + "</div>";
     return h + "</div>";
   }
 
@@ -100,7 +114,7 @@
       root.innerHTML =
         '<div class="bcl-controls">' +
         '<input type="search" placeholder="Search by name or service" aria-label="Search listings">' +
-        '<select aria-label="Filter by category"><option value="">All categories</option>' +
+        '<select aria-label="Jump to category"><option value="">All categories</option>' +
         cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") +
         "</select></div>" +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
@@ -121,9 +135,17 @@
           return (l.name + " " + (l.subcategory || "") + " " + (l.description || "")).toLowerCase().indexOf(q) >= 0;
         });
         count.textContent = rows.length + " OF " + all.length + " LISTINGS · UPDATED " + (data.updated || "");
-        list.innerHTML = rows.length
-          ? rows.map(listingCard).join("")
-          : '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/submit">Suggest it</a>.</div>';
+        if (!rows.length) {
+          list.innerHTML = '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/submit">Suggest it</a>.</div>';
+          return;
+        }
+        // group by category, headings + card grids
+        var byCat = {};
+        rows.forEach(function (l) { (byCat[l.category] = byCat[l.category] || []).push(l); });
+        list.innerHTML = Object.keys(byCat).sort().map(function (c) {
+          return '<div class="bcl-cat-head"><h3>' + esc(c) + "</h3><span>" + byCat[c].length + "</span></div>" +
+            '<div class="bcl-dir-grid">' + byCat[c].map(listingCard).join("") + "</div>";
+        }).join("");
       }
       input.addEventListener("input", render);
       select.addEventListener("change", render);
