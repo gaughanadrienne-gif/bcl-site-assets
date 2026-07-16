@@ -44,7 +44,8 @@
 .bcl-full { margin-left: 0; width: 100%; }
 /* Stretch ONLY the containers that hold a BCL code block (scoped via :has). */
 .page-section:has(.bcl-full) .content-wrapper,
-section:has(.bcl-full) .content-wrapper { max-width: none !important; padding-left: 0 !important; padding-right: 0 !important; }
+section:has(.bcl-full) .content-wrapper { max-width: none !important; padding: 0 !important; }
+.page-section:has(.bcl-full) { min-height: 0 !important; }
 .fluid-engine:has(.bcl-full) { grid-template-columns: 1fr !important; grid-template-rows: auto !important; }
 .fe-block:has(.bcl-full) { grid-area: auto !important; grid-column: 1 / -1 !important; position: static !important; transform: none !important; width: 100% !important; }
 .sqs-block-code:has(.bcl-full), .sqs-block-code:has(.bcl-full) .sqs-block-content { padding: 0 !important; width: 100% !important; }
@@ -59,7 +60,7 @@ section:has(.bcl-full) .content-wrapper { max-width: none !important; padding-le
   text-transform: uppercase;
 }
 .bcl-dim { color: var(--bcl-muted); }
-.bcl-hero { background: var(--bcl-cream); padding: clamp(70px, 10vw, 140px) 0; }
+.bcl-hero { background: var(--bcl-cream); padding: clamp(44px, 6vw, 76px) 0; }
 .bcl-hero-grid { align-items: end; display: grid; gap: 40px; grid-template-columns: 1.4fr .6fr; }
 .bcl-hero-lede { font-size: clamp(1.05rem, 2vw, 1.35rem); max-width: 620px; }
 .bcl-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
