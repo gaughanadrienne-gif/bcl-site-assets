@@ -280,6 +280,28 @@
     return h + "</div>";
   }
 
+  /* ---------- article header: inject the featured card at the top of a post
+     (only when the asset filename matches the post slug, same rule as AH) ---------- */
+
+  function initArticleHeader() {
+    if (!/^\/around-town\/[^\/]+\/?$/.test(location.pathname)) return;
+    if (document.getElementById("bcl-article-header")) return;
+    var slug = location.pathname.replace(/\/$/, "").split("/").pop();
+    var og = document.querySelector('meta[property="og:image"]');
+    if (!og) return;
+    var url = og.getAttribute("content") || "";
+    var file = url.split("?")[0].split("/").pop();
+    if (file !== slug + ".jpg" && file !== slug + ".png") return;
+    var target = document.querySelector(".blog-item-content");
+    if (!target) return;
+    var img = document.createElement("img");
+    img.id = "bcl-article-header";
+    img.src = url;
+    img.alt = "";
+    img.style.cssText = "display:block;width:100%;height:auto;margin:0 auto 30px;border:1px solid #e3ddcf;max-width:860px;";
+    target.insertBefore(img, target.firstChild);
+  }
+
   function initEvents(root) {
     root.innerHTML = '<div class="bcl-count">Loading events…</div>';
     fetchJSON(REPO + "/data/events.json").then(function (data) {
@@ -615,6 +637,7 @@
   /* ---------- boot ---------- */
 
   function boot() {
+    initArticleHeader();
     injectCSS();
     var d = document.getElementById("bcl-directory");
     if (d) initListings(d, "directory.json", "directory");
