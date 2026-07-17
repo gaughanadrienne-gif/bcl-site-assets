@@ -375,18 +375,6 @@
       '<p style="font-size:.85rem;color:#67716b !important;">Law enforcement calls generally are not shown live anywhere public. An empty feed means "not shown," not "nothing happening." For evacuation decisions, rely on <a href="https://www.cruzaware.org/" target="_blank" rel="noopener" style="color:#2e6b46 !important;">CruzAware</a> and official orders.</p>';
   }
 
-  function officialLinks() {
-    return '<h3>Official sources</h3><ul class="bcl-links">' +
-      '<li><a href="https://www.weather.gov/mtr/" target="_blank" rel="noopener">National Weather Service, Bay Area</a> for forecasts and warnings</li>' +
-      '<li><a href="https://www.cruzaware.org/" target="_blank" rel="noopener">CruzAware</a> for county emergency alerts</li>' +
-      '<li><a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">Caltrans QuickMap</a> for Highway 9 and state routes</li>' +
-      '<li><a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/" target="_blank" rel="noopener">Santa Cruz County Road Closure Dashboard</a> for county roads</li>' +
-      '<li><a href="https://pgealerts.alerts.pge.com/outage-tools/outage-map/" target="_blank" rel="noopener">PG&amp;E outage map</a> for power</li>' +
-      '<li><a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a> for air quality</li>' +
-      '<li><a href="https://www.fire.ca.gov/incidents" target="_blank" rel="noopener">CAL FIRE incidents</a> for wildfire</li>' +
-      "</ul>";
-  }
-
   function aqiCategory(v) {
     if (v == null || isNaN(v)) return null;
     if (v <= 50) return "Good";
@@ -483,8 +471,7 @@
       "</div>" +
       '<div class="bcl-count" style="margin-top:10px;">LIVE ITEMS RETRIEVED WHEN YOU LOADED THIS PAGE · ' + esc(new Date().toLocaleString()) + "</div>" +
       '<div class="bcl-nws" style="margin-top:18px;"><div class="bcl-count">Checking National Weather Service…</div></div>' +
-      sirensLinks() +
-      officialLinks();
+      sirensLinks();
 
     fillAQI(root.querySelector(".bcl-aqi"));
     fillCaltrans(root.querySelector(".bcl-roads"));
