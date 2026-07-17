@@ -2985,6 +2985,66 @@
    "license": "CSLB #1126623 (active, C-20)",
    "address": null,
    "hours_text": null
+  },
+  {
+   "name": "Quality Inn & Suites Santa Cruz Mountains",
+   "category": "Lodging",
+   "subcategory": "Motel",
+   "description": "Full-service motel in Ben Lomond and the closest chain hotel to Boulder Creek, offering guest rooms and suites, free hot breakfast, an outdoor pool, and free Wi-Fi in the heart of the San Lorenzo Valley. Verified operating July 2026 (Choice Hotels official listing).",
+   "address": "9733 Highway 9",
+   "locality": "Ben Lomond",
+   "phone": "831-336-2292",
+   "website": "https://www.choicehotels.com/california/ben-lomond/quality-inn-hotels/ca498",
+   "hours_text": "Front desk 24 hours; check-out 11:00 a.m.",
+   "service_area": "Ben Lomond and San Lorenzo Valley visitors",
+   "verified_at": "2026-07-17",
+   "lat": 37.2519263,
+   "lon": -122.0478157
+  },
+  {
+   "name": "Fern River Resort",
+   "category": "Lodging",
+   "subcategory": "Riverside cabin resort",
+   "description": "Third-generation family-owned resort in Felton with rustic cabins overlooking the San Lorenzo River, offering river views, cabins with kitchens or fireplaces, free Wi-Fi, and on-site kayaking. Verified operating July 2026 (own booking site active).",
+   "address": "5250 Highway 9",
+   "locality": "Felton",
+   "phone": "831-335-4412",
+   "website": "https://www.fernriverresort.com/",
+   "hours_text": "Office daily 9:00 a.m.-5:00 p.m.",
+   "service_area": "Felton and Santa Cruz Mountains visitors",
+   "verified_at": "2026-07-17",
+   "lat": 37.2519263,
+   "lon": -122.0478157
+  },
+  {
+   "name": "Henry Cowell Redwoods State Park Campground",
+   "category": "Lodging",
+   "subcategory": "State park campground",
+   "description": "State park campground in the redwoods near Felton with 107 reservable sites, each with a fire ring, picnic table, and bear-proof food locker, plus flush restrooms and coin-operated hot showers. Open year-round; reserve through ReserveCalifornia at 800-444-7275.",
+   "address": "101 North Big Trees Park Road",
+   "locality": "Felton",
+   "phone": "831-335-4598",
+   "website": "https://www.parks.ca.gov/?page_id=546",
+   "hours_text": "Campground open year-round; camping about $35 per night; reservations via ReserveCalifornia (800-444-7275)",
+   "service_area": "Campers visiting the San Lorenzo Valley and Santa Cruz Mountains",
+   "verified_at": "2026-07-17",
+   "lat": 37.0415102,
+   "lon": -122.0638757
+  },
+  {
+   "name": "Mount Hermon Christian Camps & Conference Center",
+   "category": "Lodging",
+   "subcategory": "Christian camp and conference center",
+   "description": "Christian camps and conference center in the Santa Cruz Mountains offering overnight cabin and lodge accommodations, meals, and meeting space, primarily for retreats, conferences, and organized group getaways. Verified operating July 2026 (own site active).",
+   "address": "37 Conference Drive",
+   "locality": "Mount Hermon",
+   "phone": "831-335-4466",
+   "website": "https://www.mounthermon.org/",
+   "service_area": "Retreat, conference, and camp groups",
+   "verified_at": "2026-07-17",
+   "hours_text": null,
+   "lat": 37.0516406,
+   "lon": -122.0579684
   }
  ]
 }
