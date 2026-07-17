@@ -14,7 +14,7 @@
   var LOCAL_ALLOWLIST = ["Boulder Creek", "Brookdale", "Ben Lomond", "Lompico", "Zayante", "San Lorenzo Valley", "Felton", "Scotts Valley"];
   // Businesses that are local despite an out-of-valley (usually Los Gatos) mailing address.
   // Exact display names; reconciled against verified winery names in Task 7.
-  var LOCAL_EXCEPTIONS = ["David Bruce Winery", "Byington Vineyard & Winery", "Loma Prieta Winery", "Muns Vineyard", "Burrell School Vineyards", "Lago Lomita"];
+  var LOCAL_EXCEPTIONS = ["David Bruce Winery", "Byington Vineyard & Winery", "Loma Prieta Winery", "Muns Vineyard", "Burrell School Vineyards & Winery", "Lago Lomita Vineyards"];
   // Localities ordered closest -> farthest for within/between-tier sorting.
   var LOCALITY_ORDER = ["Boulder Creek", "Brookdale", "Ben Lomond", "Lompico", "Zayante", "San Lorenzo Valley", "Felton", "Scotts Valley", "Los Gatos", "Saratoga", "Santa Cruz", "Soquel", "Capitola", "Aptos", "Corralitos", "Campbell", "San Jose", "Watsonville"];
 
@@ -74,7 +74,7 @@
     });
   }
 
-  var CSS_ID = "bcl-tools-css-v3";
+  var CSS_ID = "bcl-tools-css-v4";
   function injectCSS() {
     if (document.getElementById(CSS_ID)) return;
     /* An older cached copy of this script may have injected its stylesheet
@@ -203,16 +203,18 @@
     cats.forEach(function (c) {
       var g = groupLabelOf(c);
       if (g && g !== lastGroup) { out += '<div class="bcl-group-head">' + esc(g) + "</div>"; lastGroup = g; }
+      // Display cap must stay in sync with the Task 8 curation cap (KEEP=6 in 04-curate-nearby.js).
       var catCap = CAP_EXEMPT.indexOf(c) >= 0 ? 0 : (opts.cap || 0);
       var a = arrangeListings(byCat[c], catCap);
       var shown = a.local.length + a.nearby.length;
       out += '<div class="bcl-cat-head"><h3>' + esc(c) + "</h3><span>" + shown + "</span></div>";
-      out += '<div class="bcl-dir-grid">' + a.local.map(listingCard).join("");
-      if (a.nearby.length) {
-        out += "</div>" + '<div class="bcl-tier-divider">Also serving the area</div>' + '<div class="bcl-dir-grid">';
-        out += a.nearby.map(listingCard).join("");
+      if (a.local.length) {
+        out += '<div class="bcl-dir-grid">' + a.local.map(listingCard).join("") + "</div>";
       }
-      out += "</div>";
+      if (a.nearby.length) {
+        if (a.local.length) out += '<div class="bcl-tier-divider">Also serving the area</div>';
+        out += '<div class="bcl-dir-grid">' + a.nearby.map(listingCard).join("") + "</div>";
+      }
     });
     return out;
   }

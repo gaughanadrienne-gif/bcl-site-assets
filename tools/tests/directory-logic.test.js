@@ -82,3 +82,13 @@ test("CAP_EXEMPT is exported and includes Emergency & Public Safety", () => {
   assert.ok(Array.isArray(t.CAP_EXEMPT));
   assert.ok(t.CAP_EXEMPT.indexOf("Emergency & Public Safety") >= 0);
 });
+test("buildDirectoryHTML: no divider or empty grid when a category has no local rows", () => {
+  const rows = [
+    { name: "CountyA", category: "Government & Public Services", locality: "Santa Cruz" },
+    { name: "CountyB", category: "Government & Public Services", locality: "Watsonville" },
+  ];
+  const html = t.buildDirectoryHTML(rows, { cap: 6 });
+  assert.equal(html.indexOf("Also serving the area"), -1);           // no divider without a local tier
+  assert.ok(html.indexOf("CountyA") >= 0 && html.indexOf("CountyB") >= 0); // nearby still rendered
+  assert.equal(/<div class="bcl-dir-grid"><\/div>/.test(html), false);     // no empty grid
+});
