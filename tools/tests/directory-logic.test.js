@@ -22,3 +22,20 @@ test("localityRank: closer localities rank lower than farther ones", () => {
   assert.ok(t.localityRank({ locality: "Felton" }) < t.localityRank({ locality: "Santa Cruz" }));
   assert.equal(t.localityRank({ locality: "Nowhereville" }), Infinity);
 });
+test("arrangeListings: local first, nearby capped, sorted by rank then name", () => {
+  const rows = [
+    { name: "Zeb", locality: "Santa Cruz" },
+    { name: "Ann", locality: "Santa Cruz" },
+    { name: "Bea", locality: "Boulder Creek" },
+    { name: "Cal", locality: "Felton" },
+    { name: "Dot", locality: "Aptos" },
+    { name: "Eve", locality: "Soquel" },
+  ];
+  const { local, nearby } = t.arrangeListings(rows, 2);
+  assert.deepEqual(local.map(x => x.name), ["Bea", "Cal"]);      // BC before Felton
+  assert.deepEqual(nearby.map(x => x.name), ["Ann", "Zeb"]);     // Santa Cruz (rank) before Soquel/Aptos, cap 2, name tiebreak
+});
+test("arrangeListings: cap 0 means no limit", () => {
+  const rows = [{ name: "A", locality: "Santa Cruz" }, { name: "B", locality: "Aptos" }, { name: "C", locality: "Soquel" }];
+  assert.equal(t.arrangeListings(rows, 0).nearby.length, 3);
+});

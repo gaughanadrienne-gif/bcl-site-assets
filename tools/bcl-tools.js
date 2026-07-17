@@ -27,6 +27,17 @@
     var i = l ? LOCALITY_ORDER.indexOf(l.locality) : -1;
     return i < 0 ? Infinity : i;
   }
+  function byRankThenName(a, b) {
+    var ra = localityRank(a), rb = localityRank(b);
+    if (ra !== rb) return ra - rb;
+    return String(a.name || "").localeCompare(String(b.name || ""));
+  }
+  function arrangeListings(rows, cap) {
+    var local = rows.filter(isLocal).sort(byRankThenName);
+    var nearby = rows.filter(function (l) { return !isLocal(l); }).sort(byRankThenName);
+    if (cap && cap > 0) nearby = nearby.slice(0, cap);
+    return { local: local, nearby: nearby };
+  }
 
   /* ---------- shared ---------- */
 
@@ -605,6 +616,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings };
   }
 })();
