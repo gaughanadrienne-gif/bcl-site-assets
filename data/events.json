@@ -103,6 +103,24 @@
       "category": "Music & Arts"
     },
     {
+      "title": "Earth Energy Walk at Miller Property",
+      "start": "2026-07-18T10:45",
+      "end": "2026-07-18T13:00",
+      "location": "Miller Property County Park, Kings Creek Road, Boulder Creek",
+      "url": "https://communityseed.org/ongoing-events/energy-walks/miller-property/",
+      "description": "Community Seed hosts an energy walk on the third Saturday of most months. Gather at 10:45 a.m., depart at 11:00 a.m., and return around 1:00 p.m., with a meditation partway.",
+      "category": "Outdoors"
+    },
+    {
+      "title": "Big Bad Wolf at the SWAG Summer Concert Series",
+      "start": "2026-07-18T17:00",
+      "end": null,
+      "location": "SWAG, 13026 Highway 9, Boulder Creek",
+      "url": "https://www.facebook.com/JEFFSWAGSTORE/events",
+      "description": "Live music from Big Bad Wolf at SWAG as part of the store's summer concert series.",
+      "category": "Music & Arts"
+    },
+    {
       "title": "Rancho del Oso Nature and History Center 40th Anniversary",
       "start": "2026-07-18T18:00",
       "end": null,
@@ -129,6 +147,16 @@
       "url": "https://www.parks.ca.gov/Events/?parkUnit=406",
       "description": "Second day of the Rancho del Oso Nature and History Center 40th anniversary celebration, with an afternoon program at 3 pm.",
       "category": "Outdoors"
+    },
+    {
+      "title": "The Mountain Road Celtic Music Radio on KBCZ 89.3 FM",
+      "start": "2026-07-20T20:00",
+      "end": null,
+      "location": "KBCZ 89.3 FM, 13200 Highway 9, Suite A, Boulder Creek",
+      "url": "https://www.facebook.com/KBCZ89.3FM/events",
+      "description": "Celtic and Irish music show on Boulder Creek community radio. Listen at 89.3 FM or stream from kbcz.org.",
+      "category": "Music & Arts",
+      "notice": "Radio broadcast"
     },
     {
       "title": "Felton Farmers Market",
@@ -591,6 +619,15 @@
       "category": "Music & Arts"
     },
     {
+      "title": "Herbalism 101 at Air & Fire",
+      "start": "2026-08-22T11:00",
+      "end": null,
+      "location": "Air & Fire: A Mystical Bazaar, 13150 Highway 9, Boulder Creek",
+      "url": "https://www.airandfire.com/home.html",
+      "description": "A full-day herbalism class at Air & Fire covering the basics, including salve and tincture making.",
+      "category": "Community"
+    },
+    {
       "title": "Jefferson's Revival",
       "start": "2026-08-22T20:30",
       "end": null,
@@ -656,11 +693,11 @@
     },
     {
       "title": "KBCZ Music Fest",
-      "start": "2026-08-29T13:00",
-      "end": "2026-08-29T19:00",
+      "start": "2026-08-29T14:00",
+      "end": "2026-08-29T19:30",
       "location": "Garrahan Park, 15501 Hwy 9, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Music festival with Boulder Creek community radio KBCZ 89.3 FM at Garrahan Park, 1 to 7 pm.",
+      "url": "https://www.eventbrite.com/e/kbcz-music-fest-2026-tickets-1991480050440",
+      "description": "Music festival from Boulder Creek community radio KBCZ 89.3 FM at Garrahan Park, 2 to 7:30 p.m., with live music, food, and vendors. Proceeds support the station.",
       "category": "Music & Arts"
     },
     {
