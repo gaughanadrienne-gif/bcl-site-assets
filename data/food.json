@@ -312,6 +312,20 @@
    "no_storefront": true,
    "address": null,
    "hours_text": null
+  },
+  {
+   "name": "Doughlicious Farmstand",
+   "category": "Grocery & Market",
+   "subcategory": "Farm stand",
+   "description": "Neighborhood farm stand from baker Liz De Spain, known for sourdough and seasonal goods. Active on Facebook and Instagram.",
+   "address": "280 Lake Drive, Boulder Creek, CA 95006",
+   "locality": "Boulder Creek",
+   "phone": null,
+   "website": null,
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "lat": 37.1532933,
+   "lon": -122.1642495
   }
  ]
 }
