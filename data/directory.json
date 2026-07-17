@@ -450,15 +450,15 @@
   {
    "name": "Redwood Mountain Spa",
    "category": "Health & Wellness",
-   "subcategory": "Day spa and massage",
-   "description": "Day spa offering massage, skin care, waxing, and wellness treatments by appointment.",
+   "subcategory": "Day spa, massage, and facials",
+   "description": "Day spa offering massage, skin care, waxing, and wellness treatments by appointment, including facials and skin care.",
    "address": "12560 Highway 9",
    "locality": "Boulder Creek",
    "phone": "831-703-4519",
    "website": "https://redwoodmountainspa.com/",
    "hours_text": "By appointment",
    "service_area": "Boulder Creek and surrounding communities",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-07-17",
    "lat": 37.116951,
    "lon": -122.120263,
    "tile": "redwood-mountain-spa.png"
