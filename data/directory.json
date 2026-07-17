@@ -2502,6 +2502,65 @@
    "verified_at": "2026-07-17",
    "lat": 37.049235,
    "lon": -122.0734184
+  },
+  {
+   "name": "MADabolic Scotts Valley",
+   "category": "Health & Wellness",
+   "subcategory": "Gym",
+   "description": "Strength-driven interval training studio offering coached strength and conditioning classes built around structured work-to-rest ratios, the MADabolic franchise's first California location.",
+   "address": "262 Mount Hermon Road, Suite 101",
+   "locality": "Scotts Valley",
+   "phone": "831-202-5234",
+   "website": "https://madabolic.com/ca/scotts-valley/",
+   "service_area": "Scotts Valley and surrounding communities",
+   "verified_at": "2026-07-17",
+   "hours_text": null
+  },
+  {
+   "name": "Enterprise Sports Club",
+   "category": "Health & Wellness",
+   "subcategory": "Athletic club",
+   "description": "Full-service 26,000 square foot athletic club with exercise equipment, group fitness classes, personal training, a heated outdoor pool, spa, sauna, and tennis, pickleball, and basketball courts. Formerly a private employee club, open to the public since 2020.",
+   "address": "100 Enterprise Way, Suite G100",
+   "locality": "Scotts Valley",
+   "phone": "831-920-0912",
+   "website": "https://www.enterprisesportsclub.com/",
+   "hours_text": "Monday-Friday 5:30am-9pm; Saturday-Sunday 7am-8pm",
+   "service_area": "Scotts Valley and surrounding communities",
+   "verified_at": "2026-07-17",
+   "tile": "enterprise-sports-club.png"
+  },
+  {
+   "name": "Ferrari Florist & Gardens",
+   "category": "Shopping",
+   "subcategory": "Florist",
+   "description": "Santa Cruz florist operating since 1946 with same-day hand delivery anywhere in Santa Cruz County, which includes Boulder Creek (95006) per its published delivery policy; very rural or difficult-access addresses may be offered pickup instead.",
+   "address": "415F River Street",
+   "locality": "Santa Cruz",
+   "phone": "831-460-7000",
+   "website": "https://www.ferrariflorist.com/",
+   "hours_text": "Monday-Friday 8:30am-5pm; Saturday 8:30am-3pm; Sunday closed",
+   "service_area": "Santa Cruz County, including Boulder Creek",
+   "verified_at": "2026-07-17",
+   "lat": 36.9786613,
+   "lon": -122.0267846,
+   "tile": "ferrari-florist-gardens.png"
+  },
+  {
+   "name": "Wild Iris Floral and Botanical",
+   "category": "Shopping",
+   "subcategory": "Florist",
+   "description": "Downtown Felton florist serving the San Lorenzo Valley since 2016, specializing in locally sourced arrangements, weddings, and events. Its published delivery area includes Boulder Creek within 1 mile of the town limits, with Boulder Creek orders placed by phone.",
+   "address": "6227 Highway 9",
+   "locality": "Felton",
+   "phone": "831-278-0151",
+   "website": "https://www.wildirisfloral.com/",
+   "hours_text": "Tuesday-Friday 11am-5pm; Saturday 11am-4pm; Sunday-Monday closed",
+   "service_area": "Felton, Scotts Valley, Ben Lomond, Brookdale, Boulder Creek (within 1 mile of town limits), and Santa Cruz",
+   "verified_at": "2026-07-17",
+   "lat": 37.0518062,
+   "lon": -122.073469,
+   "tile": "wild-iris-floral-and-botanical.png"
   }
  ]
 }

@@ -268,6 +268,50 @@
    "hours_text": null,
    "lat": 37.0873503,
    "lon": -122.0890233
+  },
+  {
+   "name": "Henflings Tavern",
+   "category": "Bar & Nightlife",
+   "subcategory": "Tavern and live-music venue",
+   "description": "Longtime Santa Cruz Mountains tavern in downtown Ben Lomond, operating since 1946, with live music every weekend, a recurring Sunday Pro Jam, a full bar, food menu, and covered patio.",
+   "address": "9450 Highway 9",
+   "locality": "Ben Lomond",
+   "phone": "831-289-3019",
+   "website": "https://www.henflingsslv.com/",
+   "hours_text": "Daily 12pm-1:30am",
+   "service_area": "Ben Lomond and the San Lorenzo Valley",
+   "verified_at": "2026-07-17",
+   "lat": 37.0897298,
+   "lon": -122.0889545
+  },
+  {
+   "name": "Felton Music Hall",
+   "category": "Bar & Nightlife",
+   "subcategory": "Live music venue and bar",
+   "description": "Live-music venue in the Santa Cruz Mountains presenting local and touring acts across genres, with craft food and cocktails served in-house from a full bar.",
+   "address": "6275 Highway 9",
+   "locality": "Felton",
+   "phone": "831-704-7113",
+   "website": "https://feltonmusichall.com/",
+   "service_area": "Felton and the San Lorenzo Valley",
+   "verified_at": "2026-07-17",
+   "hours_text": null,
+   "lat": 37.0526067,
+   "lon": -122.0734274,
+   "tile": "felton-music-hall.png"
+  },
+  {
+   "name": "Dough and Dahlias",
+   "category": "Bakery & Sweets",
+   "subcategory": "Sourdough and flower farm stand",
+   "description": "Home-based Ben Lomond cottage operation offering homemade sourdough breads and baked goods for local pickup, along with cut-flower bouquets grown in the owner's garden.",
+   "locality": "Ben Lomond",
+   "website": "https://www.instagram.com/doughandahlias/",
+   "service_area": "Ben Lomond and the San Lorenzo Valley, local pickup",
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "address": null,
+   "hours_text": null
   }
  ]
 }
