@@ -3559,6 +3559,33 @@
    "service_area": "Felton and the tri-county region",
    "verified_at": "2026-07-17",
    "hours_text": null
+  },
+  {
+   "name": "Adina's Daycare",
+   "category": "Education & Childcare",
+   "subcategory": "Family daycare",
+   "description": "Licensed family child care home in Boulder Creek serving infants through preschool age, in operation since 1991.",
+   "locality": "Boulder Creek",
+   "phone": "831-338-3873",
+   "hours_text": "Monday-Friday",
+   "service_area": "Boulder Creek",
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "license": "License #444406040 (Family Child Care Home, active; capacity 14, initial license 1991-09-06)",
+   "address": null
+  },
+  {
+   "name": "Busy Bees Playschool",
+   "category": "Education & Childcare",
+   "subcategory": "Family daycare",
+   "description": "Play-based preschool program founded by Michelle Hamblin Mathews; the Boulder Creek location is a licensed family child care home serving young children. A second location, Busy Bees Playschool Two, operates as a licensed child care center in Ben Lomond (ages 2-6).",
+   "locality": "Boulder Creek",
+   "service_area": "Boulder Creek and Ben Lomond (San Lorenzo Valley)",
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "license": "License #444417882 (Family Child Care Home, Boulder Creek, active). Second location: Busy Bees Playschool Two, License #444418540 (Child Care Center, active), 7985 B Highway 9, Ben Lomond.",
+   "address": null,
+   "hours_text": null
   }
  ]
 }
