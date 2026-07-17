@@ -149,6 +149,12 @@ section:has(.bcl-full) .content-wrapper { max-width: none !important; padding: 0
 .bcl-faq { border-top: 1px solid var(--bcl-line); padding: 24px 0; }
 .bcl-contact { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 700; word-break: break-word; }
 .bcl-legal-meta { color: var(--bcl-muted); font-family: "IBM Plex Mono", monospace; font-size: .75rem; }
+.bcl-newsband { background: var(--bcl-cream); border-top: 1px solid var(--bcl-line); padding: 44px 0; }
+.bcl-newsband .bcl-wrap { align-items: center; display: grid; gap: 10px 40px; grid-template-columns: 1fr 1fr; }
+.bcl-newsband h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin: 0 0 .2em; }
+.bcl-newsband p { color: var(--bcl-muted); font-size: .9rem; margin: 0; }
+.bcl-newsband .ml-embedded { min-height: 0; }
+@media (max-width: 800px) { .bcl-newsband .bcl-wrap { grid-template-columns: 1fr; } }
 .bcl-footer { background: var(--bcl-deep); color: #fff; padding: 72px 0 34px; }
 .bcl-footer h2 { max-width: 720px; }
 .bcl-footer .bcl-dim { color: rgba(255,255,255,.7); }
@@ -182,3 +188,13 @@ window.addEventListener("message", function (event) {
   });
 });
 </script>
+
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2514969');
+</script>
+<!-- End MailerLite Universal -->
