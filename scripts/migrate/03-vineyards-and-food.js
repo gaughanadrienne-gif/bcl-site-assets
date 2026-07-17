@@ -11,13 +11,14 @@ const FOOD = path.join(__dirname, "../../data/food.json");
 const VINEYARDS = [
  {
   name: "Big Basin Vineyards",
-  subcategory: "Winery and tasting room",
-  description: "Estate winery in the Santa Cruz Mountains near Boulder Creek, with a public tasting room in downtown Santa Cruz and estate visits by reservation.",
-  address: "525 Pacific Avenue",
-  locality: "Santa Cruz",
+  subcategory: "Winery, tasting room and events",
+  description: "Estate winery in the Santa Cruz Mountains with wine tasting and events at its Boulder Creek estate, plus a tasting room in downtown Santa Cruz.",
+  address: "830 Memory Lane",
+  locality: "Boulder Creek",
   local: true,
   phone: "(831) 515-7278",
   website: "https://www.bigbasinvineyards.com/",
+  hours_text: "Tasting and events by reservation",
   verified_at: "2026-07-17"
  },
  {
