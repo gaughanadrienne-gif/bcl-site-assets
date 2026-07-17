@@ -127,6 +127,8 @@
       ".bcl-dir-verified{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#67716b !important;margin-top:auto;padding-top:6px;}",
       ".bcl-links li{margin:6px 0;font-size:.92rem;}",
       ".bcl-links a{color:#2e6b46 !important;}",
+      ".bcl-group-head{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#8f4f45 !important;border-bottom:1px solid #e3ddcf;padding:0 0 6px;margin:34px 0 4px;}",
+      ".bcl-tier-divider{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#67716b !important;margin:14px 0 10px;}",
       ".bcl-range{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px;}",
       ".bcl-range button{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:8px 14px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;text-transform:uppercase;}",
       ".bcl-range button.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
@@ -188,19 +190,43 @@
     return h + "</div>";
   }
 
+  function buildDirectoryHTML(rows, opts) {
+    opts = opts || {};
+    var byCat = {};
+    rows.forEach(function (l) { (byCat[l.category] = byCat[l.category] || []).push(l); });
+    var cats = orderedCategoryNames(Object.keys(byCat));
+    var lastGroup = null, out = "";
+    cats.forEach(function (c) {
+      var g = groupLabelOf(c);
+      if (g && g !== lastGroup) { out += '<div class="bcl-group-head">' + esc(g) + "</div>"; lastGroup = g; }
+      var a = arrangeListings(byCat[c], opts.cap || 0);
+      var shown = a.local.length + a.nearby.length;
+      out += '<div class="bcl-cat-head"><h3>' + esc(c) + "</h3><span>" + shown + "</span></div>";
+      out += '<div class="bcl-dir-grid">' + a.local.map(listingCard).join("");
+      if (a.nearby.length) {
+        out += "</div>" + '<div class="bcl-tier-divider">Also serving the area</div>' + '<div class="bcl-dir-grid">';
+        out += a.nearby.map(listingCard).join("");
+      }
+      out += "</div>";
+    });
+    return out;
+  }
+  function buildCategoryOptions(present) {
+    return orderedCategoryNames(present).map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("");
+  }
+
   function initListings(root, dataFile, label) {
     root.innerHTML = '<div class="bcl-count">Loading ' + esc(label) + "…</div>";
     fetchJSON(REPO + "/data/" + dataFile).then(function (data) {
       var all = data.listings || [];
       var cats = [];
       all.forEach(function (l) { if (cats.indexOf(l.category) < 0) cats.push(l.category); });
-      cats.sort();
 
       root.innerHTML =
         '<div class="bcl-controls">' +
         '<input type="search" placeholder="Search by name or service" aria-label="Search listings">' +
         '<select aria-label="Jump to category"><option value="">All categories</option>' +
-        cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") +
+        buildCategoryOptions(cats) +
         "</select>" +
         "</div>" +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
@@ -224,13 +250,8 @@
           list.innerHTML = '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/submit">Suggest it</a>.</div>';
           return;
         }
-        // group by category, headings + card grids
-        var byCat = {};
-        rows.forEach(function (l) { (byCat[l.category] = byCat[l.category] || []).push(l); });
-        list.innerHTML = Object.keys(byCat).sort().map(function (c) {
-          return '<div class="bcl-cat-head"><h3>' + esc(c) + "</h3><span>" + byCat[c].length + "</span></div>" +
-            '<div class="bcl-dir-grid">' + byCat[c].map(listingCard).join("") + "</div>";
-        }).join("");
+        // Cap the nearby tier only when browsing (no active search), so a search never hides matches.
+        list.innerHTML = buildDirectoryHTML(rows, { cap: q ? 0 : 6 });
       }
       input.addEventListener("input", render);
       select.addEventListener("change", render);
@@ -639,6 +660,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions };
   }
 })();

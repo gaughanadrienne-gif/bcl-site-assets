@@ -49,3 +49,19 @@ test("groupLabelOf: maps categories to their group", () => {
   assert.equal(t.groupLabelOf("Vineyards & Wine Tasting"), "Food & Drink");
   assert.equal(t.groupLabelOf("Totally Unknown"), null);
 });
+test("buildDirectoryHTML: group label, local-first, divider, cap", () => {
+  const rows = [
+    { name: "SC DJ", category: "Wedding Services", locality: "Santa Cruz" },
+    { name: "BC DJ", category: "Wedding Services", locality: "Boulder Creek" },
+    { name: "Aptos DJ", category: "Wedding Services", locality: "Aptos" },
+  ];
+  const html = t.buildDirectoryHTML(rows, { cap: 1 });
+  assert.match(html, /Weddings &amp; Celebrations/);                 // group label rendered (escaped)
+  assert.ok(html.indexOf("BC DJ") < html.indexOf("Also serving the area")); // local above divider
+  assert.ok(html.indexOf("Also serving the area") < html.indexOf("SC DJ")); // nearby below divider
+  assert.equal(html.indexOf("Aptos DJ"), -1);                        // capped out (cap 1, SC ranks closer)
+});
+test("buildCategoryOptions: ordered options", () => {
+  const opts = t.buildCategoryOptions(["Lodging", "Event Venues"]);
+  assert.ok(opts.indexOf("Event Venues") < opts.indexOf("Lodging"));
+});
