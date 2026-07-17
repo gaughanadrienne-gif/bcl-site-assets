@@ -479,7 +479,7 @@
   },
   {
    "name": "Affordable Septic & Excavating Services",
-   "category": "Home & Property Services",
+   "category": "Excavation, Grading & Paving",
    "subcategory": "Septic and excavation",
    "description": "Local contractor providing septic pumping, inspections, repairs, installations, excavation, and drainage work.",
    "address": null,
@@ -494,7 +494,7 @@
   },
   {
    "name": "Apollo Plumbing",
-   "category": "Home & Property Services",
+   "category": "Plumbing & HVAC",
    "subcategory": "Plumbing",
    "description": "Licensed local plumber handling drains, pipes, fixtures, water heaters, and general residential plumbing.",
    "address": null,
@@ -509,7 +509,7 @@
   },
   {
    "name": "Big Basin Electric",
-   "category": "Home & Property Services",
+   "category": "Electrical & Solar",
    "subcategory": "Electrical contractor",
    "description": "Licensed electrical contractor serving Boulder Creek and the San Lorenzo Valley.",
    "address": null,
@@ -526,7 +526,7 @@
   },
   {
    "name": "Christianson Tree Experts",
-   "category": "Home & Property Services",
+   "category": "Tree Care & Defensible Space",
    "subcategory": "Tree care",
    "description": "Licensed tree-care company providing pruning, removal, hazard assessment, cabling, and emergency services.",
    "address": "13041 Pine Street",
@@ -542,7 +542,7 @@
   },
   {
    "name": "Geist Builders Group",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Licensed general contractor providing residential construction, remodeling, and project services.",
    "address": "13119 Highway 9",
@@ -558,7 +558,7 @@
   },
   {
    "name": "Jeff Vedder Painting",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "Painting contractor",
    "description": "Licensed painting contractor providing interior, exterior, residential, and commercial painting.",
    "address": null,
@@ -573,7 +573,7 @@
   },
   {
    "name": "PCIS",
-   "category": "Home & Property Services",
+   "category": "Electrical & Solar",
    "subcategory": "Electrical and low-voltage contractor",
    "description": "Licensed electrical and low-voltage contractor serving residential, commercial, and industrial customers.",
    "address": null,
@@ -588,7 +588,7 @@
   },
   {
    "name": "SE Electric",
-   "category": "Home & Property Services",
+   "category": "Electrical & Solar",
    "subcategory": "Electrical contractor",
    "description": "Electrical contractor providing residential and commercial installation, repair, lighting, and electrical-system services.",
    "address": "12788 Highway 9, Suite 2",
@@ -602,7 +602,7 @@
   },
   {
    "name": "Stellar Tree Care",
-   "category": "Home & Property Services",
+   "category": "Tree Care & Defensible Space",
    "subcategory": "Tree care and fire mitigation",
    "description": "Boulder Creek-based tree service providing trimming, removal, firebreaks, and property-safety work.",
    "address": null,
@@ -617,7 +617,7 @@
   },
   {
    "name": "Sunderland Tree Service",
-   "category": "Home & Property Services",
+   "category": "Tree Care & Defensible Space",
    "subcategory": "Tree care and defensible space",
    "description": "Local tree company providing removal, pruning, firebreak, and defensible-space services.",
    "address": null,
@@ -632,7 +632,7 @@
   },
   {
    "name": "Travis Tree Professionals",
-   "category": "Home & Property Services",
+   "category": "Tree Care & Defensible Space",
    "subcategory": "Tree care",
    "description": "Licensed tree service offering pruning, removal, fire mitigation, land clearing, and emergency response.",
    "address": null,
@@ -1065,7 +1065,7 @@
   },
   {
    "name": "Herranen Heating & Air",
-   "category": "Home & Property Services",
+   "category": "Plumbing & HVAC",
    "subcategory": "Heating and air conditioning (HVAC)",
    "description": "Ben Lomond HVAC contractor installing, servicing, and repairing residential and commercial heating and cooling systems, licensed C-20.",
    "locality": "Ben Lomond",
@@ -1078,7 +1078,7 @@
   },
   {
    "name": "Zephyr Climate Solutions",
-   "category": "Home & Property Services",
+   "category": "Plumbing & HVAC",
    "subcategory": "Heating and air conditioning (HVAC)",
    "description": "Felton HVAC contractor specializing in ducted and ductless mini-split heating and cooling systems, licensed C-20.",
    "locality": "Felton",
@@ -1092,7 +1092,7 @@
   },
   {
    "name": "Baxter Landscaping, Inc.",
-   "category": "Home & Property Services",
+   "category": "Landscaping & Gardening",
    "subcategory": "Landscaping contractor",
    "description": "Ben Lomond landscaping contractor providing residential and commercial landscape installation and grounds work, licensed C-27.",
    "locality": "Ben Lomond",
@@ -1107,7 +1107,7 @@
   },
   {
    "name": "Travis Martin Plumbing, Inc.",
-   "category": "Home & Property Services",
+   "category": "Plumbing & HVAC",
    "subcategory": "Plumbing and water heaters",
    "description": "Boulder Creek family plumbing company (DBA San Lorenzo Valley Water Heaters) handling drains, fixtures, water heaters, and filtration, licensed C-36.",
    "locality": "Boulder Creek",
@@ -1122,7 +1122,7 @@
   },
   {
    "name": "Hwy 9 Plumbing",
-   "category": "Home & Property Services",
+   "category": "Plumbing & HVAC",
    "subcategory": "Plumbing",
    "description": "Boulder Creek plumber providing residential repairs, water heaters, and leak diagnosis for the San Lorenzo Valley, licensed C-36.",
    "locality": "Boulder Creek",
@@ -1135,7 +1135,7 @@
   },
   {
    "name": "Collins Coastal Plumbing, Inc.",
-   "category": "Home & Property Services",
+   "category": "Plumbing & HVAC",
    "subcategory": "Plumbing",
    "description": "Ben Lomond plumbing contractor serving residential and commercial customers across the San Lorenzo Valley, licensed C-36.",
    "locality": "Ben Lomond",
@@ -1149,7 +1149,7 @@
   },
   {
    "name": "Wade's, Inc.",
-   "category": "Home & Property Services",
+   "category": "Plumbing & HVAC",
    "subcategory": "Plumbing",
    "description": "Ben Lomond plumbing contractor providing plumbing and sanitation-system work, licensed C-36 and C-42.",
    "locality": "Ben Lomond",
@@ -1162,7 +1162,7 @@
   },
   {
    "name": "Jessi Phillips Electric",
-   "category": "Home & Property Services",
+   "category": "Electrical & Solar",
    "subcategory": "Electrical contractor",
    "description": "Ben Lomond electrical contractor handling residential and commercial wiring, panels, and repairs, licensed C-10.",
    "locality": "Ben Lomond",
@@ -1176,7 +1176,7 @@
   },
   {
    "name": "Wilson Electric",
-   "category": "Home & Property Services",
+   "category": "Electrical & Solar",
    "subcategory": "Electrical contractor",
    "description": "Boulder Creek electrical contractor providing residential and commercial electrical installation and repair, licensed C-10.",
    "locality": "Boulder Creek",
@@ -1190,7 +1190,7 @@
   },
   {
    "name": "Machado Bros. Painting",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "Painting contractor",
    "description": "Boulder Creek painting contractor offering residential and commercial interior and exterior painting, licensed C-33.",
    "locality": "Boulder Creek",
@@ -1205,7 +1205,7 @@
   },
   {
    "name": "Jordan Booth Welding",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "Welding",
    "description": "Boulder Creek welding contractor providing structural and general welding services, licensed C-60.",
    "locality": "Boulder Creek",
@@ -1218,7 +1218,7 @@
   },
   {
    "name": "Jeff Hill & Sons Excavation and Grading, Inc.",
-   "category": "Home & Property Services",
+   "category": "Excavation, Grading & Paving",
    "subcategory": "Excavation and grading",
    "description": "Ben Lomond engineering contractor providing site excavation, grading, septic construction, drainage, and clearing, licensed A.",
    "locality": "Ben Lomond",
@@ -1233,7 +1233,7 @@
   },
   {
    "name": "Miller Paving",
-   "category": "Home & Property Services",
+   "category": "Excavation, Grading & Paving",
    "subcategory": "Paving and grading",
    "description": "Ben Lomond engineering contractor providing asphalt paving, sealcoating, driveways, and grading, licensed A.",
    "locality": "Ben Lomond",
@@ -1248,7 +1248,7 @@
   },
   {
    "name": "Josh Sladwick Engineering",
-   "category": "Home & Property Services",
+   "category": "Excavation, Grading & Paving",
    "subcategory": "Grading and excavation",
    "description": "Boulder Creek engineering contractor providing grading, excavation, paving, and retaining-wall work, licensed A.",
    "locality": "Boulder Creek",
@@ -1262,7 +1262,7 @@
   },
   {
    "name": "MTM Truck & Tractor, Inc.",
-   "category": "Home & Property Services",
+   "category": "Excavation, Grading & Paving",
    "subcategory": "Excavation and tractor work",
    "description": "Ben Lomond engineering contractor providing tractor work, excavation, and grading, licensed A.",
    "locality": "Ben Lomond",
@@ -1275,7 +1275,7 @@
   },
   {
    "name": "Dixon Construction",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Felton general building contractor handling remodels, additions, decks, and new construction across the San Lorenzo Valley, licensed B.",
    "locality": "Felton",
@@ -1290,7 +1290,7 @@
   },
   {
    "name": "LK Construction and Management, Inc.",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor and construction management",
    "description": "Boulder Creek general contractor and construction manager handling ground-up builds, remodels, and tenant improvements, licensed B.",
    "locality": "Boulder Creek",
@@ -1304,7 +1304,7 @@
   },
   {
    "name": "Meadows Custom Builders",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Boulder Creek general contractor providing custom home construction, renovations, and additions, licensed B.",
    "locality": "Boulder Creek",
@@ -1319,7 +1319,7 @@
   },
   {
    "name": "New Solutions Construction",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Boulder Creek general building contractor providing residential construction and remodeling, licensed B.",
    "locality": "Boulder Creek",
@@ -1333,7 +1333,7 @@
   },
   {
    "name": "Kevin Foster Construction",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Boulder Creek general building contractor providing residential construction and remodeling, licensed B.",
    "locality": "Boulder Creek",
@@ -1346,7 +1346,7 @@
   },
   {
    "name": "JRG Construction",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Boulder Creek general building contractor providing residential construction and remodeling, licensed B.",
    "locality": "Boulder Creek",
@@ -1359,7 +1359,7 @@
   },
   {
    "name": "GNN Construction",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Boulder Creek general building contractor providing residential construction and remodeling, licensed B.",
    "locality": "Boulder Creek",
@@ -1372,7 +1372,7 @@
   },
   {
    "name": "Aaron Chase Construction",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Boulder Creek general building contractor providing residential construction and remodeling, licensed B.",
    "locality": "Boulder Creek",
@@ -1385,7 +1385,7 @@
   },
   {
    "name": "Platinum Contracting Services",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Boulder Creek general building contractor providing residential construction and remodeling, licensed B.",
    "locality": "Boulder Creek",
@@ -1398,7 +1398,7 @@
   },
   {
    "name": "Eric Martin Construction, Inc.",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Ben Lomond general building contractor providing residential construction and remodeling, licensed B.",
    "locality": "Ben Lomond",
@@ -1411,7 +1411,7 @@
   },
   {
    "name": "Lotz Construction",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Ben Lomond general building contractor providing residential construction and remodeling, licensed B.",
    "locality": "Ben Lomond",
@@ -1424,7 +1424,7 @@
   },
   {
    "name": "Oliveira & Sons",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Felton general building contractor providing residential construction and remodeling, licensed B.",
    "locality": "Felton",
@@ -1564,7 +1564,7 @@
   },
   {
    "name": "San Lorenzo Valley Housekeeping",
-   "category": "Home & Property Services",
+   "category": "House Cleaning",
    "subcategory": "House cleaning",
    "description": "Locally owned housekeeping business operating since 2012 offering basic house cleaning, deep cleaning, laundry, window cleaning, and move-in or move-out service across the San Lorenzo Valley.",
    "locality": "Boulder Creek",
@@ -1579,7 +1579,7 @@
   },
   {
    "name": "Clean Impressions LLC",
-   "category": "Home & Property Services",
+   "category": "House Cleaning",
    "subcategory": "House cleaning",
    "description": "Felton-based residential and short-term-rental turnover cleaning service offering free estimates and serving Felton and Ben Lomond.",
    "locality": "Felton",
@@ -1592,7 +1592,7 @@
   },
   {
    "name": "Christi's Green Cleaning",
-   "category": "Home & Property Services",
+   "category": "House Cleaning",
    "subcategory": "House cleaning",
    "description": "Eco-friendly residential cleaning company operating since 2007 offering weekly, biweekly, and monthly service with background-checked staff and non-toxic products.",
    "locality": "Scotts Valley",
@@ -1606,7 +1606,7 @@
   },
   {
    "name": "Santa Cruz Maids",
-   "category": "Home & Property Services",
+   "category": "House Cleaning",
    "subcategory": "House cleaning",
    "description": "Santa Cruz County house cleaning service, also operating as Dynamic House Cleaning, serving Scotts Valley and Felton among other county locations seven days a week.",
    "locality": "Santa Cruz",
@@ -1621,7 +1621,7 @@
   },
   {
    "name": "Safeguard Chimney Sweep Company",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Chimney sweep",
    "description": "Family-owned chimney and dryer-vent cleaning, inspection, and masonry repair service operating since 1979, serving Boulder Creek, Felton, Ben Lomond, and the wider Santa Cruz area.",
    "locality": "Watsonville",
@@ -1636,7 +1636,7 @@
   },
   {
    "name": "Cozy Firewood",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Firewood delivery",
    "description": "Felton-based firewood delivery and stacking service supplying seasoned oak, almond, and eucalyptus to the San Lorenzo Valley.",
    "locality": "Felton",
@@ -1651,7 +1651,7 @@
   },
   {
    "name": "Mountain Propane Service",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Propane supplier",
    "description": "Locally owned propane delivery company serving the San Lorenzo Valley and greater Santa Cruz County, offering delivery, auto-fill, and safety checks.",
    "address": "6576 Highway 9",
@@ -1666,7 +1666,7 @@
   },
   {
    "name": "AmeriGas",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Propane supplier",
    "description": "National propane provider offering residential propane delivery and tank service to the Boulder Creek area.",
    "locality": "National provider",
@@ -1680,7 +1680,7 @@
   },
   {
    "name": "Tavares Plumbing and Pumps",
-   "category": "Home & Property Services",
+   "category": "Well & Pump / Water",
    "subcategory": "Well and pump service",
    "description": "Well and pump contractor offering well repair, pump installation and replacement, tanks, maintenance, and 24-hour emergency service, serving Felton, Ben Lomond, and Boulder Creek.",
    "locality": "San Jose",
@@ -1694,7 +1694,7 @@
   },
   {
    "name": "Maggiora Bros. Drilling",
-   "category": "Home & Property Services",
+   "category": "Well & Pump / Water",
    "subcategory": "Well drilling and pump service",
    "description": "Established Santa Cruz County water-well drilling and pump company operating since 1962, providing well drilling, pump systems, controls, and water treatment.",
    "address": "595 Airport Boulevard",
@@ -1708,7 +1708,7 @@
   },
   {
    "name": "XterminatriX Holistic Pest Control",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Pest control",
    "description": "Felton-based, woman-owned integrated pest management service using targeted low-toxicity methods with no anticoagulant rodent baits, serving Boulder Creek, Felton, and the San Lorenzo Valley.",
    "locality": "Felton",
@@ -1723,7 +1723,7 @@
   },
   {
    "name": "Aantex Pest Control",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Pest control",
    "description": "Locally owned regional pest control company with more than 40 years in business covering rodents, termites, and general pests, with Boulder Creek, Felton, Ben Lomond, and Brookdale in its service area.",
    "locality": "Brentwood",
@@ -1738,7 +1738,7 @@
   },
   {
    "name": "Good Sense Termite",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Termite control",
    "description": "Termite inspection and treatment company familiar with the drywood-termite and moisture risks of redwood-sided mountain homes, serving Felton and Boulder Creek.",
    "locality": "Campbell",
@@ -1753,7 +1753,7 @@
   },
   {
    "name": "Santa Cruz Appliance Repair",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Appliance repair",
    "description": "Family-owned appliance repair and parts shop operating since 2009, fixing refrigerators, washers, dryers, ovens, and dishwashers, serving Boulder Creek, Ben Lomond, and Felton.",
    "address": "250-B Potrero Street",
@@ -1769,7 +1769,7 @@
   },
   {
    "name": "Lambert & Son Moving",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Moving and storage",
    "description": "Family-owned local moving and storage company operating since 2005 that serves Boulder Creek, Ben Lomond, and Felton along with the rest of Santa Cruz County.",
    "address": "2638 17th Avenue",
@@ -2193,7 +2193,7 @@
   },
   {
    "name": "Rational Moving",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Moving company",
    "description": "Santa Cruz moving company in business since the 1970s providing residential and commercial moves, packing, and storage throughout Santa Cruz County including Boulder Creek and the San Lorenzo Valley, operating under California household mover permit MTR0192109.",
    "locality": "Santa Cruz",
@@ -2208,7 +2208,7 @@
   },
   {
    "name": "SCM Custom Cleaning",
-   "category": "Home & Property Services",
+   "category": "House Cleaning",
    "subcategory": "House cleaning",
    "description": "Locally owned Boulder Creek cleaning service offering initial deep cleans and weekly, bi-weekly, or monthly maintenance for homes, rentals, and offices across the San Lorenzo Valley.",
    "locality": "Boulder Creek",
@@ -2223,7 +2223,7 @@
   },
   {
    "name": "Clean Mountain House Cleaning",
-   "category": "Home & Property Services",
+   "category": "House Cleaning",
    "subcategory": "House cleaning",
    "description": "Boulder Creek house cleaning business providing regular, deep, and move-in or move-out cleaning for homes throughout the Santa Cruz Mountains.",
    "locality": "Boulder Creek",
@@ -2254,7 +2254,7 @@
   },
   {
    "name": "Boulder Creek Concrete",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "Concrete contractor",
    "description": "Boulder Creek concrete contractor handling flatwork, foundations, and retaining walls, licensed C-8.",
    "locality": "Boulder Creek",
@@ -2268,7 +2268,7 @@
   },
   {
    "name": "Christopher A New Roofing",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "Roofing contractor",
    "description": "Ben Lomond roofing contractor serving the San Lorenzo Valley, licensed C-39.",
    "locality": "Ben Lomond",
@@ -2281,7 +2281,7 @@
   },
   {
    "name": "California Custom Painting and Design",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "Painting contractor",
    "description": "Boulder Creek painting and finish-work contractor that also handles cabinetry, tile, and remodeling, licensed C-33.",
    "locality": "Boulder Creek",
@@ -2294,7 +2294,7 @@
   },
   {
    "name": "Gary Fox Cabinets",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "Cabinet maker",
    "description": "Boulder Creek cabinet and general building contractor, licensed B.",
    "locality": "Boulder Creek",
@@ -2307,7 +2307,7 @@
   },
   {
    "name": "Farinsky Energy Solutions",
-   "category": "Home & Property Services",
+   "category": "Electrical & Solar",
    "subcategory": "Solar installer",
    "description": "Ben Lomond solar and electrical contractor installing photovoltaic systems, licensed C-46 and C-10.",
    "locality": "Ben Lomond",
@@ -2320,7 +2320,7 @@
   },
   {
    "name": "Terry Miller Concrete",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "Concrete contractor",
    "description": "Long-established Ben Lomond concrete contractor, licensed C-8.",
    "locality": "Ben Lomond",
@@ -2334,7 +2334,7 @@
   },
   {
    "name": "Angus Hill Landscapes",
-   "category": "Home & Property Services",
+   "category": "Landscaping & Gardening",
    "subcategory": "Landscaping contractor",
    "description": "Boulder Creek landscaping contractor, licensed C-27.",
    "locality": "Boulder Creek",
@@ -2347,7 +2347,7 @@
   },
   {
    "name": "Good Earth Landscape & Design",
-   "category": "Home & Property Services",
+   "category": "Landscaping & Gardening",
    "subcategory": "Landscaping contractor",
    "description": "Ben Lomond landscape design and installation contractor, licensed C-27.",
    "locality": "Ben Lomond",
@@ -2360,7 +2360,7 @@
   },
   {
    "name": "SLV Electric Inc",
-   "category": "Home & Property Services",
+   "category": "Electrical & Solar",
    "subcategory": "Electrical contractor",
    "description": "Felton-based electrical contractor serving the San Lorenzo Valley, licensed C-10.",
    "locality": "Felton",
@@ -2373,7 +2373,7 @@
   },
   {
    "name": "Fine Edge Painting",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "Painting contractor",
    "description": "Felton painting and decorating contractor, licensed C-33.",
    "locality": "Felton",
@@ -2387,7 +2387,7 @@
   },
   {
    "name": "J Fisher Plumbing",
-   "category": "Home & Property Services",
+   "category": "Plumbing & HVAC",
    "subcategory": "Plumbing",
    "description": "Felton plumbing contractor, licensed C-36.",
    "locality": "Felton",
@@ -2566,7 +2566,7 @@
   },
   {
    "name": "Markey Construction",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Boulder Creek based licensed general contractor for home builds, remodels, decks, fences, retaining walls, and concrete work.",
    "address": null,
@@ -2772,7 +2772,7 @@
   },
   {
    "name": "Daniel's Cleaning Services",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Chimney sweep",
    "description": "Seaside-based service established in 2010 providing chimney cleaning, rain gutter cleaning, and dryer vent cleaning across the Monterey Bay area, including Santa Cruz County.",
    "locality": "Seaside",
@@ -2854,7 +2854,7 @@
   },
   {
    "name": "Wes White Handyman & General Maintenance",
-   "category": "Home & Property Services",
+   "category": "Handyman & Property Maintenance",
    "subcategory": "Handyman and property maintenance",
    "description": "Local handyman offering yard maintenance, weed whacking, brush and poison-oak clearing, pressure washing, roof and gutter cleaning, tree work, hauling, appliance pickup, and general repairs. Owner-recommended; confirm details by phone.",
    "locality": "Boulder Creek",
@@ -2866,7 +2866,7 @@
   },
   {
    "name": "Coastal Mountain Handyman Services",
-   "category": "Home & Property Services",
+   "category": "Handyman & Property Maintenance",
    "subcategory": "Handyman and property maintenance",
    "description": "Boulder Creek handyman and property-maintenance service (Corey McClemans) handling repairs, installs, and general upkeep, operating since 2024.",
    "locality": "Boulder Creek",
@@ -2878,7 +2878,7 @@
   },
   {
    "name": "Squatch Valley Property Services",
-   "category": "Home & Property Services",
+   "category": "Handyman & Property Maintenance",
    "subcategory": "Handyman and property maintenance",
    "description": "Boulder Creek property-services handyman (Dan) providing repairs, installations, painting, brush removal, and hauling across the San Lorenzo Valley, Bonny Doon, and Pescadero.",
    "locality": "Boulder Creek",
@@ -2890,7 +2890,7 @@
   },
   {
    "name": "Handyman Dan",
-   "category": "Home & Property Services",
+   "category": "Handyman & Property Maintenance",
    "subcategory": "Handyman and property maintenance",
    "description": "Insured handyman (Dan Alger) with 30-plus years of plumbing- and HVAC-focused work, including fixtures, French drains, sump pumps, water heaters, furnace repair, and roof and gutter clearing. Owner-recommended; confirm details by phone.",
    "locality": "Boulder Creek",
@@ -2902,7 +2902,7 @@
   },
   {
    "name": "Greenman Gardening",
-   "category": "Home & Property Services",
+   "category": "Landscaping & Gardening",
    "subcategory": "Gardening and yard maintenance",
    "description": "Gardening service with 20-plus years of local experience, offering ornamental tree pruning and irrigation installation and maintenance. Owner-recommended; confirm details by phone.",
    "locality": "San Lorenzo Valley",
@@ -2914,7 +2914,7 @@
   },
   {
    "name": "Simple Wonders Landscape and Design",
-   "category": "Home & Property Services",
+   "category": "Landscaping & Gardening",
    "subcategory": "Gardening and yard maintenance",
    "description": "Boulder Creek landscaping and yard-maintenance service (Ariana and Shawn) providing garden maintenance and design from Boulder Creek to Santa Cruz, with free consultations.",
    "locality": "Boulder Creek",
@@ -2927,7 +2927,7 @@
   },
   {
    "name": "Dr Spa",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Pool and hot tub service",
    "description": "Hot tub repair and service for the Santa Cruz area, handling maintenance, diagnostics, and repairs. Text preferred for scheduling.",
    "locality": "Santa Cruz",
@@ -2939,7 +2939,7 @@
   },
   {
    "name": "A1 Pool and Spa",
-   "category": "Home & Property Services",
+   "category": "Home Services & Repair",
    "subcategory": "Pool and hot tub service",
    "description": "Local pool and spa service (Chris) providing routine maintenance and repairs. Owner-recommended; confirm details by phone.",
    "locality": "San Lorenzo Valley",
@@ -2951,7 +2951,7 @@
   },
   {
    "name": "Arch Electric",
-   "category": "Home & Property Services",
+   "category": "Electrical & Solar",
    "subcategory": "Electrical contractor",
    "description": "Electrical contractor (Levi Mentz) serving the San Lorenzo Valley and Santa Cruz County with panel upgrades, EV chargers, generators, rewires, and new construction, licensed C-10.",
    "locality": "San Lorenzo Valley",
@@ -2965,7 +2965,7 @@
   },
   {
    "name": "VSG Builder",
-   "category": "Home & Property Services",
+   "category": "General Contractors & Construction",
    "subcategory": "General contractor",
    "description": "Boulder Creek general building contractor (Victor Soto) providing new construction, remodels, framing, and concrete work including pumping, licensed B.",
    "locality": "Boulder Creek",
@@ -2978,7 +2978,7 @@
   },
   {
    "name": "NorCal HVAC",
-   "category": "Home & Property Services",
+   "category": "Plumbing & HVAC",
    "subcategory": "Heating and air conditioning (HVAC)",
    "description": "Soquel HVAC contractor installing, servicing, and repairing residential and commercial heating and air-conditioning systems, licensed C-20.",
    "locality": "Soquel",
@@ -3221,7 +3221,7 @@
   },
   {
    "name": "Silverfern Gardens",
-   "category": "Home & Property Services",
+   "category": "Landscaping & Gardening",
    "subcategory": "Gardening and yard maintenance",
    "description": "Local garden care business run by Aileen Addleman. Owner-recommended from community referrals; call or text to discuss your garden.",
    "address": null,
@@ -3234,7 +3234,7 @@
   },
   {
    "name": "Dragonfly Landscape Services",
-   "category": "Home & Property Services",
+   "category": "Landscaping & Gardening",
    "subcategory": "Gardening and yard maintenance",
    "description": "Permaculture-certified landscape and garden services. Owner-recommended from community referrals; confirm details by phone.",
    "address": null,
@@ -3247,7 +3247,7 @@
   },
   {
    "name": "Hannah Soriano Gardens",
-   "category": "Home & Property Services",
+   "category": "Landscaping & Gardening",
    "subcategory": "Gardening and yard maintenance",
    "description": "Landscape gardener with an agroecology degree and edible-landscaping background. Reach her on Instagram at hannahsorianogardens or by text.",
    "address": null,
