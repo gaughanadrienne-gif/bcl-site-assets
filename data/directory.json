@@ -1,7 +1,7 @@
 {
  "updated": "2026-07-17",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/submit",
- "count": 69,
+ "count": 163,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -1102,7 +1102,8 @@
    "no_storefront": true,
    "license": "CSLB #829811 (active, C-27)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "baxter-landscaping-inc.png"
   },
   {
    "name": "Travis Martin Plumbing, Inc.",
@@ -1116,7 +1117,8 @@
    "no_storefront": true,
    "license": "CSLB #1048423 (active, C-36)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "travis-martin-plumbing-inc.png"
   },
   {
    "name": "Hwy 9 Plumbing",
@@ -1169,7 +1171,8 @@
    "no_storefront": true,
    "license": "CSLB #980978 (active, C-10)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "jessi-phillips-electric.png"
   },
   {
    "name": "Wilson Electric",
@@ -1182,7 +1185,8 @@
    "no_storefront": true,
    "license": "CSLB #1058620 (active, C-10)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "wilson-electric.png"
   },
   {
    "name": "Machado Bros. Painting",
@@ -1196,7 +1200,8 @@
    "no_storefront": true,
    "license": "CSLB #1012390 (active, C-33)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "machado-bros-painting.png"
   },
   {
    "name": "Jordan Booth Welding",
@@ -1223,7 +1228,8 @@
    "no_storefront": true,
    "license": "CSLB #533150 (active, A)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "jeff-hill-sons-excavation-and-grading-inc.png"
   },
   {
    "name": "Miller Paving",
@@ -1237,7 +1243,8 @@
    "no_storefront": true,
    "license": "CSLB #872042 (active, A)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "miller-paving.png"
   },
   {
    "name": "Josh Sladwick Engineering",
@@ -1250,7 +1257,8 @@
    "no_storefront": true,
    "license": "CSLB #1033305 (active, A)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "josh-sladwick-engineering.png"
   },
   {
    "name": "MTM Truck & Tractor, Inc.",
@@ -1277,7 +1285,8 @@
    "no_storefront": true,
    "license": "CSLB #635141 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "dixon-construction.png"
   },
   {
    "name": "LK Construction and Management, Inc.",
@@ -1305,7 +1314,8 @@
    "no_storefront": true,
    "license": "CSLB #1077781 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "meadows-custom-builders.png"
   },
   {
    "name": "New Solutions Construction",
@@ -1318,7 +1328,8 @@
    "no_storefront": true,
    "license": "CSLB #700075 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "new-solutions-construction.png"
   },
   {
    "name": "Kevin Foster Construction",
@@ -1448,7 +1459,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "slv-tax-virginia-justus-ea.png"
   },
   {
    "name": "Timothy Imbrie, CPA MBA",
@@ -1504,7 +1516,8 @@
    "verified_at": "2026-07-16",
    "hours_text": null,
    "lat": 37.0387483,
-   "lon": -122.0229378
+   "lon": -122.0229378,
+   "tile": "laureen-yungmeyer-state-farm-insurance.png"
   },
   {
    "name": "Jim Flynn - State Farm Insurance",
@@ -1519,7 +1532,8 @@
    "verified_at": "2026-07-16",
    "hours_text": null,
    "lat": 37.0599682,
-   "lon": -122.0798938
+   "lon": -122.0798938,
+   "tile": "jim-flynn-state-farm-insurance.png"
   },
   {
    "name": "Colin Giles - State Farm Insurance",
@@ -1545,7 +1559,8 @@
    "website": "https://www.trustthecia.com/",
    "service_area": "Scotts Valley and Santa Cruz County",
    "verified_at": "2026-07-16",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "cassidy-insurance-agency.png"
   },
   {
    "name": "San Lorenzo Valley Housekeeping",
@@ -1559,7 +1574,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "san-lorenzo-valley-housekeeping.png"
   },
   {
    "name": "Clean Impressions LLC",
@@ -1600,7 +1616,8 @@
    "service_area": "Santa Cruz County, including Scotts Valley and Felton",
    "verified_at": "2026-07-16",
    "no_storefront": true,
-   "address": null
+   "address": null,
+   "tile": "santa-cruz-maids.png"
   },
   {
    "name": "Safeguard Chimney Sweep Company",
@@ -1614,7 +1631,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "safeguard-chimney-sweep-company.png"
   },
   {
    "name": "Cozy Firewood",
@@ -1628,7 +1646,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "cozy-firewood.png"
   },
   {
    "name": "Mountain Propane Service",
@@ -1684,7 +1703,8 @@
    "website": "http://maggiorabros.com/",
    "service_area": "Santa Cruz County; confirm mountain coverage for a specific job",
    "verified_at": "2026-07-16",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "maggiora-bros-drilling.png"
   },
   {
    "name": "XterminatriX Holistic Pest Control",
@@ -1698,7 +1718,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "xterminatrix-holistic-pest-control.png"
   },
   {
    "name": "Aantex Pest Control",
@@ -1712,7 +1733,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "aantex-pest-control.png"
   },
   {
    "name": "Good Sense Termite",
@@ -1726,7 +1748,8 @@
    "service_area": "Santa Cruz Mountains, including Felton and Boulder Creek",
    "verified_at": "2026-07-16",
    "no_storefront": true,
-   "address": null
+   "address": null,
+   "tile": "good-sense-termite.png"
   },
   {
    "name": "Santa Cruz Appliance Repair",
@@ -1741,7 +1764,8 @@
    "service_area": "Santa Cruz County, including Boulder Creek, Ben Lomond, and Felton",
    "verified_at": "2026-07-16",
    "lat": 36.981102,
-   "lon": -122.0303484
+   "lon": -122.0303484,
+   "tile": "santa-cruz-appliance-repair.png"
   },
   {
    "name": "Lambert & Son Moving",
@@ -1756,7 +1780,8 @@
    "verified_at": "2026-07-16",
    "hours_text": null,
    "lat": 36.986942,
-   "lon": -121.98123
+   "lon": -121.98123,
+   "tile": "lambert-son-moving.png"
   },
   {
    "name": "Hair Hut",
@@ -1769,7 +1794,8 @@
    "website": "https://www.facebook.com/bouldercreekhairhut/",
    "hours_text": "Tuesday-Thursday 9am-7pm; Friday 9am-5:30pm; Saturday 10am-5pm; Sunday-Monday closed",
    "service_area": "Boulder Creek and the San Lorenzo Valley",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "hair-hut.png"
   },
   {
    "name": "Central Avenue Salon",
@@ -1784,7 +1810,8 @@
    "service_area": "Boulder Creek",
    "verified_at": "2026-07-16",
    "lat": 37.1258454,
-   "lon": -122.1224543
+   "lon": -122.1224543,
+   "tile": "central-avenue-salon.png"
   },
   {
    "name": "Oh Suzannah Hair Designers",
@@ -1797,7 +1824,8 @@
    "website": "https://www.facebook.com/OhSuzannas/",
    "hours_text": "Tuesday-Friday 10am-5pm; Saturday 10am-4pm; Sunday-Monday closed",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "oh-suzannah-hair-designers.png"
   },
   {
    "name": "VIP Hair Studio",
@@ -1810,7 +1838,8 @@
    "website": "https://vip-hair-studio.com/",
    "hours_text": "By appointment only",
    "service_area": "Ben Lomond and the San Lorenzo Valley",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "vip-hair-studio.png"
   },
   {
    "name": "K-Salon",
@@ -1823,7 +1852,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "k-salon.png"
   },
   {
    "name": "The Mat - Boulder Creek Laundry",
@@ -1836,7 +1866,8 @@
    "website": "https://www.bouldercreeklaundry.com/",
    "hours_text": "Store 7am-9pm daily; drop-off and pick-up 9am-9pm",
    "service_area": "Boulder Creek and the San Lorenzo Valley",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "the-mat-boulder-creek-laundry.png"
   },
   {
    "name": "Valley Mini Storage",
@@ -1851,7 +1882,8 @@
    "service_area": "San Lorenzo Valley",
    "verified_at": "2026-07-16",
    "lat": 37.0527896,
-   "lon": -122.0727863
+   "lon": -122.0727863,
+   "tile": "valley-mini-storage.png"
   },
   {
    "name": "Creekside Mini Storage",
@@ -1864,7 +1896,8 @@
    "website": "https://www.creeksideministorage.com/",
    "service_area": "Scotts Valley and the San Lorenzo Valley",
    "verified_at": "2026-07-16",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "creekside-mini-storage.png"
   },
   {
    "name": "BC Computer Repair",
@@ -1879,7 +1912,8 @@
    "service_area": "Boulder Creek and the San Lorenzo Valley",
    "verified_at": "2026-07-16",
    "lat": 37.1244417,
-   "lon": -122.1226411
+   "lon": -122.1226411,
+   "tile": "bc-computer-repair.png"
   },
   {
    "name": "Gott Computers",
@@ -1892,7 +1926,8 @@
    "website": "https://gottcomputers.com/",
    "hours_text": "Monday-Friday 10am-6pm; Sunday 12pm-4pm",
    "service_area": "Santa Cruz County",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "gott-computers.png"
   },
   {
    "name": "Shandra Hunt Mobile Notary",
@@ -1933,7 +1968,8 @@
    "website": "https://www.facebook.com/DapperDogsandDivas/",
    "hours_text": "Tuesday-Saturday 8am-4pm; Sunday-Monday closed",
    "service_area": "Felton and the San Lorenzo Valley",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "dapper-dogs-divas.png"
   },
   {
    "name": "Camp Happy Tails",
@@ -1962,7 +1998,8 @@
    "verified_at": "2026-07-16",
    "hours_text": null,
    "lat": 37.0480185,
-   "lon": -122.072935
+   "lon": -122.072935,
+   "tile": "felton-veterinary-hospital.png"
   },
   {
    "name": "SCM Community Fitness",
@@ -1977,7 +2014,8 @@
    "service_area": "Felton and the San Lorenzo Valley",
    "verified_at": "2026-07-16",
    "lat": 37.0501592,
-   "lon": -122.073305
+   "lon": -122.073305,
+   "tile": "scm-community-fitness.png"
   },
   {
    "name": "San Lorenzo Valley Martial Arts",
@@ -1990,7 +2028,8 @@
    "website": "https://www.facebook.com/slvmartialarts",
    "hours_text": "Monday-Friday 2pm-7:30pm (Wednesday opens 1pm); Saturday 9:30am-12pm; Sunday closed",
    "service_area": "Felton and the San Lorenzo Valley",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "san-lorenzo-valley-martial-arts.png"
   },
   {
    "name": "Oakstrong Martial Arts",
@@ -2002,7 +2041,8 @@
    "website": "https://www.oakstrong.net/oakstrong-martial-arts-tang-soo-do-karate-classes-in-santa-cruz/",
    "hours_text": "Tuesday and Thursday 5:30-7pm; Saturday 10-11:30am",
    "service_area": "Felton and the San Lorenzo Valley",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "oakstrong-martial-arts.png"
   },
   {
    "name": "Scotts Valley Gym",
@@ -2032,7 +2072,8 @@
    "service_area": "Scotts Valley and surrounding communities",
    "verified_at": "2026-07-16",
    "lat": 37.0474591,
-   "lon": -122.0340935
+   "lon": -122.0340935,
+   "tile": "toadal-fitness-scotts-valley.png"
   },
   {
    "name": "Adriane White Photography",
@@ -2058,7 +2099,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "kassandra-thomsen-photography.png"
   },
   {
    "name": "Rivendell Music Academy",
@@ -2073,7 +2115,8 @@
    "service_area": "Felton, Ben Lomond, and Boulder Creek",
    "verified_at": "2026-07-16",
    "lat": 37.0515438,
-   "lon": -122.073468
+   "lon": -122.073468,
+   "tile": "rivendell-music-academy.png"
   },
   {
    "name": "Mountain Music School SV",
@@ -2088,7 +2131,8 @@
    "verified_at": "2026-07-16",
    "hours_text": null,
    "lat": 37.0387483,
-   "lon": -122.0229378
+   "lon": -122.0229378,
+   "tile": "mountain-music-school-sv.png"
   },
   {
    "name": "San Lorenzo Learning Lab",
@@ -2174,7 +2218,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "scm-custom-cleaning.png"
   },
   {
    "name": "Clean Mountain House Cleaning",
@@ -2188,7 +2233,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "clean-mountain-house-cleaning.png"
   },
   {
    "name": "Society Barbershop",
@@ -2203,7 +2249,8 @@
    "verified_at": "2026-07-17",
    "hours_text": null,
    "lat": 37.0527602,
-   "lon": -122.073435
+   "lon": -122.073435,
+   "tile": "society-barbershop.png"
   },
   {
    "name": "Boulder Creek Concrete",
@@ -2216,7 +2263,8 @@
    "no_storefront": true,
    "license": "CSLB #1142895 (active, C-8)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "boulder-creek-concrete.png"
   },
   {
    "name": "Christopher A New Roofing",
@@ -2281,7 +2329,8 @@
    "no_storefront": true,
    "license": "CSLB #755895 (active, C-8)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "terry-miller-concrete.png"
   },
   {
    "name": "Angus Hill Landscapes",
@@ -2333,7 +2382,8 @@
    "no_storefront": true,
    "license": "CSLB #1110102 (active, C-33)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "fine-edge-painting.png"
   },
   {
    "name": "J Fisher Plumbing",
