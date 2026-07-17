@@ -39,6 +39,29 @@
     return { local: local, nearby: nearby };
   }
 
+  var CAT_GROUPS = [
+    ["Weddings & Celebrations", ["Event Venues", "Catering & Bar", "Cakes & Desserts", "Wedding Services", "Party Rentals & Decor", "Kids Parties"]],
+    ["Home & Property", ["General Contractors & Construction", "Plumbing & HVAC", "Electrical & Solar", "Landscaping & Gardening", "Tree Care & Defensible Space", "Excavation, Grading & Paving", "Handyman & Property Maintenance", "House Cleaning", "Well & Pump / Water", "Home Services & Repair"]],
+    ["Food & Drink", ["Vineyards & Wine Tasting"]],
+    ["Health & Personal", ["Health & Wellness", "Personal Services", "Pets & Animals", "Florists"]],
+    ["Family & Learning", ["Education & Childcare"]],
+    ["Shops & Essentials", ["Shopping", "Errands & Essentials", "Automotive", "Transportation", "Utilities & Essential Services"]],
+    ["Money & Property", ["Money & Professional Services", "Real Estate"]],
+    ["Community & Civic", ["Community & Nonprofit", "Government & Public Services", "Emergency & Public Safety", "Parks & Recreation", "Arts & Culture"]],
+    ["Stay", ["Lodging"]]
+  ];
+  var CAT_ORDER = [];
+  var GROUP_OF = {};
+  CAT_GROUPS.forEach(function (g) {
+    g[1].forEach(function (c) { CAT_ORDER.push(c); GROUP_OF[c] = g[0]; });
+  });
+  function orderedCategoryNames(present) {
+    var known = CAT_ORDER.filter(function (c) { return present.indexOf(c) >= 0; });
+    var unknown = present.filter(function (c) { return CAT_ORDER.indexOf(c) < 0; }).sort();
+    return known.concat(unknown);
+  }
+  function groupLabelOf(cat) { return GROUP_OF[cat] || null; }
+
   /* ---------- shared ---------- */
 
   function esc(s) {
@@ -616,6 +639,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf };
   }
 })();

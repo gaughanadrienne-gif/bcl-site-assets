@@ -39,3 +39,13 @@ test("arrangeListings: cap 0 means no limit", () => {
   const rows = [{ name: "A", locality: "Santa Cruz" }, { name: "B", locality: "Aptos" }, { name: "C", locality: "Soquel" }];
   assert.equal(t.arrangeListings(rows, 0).nearby.length, 3);
 });
+test("orderedCategoryNames: known categories follow CAT_ORDER, unknown appended alpha", () => {
+  const out = t.orderedCategoryNames(["Lodging", "Event Venues", "Zzz Unknown", "Plumbing & HVAC"]);
+  assert.deepEqual(out, ["Event Venues", "Plumbing & HVAC", "Lodging", "Zzz Unknown"]);
+});
+test("groupLabelOf: maps categories to their group", () => {
+  assert.equal(t.groupLabelOf("Event Venues"), "Weddings & Celebrations");
+  assert.equal(t.groupLabelOf("Plumbing & HVAC"), "Home & Property");
+  assert.equal(t.groupLabelOf("Vineyards & Wine Tasting"), "Food & Drink");
+  assert.equal(t.groupLabelOf("Totally Unknown"), null);
+});
