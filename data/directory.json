@@ -2795,6 +2795,60 @@
    "verified_at": "2026-07-17",
    "hours_text": null,
    "tile": "brookdale-lodge.png"
+  },
+  {
+   "name": "Felton Nails",
+   "category": "Personal Services",
+   "subcategory": "Nail salon",
+   "description": "Family-owned nail salon in the Felton Faire center, in business since 2001. Owner-recommended; confirm hours by phone.",
+   "address": "6265 Graham Hill Road, Felton, CA 95018",
+   "locality": "Felton",
+   "phone": "831-335-5464",
+   "website": null,
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "lat": 37.0527896,
+   "lon": -122.0727863
+  },
+  {
+   "name": "Millie's Nail & Spa",
+   "category": "Personal Services",
+   "subcategory": "Nail salon",
+   "description": "Nail salon on Scotts Valley Drive. Owner-recommended; confirm hours by phone.",
+   "address": null,
+   "locality": "Scotts Valley",
+   "phone": "408-207-8450",
+   "website": null,
+   "hours_text": null,
+   "verified_at": "2026-07-17"
+  },
+  {
+   "name": "Kathy Nails",
+   "category": "Personal Services",
+   "subcategory": "Nail salon",
+   "description": "Nail salon on Highway 9 in Felton. Owner-recommended; confirm hours by phone.",
+   "address": "6198 Highway 9, Felton, CA 95018",
+   "locality": "Felton",
+   "phone": "831-335-9522",
+   "website": null,
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "lat": 37.0513591,
+   "lon": -122.0731429
+  },
+  {
+   "name": "Bella Nails",
+   "category": "Personal Services",
+   "subcategory": "Nail salon",
+   "description": "Nail salon in the Mt Hermon Road shopping corridor. Owner-recommended; confirm hours by phone.",
+   "address": "245U Mt Hermon Road, Scotts Valley, CA 95066",
+   "locality": "Scotts Valley",
+   "phone": "831-461-1618",
+   "website": null,
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "lat": 37.0448236,
+   "lon": -122.0266412
   }
  ]
 }
