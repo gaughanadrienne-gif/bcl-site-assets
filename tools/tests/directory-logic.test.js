@@ -65,3 +65,20 @@ test("buildCategoryOptions: ordered options", () => {
   const opts = t.buildCategoryOptions(["Lodging", "Event Venues"]);
   assert.ok(opts.indexOf("Event Venues") < opts.indexOf("Lodging"));
 });
+test("buildDirectoryHTML: essential (cap-exempt) categories are never capped", () => {
+  const rows = [];
+  for (let i = 0; i < 8; i++) rows.push({ name: "Svc " + i, category: "Emergency & Public Safety", locality: "Santa Cruz County" });
+  const html = t.buildDirectoryHTML(rows, { cap: 6 });
+  for (let i = 0; i < 8; i++) assert.ok(html.indexOf("Svc " + i) >= 0, "exempt category dropped Svc " + i);
+});
+test("buildDirectoryHTML: non-exempt categories still cap the nearby tier", () => {
+  const rows = [];
+  for (let i = 0; i < 8; i++) rows.push({ name: "Vendor " + i, category: "Wedding Services", locality: "Santa Cruz" });
+  const html = t.buildDirectoryHTML(rows, { cap: 6 });
+  const shown = [0,1,2,3,4,5,6,7].filter((i) => html.indexOf("Vendor " + i) >= 0).length;
+  assert.equal(shown, 6);
+});
+test("CAP_EXEMPT is exported and includes Emergency & Public Safety", () => {
+  assert.ok(Array.isArray(t.CAP_EXEMPT));
+  assert.ok(t.CAP_EXEMPT.indexOf("Emergency & Public Safety") >= 0);
+});

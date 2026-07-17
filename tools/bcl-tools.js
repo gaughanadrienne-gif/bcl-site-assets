@@ -55,6 +55,10 @@
   CAT_GROUPS.forEach(function (g) {
     g[1].forEach(function (c) { CAT_ORDER.push(c); GROUP_OF[c] = g[0]; });
   });
+  // Categories whose nearby (non-local) listings have inherent value regardless
+  // of distance - essential/civic/safety services (e.g. county 9-1-1, alerts,
+  // hotlines). Never capped in display and never archived by curation.
+  var CAP_EXEMPT = ["Emergency & Public Safety", "Health & Wellness", "Government & Public Services", "Utilities & Essential Services", "Community & Nonprofit", "Transportation"];
   function orderedCategoryNames(present) {
     var known = CAT_ORDER.filter(function (c) { return present.indexOf(c) >= 0; });
     var unknown = present.filter(function (c) { return CAT_ORDER.indexOf(c) < 0; }).sort();
@@ -199,7 +203,8 @@
     cats.forEach(function (c) {
       var g = groupLabelOf(c);
       if (g && g !== lastGroup) { out += '<div class="bcl-group-head">' + esc(g) + "</div>"; lastGroup = g; }
-      var a = arrangeListings(byCat[c], opts.cap || 0);
+      var catCap = CAP_EXEMPT.indexOf(c) >= 0 ? 0 : (opts.cap || 0);
+      var a = arrangeListings(byCat[c], catCap);
       var shown = a.local.length + a.nearby.length;
       out += '<div class="bcl-cat-head"><h3>' + esc(c) + "</h3><span>" + shown + "</span></div>";
       out += '<div class="bcl-dir-grid">' + a.local.map(listingCard).join("");
@@ -660,6 +665,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT };
   }
 })();
