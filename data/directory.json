@@ -3586,6 +3586,20 @@
    "license": "License #444417882 (Family Child Care Home, Boulder Creek, active). Second location: Busy Bees Playschool Two, License #444418540 (Child Care Center, active), 7985 B Highway 9, Ben Lomond.",
    "address": null,
    "hours_text": null
+  },
+  {
+   "name": "Little Explorers (BCRPD)",
+   "category": "Education & Childcare",
+   "subcategory": "Recreation preschool program",
+   "description": "Boulder Creek Recreation and Park District morning program for toddlers and preschoolers at the rec center. License-exempt recreation program; check BCRPD for the current schedule, ages, and rates.",
+   "address": "13333 Middleton Avenue, Boulder Creek, CA 95006",
+   "locality": "Boulder Creek",
+   "phone": "831-338-4144",
+   "website": "https://www.bcrpd.org/",
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "lat": 37.126117,
+   "lon": -122.121578
   }
  ]
 }
