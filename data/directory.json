@@ -3246,6 +3246,34 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "service_area": "San Lorenzo Valley"
+  },
+  {
+   "name": "The Sequoia Retreat Center",
+   "category": "Events & Celebrations",
+   "subcategory": "Wedding and retreat venue",
+   "description": "Redwood wedding and retreat venue on a wooded Ben Lomond property in the Santa Cruz Mountains. Ceremonies take place at Peace Park among old-growth sequoias, with receptions in Las Alas Lodge or the bistro-lit Pixie's Garden patio. On-site cabins and cottages (Za Zen, Alba Vista) provide wedding-party prep space and overnight lodging, and the venue supplies tables and chairs.",
+   "address": "11445 Alba Road",
+   "locality": "Ben Lomond",
+   "phone": "831-218-5872",
+   "website": "https://www.sequoiaretreatcenter.com/",
+   "service_area": "Ben Lomond and the San Lorenzo Valley",
+   "verified_at": "2026-07-17",
+   "hours_text": null,
+   "lat": 37.0990245,
+   "lon": -122.1150372
+  },
+  {
+   "name": "Felton Community Hall",
+   "category": "Events & Celebrations",
+   "subcategory": "Community hall rental",
+   "description": "Nonprofit community hall on Highway 9 in Felton (a tradition since 1926) available to rent for weddings, quinceaneras, memorials, parties, meetings, and stage events. The auditorium seats about 180 (about 140 with tables and chairs), the meeting room holds about 68, and a kitchen is available when renting another room. Nonprofits qualify for discounted rates; alcohol service requires prior approval and event insurance is required.",
+   "address": "6191 Highway 9",
+   "locality": "Felton",
+   "phone": "831-335-5621",
+   "website": "https://www.feltonhall.org/",
+   "service_area": "Felton and the San Lorenzo Valley",
+   "verified_at": "2026-07-17",
+   "hours_text": null
   }
  ]
 }
