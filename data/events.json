@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-16",
+ "updated": "2026-07-17",
  "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category.",
  "events": [
   {
@@ -32,10 +32,10 @@
   {
    "title": "Boulder Creek Farmers Market",
    "start": "2026-07-16T13:30",
-   "end": "2026-07-16T17:30",
+   "end": "2026-07-16T18:30",
    "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
    "url": "https://www.facebook.com/bcrpd.org/events",
-   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
    "category": "Market"
   },
   {
@@ -207,10 +207,10 @@
   {
    "title": "Boulder Creek Farmers Market",
    "start": "2026-07-23T13:30",
-   "end": "2026-07-23T17:30",
+   "end": "2026-07-23T18:30",
    "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
    "url": "https://www.facebook.com/bcrpd.org/events",
-   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
    "category": "Market"
   },
   {
@@ -336,10 +336,10 @@
   {
    "title": "Boulder Creek Farmers Market",
    "start": "2026-07-30T13:30",
-   "end": "2026-07-30T17:30",
+   "end": "2026-07-30T18:30",
    "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
    "url": "https://www.facebook.com/bcrpd.org/events",
-   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
    "category": "Market"
   },
   {
@@ -410,10 +410,10 @@
   {
    "title": "Boulder Creek Farmers Market",
    "start": "2026-08-06T13:30",
-   "end": "2026-08-06T17:30",
+   "end": "2026-08-06T18:30",
    "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
    "url": "https://www.facebook.com/bcrpd.org/events",
-   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
    "category": "Market"
   },
   {
@@ -473,6 +473,15 @@
    "notice": "21 and over"
   },
   {
+   "title": "Community Potluck",
+   "start": "2026-08-09T16:00",
+   "end": "2026-08-09T19:00",
+   "location": "Garrahan Park, 15501 Hwy 9, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Free community potluck from the BCRPD Foundation on the second Sunday of the month, 4 to 7 p.m. at Garrahan Park. Everyone is welcome. Bring a dish to share, and canned goods for the food drive if you can. October through March it moves indoors.",
+   "category": "Community"
+  },
+  {
    "title": "Understanding Alzheimer's and Dementia",
    "start": "2026-08-11T11:00",
    "end": "2026-08-11T12:00",
@@ -502,10 +511,10 @@
   {
    "title": "Boulder Creek Farmers Market",
    "start": "2026-08-13T13:30",
-   "end": "2026-08-13T17:30",
+   "end": "2026-08-13T18:30",
    "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
    "url": "https://www.facebook.com/bcrpd.org/events",
-   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
    "category": "Market"
   },
   {
@@ -585,10 +594,10 @@
   {
    "title": "Boulder Creek Farmers Market",
    "start": "2026-08-20T13:30",
-   "end": "2026-08-20T17:30",
+   "end": "2026-08-20T18:30",
    "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
    "url": "https://www.facebook.com/bcrpd.org/events",
-   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
    "category": "Market"
   },
   {
@@ -667,10 +676,10 @@
   {
    "title": "Boulder Creek Farmers Market",
    "start": "2026-08-27T13:30",
-   "end": "2026-08-27T17:30",
+   "end": "2026-08-27T18:30",
    "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
    "url": "https://www.facebook.com/bcrpd.org/events",
-   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+   "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
    "category": "Market"
   },
   {
@@ -810,6 +819,15 @@
    "description": "Live music at Joe's Bar.",
    "category": "Music & Arts",
    "notice": "21 and over"
+  },
+  {
+   "title": "Community Potluck",
+   "start": "2026-09-13T16:00",
+   "end": "2026-09-13T19:00",
+   "location": "Garrahan Park, 15501 Hwy 9, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Free community potluck from the BCRPD Foundation on the second Sunday of the month, 4 to 7 p.m. at Garrahan Park. Everyone is welcome. Bring a dish to share, and canned goods for the food drive if you can. October through March it moves indoors.",
+   "category": "Community"
   },
   {
    "title": "Felton Farmers Market",
