@@ -2561,6 +2561,20 @@
    "lat": 37.0518062,
    "lon": -122.073469,
    "tile": "wild-iris-floral-and-botanical.png"
+  },
+  {
+   "name": "Markey Construction",
+   "category": "Home & Property Services",
+   "subcategory": "General contractor",
+   "description": "Boulder Creek based licensed general contractor for home builds, remodels, decks, fences, retaining walls, and concrete work.",
+   "address": null,
+   "locality": "Boulder Creek",
+   "phone": "(831) 359-1634",
+   "website": "https://www.markeyconstructioninc.com/",
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "tile": "markey-construction.png"
   }
  ]
 }
