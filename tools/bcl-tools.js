@@ -148,7 +148,7 @@
       ".bcl-today-ev span{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#d56e47 !important;margin-right:8px;}",
       ".bcl-today a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-today-links{margin-top:12px;font-size:.82rem;}",
-      "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-today-head span{margin-left:0;}}"
+      "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-controls input,.bcl-controls select{flex:0 0 auto;width:100%;}.bcl-today-head span{margin-left:0;}}"
     ].join("");
     var el = document.createElement("style");
     el.id = CSS_ID;
@@ -472,7 +472,7 @@
         if (cat === null) throw new Error("no aqi");
         el.innerHTML =
           '<div class="bcl-name">Air quality: ' + esc(cat) + "</div>" +
-          '<div class="bcl-sub">US AQI ' + Math.round(c.us_aqi) + (c.pm2_5 != null ? " · PM2.5 " + Math.round(c.pm2_5) + " µg/m³" : "") + "</div>" +
+          '<div class="bcl-sub">US AQI ' + Math.round(c.us_aqi) + (c.pm2_5 != null ? " · PM2.5 " + Math.round(c.pm2_5) + ' <span style="text-transform:none">µg/m³</span>' : "") + "</div>" +
           '<p>Modeled estimate for Boulder Creek from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. During smoke events, confirm with the <a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a>, which uses ground monitors.</p>';
       })
       .catch(function () {
