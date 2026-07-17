@@ -79,9 +79,6 @@
       ".bcl-range{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px;}",
       ".bcl-range button{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:8px 14px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;text-transform:uppercase;}",
       ".bcl-range button.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
-      ".bcl-maptoggle{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:10px 14px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;text-transform:uppercase;}",
-      ".bcl-map{height:480px;width:100%;border:1px solid #e3ddcf;display:none;margin:0 0 14px;}",
-      ".bcl-map .leaflet-popup-content{font-family:Inter,Arial,sans-serif;font-size:.85rem;}",
       ".bcl-today{background:#fffdf8 !important;color:#1c2a26 !important;border:1px solid #d9d8ce;border-top:3px solid #d56e47;padding:26px 28px;font-family:Inter,Arial,sans-serif;}",
       ".bcl-today-head{display:flex;align-items:center;gap:10px;margin:0 0 12px;}",
       ".bcl-today-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
@@ -140,24 +137,6 @@
     return h + "</div>";
   }
 
-  var leafletLoading = null;
-  function loadLeaflet() {
-    if (window.L) return Promise.resolve();
-    if (leafletLoading) return leafletLoading;
-    leafletLoading = new Promise(function (resolve, reject) {
-      var css = document.createElement("link");
-      css.rel = "stylesheet";
-      css.href = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css";
-      document.head.appendChild(css);
-      var s = document.createElement("script");
-      s.src = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js";
-      s.onload = resolve;
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
-    return leafletLoading;
-  }
-
   function initListings(root, dataFile, label) {
     root.innerHTML = '<div class="bcl-count">Loading ' + esc(label) + "…</div>";
     fetchJSON(REPO + "/data/" + dataFile).then(function (data) {
@@ -165,7 +144,6 @@
       var cats = [];
       all.forEach(function (l) { if (cats.indexOf(l.category) < 0) cats.push(l.category); });
       cats.sort();
-      var pinned = all.filter(function (l) { return l.lat && l.lon; });
 
       root.innerHTML =
         '<div class="bcl-controls">' +
@@ -173,9 +151,7 @@
         '<select aria-label="Jump to category"><option value="">All categories</option>' +
         cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") +
         "</select>" +
-        (pinned.length ? '<button class="bcl-maptoggle" type="button">Map view</button>' : "") +
         "</div>" +
-        '<div class="bcl-map"></div>' +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
         '<div class="bcl-note">Something wrong or missing? <a href="/submit">Send an update</a>.</div>';
 
@@ -183,41 +159,6 @@
       var select = root.querySelector("select");
       var count = root.querySelector(".bcl-count");
       var list = root.querySelector(".bcl-list");
-      var mapDiv = root.querySelector(".bcl-map");
-      var mapBtn = root.querySelector(".bcl-maptoggle");
-      var map = null, showingMap = false;
-
-      if (mapBtn) mapBtn.addEventListener("click", function () {
-        showingMap = !showingMap;
-        mapBtn.textContent = showingMap ? "List view" : "Map view";
-        mapDiv.style.display = showingMap ? "block" : "none";
-        list.style.display = showingMap ? "none" : "";
-        if (showingMap && !map) {
-          loadLeaflet().then(function () {
-            map = window.L.map(mapDiv).setView([37.1261, -122.1222], 14);
-            window.L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-              maxZoom: 19,
-              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            var bounds = [];
-            pinned.forEach(function (l) {
-              var pop = "<strong>" + esc(l.name) + "</strong><br>" + esc(l.subcategory || l.category) +
-                (l.address ? "<br>" + esc(l.address) : "") +
-                (l.website ? '<br><a href="' + esc(l.website) + '" target="_blank" rel="noopener">Website</a>' : "");
-              window.L.marker([l.lat, l.lon]).addTo(map).bindPopup(pop);
-              bounds.push([l.lat, l.lon]);
-            });
-            if (bounds.length) map.fitBounds(bounds, { padding: [30, 30], maxZoom: 16 });
-          }).catch(function () {
-            mapDiv.style.display = "none";
-            list.style.display = "";
-            showingMap = false;
-            mapBtn.textContent = "Map view";
-          });
-        } else if (showingMap && map) {
-          setTimeout(function () { map.invalidateSize(); }, 60);
-        }
-      });
 
       function render() {
         var q = (input.value || "").toLowerCase();
