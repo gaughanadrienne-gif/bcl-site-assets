@@ -3494,6 +3494,71 @@
    "lat": 37.04677,
    "lon": -122.018805,
    "tile": "santa-cruz-dj-company.png"
+  },
+  {
+   "name": "Miss Brooke's Mini & Me Music Classes",
+   "category": "Education & Childcare",
+   "subcategory": "Children's music and movement classes",
+   "description": "Mommy-and-me music and movement classes for infants, toddlers, and preschoolers with songs, stories, and instrument exploration, hosted by Boulder Creek early childhood educator Brooke Powell.",
+   "locality": "Boulder Creek",
+   "website": "https://www.instagram.com/missmakermomma/",
+   "service_area": "Boulder Creek and the San Lorenzo Valley",
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "address": null,
+   "hours_text": null
+  },
+  {
+   "name": "Messy Play Kits",
+   "category": "Education & Childcare",
+   "subcategory": "Children's sensory play kits and classes",
+   "description": "Boulder Creek-based maker of handcrafted STEAM and sensory play kits for children ages 3 to 8, also hosting local pop-up messy-play events and classes at Boulder Creek parks.",
+   "locality": "Boulder Creek",
+   "website": "https://messyplaykits.com/",
+   "service_area": "Boulder Creek and Santa Cruz County; kits ship nationwide",
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "address": null,
+   "hours_text": null
+  },
+  {
+   "name": "Haven Play Lounge and Cafe",
+   "category": "Events & Celebrations",
+   "subcategory": "Indoor kids play lounge and party venue",
+   "description": "Indoor children's play lounge and cafe with open-play sessions for ages 0 to 10, plus birthday party and event packages (1 to 4 hours) with decor, cleaning, and food handled by the venue.",
+   "address": "108 Whispering Pines Drive, Suite 125",
+   "locality": "Scotts Valley",
+   "phone": "831-331-7349",
+   "website": "https://havenplayloungeandevents.com/",
+   "hours_text": "Monday-Wednesday 9am-5pm; Thursday closed; Friday 9am-5pm; Saturday 10am-4pm; Sunday closed",
+   "service_area": "Scotts Valley and Santa Cruz County",
+   "verified_at": "2026-07-17"
+  },
+  {
+   "name": "Community Mountain Gymnastics",
+   "category": "Education & Childcare",
+   "subcategory": "Youth gymnastics classes, camps, and parties",
+   "description": "Mobile youth gymnastics program based in Felton offering weekly classes, camps, and birthday parties across the San Lorenzo Valley and Santa Cruz Mountains.",
+   "address": "6171 Highway 9",
+   "locality": "Felton",
+   "phone": "831-216-6186",
+   "website": "https://www.communitymountaingym.com/",
+   "service_area": "Felton, Scotts Valley, and the Santa Cruz Mountains",
+   "verified_at": "2026-07-17",
+   "hours_text": null
+  },
+  {
+   "name": "Tails of Redwood Trails LLC",
+   "category": "Education & Childcare",
+   "subcategory": "Youth horse education, camps, and lessons",
+   "description": "Felton horse-rescue and equine-education program offering youth horse classes and lessons for ages 18 months to 25 years, school-break day camps for ages 5 to 13, riding lessons, and adult horse-care classes at the Covered Bridge Equestrian Center.",
+   "address": "220 Covered Bridge Road",
+   "locality": "Felton",
+   "phone": "831-706-7482",
+   "website": "https://www.tailsofredwoodtrails.com/",
+   "service_area": "Felton and the tri-county region",
+   "verified_at": "2026-07-17",
+   "hours_text": null
   }
  ]
 }
