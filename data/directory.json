@@ -1,7 +1,7 @@
 {
  "updated": "2026-07-17",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/submit",
- "count": 323,
+ "count": 326,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -4645,6 +4645,49 @@
    "phone": "831-818-5407",
    "website": "https://www.instagram.com/luzovichcelebrations/",
    "service_area": "Santa Cruz County, including Boulder Creek and the San Lorenzo Valley",
+   "verified_at": "2026-07-17",
+   "hours_text": null,
+   "no_storefront": true
+  },
+  {
+   "name": "Deer Horn Ranch",
+   "category": "Health & Wellness",
+   "subcategory": "Equine-assisted psychotherapy",
+   "description": "Equine-assisted psychotherapy in Felton with Michelle Enos, MA, AMFT, a nature-based practice where clients work alongside horses to build regulation, boundaries, and a sense of safety. A free 15-minute consultation is offered.",
+   "address": null,
+   "locality": "Felton",
+   "phone": null,
+   "website": "https://www.deerhornranchfelton.com/",
+   "service_area": "San Lorenzo Valley and Santa Cruz County",
+   "verified_at": "2026-07-17",
+   "hours_text": null,
+   "no_storefront": true,
+   "license": "AMFT #161226 (supervised by Jennifer Hope Krasner, LCSW #27831)"
+  },
+  {
+   "name": "Creative Heart Kitchen",
+   "category": "Food & Drink",
+   "subcategory": "Meal prep and prepared meals",
+   "description": "Prepared meals and meal-prep service with focaccia, soups, salads, sides, and entrees available by the pint and quart.",
+   "address": null,
+   "locality": "San Lorenzo Valley",
+   "phone": null,
+   "website": "https://www.creativeheartkitchen.com/",
+   "service_area": "San Lorenzo Valley and Santa Cruz County",
+   "verified_at": "2026-07-17",
+   "hours_text": null,
+   "no_storefront": true
+  },
+  {
+   "name": "SLV Bookkeeping",
+   "category": "Money & Professional Services",
+   "subcategory": "Bookkeeping",
+   "description": "Bookkeeping for San Lorenzo Valley small businesses from Virginia Justus. Reach out through Instagram @slvbookkeeping.",
+   "address": null,
+   "locality": "San Lorenzo Valley",
+   "phone": null,
+   "website": "https://www.instagram.com/slvbookkeeping/",
+   "service_area": "San Lorenzo Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
    "no_storefront": true
