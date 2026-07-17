@@ -3600,6 +3600,65 @@
    "verified_at": "2026-07-17",
    "lat": 37.126117,
    "lon": -122.121578
+  },
+  {
+   "name": "Mountain Monsters Daycare",
+   "category": "Education & Childcare",
+   "subcategory": "Family daycare",
+   "description": "Licensed home-based family child care in Ben Lomond offering full-day care with a large yard, meals and snacks, play structures, and pickup from local schools.",
+   "locality": "Ben Lomond",
+   "phone": "831-239-0323",
+   "hours_text": "Weekdays; call to confirm hours",
+   "service_area": "Ben Lomond and San Lorenzo Valley",
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "license": "California licensed family child care home (home-based, capacity 8)",
+   "address": null
+  },
+  {
+   "name": "Osito's Day Care",
+   "category": "Education & Childcare",
+   "subcategory": "Family daycare",
+   "description": "Bilingual English and Spanish home-based family child care in Ben Lomond serving children from about 12 months through preschool age, with a Montessori-influenced approach. Owned and operated by Jesucita Licona.",
+   "locality": "Ben Lomond",
+   "phone": "831-336-8486",
+   "hours_text": "Monday-Friday 8:30am-4:00pm",
+   "service_area": "Ben Lomond and San Lorenzo Valley",
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "license": "California licensed family child care home (home-based)",
+   "address": null
+  },
+  {
+   "name": "Highlands Park Early Education Center",
+   "category": "Education & Childcare",
+   "subcategory": "Child care center",
+   "description": "Community Bridges Early Education Division center at Highlands Park, offering infant, toddler, and preschool care and the California State Preschool Program for income-eligible San Lorenzo Valley families. Set in the redwoods adjacent to the San Lorenzo River.",
+   "address": "8500 Highway 9",
+   "locality": "Ben Lomond",
+   "phone": "831-400-1170",
+   "website": "https://communitybridges.org/eed/",
+   "hours_text": "Monday-Friday 8:00am-4:00pm",
+   "service_area": "San Lorenzo Valley and Santa Cruz County",
+   "verified_at": "2026-07-17",
+   "license": "California licensed day care center / infant center (CCLD #444413303, capacity 16)",
+   "lat": 37.0803128,
+   "lon": -122.0815904
+  },
+  {
+   "name": "Kreative Kids Preschool",
+   "category": "Education & Childcare",
+   "subcategory": "Recreation preschool program",
+   "description": "Year-round enrichment preschool program run by Santa Cruz County Parks for children ages 3 to 6, meeting at Wilder Hall in Highlands Park with art, music, creative play, nature crafts, outdoor activities, and monthly field trips. A license-exempt recreation program (like BCRPD's Little Explorers). Register through the county parks ActiveNet system.",
+   "address": "8500 Highway 9",
+   "locality": "Ben Lomond",
+   "website": "https://parks.santacruzcountyca.gov/Home/FindaProgram/Recreation/KreativeKidsPreschool.aspx",
+   "hours_text": "Monday-Thursday 9:30am-1:30pm",
+   "service_area": "San Lorenzo Valley and Santa Cruz County",
+   "verified_at": "2026-07-17",
+   "license": "License-exempt recreation program (Santa Cruz County Parks; no state child care license required)",
+   "lat": 37.0803128,
+   "lon": -122.0815904
   }
  ]
 }
