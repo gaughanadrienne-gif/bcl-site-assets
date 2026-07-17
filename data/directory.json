@@ -2916,7 +2916,7 @@
    "subcategory": "Gardening and yard maintenance",
    "description": "Boulder Creek landscaping and yard-maintenance service (Ariana and Shawn) providing garden maintenance and design from Boulder Creek to Santa Cruz, with free consultations.",
    "locality": "Boulder Creek",
-   "phone": "831-247-2069",
+   "phone": "831-333-6709",
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
@@ -3206,6 +3206,46 @@
    "verified_at": "2026-07-17",
    "lat": 37.0501592,
    "lon": -122.073305
+  },
+  {
+   "name": "Silverfern Gardens",
+   "category": "Home & Property Services",
+   "subcategory": "Gardening and yard maintenance",
+   "description": "Local garden care business run by Aileen Addleman. Owner-recommended from community referrals; call or text to discuss your garden.",
+   "address": null,
+   "locality": "Boulder Creek",
+   "phone": "(831) 239-8221",
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "service_area": "San Lorenzo Valley"
+  },
+  {
+   "name": "Dragonfly Landscape Services",
+   "category": "Home & Property Services",
+   "subcategory": "Gardening and yard maintenance",
+   "description": "Permaculture-certified landscape and garden services. Owner-recommended from community referrals; confirm details by phone.",
+   "address": null,
+   "locality": "Boulder Creek",
+   "phone": "831-227-3848",
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "service_area": "San Lorenzo Valley"
+  },
+  {
+   "name": "Hannah Soriano Gardens",
+   "category": "Home & Property Services",
+   "subcategory": "Gardening and yard maintenance",
+   "description": "Landscape gardener with an agroecology degree and edible-landscaping background. Reach her on Instagram at hannahsorianogardens or by text.",
+   "address": null,
+   "locality": "Boulder Creek",
+   "phone": "303-882-8161",
+   "website": "https://www.instagram.com/hannahsorianogardens/",
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "no_storefront": true,
+   "service_area": "San Lorenzo Valley"
   }
  ]
 }
