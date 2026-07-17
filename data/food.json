@@ -255,21 +255,6 @@
    "tile": "wildstone-bakery.png"
   },
   {
-   "name": "Boulder Creek Pizza & Pub",
-   "category": "Restaurant",
-   "subcategory": "Pizza restaurant and pub",
-   "description": "Downtown Boulder Creek pizzeria and pub serving pizzas, pastas, salads, and appetizers with local beers and wine on tap.",
-   "address": "13200-B Central Avenue",
-   "locality": "Boulder Creek",
-   "phone": "831-338-2141",
-   "website": "https://www.bcpizzapub.com/",
-   "hours_text": "Daily 11:00 a.m.-9:00 p.m.",
-   "service_area": "Boulder Creek",
-   "verified_at": "2026-07-17",
-   "lat": 37.1258454,
-   "lon": -122.1224543
-  },
-  {
    "name": "Corazon de Leon Mexican Restaurant",
    "category": "Restaurant",
    "subcategory": "Mexican restaurant",
