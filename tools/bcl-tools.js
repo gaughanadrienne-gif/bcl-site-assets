@@ -11,6 +11,23 @@
   var REPO = "https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main";
   var NWS_POINT = { lat: 37.1261, lon: -122.1222 }; // downtown Boulder Creek
 
+  var LOCAL_ALLOWLIST = ["Boulder Creek", "Brookdale", "Ben Lomond", "Lompico", "Zayante", "San Lorenzo Valley", "Felton", "Scotts Valley"];
+  // Businesses that are local despite an out-of-valley (usually Los Gatos) mailing address.
+  // Exact display names; reconciled against verified winery names in Task 7.
+  var LOCAL_EXCEPTIONS = ["David Bruce Winery", "Byington Vineyard & Winery", "Loma Prieta Winery", "Muns Vineyard", "Burrell School Vineyards", "Lago Lomita"];
+  // Localities ordered closest -> farthest for within/between-tier sorting.
+  var LOCALITY_ORDER = ["Boulder Creek", "Brookdale", "Ben Lomond", "Lompico", "Zayante", "San Lorenzo Valley", "Felton", "Scotts Valley", "Los Gatos", "Saratoga", "Santa Cruz", "Soquel", "Capitola", "Aptos", "Corralitos", "Campbell", "San Jose", "Watsonville"];
+
+  function isLocal(l) {
+    if (l && l.local === true) return true;
+    if (l && LOCAL_EXCEPTIONS.indexOf(l.name) >= 0) return true;
+    return !!(l && LOCAL_ALLOWLIST.indexOf(l.locality) >= 0);
+  }
+  function localityRank(l) {
+    var i = l ? LOCALITY_ORDER.indexOf(l.locality) : -1;
+    return i < 0 ? Infinity : i;
+  }
+
   /* ---------- shared ---------- */
 
   function esc(s) {
@@ -583,6 +600,11 @@
     if (t) initToday(t);
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
+  if (typeof document !== "undefined") {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+    else boot();
+  }
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { isLocal: isLocal, localityRank: localityRank };
+  }
 })();
