@@ -1,7 +1,7 @@
 {
  "updated": "2026-07-17",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/submit",
- "count": 17,
+ "count": 24,
  "listings": [
   {
    "name": "Bella's Cafe",
@@ -339,6 +339,20 @@
    "hours_text": "Open daily 6:30am-1:30pm",
    "service_area": "Boulder Creek and the San Lorenzo Valley",
    "verified_at": "2026-07-17"
+  },
+  {
+   "name": "Creative Heart Kitchen",
+   "category": "Specialty Food",
+   "subcategory": "Prepared meals and meal prep",
+   "description": "Prepared meals and meal-prep service with focaccia, soups, salads, sides, and entrees available by the pint and quart.",
+   "address": null,
+   "locality": "San Lorenzo Valley",
+   "phone": null,
+   "website": "https://www.creativeheartkitchen.com/",
+   "hours_text": null,
+   "service_area": "San Lorenzo Valley and Santa Cruz County",
+   "verified_at": "2026-07-17",
+   "no_storefront": true
   }
  ]
 }

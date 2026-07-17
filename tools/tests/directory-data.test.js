@@ -27,3 +27,16 @@ test("Home & Property Services is fully split", () => {
   assert.equal(count("Well & Pump / Water"), 2);
   assert.equal(count("Home Services & Repair"), 13);
 });
+
+test("Food & Drink retired; Vineyards populated and clean", () => {
+  assert.equal(count("Food & Drink"), 0);
+  const v = data.filter((x) => x.category === "Vineyards & Wine Tasting");
+  assert.ok(v.length >= 6, "expected >= 6 vineyards, got " + v.length);
+  v.forEach((x) => {
+    assert.ok(x.name, "vineyard missing name");
+    assert.ok(x.website, x.name + " missing website");
+    // No bare street-number residential address unless a public tasting room is intended.
+    if (x.address) assert.ok(!/^\d+\s+\w+.*(Dr|Drive|Ln|Lane|Ct|Court|Way|Rd|Road)\.?$/i.test(x.address.trim()) || x.no_storefront !== true, x.name + " looks like a home address");
+  });
+  assert.equal(data.filter((x) => x.name === "Creative Heart Kitchen").length, 0);
+});
