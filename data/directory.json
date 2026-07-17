@@ -1857,7 +1857,7 @@
   },
   {
    "name": "The Mat - Boulder Creek Laundry",
-   "category": "Personal Services",
+   "category": "Errands & Essentials",
    "subcategory": "Laundromat",
    "description": "Recently renovated self-service laundromat on Highway 9 in downtown Boulder Creek with new machines and attendants offering wash-and-fold drop-off service.",
    "address": "12890 Highway 9",
@@ -1871,7 +1871,7 @@
   },
   {
    "name": "Valley Mini Storage",
-   "category": "Personal Services",
+   "category": "Errands & Essentials",
    "subcategory": "Self storage",
    "description": "Locally owned self-storage facility off Graham Hill Road operating since 1980, with drive-up ground-floor units, RV storage, gated keypad access, and an onsite manager.",
    "address": "5865 Graham Hill Road",
@@ -1887,7 +1887,7 @@
   },
   {
    "name": "Creekside Mini Storage",
-   "category": "Personal Services",
+   "category": "Errands & Essentials",
    "subcategory": "Self storage",
    "description": "Self-storage facility in Scotts Valley with online payment and reservation that serves the San Lorenzo Valley including Boulder Creek, Felton, Ben Lomond, and Brookdale.",
    "address": "4604 Scotts Valley Drive, Suite 16",
@@ -1901,7 +1901,7 @@
   },
   {
    "name": "BC Computer Repair",
-   "category": "Personal Services",
+   "category": "Money & Professional Services",
    "subcategory": "Computer and IT repair",
    "description": "Downtown Boulder Creek computer repair shop operating since 2009 that handles hardware, software, and networking in-shop, via house calls, or remotely.",
    "address": "13120 Pine Street",
@@ -1917,7 +1917,7 @@
   },
   {
    "name": "Gott Computers",
-   "category": "Personal Services",
+   "category": "Money & Professional Services",
    "subcategory": "Computer and IT repair",
    "description": "Scotts Valley computer repair and IT shop offering in-store, on-site, and remote support across Santa Cruz County.",
    "address": "5000 Scotts Valley Drive #3",
@@ -1931,7 +1931,7 @@
   },
   {
    "name": "Shandra Hunt Mobile Notary",
-   "category": "Personal Services",
+   "category": "Money & Professional Services",
    "subcategory": "Mobile notary",
    "description": "Boulder Creek based mobile notary and certified loan signing agent who travels to clients throughout the San Lorenzo Valley, Scotts Valley, and Santa Cruz County.",
    "locality": "Boulder Creek",
@@ -1945,7 +1945,7 @@
   },
   {
    "name": "Christina Wise Mobile Notary",
-   "category": "Personal Services",
+   "category": "Money & Professional Services",
    "subcategory": "Mobile notary",
    "description": "Mobile notary and loan signing agent who travels to clients across the San Lorenzo Valley including Boulder Creek, Ben Lomond, Brookdale, and Felton.",
    "locality": "Felton",
@@ -2534,7 +2534,7 @@
   },
   {
    "name": "Ferrari Florist & Gardens",
-   "category": "Shopping",
+   "category": "Florists",
    "subcategory": "Florist",
    "description": "Santa Cruz florist operating since 1946 with same-day hand delivery anywhere in Santa Cruz County, which includes Boulder Creek (95006) per its published delivery policy; very rural or difficult-access addresses may be offered pickup instead.",
    "address": "415F River Street",
@@ -2550,7 +2550,7 @@
   },
   {
    "name": "Wild Iris Floral and Botanical",
-   "category": "Shopping",
+   "category": "Florists",
    "subcategory": "Florist",
    "description": "Downtown Felton florist serving the San Lorenzo Valley since 2016, specializing in locally sourced arrangements, weddings, and events. Its published delivery area includes Boulder Creek within 1 mile of the town limits, with Boulder Creek orders placed by phone.",
    "address": "6227 Highway 9",
@@ -3192,7 +3192,7 @@
   },
   {
    "name": "Redwood & Ranunculus",
-   "category": "Shopping",
+   "category": "Florists",
    "subcategory": "Florist / floral studio",
    "description": "Floral workshop and events boutique in downtown Felton offering arrangements and bouquets by appointment.",
    "address": "Downtown Felton",
@@ -3380,7 +3380,7 @@
   },
   {
    "name": "Woodland Floral & Creations",
-   "category": "Shopping",
+   "category": "Florists",
    "subcategory": "Wood florist (sola flower creations)",
    "description": "Boulder Creek maker of handmade sola wood flower bouquets, wedding florals, arch pieces, centerpieces, corsages, and keepsake arrangements, all hand-painted and biodegradable. Curbside pickup in and around Boulder Creek. Second in-town floral option alongside fresh-flower shops.",
    "locality": "Boulder Creek",
