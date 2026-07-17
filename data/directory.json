@@ -2782,6 +2782,19 @@
    "address": null,
    "hours_text": null,
    "tile": "daniel-s-cleaning-services.png"
+  },
+  {
+   "name": "Brookdale Lodge",
+   "category": "Lodging",
+   "subcategory": "Historic hotel with restaurant and lounge",
+   "description": "Historic Santa Cruz Mountains hotel resort with newly remodeled, pet-friendly guest rooms, the on-site 1950s-style Brookdale Diner, and The River Run lounge and event space hosting live music, weddings, and parties. The landmark's storied Brook Room dining hall (with a natural creek running through it) is not currently operating as a standalone restaurant.",
+   "address": "11570 Highway 9",
+   "locality": "Brookdale",
+   "phone": "831-609-6010",
+   "website": "https://www.brookdalelodge.com/",
+   "verified_at": "2026-07-17",
+   "hours_text": null,
+   "tile": "brookdale-lodge.png"
   }
  ]
 }
