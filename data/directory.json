@@ -2427,7 +2427,8 @@
    "service_area": "Boulder Creek and the San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "lat": 37.1240639,
-   "lon": -122.122191
+   "lon": -122.122191,
+   "tile": "kaplan-chiropractic.png"
   },
   {
    "name": "New Dimensions Acupuncture & Herbology",
@@ -2471,7 +2472,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "mountain-paw-spa.png"
   },
   {
    "name": "The Abbot's Thrift",
@@ -2920,7 +2922,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "simple-wonders-landscape-and-design.png"
   },
   {
    "name": "Dr Spa",
@@ -3029,7 +3032,8 @@
    "service_area": "Campers visiting the San Lorenzo Valley and Santa Cruz Mountains",
    "verified_at": "2026-07-17",
    "lat": 37.0415102,
-   "lon": -122.0638757
+   "lon": -122.0638757,
+   "tile": "henry-cowell-redwoods-state-park-campground.png"
   },
   {
    "name": "Mount Hermon Christian Camps & Conference Center",
@@ -3044,7 +3048,8 @@
    "verified_at": "2026-07-17",
    "hours_text": null,
    "lat": 37.0516406,
-   "lon": -122.0579684
+   "lon": -122.0579684,
+   "tile": "mount-hermon-christian-camps-conference-center.png"
   },
   {
    "name": "Roaring Camp Railroads",
@@ -3104,7 +3109,8 @@
    "service_area": "San Lorenzo Valley / Scotts Valley",
    "verified_at": "2026-07-17",
    "lat": 37.0544018,
-   "lon": -122.0740024
+   "lon": -122.0740024,
+   "tile": "valley-churches-united-missions.png"
   },
   {
    "name": "Mountain Community Resources",
@@ -3119,7 +3125,8 @@
    "service_area": "San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "lat": 37.2519263,
-   "lon": -122.0478157
+   "lon": -122.0478157,
+   "tile": "mountain-community-resources.png"
   },
   {
    "name": "Highlands Park Senior & Community Center",
@@ -3134,7 +3141,8 @@
    "service_area": "San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "lat": 37.0803128,
-   "lon": -122.0815904
+   "lon": -122.0815904,
+   "tile": "highlands-park-senior-community-center.png"
   },
   {
    "name": "Redwood Canopy Tour (Mount Hermon Adventures)",
@@ -3149,7 +3157,8 @@
    "service_area": "San Lorenzo Valley / Santa Cruz County",
    "verified_at": "2026-07-17",
    "lat": 37.05244,
-   "lon": -122.0555364
+   "lon": -122.0555364,
+   "tile": "redwood-canopy-tour-mount-hermon-adventures.png"
   },
   {
    "name": "San Lorenzo Valley Post",
@@ -3162,7 +3171,8 @@
    "website": "https://slvpost.com/",
    "hours_text": "Online publication; no public counter hours",
    "service_area": "San Lorenzo Valley",
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "san-lorenzo-valley-post.png"
   },
   {
    "name": "Hallcrest Vineyards",
@@ -3177,7 +3187,8 @@
    "service_area": "San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "lat": 37.0516673,
-   "lon": -122.0775845
+   "lon": -122.0775845,
+   "tile": "hallcrest-vineyards.png"
   },
   {
    "name": "Redwood & Ranunculus",
@@ -3205,7 +3216,8 @@
    "service_area": "Boulder Creek / San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "lat": 37.0501592,
-   "lon": -122.073305
+   "lon": -122.073305,
+   "tile": "kbcz-89-3-fm.png"
   },
   {
    "name": "Silverfern Gardens",
@@ -3273,7 +3285,8 @@
    "website": "https://www.feltonhall.org/",
    "service_area": "Felton and the San Lorenzo Valley",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "felton-community-hall.png"
   },
   {
    "name": "Waterfall Lodge and Retreat",
@@ -3545,7 +3558,8 @@
    "website": "https://www.communitymountaingym.com/",
    "service_area": "Felton, Scotts Valley, and the Santa Cruz Mountains",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "community-mountain-gymnastics.png"
   },
   {
    "name": "Tails of Redwood Trails LLC",
@@ -3558,7 +3572,8 @@
    "website": "https://www.tailsofredwoodtrails.com/",
    "service_area": "Felton and the tri-county region",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "tails-of-redwood-trails-llc.png"
   },
   {
    "name": "Adina's Daycare",
@@ -3599,7 +3614,8 @@
    "hours_text": null,
    "verified_at": "2026-07-17",
    "lat": 37.126117,
-   "lon": -122.121578
+   "lon": -122.121578,
+   "tile": "little-explorers-bcrpd.png"
   },
   {
    "name": "Mountain Monsters Daycare",
@@ -3643,7 +3659,8 @@
    "verified_at": "2026-07-17",
    "license": "California licensed day care center / infant center (CCLD #444413303, capacity 16)",
    "lat": 37.0803128,
-   "lon": -122.0815904
+   "lon": -122.0815904,
+   "tile": "highlands-park-early-education-center.png"
   },
   {
    "name": "Kreative Kids Preschool",
