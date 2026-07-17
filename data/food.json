@@ -326,6 +326,19 @@
    "verified_at": "2026-07-17",
    "lat": 37.1532933,
    "lon": -122.1642495
+  },
+  {
+   "name": "Dessert First Bakery",
+   "category": "Bakery & Sweets",
+   "subcategory": "Bakery - custom wedding and celebration cakes",
+   "description": "Boulder Creek bakery specializing in custom wedding and celebration cakes and desserts made with all-natural ingredients, no preservatives or additives. Also offers daily baked goods, cupcakes, cookies, and pastries.",
+   "address": "13090 Highway 9, Suite 2",
+   "locality": "Boulder Creek",
+   "phone": "831-338-7008",
+   "website": "https://www.facebook.com/Dessertfirstbskery/",
+   "hours_text": "Open daily 6:30am-1:30pm",
+   "service_area": "Boulder Creek and the San Lorenzo Valley",
+   "verified_at": "2026-07-17"
   }
  ]
 }
