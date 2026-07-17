@@ -1,7 +1,7 @@
 {
  "updated": "2026-07-17",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/submit",
- "count": 322,
+ "count": 323,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -4631,6 +4631,20 @@
    "phone": null,
    "website": "https://www.musicalme.com/",
    "service_area": "Santa Cruz County",
+   "verified_at": "2026-07-17",
+   "hours_text": null,
+   "no_storefront": true
+  },
+  {
+   "name": "Luzovich Celebrations",
+   "category": "Events & Celebrations",
+   "subcategory": "Balloon styling and party decor",
+   "description": "Custom balloon styling, party decor, and event styling for kids parties and celebrations. Contact at luzovichcelebrations@gmail.com or on Instagram @luzovichcelebrations.",
+   "address": null,
+   "locality": "Santa Cruz County",
+   "phone": "831-818-5407",
+   "website": "https://www.instagram.com/luzovichcelebrations/",
+   "service_area": "Santa Cruz County, including Boulder Creek and the San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "hours_text": null,
    "no_storefront": true
