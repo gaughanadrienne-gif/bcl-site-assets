@@ -536,6 +536,7 @@
       '<div class="bcl-actionrow"><a href="https://web.pulsepoint.org/?agencies=44020" target="_blank" rel="noopener">See what the fire trucks are on: live BCFD calls</a></div>' +
       '<div class="bcl-actionrow"><a href="https://www.watchduty.org/" target="_blank" rel="noopener">Check for wildfire near you: Watch Duty</a></div>' +
       '<div class="bcl-actionrow"><a href="https://www.fire.ca.gov/incidents" target="_blank" rel="noopener">CAL FIRE incident list</a></div>' +
+      '<div class="bcl-actionrow">Fire cameras near the valley: <a href="https://cameras.alertcalifornia.org/?id=Axis-Brookdale" target="_blank" rel="noopener">Brookdale</a> and <a href="https://cameras.alertcalifornia.org/?id=Axis-MtBielawski" target="_blank" rel="noopener">Mt. Bielawski</a> (ALERTCalifornia; steerable cameras for situational awareness, not an alert or all-clear)</div>' +
       '<div class="bcl-meta">Evacuation decisions come from <a href="https://www.cruzaware.org/" target="_blank" rel="noopener">CruzAware</a> and official orders only.</div></div>';
   }
 
