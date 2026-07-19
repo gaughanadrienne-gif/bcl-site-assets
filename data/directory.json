@@ -1,7 +1,7 @@
 {
  "updated": "2026-07-19",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/submit",
- "count": 328,
+ "count": 300,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -1505,7 +1505,8 @@
    "website": "https://www.edwardjones.com/us-en/financial-advisor/zach-brown",
    "hours_text": "Monday-Friday 8:30am-5pm",
    "service_area": "Scotts Valley and the San Lorenzo Valley",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "edward-jones-zach-brown-cfp.svg"
   },
   {
    "name": "Laureen Yungmeyer - State Farm Insurance",
@@ -1550,7 +1551,8 @@
    "website": "https://www.statefarm.com/agent/us/ca/felton/colin-giles-9sgb31ys000",
    "service_area": "Felton and the San Lorenzo Valley",
    "verified_at": "2026-07-16",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "colin-giles-state-farm-insurance.svg"
   },
   {
    "name": "Cassidy Insurance Agency",
@@ -1580,19 +1582,6 @@
    "hours_text": null,
    "address": null,
    "tile": "san-lorenzo-valley-housekeeping.png"
-  },
-  {
-   "name": "Clean Impressions LLC",
-   "category": "House Cleaning",
-   "subcategory": "House cleaning",
-   "description": "Felton-based residential and short-term-rental turnover cleaning service offering free estimates and serving Felton and Ben Lomond.",
-   "locality": "Felton",
-   "phone": "209-559-7199",
-   "service_area": "Felton and Ben Lomond",
-   "verified_at": "2026-07-16",
-   "no_storefront": true,
-   "hours_text": null,
-   "address": null
   },
   {
    "name": "Christi's Green Cleaning",
@@ -2114,20 +2103,6 @@
    "tile": "mountain-music-school-sv.png"
   },
   {
-   "name": "San Lorenzo Learning Lab",
-   "category": "Education & Childcare",
-   "subcategory": "Tutoring",
-   "description": "Family-run K-16 academic support center in downtown Felton offering tutoring, test prep, college counseling, and homework help.",
-   "address": "6031 Highway 9",
-   "locality": "Felton",
-   "website": "https://www.facebook.com/SanLorenzoLearningLab/",
-   "service_area": "San Lorenzo Valley",
-   "verified_at": "2026-07-16",
-   "hours_text": null,
-   "lat": 37.048338,
-   "lon": -122.0734496
-  },
-  {
    "name": "Mathnasium of Scotts Valley",
    "category": "Education & Childcare",
    "subcategory": "Tutoring",
@@ -2344,19 +2319,6 @@
    "tile": "good-earth-landscape-and-design.png"
   },
   {
-   "name": "SLV Electric Inc",
-   "category": "Electrical & Solar",
-   "subcategory": "Electrical contractor",
-   "description": "Felton-based electrical contractor serving the San Lorenzo Valley, licensed C-10.",
-   "locality": "Felton",
-   "phone": "831-227-9362",
-   "verified_at": "2026-07-17",
-   "no_storefront": true,
-   "license": "CSLB #881810 (active, C-10)",
-   "address": null,
-   "hours_text": null
-  },
-  {
    "name": "Fine Edge Painting",
    "category": "General Contractors & Construction",
    "subcategory": "Painting contractor",
@@ -2474,7 +2436,8 @@
    "service_area": "San Lorenzo Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
    "lat": 37.0506935,
-   "lon": -122.0727186
+   "lon": -122.0727186,
+   "tile": "the-abbots-thrift.png"
   },
   {
    "name": "Ladd's Towing",
@@ -2578,7 +2541,8 @@
    "service_area": "Boulder Creek and the San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "no_storefront": true,
-   "address": null
+   "address": null,
+   "tile": "smiling-grille-auto-repair.png"
   },
   {
    "name": "Ernie's Service Center",
@@ -3568,7 +3532,8 @@
    "no_storefront": true,
    "license": "License #444417882 (Family Child Care Home, Boulder Creek, active). Second location: Busy Bees Playschool Two, License #444418540 (Child Care Center, active), 7985 B Highway 9, Ben Lomond.",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "busy-bees-playschool.png"
   },
   {
    "name": "Little Explorers (BCRPD)",
@@ -3645,19 +3610,6 @@
    "lat": 37.0803128,
    "lon": -122.0815904,
    "tile": "kreative-kids-preschool.png"
-  },
-  {
-   "name": "The Venue at Boulder Creek",
-   "category": "Event Venues",
-   "subcategory": "Wedding and event venue",
-   "description": "Creekside event venue in downtown Boulder Creek for weddings and private events.",
-   "address": null,
-   "locality": "Boulder Creek",
-   "phone": null,
-   "website": "https://thevenueatbouldercreek.com/",
-   "service_area": "Boulder Creek and the San Lorenzo Valley",
-   "verified_at": "2026-07-17",
-   "hours_text": null
   },
   {
    "name": "Quail Hollow Ranch County Park",
@@ -4006,20 +3958,6 @@
    "tile": "chic-event-rentals.png"
   },
   {
-   "name": "Sand and Stone Media",
-   "category": "Arts & Culture",
-   "subcategory": "Photographer and videographer",
-   "description": "Santa Cruz wedding photographer and videographer (Courtney Bow).",
-   "address": null,
-   "locality": "Santa Cruz",
-   "phone": null,
-   "website": "https://www.sandandstonemedia.org/",
-   "service_area": "Santa Cruz County",
-   "verified_at": "2026-07-17",
-   "hours_text": null,
-   "no_storefront": true
-  },
-  {
    "name": "Kyer Wiltshire",
    "category": "Arts & Culture",
    "subcategory": "Photographer and videographer",
@@ -4333,20 +4271,6 @@
    "tile": "sirius-k9-training.png"
   },
   {
-   "name": "Jonathan Powell Photography",
-   "category": "Arts & Culture",
-   "subcategory": "Photographer (family and events)",
-   "description": "Local family and event photographer (Wonder Snap Photos), good with kids, covering birthdays, family sessions, and celebrations in the San Lorenzo Valley.",
-   "address": null,
-   "locality": "San Lorenzo Valley",
-   "phone": null,
-   "website": "https://wondersnapphotos.pixieset.com/",
-   "service_area": "San Lorenzo Valley and Santa Cruz County",
-   "verified_at": "2026-07-17",
-   "hours_text": null,
-   "no_storefront": true
-  },
-  {
    "category": "Vineyards & Wine Tasting",
    "name": "Big Basin Vineyards",
    "subcategory": "Winery, tasting room and events",
@@ -4384,7 +4308,8 @@
    "website": "https://byington.com/",
    "hours_text": null,
    "local": true,
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "byington-vineyard-and-winery.svg"
   },
   {
    "category": "Vineyards & Wine Tasting",
