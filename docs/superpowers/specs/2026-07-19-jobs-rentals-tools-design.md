@@ -108,6 +108,8 @@ for each enabled source (priority order):
     apply tool inclusion rules
 merge partials/manual-*.json (owner-approved submissions)
 dedup + choose canonical source
+enrich: fetch each listing's detail page for pay/hourly, benefits, hours/schedule,
+        summary (cached + throttled + per-run cap; jobs are kept even when pay is absent)
 score confidence; classify each record: AUTO-PUBLISH or QUEUE
 verify previously-active records; expire stale ones (2-strike)
 MIN_SAFE_TOTAL guard: if published set is implausibly small, refuse to overwrite + exit 1
@@ -151,31 +153,49 @@ Rentals lean heavily on the queue (scam risk); official-portal jobs lean auto-pu
 
 ### 5.1 Geography
 - **Core cities (auto-included even when commute > 30 min):** Boulder Creek, Brookdale,
-  Ben Lomond, Felton, Mount Hermon, Zayante, Lompico, Bonny Doon, Scotts Valley, Santa
-  Cruz, Live Oak, Capitola, Soquel, Aptos, Rio del Mar.
-- **Extended area** (Davenport, Watsonville, Los Gatos, Campbell, Santa Clara, San Jose,
-  Monterey Bay): allowed only with a precise worksite and behind an **Extended commute**
-  filter, hidden by default.
+  Ben Lomond, Felton, Mount Hermon, Zayante, Lompico, Bonny Doon, Scotts Valley, Los Gatos
+  (~25 min via Hwy 9/17), Santa Cruz, Live Oak, Capitola, Soquel, Aptos, Rio del Mar.
+- **Extended area** (Davenport, Watsonville, Campbell, Santa Clara, San Jose, Monterey
+  Bay): allowed only with a precise worksite and behind an **Extended commute** filter,
+  hidden by default.
 - **Commute display:** a **static lookup table** of typical drive minutes from downtown
-  Boulder Creek (95006) to each core/extended city, labeled "approximate." No live
-  routing API in the MVP. City-only listings show the city estimate; unknown worksites go
-  to review. Never guess a worksite from employer HQ.
+  Boulder Creek (95006) to each core/extended city, labeled "approximate" (e.g., Los
+  Gatos ~25, Scotts Valley ~20, Santa Cruz ~30, Felton ~12). No live routing API in the
+  MVP. City-only listings show the city estimate; unknown worksites go to review. Never
+  guess a worksite from employer HQ.
 
 ### 5.2 Sources (no accounts — all firecrawl or public HTTP)
 - **Government:** County of Santa Cruz (`jobapscloud.com/scruz`), City of Santa Cruz &
   Scotts Valley & METRO (`governmentjobs.com` / NEOGOV), City of Capitola, BCRPD.
 - **Education (EDJOIN portals):** SLVUSD, Live Oak, Santa Cruz City Schools, Soquel Union,
-  SC County Office of Education, Scotts Valley USD; plus Cabrillo College and UC Santa
-  Cruz HR pages.
-- **Top ~25 SC County employers — direct ATS pull.** A curated watchlist (Joby Aviation,
-  Google/Looker Santa Cruz, HP/Poly Scotts Valley, PayStand, Bay Photo, Fox Factory, Zero
-  Motorcycles, Threshold Enterprises, Santa Cruz Beach Boardwalk, Dominican Hospital,
-  Sutter/PAMF, UCSC, Cabrillo, County of Santa Cruz, New Leaf, and grocery/retail/hospital
-  anchors — final list compiled and URL-verified as the first build task). Each employer
-  record stores its verified careers URL and detected **ATS type** (Greenhouse, Lever,
-  Workday, Ashby, iCIMS, NEOGOV, etc.); most ATSs expose a structured/JSON board we read
-  cleanly. **Multi-site employers are geo-filtered to their local worksite** — only roles
-  sited in the service area appear.
+  SC County Office of Education, Scotts Valley USD, Pajaro Valley USD (extended); plus
+  Cabrillo College and UC Santa Cruz HR pages; private schools (Mount Madonna, Gateway,
+  Kirby) as onboarded.
+- **Special districts + additional government:** SLV Water District, Scotts Valley Water
+  District, Central Fire District of Santa Cruz County, Santa Cruz Public Libraries, City
+  of Watsonville (extended) — mostly NEOGOV/governmentjobs.
+- **Local / regional job boards (broader nets):** Santa Cruz Works
+  (`santacruzworks.org/jobs`), Lookout Santa Cruz job board, SantaCruzJobs.com, Workforce
+  Santa Cruz County. Read via firecrawl; each geo/quality-filtered like any other source.
+- **Top ~25 SC County employers — direct ATS pull.** A curated watchlist, final list
+  compiled and URL-verified as the first build task. Confident seeds by sector:
+  - *Tech/manufacturing:* Joby Aviation, Google/Looker (Santa Cruz), HP/Poly (Scotts
+    Valley), PayStand, Bay Photo, Fox Factory, Zero Motorcycles, Threshold Enterprises.
+  - *Healthcare (large employers):* Dominican Hospital/CommonSpirit, Sutter/PAMF Santa
+    Cruz, Kaiser (Scotts Valley/Santa Cruz), Central California Alliance for Health, Santa
+    Cruz Community Health.
+  - *Education/public:* UCSC, Cabrillo, County of Santa Cruz, City of Santa Cruz, METRO.
+  - *Hospitality/recreation & very-local:* Santa Cruz Beach Boardwalk (Seaside Company),
+    Roaring Camp Railroads (Felton), Boulder Creek Golf & Country Club, Chaminade, Dream
+    Inn, 1440 Multiversity, Seascape, YMCA Camp Campbell.
+  - *Finance/retail anchors:* Bay Federal Credit Union, Santa Cruz County Bank, New Leaf,
+    Staff of Life, Nob Hill/Raley's, Safeway, Trader Joe's, Target.
+  - *Big nonprofits:* Community Bridges, Second Harvest, Encompass, Housing Matters,
+    Goodwill Central Coast.
+  Each employer record stores its verified careers URL and detected **ATS type**
+  (Greenhouse, Lever, Workday, Ashby, iCIMS, NEOGOV, etc.); most ATSs expose a
+  structured/JSON board we read cleanly. **Multi-site employers are geo-filtered to their
+  local worksite** — only roles sited in the service area appear.
 - **Discovery-only (link out, never scraped):** LinkedIn, Indeed, Craigslist, Facebook,
   Nextdoor.
 
@@ -189,14 +209,29 @@ Rentals lean heavily on the queue (scam risk); official-portal jobs lean auto-pu
   per-employer caps so one occupation/company can't dominate; MLM/pay-to-start/lead-gen
   filtered out; commission-only prominently flagged.
 
-### 5.4 Inclusion / exclusion / salary / freshness
+### 5.4 Inclusion / exclusion / salary / detail / freshness
 - Include FT/PT/temp/seasonal/contract/internship/apprenticeship/per-diem; volunteer only
   when clearly labeled and filtered separately.
 - Exclude or review: MLM, pay-to-start, mystery shopping, reshipping, unverifiable
   employers, vague "work from phone," undisclosed commission-only, duplicate staffing-agency
   reqs, closed/expired, no application route, mistagged-local.
-- **Salary:** store exactly as disclosed; normalize hourly/monthly/annual to comparable
-  values for filtering; never invent salary; `salary_disclosed=false` when absent.
+
+**Salary & decision-detail — BCL DIVERGES FROM EOB HERE.** EOB excludes any role without
+disclosed comp and enforces a $100k floor. A local board must do the opposite: hourly
+retail, trades, hospitality, and care jobs are core inventory, and many local employers
+don't post pay.
+- **No pay floor. Never drop a job for missing comp.** A job with no listed pay is still
+  published, labeled "Pay not listed."
+- **Actively surface pay when it exists.** An **enrichment step** fetches each listing's
+  detail page (cached, throttled, capped per run — the EOB `enrich()` mechanism) to pull
+  salary/hourly, and California pay-transparency means most 15+ employee postings carry a
+  range. Store exactly as disclosed; also normalize hourly/monthly/annual to comparable
+  values for filtering and sorting; never invent or estimate a number.
+- **Pull the rest of the decision-useful detail too,** so a resident can judge a role
+  before clicking out: **benefits** (health, PTO, retirement — as stated), **hours /
+  schedule** (FT/PT, shift, days, seasonal window), employment type, work mode, and a
+  short factual summary. Each is surfaced when the source discloses it and omitted (not
+  invented) when it doesn't.
 - **Freshness labels:** New (≤3 days), Recent (≤7), Verified today/yesterday, Closing
   soon (deadline ≤3 days), Possibly closed (hidden + queued). **Expiration:** explicit
   closed status, OR two consecutive verification failures, OR deadline passed, OR source
@@ -264,7 +299,8 @@ id, slug, title, title_original, employer_name, description_summary,
 employment_type, work_mode(on-site|hybrid|remote), remote_regions[],
 city, state, postal_code, location_precision, geography_tier(core|extended|remote),
 commute_minutes, commute_type(approx), salary_min, salary_max, salary_period,
-salary_text, salary_disclosed, category, posted_at, application_deadline,
+salary_text, salary_disclosed, benefits_text, hours_text, schedule,
+category, posted_at, application_deadline,
 canonical_url, source, first_seen_at, last_verified_at, verification_status, freshness_label
 ```
 
