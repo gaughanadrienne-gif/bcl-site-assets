@@ -224,9 +224,15 @@ don't post pay.
   published, labeled "Pay not listed."
 - **Actively surface pay when it exists.** An **enrichment step** fetches each listing's
   detail page (cached, throttled, capped per run — the EOB `enrich()` mechanism) to pull
-  salary/hourly, and California pay-transparency means most 15+ employee postings carry a
-  range. Store exactly as disclosed; also normalize hourly/monthly/annual to comparable
-  values for filtering and sorting; never invent or estimate a number.
+  salary/hourly. Store exactly as disclosed; also normalize hourly/monthly/annual to
+  comparable values for filtering and sorting; never invent or estimate a number.
+- **Pay-transparency expectation (CA SB 1162):** employers with **15+ employees** must
+  include a pay scale in the posting, so most mid/large postings (county, schools,
+  hospitals, chains, top-25 employers) will carry a range. Employers under 15 are exempt,
+  which is common for small SLV shops/trades/restaurants — their "Pay not listed" is
+  expected and fine. But if a **known 15+ / watchlist employer** yields no pay, treat that
+  as a likely **enrichment/parser miss, not a payless job**: flag it to the review queue
+  so we can fix the parser rather than silently publish "Pay not listed."
 - **Pull the rest of the decision-useful detail too,** so a resident can judge a role
   before clicking out: **benefits** (health, PTO, retirement — as stated), **hours /
   schedule** (FT/PT, shift, days, seasonal window), employment type, work mode, and a
