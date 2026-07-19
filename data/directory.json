@@ -1088,7 +1088,8 @@
    "no_storefront": true,
    "license": "CSLB #1072237 (active, C-20)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "zephyr-climate-solutions.png"
   },
   {
    "name": "Baxter Landscaping, Inc.",
@@ -1158,7 +1159,8 @@
    "no_storefront": true,
    "license": "CSLB #1087260 (active, C-36, C-42)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "wades-inc.png"
   },
   {
    "name": "Jessi Phillips Electric",
@@ -1434,7 +1436,8 @@
    "no_storefront": true,
    "license": "CSLB #940607 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "oliveira-and-sons.png"
   },
   {
    "name": "Superior Tax Service (Allan R. Polus, EA)",
@@ -1956,7 +1959,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "camp-happy-tails.png"
   },
   {
    "name": "Felton Veterinary Hospital",
@@ -2134,7 +2138,8 @@
    "website": "https://www.mathnasium.com/math-centers/scottsvalley",
    "hours_text": "Monday and Wednesday 12-5pm; Tuesday and Thursday 2-6pm; Sunday 10am-1pm",
    "service_area": "Scotts Valley, Felton, Ben Lomond, Bonny Doon, and Boulder Creek",
-   "verified_at": "2026-07-16"
+   "verified_at": "2026-07-16",
+   "tile": "mathnasium-of-scotts-valley.png"
   },
   {
    "name": "Carpe Diem Financial Life Planning",
@@ -2165,7 +2170,8 @@
    "service_area": "Boulder Creek and the greater Bay Area",
    "verified_at": "2026-07-17",
    "no_storefront": true,
-   "address": null
+   "address": null,
+   "tile": "ap-accounting-and-consulting.png"
   },
   {
    "name": "Rational Moving",
@@ -2334,7 +2340,8 @@
    "no_storefront": true,
    "license": "CSLB #874175 (active, C-27)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "good-earth-landscape-and-design.png"
   },
   {
    "name": "SLV Electric Inc",
@@ -2482,7 +2489,8 @@
    "service_area": "San Lorenzo Valley, including Felton, Ben Lomond, and Boulder Creek",
    "verified_at": "2026-07-17",
    "lat": 37.049235,
-   "lon": -122.0734184
+   "lon": -122.0734184,
+   "tile": "ladds-towing.png"
   },
   {
    "name": "MADabolic Scotts Valley",
@@ -2495,7 +2503,8 @@
    "website": "https://madabolic.com/ca/scotts-valley/",
    "service_area": "Scotts Valley and surrounding communities",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "madabolic-scotts-valley.png"
   },
   {
    "name": "Enterprise Sports Club",
@@ -2646,7 +2655,8 @@
    "service_area": "Scotts Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
    "lat": 37.2139767,
-   "lon": -121.8795646
+   "lon": -121.8795646,
+   "tile": "integrity-automotive-service.png"
   },
   {
    "name": "Queen Nails",
@@ -2982,7 +2992,8 @@
    "service_area": "Felton and Santa Cruz Mountains visitors",
    "verified_at": "2026-07-17",
    "lat": 37.2519263,
-   "lon": -122.0478157
+   "lon": -122.0478157,
+   "tile": "fern-river-resort.png"
   },
   {
    "name": "Henry Cowell Redwoods State Park Campground",
@@ -3029,7 +3040,8 @@
    "service_area": "San Lorenzo Valley / Santa Cruz County",
    "verified_at": "2026-07-17",
    "lat": 36.9901141,
-   "lon": -122.0267403
+   "lon": -122.0267403,
+   "tile": "roaring-camp-railroads.svg"
   },
   {
    "name": "San Lorenzo Lumber & Home",
@@ -3671,7 +3683,8 @@
    "website": "https://www.amphitheateroftheredwoods.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "amphitheater-of-the-redwoods-at-pema-osel-ling.png"
   },
   {
    "name": "Hilton Santa Cruz / Scotts Valley",
@@ -3684,7 +3697,8 @@
    "website": "https://www.hilton.com/en/hotels/sjcsvhf-hilton-santa-cruz-scotts-valley/",
    "service_area": "Scotts Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "hilton-santa-cruz-scotts-valley.png"
   },
   {
    "name": "Wylder Space",
@@ -3698,7 +3712,8 @@
    "service_area": "San Lorenzo Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "wylder-space.png"
   },
   {
    "name": "Humble Bumble Catering",
@@ -3712,7 +3727,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "humble-bumble-catering.png"
   },
   {
    "name": "Feel Good Foods Catering",
@@ -3726,7 +3742,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "feel-good-foods-catering.png"
   },
   {
    "name": "Santa Cruz Catering Company",
@@ -3740,7 +3757,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "santa-cruz-catering-company.png"
   },
   {
    "name": "Sunny's Catering",
@@ -3754,7 +3772,8 @@
    "service_area": "Santa Cruz County and the Bay Area",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "sunnys-catering.png"
   },
   {
    "name": "Dessert First Bakery",
@@ -3794,7 +3813,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "edith-meyer-wedding-cakes.png"
   },
   {
    "name": "Companion Bakeshop",
@@ -3807,7 +3827,8 @@
    "website": "https://www.companionbakeshop.com/weddings",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "companion-bakeshop.png"
   },
   {
    "name": "Sugar Bakery Co.",
@@ -3820,7 +3841,8 @@
    "website": "https://www.sugarbakeryco.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "sugar-bakery-co.png"
   },
   {
    "name": "Gayle's Bakery & Rosticceria",
@@ -3833,7 +3855,8 @@
    "website": "https://www.gaylesbakery.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "gayles-bakery-and-rosticceria.png"
   },
   {
    "name": "Freedom Bakery & Confections",
@@ -3846,7 +3869,8 @@
    "website": "https://www.freedombakery.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "freedom-bakery-and-confections.svg"
   },
   {
    "name": "Elope Santa Cruz and Monterey Bay",
@@ -3860,7 +3884,8 @@
    "service_area": "Santa Cruz, Monterey, and Big Sur",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "elope-santa-cruz-and-monterey-bay.png"
   },
   {
    "name": "ICON DJ",
@@ -3874,7 +3899,8 @@
    "service_area": "Santa Cruz County, including Felton and Scotts Valley",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "icon-dj.png"
   },
   {
    "name": "DJ Warwick",
@@ -3888,7 +3914,8 @@
    "service_area": "Santa Cruz County, including the San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "dj-warwick.png"
   },
   {
    "name": "aSantaCruzDJ",
@@ -3902,7 +3929,8 @@
    "service_area": "Santa Cruz County and Northern California",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "asantacruzdj.png"
   },
   {
    "name": "Cristal Stephani Makeup Artist",
@@ -3944,7 +3972,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "alexis-party-rental.svg"
   },
   {
    "name": "A to Z Party Rental",
@@ -3958,7 +3987,8 @@
    "service_area": "Santa Cruz County and the Central Coast",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "a-to-z-party-rental.png"
   },
   {
    "name": "Chic Event Rentals",
@@ -3972,7 +4002,8 @@
    "service_area": "Monterey and Santa Cruz counties",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "chic-event-rentals.png"
   },
   {
    "name": "Sand and Stone Media",
@@ -4000,7 +4031,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "kyer-wiltshire.svg"
   },
   {
    "name": "Boulder Creek Flowers & Lokahi Designs",
@@ -4055,7 +4087,8 @@
    "website": "https://www.dahliasanddetails.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "dahlias-and-details.png"
   },
   {
    "name": "Seascape Flowers",
@@ -4068,7 +4101,8 @@
    "website": "https://seascapeflowers.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "seascape-flowers.svg"
   },
   {
    "name": "Pet Shop Santa Cruz",
@@ -4094,7 +4128,8 @@
    "website": "https://www.fintasticfishstore.com/",
    "service_area": "San Lorenzo Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": "Mon-Sat 10am-6pm, Sun 10am-5pm"
+   "hours_text": "Mon-Sat 10am-6pm, Sun 10am-5pm",
+   "tile": "fintastic-fish.png"
   },
   {
    "name": "Vargas Academy",
@@ -4107,7 +4142,8 @@
    "website": "https://vargasacademy.com/",
    "service_area": "San Lorenzo Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "vargas-academy.png"
   },
   {
    "name": "JuneBugs Gym",
@@ -4120,7 +4156,8 @@
    "website": "https://junebugsgym.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "junebugs-gym.png"
   },
   {
    "name": "Kianti's Pizza & Pasta Bar",
@@ -4133,7 +4170,8 @@
    "website": "https://kiantis.com/pizza-parties",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "kiantis-pizza-and-pasta-bar.png"
   },
   {
    "name": "Santa Cruz Beach Boardwalk",
@@ -4160,7 +4198,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "astro-jump-of-santa-cruz.png"
   },
   {
    "name": "Bash Works",
@@ -4188,7 +4227,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "happily-ever-laughter.png"
   },
   {
    "name": "Aesthetic Events & Co.",
@@ -4216,7 +4256,8 @@
    "service_area": "Santa Cruz County, including the San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "brendas-face-painting.png"
   },
   {
    "name": "Primal Henna Arts",
@@ -4259,7 +4300,8 @@
    "verified_at": "2026-07-17",
    "hours_text": null,
    "no_storefront": true,
-   "license": "AMFT #161226 (supervised by Jennifer Hope Krasner, LCSW #27831)"
+   "license": "AMFT #161226 (supervised by Jennifer Hope Krasner, LCSW #27831)",
+   "tile": "deer-horn-ranch.png"
   },
   {
    "name": "SLV Bookkeeping",
@@ -4287,7 +4329,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "sirius-k9-training.png"
   },
   {
    "name": "Jonathan Powell Photography",
@@ -4327,7 +4370,8 @@
    "website": "https://www.davidbrucewinery.com/",
    "hours_text": "Thursday-Sunday 11:00 a.m.-4:00 p.m.; reservations recommended",
    "local": true,
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "david-bruce-winery.png"
   },
   {
    "category": "Vineyards & Wine Tasting",
@@ -4353,7 +4397,8 @@
    "website": "https://burrellschool.com/",
    "hours_text": "Friday-Sunday 1:00-6:00 p.m.",
    "local": true,
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "burrell-school-vineyards-and-winery.png"
   },
   {
    "category": "Vineyards & Wine Tasting",
@@ -4379,7 +4424,8 @@
    "website": "https://www.lagolomita.com/",
    "hours_text": "Tasting by appointment; call to schedule",
    "local": true,
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "lago-lomita-vineyards.png"
   },
   {
    "category": "Vineyards & Wine Tasting",
@@ -4393,7 +4439,8 @@
    "website": "https://www.muccigrosso.com/",
    "hours_text": null,
    "local": true,
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "muccigrosso-vineyards.png"
   },
   {
    "category": "Vineyards & Wine Tasting",
@@ -4407,7 +4454,8 @@
    "website": "https://www.munsvineyard.com/",
    "hours_text": "Tastings by reservation on scheduled dates only",
    "local": true,
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "muns-vineyard.png"
   },
   {
    "category": "Vineyards & Wine Tasting",
@@ -4421,7 +4469,8 @@
    "website": "https://www.griffinhillvineyards.com/",
    "hours_text": null,
    "local": true,
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "griffin-hill-vineyards.png"
   }
  ]
 }
