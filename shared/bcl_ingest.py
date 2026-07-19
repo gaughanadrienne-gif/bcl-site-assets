@@ -5,6 +5,7 @@ import html
 import json
 import os
 import re
+import time
 from urllib.parse import urlsplit, urlunsplit
 
 _TAG_RE = re.compile(r"<[^>]+>")
@@ -95,3 +96,38 @@ def is_95006(rec):
         if _ZIP_95006_RE.search(str(rec.get(field, "") or "")):
             return True
     return False
+
+
+class DetailCache:
+    """Per-URL cache of detail-page verdicts (pay/benefits/hours), with a TTL so
+    stale 'no data' verdicts get rechecked. Machine-local; never published."""
+
+    def __init__(self, path, ttl_days=7, now=None):
+        self.path = path
+        self.ttl = ttl_days * 86400
+        self._now = now or time.time
+        self.data = {}
+        if os.path.exists(path):
+            try:
+                with open(path, encoding="utf-8") as fh:
+                    self.data = json.load(fh)
+            except (ValueError, OSError):
+                self.data = {}
+
+    def get(self, url):
+        entry = self.data.get(url)
+        if not entry:
+            return None
+        if self._now() - entry.get("ts", 0) > self.ttl:
+            return None
+        return entry.get("value")
+
+    def set(self, url, value):
+        self.data[url] = {"ts": self._now(), "value": value}
+
+    def save(self):
+        os.makedirs(os.path.dirname(self.path) or ".", exist_ok=True)
+        tmp = self.path + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as fh:
+            json.dump(self.data, fh)
+        os.replace(tmp, self.path)

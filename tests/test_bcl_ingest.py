@@ -80,3 +80,33 @@ def test_is_95006_rejects_city_label_only():
 def test_is_95006_ignores_zip_only_in_description():
     # Mentioning 95006 in prose is not location evidence.
     assert is_95006({"description_summary": "near 95006 area", "postal_code": ""}) is False
+
+
+from shared.bcl_ingest import DetailCache
+
+
+def test_detail_cache_set_get(tmp_path):
+    clock = [1000.0]
+    c = DetailCache(str(tmp_path / "cache.json"), ttl_days=7, now=lambda: clock[0])
+    c.set("https://x/1", {"pay": "$20/hr"})
+    assert c.get("https://x/1") == {"pay": "$20/hr"}
+
+def test_detail_cache_expires(tmp_path):
+    clock = [1000.0]
+    c = DetailCache(str(tmp_path / "cache.json"), ttl_days=7, now=lambda: clock[0])
+    c.set("https://x/1", {"pay": "$20/hr"})
+    clock[0] = 1000.0 + 8 * 86400  # 8 days later, past the 7-day TTL
+    assert c.get("https://x/1") is None
+
+def test_detail_cache_persists_across_instances(tmp_path):
+    path = str(tmp_path / "cache.json")
+    clock = [1000.0]
+    c1 = DetailCache(path, now=lambda: clock[0])
+    c1.set("https://x/1", "verdict")
+    c1.save()
+    c2 = DetailCache(path, now=lambda: clock[0])
+    assert c2.get("https://x/1") == "verdict"
+
+def test_detail_cache_missing_returns_none(tmp_path):
+    c = DetailCache(str(tmp_path / "cache.json"))
+    assert c.get("https://x/nope") is None
