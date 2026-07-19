@@ -4186,7 +4186,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "aesthetic-events-and-co.png"
   },
   {
    "name": "Brenda's Face Painting",
