@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-17",
+ "updated": "2026-07-19",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/submit",
  "count": 328,
  "listings": [
@@ -1420,7 +1420,8 @@
    "no_storefront": true,
    "license": "CSLB #865919 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "lotz-construction.png"
   },
   {
    "name": "Oliveira & Sons",
@@ -1662,7 +1663,8 @@
    "verified_at": "2026-07-16",
    "hours_text": null,
    "lat": 37.0544018,
-   "lon": -122.0740024
+   "lon": -122.0740024,
+   "tile": "mountain-propane-service.png"
   },
   {
    "name": "Tavares Plumbing and Pumps",
@@ -2028,7 +2030,8 @@
    "service_area": "Scotts Valley and the San Lorenzo Valley",
    "verified_at": "2026-07-16",
    "lat": 37.042634,
-   "lon": -122.02686
+   "lon": -122.02686,
+   "tile": "scotts-valley-gym.png"
   },
   {
    "name": "Toadal Fitness Scotts Valley",
@@ -2057,7 +2060,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "adriane-white-photography.png"
   },
   {
    "name": "Kassandra Thomsen Photography",
@@ -2146,7 +2150,8 @@
    "license": "Registered investment adviser, CRD #309092 (SEC IAPD); CFP, EA",
    "hours_text": null,
    "lat": 37.0808891,
-   "lon": -122.0914824
+   "lon": -122.0914824,
+   "tile": "carpe-diem-financial-life-planning.png"
   },
   {
    "name": "AP Accounting & Consulting",
@@ -2175,7 +2180,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "license": "BHGS Household Mover Permit MTR0192109",
-   "address": null
+   "address": null,
+   "tile": "rational-moving.png"
   },
   {
    "name": "SCM Custom Cleaning",
@@ -2261,7 +2267,8 @@
    "no_storefront": true,
    "license": "CSLB #1019283 (active, C-33)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "california-custom-painting-and-design.png"
   },
   {
    "name": "Gary Fox Cabinets",
@@ -2414,7 +2421,8 @@
    "verified_at": "2026-07-17",
    "hours_text": null,
    "lat": 37.0825383,
-   "lon": -122.0894642
+   "lon": -122.0894642,
+   "tile": "new-dimensions-acupuncture-and-herbology.png"
   },
   {
    "name": "Hunt & Shaw, OD's",
@@ -2917,7 +2925,8 @@
    "no_storefront": true,
    "license": "CSLB #945992 (C-10)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "arch-electric.png"
   },
   {
    "name": "VSG Builder",
@@ -3050,7 +3059,8 @@
    "service_area": "San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "lat": 37.0886687,
-   "lon": -122.088948
+   "lon": -122.088948,
+   "tile": "santa-cruz-mountains-art-center.png"
   },
   {
    "name": "Valley Churches United Missions",
@@ -3157,7 +3167,8 @@
    "website": "https://makesommart.com/",
    "hours_text": "By appointment only",
    "service_area": "San Lorenzo Valley",
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "redwood-and-ranunculus.png"
   },
   {
    "name": "KBCZ 89.3 FM",
@@ -3228,7 +3239,8 @@
    "verified_at": "2026-07-17",
    "hours_text": null,
    "lat": 37.0990245,
-   "lon": -122.1150372
+   "lon": -122.1150372,
+   "tile": "the-sequoia-retreat-center.png"
   },
   {
    "name": "Felton Community Hall",
@@ -3475,7 +3487,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "messy-play-kits.png"
   },
   {
    "name": "Haven Play Lounge and Cafe",
@@ -3618,7 +3631,8 @@
    "verified_at": "2026-07-17",
    "license": "License-exempt recreation program (Santa Cruz County Parks; no state child care license required)",
    "lat": 37.0803128,
-   "lon": -122.0815904
+   "lon": -122.0815904,
+   "tile": "kreative-kids-preschool.png"
   },
   {
    "name": "The Venue at Boulder Creek",
