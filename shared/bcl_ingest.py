@@ -7,6 +7,7 @@ import os
 import re
 import subprocess
 import time
+from datetime import date
 from urllib.parse import urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
@@ -98,6 +99,62 @@ def is_95006(rec):
         if _ZIP_95006_RE.search(str(rec.get(field, "") or "")):
             return True
     return False
+
+
+_MONEY_RE = re.compile(r"\$?\s*([\d,]+(?:\.\d+)?)\s*(k)?", re.I)
+
+
+def _to_number(num, k):
+    val = float(num.replace(",", ""))
+    if k:
+        val *= 1000
+    return int(val) if val == int(val) else val
+
+
+def parse_salary(text):
+    """Parse a free-text pay string into {min, max, period, disclosed}. Never raises."""
+    out = {"min": None, "max": None, "period": None, "disclosed": False}
+    if not text:
+        return out
+    low = text.lower()
+    nums = _MONEY_RE.findall(text)
+    vals = [_to_number(n, k) for n, k in nums if n.strip(",.")]
+    if not vals:
+        return out
+    if "hour" in low or "/hr" in low or "hr" == low.strip():
+        out["period"] = "hour"
+    elif "month" in low or "/mo" in low:
+        out["period"] = "month"
+    elif "year" in low or "annual" in low or "/yr" in low or any(v >= 1000 for v in vals):
+        out["period"] = "year"
+    out["min"] = min(vals)
+    out["max"] = max(vals)
+    out["disclosed"] = True
+    return out
+
+
+def freshness_label(posted_iso, today_iso):
+    """New (<=3d), Recent (<=14d), else '' -- from YYYY-MM-DD strings.
+
+    NOTE: plan docstring said Recent<=7d but the plan's own concrete test
+    (2026-07-10 -> 2026-07-19, a 9-day gap) asserts "Recent"; the threshold
+    here is widened to 14d to satisfy that ground-truth test.
+    """
+    if not posted_iso:
+        return ""
+    try:
+        p = date.fromisoformat(posted_iso[:10])
+        t = date.fromisoformat(today_iso[:10])
+    except ValueError:
+        return ""
+    days = (t - p).days
+    if days < 0:
+        return ""
+    if days <= 3:
+        return "New"
+    if days <= 14:
+        return "Recent"
+    return ""
 
 
 class DetailCache:
