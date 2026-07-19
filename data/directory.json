@@ -4157,7 +4157,8 @@
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "bash-works.png"
   },
   {
    "name": "Happily Ever Laughter",
@@ -4231,7 +4232,8 @@
    "service_area": "Santa Cruz County, including Boulder Creek and the San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "luzovich-celebrations.png"
   },
   {
    "name": "Deer Horn Ranch",
