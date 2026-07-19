@@ -59,3 +59,24 @@ def test_classify_geo_trims_and_handles_none():
 def test_commute_minutes():
     assert commute_minutes("Los Gatos") == 25
     assert commute_minutes("Fresno") is None
+
+
+from shared.bcl_ingest import is_95006
+
+
+def test_is_95006_by_postal_code():
+    assert is_95006({"postal_code": "95006"}) is True
+
+def test_is_95006_by_address_field():
+    assert is_95006({"address_public": "123 Main St, Boulder Creek, CA 95006"}) is True
+
+def test_is_95006_rejects_other_zip():
+    assert is_95006({"postal_code": "95005", "address_public": "Ben Lomond CA 95005"}) is False
+
+def test_is_95006_rejects_city_label_only():
+    # A "Boulder Creek" label with no ZIP evidence is not sufficient.
+    assert is_95006({"city": "Boulder Creek"}) is False
+
+def test_is_95006_ignores_zip_only_in_description():
+    # Mentioning 95006 in prose is not location evidence.
+    assert is_95006({"description_summary": "near 95006 area", "postal_code": ""}) is False

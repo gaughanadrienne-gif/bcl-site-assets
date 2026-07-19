@@ -77,3 +77,21 @@ def commute_minutes(city):
     """Approximate drive minutes from Boulder Creek for a work city, or None."""
     row = _commute_table().get((city or "").strip())
     return row["minutes"] if row else None
+
+
+_ZIP_95006_RE = re.compile(r"\b95006\b")
+
+
+def is_95006(rec):
+    """True only when a record is confirmably in ZIP 95006.
+
+    Evidence = an exact postal_code of 95006, or 95006 appearing in a structured
+    address field. A bare "Boulder Creek" label or a ZIP mentioned only in prose
+    is NOT sufficient (search pages bleed into 95005/95007/95018).
+    """
+    if str(rec.get("postal_code", "")).strip() == "95006":
+        return True
+    for field in ("address_public", "address_normalized"):
+        if _ZIP_95006_RE.search(str(rec.get(field, "") or "")):
+            return True
+    return False
