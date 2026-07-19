@@ -1344,7 +1344,8 @@
    "no_storefront": true,
    "license": "CSLB #936857 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "kevin-foster-construction.png"
   },
   {
    "name": "JRG Construction",
@@ -2392,7 +2393,8 @@
    "service_area": "San Lorenzo Valley and Scotts Valley",
    "verified_at": "2026-07-17",
    "lat": 37.0872146,
-   "lon": -122.0887482
+   "lon": -122.0887482,
+   "tile": "hunt-and-shaw-ods.png"
   },
   {
    "name": "Mountain Paw Spa",
@@ -3174,7 +3176,8 @@
    "hours_text": null,
    "verified_at": "2026-07-17",
    "no_storefront": true,
-   "service_area": "San Lorenzo Valley"
+   "service_area": "San Lorenzo Valley",
+   "tile": "dragonfly-landscape-services.png"
   },
   {
    "name": "Hannah Soriano Gardens",
@@ -3730,7 +3733,8 @@
    "website": "https://www.santacruz.org/listings/dessert-first-bakery/",
    "service_area": "San Lorenzo Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "dessert-first-bakery.png"
   },
   {
    "name": "The Buttery",
