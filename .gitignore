@@ -1,0 +1,8 @@
+# Jobs & Rentals tools — private, never published
+review/
+partials/detail_cache.json
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
