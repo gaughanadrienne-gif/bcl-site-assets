@@ -157,6 +157,21 @@ def freshness_label(posted_iso, today_iso):
     return ""
 
 
+_CA_OK = ("usa", "u.s", "united states", "us only", "us-only", "north america",
+          "americas", "anywhere", "worldwide", "california", "remote")
+_NON_US_ONLY = ("europe only", "emea only", "uk only", "canada only", "apac", "india only")
+
+
+def is_ca_eligible(location_text):
+    """True if a remote role's location text admits a California/US applicant."""
+    if not location_text:
+        return False
+    low = location_text.lower()
+    if any(x in low for x in _NON_US_ONLY):
+        return False
+    return any(x in low for x in _CA_OK)
+
+
 class DetailCache:
     """Per-URL cache of detail-page verdicts (pay/benefits/hours), with a TTL so
     stale 'no data' verdicts get rechecked. Machine-local; never published."""
