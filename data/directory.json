@@ -3751,7 +3751,8 @@
    "website": "https://www.butterybakery.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "the-buttery.png"
   },
   {
    "name": "Edith Meyer Wedding Cakes",
