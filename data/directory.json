@@ -3259,7 +3259,8 @@
    "website": "https://www.facebook.com/TheRiverHouseBenLomond/",
    "service_area": "Ben Lomond and the San Lorenzo Valley",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "the-barn-at-river-house.png"
   },
   {
    "name": "Highlands House",
@@ -3450,7 +3451,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "miss-brookes-mini-and-me-music-classes.png"
   },
   {
    "name": "Messy Play Kits",
