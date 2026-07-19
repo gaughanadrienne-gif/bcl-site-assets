@@ -1074,7 +1074,8 @@
    "no_storefront": true,
    "license": "CSLB #814852 (active, C-20)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "herranen-heating-and-air.png"
   },
   {
    "name": "Zephyr Climate Solutions",
@@ -1132,7 +1133,8 @@
    "no_storefront": true,
    "license": "CSLB #1045811 (active, C-36)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "hwy-9-plumbing.png"
   },
   {
    "name": "Collins Coastal Plumbing, Inc.",
@@ -1216,7 +1218,8 @@
    "no_storefront": true,
    "license": "CSLB #951485 (active, C-60)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "jordan-booth-welding.png"
   },
   {
    "name": "Jeff Hill & Sons Excavation and Grading, Inc.",
@@ -1273,7 +1276,8 @@
    "no_storefront": true,
    "license": "CSLB #648419 (active, A)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "mtm-truck-and-tractor-inc.png"
   },
   {
    "name": "Dixon Construction",
@@ -1302,7 +1306,8 @@
    "no_storefront": true,
    "license": "CSLB #1010899 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "lk-construction-and-management-inc.png"
   },
   {
    "name": "Meadows Custom Builders",
@@ -1358,7 +1363,8 @@
    "no_storefront": true,
    "license": "CSLB #967855 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "jrg-construction.png"
   },
   {
    "name": "GNN Construction",
@@ -1371,7 +1377,8 @@
    "no_storefront": true,
    "license": "CSLB #997768 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "gnn-construction.png"
   },
   {
    "name": "Aaron Chase Construction",
@@ -1384,7 +1391,8 @@
    "no_storefront": true,
    "license": "CSLB #1063144 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "aaron-chase-construction.png"
   },
   {
    "name": "Platinum Contracting Services",
@@ -1397,7 +1405,8 @@
    "no_storefront": true,
    "license": "CSLB #1037868 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "platinum-contracting-services.png"
   },
   {
    "name": "Eric Martin Construction, Inc.",
@@ -1410,7 +1419,8 @@
    "no_storefront": true,
    "license": "CSLB #981846 (active, B)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "eric-martin-construction-inc.png"
   },
   {
    "name": "Lotz Construction",
@@ -1451,7 +1461,8 @@
    "website": "https://taxexperts.naea.org/listing/allan-polus-5628a596ed750.html",
    "service_area": "Boulder Creek and the San Lorenzo Valley",
    "verified_at": "2026-07-16",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "superior-tax-service-allan-r-polus-ea.png"
   },
   {
    "name": "SLV Tax (Virginia Justus, EA)",
@@ -1478,7 +1489,8 @@
    "website": "https://imbriecpa.com/",
    "service_area": "Scotts Valley and Santa Cruz County, including the San Lorenzo Valley",
    "verified_at": "2026-07-16",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "timothy-imbrie-cpa-mba.png"
   },
   {
    "name": "O'Brien & Company",
@@ -1493,7 +1505,8 @@
    "verified_at": "2026-07-16",
    "hours_text": null,
    "lat": 37.053162,
-   "lon": -122.0243358
+   "lon": -122.0243358,
+   "tile": "obrien-and-company.png"
   },
   {
    "name": "Edward Jones - Zach Brown, CFP",
@@ -1657,7 +1670,8 @@
    "verified_at": "2026-07-16",
    "no_storefront": true,
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "tavares-plumbing-and-pumps.png"
   },
   {
    "name": "Maggiora Bros. Drilling",
@@ -1893,7 +1907,8 @@
    "service_area": "San Lorenzo Valley, Scotts Valley, and Santa Cruz County",
    "verified_at": "2026-07-16",
    "no_storefront": true,
-   "address": null
+   "address": null,
+   "tile": "shandra-hunt-mobile-notary.png"
   },
   {
    "name": "Christina Wise Mobile Notary",
@@ -1907,7 +1922,8 @@
    "service_area": "San Lorenzo Valley, including Boulder Creek, Ben Lomond, Brookdale, and Felton",
    "verified_at": "2026-07-16",
    "no_storefront": true,
-   "address": null
+   "address": null,
+   "tile": "christina-wise-mobile-notary.png"
   },
   {
    "name": "Dapper Dogs & Divas",
@@ -2222,7 +2238,8 @@
    "no_storefront": true,
    "license": "CSLB #668255 (active, C-39)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "christopher-a-new-roofing.png"
   },
   {
    "name": "California Custom Painting and Design",
@@ -2249,7 +2266,8 @@
    "no_storefront": true,
    "license": "CSLB #697984 (active, B)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "gary-fox-cabinets.png"
   },
   {
    "name": "Farinsky Energy Solutions",
@@ -2262,7 +2280,8 @@
    "no_storefront": true,
    "license": "CSLB #1118587 (active, C-46/C-10)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "farinsky-energy-solutions.png"
   },
   {
    "name": "Terry Miller Concrete",
@@ -2289,7 +2308,8 @@
    "no_storefront": true,
    "license": "CSLB #1127823 (active, C-27)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "angus-hill-landscapes.png"
   },
   {
    "name": "Good Earth Landscape & Design",
@@ -2790,7 +2810,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "wes-white-handyman-and-general-maintenance.png"
   },
   {
    "name": "Coastal Mountain Handyman Services",
@@ -2814,7 +2835,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "squatch-valley-property-services.png"
   },
   {
    "name": "Handyman Dan",
@@ -2826,7 +2848,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "handyman-dan.png"
   },
   {
    "name": "Greenman Gardening",
@@ -2838,7 +2861,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "greenman-gardening.png"
   },
   {
    "name": "Simple Wonders Landscape and Design",
@@ -2863,7 +2887,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "dr-spa.png"
   },
   {
    "name": "A1 Pool and Spa",
@@ -2875,7 +2900,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "a1-pool-and-spa.png"
   },
   {
    "name": "Arch Electric",
@@ -2903,7 +2929,8 @@
    "no_storefront": true,
    "license": "CSLB #1141184 (active, B)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "vsg-builder.png"
   },
   {
    "name": "NorCal HVAC",
@@ -2931,7 +2958,8 @@
    "service_area": "Ben Lomond and San Lorenzo Valley visitors",
    "verified_at": "2026-07-17",
    "lat": 37.2519263,
-   "lon": -122.0478157
+   "lon": -122.0478157,
+   "tile": "quality-inn-and-suites-santa-cruz-mountains.png"
   },
   {
    "name": "Fern River Resort",
@@ -3163,7 +3191,8 @@
    "hours_text": null,
    "verified_at": "2026-07-17",
    "no_storefront": true,
-   "service_area": "San Lorenzo Valley"
+   "service_area": "San Lorenzo Valley",
+   "tile": "silverfern-gardens.png"
   },
   {
    "name": "Dragonfly Landscape Services",
@@ -3191,7 +3220,8 @@
    "hours_text": null,
    "verified_at": "2026-07-17",
    "no_storefront": true,
-   "service_area": "San Lorenzo Valley"
+   "service_area": "San Lorenzo Valley",
+   "tile": "hannah-soriano-gardens.png"
   },
   {
    "name": "The Sequoia Retreat Center",
@@ -3266,7 +3296,8 @@
    "verified_at": "2026-07-17",
    "hours_text": null,
    "lat": 37.0803128,
-   "lon": -122.0815904
+   "lon": -122.0815904,
+   "tile": "highlands-house.png"
   },
   {
    "name": "Sydalyn Hill",
@@ -3514,7 +3545,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "license": "License #444406040 (Family Child Care Home, active; capacity 14, initial license 1991-09-06)",
-   "address": null
+   "address": null,
+   "tile": "adinas-daycare.png"
   },
   {
    "name": "Busy Bees Playschool",
@@ -3557,7 +3589,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "license": "California licensed family child care home (home-based, capacity 8)",
-   "address": null
+   "address": null,
+   "tile": "mountain-monsters-daycare.png"
   },
   {
    "name": "Osito's Day Care",
@@ -3571,7 +3604,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "license": "California licensed family child care home (home-based)",
-   "address": null
+   "address": null,
+   "tile": "ositos-day-care.png"
   },
   {
    "name": "Highlands Park Early Education Center",
@@ -3617,7 +3651,8 @@
    "website": "https://parks.santacruzcountyca.gov/",
    "service_area": "San Lorenzo Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "quail-hollow-ranch-county-park.png"
   },
   {
    "name": "Amphitheater of the Redwoods at Pema Osel Ling",
@@ -3981,7 +4016,8 @@
    "service_area": "San Lorenzo Valley and Monterey Bay",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "pretty-petals-arrangements.png"
   },
   {
    "name": "Dahlias & Details",
@@ -4091,7 +4127,8 @@
    "website": "https://beachboardwalk.com/attractions/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "santa-cruz-beach-boardwalk.png"
   },
   {
    "name": "Astro Jump of Santa Cruz",
@@ -4178,7 +4215,8 @@
    "service_area": "Santa Cruz County and Monterey Bay",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "primal-henna-arts.png"
   },
   {
    "name": "Luzovich Celebrations",
@@ -4222,7 +4260,8 @@
    "service_area": "San Lorenzo Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "slv-bookkeeping.png"
   },
   {
    "name": "Sirius K9 Training",
