@@ -1,7 +1,7 @@
 {
  "updated": "2026-07-19",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/submit",
- "count": 298,
+ "count": 297,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -1584,20 +1584,6 @@
    "tile": "san-lorenzo-valley-housekeeping.png"
   },
   {
-   "name": "Christi's Green Cleaning",
-   "category": "House Cleaning",
-   "subcategory": "House cleaning",
-   "description": "Eco-friendly residential cleaning company operating since 2007 offering weekly, biweekly, and monthly service with background-checked staff and non-toxic products.",
-   "locality": "Scotts Valley",
-   "phone": "831-676-1271",
-   "website": "https://www.christisgreencleaning.com/",
-   "service_area": "Scotts Valley and Santa Cruz County",
-   "verified_at": "2026-07-16",
-   "no_storefront": true,
-   "hours_text": null,
-   "address": null
-  },
-  {
    "name": "Santa Cruz Maids",
    "category": "House Cleaning",
    "subcategory": "House cleaning",
@@ -2661,7 +2647,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "lilia-skin.png"
   },
   {
    "name": "Spa Santangelo",
@@ -2721,7 +2708,8 @@
    "verified_at": "2026-07-17",
    "hours_text": null,
    "lat": 37.0544018,
-   "lon": -122.0740024
+   "lon": -122.0740024,
+   "tile": "supernatural-beauty-and-aesthetics.png"
   },
   {
    "name": "Brookdale Lodge",
@@ -3480,7 +3468,8 @@
    "website": "https://havenplayloungeandevents.com/",
    "hours_text": "Monday-Wednesday 9am-5pm; Thursday closed; Friday 9am-5pm; Saturday 10am-4pm; Sunday closed",
    "service_area": "Scotts Valley and Santa Cruz County",
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "haven-play-lounge-and-cafe.png"
   },
   {
    "name": "Community Mountain Gymnastics",
