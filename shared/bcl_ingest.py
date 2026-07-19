@@ -1,5 +1,6 @@
 """Core ingest helpers shared by the jobs and rentals refresh pipelines."""
 
+import hashlib
 import html
 import re
 from urllib.parse import urlsplit, urlunsplit
@@ -31,3 +32,22 @@ def normalize_url(url):
         return ""
     parts = urlsplit(str(url).strip())
     return urlunsplit((parts.scheme, parts.netloc, parts.path.rstrip("/"), "", parts.fragment))
+
+
+def record_fingerprint(values):
+    """Stable 40-char hex fingerprint from normalized field values (order matters)."""
+    norm = "|".join(sanitize_text(v).lower() for v in values)
+    return hashlib.sha1(norm.encode("utf-8")).hexdigest()
+
+
+def dedupe_by(records, keyfn):
+    """Return records unique by keyfn(record), keeping the first occurrence."""
+    seen = set()
+    out = []
+    for rec in records:
+        key = keyfn(rec)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(rec)
+    return out

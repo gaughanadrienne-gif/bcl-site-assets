@@ -24,3 +24,20 @@ def test_normalize_url_equal_after_tracking_strip():
     a = normalize_url("https://x.com/j/5?src=fb")
     b = normalize_url("https://x.com/j/5?ref=tw")
     assert a == b
+
+
+from shared.bcl_ingest import record_fingerprint, dedupe_by
+
+
+def test_fingerprint_stable_and_case_insensitive():
+    a = record_fingerprint(["Line Cook", "New Leaf", "Santa Cruz"])
+    b = record_fingerprint(["line cook", "NEW LEAF", "santa cruz"])
+    assert a == b and len(a) == 40
+
+def test_fingerprint_differs_on_content():
+    assert record_fingerprint(["a"]) != record_fingerprint(["b"])
+
+def test_dedupe_by_keeps_first_preserves_order():
+    rows = [{"id": 1, "k": "x"}, {"id": 2, "k": "y"}, {"id": 3, "k": "x"}]
+    out = dedupe_by(rows, lambda r: r["k"])
+    assert [r["id"] for r in out] == [1, 2]
