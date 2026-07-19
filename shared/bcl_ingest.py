@@ -5,8 +5,10 @@ import html
 import json
 import os
 import re
+import subprocess
 import time
 from urllib.parse import urlsplit, urlunsplit
+from urllib.request import Request, urlopen
 
 _TAG_RE = re.compile(r"<[^>]+>")
 _SLUG_RE = re.compile(r"[^a-z0-9]+")
@@ -167,3 +169,48 @@ def write_public_json_guarded(path, key, records, min_total, note, today):
     payload = {"_note": note, "updated": today, "count": len(records), key: records}
     write_json_atomic(path, payload)
     return payload
+
+
+USER_AGENT = "BoulderCreekLocal/1.0 (+https://bouldercreeklocal.com)"
+_LAST_FETCH = [0.0]
+
+
+def _throttle(min_interval, sleep=time.sleep, monotonic=time.monotonic):
+    if min_interval <= 0:
+        return
+    elapsed = monotonic() - _LAST_FETCH[0]
+    if elapsed < min_interval:
+        sleep(min_interval - elapsed)
+    _LAST_FETCH[0] = monotonic()
+
+
+def http_get(url, timeout=25, min_interval=0.0, opener=None):
+    """Fetch a URL as text with a real User-Agent and optional throttle.
+
+    Pass `opener` in tests to avoid the network. Never bypasses anti-bot controls.
+    """
+    _throttle(min_interval)
+    fetch = opener or urlopen
+    req = Request(url, headers={"User-Agent": USER_AGENT})
+    with fetch(req, timeout=timeout) as resp:
+        return resp.read().decode("utf-8", "replace")
+
+
+def http_json(url, **kwargs):
+    return json.loads(http_get(url, **kwargs))
+
+
+def firecrawl_markdown(url, runner=None):
+    """Scrape a page to markdown via the firecrawl CLI. Pass `runner` in tests."""
+    run = runner or _run_firecrawl
+    return run(url)
+
+
+def _run_firecrawl(url):
+    result = subprocess.run(
+        ["firecrawl", "scrape", url, "--format", "markdown"],
+        capture_output=True, text=True, timeout=90,
+    )
+    if result.returncode != 0:
+        raise RuntimeError("firecrawl failed: " + (result.stderr or "")[:200])
+    return result.stdout

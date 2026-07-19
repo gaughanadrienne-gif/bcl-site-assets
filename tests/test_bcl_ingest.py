@@ -141,3 +141,36 @@ def test_guard_refuses_when_too_few(tmp_path):
     with pytest.raises(GuardError):
         write_public_json_guarded(p, "jobs", [{"id": 1}], min_total=5, note="n", today="2026-07-19")
     assert _json.loads(open(p, encoding="utf-8").read())["count"] == 99
+
+
+from shared.bcl_ingest import http_get, http_json, firecrawl_markdown
+
+
+class _FakeResp:
+    def __init__(self, body):
+        self._body = body
+    def read(self):
+        return self._body.encode("utf-8")
+    def __enter__(self):
+        return self
+    def __exit__(self, *a):
+        return False
+
+
+def test_http_get_uses_opener_and_decodes():
+    captured = {}
+    def fake_opener(req, timeout=None):
+        captured["ua"] = req.get_header("User-agent")
+        captured["url"] = req.full_url
+        return _FakeResp("hello")
+    assert http_get("https://x/1", opener=fake_opener) == "hello"
+    assert captured["url"] == "https://x/1"
+    assert "BoulderCreekLocal" in captured["ua"]
+
+def test_http_json_parses():
+    def fake_opener(req, timeout=None):
+        return _FakeResp('{"a": 1}')
+    assert http_json("https://x/1", opener=fake_opener) == {"a": 1}
+
+def test_firecrawl_markdown_uses_runner():
+    assert firecrawl_markdown("https://x/1", runner=lambda u: "# md " + u) == "# md https://x/1"
