@@ -1148,7 +1148,8 @@
    "no_storefront": true,
    "license": "CSLB #1004212 (active, C-36)",
    "hours_text": null,
-   "address": null
+   "address": null,
+   "tile": "collins-coastal-plumbing-inc.png"
   },
   {
    "name": "Wade's, Inc.",
@@ -2350,7 +2351,8 @@
    "no_storefront": true,
    "license": "CSLB #985600 (active, C-36)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "j-fisher-plumbing.png"
   },
   {
    "name": "Masood's Lodge",
@@ -2758,7 +2760,8 @@
    "hours_text": null,
    "verified_at": "2026-07-17",
    "lat": 37.0527896,
-   "lon": -122.0727863
+   "lon": -122.0727863,
+   "tile": "felton-nails.png"
   },
   {
    "name": "Millie's Nail & Spa",
@@ -2770,7 +2773,8 @@
    "phone": "408-207-8450",
    "website": null,
    "hours_text": null,
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "millies-nail-and-spa.png"
   },
   {
    "name": "Kathy Nails",
@@ -2784,7 +2788,8 @@
    "hours_text": null,
    "verified_at": "2026-07-17",
    "lat": 37.0513591,
-   "lon": -122.0731429
+   "lon": -122.0731429,
+   "tile": "kathy-nails.png"
   },
   {
    "name": "Bella Nails",
@@ -2798,7 +2803,8 @@
    "hours_text": null,
    "verified_at": "2026-07-17",
    "lat": 37.0448236,
-   "lon": -122.0266412
+   "lon": -122.0266412,
+   "tile": "bella-nails.png"
   },
   {
    "name": "Wes White Handyman & General Maintenance",
@@ -2823,7 +2829,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "coastal-mountain-handyman-services.png"
   },
   {
    "name": "Squatch Valley Property Services",
@@ -2943,7 +2950,8 @@
    "no_storefront": true,
    "license": "CSLB #1126623 (active, C-20)",
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "norcal-hvac.png"
   },
   {
    "name": "Quality Inn & Suites Santa Cruz Mountains",
@@ -3038,7 +3046,8 @@
    "service_area": "San Lorenzo Valley",
    "verified_at": "2026-07-17",
    "lat": 36.9901141,
-   "lon": -122.0267403
+   "lon": -122.0267403,
+   "tile": "san-lorenzo-lumber-and-home.png"
   },
   {
    "name": "Santa Cruz Mountains Art Center",
@@ -3928,7 +3937,8 @@
    "service_area": "Santa Cruz County and the Bay Area",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "cristal-stephani-makeup-artist.png"
   },
   {
    "name": "Kala Ketchum Makeup & Hair",
@@ -3942,7 +3952,8 @@
    "service_area": "Santa Cruz County and the Bay Area",
    "verified_at": "2026-07-17",
    "hours_text": null,
-   "no_storefront": true
+   "no_storefront": true,
+   "tile": "kala-ketchum-makeup-and-hair.png"
   },
   {
    "name": "Alexis Party Rental",
@@ -4058,7 +4069,8 @@
    "website": "https://petshopsantacruz.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": null
+   "hours_text": null,
+   "tile": "pet-shop-santa-cruz.png"
   },
   {
    "name": "Fintastic Fish",
@@ -4347,7 +4359,8 @@
    "website": "https://lomaprietawinery.com/",
    "hours_text": "Open weekends 12:00-5:00 p.m.",
    "local": true,
-   "verified_at": "2026-07-17"
+   "verified_at": "2026-07-17",
+   "tile": "loma-prieta-winery.png"
   },
   {
    "category": "Vineyards & Wine Tasting",
