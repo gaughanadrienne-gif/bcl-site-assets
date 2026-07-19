@@ -1,5 +1,5 @@
 {
- "updated": "2026-07-17",
+ "updated": "2026-07-19",
  "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category.",
  "events": [
   {
@@ -1032,6 +1032,33 @@
    "category": "Family & Kids",
    "description": "Third annual free playdate for infants, toddlers, and preschoolers up to age 5, a collaboration between Miss Brooke's Mini & Me Music Classes and Messy Play Kits.",
    "url": "https://www.instagram.com/missmakermomma/"
+  },
+  {
+   "title": "Pancake Breakfast at Highlands Park",
+   "start": "2026-08-16T08:30",
+   "end": "2026-08-16T12:00",
+   "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
+   "url": "https://www.highlandsparkseniorcenter.org/",
+   "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids under 7; cash, credit, or debit. Everyone welcome.",
+   "category": "Community"
+  },
+  {
+   "title": "Pancake Breakfast at Highlands Park",
+   "start": "2026-09-20T08:30",
+   "end": "2026-09-20T12:00",
+   "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
+   "url": "https://www.highlandsparkseniorcenter.org/",
+   "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids under 7; cash, credit, or debit. Everyone welcome.",
+   "category": "Community"
+  },
+  {
+   "title": "Pancake Breakfast at Highlands Park",
+   "start": "2026-10-18T08:30",
+   "end": "2026-10-18T12:00",
+   "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
+   "url": "https://www.highlandsparkseniorcenter.org/",
+   "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids under 7; cash, credit, or debit. Everyone welcome.",
+   "category": "Community"
   }
  ]
 }
