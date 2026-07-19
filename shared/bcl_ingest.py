@@ -131,3 +131,39 @@ class DetailCache:
         with open(tmp, "w", encoding="utf-8") as fh:
             json.dump(self.data, fh)
         os.replace(tmp, self.path)
+
+
+class GuardError(Exception):
+    """Raised when a run produces too few records to safely overwrite live data."""
+
+
+def load_json(path, default=None):
+    if not os.path.exists(path):
+        return default
+    with open(path, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def write_json_atomic(path, obj):
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump(obj, fh, ensure_ascii=False, indent=1)
+    os.replace(tmp, path)
+
+
+def write_public_json_guarded(path, key, records, min_total, note, today):
+    """Write the public payload only when it clears the safety floor.
+
+    A broken scrape must never blank or shrink the live board: if fewer than
+    min_total records were produced, raise GuardError WITHOUT touching the file,
+    so the .bat wrapper sees a nonzero exit and skips the commit/push.
+    """
+    if len(records) < min_total:
+        raise GuardError(
+            "refusing to write %s: %d records < MIN_SAFE_TOTAL %d"
+            % (path, len(records), min_total)
+        )
+    payload = {"_note": note, "updated": today, "count": len(records), key: records}
+    write_json_atomic(path, payload)
+    return payload

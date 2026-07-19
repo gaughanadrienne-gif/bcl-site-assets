@@ -110,3 +110,34 @@ def test_detail_cache_persists_across_instances(tmp_path):
 def test_detail_cache_missing_returns_none(tmp_path):
     c = DetailCache(str(tmp_path / "cache.json"))
     assert c.get("https://x/nope") is None
+
+
+import json as _json
+import pytest
+from shared.bcl_ingest import (
+    GuardError, load_json, write_json_atomic, write_public_json_guarded,
+)
+
+
+def test_load_json_missing_returns_default(tmp_path):
+    assert load_json(str(tmp_path / "nope.json"), default=[]) == []
+
+def test_write_and_load_roundtrip(tmp_path):
+    p = str(tmp_path / "out.json")
+    write_json_atomic(p, {"a": 1})
+    assert load_json(p) == {"a": 1}
+
+def test_guarded_write_publishes_when_enough(tmp_path):
+    p = str(tmp_path / "jobs.json")
+    recs = [{"id": 1}, {"id": 2}, {"id": 3}]
+    payload = write_public_json_guarded(p, "jobs", recs, min_total=2, note="n", today="2026-07-19")
+    assert payload["count"] == 3 and payload["updated"] == "2026-07-19"
+    on_disk = _json.loads(open(p, encoding="utf-8").read())
+    assert on_disk["jobs"][0]["id"] == 1 and on_disk["_note"] == "n"
+
+def test_guard_refuses_when_too_few(tmp_path):
+    p = str(tmp_path / "jobs.json")
+    open(p, "w").write('{"count": 99}')  # existing good file must be left intact
+    with pytest.raises(GuardError):
+        write_public_json_guarded(p, "jobs", [{"id": 1}], min_total=5, note="n", today="2026-07-19")
+    assert _json.loads(open(p, encoding="utf-8").read())["count"] == 99
