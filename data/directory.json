@@ -1,7 +1,7 @@
 {
  "updated": "2026-07-19",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/submit",
- "count": 300,
+ "count": 298,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -3335,7 +3335,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "address": null,
-   "hours_text": null
+   "hours_text": null,
+   "tile": "woodland-floral-and-creations.png"
   },
   {
    "name": "Camp Joy Gardens",
@@ -3976,20 +3977,6 @@
    "tile": "kyer-wiltshire.svg"
   },
   {
-   "name": "Boulder Creek Flowers & Lokahi Designs",
-   "category": "Florists",
-   "subcategory": "Florist",
-   "description": "Boulder Creek florist, also known as Everly Designs, offering wedding and event flowers by appointment.",
-   "address": null,
-   "locality": "Boulder Creek",
-   "phone": null,
-   "website": "https://www.bouldercreekflowers.biz/",
-   "service_area": "San Lorenzo Valley and Santa Cruz County",
-   "verified_at": "2026-07-17",
-   "hours_text": null,
-   "no_storefront": true
-  },
-  {
    "name": "Pretty Petals Arrangements",
    "category": "Florists",
    "subcategory": "Florist",
@@ -3999,20 +3986,6 @@
    "phone": null,
    "website": "https://prettypetalsarrangements.com/",
    "service_area": "San Lorenzo Valley and Monterey Bay",
-   "verified_at": "2026-07-17",
-   "hours_text": null,
-   "no_storefront": true
-  },
-  {
-   "name": "Quaintrelle Farms",
-   "category": "Florists",
-   "subcategory": "Florist",
-   "description": "Santa Cruz flower farm and floral studio offering wedding and event flowers.",
-   "address": null,
-   "locality": "Santa Cruz",
-   "phone": null,
-   "website": "https://www.quaintrellefarms.com/",
-   "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
    "no_storefront": true
