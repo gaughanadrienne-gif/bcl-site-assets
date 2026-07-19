@@ -41,3 +41,21 @@ def test_dedupe_by_keeps_first_preserves_order():
     rows = [{"id": 1, "k": "x"}, {"id": 2, "k": "y"}, {"id": 3, "k": "x"}]
     out = dedupe_by(rows, lambda r: r["k"])
     assert [r["id"] for r in out] == [1, 2]
+
+
+from shared.bcl_ingest import classify_geo, commute_minutes
+
+
+def test_classify_geo_core_extended_unknown():
+    assert classify_geo("Boulder Creek") == "core"
+    assert classify_geo("Los Gatos") == "core"
+    assert classify_geo("San Jose") == "extended"
+    assert classify_geo("Fresno") == "unknown"
+
+def test_classify_geo_trims_and_handles_none():
+    assert classify_geo("  Felton ") == "core"
+    assert classify_geo(None) == "unknown"
+
+def test_commute_minutes():
+    assert commute_minutes("Los Gatos") == 25
+    assert commute_minutes("Fresno") is None

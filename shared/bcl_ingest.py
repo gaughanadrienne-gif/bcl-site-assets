@@ -2,6 +2,8 @@
 
 import hashlib
 import html
+import json
+import os
 import re
 from urllib.parse import urlsplit, urlunsplit
 
@@ -51,3 +53,27 @@ def dedupe_by(records, keyfn):
         seen.add(key)
         out.append(rec)
     return out
+
+
+_COMMUTE_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "commute_table.json")
+_COMMUTE_CACHE = None
+
+
+def _commute_table():
+    global _COMMUTE_CACHE
+    if _COMMUTE_CACHE is None:
+        with open(_COMMUTE_PATH, encoding="utf-8") as fh:
+            _COMMUTE_CACHE = json.load(fh)
+    return _COMMUTE_CACHE
+
+
+def classify_geo(city):
+    """Return the geography tier for a work city: core, extended, or unknown."""
+    row = _commute_table().get((city or "").strip())
+    return row["tier"] if row else "unknown"
+
+
+def commute_minutes(city):
+    """Approximate drive minutes from Boulder Creek for a work city, or None."""
+    row = _commute_table().get((city or "").strip())
+    return row["minutes"] if row else None
