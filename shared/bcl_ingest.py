@@ -279,9 +279,14 @@ def firecrawl_markdown(url, runner=None):
 
 
 def _run_firecrawl(url):
+    # On Windows the firecrawl CLI is a .CMD shim; subprocess needs shell=True
+    # there to resolve it (POSIX shells resolve the plain executable fine).
+    # encoding/errors are pinned to utf-8/replace because scraped pages often
+    # contain bytes the Windows console-locale codec (cp1252) can't decode.
     result = subprocess.run(
         ["firecrawl", "scrape", url, "--format", "markdown"],
-        capture_output=True, text=True, timeout=90,
+        capture_output=True, text=True, timeout=90, shell=(os.name == "nt"),
+        encoding="utf-8", errors="replace",
     )
     if result.returncode != 0:
         raise RuntimeError("firecrawl failed: " + (result.stderr or "")[:200])
