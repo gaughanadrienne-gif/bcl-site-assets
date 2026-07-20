@@ -1,11 +1,15 @@
 """Parser tests pinned against real captured fixtures (ground truth)."""
 
 from rentals.parsers import appfolio, custom_html, rentvine
+from shared.bcl_ingest import is_slv
 
 RENTVINE_MD = open("tests/fixtures/rentvine_pmi.md", encoding="utf-8").read()
 STREAMLINE_MD = open("tests/fixtures/streamline_rentals.md", encoding="utf-8").read()
 APPFOLIO_MD = open("tests/fixtures/appfolio_populated.md", encoding="utf-8").read()
 APPFOLIO_EMPTY_MD = open("tests/fixtures/appfolio_scottsvalley.md", encoding="utf-8").read()
+APPFOLIO_BAILEYPM_MD = open("tests/fixtures/appfolio_baileypm.md", encoding="utf-8").read()
+APPFOLIO_POWERWEST_MD = open("tests/fixtures/appfolio_powerwest.md", encoding="utf-8").read()
+APPFOLIO_ANDERSONCHRISTIE_MD = open("tests/fixtures/appfolio_andersonchristie.md", encoding="utf-8").read()
 
 SOURCE = {"name": "test-source", "url": "https://example.com/listings"}
 
@@ -83,6 +87,42 @@ def test_appfolio_skips_zero_dollar_placeholder_card():
 def test_appfolio_empty_state_returns_no_rows():
     rows = appfolio.parse(APPFOLIO_EMPTY_MD, SOURCE)
     assert rows == []
+
+
+def test_appfolio_baileypm_parses_confirmed_ben_lomond_row():
+    rows = appfolio.parse(APPFOLIO_BAILEYPM_MD, SOURCE)
+    assert len(rows) >= 1
+    matches = [r for r in rows if r["address_public"] == "325 Vista Robles Dr."]
+    assert len(matches) == 1
+    row = matches[0]
+    assert row["city"] == "Ben Lomond"
+    assert row["postal_code"] == "95005"
+    assert row["monthly_rent"] == "4500"
+    assert is_slv({"postal_code": row["postal_code"], "city": row["city"]})
+
+
+def test_appfolio_powerwest_parses_confirmed_ben_lomond_row():
+    rows = appfolio.parse(APPFOLIO_POWERWEST_MD, SOURCE)
+    assert len(rows) >= 1
+    matches = [r for r in rows if r["address_public"] == "333 Dakenbrook Drive"]
+    assert len(matches) == 1
+    row = matches[0]
+    assert row["city"] == "Ben Lomond"
+    assert row["postal_code"] == "95005"
+    assert row["monthly_rent"] == "1800"
+    assert is_slv({"postal_code": row["postal_code"], "city": row["city"]})
+
+
+def test_appfolio_andersonchristie_parses_confirmed_boulder_creek_row():
+    rows = appfolio.parse(APPFOLIO_ANDERSONCHRISTIE_MD, SOURCE)
+    assert len(rows) >= 1
+    matches = [r for r in rows if r["address_public"] == "13127 Hazel Ave"]
+    assert len(matches) == 1
+    row = matches[0]
+    assert row["city"] == "Boulder Creek"
+    assert row["postal_code"] == "95006"
+    assert row["monthly_rent"] == "1900"
+    assert is_slv({"postal_code": row["postal_code"], "city": row["city"]})
 
 
 import re as _re

@@ -17,7 +17,7 @@ _CARD_RE = re.compile(
     re.S,
 )
 _RENT_RE = re.compile(r"\$([\d,]+)")
-_BEDBATH_RE = re.compile(r"(\d+)\s*bd\s*/\s*(\d+)\s*ba", re.I)
+_BEDBATH_RE = re.compile(r"(\d+|Studio)\s*(?:bd)?\s*/\s*(\d+(?:\.\d+)?)\s*ba", re.I)
 _SQFT_RE = re.compile(r"Square Feet\s*([\d,]+)", re.I)
 _AVAILABLE_RE = re.compile(r"Available\s*(NOW|[\d/]+)", re.I)
 _ADDRESS_RE = re.compile(r"([^\n,]+),\s*([^\n,]+?),\s*CA\s*(\d{5})(?:-\d+)?")
@@ -42,6 +42,8 @@ def parse(markdown, source):
             continue  # $0 / missing bed-bath -> "Online Rental Application" placeholder
 
         bedrooms, bathrooms = bb_m.group(1), bb_m.group(2)
+        if bedrooms.lower() == "studio":
+            bedrooms = "0"
 
         sqft_m = _SQFT_RE.search(detail)
         square_feet = sqft_m.group(1).replace(",", "") if sqft_m else ""
