@@ -244,7 +244,7 @@
         "</select>" +
         "</div>" +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
-        '<div class="bcl-note">Something wrong or missing? <a href="/submit">Send an update</a>.</div>';
+        '<div class="bcl-note">Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
 
       var input = root.querySelector("input");
       var select = root.querySelector("select");
@@ -261,7 +261,7 @@
         });
         count.textContent = rows.length + " OF " + all.length + " LISTINGS · UPDATED " + (data.updated || "");
         if (!rows.length) {
-          list.innerHTML = '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/submit">Suggest it</a>.</div>';
+          list.innerHTML = '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/contact">Suggest it</a>.</div>';
           return;
         }
         // Cap the nearby tier only when browsing (no active search), so a search never hides matches.
@@ -271,7 +271,7 @@
       select.addEventListener("change", render);
       render();
     }).catch(function () {
-      unavailable(root, "The " + label + " list", 'You can still <a href="/submit">send an update</a>.');
+      unavailable(root, "The " + label + " list", 'You can still <a href="/contact">send an update</a>.');
     });
   }
 
@@ -333,7 +333,7 @@
     else if (job.first_seen_at) h += '<div class="bcl-meta">First seen ' + esc(job.first_seen_at) + "</div>";
     h += '<div class="bcl-verified">SOURCE: ' + esc(job.source || "") + " · VERIFIED " + esc(job.last_verified_at || "") + "</div>";
     h += '<div class="bcl-actionrow"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">Apply at source</a></div>';
-    h += '<div class="bcl-actionrow"><a href="/submit">Report a problem with this listing</a></div>';
+    h += '<div class="bcl-actionrow"><a href="/contact">Report a problem with this listing</a></div>';
     return h + "</div>";
   }
 
@@ -356,7 +356,7 @@
         "</div>" +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
         '<div class="bcl-note">Boulder Creek Local is not the employer and does not process applications. Verify details and apply directly with the employer. ' +
-        'Something wrong or missing? <a href="/submit">Send an update</a>.</div>';
+        'Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
 
       var input = root.querySelector("input");
       var select = root.querySelector("select");
@@ -377,7 +377,7 @@
         });
         count.textContent = rows.length + " OF " + all.filter(function (j) { return jobTab(j) === tab; }).length + " " + tab.toUpperCase() + " JOBS · UPDATED " + (data.updated || "");
         if (!rows.length) {
-          list.innerHTML = '<div class="bcl-unavailable">No jobs match right now. <a href="/submit">Suggest one</a>.</div>';
+          list.innerHTML = '<div class="bcl-unavailable">No jobs match right now. <a href="/contact">Suggest one</a>.</div>';
           return;
         }
         list.innerHTML = rows.map(jobCard).join("");
@@ -394,7 +394,7 @@
       extBox.addEventListener("change", render);
       render();
     }).catch(function () {
-      unavailable(root, "The jobs board", 'You can still <a href="/submit">send an update</a>.');
+      unavailable(root, "The jobs board", 'You can still <a href="/contact">send an update</a>.');
     });
   }
 
@@ -446,7 +446,7 @@
     if (rental.furnished) h += '<div class="bcl-meta">Furnished</div>';
     h += '<div class="bcl-verified">SOURCE: ' + esc(rental.property_manager || rental.source || "") + " · VERIFIED " + esc(rental.last_verified_at || "") + "</div>";
     h += '<div class="bcl-actionrow"><a href="' + esc(rental.canonical_url) + '" target="_blank" rel="noopener">View original listing</a></div>';
-    h += '<div class="bcl-actionrow"><a href="/submit">Report a problem with this listing</a></div>';
+    h += '<div class="bcl-actionrow"><a href="/contact">Report a problem with this listing</a></div>';
     return h + "</div>";
   }
 
@@ -468,7 +468,7 @@
         'Never wire money or pay a deposit before viewing a property in person and verifying the lister. Report suspicious listings. ' +
         'This site does not discriminate and does not knowingly list rentals that violate fair housing law in the San Lorenzo Valley ' +
         '(Boulder Creek, Ben Lomond, Felton, Brookdale). ' +
-        '<a href="/submit">Send an update</a>.</div>' +
+        '<a href="/contact">Send an update</a>.</div>' +
         '<div class="bcl-actionrow">Looking further? See more valley rentals on ' +
         '<a href="https://www.zillow.com/boulder-creek-ca/rentals/" target="_blank" rel="noopener">Zillow</a>.</div>';
 
@@ -488,7 +488,7 @@
         });
         count.textContent = rows.length + " OF " + all.length + " SAN LORENZO VALLEY RENTALS · UPDATED " + (data.updated || "");
         if (!rows.length) {
-          list.innerHTML = '<div class="bcl-unavailable">No verified San Lorenzo Valley rentals are listed right now. <a href="/submit">Suggest one</a>.</div>';
+          list.innerHTML = '<div class="bcl-unavailable">No verified San Lorenzo Valley rentals are listed right now. <a href="/contact">Suggest one</a>.</div>';
           return;
         }
         list.innerHTML = rows.map(rentalCard).join("");
@@ -499,7 +499,7 @@
       verifiedBox.addEventListener("change", render);
       render();
     }).catch(function () {
-      unavailable(root, "The rentals board", 'You can still <a href="/submit">send an update</a>.');
+      unavailable(root, "The rentals board", 'You can still <a href="/contact">send an update</a>.');
     });
   }
 
@@ -574,7 +574,7 @@
       if (!all.length) {
         root.innerHTML =
           '<div class="bcl-unavailable">No verified upcoming events right now. Events appear here only after a person confirms the details with the organizer. ' +
-          'Know of one? <a href="/submit">Tell us</a>.</div>';
+          'Know of one? <a href="/contact">Tell us</a>.</div>';
         return;
       }
 
@@ -591,7 +591,7 @@
         '<select class="bcl-ev-sort" aria-label="Sort events"><option value="date">Soonest first</option><option value="name">Name A to Z</option><option value="type">By type</option></select>' +
         "</div>" +
         '<div class="bcl-count"></div><div class="bcl-event-grid"></div>' +
-        '<div class="bcl-note">Details change. Confirm with the organizer before you go. <a href="/submit">Send a correction or add an event</a>.</div>';
+        '<div class="bcl-note">Details change. Confirm with the organizer before you go. <a href="/contact">Send a correction or add an event</a>.</div>';
 
       var input = root.querySelector("input");
       var catSel = root.querySelector(".bcl-ev-cat");
