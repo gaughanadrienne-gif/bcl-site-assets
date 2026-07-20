@@ -8,7 +8,7 @@
 (function () {
   "use strict";
 
-  var REPO = "https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main";
+  var REPO = (typeof window !== "undefined" && window.BCL_REPO) || "https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main";
   var NWS_POINT = { lat: 37.1261, lon: -122.1222 }; // downtown Boulder Creek
 
   var LOCAL_ALLOWLIST = ["Boulder Creek", "Brookdale", "Ben Lomond", "Lompico", "Zayante", "San Lorenzo Valley", "Felton", "Scotts Valley"];
@@ -266,6 +266,68 @@
     }).catch(function () {
       unavailable(root, "The " + label + " list", 'You can still <a href="/submit">send an update</a>.');
     });
+  }
+
+  /* ---------- jobs ---------- */
+
+  function jobTab(job) {
+    return job && job.geography_tier === "remote" ? "remote" : "local";
+  }
+
+  function jobSalaryText(job) {
+    return job.salary_disclosed ? job.salary_text : "Pay not listed";
+  }
+
+  function jobSortKey(job) {
+    return {
+      verified: job.verification_status === "verified" ? 0 : 1,
+      posted: job.posted_at || "",
+      title: String(job.title || "")
+    };
+  }
+
+  function jobCompare(a, b) {
+    var ka = jobSortKey(a), kb = jobSortKey(b);
+    if (ka.verified !== kb.verified) return ka.verified - kb.verified;
+    /* newest posted_at first; empty dates sort last regardless of direction */
+    var ap = ka.posted, bp = kb.posted;
+    if (!ap && bp) return 1;
+    if (ap && !bp) return -1;
+    if (ap !== bp) return ap > bp ? -1 : 1;
+    return ka.title.localeCompare(kb.title);
+  }
+
+  function filterJobs(rows, opts) {
+    opts = opts || {};
+    var tab = opts.tab || "local";
+    var q = (opts.q || "").toLowerCase();
+    var rows2 = rows.filter(function (j) {
+      if (jobTab(j) !== tab) return false;
+      if (tab === "local" && j.geography_tier === "extended" && !opts.includeExtended) return false;
+      if (opts.category && j.category !== opts.category) return false;
+      if (q) {
+        var hay = ((j.title || "") + " " + (j.employer_name || "") + " " + (j.city || "")).toLowerCase();
+        if (hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+    return rows2.sort(jobCompare);
+  }
+
+  function jobCard(job) {
+    var h = '<div class="bcl-job-card">';
+    h += '<div class="bcl-name"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">' + esc(job.title) + "</a></div>";
+    var tier = job.geography_tier === "remote" ? "Remote" : (job.geography_tier === "extended" ? "Extended commute" : "Local");
+    h += '<div class="bcl-sub">' + esc(job.employer_name) + (job.city ? " · " + esc(job.city) : "") + " · " + esc(tier) + "</div>";
+    if (job.commute_minutes && job.geography_tier !== "remote") h += '<div class="bcl-meta">Commute: ~' + esc(String(job.commute_minutes)) + " min</div>";
+    if (job.employment_type) h += '<div class="bcl-meta">' + esc(job.employment_type) + "</div>";
+    h += '<div class="bcl-meta">' + esc(jobSalaryText(job)) + "</div>";
+    if (job.posted_at) h += '<div class="bcl-meta">Posted ' + esc(job.posted_at) + "</div>";
+    else if (job.first_seen_at) h += '<div class="bcl-meta">First seen ' + esc(job.first_seen_at) + "</div>";
+    h += '<div class="bcl-verified">SOURCE: ' + esc(job.source || "") + " · VERIFIED " + esc(job.last_verified_at || "") + "</div>";
+    h += '<div class="bcl-actionrow"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">Apply at source</a></div>';
+    h += '<div class="bcl-actionrow"><a href="/submit">Report a problem with this listing</a></div>';
+    return h + "</div>";
   }
 
   /* ---------- events ---------- */
@@ -668,6 +730,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard };
   }
 })();
