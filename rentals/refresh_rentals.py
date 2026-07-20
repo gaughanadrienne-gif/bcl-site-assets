@@ -14,8 +14,8 @@ from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from shared.bcl_ingest import (  # noqa: E402
-    dedupe_by, firecrawl_markdown, normalize_url, record_fingerprint,
-    write_json_atomic, write_rentals_guarded,
+    dedupe_by, firecrawl_markdown, load_manual_entries, normalize_url,
+    record_fingerprint, write_json_atomic, write_rentals_guarded,
 )
 from shared.review_board import render_review_board  # noqa: E402
 from rentals.normalize import include_rental, normalize_rental  # noqa: E402
@@ -42,11 +42,15 @@ PARSERS = {
 # All rentals sources are scraped via firecrawl markdown (see plan self-review
 # -- the AppFolio JS-render/JSON-endpoint hardening is a follow-up).
 
-_DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
-_REVIEW_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "review")
+_ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_DATA_DIR = os.path.join(_ROOT_DIR, "data")
+_REVIEW_DIR = os.path.join(_ROOT_DIR, "review")
+_PARTIALS_DIR = os.path.join(_ROOT_DIR, "partials")
 RENTALS_PATH = os.path.join(_DATA_DIR, "rentals.json")
 QUEUE_PATH = os.path.join(_REVIEW_DIR, "rentals-pending.json")
 REVIEW_BOARD_PATH = os.path.join(_REVIEW_DIR, "review-board.html")
+MANUAL_RENTALS_PATH = os.path.join(_PARTIALS_DIR, "manual-rentals.json")
+MANUAL_TTL_DAYS = 14
 
 
 def fetch_raw(source, fetchers):
@@ -55,7 +59,10 @@ def fetch_raw(source, fetchers):
     return firecrawl_fn(source["url"])
 
 
-def build_rentals(sources, fetchers, today):
+_MANUAL_SOURCE = {"name": "Community submission"}
+
+
+def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
     """Fetch+parse+normalize every ENABLED source; return (published, queued, had_errors).
 
     `fetchers` is a dict with a firecrawl_markdown callable (injected so this
@@ -64,6 +71,12 @@ def build_rentals(sources, fetchers, today):
     never aborts the run. A per-row exception (a single malformed listing)
     is skipped WITHOUT setting had_errors, so one bad row can never drop the
     rest of a source or trip the tiny-inventory guard.
+
+    Owner-approved submissions in `manual_path` (see `load_manual_entries`)
+    are merged in and run through the exact same `normalize_rental` /
+    `include_rental` / `safety_status` gates as a scraped listing, so an
+    owner mistake still can't publish a non-95006 or scam/fair-housing-flagged
+    rental.
     """
     published = []
     queued = []
@@ -106,6 +119,27 @@ def build_rentals(sources, fetchers, today):
                     file=sys.stderr,
                 )
                 continue
+
+    for raw in load_manual_entries(manual_path, today, MANUAL_TTL_DAYS):
+        try:
+            rental = normalize_rental(raw, _MANUAL_SOURCE, today)
+            status, reason = include_rental(rental)
+            if status == "publish":
+                ok, safety_reasons = safety_status(rental)
+                if not ok:
+                    rental = dict(rental)
+                    rental["_queue_reason"] = "; ".join(safety_reasons)
+                    queued.append(rental)
+                    continue
+                published.append(rental)
+            elif status == "queue":
+                rental = dict(rental)
+                rental["_queue_reason"] = reason
+                queued.append(rental)
+            # "reject" -> dropped entirely
+        except Exception as exc:  # noqa: BLE001 -- one bad submission must not drop the rest
+            print("refresh_rentals: manual submission failed: %s" % exc, file=sys.stderr)
+            continue
 
     published = dedupe_by(published, lambda r: normalize_url(r["canonical_url"]) or r["id"])
     published = dedupe_by(

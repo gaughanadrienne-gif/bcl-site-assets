@@ -13,8 +13,8 @@ from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from shared.bcl_ingest import (  # noqa: E402
-    dedupe_by, firecrawl_markdown, http_get, http_json, normalize_url,
-    record_fingerprint, write_json_atomic, write_public_json_guarded,
+    dedupe_by, firecrawl_markdown, http_get, http_json, load_manual_entries,
+    normalize_url, record_fingerprint, write_json_atomic, write_public_json_guarded,
 )
 from shared.review_board import render_review_board  # noqa: E402
 from jobs.normalize import include_job, normalize_job  # noqa: E402
@@ -49,11 +49,15 @@ _MARKDOWN_PLATFORMS = {"neogov", "jobaps", "edjoin", "calopps", "custom_html",
 
 MIN_SAFE_TOTAL = 5
 
-_DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
-_REVIEW_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "review")
+_ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_DATA_DIR = os.path.join(_ROOT_DIR, "data")
+_REVIEW_DIR = os.path.join(_ROOT_DIR, "review")
+_PARTIALS_DIR = os.path.join(_ROOT_DIR, "partials")
 JOBS_PATH = os.path.join(_DATA_DIR, "jobs.json")
 QUEUE_PATH = os.path.join(_REVIEW_DIR, "jobs-pending.json")
 REVIEW_BOARD_PATH = os.path.join(_REVIEW_DIR, "review-board.html")
+MANUAL_JOBS_PATH = os.path.join(_PARTIALS_DIR, "manual-jobs.json")
+MANUAL_TTL_DAYS = 30
 
 
 def fetch_raw(source, http_get_fn, http_json_fn, firecrawl_markdown_fn):
@@ -70,12 +74,20 @@ def fetch_raw(source, http_get_fn, http_json_fn, firecrawl_markdown_fn):
     raise RuntimeError("no fetch strategy for platform %r" % platform)
 
 
-def build_jobs(sources, fetchers, today):
+_MANUAL_SOURCE = {"name": "Community submission"}
+
+
+def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
     """Fetch+parse+normalize every ENABLED source; return (published, queued).
 
     `fetchers` is a dict with http_get/http_json/firecrawl_markdown callables
     (injected so this is fully testable against fixtures, offline). A
     per-source exception is logged and skipped -- it never aborts the run.
+
+    Owner-approved submissions in `manual_path` (see `load_manual_entries`)
+    are merged in as if they were another source: they run through the exact
+    same `normalize_job`/`include_job` gates, so a submission can never
+    bypass the geography/exclusion checks that scraped rows go through.
     """
     http_get_fn = fetchers.get("http_get", http_get)
     http_json_fn = fetchers.get("http_json", http_json)
@@ -104,6 +116,16 @@ def build_jobs(sources, fetchers, today):
         except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
             print("refresh_jobs: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
             continue
+
+    for raw in load_manual_entries(manual_path, today, MANUAL_TTL_DAYS):
+        job = normalize_job(raw, _MANUAL_SOURCE, today)
+        ok, reason = include_job(job)
+        if ok:
+            published.append(job)
+        else:
+            job = dict(job)
+            job["_queue_reason"] = reason
+            queued.append(job)
 
     published = dedupe_by(published, lambda j: normalize_url(j["canonical_url"]) or j["id"])
     published = dedupe_by(
