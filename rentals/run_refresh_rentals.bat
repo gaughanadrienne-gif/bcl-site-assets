@@ -7,7 +7,7 @@ REM skip the guard; NEVER run --no-verify; NEVER run this from a test.
 
 setlocal
 
-set PATH=C:\Users\Adrie\AppData\Local\Programs\Python\Python314;C:\Users\Adrie\AppData\Local\Programs\Python\Python314\Scripts;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Windows\System32;%PATH%
+set PATH=C:\Users\Adrie\AppData\Local\Programs\Python\Python314;C:\Users\Adrie\AppData\Local\Programs\Python\Python314\Scripts;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Users\Adrie\AppData\Roaming\npm;C:\Windows\System32;%PATH%
 
 cd /d "C:\Users\Adrie\OneDrive\Businesses\Boulder Creek Local\Website\bcl-site-assets"
 
