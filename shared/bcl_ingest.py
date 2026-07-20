@@ -113,6 +113,53 @@ def is_95006(rec):
     return False
 
 
+SLV_ZIPS = frozenset({"95005", "95006", "95007", "95018"})
+SLV_TOWNS = {
+    "95005": "Ben Lomond",
+    "95006": "Boulder Creek",
+    "95007": "Brookdale",
+    "95018": "Felton",
+}
+_SLV_ZIP_RE = re.compile(r"\b(9500[567]|95018)\b")
+
+
+def _slv_zip_from_rec(rec):
+    """Return the SLV ZIP found in postal_code or a structured address field, else ''."""
+    postal = str(rec.get("postal_code", "")).strip()
+    if postal in SLV_ZIPS:
+        return postal
+    for field in ("address_public", "address_normalized"):
+        m = _SLV_ZIP_RE.search(str(rec.get(field, "") or ""))
+        if m:
+            return m.group(1)
+    return ""
+
+
+def is_slv(rec):
+    """True only when a record is confirmably in an SLV ZIP (95005/06/07/18).
+
+    Evidence = an exact postal_code match, or an SLV ZIP appearing in a
+    structured address field. A bare town name with no ZIP is NOT sufficient
+    (mirrors the old 95006-only rule, widened to the whole valley).
+    """
+    return bool(_slv_zip_from_rec(rec))
+
+
+def slv_locality(rec):
+    """Return the SLV town name for a record: postal_code first, then an SLV
+    ZIP found in an address field, else a case-insensitive city match against
+    an SLV town name, else "".
+    """
+    zip_code = _slv_zip_from_rec(rec)
+    if zip_code:
+        return SLV_TOWNS[zip_code]
+    city = str(rec.get("city", "")).strip().lower()
+    for town in SLV_TOWNS.values():
+        if city == town.lower():
+            return town
+    return ""
+
+
 _MONEY_RE = re.compile(r"\$?\s*([\d,]+(?:\.\d+)?)\s*(k)?", re.I)
 
 
