@@ -226,6 +226,38 @@ def load_json(path, default=None):
         return json.load(fh)
 
 
+def load_manual_entries(path, today, ttl_days):
+    """Load owner-approved submissions from a manual partial, dropping expired ones.
+
+    `path` holds `{"entries": [...]}`; each entry's effective date is its
+    `renewed_at` if set, else its `submitted_at`. An entry is returned when
+    that date is within `ttl_days` of `today` (inclusive). Missing file ->
+    `[]`. A malformed entry (no usable date) is skipped, never raises.
+    """
+    data = load_json(path, default=None) or {}
+    entries = data.get("entries", []) if isinstance(data, dict) else []
+    try:
+        today_d = date.fromisoformat(str(today)[:10])
+    except ValueError:
+        return []
+
+    out = []
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        effective = entry.get("renewed_at") or entry.get("submitted_at")
+        if not effective:
+            continue
+        try:
+            effective_d = date.fromisoformat(str(effective)[:10])
+        except ValueError:
+            continue
+        age_days = (today_d - effective_d).days
+        if 0 <= age_days <= ttl_days:
+            out.append(entry)
+    return out
+
+
 def write_json_atomic(path, obj):
     os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
     tmp = path + ".tmp"
