@@ -42,6 +42,36 @@ def test_clean_listing_is_ok():
     assert reasons == []
 
 
+def test_scam_flag_zelle_payment():
+    rental = _rental(description="Please pay deposit via zelle before move-in.")
+    flags = scam_flags(rental)
+    assert flags
+
+
+def test_fair_housing_flag_protected_class_preference():
+    rental = _rental(description="Christian household preferred, no exceptions.")
+    flags = fair_housing_flags(rental)
+    assert flags
+
+
+def test_fair_housing_flag_no_service_animals():
+    rental = _rental(description="No service animals allowed on the property.")
+    flags = fair_housing_flags(rental)
+    assert flags
+
+
+def test_fair_housing_flag_no_vouchers():
+    rental = _rental(description="Sorry, no vouchers accepted for this unit.")
+    flags = fair_housing_flags(rental)
+    assert flags
+
+
+def test_fair_housing_flag_no_families():
+    rental = _rental(description="Adult community, no families please.")
+    flags = fair_housing_flags(rental)
+    assert flags
+
+
 def test_safety_status_combines_and_prefixes_reasons():
     rental = _rental(
         monthly_rent=450,

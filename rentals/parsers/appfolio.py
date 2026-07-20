@@ -10,7 +10,7 @@ undisclosed is always False. Empty-state pages (no cards) return [].
 
 import re
 
-from shared.bcl_ingest import sanitize_text
+from shared.bcl_ingest import sanitize_text, scrub_pii
 
 _CARD_RE = re.compile(
     r"\[!\[[^\]]*\]\([^)]*\)(?P<body>.*?)\]\((?P<url>https://[^)\s]*?/listings/detail/[^)\s]+)\)",
@@ -70,7 +70,7 @@ def parse(markdown, source):
             "available_date": available_date,
             "property_type": "",
             "url": url,
-            "description": "",
+            "description": scrub_pii(sanitize_text(detail)),
             "undisclosed": False,
         })
     return rows

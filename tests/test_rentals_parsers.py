@@ -71,3 +71,40 @@ def test_appfolio_skips_zero_dollar_placeholder_card():
 def test_appfolio_empty_state_returns_no_rows():
     rows = appfolio.parse(APPFOLIO_EMPTY_MD, SOURCE)
     assert rows == []
+
+
+import re as _re
+
+from rentals.normalize import normalize_rental
+
+_EMAIL_RE = _re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
+_PHONE_RE = _re.compile(r"\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}")
+
+
+def test_appfolio_description_captures_real_fixture_phrase():
+    rows = appfolio.parse(APPFOLIO_MD, SOURCE)
+    descriptions = " ".join(r["description"] for r in rows)
+    # 329 Dufour Street listing body genuinely says "fully furnished".
+    assert "fully furnished" in descriptions.lower()
+
+
+def test_appfolio_description_scrubs_pii():
+    rows = appfolio.parse(APPFOLIO_MD, SOURCE)
+    for row in rows:
+        assert not _EMAIL_RE.search(row["description"])
+        assert not _PHONE_RE.search(row["description"])
+
+
+def test_no_pii_in_normalized_output_across_all_fixtures():
+    today = "2026-07-19"
+    raw_rows = (
+        appfolio.parse(APPFOLIO_MD, SOURCE)
+        + rentvine.parse(RENTVINE_MD, SOURCE)
+        + custom_html.parse(STREAMLINE_MD, SOURCE)
+    )
+    assert raw_rows  # sanity: fixtures actually produced rows
+    for raw in raw_rows:
+        rental = normalize_rental(raw, SOURCE, today)
+        blob = " ".join(str(v) for v in rental.values())
+        assert not _EMAIL_RE.search(blob), blob
+        assert not _PHONE_RE.search(blob), blob

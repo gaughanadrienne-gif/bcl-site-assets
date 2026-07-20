@@ -25,6 +25,19 @@ def sanitize_text(value):
     return re.sub(r"\s+", " ", text).strip()
 
 
+_EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
+_PHONE_RE = re.compile(r"\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}")
+
+
+def scrub_pii(text):
+    """Remove email addresses and phone numbers from free text. Never raises."""
+    if not text:
+        return ""
+    out = _EMAIL_RE.sub(" ", str(text))
+    out = _PHONE_RE.sub(" ", out)
+    return re.sub(r"\s+", " ", out).strip()
+
+
 def make_slug(*parts):
     """Build a url-safe slug from the given parts; 'item' if everything is empty."""
     joined = " ".join(str(p) for p in parts if p).lower()

@@ -95,3 +95,37 @@ def test_min_stay_under_30_is_rejected():
     rental["minimum_stay_days"] = 7
     status, reason = include_rental(rental)
     assert status == "reject"
+
+
+def test_description_summary_derived_from_scrubbed_description():
+    rental = normalize_rental(
+        _raw(description="Enjoy this charming fully furnished 1-bedroom home near downtown."),
+        SOURCE, TODAY,
+    )
+    assert "fully furnished" in rental["description_summary"].lower()
+
+
+def test_furnished_true_when_description_says_furnished():
+    rental = normalize_rental(
+        _raw(description="This cozy studio comes fully furnished."), SOURCE, TODAY
+    )
+    assert rental["furnished"] is True
+
+
+def test_furnished_false_when_description_says_unfurnished():
+    rental = normalize_rental(
+        _raw(description="This unfurnished unit is move-in ready."), SOURCE, TODAY
+    )
+    assert rental["furnished"] is False
+
+
+def test_rental_scope_bedroom_in_headline_is_entire_not_private_room():
+    rental = normalize_rental(_raw(headline="2 Bedroom House"), SOURCE, TODAY)
+    assert rental["rental_scope"] == "entire"
+
+
+def test_rental_scope_private_room_in_shared_house():
+    rental = normalize_rental(
+        _raw(headline="Private room in shared house"), SOURCE, TODAY
+    )
+    assert rental["rental_scope"] == "private-room"

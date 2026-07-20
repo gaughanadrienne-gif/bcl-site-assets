@@ -174,3 +174,22 @@ def test_http_json_parses():
 
 def test_firecrawl_markdown_uses_runner():
     assert firecrawl_markdown("https://x/1", runner=lambda u: "# md " + u) == "# md https://x/1"
+
+
+from shared.bcl_ingest import scrub_pii
+
+
+def test_scrub_pii_removes_email_and_phone():
+    text = "call amy@pmisantacruz.com or (831) 555-1234"
+    out = scrub_pii(text)
+    assert "amy@pmisantacruz.com" not in out
+    assert "@" not in out
+    assert "555-1234" not in out
+    assert "831" not in out
+
+def test_scrub_pii_handles_none_and_empty():
+    assert scrub_pii(None) == ""
+    assert scrub_pii("") == ""
+
+def test_scrub_pii_collapses_whitespace_after_removal():
+    assert scrub_pii("Contact  amy@pmisantacruz.com  today") == "Contact today"

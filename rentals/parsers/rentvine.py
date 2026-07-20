@@ -19,7 +19,7 @@ RentVine always shows the full address, so undisclosed is always False.
 
 import re
 
-from shared.bcl_ingest import sanitize_text
+from shared.bcl_ingest import sanitize_text, scrub_pii
 
 _CARD_RE = re.compile(r"\[!\[[^\]]*\]\([^)]*\)(?P<body>.*?)\]\((?P<url>https://[^)\s]+)\)", re.S)
 _RENT_RE = re.compile(r"\$([\d,]+)\s*/\s*mo", re.I)
@@ -94,7 +94,7 @@ def parse(markdown, source):
             "available_date": available_date,
             "property_type": property_type,
             "url": url,
-            "description": "",
+            "description": scrub_pii(sanitize_text(body)),
             "undisclosed": False,
         })
     return rows

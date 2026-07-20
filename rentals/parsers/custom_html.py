@@ -13,7 +13,7 @@ case).
 
 import re
 
-from shared.bcl_ingest import sanitize_text
+from shared.bcl_ingest import sanitize_text, scrub_pii
 
 _FIELD_RE = re.compile(r"\*\*([^*:]+):\*\*\s*(.+)")
 _ADDRESS_RE = re.compile(r"([^,]+),\s*([^,]+?),\s*(?:CA\s*)?(\d{5})")
@@ -77,7 +77,7 @@ def parse(markdown, source):
             "available_date": available_date,
             "property_type": property_type,
             "url": source.get("url", ""),
-            "description": "",
+            "description": scrub_pii(sanitize_text(body)),
             "undisclosed": undisclosed,
             "lease_term_text": fields.get("lease type", ""),
         })

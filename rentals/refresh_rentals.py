@@ -41,7 +41,6 @@ PARSERS = {
 
 # All rentals sources are scraped via firecrawl markdown (see plan self-review
 # -- the AppFolio JS-render/JSON-endpoint hardening is a follow-up).
-MIN_SAFE_TOTAL = 0  # no count floor for rentals; see write_rentals_guarded
 
 _DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 _REVIEW_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "review")
@@ -60,8 +59,11 @@ def build_rentals(sources, fetchers, today):
     """Fetch+parse+normalize every ENABLED source; return (published, queued, had_errors).
 
     `fetchers` is a dict with a firecrawl_markdown callable (injected so this
-    is fully testable against fixtures, offline). A per-source exception sets
-    had_errors=True and is skipped -- it never aborts the run.
+    is fully testable against fixtures, offline). A per-source exception (a
+    broken fetch/parse) sets had_errors=True and skips the whole source -- it
+    never aborts the run. A per-row exception (a single malformed listing)
+    is skipped WITHOUT setting had_errors, so one bad row can never drop the
+    rest of a source or trip the tiny-inventory guard.
     """
     published = []
     queued = []
@@ -76,7 +78,13 @@ def build_rentals(sources, fetchers, today):
         try:
             raw_data = fetch_raw(source, fetchers)
             raw_rows = parser_fn(raw_data, source)
-            for raw in raw_rows:
+        except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
+            had_errors = True
+            print("refresh_rentals: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
+            continue
+
+        for raw in raw_rows:
+            try:
                 rental = normalize_rental(raw, source, today)
                 status, reason = include_rental(rental)
                 if status == "publish":
@@ -92,10 +100,12 @@ def build_rentals(sources, fetchers, today):
                     rental["_queue_reason"] = reason
                     queued.append(rental)
                 # "reject" -> dropped entirely
-        except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
-            had_errors = True
-            print("refresh_rentals: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
-            continue
+            except Exception as exc:  # noqa: BLE001 -- one bad row must not drop the source
+                print(
+                    "refresh_rentals: row from source %r failed: %s" % (source.get("name"), exc),
+                    file=sys.stderr,
+                )
+                continue
 
     published = dedupe_by(published, lambda r: normalize_url(r["canonical_url"]) or r["id"])
     published = dedupe_by(

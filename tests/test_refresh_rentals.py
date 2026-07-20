@@ -50,6 +50,27 @@ def test_build_rentals_is_idempotent():
     assert len(queued1) == len(queued2)
 
 
+def test_bad_row_is_skipped_without_setting_had_errors(monkeypatch):
+    import rentals.refresh_rentals as refresh_rentals_mod
+
+    orig_normalize = refresh_rentals_mod.normalize_rental
+    calls = {"n": 0}
+
+    def flaky_normalize(raw, source, today):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise ValueError("malformed row")
+        return orig_normalize(raw, source, today)
+
+    monkeypatch.setattr(refresh_rentals_mod, "normalize_rental", flaky_normalize)
+
+    published, queued, had_errors = build_rentals(SUBSET, _ok_fetchers(), TODAY)
+
+    assert had_errors is False
+    assert calls["n"] > 1  # later rows in the same/other sources still processed
+    assert published or queued  # the run was not dropped entirely
+
+
 def test_per_source_exception_sets_had_errors_but_other_source_still_yields():
     def _fetch(url, **kw):
         if url == RENTVINE_SOURCE["url"]:

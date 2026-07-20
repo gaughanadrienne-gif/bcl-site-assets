@@ -21,6 +21,6 @@ if errorlevel 1 (
 git add data/rentals.json
 git commit -m "Rentals refresh"
 git push
-curl -s -X PURGE "https://bouldercreeklocal.com/rentals" >> rentals\refresh.log 2>&1
+curl -s "https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/rentals.json" >> rentals\refresh.log 2>&1
 
 endlocal

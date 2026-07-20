@@ -40,10 +40,10 @@ def _num(value):
 def _rental_scope(raw):
     text = (sanitize_text(raw.get("headline", "")) + " " + sanitize_text(raw.get("property_type", ""))
             + " " + sanitize_text(raw.get("description", ""))).lower()
-    if "shared" in text:
-        return "shared"
-    if "room" in text:
+    if re.search(r"\broom\b", text):
         return "private-room"
+    if re.search(r"\bshared\b", text):
+        return "shared"
     return "entire"
 
 
@@ -70,6 +70,11 @@ def normalize_rental(raw, source, today):
     bathrooms = _num(raw.get("bathrooms"))
     square_feet = _num(raw.get("square_feet"))
     description = sanitize_text(raw.get("description", ""))
+    description_lower = description.lower()
+    furnished = (
+        ("furnished" in description_lower and "unfurnished" not in description_lower)
+        or "furnished" in headline.lower()
+    )
 
     return {
         "id": record_fingerprint([address_public or headline, city, url]),
@@ -92,12 +97,12 @@ def normalize_rental(raw, source, today):
         "available_date": sanitize_text(raw.get("available_date", "")),
         "lease_term": sanitize_text(raw.get("lease_term_text", "")),
         "minimum_stay_days": None,
-        "furnished": "furnished" in description.lower() or "furnished" in headline.lower(),
+        "furnished": furnished,
         "pets_policy": sanitize_text(raw.get("pets_policy", "")),
         "utilities_text": sanitize_text(raw.get("utilities_text", "")),
         "parking_text": sanitize_text(raw.get("parking_text", "")),
         "laundry_text": sanitize_text(raw.get("laundry_text", "")),
-        "description_summary": description[:400],
+        "description_summary": description[:300],
         "canonical_url": url,
         "source": source.get("name", ""),
         "property_manager": source.get("name", ""),
