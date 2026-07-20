@@ -1,0 +1,42 @@
+{
+ "_note": "Boulder Creek Local rentals board. Auto-refreshed; see refresh_rentals.py.",
+ "updated": "2026-07-19",
+ "count": 1,
+ "rentals": [
+  {
+   "id": "0a1e27f97a1b4b27cb0362fd4dec936ac9293ecb",
+   "slug": "boulder-creek-12895-highway-9",
+   "headline": "12895 Highway 9, Boulder Creek",
+   "property_type": "Single Family Home",
+   "rental_scope": "entire",
+   "address_public": "12895 Highway 9",
+   "city": "Boulder Creek",
+   "state": "CA",
+   "postal_code": "95006",
+   "location_precision": "exact",
+   "monthly_rent": 3600,
+   "total_monthly_price": 3600,
+   "deposit": null,
+   "application_fee": null,
+   "bedrooms": 2,
+   "bathrooms": 1.5,
+   "square_feet": 800,
+   "available_date": "Immediately",
+   "lease_term": "",
+   "minimum_stay_days": null,
+   "furnished": false,
+   "pets_policy": "",
+   "utilities_text": "",
+   "parking_text": "",
+   "laundry_text": "",
+   "description_summary": "\\\\ \\\\ $3,600/mo.\\\\ \\\\ \\\\ - \\\\ Beds: 2\\\\ \\\\ \\\\ - Full Baths: 1\\\\ \\\\ - Half Baths: 1\\\\ \\\\ - sqft: 800\\\\ \\\\ \\\\ 12895 Highway 9, Boulder Creek, 95006\\\\ \\\\ \\\\ Single Family Home\\\\ \\\\ \\\\ Available: Immediately",
+   "canonical_url": "https://www.pmisantacruz.com/santa-cruz-homes-for-rent/179/12895-highway-9-boulder-creek-ca-95006",
+   "source": "PMI Santa Cruz",
+   "property_manager": "PMI Santa Cruz",
+   "first_seen_at": "2026-07-19",
+   "last_verified_at": "2026-07-19",
+   "verification_status": "verified",
+   "freshness_label": ""
+  }
+ ]
+}
