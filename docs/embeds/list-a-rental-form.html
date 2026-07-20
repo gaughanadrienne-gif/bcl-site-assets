@@ -1,0 +1,161 @@
+<!-- Boulder Creek Local: List a Rental form.
+     Paste into a Squarespace CODE BLOCK on the /list-a-rental page.
+     Delivery: Web3Forms -> hello@bouldercreeklocal.com.
+     SETUP (30 seconds): go to https://web3forms.com, enter hello@bouldercreeklocal.com,
+     it emails you a free Access Key. Paste that key into the access_key value below,
+     replacing PASTE_YOUR_WEB3FORMS_KEY_HERE. That's the only setup step. -->
+<div class="bcl-form-wrap" id="bcl-rental-form-wrap">
+<style>
+#bcl-rental-form-wrap{--forest:#173f36;--clay:#d56e47;--paper:#fffdf8;--ink:#1c2a26;--muted:#67716b;font-family:Inter,Arial,sans-serif;color:var(--ink);max-width:640px;margin:0 auto;line-height:1.5;}
+#bcl-rental-form-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;color:var(--forest);font-size:1.6rem;margin:0 0 .3em;}
+#bcl-rental-form-wrap p.intro{color:var(--muted);font-size:.95rem;margin:0 0 1.4em;}
+#bcl-rental-form-wrap label{display:block;font-size:.85rem;font-weight:600;color:var(--forest);margin:14px 0 4px;}
+#bcl-rental-form-wrap input,#bcl-rental-form-wrap select,#bcl-rental-form-wrap textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #cfc9b8;background:var(--paper);color:var(--ink);font:inherit;font-size:.95rem;border-radius:3px;}
+#bcl-rental-form-wrap textarea{min-height:110px;resize:vertical;}
+#bcl-rental-form-wrap .chk{display:flex;gap:8px;align-items:flex-start;margin:12px 0 0;font-weight:400;color:var(--ink);font-size:.88rem;}
+#bcl-rental-form-wrap .chk input{width:auto;margin-top:3px;flex:0 0 auto;}
+#bcl-rental-form-wrap .row{display:flex;gap:14px;flex-wrap:wrap;}
+#bcl-rental-form-wrap .row>div{flex:1 1 160px;}
+#bcl-rental-form-wrap .hp{position:absolute;left:-9999px;}
+#bcl-rental-form-wrap button{margin-top:20px;background:var(--clay);color:#fff;border:none;padding:13px 26px;font:inherit;font-weight:600;font-size:1rem;border-radius:3px;cursor:pointer;}
+#bcl-rental-form-wrap button:hover{background:#c25e38;}
+#bcl-rental-form-wrap button:disabled{opacity:.6;cursor:default;}
+#bcl-rental-form-wrap .note{font-size:.8rem;color:var(--muted);margin-top:14px;}
+#bcl-rental-form-wrap .bcl-result{margin-top:16px;padding:14px 16px;border-radius:3px;font-size:.95rem;display:none;}
+#bcl-rental-form-wrap .bcl-result.ok{display:block;background:#dde7dd;color:var(--forest);}
+#bcl-rental-form-wrap .bcl-result.err{display:block;background:#f3ddd6;color:#8a3b22;}
+</style>
+<h2>List a rental</h2>
+<p class="intro">For long-term rentals in the San Lorenzo Valley (Boulder Creek, Ben Lomond, Brookdale, Felton). A person reviews every submission before it appears on the board. Nothing publishes automatically, and your contact details are never shown publicly.</p>
+<form id="bcl-rental-form" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="PASTE_YOUR_WEB3FORMS_KEY_HERE">
+  <input type="hidden" name="subject" value="New rental listing - Boulder Creek Local">
+  <input type="hidden" name="from_name" value="BCL List a Rental">
+  <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+  <label>Your name</label>
+  <input type="text" name="Your name" required>
+
+  <label>Your email</label>
+  <input type="email" name="Your email" required>
+
+  <label>Your relationship to the property</label>
+  <select name="Relationship to property" required>
+    <option value="">Choose one</option>
+    <option>Owner</option>
+    <option>Property manager</option>
+    <option>Leasing agent</option>
+    <option>Tenant giving notice</option>
+  </select>
+
+  <label>Property address</label>
+  <input type="text" name="Property address" placeholder="Street address" required>
+
+  <div class="row">
+    <div>
+      <label>Town</label>
+      <select name="Town" required>
+        <option value="">Choose one</option>
+        <option>Boulder Creek</option>
+        <option>Ben Lomond</option>
+        <option>Brookdale</option>
+        <option>Felton</option>
+      </select>
+    </div>
+    <div>
+      <label>ZIP code</label>
+      <input type="text" name="ZIP" placeholder="95005 / 95006 / 95007 / 95018" required>
+    </div>
+  </div>
+
+  <label>Rental type</label>
+  <select name="Rental type" required>
+    <option value="">Choose one</option>
+    <option>Entire home</option>
+    <option>Apartment</option>
+    <option>ADU / cottage</option>
+    <option>Private room</option>
+    <option>Shared room</option>
+  </select>
+
+  <div class="row">
+    <div>
+      <label>Monthly rent ($)</label>
+      <input type="number" name="Monthly rent" min="0" required>
+    </div>
+    <div>
+      <label>Security deposit ($)</label>
+      <input type="number" name="Security deposit" min="0">
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>Bedrooms</label>
+      <input type="text" name="Bedrooms" placeholder="e.g. 2 or Studio" required>
+    </div>
+    <div>
+      <label>Bathrooms</label>
+      <input type="text" name="Bathrooms" placeholder="e.g. 1.5" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div>
+      <label>Available date</label>
+      <input type="date" name="Available date" required>
+    </div>
+    <div>
+      <label>Minimum lease term</label>
+      <input type="text" name="Minimum lease term" placeholder="e.g. 12 months" required>
+    </div>
+  </div>
+
+  <label>Description</label>
+  <textarea name="Description" placeholder="Tell renters about the place. Please leave phone numbers and emails out of this box." required></textarea>
+
+  <label>Best way for us to reach you about this listing</label>
+  <input type="text" name="Preferred contact (not published)" placeholder="Phone or email, kept private" required>
+
+  <label class="chk"><input type="checkbox" name="Confirms authority to advertise" value="Yes" required> I have the authority to advertise this property for rent.</label>
+  <label class="chk"><input type="checkbox" name="Confirms fair housing" value="Yes" required> This listing complies with fair housing law and does not express a preference based on any protected class.</label>
+  <label class="chk"><input type="checkbox" name="Confirms accuracy" value="Yes" required> The information above is accurate.</label>
+  <label class="chk"><input type="checkbox" name="Understands 14-day expiry" value="Yes" required> I understand this listing expires after 14 days unless I renew it.</label>
+
+  <button type="submit">Submit listing for review</button>
+  <p class="note">Submissions go to the Boulder Creek Local team for review. Nothing publishes automatically.</p>
+  <div class="bcl-result" id="bcl-rental-result"></div>
+</form>
+</div>
+<script>
+(function(){
+  var form = document.getElementById("bcl-rental-form");
+  var result = document.getElementById("bcl-rental-result");
+  if(!form) return;
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var btn = form.querySelector("button[type=submit]");
+    btn.disabled = true; btn.textContent = "Sending...";
+    var data = new FormData(form);
+    fetch("https://api.web3forms.com/submit", { method: "POST", body: data, headers: { "Accept": "application/json" } })
+      .then(function(r){ return r.json(); })
+      .then(function(json){
+        if(json.success){
+          result.className = "bcl-result ok";
+          result.textContent = "Thanks. Your listing was sent to the Boulder Creek Local team and will appear on the board after a quick review.";
+          form.reset();
+          btn.style.display = "none";
+        } else {
+          result.className = "bcl-result err";
+          result.textContent = "Something went wrong sending the form. Please email hello@bouldercreeklocal.com instead.";
+          btn.disabled = false; btn.textContent = "Submit listing for review";
+        }
+      })
+      .catch(function(){
+        result.className = "bcl-result err";
+        result.textContent = "Something went wrong sending the form. Please email hello@bouldercreeklocal.com instead.";
+        btn.disabled = false; btn.textContent = "Submit listing for review";
+      });
+  });
+})();
+</script>
