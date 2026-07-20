@@ -198,3 +198,19 @@ window.addEventListener("message", function (event) {
     ml('account', '2514969');
 </script>
 <!-- End MailerLite Universal -->
+
+<!-- Header treeline decoration (added 2026-07-20) -->
+<!-- Faint layered forest silhouette in the site header; replaces the old bold
+     .bcl-hero .bcl-ridge band. SVG asset lives in this repo (brand/forest-treeline.svg),
+     pinned to an immutable commit SHA so jsDelivr serves it fresh. -->
+<style>
+header.header::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0;
+  height:88px;
+  background:url("https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@dc31cce95d2aa2461faf1a185487f1c0e1fcae61/brand/forest-treeline.svg") center bottom/100% 100% no-repeat;
+  opacity:.22; pointer-events:none; z-index:-1;
+}
+/* Retire the old bold hero ridge band (replaced by header treeline) */
+.bcl-hero .bcl-ridge{ display:none !important; }
+</style>
