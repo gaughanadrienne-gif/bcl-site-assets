@@ -330,6 +330,56 @@
     return h + "</div>";
   }
 
+  /* ---------- rentals ---------- */
+
+  function rentalCompare(a, b) {
+    var av = a.verification_status === "verified" ? 0 : 1;
+    var bv = b.verification_status === "verified" ? 0 : 1;
+    if (av !== bv) return av - bv;
+    var af = a.first_seen_at || "", bf = b.first_seen_at || "";
+    if (af !== bf) return af > bf ? -1 : 1;
+    var ar = a.monthly_rent == null ? Infinity : a.monthly_rent;
+    var br = b.monthly_rent == null ? Infinity : b.monthly_rent;
+    return ar - br;
+  }
+
+  function filterRentals(rows, opts) {
+    opts = opts || {};
+    var q = (opts.q || "").toLowerCase();
+    var rows2 = rows.filter(function (r) {
+      if (opts.minBeds && !(r.bedrooms >= opts.minBeds)) return false;
+      if (opts.verifiedOnly && r.verification_status !== "verified") return false;
+      if (q) {
+        var hay = ((r.headline || "") + " " + (r.city || "") + " " + (r.property_type || "")).toLowerCase();
+        if (hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+    return rows2.sort(rentalCompare);
+  }
+
+  function rentalMoneyText(n) {
+    var s = String(Math.round(n));
+    return "$" + s.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "/mo";
+  }
+
+  function rentalCard(rental) {
+    var h = '<div class="bcl-rental-card">';
+    h += '<div class="bcl-name">' + esc(rental.headline) + "</div>";
+    h += '<div class="bcl-sub"><span class="bcl-badge">' + esc(rental.postal_code || "95006") + "</span> · " + esc(rental.city || "") + "</div>";
+    h += '<div class="bcl-meta">' + (rental.monthly_rent ? esc(rentalMoneyText(rental.monthly_rent)) : "Contact for rent") + "</div>";
+    var beds = rental.bedrooms != null ? rental.bedrooms + " bd" : "";
+    var baths = rental.bathrooms != null ? rental.bathrooms + " ba" : "";
+    if (beds || baths) h += '<div class="bcl-meta">' + esc([beds, baths].filter(Boolean).join(" · ")) + "</div>";
+    if (rental.property_type) h += '<div class="bcl-meta">' + esc(rental.property_type) + "</div>";
+    if (rental.available_date) h += '<div class="bcl-meta">Available: ' + esc(rental.available_date) + "</div>";
+    if (rental.furnished) h += '<div class="bcl-meta">Furnished</div>';
+    h += '<div class="bcl-verified">SOURCE: ' + esc(rental.property_manager || rental.source || "") + " · VERIFIED " + esc(rental.last_verified_at || "") + "</div>";
+    h += '<div class="bcl-actionrow"><a href="' + esc(rental.canonical_url) + '" target="_blank" rel="noopener">View original listing</a></div>';
+    h += '<div class="bcl-actionrow"><a href="/submit">Report a problem with this listing</a></div>';
+    return h + "</div>";
+  }
+
   /* ---------- events ---------- */
 
   function evParts(s) {
@@ -730,6 +780,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard };
   }
 })();
