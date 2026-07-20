@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FORM = ROOT / "docs" / "embeds" / "contact-and-submit-form.html"
 HEADER = ROOT / "squarespace" / "01_HEADER_INJECTION.html"
+FOOTER = ROOT / "squarespace" / "02_FOOTER.html"
 
 
 def _opening_tag(source: str, element_id: str) -> str:
@@ -68,3 +69,9 @@ def test_shared_layout_allows_mobile_children_to_shrink_and_stack():
     assert ".bcl-actions { align-items: stretch; flex-direction: column; }" in source
     assert "margin-left: 50%" not in source
     assert "100vw" not in source
+
+
+def test_shared_footer_uses_the_live_contact_route():
+    source = FOOTER.read_text(encoding="utf-8")
+    assert 'href="/contact">Contact &amp; Submit</a>' in source
+    assert 'href="/submit"' not in source
