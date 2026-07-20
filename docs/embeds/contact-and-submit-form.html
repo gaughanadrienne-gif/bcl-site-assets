@@ -223,7 +223,7 @@
     var url = "https://assets.mailerlite.com/jsonp/" + ML_ACCOUNT + "/forms/" + ML_FORM + "/subscribe";
     fetch(url, { method: "POST", body: body, headers: { "Accept": "application/json" } })
       .then(function(r){ return r.json().catch(function(){ return {}; }); })
-      .then(function(){ done(); })
+      .then(function(json){ if(json && json.success){ done(); } else { setErr("We couldn't send that. Please try again, or email hello@bouldercreeklocal.com."); btn.disabled=false; btn.textContent="Send"; } })
       .catch(function(){ setErr("Something went wrong. Please email hello@bouldercreeklocal.com instead."); btn.disabled=false; btn.textContent="Send"; });
   });
 
