@@ -238,6 +238,29 @@ def write_public_json_guarded(path, key, records, min_total, note, today):
     return payload
 
 
+def write_rentals_guarded(path, records, note, today, had_errors):
+    """Write the rentals board unless a broken run would shrink it.
+
+    95006 rental inventory is ~1-5 listings, so there is NO count floor -- a
+    clean run (no source fetch errors) may legitimately publish 0 records.
+    Only refuse to overwrite when a run BOTH (a) produced fewer published
+    records than the prior file AND (b) had at least one source fetch error;
+    that combination is the signature of a broken scrape, not a genuinely
+    empty board. On refusal the prior file is left untouched and GuardError
+    is raised so the .bat wrapper skips the commit/push.
+    """
+    prior = load_json(path, default=None) or {}
+    prior_count = prior.get("count", 0) if isinstance(prior, dict) else 0
+    if had_errors and len(records) < prior_count:
+        raise GuardError(
+            "refusing to write %s: %d records < prior count %d after a source fetch error"
+            % (path, len(records), prior_count)
+        )
+    payload = {"_note": note, "updated": today, "count": len(records), "rentals": records}
+    write_json_atomic(path, payload)
+    return payload
+
+
 USER_AGENT = "BoulderCreekLocal/1.0 (+https://bouldercreeklocal.com)"
 _LAST_FETCH = [0.0]
 
