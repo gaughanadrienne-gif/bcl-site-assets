@@ -83,8 +83,6 @@ JOB_SOURCES = [
     _s("Second Harvest (RSS)", "feed_authorized", "rss", "rss",
        "https://client.hrservicesinc.com/downloads/rss/portals/9876.xml", "area", 8, True, True, "cleanest feed; RSS template",
        {"style": "employer", "employer": "Second Harvest Food Bank Santa Cruz County"}),
-    _s("Google (Santa Cruz)", "direct_page_reviewed", "custom_html", "custom_html",
-       "https://careers.google.com/jobs/results/?location=Santa%20Cruz", "employer:Santa Cruz", 12, False, False, "office unconfirmed; owner decision"),
     # --- Local boards ---
     _s("Santa Cruz Works", "direct_page_reviewed", "custom_html", "custom_html",
        "https://santacruzworks.org/jobs", "area", 12, False, False, "Airtable-embedded; JS render"),
