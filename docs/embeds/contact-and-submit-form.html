@@ -1,14 +1,17 @@
-<!-- Boulder Creek Local: Contact & Submit form (unified).
+<!-- Boulder Creek Local: Contact & Submit page (unified, conditional).
      Paste into a Squarespace CODE BLOCK on the Contact / Submit page.
      Delivery: MailerLite embedded-form endpoint (no secret key in this page).
-     Fill the two ML_* values in the <script> below with the values from the
-     MailerLite embedded form (account id + form id). Every submitter is added to
-     the BCL Subscribers group; MailerLite handles unsubscribe. -->
-<div class="bcl-form-wrap" id="bcl-submit-wrap">
+     Fill ML_FORM below with the "BCL Community Submissions" form id (account id is set).
+     Every submitter is added to the BCL Subscribers group; MailerLite handles unsubscribe. -->
+<div class="bcl-cs" id="bcl-submit-wrap">
 <style>
-#bcl-submit-wrap{--forest:#173f36;--clay:#d56e47;--paper:#fffdf8;--ink:#1c2a26;--muted:#67716b;font-family:Inter,Arial,sans-serif;color:var(--ink);max-width:640px;margin:0 auto;line-height:1.5;}
-#bcl-submit-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;color:var(--forest);font-size:1.6rem;margin:0 0 .3em;}
-#bcl-submit-wrap p.intro{color:var(--muted);font-size:.95rem;margin:0 0 1.2em;}
+#bcl-submit-wrap{--forest:#173f36;--fern:#2f6754;--clay:#d56e47;--paper:#fffdf8;--cream:#f5f1e7;--ink:#1c2a26;--muted:#67716b;font-family:Inter,Arial,sans-serif;color:var(--ink);max-width:660px;margin:0 auto;line-height:1.55;}
+#bcl-submit-wrap .bcl-head{margin:0 0 1.4em;}
+#bcl-submit-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;color:var(--forest);font-size:2rem;margin:0 0 .2em;line-height:1.1;}
+#bcl-submit-wrap .bcl-head p{color:var(--ink);font-size:1rem;margin:.5em 0 0;}
+#bcl-submit-wrap .bcl-how{background:var(--cream);border-left:3px solid var(--clay);padding:12px 16px;font-size:.88rem;color:var(--muted);margin:0 0 1.6em;border-radius:0 3px 3px 0;}
+#bcl-submit-wrap h3{font-family:'Cormorant Garamond',Georgia,serif;color:var(--forest);font-size:1.35rem;margin:1.4em 0 .1em;}
+#bcl-submit-wrap .sub{color:var(--muted);font-size:.88rem;margin:0 0 .6em;}
 #bcl-submit-wrap label{display:block;font-size:.85rem;font-weight:600;color:var(--forest);margin:14px 0 4px;}
 #bcl-submit-wrap input,#bcl-submit-wrap select,#bcl-submit-wrap textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #cfc9b8;background:var(--paper);color:var(--ink);font:inherit;font-size:.95rem;border-radius:3px;}
 #bcl-submit-wrap textarea{min-height:100px;resize:vertical;}
@@ -16,8 +19,12 @@
 #bcl-submit-wrap .row>div{flex:1 1 150px;}
 #bcl-submit-wrap fieldset{border:none;padding:0;margin:0;display:none;}
 #bcl-submit-wrap fieldset.on{display:block;}
+#bcl-submit-wrap .reveal{display:none;border-top:1px solid #e3ddcf;margin-top:22px;padding-top:6px;}
+#bcl-submit-wrap .reveal.on{display:block;}
+#bcl-submit-wrap .chk{display:flex;gap:8px;align-items:flex-start;font-weight:400;color:var(--ink);font-size:.85rem;margin-top:12px;}
+#bcl-submit-wrap .chk input{width:auto;margin-top:3px;flex:0 0 auto;}
 #bcl-submit-wrap .hp{position:absolute;left:-9999px;}
-#bcl-submit-wrap button{margin-top:20px;background:var(--clay);color:#fff;border:none;padding:13px 26px;font:inherit;font-weight:600;font-size:1rem;border-radius:3px;cursor:pointer;}
+#bcl-submit-wrap button{margin-top:22px;background:var(--clay);color:#fff;border:none;padding:13px 28px;font:inherit;font-weight:600;font-size:1rem;border-radius:3px;cursor:pointer;}
 #bcl-submit-wrap button:hover{background:#c25e38;}
 #bcl-submit-wrap button:disabled{opacity:.6;cursor:default;}
 #bcl-submit-wrap .consent{font-size:.8rem;color:var(--muted);margin-top:16px;}
@@ -25,34 +32,37 @@
 #bcl-submit-wrap .bcl-result.ok{display:block;background:#dde7dd;color:var(--forest);}
 #bcl-submit-wrap .bcl-result.err{display:block;background:#f3ddd6;color:#8a3b22;}
 </style>
-<h2>Contact and submit</h2>
-<p class="intro">Ask a question, or submit a rental, a job, a directory update, or an event. A person reviews everything before it goes on the site.</p>
+
+<div class="bcl-head">
+  <h2>Contact and submit</h2>
+  <p>This is the place to reach the Boulder Creek Local team, or to add something to the site. Ask a question, submit a rental or a job, add your business to the directory, or share a local event. Pick what you're here for and the right questions will appear.</p>
+</div>
+<p class="bcl-how">A real person reads everything. General questions get a reply, and anything meant for the site (rentals, jobs, listings, events) goes up after a quick review, usually within a day or two. We never publish your contact details.</p>
+
 <form id="bcl-submit-form" novalidate>
   <input type="checkbox" class="hp" id="bcl-hp" tabindex="-1" autocomplete="off">
 
-  <label>What's this about?</label>
+  <label for="bcl-type">What's this about?</label>
   <select id="bcl-type" required>
-    <option value="">Choose one</option>
-    <option value="General question">General question</option>
+    <option value="">Choose one to get started</option>
+    <option value="General question">General question or feedback</option>
     <option value="Rental listing">Submit a rental</option>
     <option value="Job listing">Submit a job</option>
-    <option value="Directory update">Update the directory</option>
+    <option value="Directory update">Add or update a business</option>
     <option value="Event">Add an event</option>
   </select>
 
-  <label>Your name</label>
-  <input type="text" id="bcl-name" required>
-  <label>Your email</label>
-  <input type="email" id="bcl-email" required>
-
   <!-- GENERAL -->
   <fieldset data-type="General question">
-    <label>Your message</label>
+    <h3>Your message</h3>
+    <p class="sub">Questions, feedback, a correction, anything at all. We'll get back to you.</p>
     <textarea data-f="Message"></textarea>
   </fieldset>
 
   <!-- RENTAL -->
   <fieldset data-type="Rental listing">
+    <h3>Rental details</h3>
+    <p class="sub">For long-term rentals in the San Lorenzo Valley (Boulder Creek, Ben Lomond, Brookdale, Felton). We don't list vacation or short-term rentals.</p>
     <label>Property address</label>
     <input type="text" data-f="Address">
     <div class="row">
@@ -74,14 +84,14 @@
       <div><label>Minimum lease term</label><input type="text" data-f="Minimum lease term" placeholder="12 months"></div>
     </div>
     <label>Description</label>
-    <textarea data-f="Description" placeholder="Please leave phone/email out of this box."></textarea>
-    <label>Best way to reach you (not published)</label>
-    <input type="text" data-f="Private contact">
-    <label style="display:flex;gap:8px;font-weight:400;font-size:.85rem;margin-top:12px;"><input type="checkbox" data-f="Confirms authority + fair housing" value="Yes" style="width:auto;"> I can advertise this property and it complies with fair housing law.</label>
+    <textarea data-f="Description" placeholder="Tell renters about the place. Please leave phone/email out of this box."></textarea>
+    <label class="chk"><input type="checkbox" data-f="Confirms authority + fair housing" value="Yes"> I can advertise this property and it complies with fair housing law.</label>
   </fieldset>
 
   <!-- JOB -->
   <fieldset data-type="Job listing">
+    <h3>Job details</h3>
+    <p class="sub">For jobs in or around the San Lorenzo Valley. Every listing links back to your own application, we don't collect applications ourselves.</p>
     <div class="row">
       <div><label>Employer name</label><input type="text" data-f="Employer"></div>
       <div><label>Employer website</label><input type="text" data-f="Employer website"></div>
@@ -98,13 +108,15 @@
     <textarea data-f="Description"></textarea>
     <label>How to apply (link or email)</label>
     <input type="text" data-f="Application link or email">
-    <label>Pay (optional)</label>
+    <label>Pay (optional but appreciated)</label>
     <input type="text" data-f="Pay" placeholder="e.g. $22-25/hr, or leave blank">
-    <label style="display:flex;gap:8px;font-weight:400;font-size:.85rem;margin-top:12px;"><input type="checkbox" data-f="Authorized to post" value="Yes" style="width:auto;"> I'm authorized to post this job.</label>
+    <label class="chk"><input type="checkbox" data-f="Authorized to post" value="Yes"> I'm authorized to post this job.</label>
   </fieldset>
 
   <!-- DIRECTORY -->
   <fieldset data-type="Directory update">
+    <h3>Business details</h3>
+    <p class="sub">Add a local business to the directory, or fix something on an existing listing.</p>
     <label>Business name</label>
     <input type="text" data-f="Business name">
     <div class="row">
@@ -121,6 +133,8 @@
 
   <!-- EVENT -->
   <fieldset data-type="Event">
+    <h3>Event details</h3>
+    <p class="sub">Community events in and around the valley. We list the practical details and link out for tickets or more info.</p>
     <label>Event name</label>
     <input type="text" data-f="Event name">
     <div class="row">
@@ -137,23 +151,32 @@
     </div>
   </fieldset>
 
-  <button type="submit" id="bcl-submit-btn">Send</button>
-  <p class="consent">Submitting adds you to Boulder Creek Local updates so we can follow up and share local news. You can unsubscribe anytime from any email. We never publish your contact details.</p>
-  <div class="bcl-result" id="bcl-submit-result"></div>
+  <!-- CONTACT + SUBMIT (revealed once a topic is picked) -->
+  <div class="reveal" id="bcl-reveal">
+    <h3>Your contact info</h3>
+    <p class="sub">So we can follow up. This is never shown publicly.</p>
+    <div class="row">
+      <div><label>Your name</label><input type="text" id="bcl-name"></div>
+      <div><label>Your email</label><input type="email" id="bcl-email"></div>
+    </div>
+    <button type="submit" id="bcl-submit-btn">Send</button>
+    <p class="consent">Submitting adds you to Boulder Creek Local updates so we can follow up and share local news. You can unsubscribe anytime from any email.</p>
+    <div class="bcl-result" id="bcl-submit-result"></div>
+  </div>
 </form>
 </div>
 <script>
 (function(){
-  /* ===== MailerLite embedded-form target (fill these two once the form exists) ===== */
+  /* ===== MailerLite embedded-form target ===== */
   var ML_ACCOUNT = "2514969";         /* BCL MailerLite account id (confirmed)  */
   var ML_FORM    = "ML_FORM_ID";      /* <-- paste the BCL Community Submissions form id here */
-  /* Field keys created in MailerLite (custom fields). Adjust if the keys differ. */
   var ML_FIELD_TYPE = "submission_type";
   var ML_FIELD_DETAILS = "details";
-  /* ================================================================================ */
+  /* =========================================== */
 
   var form = document.getElementById("bcl-submit-form");
   var typeSel = document.getElementById("bcl-type");
+  var reveal = document.getElementById("bcl-reveal");
   var result = document.getElementById("bcl-submit-result");
   var btn = document.getElementById("bcl-submit-btn");
   if(!form) return;
@@ -163,6 +186,7 @@
     Array.prototype.forEach.call(form.querySelectorAll("fieldset"), function(fs){
       fs.classList.toggle("on", fs.getAttribute("data-type") === t);
     });
+    reveal.classList.toggle("on", !!t);
   }
   typeSel.addEventListener("change", showSection);
 
@@ -199,10 +223,7 @@
     var url = "https://assets.mailerlite.com/jsonp/" + ML_ACCOUNT + "/forms/" + ML_FORM + "/subscribe";
     fetch(url, { method: "POST", body: body, headers: { "Accept": "application/json" } })
       .then(function(r){ return r.json().catch(function(){ return {}; }); })
-      .then(function(json){
-        if(json && (json.success || json.data)){ done(); }
-        else { done(); } /* MailerLite JSONP often returns opaque; treat a completed POST as success */
-      })
+      .then(function(){ done(); })
       .catch(function(){ setErr("Something went wrong. Please email hello@bouldercreeklocal.com instead."); btn.disabled=false; btn.textContent="Send"; });
   });
 
