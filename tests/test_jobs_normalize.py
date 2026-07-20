@@ -59,3 +59,16 @@ def test_unknown_city_routes_to_queue():
     assert job["geography_tier"] == "unknown"
     ok, reason = include_job(job)
     assert ok is False and reason == "ambiguous-location"
+
+
+def test_employer_geo_hint_fills_empty_city():
+    single_site_source = {"name": "Dream Inn Santa Cruz", "platform": "paylocity", "geo": "employer:Santa Cruz"}
+    job = normalize_job(_raw(city=""), single_site_source, TODAY)
+    assert job["city"] == "Santa Cruz"
+    assert job["geography_tier"] == "core"
+
+
+def test_empty_city_without_employer_hint_is_unknown():
+    job = normalize_job(_raw(city=""), CORE_SOURCE, TODAY)
+    assert job["city"] == ""
+    assert job["geography_tier"] == "unknown"

@@ -24,6 +24,10 @@ EXCLUDE_KEYWORDS = (
 def normalize_job(raw, source, today):
     remote = bool(raw.get("remote"))
     city = sanitize_text(raw.get("city", ""))
+    if not remote and not city:
+        geo = source.get("geo", "") or ""
+        if geo.startswith("employer:"):
+            city = geo.split(":", 1)[1].strip()
     tier = "remote" if remote else classify_geo(city)
     minutes = None if remote else commute_minutes(city)
     title = sanitize_text(raw.get("title", ""))

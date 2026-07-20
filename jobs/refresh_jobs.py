@@ -13,12 +13,15 @@ from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from shared.bcl_ingest import (  # noqa: E402
-    dedupe_by, firecrawl_markdown, http_get, http_json, load_manual_entries,
+    dedupe_by, firecrawl_markdown, http_get, http_json, http_post_json, load_manual_entries,
     normalize_url, record_fingerprint, write_json_atomic, write_public_json_guarded,
 )
 from shared.review_board import render_review_board  # noqa: E402
 from jobs.normalize import include_job, normalize_job  # noqa: E402
-from jobs.parsers import edjoin, jobaps, neogov, remote_json, rss  # noqa: E402
+from jobs.parsers import (  # noqa: E402
+    calopps, dayforce, edjoin, jobaps, neogov, oracle, paycom, paylocity,
+    remote_json, rss, workday,
+)
 from jobs.sources import JOB_SOURCES  # noqa: E402
 
 PUBLIC_SCHEMA_KEYS = (
@@ -37,15 +40,22 @@ PARSERS = {
     "edjoin": edjoin.parse,
     "rss": rss.parse,
     "remote_json": remote_json.parse,
+    "workday": workday.parse,
+    "oracle": oracle.parse,
+    "dayforce": dayforce.parse,
+    "paycom": paycom.parse,
+    "paylocity": paylocity.parse,
+    "calopps": calopps.parse,
 }
 
-# Platform -> fetch strategy. Anything not listed here (Workday POST-JSON,
-# iCIMS/Dayforce/Paycom/Paylocity/ADP/Oracle employer widgets) falls back to
-# a markdown scrape; those parsers are not yet built (see plan self-review),
-# so build_jobs will simply find no PARSERS entry and skip the source.
+# Platforms fetched as a plain firecrawl markdown scrape (no special POST
+# body or JSON REST call). Paycom additionally needs render wait time
+# (handled in fetch_raw, not here). Platforms with no PARSERS entry
+# (iCIMS/ADP/custom_html/phenom/peoplesoft/taleo) are registry-ready but
+# not yet onboarded -- build_jobs finds no parser and skips them cleanly.
 _MARKDOWN_PLATFORMS = {"neogov", "jobaps", "edjoin", "calopps", "custom_html",
-                        "icims", "dayforce", "paycom", "paylocity", "adp",
-                        "oracle", "phenom", "peoplesoft", "taleo"}
+                        "icims", "dayforce", "paylocity", "adp",
+                        "phenom", "peoplesoft", "taleo"}
 
 MIN_SAFE_TOTAL = 5
 
@@ -60,17 +70,31 @@ MANUAL_JOBS_PATH = os.path.join(_PARTIALS_DIR, "manual-jobs.json")
 MANUAL_TTL_DAYS = 30
 
 
-def fetch_raw(source, http_get_fn, http_json_fn, firecrawl_markdown_fn):
+def fetch_raw(source, http_get_fn, http_json_fn, firecrawl_markdown_fn, http_post_json_fn=None):
     """Dispatch a source's fetch by platform. Fetchers are injected for tests."""
     platform = source.get("platform", "")
+    config = source.get("config") or {}
     if platform == "remote_json":
         return http_json_fn(source["url"])
     if platform == "rss":
         return http_get_fn(source["url"])
+    if platform == "workday":
+        post_fn = http_post_json_fn or http_post_json
+        host = config.get("host", "").rstrip("/")
+        tenant = config.get("tenant", "")
+        site = config.get("site", "")
+        endpoint = "%s/wday/cxs/%s/%s/jobs" % (host, tenant, site)
+        body = {"appliedFacets": {}, "limit": config.get("limit", 20), "offset": 0, "searchText": ""}
+        return post_fn(endpoint, body)
+    if platform == "oracle":
+        rest_url = config.get("rest_url") or source["url"]
+        return http_json_fn(rest_url)
+    if platform == "paycom":
+        return firecrawl_markdown_fn(source["url"], wait_ms=5000)
     if platform in _MARKDOWN_PLATFORMS:
         return firecrawl_markdown_fn(source["url"])
-    # Unknown platform (e.g. workday POST-json, not yet implemented): let the
-    # caller's per-source try/except catch this and skip cleanly.
+    # Unknown platform: let the caller's per-source try/except catch this and
+    # skip cleanly.
     raise RuntimeError("no fetch strategy for platform %r" % platform)
 
 
@@ -92,6 +116,7 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
     http_get_fn = fetchers.get("http_get", http_get)
     http_json_fn = fetchers.get("http_json", http_json)
     firecrawl_fn = fetchers.get("firecrawl_markdown", firecrawl_markdown)
+    http_post_json_fn = fetchers.get("http_post_json", http_post_json)
 
     published = []
     queued = []
@@ -101,9 +126,13 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
         parser_fn = PARSERS.get(source.get("parser"))
         if parser_fn is None:
             continue  # not yet onboarded (registry-ready, parser pending)
+        # A per-parse context copy carries `_today` (Workday's relative-date
+        # parsing needs it) without mutating the shared registry entry.
+        source_ctx = dict(source)
+        source_ctx["_today"] = today
         try:
-            raw_data = fetch_raw(source, http_get_fn, http_json_fn, firecrawl_fn)
-            raw_rows = parser_fn(raw_data, source)
+            raw_data = fetch_raw(source, http_get_fn, http_json_fn, firecrawl_fn, http_post_json_fn)
+            raw_rows = parser_fn(raw_data, source_ctx)
         except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
             print("refresh_jobs: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
             continue
