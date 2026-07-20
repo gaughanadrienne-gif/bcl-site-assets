@@ -15,7 +15,7 @@ anything reaches `partials/manual-rentals.json` (see `WORKFLOW.md`).
 | 3 | Your relationship to the property (owner / property manager / leasing agent) | dropdown | yes | *(not published; contact-verification only)* |
 | 4 | I have the authority to advertise this property for rent | checkbox | yes (must be checked) | *(gate: unchecked submissions are not forwarded to the manual partial)* |
 | 5 | Property address | short text | yes | `address_public` |
-| 6 | ZIP code | short text | yes | `postal_code` **-- the owner sets this to `"95006"` in the manual partial ONLY after confirming the property is actually in 95006 (see gate note below); the raw form value is a claim, not evidence** |
+| 6 | ZIP code | short text | yes | `postal_code` **-- the owner sets this to the property's San Lorenzo Valley ZIP (95005 Ben Lomond / 95006 Boulder Creek / 95007 Brookdale / 95018 Felton) in the manual partial ONLY after confirming the property is actually in that ZIP (see gate note below); the raw form value is a claim, not evidence** |
 | 7 | Rental type (entire home / apartment / private room / shared) | dropdown | yes | `property_type` (+ feeds `rental_scope` classification) |
 | 8 | Monthly rent | short text (number) | yes | `monthly_rent` |
 | 9 | Security deposit | short text (number) | no | *(not currently a published field; keep for the human's own records)* |
@@ -29,18 +29,20 @@ anything reaches `partials/manual-rentals.json` (see `WORKFLOW.md`).
 | 17 | I confirm the information above is accurate | checkbox | yes (must be checked) | *(gate)* |
 | 18 | I understand this listing expires after 14 days unless I renew it | checkbox (acknowledgement) | yes (must be checked) | *(no stored key; sets expectations for the 14-day TTL)* |
 
-## The 95006 gate (read this before touching `postal_code`)
+## The San Lorenzo Valley gate (read this before touching `postal_code`)
 
-`include_rental` only auto-publishes a listing when `is_95006()` returns
-true -- an exact `postal_code == "95006"`, or "95006" appearing in a
-structured address field. **The owner sets `postal_code: "95006"` in the
-manual entry only after independently confirming the address is in Boulder
-Creek's 95006 ZIP** (a map lookup, not just trusting the form). If the
-address can't be confirmed as 95006 (or the submitter left it blank/vague),
-leave `postal_code` unset and set `city` to `"Boulder Creek"` -- the listing
-will queue for a second look (`undisclosed-95006-verify`) instead of
-auto-publishing. A property confirmed outside 95006 (Ben Lomond 95005, Felton
-95018, etc.) should never be added to the manual partial at all.
+`include_rental` only auto-publishes a listing when `is_slv()` returns
+true -- an exact `postal_code` in {95005, 95006, 95007, 95018}, or one of
+those ZIPs appearing in a structured address field. **The owner sets
+`postal_code` in the manual entry only after independently confirming the
+address is in that Valley ZIP** (a map lookup, not just trusting the form).
+If the address can't be confirmed (or the submitter left it blank/vague) but
+the town is clearly a Valley town, leave `postal_code` unset and set `city` to
+the town (Boulder Creek / Ben Lomond / Brookdale / Felton) -- the listing will
+queue for a second look (`undisclosed-slv-verify`) instead of auto-publishing.
+A property confirmed OUTSIDE the Valley (Scotts Valley 95066, Santa Cruz
+95060/95062, Watsonville 95076, etc.) should never be added to the manual
+partial at all.
 
 ## Notes for the person processing submissions
 
