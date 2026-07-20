@@ -10,7 +10,7 @@ title/url route a job away from the published set.
 
 from shared.bcl_ingest import (
     classify_geo, commute_minutes, make_slug, parse_salary,
-    record_fingerprint, sanitize_text, freshness_label,
+    record_fingerprint, sanitize_text, scrub_pii, freshness_label,
 )
 
 EXCLUDE_KEYWORDS = (
@@ -38,7 +38,7 @@ def normalize_job(raw, source, today):
         "title": title,
         "title_original": raw.get("title", "") or "",
         "employer_name": employer,
-        "description_summary": sanitize_text(raw.get("description", ""))[:400],
+        "description_summary": scrub_pii(sanitize_text(raw.get("description", "")))[:400],
         "employment_type": sanitize_text(raw.get("hours_text", "")),
         "work_mode": raw.get("work_mode") or ("remote" if remote else "on-site"),
         "remote_regions": sanitize_text(raw.get("eligibility_text", "")) if remote else "",

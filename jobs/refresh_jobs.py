@@ -104,7 +104,12 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
         try:
             raw_data = fetch_raw(source, http_get_fn, http_json_fn, firecrawl_fn)
             raw_rows = parser_fn(raw_data, source)
-            for raw in raw_rows:
+        except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
+            print("refresh_jobs: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
+            continue
+
+        for raw in raw_rows:
+            try:
                 job = normalize_job(raw, source, today)
                 ok, reason = include_job(job)
                 if ok:
@@ -113,19 +118,26 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
                     job = dict(job)
                     job["_queue_reason"] = reason
                     queued.append(job)
-        except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
-            print("refresh_jobs: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
-            continue
+            except Exception as exc:  # noqa: BLE001 -- one bad row must not drop the source
+                print(
+                    "refresh_jobs: row from source %r failed: %s" % (source.get("name"), exc),
+                    file=sys.stderr,
+                )
+                continue
 
     for raw in load_manual_entries(manual_path, today, MANUAL_TTL_DAYS):
-        job = normalize_job(raw, _MANUAL_SOURCE, today)
-        ok, reason = include_job(job)
-        if ok:
-            published.append(job)
-        else:
-            job = dict(job)
-            job["_queue_reason"] = reason
-            queued.append(job)
+        try:
+            job = normalize_job(raw, _MANUAL_SOURCE, today)
+            ok, reason = include_job(job)
+            if ok:
+                published.append(job)
+            else:
+                job = dict(job)
+                job["_queue_reason"] = reason
+                queued.append(job)
+        except Exception as exc:  # noqa: BLE001 -- one bad submission must not drop the rest
+            print("refresh_jobs: manual submission failed: %s" % exc, file=sys.stderr)
+            continue
 
     published = dedupe_by(published, lambda j: normalize_url(j["canonical_url"]) or j["id"])
     published = dedupe_by(

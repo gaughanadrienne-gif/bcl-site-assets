@@ -40,8 +40,6 @@ def _check(source):
             raise RegistryError("source %r is enabled but terms_ok is False (onboarding gate)" % name)
         if source["collection_class"] in ("discovery_only", "disabled"):
             raise RegistryError("source %r is enabled but collection_class is %r" % (name, source["collection_class"]))
-    if source["collection_class"] == "discovery_only" and source["enabled"]:
-        raise RegistryError("source %r is discovery_only and must not be enabled" % name)
 
 
 def validate_registry(sources):

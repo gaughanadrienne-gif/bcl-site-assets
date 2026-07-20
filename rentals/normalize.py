@@ -12,7 +12,7 @@ listings are excluded regardless of location.
 
 import re
 
-from shared.bcl_ingest import is_95006, make_slug, record_fingerprint, sanitize_text
+from shared.bcl_ingest import is_95006, make_slug, record_fingerprint, sanitize_text, scrub_pii
 
 _NUM_RE = re.compile(r"[\d,]+(?:\.\d+)?")
 
@@ -102,7 +102,7 @@ def normalize_rental(raw, source, today):
         "utilities_text": sanitize_text(raw.get("utilities_text", "")),
         "parking_text": sanitize_text(raw.get("parking_text", "")),
         "laundry_text": sanitize_text(raw.get("laundry_text", "")),
-        "description_summary": description[:300],
+        "description_summary": scrub_pii(description)[:300],
         "canonical_url": url,
         "source": source.get("name", ""),
         "property_manager": source.get("name", ""),

@@ -21,7 +21,6 @@ def sanitize_text(value):
         return ""
     text = _TAG_RE.sub(" ", str(value))
     text = html.unescape(text)
-    text = text.replace(" ", " ")
     return re.sub(r"\s+", " ", text).strip()
 
 

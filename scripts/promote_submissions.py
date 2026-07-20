@@ -25,14 +25,66 @@ REVIEW_DIR = os.path.join(_ROOT_DIR, "review")
 PARTIALS_DIR = os.path.join(_ROOT_DIR, "partials")
 
 
-def promote(pending, approved_ids, today):
-    """Return manual-entry dicts (raw fields + submitted_at/renewed_at) for
-    the ids in `approved_ids` that are actually present in `pending`. Pure;
-    never touches disk."""
+def _reverse_map_job(item):
+    """Reverse-map a NORMALIZED pending job (the shape refresh_jobs.py writes
+    to review/jobs-pending.json) back to the RAW manual-entry shape that
+    normalize_job()/include_job() expect to re-read (raw.get("employer"),
+    raw.get("url"), raw.get("description"), raw.get("date_posted"),
+    raw.get("remote"), ...)."""
+    return {
+        "title": item.get("title", ""),
+        "employer": item.get("employer_name", ""),
+        "city": item.get("city", ""),
+        "url": item.get("canonical_url", ""),
+        "salary_text": item.get("salary_text", ""),
+        "benefits_text": item.get("benefits_text", ""),
+        "hours_text": item.get("hours_text", ""),
+        "description": item.get("description_summary", ""),
+        "date_posted": item.get("posted_at", ""),
+        "work_mode": item.get("work_mode", ""),
+        "remote": item.get("geography_tier") == "remote",
+    }
+
+
+def _reverse_map_rental(item):
+    """Reverse-map a NORMALIZED pending rental (the shape refresh_rentals.py
+    writes to review/rentals-pending.json) back to the RAW manual-entry shape
+    that normalize_rental()/include_rental() expect to re-read."""
+    return {
+        "headline": item.get("headline", ""),
+        "address_public": item.get("address_public", ""),
+        "city": item.get("city", ""),
+        "postal_code": item.get("postal_code", ""),
+        "monthly_rent": item.get("monthly_rent"),
+        "bedrooms": item.get("bedrooms"),
+        "bathrooms": item.get("bathrooms"),
+        "square_feet": item.get("square_feet"),
+        "available_date": item.get("available_date", ""),
+        "property_type": item.get("property_type", ""),
+        "url": item.get("canonical_url", ""),
+        "description": item.get("description_summary", ""),
+    }
+
+
+_REVERSE_MAP = {"jobs": _reverse_map_job, "rentals": _reverse_map_rental}
+
+
+def promote(pending, approved_ids, today, tool):
+    """Return manual-entry dicts (RAW fields + submitted_at/renewed_at) for
+    the ids in `approved_ids` that are actually present in `pending`.
+
+    `pending` holds NORMALIZED items (the shape refresh_*.py writes to
+    review/<tool>-pending.json: employer_name, canonical_url,
+    description_summary, posted_at, geography_tier, ...). Because
+    load_manual_entries() -> normalize_job()/normalize_rental() re-read RAW
+    keys, this reverse-maps normalized -> raw per `tool` before stamping.
+    Pure; never touches disk."""
+    reverse_map = _REVERSE_MAP[tool]
     out = []
     for item in pending:
         if item.get("id") in approved_ids:
-            entry = dict(item)
+            entry = reverse_map(item)
+            entry["id"] = item.get("id")
             entry["submitted_at"] = today
             entry["renewed_at"] = None
             out.append(entry)
@@ -60,7 +112,7 @@ def main(tool, today):
         pending = pending_raw or []
 
     approved_ids = _read_approved_ids(approved_path)
-    new_entries = promote(pending, approved_ids, today)
+    new_entries = promote(pending, approved_ids, today, tool)
 
     manual_data = load_json(manual_path, default=None) or {"entries": []}
     existing = manual_data.get("entries", [])

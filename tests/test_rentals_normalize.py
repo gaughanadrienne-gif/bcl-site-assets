@@ -129,3 +129,12 @@ def test_rental_scope_private_room_in_shared_house():
         _raw(headline="Private room in shared house"), SOURCE, TODAY
     )
     assert rental["rental_scope"] == "private-room"
+
+
+def test_description_summary_scrubs_phone_and_email():
+    rental = normalize_rental(
+        _raw(description="Nice unit, call (831) 555-1234 or me@x.com for a tour."),
+        SOURCE, TODAY,
+    )
+    assert "555-1234" not in rental["description_summary"]
+    assert "me@x.com" not in rental["description_summary"]

@@ -20,6 +20,6 @@ if errorlevel 1 (
 git add data/jobs.json
 git commit -m "Daily jobs refresh"
 git push
-curl -s -X PURGE "https://bouldercreeklocal.com/jobs" >> jobs\refresh.log 2>&1
+curl -s "https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/jobs.json" >> jobs\refresh.log 2>&1
 
 endlocal
