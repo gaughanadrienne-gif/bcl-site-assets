@@ -23,19 +23,24 @@ def _ok_fetchers():
     return {"firecrawl_markdown": _markdown_by_url}
 
 
-def test_build_rentals_publishes_95006_and_queues_undisclosed():
+def test_build_rentals_publishes_slv_and_queues_undisclosed():
     published, queued, had_errors = build_rentals(SUBSET, _ok_fetchers(), TODAY)
     assert had_errors is False
 
     for rental in published:
         for key in PUBLIC_SCHEMA_KEYS:
             assert key in rental
-        assert rental["postal_code"] == "95006"
+        assert rental["postal_code"] in ("95005", "95006", "95007", "95018")
+        assert rental["locality"]
 
     assert any(r["address_public"] == "12895 Highway 9" for r in published)
+    # SLV widening (plan 4b): the Ben Lomond/Brookdale fixture listings now
+    # publish too, each labeled with its town.
+    assert any(r["locality"] == "Ben Lomond" for r in published)
+    assert any(r["locality"] == "Brookdale" for r in published)
 
     queued_reasons = [q.get("_queue_reason") for q in queued]
-    assert any(reason == "undisclosed-95006-verify" for reason in queued_reasons)
+    assert any(reason == "undisclosed-slv-verify" for reason in queued_reasons)
     assert any("Boulder Creek" in q.get("city", "") for q in queued)
 
     # The Streamline commercial 95006 listing is excluded from both sets.

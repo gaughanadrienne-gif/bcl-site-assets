@@ -13,11 +13,20 @@ case).
 
 import re
 
-from shared.bcl_ingest import sanitize_text, scrub_pii
+from shared.bcl_ingest import SLV_TOWNS, sanitize_text, scrub_pii
 
 _FIELD_RE = re.compile(r"\*\*([^*:]+):\*\*\s*(.+)")
 _ADDRESS_RE = re.compile(r"([^,]+),\s*([^,]+?),\s*(?:CA\s*)?(\d{5})")
 _UNDISCLOSED_RE = re.compile(r"\(undisclosed address\)", re.I)
+
+# Fallback for addresses missing the comma between street and city, e.g.
+# "11691 Alta Via Dr Brookdale, CA 95007" (seen live in the Streamline feed).
+# Only recognizes the known SLV town names -- it's a narrow fallback, not a
+# general address parser.
+_TOWN_ALT = "|".join(re.escape(t) for t in SLV_TOWNS.values())
+_ADDRESS_NO_COMMA_RE = re.compile(
+    r"(.+?)\s+(" + _TOWN_ALT + r")\s*,\s*(?:CA\s*)?(\d{5})", re.I
+)
 
 
 def _fields(chunk):
@@ -58,8 +67,14 @@ def parse(markdown, source):
             street = addr_m.group(1).strip()
             city = addr_m.group(2).strip()
             postal_code = addr_m.group(3)
-        elif undisclosed:
-            city = _UNDISCLOSED_RE.sub("", heading).strip()
+        else:
+            addr_m2 = _ADDRESS_NO_COMMA_RE.match(address)
+            if addr_m2:
+                street = addr_m2.group(1).strip()
+                city = addr_m2.group(2).strip()
+                postal_code = addr_m2.group(3)
+            elif undisclosed:
+                city = _UNDISCLOSED_RE.sub("", heading).strip()
 
         property_type = fields.get("type", "")
         available_date = fields.get("availability", "")

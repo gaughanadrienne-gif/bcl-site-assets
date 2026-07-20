@@ -54,16 +54,19 @@ def test_undisclosed_boulder_creek_listing_is_queued():
     )
     status, reason = include_rental(rental)
     assert status == "queue"
-    assert reason == "undisclosed-95006-verify"
+    assert reason == "undisclosed-slv-verify"
 
 
-def test_ben_lomond_95005_listing_is_rejected():
+def test_ben_lomond_95005_listing_now_publishes_slv_wide():
+    # SLV widening (plan 4b): a confirmed 95005 (Ben Lomond) listing publishes.
+    # See tests/test_rentals_slv.py for the full SLV include-rule coverage.
     rental = normalize_rental(
         _raw(city="Ben Lomond", postal_code="95005", address_public="10510 Highway 9"),
         SOURCE, TODAY,
     )
     status, reason = include_rental(rental)
-    assert status == "reject"
+    assert status == "publish"
+    assert rental["locality"] == "Ben Lomond"
 
 
 def test_room_listing_gets_private_room_scope():

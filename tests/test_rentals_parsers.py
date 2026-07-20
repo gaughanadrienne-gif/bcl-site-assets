@@ -56,6 +56,18 @@ def test_streamline_parses_disclosed_and_undisclosed_boulder_creek_rows():
     assert urow["url"] == SOURCE["url"]
 
 
+def test_streamline_parses_brookdale_row_with_no_comma_before_city():
+    # Bug found in plan 4b: "11691 Alta Via Dr Brookdale, CA 95007" has no
+    # comma between street and city, unlike the other fixture addresses.
+    rows = custom_html.parse(STREAMLINE_MD, SOURCE)
+    brookdale = [r for r in rows if r["postal_code"] == "95007"]
+    assert len(brookdale) == 1
+    row = brookdale[0]
+    assert row["address_public"] == "11691 Alta Via Dr"
+    assert row["city"] == "Brookdale"
+    assert row["monthly_rent"] == "4300"
+
+
 def test_appfolio_skips_zero_dollar_placeholder_card():
     rows = appfolio.parse(APPFOLIO_MD, SOURCE)
     assert len(rows) >= 1
@@ -105,6 +117,8 @@ def test_no_pii_in_normalized_output_across_all_fixtures():
     assert raw_rows  # sanity: fixtures actually produced rows
     for raw in raw_rows:
         rental = normalize_rental(raw, SOURCE, today)
-        blob = " ".join(str(v) for v in rental.values())
+        # Exclude "id" -- a sha1 hex fingerprint, not scraped content, and its
+        # hex digits can coincidentally match the phone-number pattern.
+        blob = " ".join(str(v) for k, v in rental.items() if k != "id")
         assert not _EMAIL_RE.search(blob), blob
         assert not _PHONE_RE.search(blob), blob

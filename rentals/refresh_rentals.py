@@ -25,7 +25,7 @@ from rentals.sources import RENTAL_SOURCES  # noqa: E402
 
 PUBLIC_SCHEMA_KEYS = (
     "id", "slug", "headline", "property_type", "rental_scope", "address_public",
-    "city", "state", "postal_code", "location_precision", "monthly_rent",
+    "city", "state", "postal_code", "locality", "location_precision", "monthly_rent",
     "total_monthly_price", "deposit", "application_fee", "bedrooms", "bathrooms",
     "square_feet", "available_date", "lease_term", "minimum_stay_days",
     "furnished", "pets_policy", "utilities_text", "parking_text", "laundry_text",
@@ -75,7 +75,7 @@ def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
     Owner-approved submissions in `manual_path` (see `load_manual_entries`)
     are merged in and run through the exact same `normalize_rental` /
     `include_rental` / `safety_status` gates as a scraped listing, so an
-    owner mistake still can't publish a non-95006 or scam/fair-housing-flagged
+    owner mistake still can't publish a non-SLV or scam/fair-housing-flagged
     rental.
     """
     published = []

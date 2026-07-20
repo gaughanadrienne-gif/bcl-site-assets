@@ -2,8 +2,10 @@
 and decide which normalized rentals are safe to publish vs. route to the
 review queue vs. reject outright.
 
-BCL rule (spec 6.1): strict ZIP 95006. A confirmed-95006 listing publishes.
-A verified-PM listing that's in Boulder Creek but has no disclosed address/ZIP
+BCL rule (plan 4b, widened from spec 6.1's strict 95006): the whole San
+Lorenzo Valley (95005 Ben Lomond, 95006 Boulder Creek, 95007 Brookdale, 95018
+Felton). A confirmed-SLV-ZIP listing publishes with a `locality` town label.
+A verified-PM listing that's in an SLV town but has no disclosed address/ZIP
 (an owner-privacy listing) is NEVER auto-published and NEVER rejected -- it
 routes to the review queue for a human to verify. Anything else (another ZIP,
 another city) is rejected. Commercial/vacation/for-sale/placeholder/min-stay
@@ -12,7 +14,14 @@ listings are excluded regardless of location.
 
 import re
 
-from shared.bcl_ingest import is_95006, make_slug, record_fingerprint, sanitize_text, scrub_pii
+from shared.bcl_ingest import (
+    is_slv,
+    make_slug,
+    record_fingerprint,
+    sanitize_text,
+    scrub_pii,
+    slv_locality,
+)
 
 _NUM_RE = re.compile(r"[\d,]+(?:\.\d+)?")
 
@@ -86,6 +95,7 @@ def normalize_rental(raw, source, today):
         "city": city,
         "state": "CA",
         "postal_code": postal_code,
+        "locality": slv_locality(raw),
         "location_precision": _location_precision(address_public, postal_code, undisclosed),
         "monthly_rent": monthly_rent,
         "total_monthly_price": monthly_rent,
@@ -127,11 +137,10 @@ def include_rental(rental):
     if min_stay is not None and min_stay < 30:
         return "reject", "min-stay-under-30"
 
-    if is_95006(rental):
+    if is_slv(rental):
         return "publish", None
 
-    city = str(rental.get("city", "")).lower()
-    if "boulder creek" in city and not rental.get("postal_code"):
-        return "queue", "undisclosed-95006-verify"
+    if slv_locality(rental) and not rental.get("postal_code"):
+        return "queue", "undisclosed-slv-verify"
 
-    return "reject", "not-95006"
+    return "reject", "not-slv"
