@@ -556,7 +556,12 @@
     var img = document.createElement("img");
     img.id = "bcl-article-header";
     img.src = url;
-    img.alt = "";
+    // Title card: the headline is baked into the image, so give the header image
+    // the article title as alt text (screen readers can't read text inside an image).
+    var ogt = document.querySelector('meta[property="og:title"]');
+    var title = (ogt ? ogt.getAttribute("content") : "") || document.title || "";
+    title = title.replace(/\s*[|–—-]\s*Boulder Creek Local\s*$/i, "").replace(/\s*\(Copy\)\s*$/i, "").trim();
+    img.alt = title || "Boulder Creek Local";
     img.style.cssText = "display:block;width:100%;height:auto;margin:0 auto 30px;border:1px solid #e3ddcf;max-width:860px;";
     target.insertBefore(img, target.firstChild);
   }
