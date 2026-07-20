@@ -74,7 +74,7 @@
     });
   }
 
-  var CSS_ID = "bcl-tools-css-v4";
+  var CSS_ID = "bcl-tools-css-v5";
   function injectCSS() {
     if (document.getElementById(CSS_ID)) return;
     /* An older cached copy of this script may have injected its stylesheet
@@ -148,7 +148,14 @@
       ".bcl-today-ev span{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#d56e47 !important;margin-right:8px;}",
       ".bcl-today a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-today-links{margin-top:12px;font-size:.82rem;}",
-      "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-controls input,.bcl-controls select{flex:0 0 auto;width:100%;}.bcl-today-head span{margin-left:0;}}"
+      "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-controls input,.bcl-controls select{flex:0 0 auto;width:100%;}.bcl-today-head span{margin-left:0;}}",
+      ".bcl-tabs{display:flex;gap:8px;margin:0 0 14px;}",
+      ".bcl-tab{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;}",
+      ".bcl-tab.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
+      ".bcl-checklabel{display:flex;align-items:center;gap:6px;font-size:.85rem;color:#1c2a26 !important;flex:0 0 auto;}",
+      ".bcl-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;background:#dde2d8;color:#173f36 !important;padding:2px 7px;}",
+      ".bcl-job-card,.bcl-rental-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
+      ".bcl-job-card .bcl-actionrow a,.bcl-rental-card .bcl-actionrow a{color:#d56e47 !important;}"
     ].join("");
     var el = document.createElement("style");
     el.id = CSS_ID;
@@ -330,6 +337,67 @@
     return h + "</div>";
   }
 
+  function initJobs(root) {
+    root.innerHTML = '<div class="bcl-count">Loading jobs…</div>';
+    fetchJSON(REPO + "/data/jobs.json").then(function (data) {
+      var all = data.jobs || [];
+      var cats = [];
+      all.forEach(function (j) { if (j.category && cats.indexOf(j.category) < 0) cats.push(j.category); });
+      cats.sort();
+
+      root.innerHTML =
+        '<div class="bcl-tabs"><button class="bcl-tab bcl-on" data-tab="local">Local</button><button class="bcl-tab" data-tab="remote">Remote</button></div>' +
+        '<div class="bcl-controls">' +
+        '<input type="search" placeholder="Search by title, employer, or city" aria-label="Search jobs">' +
+        '<select aria-label="Filter by category"><option value="">All categories</option>' +
+        cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") +
+        "</select>" +
+        '<label class="bcl-checklabel bcl-ext-wrap"><input type="checkbox" class="bcl-ext"> Include extended commute</label>' +
+        "</div>" +
+        '<div class="bcl-count"></div><div class="bcl-list"></div>' +
+        '<div class="bcl-note">Boulder Creek Local is not the employer and does not process applications. Verify details and apply directly with the employer. ' +
+        'Something wrong or missing? <a href="/submit">Send an update</a>.</div>';
+
+      var input = root.querySelector("input");
+      var select = root.querySelector("select");
+      var extBox = root.querySelector(".bcl-ext");
+      var extWrap = root.querySelector(".bcl-ext-wrap");
+      var count = root.querySelector(".bcl-count");
+      var list = root.querySelector(".bcl-list");
+      var tabBtns = [].slice.call(root.querySelectorAll(".bcl-tab"));
+      var tab = "local";
+
+      function render() {
+        extWrap.style.display = tab === "local" ? "" : "none";
+        var rows = filterJobs(all, {
+          tab: tab,
+          q: input.value || "",
+          category: select.value,
+          includeExtended: !!extBox.checked
+        });
+        count.textContent = rows.length + " OF " + all.filter(function (j) { return jobTab(j) === tab; }).length + " " + tab.toUpperCase() + " JOBS · UPDATED " + (data.updated || "");
+        if (!rows.length) {
+          list.innerHTML = '<div class="bcl-unavailable">No jobs match right now. <a href="/submit">Suggest one</a>.</div>';
+          return;
+        }
+        list.innerHTML = rows.map(jobCard).join("");
+      }
+      tabBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          tab = btn.getAttribute("data-tab");
+          tabBtns.forEach(function (b) { b.className = "bcl-tab" + (b === btn ? " bcl-on" : ""); });
+          render();
+        });
+      });
+      input.addEventListener("input", render);
+      select.addEventListener("change", render);
+      extBox.addEventListener("change", render);
+      render();
+    }).catch(function () {
+      unavailable(root, "The jobs board", 'You can still <a href="/submit">send an update</a>.');
+    });
+  }
+
   /* ---------- rentals ---------- */
 
   function rentalCompare(a, b) {
@@ -378,6 +446,51 @@
     h += '<div class="bcl-actionrow"><a href="' + esc(rental.canonical_url) + '" target="_blank" rel="noopener">View original listing</a></div>';
     h += '<div class="bcl-actionrow"><a href="/submit">Report a problem with this listing</a></div>';
     return h + "</div>";
+  }
+
+  function initRentals(root) {
+    root.innerHTML = '<div class="bcl-count">Loading rentals…</div>';
+    fetchJSON(REPO + "/data/rentals.json").then(function (data) {
+      var all = data.rentals || [];
+
+      root.innerHTML =
+        '<div class="bcl-controls">' +
+        '<input type="search" placeholder="Search by address, city, or property type" aria-label="Search rentals">' +
+        '<select aria-label="Minimum bedrooms"><option value="0">Any beds</option><option value="1">1+ bd</option><option value="2">2+ bd</option><option value="3">3+ bd</option></select>' +
+        '<label class="bcl-checklabel"><input type="checkbox" class="bcl-verified-only" checked> Verified only</label>' +
+        "</div>" +
+        '<div class="bcl-count"></div><div class="bcl-list"></div>' +
+        '<div class="bcl-note">Boulder Creek Local is not the landlord or property manager and does not handle applications, deposits, or keys. ' +
+        'Never wire money or pay a deposit before viewing a property in person and verifying the lister. Report suspicious listings. ' +
+        'This site does not discriminate and does not knowingly list rentals that violate fair housing law. ' +
+        '<a href="/submit">Send an update</a>.</div>';
+
+      var input = root.querySelector("input");
+      var bedsSel = root.querySelector("select");
+      var verifiedBox = root.querySelector(".bcl-verified-only");
+      var count = root.querySelector(".bcl-count");
+      var list = root.querySelector(".bcl-list");
+
+      function render() {
+        var rows = filterRentals(all, {
+          q: input.value || "",
+          minBeds: parseInt(bedsSel.value, 10) || 0,
+          verifiedOnly: !!verifiedBox.checked
+        });
+        count.textContent = rows.length + " OF " + all.length + " 95006 RENTALS · UPDATED " + (data.updated || "");
+        if (!rows.length) {
+          list.innerHTML = '<div class="bcl-unavailable">No verified 95006 rentals are listed right now. <a href="/submit">Suggest one</a>.</div>';
+          return;
+        }
+        list.innerHTML = rows.map(rentalCard).join("");
+      }
+      input.addEventListener("input", render);
+      bedsSel.addEventListener("change", render);
+      verifiedBox.addEventListener("change", render);
+      render();
+    }).catch(function () {
+      unavailable(root, "The rentals board", 'You can still <a href="/submit">send an update</a>.');
+    });
   }
 
   /* ---------- events ---------- */
@@ -773,6 +886,10 @@
     if (s) initStatus(s);
     var t = document.getElementById("bcl-today");
     if (t) initToday(t);
+    var j = document.getElementById("bcl-jobs");
+    if (j) initJobs(j);
+    var rn = document.getElementById("bcl-rentals");
+    if (rn) initRentals(rn);
   }
 
   if (typeof document !== "undefined") {
