@@ -7,7 +7,7 @@ import os
 import re
 import subprocess
 import time
-from datetime import date
+from datetime import date, timedelta
 from urllib.parse import urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
@@ -334,19 +334,67 @@ def http_json(url, **kwargs):
     return json.loads(http_get(url, **kwargs))
 
 
-def firecrawl_markdown(url, runner=None):
-    """Scrape a page to markdown via the firecrawl CLI. Pass `runner` in tests."""
-    run = runner or _run_firecrawl
-    return run(url)
+def http_post_json(url, body, timeout=25, opener=None):
+    """POST `body` (dict) as JSON with the standard User-Agent; return parsed JSON.
+
+    Pass `opener` in tests to avoid the network -- it is called as
+    `opener(req, timeout=timeout)` and must return a context-manager response
+    with a `.read()` returning bytes.
+    """
+    fetch = opener or urlopen
+    data = json.dumps(body).encode("utf-8")
+    req = Request(
+        url, data=data, method="POST",
+        headers={"User-Agent": USER_AGENT, "Content-Type": "application/json"},
+    )
+    with fetch(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode("utf-8", "replace"))
 
 
-def _run_firecrawl(url):
+_RELATIVE_DATE_RE = re.compile(r"(\d+)\+?\s*Days?\s*Ago", re.I)
+
+
+def parse_relative_date(text, today):
+    """Parse a Workday-style relative posting date ("Posted 5 Days Ago",
+    "Posted Today", "Posted 30+ Days Ago") into an ISO date string relative
+    to `today` (an ISO date string). Unparseable input returns "".
+    """
+    if not text:
+        return ""
+    try:
+        today_d = date.fromisoformat(str(today)[:10])
+    except ValueError:
+        return ""
+    low = text.strip().lower()
+    if "today" in low:
+        return today_d.isoformat()
+    m = _RELATIVE_DATE_RE.search(text)
+    if not m:
+        return ""
+    days = int(m.group(1))
+    return (today_d - timedelta(days=days)).isoformat()
+
+
+def firecrawl_markdown(url, runner=None, wait_ms=0):
+    """Scrape a page to markdown via the firecrawl CLI. Pass `runner` in tests
+    to bypass the network entirely (it is called as `runner(url)`, so
+    `wait_ms` only affects the real CLI invocation).
+    """
+    if runner is not None:
+        return runner(url)
+    return _run_firecrawl(url, wait_ms=wait_ms)
+
+
+def _run_firecrawl(url, wait_ms=0):
     # On Windows the firecrawl CLI is a .CMD shim; subprocess needs shell=True
     # there to resolve it (POSIX shells resolve the plain executable fine).
     # encoding/errors are pinned to utf-8/replace because scraped pages often
     # contain bytes the Windows console-locale codec (cp1252) can't decode.
+    cmd = ["firecrawl", "scrape", url, "--format", "markdown"]
+    if wait_ms:
+        cmd += ["--wait-for", str(wait_ms)]
     result = subprocess.run(
-        ["firecrawl", "scrape", url, "--format", "markdown"],
+        cmd,
         capture_output=True, text=True, timeout=90, shell=(os.name == "nt"),
         encoding="utf-8", errors="replace",
     )
