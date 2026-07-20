@@ -1,7 +1,7 @@
 {
  "_note": "Boulder Creek Local jobs board. Auto-refreshed; see refresh_jobs.py.",
- "updated": "2026-07-19",
- "count": 159,
+ "updated": "2026-07-20",
+ "count": 162,
  "jobs": [
   {
    "id": "9860a82d6d93270f5f280141cbd8420be8fdc2f0",
@@ -33,8 +33,8 @@
    "application_deadline": "Continuous",
    "canonical_url": "https://www.jobapscloud.com/SCRUZ/sup/bulpreview.asp?b=&R1=26&R2=JD2&R3=01",
    "source": "County of Santa Cruz",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -68,8 +68,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.governmentjobs.com/careers/scottsvalley/jobs/5101685/chief-plant-operator",
    "source": "City of Scotts Valley",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -103,8 +103,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.governmentjobs.com/careers/scottsvalley/jobs/4699826/emergency-dispatcher-clerk-i",
    "source": "City of Scotts Valley",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -138,8 +138,8 @@
    "application_deadline": "Continuous",
    "canonical_url": "https://www.governmentjobs.com/careers/scottsvalley/jobs/4606340/police-officer-entry-level",
    "source": "City of Scotts Valley",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -173,8 +173,8 @@
    "application_deadline": "Continuous",
    "canonical_url": "https://www.governmentjobs.com/careers/scottsvalley/jobs/4642163/police-officer-lateral",
    "source": "City of Scotts Valley",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -208,8 +208,43 @@
    "application_deadline": "",
    "canonical_url": "https://www.governmentjobs.com/careers/scottsvalley/jobs/4772399/reserve-officer",
    "source": "City of Scotts Valley",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
+   "verification_status": "verified",
+   "freshness_label": ""
+  },
+  {
+   "id": "7e4fe8e78fec955a3f13215968c8ddfdb053b8ed",
+   "slug": "central-fire-district-paid-call-firefighter",
+   "title": "Paid Call Firefighter",
+   "title_original": "Paid Call Firefighter",
+   "employer_name": "Central Fire District",
+   "description_summary": "",
+   "employment_type": "",
+   "work_mode": "on-site",
+   "remote_regions": "",
+   "city": "Santa Cruz",
+   "state": "CA",
+   "postal_code": "",
+   "location_precision": "city",
+   "geography_tier": "core",
+   "commute_minutes": 30,
+   "commute_type": "drive",
+   "salary_min": null,
+   "salary_max": null,
+   "salary_period": null,
+   "salary_text": "",
+   "salary_disclosed": false,
+   "benefits_text": "",
+   "hours_text": "",
+   "schedule": "",
+   "category": "Fire",
+   "posted_at": "",
+   "application_deadline": "09/30/2026",
+   "canonical_url": "https://www.calopps.org/central-fire-district-of-santa-cruz-county/job-20759270",
+   "source": "Central Fire District",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -243,8 +278,8 @@
    "application_deadline": "Until Filled",
    "canonical_url": "https://www.edjoin.org/Home/JobPosting/2243978",
    "source": "SLVUSD (EDJOIN)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -278,8 +313,8 @@
    "application_deadline": "Until Filled",
    "canonical_url": "https://www.edjoin.org/Home/JobPosting/2243973",
    "source": "SLVUSD (EDJOIN)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -313,8 +348,8 @@
    "application_deadline": "Until Filled",
    "canonical_url": "https://www.edjoin.org/Home/JobPosting/2238308",
    "source": "SLVUSD (EDJOIN)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -348,8 +383,8 @@
    "application_deadline": "Until Filled",
    "canonical_url": "https://www.edjoin.org/Home/JobPosting/2222233",
    "source": "SLVUSD (EDJOIN)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -383,8 +418,8 @@
    "application_deadline": "Until Filled",
    "canonical_url": "https://www.edjoin.org/Home/JobPosting/2191570",
    "source": "SLVUSD (EDJOIN)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -418,8 +453,8 @@
    "application_deadline": "Until Filled",
    "canonical_url": "https://www.edjoin.org/Home/JobPosting/2116189",
    "source": "SLVUSD (EDJOIN)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -453,8 +488,8 @@
    "application_deadline": "Until Filled",
    "canonical_url": "https://www.edjoin.org/Home/JobPosting/2120600",
    "source": "SLVUSD (EDJOIN)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -488,8 +523,8 @@
    "application_deadline": "",
    "canonical_url": "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF/jobs/27013",
    "source": "New Leaf Community Markets",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "New"
   },
@@ -523,8 +558,8 @@
    "application_deadline": "",
    "canonical_url": "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF/jobs/26929",
    "source": "New Leaf Community Markets",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -558,8 +593,8 @@
    "application_deadline": "",
    "canonical_url": "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF/jobs/26925",
    "source": "New Leaf Community Markets",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -593,8 +628,8 @@
    "application_deadline": "",
    "canonical_url": "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF/jobs/26863",
    "source": "New Leaf Community Markets",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -628,8 +663,8 @@
    "application_deadline": "",
    "canonical_url": "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF/jobs/26858",
    "source": "New Leaf Community Markets",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -663,8 +698,8 @@
    "application_deadline": "",
    "canonical_url": "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF/jobs/26837",
    "source": "New Leaf Community Markets",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -698,8 +733,8 @@
    "application_deadline": "",
    "canonical_url": "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF/jobs/26793",
    "source": "New Leaf Community Markets",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -733,8 +768,8 @@
    "application_deadline": "",
    "canonical_url": "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF/jobs/26679",
    "source": "New Leaf Community Markets",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -768,8 +803,8 @@
    "application_deadline": "",
    "canonical_url": "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF/jobs/26674",
    "source": "New Leaf Community Markets",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -803,8 +838,8 @@
    "application_deadline": "",
    "canonical_url": "https://foxfactory.wd1.myworkdayjobs.com/en-US/FOX/job/US-CA-Scotts-Valley/CNC-operator-V-US---Sunday-Friday---Third-shift-11-30-PM-8-00-AM_JR112369",
    "source": "Fox Factory",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -838,8 +873,8 @@
    "application_deadline": "",
    "canonical_url": "https://foxfactory.wd1.myworkdayjobs.com/en-US/FOX/job/US-CA-Scotts-Valley/CNC-Operator-IV---1st-shift---7-30am-3-30pm_JR112716",
    "source": "Fox Factory",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -873,8 +908,8 @@
    "application_deadline": "",
    "canonical_url": "https://foxfactory.wd1.myworkdayjobs.com/en-US/FOX/job/US-CA-Scotts-Valley/CNC-Operator-IV---2nd-shift---330pm-12am_JR112718",
    "source": "Fox Factory",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -908,8 +943,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/735936.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -943,8 +978,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/735938.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -978,8 +1013,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/736318.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -1013,8 +1048,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/736583.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -1048,8 +1083,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/726550.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1083,8 +1118,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/727593.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1118,8 +1153,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/727621.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1153,8 +1188,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/729144.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1188,8 +1223,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/733166.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1223,8 +1258,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/734367.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1258,8 +1293,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/734371.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1293,8 +1328,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/734918.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1328,8 +1363,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/729159.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1363,8 +1398,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/730795.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1398,8 +1433,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/730806.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1433,8 +1468,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/730802.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1468,8 +1503,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/730805.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1503,8 +1538,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.albertsonscompanies.com/careers/find-a-job/job/730796.html",
    "source": "Safeway (Albertsons)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1538,8 +1573,8 @@
    "application_deadline": "",
    "canonical_url": "https://recruiting.paylocity.com/Recruiting/Jobs/Details/4225106",
    "source": "Dream Inn Santa Cruz",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -1573,8 +1608,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/377670",
    "source": "Seascape Beach Resort",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1608,8 +1643,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/377855",
    "source": "Seascape Beach Resort",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1643,8 +1678,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/411911",
    "source": "Seascape Beach Resort",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1678,8 +1713,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/392840",
    "source": "Seascape Beach Resort",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1713,8 +1748,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/381563",
    "source": "Seascape Beach Resort",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1748,8 +1783,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/427021",
    "source": "Seascape Beach Resort",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1783,8 +1818,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/408759",
    "source": "Seascape Beach Resort",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1818,8 +1853,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/434883",
    "source": "Seascape Beach Resort",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1853,8 +1888,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/163019",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1888,8 +1923,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/163441",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1923,8 +1958,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/163941",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1958,8 +1993,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/166292",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -1993,8 +2028,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/166630",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2028,8 +2063,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/168143",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2063,8 +2098,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/168651",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2098,8 +2133,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/169044",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2133,8 +2168,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/170529",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2168,8 +2203,8 @@
    "application_deadline": "",
    "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/170862",
    "source": "Community Bridges",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2203,10 +2238,10 @@
    "application_deadline": "",
    "canonical_url": "https://www.appone.com/MainInfoReq.asp?R_ID=7193053&B_ID=44&fid=1&SearchScreenID=9876&ssbgcolor=#FFFFFF",
    "source": "Second Harvest (RSS)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "1e53c8465757db366798509a23e7c0295339e829",
@@ -2238,10 +2273,10 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/medical/patient-care-specialist-2091069",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "e308e283e44576629a3cc10539586c43b8bd3c43",
@@ -2273,10 +2308,10 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/software-development/senior-independent-software-developer-1919265",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "a4eec980558cb78c593c649b19599331a6a73253",
@@ -2308,10 +2343,10 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/software-development/senior-independent-ai-engineer-architect-1919266",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "71fa6b6e030986d7be87fca12052c2398f383db4",
@@ -2343,10 +2378,10 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/marketing/head-of-marketing-communications-2091068",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "de7d2c73c41b30b56adbd1555dbab99b7c268819",
@@ -2378,8 +2413,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/software-development/tech-lead-full-stack-rails-engineer-2069746",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -2413,8 +2448,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/devops/senior-devops-engineer-2091067",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -2448,10 +2483,10 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/medical/assistant-account-payable-2090989",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "Recent"
+   "freshness_label": ""
   },
   {
    "id": "1d571c51357ae5787997a8d36efd9392d577b279",
@@ -2483,8 +2518,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/marketing/remote-office-assistant-1680495",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2518,8 +2553,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/sales/product-sales-specialist-pet-health-2091048",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2553,8 +2588,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/sales/inside-sales-contractor-2086540",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2588,8 +2623,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/sales/high-ticket-financial-sales-specialist-team-lead-track-2090949",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2623,8 +2658,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/information-technology/tier-iii-service-desk-engineer-2091045",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2658,8 +2693,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/writing/freelance-writer-1185979",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2693,8 +2728,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/customer-service/customer-operations-writing-specialist-2090942",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2728,8 +2763,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/data/data-labeling-specialists-2090903",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2763,8 +2798,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/sales/sales-assistant-2091038",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2798,8 +2833,8 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/artificial-intelligence/mid-senior-ai-cinematic-video-editor-2091035",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -2833,10 +2868,80 @@
    "application_deadline": "",
    "canonical_url": "https://remotive.com/remote-jobs/product/senior-product-manager-2090984",
    "source": "Remotive (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
+  },
+  {
+   "id": "c5bb1c4c611a4c3f91c52d6af5a4afeb791c5f7b",
+   "slug": "lawnstarter-senior-product-manager-pricing",
+   "title": "Senior Product Manager, Pricing",
+   "title_original": "Senior Product Manager, Pricing",
+   "employer_name": "LawnStarter",
+   "description_summary": "Headquarters: United States URL: http://lawnstarter.com About LawnStarter LawnStarter is the nation's leading on-demand marketplace for lawn care and outdoor services, with over $100M in annual bookings. We're expanding beyond lawn care to become the one-stop shop for all home services — operating across three brands (LawnStarter, Lawn Love, Home Gnome) on a single shared platform. About Pricing a",
+   "employment_type": "Full-Time",
+   "work_mode": "remote",
+   "remote_regions": "Anywhere in the World",
+   "city": "",
+   "state": "CA",
+   "postal_code": "",
+   "location_precision": "remote",
+   "geography_tier": "remote",
+   "commute_minutes": null,
+   "commute_type": null,
+   "salary_min": null,
+   "salary_max": null,
+   "salary_period": null,
+   "salary_text": "",
+   "salary_disclosed": false,
+   "benefits_text": "",
+   "hours_text": "Full-Time",
+   "schedule": "Full-Time",
+   "category": "",
+   "posted_at": "2026-07-20",
+   "application_deadline": "",
+   "canonical_url": "https://weworkremotely.com/remote-jobs/lawnstarter-senior-product-manager-pricing",
+   "source": "We Work Remotely (remote)",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
+   "verification_status": "verified",
+   "freshness_label": "New"
+  },
+  {
+   "id": "4696dfaabf6608eea5c5088f84f624aa54ebfae9",
+   "slug": "lawnstarter-senior-product-manager-service-delivery",
+   "title": "Senior Product Manager, Service Delivery",
+   "title_original": "Senior Product Manager, Service Delivery",
+   "employer_name": "LawnStarter",
+   "description_summary": "Headquarters: United States URL: http://lawnstarter.com About LawnStarter LawnStarter is the nation's leading on-demand marketplace for lawn care and outdoor services, with over $100M in annual bookings. We're expanding beyond lawn care to become the one-stop shop for all home services — operating across three brands (LawnStarter, Lawn Love, Home Gnome) on a single shared platform. About Service D",
+   "employment_type": "Full-Time",
+   "work_mode": "remote",
+   "remote_regions": "Anywhere in the World",
+   "city": "",
+   "state": "CA",
+   "postal_code": "",
+   "location_precision": "remote",
+   "geography_tier": "remote",
+   "commute_minutes": null,
+   "commute_type": null,
+   "salary_min": null,
+   "salary_max": null,
+   "salary_period": null,
+   "salary_text": "",
+   "salary_disclosed": false,
+   "benefits_text": "",
+   "hours_text": "Full-Time",
+   "schedule": "Full-Time",
+   "category": "",
+   "posted_at": "2026-07-20",
+   "application_deadline": "",
+   "canonical_url": "https://weworkremotely.com/remote-jobs/lawnstarter-senior-product-manager-service-delivery",
+   "source": "We Work Remotely (remote)",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
+   "verification_status": "verified",
+   "freshness_label": "New"
   },
   {
    "id": "eb0dd46bd0ff6af5e3a1b17d58a695bff885c619",
@@ -2868,8 +2973,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/lawnstarter-data-governance-platform-manager",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "New"
   },
@@ -2903,8 +3008,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/mp-college-consulting-college-counselor-specializing-in-bs-md-admissions-remote-part-time",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "New"
   },
@@ -2938,8 +3043,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/wellness-clinic-marketing-senior-sdr",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "New"
   },
@@ -2973,8 +3078,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/garden3d-head-of-design",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "New"
   },
@@ -3008,8 +3113,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/wifi-tribe-leader-for-premium-remote-work-travel-community-global-travel-required",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "New"
   },
@@ -3043,8 +3148,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/native-camp-online-english-teacher-34",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "New"
   },
@@ -3078,10 +3183,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/work-and-study-travel-website-builder-wordpress-specialist",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "dbb2f2603c34f00494d7bb3f683a74dd01416a1f",
@@ -3113,10 +3218,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/aethos-customer-journey-and-crm-manager-uk-fixed-term-contract-for-a-maternity-cover",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "d48511310bcb44f30a78ad05d6bdce50155e9ccc",
@@ -3148,10 +3253,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/beigene-senior-manager-crm-medical-affairs-eu-nm",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "17ad2de786c06d45809d788c430526cf32728a70",
@@ -3183,10 +3288,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/jobgether-senior-mobile-ux-designer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "b1038422b34f37587889b21855002d20f44e6e0f",
@@ -3218,10 +3323,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/education-sub-saharan-africa-consultancy-design-and-implementation-of-acsl-impact-studies",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "cb240b96d8478c7203143a22ef7f878a2560bad0",
@@ -3253,10 +3358,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/castr-sales-development-representative-sdr",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "b7a981b3287aed95382d69f106fcdea5797f6ab6",
@@ -3288,10 +3393,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/clover-labs-ai-campaign-manager-seo-ai-content",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "ceb19eff2de6a7bbe585c06ce718b20769c9efe5",
@@ -3323,10 +3428,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/gartner-director-it-strategy-consulting-hhs-medicaid",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "ddcd909ee180d0455545987abcb80dc8cf2bb7df",
@@ -3358,10 +3463,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/faith-technologies-project-controls-manager",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "4aa9a82f60400c7306882d62b5114f4fa4cdf106",
@@ -3393,10 +3498,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/siemens-healthineers-regional-service-manager-manhattan-ny",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "2ca20b3c33767558725bc6f450bfac5a1a215b82",
@@ -3428,10 +3533,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/icf-software-security-engineer-cloud-govcloud-top-secret-cleared",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "4bc1a76e27118699fcfa462d08b6b3b666d54bf9",
@@ -3463,10 +3568,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/coloplast-field-marketing-specialist",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "9278710fbc4995fd4aeca1e108d2c80daeb4066d",
@@ -3498,10 +3603,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/bentley-systems-content-marketing-manager",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "05a7467ffb7063ef25d86ef8861c6b813d51195f",
@@ -3533,10 +3638,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/rhenus-logistics-product-marketing-manager",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "fee0435320523cbae71b6b2fc66f334827f930c6",
@@ -3568,10 +3673,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/farmers-data-science-manager-marketing",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "e1218c4c79190ba503270d6261e1fee6e479f461",
@@ -3603,10 +3708,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/wme-senior-devops-engineer-applications",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "e725a263bc9bc1395c253f5c52cef431bab64083",
@@ -3638,10 +3743,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/icf-senior-devops-engineer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "b3408e6c01bf5095a8e1c09f597e46d41da821e9",
@@ -3673,10 +3778,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/avalon-administrative-services-devops-engineer-iii",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "ef211564aac509f02838dbb7c5f311583f8ded1a",
@@ -3708,10 +3813,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/carnival-corporation-engineer-sr-devops",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "91aa91c90de7c0c6474b58fe05defed5da49a406",
@@ -3743,10 +3848,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/launch-legends-senior-devops-engineer-web3",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "9a45edce9194f67866c6d3ed2857511a3d74f0a2",
@@ -3778,10 +3883,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/highlevel-engineering-manager-custom-objects-team",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "12e1bf27880e24b3f422a1db4d00fd9b2f1be437",
@@ -3813,10 +3918,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/tekion-implementation-specialist-variable-ops-experience-required",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "76dd56f2363b809cae567f9046284856c53ba246",
@@ -3848,10 +3953,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/ashley-digital-director-crm",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "bcf6f8408e069f44ae3ecd5619bc8e264e254999",
@@ -3883,10 +3988,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/first-american-crm-campaign-manager",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "2280dc8165e9e4020b87731199206469169c895e",
@@ -3918,10 +4023,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/te-connectivity-ai-business-acceleration-manager-remote-harrisburg-pa-area",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "3d8b02c258f8e777d1ed5bf564849bfc2805b53f",
@@ -3953,10 +4058,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/astreya-ai-infrastructure-dc-design-engineer-ii",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "205ad4f7944dcbe7c48d8459772b448a501acebc",
@@ -3988,10 +4093,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/te-connectivity-sr-r-d-product-dvl-engineer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "0dadbf9535b7b70692a83ff21dfe5623eb9647d9",
@@ -4023,10 +4128,10 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/peroptyx-data-anlayst",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
-   "freshness_label": "New"
+   "freshness_label": "Recent"
   },
   {
    "id": "0d1eab50f1efae0d8a3a39c27aeaa109f3db3c26",
@@ -4058,8 +4163,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/tend-sourcing-and-crm-program-manager",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -4093,8 +4198,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/bright-vision-technologies-site-reliability-engineer-sre-1",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -4128,8 +4233,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/five9-senior-devops-engineer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -4163,8 +4268,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/common-securitization-solutions-devops-engineer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -4198,8 +4303,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/proxify-ab-senior-java-backend-developer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -4233,8 +4338,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/proxify-ab-senior-frontend-developer-react-js-next-js-1",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -4268,8 +4373,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/proxify-ab-senior-fullstack-developer-react-js-node-js-2",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -4303,8 +4408,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/proxify-ab-senior-ruby-on-rails-developer-3",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -4338,8 +4443,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/proxify-ab-senior-backend-developer-python-8",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": "Recent"
   },
@@ -4373,8 +4478,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/wonderdog-full-stack-product-engineer-agentic-first",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4408,8 +4513,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-5",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4443,8 +4548,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/spiralyze-project-manager-1",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4478,8 +4583,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/retr-senior-software-engineer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4513,8 +4618,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/vidalytics-ai-automation-engineer-in-house-martech-video-saas",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4548,8 +4653,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/vidalytics-europe-only-gtm-martech-engineer-growth-attribution-at-video-martech-saas",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4583,8 +4688,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/accuweather-careers-product-manager-climate-services",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4618,8 +4723,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/qventus-senior-lead-product-manager-agentic-ai-platform",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4653,8 +4758,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/impact-clients-client-success-coach-csm-1",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4688,8 +4793,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/rimini-street-sr-support-engineer-ebs",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4723,8 +4828,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/origami-risk-technical-partnerships-manager",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4758,8 +4863,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/rimini-street-forward-deployed-engineer-agentic-ai",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4793,8 +4898,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/tourcc-vp-customer-success-account-management-saas",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4828,8 +4933,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/collaborative-solutions-workday-financials-analyst-consultant-global-delivery-center",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4863,8 +4968,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/fis-capital-markets-account-manager-ii",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4898,8 +5003,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/ey-studio-nederland-oracle-services-oracle-cloud-finance-manager-tech-cons",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4933,8 +5038,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/harris-global-business-services-financial-accountant",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -4968,8 +5073,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/mindrift-freelance-web-designer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5003,8 +5108,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/kai-partners-technical-solutions-engineer-web-developer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5038,8 +5143,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/ed-prather-real-estate-job-title-inside-sales-agent-appointment-setter-remote-latam-time",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5073,8 +5178,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/proxify-ab-senior-fullstack-developer-python-3",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5108,8 +5213,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/hospitable-staff-ui-ux-product-designer-usa-emea-remote-1",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5143,8 +5248,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/cortes-23-senior-qa-engineer-2",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5178,8 +5283,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/toggl-senior-product-manager-4",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5213,8 +5318,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/speechify-inc-senior-software-engineer-web-1",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5248,8 +5353,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/nogigiddy-entry-level-account-manager-4",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5283,8 +5388,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/sticker-mule-software-engineer-3",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5318,8 +5423,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/bunny-net-staff-software-engineer-magic-containers",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5353,8 +5458,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/reveleer-full-stack-ai-engineer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5388,8 +5493,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/tether-ai-research-engineer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5423,8 +5528,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/elite-software-automation-business-analyst-2",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5458,8 +5563,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/hello-there-collective-affiliate-marketing-manager",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5493,8 +5598,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/speechify-inc-tech-lead-android-core-product",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5528,8 +5633,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/stellar-ai-senior-software-engineer",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -5563,8 +5668,8 @@
    "application_deadline": "",
    "canonical_url": "https://weworkremotely.com/remote-jobs/new-law-business-model-marketing-automation-saas-services-line-of-business-owner",
    "source": "We Work Remotely (remote)",
-   "first_seen_at": "2026-07-19",
-   "last_verified_at": "2026-07-19",
+   "first_seen_at": "2026-07-20",
+   "last_verified_at": "2026-07-20",
    "verification_status": "verified",
    "freshness_label": ""
   }
