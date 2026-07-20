@@ -24,6 +24,8 @@
   font-family: Inter, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.65;
+  max-width: 100%;
+  min-width: 0;
 }
 .bcl h1, .bcl h2, .bcl h3, .bcl h4 {
   color: inherit;
@@ -37,20 +39,21 @@
 .bcl h2 { font-size: clamp(2.25rem, 5vw, 4.25rem); }
 .bcl h3 { font-size: clamp(1.55rem, 3vw, 2.1rem); line-height: 1.08; }
 .bcl p { margin: 0 0 1em; }
-.bcl a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.bcl a { color: inherit; overflow-wrap: anywhere; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.bcl img, .bcl svg, .bcl video { height: auto; max-width: 100%; }
 /* Full-width without viewport hacks: the 50%-50vw breakout shifts content
    off-screen inside Squarespace's Fluid Engine grid. Instead the block stays
    100% wide and the container overrides below stretch its ancestors. */
-.bcl-full { margin-left: 0; width: 100%; }
+.bcl-full { margin-left: 0; max-width: 100%; min-width: 0; width: 100%; }
 /* Stretch ONLY the containers that hold a BCL code block (scoped via :has). */
 .page-section:has(.bcl-full) .content-wrapper,
-section:has(.bcl-full) .content-wrapper { max-width: none !important; padding: 0 !important; }
+section:has(.bcl-full) .content-wrapper { max-width: 100% !important; min-width: 0 !important; padding: 0 !important; width: 100% !important; }
 .page-section:has(.bcl-full) { min-height: 0 !important; }
-.fluid-engine:has(.bcl-full) { grid-template-columns: 1fr !important; grid-template-rows: auto !important; }
-.fe-block:has(.bcl-full) { grid-area: auto !important; grid-column: 1 / -1 !important; position: static !important; transform: none !important; width: 100% !important; }
-.sqs-block-code:has(.bcl-full), .sqs-block-code:has(.bcl-full) .sqs-block-content { padding: 0 !important; width: 100% !important; }
+.fluid-engine:has(.bcl-full) { grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: auto !important; min-width: 0 !important; width: 100% !important; }
+.fe-block:has(.bcl-full) { grid-area: auto !important; grid-column: 1 / -1 !important; max-width: 100% !important; min-width: 0 !important; position: static !important; transform: none !important; width: 100% !important; }
+.sqs-block-code:has(.bcl-full), .sqs-block-code:has(.bcl-full) .sqs-block-content { max-width: 100% !important; min-width: 0 !important; padding: 0 !important; width: 100% !important; }
 .sqs-block:has(.bcl-full) { padding: 0 !important; }
-.bcl-wrap { margin: 0 auto; max-width: 1180px; padding: 0 clamp(22px, 5vw, 64px); }
+.bcl-wrap { margin: 0 auto; max-width: 1180px; min-width: 0; padding: 0 clamp(22px, 5vw, 64px); width: 100%; }
 .bcl-kicker, .bcl-label {
   color: var(--bcl-clay);
   font-family: "IBM Plex Mono", monospace;
@@ -62,6 +65,7 @@ section:has(.bcl-full) .content-wrapper { max-width: none !important; padding: 0
 .bcl-dim { color: var(--bcl-muted); }
 .bcl-hero { background: var(--bcl-cream); padding: clamp(44px, 6vw, 76px) 0; }
 .bcl-hero-grid { align-items: end; display: grid; gap: 40px; grid-template-columns: 1.4fr .6fr; }
+.bcl-hero-grid > *, .bcl-section-head > *, .bcl-grid > *, .bcl-strip .bcl-wrap > *, .bcl-footer-fine > * { min-width: 0; }
 .bcl-hero-lede { font-size: clamp(1.05rem, 2vw, 1.35rem); max-width: 620px; }
 .bcl-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .bcl-btn {
@@ -107,6 +111,8 @@ section:has(.bcl-full) .content-wrapper { max-width: none !important; padding: 0
   border: 1px solid var(--bcl-line);
   border-radius: var(--bcl-radius);
   box-shadow: var(--bcl-shadow);
+  max-width: 100%;
+  min-width: 0;
   overflow: hidden;
 }
 .bcl-tool-head { background: var(--bcl-deep); color: #fff; padding: 24px 30px; }
@@ -161,12 +167,19 @@ section:has(.bcl-full) .content-wrapper { max-width: none !important; padding: 0
 .bcl-footer-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 34px 0 50px; }
 .bcl-footer-links a { font-size: .88rem; font-weight: 600; }
 .bcl-footer-fine { border-top: 1px solid rgba(255,255,255,.16); display: flex; font-size: .76rem; gap: 24px; justify-content: space-between; padding-top: 24px; }
-.bcl-frame { border: 0; display: block; min-height: 620px; width: 100%; }
+.bcl-frame { border: 0; display: block; max-width: 100%; min-height: 620px; min-width: 0; width: 100%; }
 @media (max-width: 800px) {
   .bcl-hero-grid, .bcl-section-head, .bcl-grid-2, .bcl-grid-3 { grid-template-columns: 1fr; }
   .bcl-section-head { gap: 8px; }
   .bcl-source { grid-template-columns: 1fr; }
   .bcl-footer-fine { display: block; }
+}
+@media (max-width: 480px) {
+  .bcl-wrap { padding-left: 18px; padding-right: 18px; }
+  .bcl-actions { align-items: stretch; flex-direction: column; }
+  .bcl-actions .bcl-btn { text-align: center; white-space: normal; width: 100%; }
+  .bcl-tool-head { padding: 20px 18px; }
+  .bcl-tool-body { padding-left: 18px; padding-right: 18px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .bcl *, .bcl *:before, .bcl *:after { scroll-behavior: auto !important; transition: none !important; }

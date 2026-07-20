@@ -1,22 +1,23 @@
 <!-- Boulder Creek Local: Contact & Submit page (unified, conditional).
      Paste into a Squarespace CODE BLOCK on the Contact / Submit page.
      Delivery: MailerLite embedded-form endpoint (no secret key in this page).
-     Fill ML_FORM below with the "BCL Community Submissions" form id (account id is set).
-     Every submitter is added to the BCL Subscribers group; MailerLite handles unsubscribe. -->
+     The configured MailerLite form must belong to a submissions-only group.
+     Do not attach the submission form to marketing automations or newsletter groups. -->
 <div class="bcl-cs" id="bcl-submit-wrap">
 <style>
-#bcl-submit-wrap{--forest:#173f36;--fern:#2f6754;--clay:#d56e47;--paper:#fffdf8;--cream:#f5f1e7;--ink:#1c2a26;--muted:#67716b;font-family:Inter,Arial,sans-serif;color:var(--ink);max-width:660px;margin:0 auto;line-height:1.55;}
+#bcl-submit-wrap{--forest:#173f36;--fern:#2f6754;--clay:#d56e47;--paper:#fffdf8;--cream:#f5f1e7;--ink:#1c2a26;--muted:#67716b;font-family:Inter,Arial,sans-serif;color:var(--ink);max-width:660px;min-width:0;width:100%;margin:0 auto;line-height:1.55;}
+#bcl-submit-wrap *{box-sizing:border-box;min-width:0;}
 #bcl-submit-wrap .bcl-head{margin:0 0 1.4em;}
-#bcl-submit-wrap h2{font-family:'Cormorant Garamond',Georgia,serif;color:var(--forest);font-size:2rem;margin:0 0 .2em;line-height:1.1;}
+#bcl-submit-wrap h1{font-family:'Cormorant Garamond',Georgia,serif;color:var(--forest);font-size:clamp(2rem,8vw,3rem);margin:0 0 .2em;line-height:1.1;}
 #bcl-submit-wrap .bcl-head p{color:var(--ink);font-size:1rem;margin:.5em 0 0;}
 #bcl-submit-wrap .bcl-how{background:var(--cream);border-left:3px solid var(--clay);padding:12px 16px;font-size:.88rem;color:var(--muted);margin:0 0 1.6em;border-radius:0 3px 3px 0;}
-#bcl-submit-wrap h3{font-family:'Cormorant Garamond',Georgia,serif;color:var(--forest);font-size:1.35rem;margin:1.4em 0 .1em;}
+#bcl-submit-wrap h3,#bcl-submit-wrap legend{font-family:'Cormorant Garamond',Georgia,serif;color:var(--forest);font-size:1.35rem;font-weight:600;margin:1.4em 0 .1em;padding:0;}
 #bcl-submit-wrap .sub{color:var(--muted);font-size:.88rem;margin:0 0 .6em;}
 #bcl-submit-wrap label{display:block;font-size:.85rem;font-weight:600;color:var(--forest);margin:14px 0 4px;}
 #bcl-submit-wrap input,#bcl-submit-wrap select,#bcl-submit-wrap textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #cfc9b8;background:var(--paper);color:var(--ink);font:inherit;font-size:.95rem;border-radius:3px;}
 #bcl-submit-wrap textarea{min-height:100px;resize:vertical;}
 #bcl-submit-wrap .row{display:flex;gap:14px;flex-wrap:wrap;}
-#bcl-submit-wrap .row>div{flex:1 1 150px;}
+#bcl-submit-wrap .row>div{flex:1 1 150px;min-width:0;}
 #bcl-submit-wrap fieldset{border:none;padding:0;margin:0;display:none;}
 #bcl-submit-wrap fieldset.on{display:block;}
 #bcl-submit-wrap .reveal{display:none;border-top:1px solid #e3ddcf;margin-top:22px;padding-top:6px;}
@@ -29,18 +30,21 @@
 #bcl-submit-wrap button:disabled{opacity:.6;cursor:default;}
 #bcl-submit-wrap .consent{font-size:.8rem;color:var(--muted);margin-top:16px;}
 #bcl-submit-wrap .bcl-result{margin-top:16px;padding:14px 16px;border-radius:3px;font-size:.95rem;display:none;}
+#bcl-submit-wrap .bcl-result:focus{outline:2px solid var(--forest);outline-offset:3px;}
 #bcl-submit-wrap .bcl-result.ok{display:block;background:#dde7dd;color:var(--forest);}
 #bcl-submit-wrap .bcl-result.err{display:block;background:#f3ddd6;color:#8a3b22;}
+@media(max-width:480px){#bcl-submit-wrap .row{display:block;}#bcl-submit-wrap button{width:100%;}}
 </style>
 
 <div class="bcl-head">
-  <h2>Contact and submit</h2>
+  <h1>Contact and submit</h1>
   <p>This is the place to reach the Boulder Creek Local team, or to add something to the site. Ask a question, submit a rental or a job, add your business to the directory, or share a local event. Pick what you're here for and the right questions will appear.</p>
 </div>
 <p class="bcl-how">A real person reads everything. General questions get a reply, and anything meant for the site (rentals, jobs, listings, events) goes up after a quick review, usually within a day or two. We never publish your contact details.</p>
+<p class="bcl-how">Prefer email, or having trouble with the form? Write to <a href="mailto:hello@bouldercreeklocal.com">hello@bouldercreeklocal.com</a>.</p>
 
-<form id="bcl-submit-form" novalidate>
-  <input type="checkbox" class="hp" id="bcl-hp" tabindex="-1" autocomplete="off">
+<form id="bcl-submit-form">
+  <input type="checkbox" class="hp" id="bcl-hp" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 
   <label for="bcl-type">What's this about?</label>
   <select id="bcl-type" required>
@@ -54,100 +58,101 @@
 
   <!-- GENERAL -->
   <fieldset data-type="General question">
-    <h3>Your message</h3>
+    <legend>Your message</legend>
     <p class="sub">Questions, feedback, a correction, anything at all. We'll get back to you.</p>
-    <textarea data-f="Message"></textarea>
+    <label for="bcl-general-message">Message</label>
+    <textarea id="bcl-general-message" data-f="Message"></textarea>
   </fieldset>
 
   <!-- RENTAL -->
   <fieldset data-type="Rental listing">
-    <h3>Rental details</h3>
+    <legend>Rental details</legend>
     <p class="sub">For long-term rentals in the San Lorenzo Valley (Boulder Creek, Ben Lomond, Brookdale, Felton). We don't list vacation or short-term rentals.</p>
-    <label>Property address</label>
-    <input type="text" data-f="Address">
+    <label for="bcl-rental-address">Property address</label>
+    <input type="text" id="bcl-rental-address" data-f="Address" autocomplete="street-address">
     <div class="row">
-      <div><label>Town</label><select data-f="Town"><option value="">Choose one</option><option>Boulder Creek</option><option>Ben Lomond</option><option>Brookdale</option><option>Felton</option></select></div>
-      <div><label>ZIP</label><input type="text" data-f="ZIP" placeholder="95005/06/07/18"></div>
+      <div><label for="bcl-rental-town">Town</label><select id="bcl-rental-town" data-f="Town" autocomplete="address-level2"><option value="">Choose one</option><option>Boulder Creek</option><option>Ben Lomond</option><option>Brookdale</option><option>Felton</option></select></div>
+      <div><label for="bcl-rental-zip">ZIP</label><input type="text" id="bcl-rental-zip" data-f="ZIP" placeholder="95005/06/07/18" autocomplete="postal-code" inputmode="numeric"></div>
     </div>
-    <label>Rental type</label>
-    <select data-f="Rental type"><option value="">Choose one</option><option>Entire home</option><option>Apartment</option><option>ADU or cottage</option><option>Private room</option><option>Shared room</option></select>
+    <label for="bcl-rental-type">Rental type</label>
+    <select id="bcl-rental-type" data-f="Rental type"><option value="">Choose one</option><option>Entire home</option><option>Apartment</option><option>ADU or cottage</option><option>Private room</option><option>Shared room</option></select>
     <div class="row">
-      <div><label>Monthly rent ($)</label><input type="number" data-f="Monthly rent" min="0"></div>
-      <div><label>Deposit ($)</label><input type="number" data-f="Deposit" min="0"></div>
-    </div>
-    <div class="row">
-      <div><label>Bedrooms</label><input type="text" data-f="Bedrooms" placeholder="2 or Studio"></div>
-      <div><label>Bathrooms</label><input type="text" data-f="Bathrooms" placeholder="1.5"></div>
+      <div><label for="bcl-rental-rent">Monthly rent ($)</label><input type="number" id="bcl-rental-rent" data-f="Monthly rent" min="0" inputmode="numeric"></div>
+      <div><label for="bcl-rental-deposit">Deposit ($)</label><input type="number" id="bcl-rental-deposit" data-f="Deposit" min="0" inputmode="numeric"></div>
     </div>
     <div class="row">
-      <div><label>Available date</label><input type="date" data-f="Available date"></div>
-      <div><label>Minimum lease term</label><input type="text" data-f="Minimum lease term" placeholder="12 months"></div>
+      <div><label for="bcl-rental-bedrooms">Bedrooms</label><input type="text" id="bcl-rental-bedrooms" data-f="Bedrooms" placeholder="2 or Studio"></div>
+      <div><label for="bcl-rental-bathrooms">Bathrooms</label><input type="text" id="bcl-rental-bathrooms" data-f="Bathrooms" placeholder="1.5"></div>
     </div>
-    <label>Description</label>
-    <textarea data-f="Description" placeholder="Tell renters about the place. Please leave phone/email out of this box."></textarea>
-    <label class="chk"><input type="checkbox" data-f="Confirms authority + fair housing" value="Yes"> I can advertise this property and it complies with fair housing law.</label>
+    <div class="row">
+      <div><label for="bcl-rental-available">Available date</label><input type="date" id="bcl-rental-available" data-f="Available date"></div>
+      <div><label for="bcl-rental-lease">Minimum lease term</label><input type="text" id="bcl-rental-lease" data-f="Minimum lease term" placeholder="12 months"></div>
+    </div>
+    <label for="bcl-rental-description">Description</label>
+    <textarea id="bcl-rental-description" data-f="Description" placeholder="Tell renters about the place. Please leave phone/email out of this box."></textarea>
+    <label class="chk" for="bcl-rental-authority"><input type="checkbox" id="bcl-rental-authority" data-f="Confirms authority + fair housing" value="Yes"> I can advertise this property and it complies with fair housing law.</label>
   </fieldset>
 
   <!-- JOB -->
   <fieldset data-type="Job listing">
-    <h3>Job details</h3>
+    <legend>Job details</legend>
     <p class="sub">For jobs in or around the San Lorenzo Valley. Every listing links back to your own application, we don't collect applications ourselves.</p>
     <div class="row">
-      <div><label>Employer name</label><input type="text" data-f="Employer"></div>
-      <div><label>Employer website</label><input type="text" data-f="Employer website"></div>
+      <div><label for="bcl-job-employer">Employer name</label><input type="text" id="bcl-job-employer" data-f="Employer" autocomplete="organization"></div>
+      <div><label for="bcl-job-website">Employer website</label><input type="url" id="bcl-job-website" data-f="Employer website" autocomplete="url"></div>
     </div>
-    <label>Job title</label>
-    <input type="text" data-f="Job title">
+    <label for="bcl-job-title">Job title</label>
+    <input type="text" id="bcl-job-title" data-f="Job title">
     <div class="row">
-      <div><label>Work city</label><input type="text" data-f="Work city"></div>
-      <div><label>Work mode</label><select data-f="Work mode"><option value="">Choose one</option><option>On-site</option><option>Hybrid</option><option>Remote</option></select></div>
+      <div><label for="bcl-job-city">Work city</label><input type="text" id="bcl-job-city" data-f="Work city" autocomplete="address-level2"></div>
+      <div><label for="bcl-job-mode">Work mode</label><select id="bcl-job-mode" data-f="Work mode"><option value="">Choose one</option><option>On-site</option><option>Hybrid</option><option>Remote</option></select></div>
     </div>
-    <label>Employment type</label>
-    <select data-f="Employment type"><option value="">Choose one</option><option>Full-time</option><option>Part-time</option><option>Temporary</option><option>Seasonal</option><option>Contract</option><option>Internship</option></select>
-    <label>Description</label>
-    <textarea data-f="Description"></textarea>
-    <label>How to apply (link or email)</label>
-    <input type="text" data-f="Application link or email">
-    <label>Pay (optional but appreciated)</label>
-    <input type="text" data-f="Pay" placeholder="e.g. $22-25/hr, or leave blank">
-    <label class="chk"><input type="checkbox" data-f="Authorized to post" value="Yes"> I'm authorized to post this job.</label>
+    <label for="bcl-job-employment-type">Employment type</label>
+    <select id="bcl-job-employment-type" data-f="Employment type"><option value="">Choose one</option><option>Full-time</option><option>Part-time</option><option>Temporary</option><option>Seasonal</option><option>Contract</option><option>Internship</option></select>
+    <label for="bcl-job-description">Description</label>
+    <textarea id="bcl-job-description" data-f="Description"></textarea>
+    <label for="bcl-job-apply">How to apply (link or email)</label>
+    <input type="text" id="bcl-job-apply" data-f="Application link or email">
+    <label for="bcl-job-pay">Pay (optional but appreciated)</label>
+    <input type="text" id="bcl-job-pay" data-f="Pay" placeholder="e.g. $22-25/hr, or leave blank">
+    <label class="chk" for="bcl-job-authority"><input type="checkbox" id="bcl-job-authority" data-f="Authorized to post" value="Yes"> I'm authorized to post this job.</label>
   </fieldset>
 
   <!-- DIRECTORY -->
   <fieldset data-type="Directory update">
-    <h3>Business details</h3>
+    <legend>Business details</legend>
     <p class="sub">Add a local business to the directory, or fix something on an existing listing.</p>
-    <label>Business name</label>
-    <input type="text" data-f="Business name">
+    <label for="bcl-directory-name">Business name</label>
+    <input type="text" id="bcl-directory-name" data-f="Business name" autocomplete="organization">
     <div class="row">
-      <div><label>Is this...</label><select data-f="New or update"><option value="">Choose one</option><option>A new listing</option><option>A correction to an existing listing</option></select></div>
-      <div><label>Category</label><input type="text" data-f="Category" placeholder="e.g. Plumbing, Cafe"></div>
+      <div><label for="bcl-directory-action">Is this...</label><select id="bcl-directory-action" data-f="New or update"><option value="">Choose one</option><option>A new listing</option><option>A correction to an existing listing</option></select></div>
+      <div><label for="bcl-directory-category">Category</label><input type="text" id="bcl-directory-category" data-f="Category" placeholder="e.g. Plumbing, Cafe"></div>
     </div>
     <div class="row">
-      <div><label>Website</label><input type="text" data-f="Website"></div>
-      <div><label>Phone</label><input type="text" data-f="Phone"></div>
+      <div><label for="bcl-directory-website">Website</label><input type="url" id="bcl-directory-website" data-f="Website" autocomplete="url"></div>
+      <div><label for="bcl-directory-phone">Phone</label><input type="tel" id="bcl-directory-phone" data-f="Phone" autocomplete="tel"></div>
     </div>
-    <label>What should we add or change?</label>
-    <textarea data-f="Details"></textarea>
+    <label for="bcl-directory-details">What should we add or change?</label>
+    <textarea id="bcl-directory-details" data-f="Details"></textarea>
   </fieldset>
 
   <!-- EVENT -->
   <fieldset data-type="Event">
-    <h3>Event details</h3>
+    <legend>Event details</legend>
     <p class="sub">Community events in and around the valley. We list the practical details and link out for tickets or more info.</p>
-    <label>Event name</label>
-    <input type="text" data-f="Event name">
+    <label for="bcl-event-name">Event name</label>
+    <input type="text" id="bcl-event-name" data-f="Event name">
     <div class="row">
-      <div><label>Date</label><input type="date" data-f="Date"></div>
-      <div><label>Time</label><input type="text" data-f="Time" placeholder="e.g. 10am-2pm"></div>
+      <div><label for="bcl-event-date">Date</label><input type="date" id="bcl-event-date" data-f="Date"></div>
+      <div><label for="bcl-event-time">Time</label><input type="text" id="bcl-event-time" data-f="Time" placeholder="e.g. 10am-2pm"></div>
     </div>
-    <label>Location</label>
-    <input type="text" data-f="Location">
-    <label>Description</label>
-    <textarea data-f="Description"></textarea>
+    <label for="bcl-event-location">Location</label>
+    <input type="text" id="bcl-event-location" data-f="Location">
+    <label for="bcl-event-description">Description</label>
+    <textarea id="bcl-event-description" data-f="Description"></textarea>
     <div class="row">
-      <div><label>Link / more info (optional)</label><input type="text" data-f="Link"></div>
-      <div><label>Cost (optional)</label><input type="text" data-f="Cost" placeholder="Free, $10, etc."></div>
+      <div><label for="bcl-event-link">Link / more info (optional)</label><input type="url" id="bcl-event-link" data-f="Link"></div>
+      <div><label for="bcl-event-cost">Cost (optional)</label><input type="text" id="bcl-event-cost" data-f="Cost" placeholder="Free, $10, etc."></div>
     </div>
   </fieldset>
 
@@ -156,12 +161,12 @@
     <h3>Your contact info</h3>
     <p class="sub">So we can follow up. This is never shown publicly.</p>
     <div class="row">
-      <div><label>Your name</label><input type="text" id="bcl-name"></div>
-      <div><label>Your email</label><input type="email" id="bcl-email"></div>
+      <div><label for="bcl-name">Your name</label><input type="text" id="bcl-name" name="name" autocomplete="name" required></div>
+      <div><label for="bcl-email">Your email</label><input type="email" id="bcl-email" name="email" autocomplete="email" required></div>
     </div>
     <button type="submit" id="bcl-submit-btn">Send</button>
     <p class="consent">Submitting adds you to Boulder Creek Local updates so we can follow up and share local news. You can unsubscribe anytime from any email.</p>
-    <div class="bcl-result" id="bcl-submit-result"></div>
+    <div class="bcl-result" id="bcl-submit-result" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></div>
   </div>
 </form>
 </div>
@@ -184,11 +189,14 @@
   function showSection(){
     var t = typeSel.value;
     Array.prototype.forEach.call(form.querySelectorAll("fieldset"), function(fs){
-      fs.classList.toggle("on", fs.getAttribute("data-type") === t);
+      var active = fs.getAttribute("data-type") === t;
+      fs.classList.toggle("on", active);
+      fs.disabled = !active;
     });
     reveal.classList.toggle("on", !!t);
   }
   typeSel.addEventListener("change", showSection);
+  showSection();
 
   function collectDetails(){
     var t = typeSel.value, lines = [];
@@ -208,6 +216,7 @@
     var name = document.getElementById("bcl-name").value.trim();
     var email = document.getElementById("bcl-email").value.trim();
     var type = typeSel.value;
+    if(!form.checkValidity()){ form.reportValidity(); return; }
     if(!type || !name || !email){ setErr("Please choose a topic and add your name and email."); return; }
     var details = collectDetails();
 
@@ -222,16 +231,35 @@
 
     var url = "https://assets.mailerlite.com/jsonp/" + ML_ACCOUNT + "/forms/" + ML_FORM + "/subscribe";
     fetch(url, { method: "POST", body: body, headers: { "Accept": "application/json" } })
-      .then(function(r){ return r.json().catch(function(){ return {}; }); })
-      .then(function(json){ if(json && json.success){ done(); } else { setErr("We couldn't send that. Please try again, or email hello@bouldercreeklocal.com."); btn.disabled=false; btn.textContent="Send"; } })
-      .catch(function(){ setErr("Something went wrong. Please email hello@bouldercreeklocal.com instead."); btn.disabled=false; btn.textContent="Send"; });
+      .then(function(r){
+        if(!r.ok) throw new Error("Submission failed with HTTP " + r.status);
+        return r.json();
+      })
+      .then(function(json){
+        if(!json || json.success !== true) throw new Error("Submission service did not confirm delivery");
+        done();
+      })
+      .catch(function(){
+        setErr("We couldn't send that. Please try again, or email hello@bouldercreeklocal.com.");
+      });
   });
 
   function done(){
     result.className = "bcl-result ok";
+    result.setAttribute("role", "status");
+    result.setAttribute("aria-live", "polite");
     result.textContent = "Thanks. We got it, and a Boulder Creek Local person will take a look. Anything meant for the site goes up after a quick review.";
     form.reset(); showSection(); btn.style.display = "none";
+    result.focus();
   }
-  function setErr(m){ result.className = "bcl-result err"; result.textContent = m; }
+  function setErr(m){
+    result.className = "bcl-result err";
+    result.setAttribute("role", "alert");
+    result.setAttribute("aria-live", "assertive");
+    result.textContent = m;
+    btn.disabled = false;
+    btn.textContent = "Send";
+    result.focus();
+  }
 })();
 </script>
