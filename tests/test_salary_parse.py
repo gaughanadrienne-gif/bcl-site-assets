@@ -23,5 +23,5 @@ def test_empty_not_disclosed():
 
 def test_freshness():
     assert freshness_label("2026-07-18", "2026-07-19") == "New"
-    assert freshness_label("2026-07-10", "2026-07-19") == "Recent"
+    assert freshness_label("2026-07-13", "2026-07-19") == "Recent"
     assert freshness_label("2026-06-01", "2026-07-19") == ""

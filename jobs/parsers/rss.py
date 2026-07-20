@@ -37,7 +37,12 @@ def _to_iso_date(pub_date):
 
 
 def parse(xml_text, source):
-    style = (source.get("config") or {}).get("style", "employer")
+    config = source.get("config") or {}
+    style = config.get("style")
+    if not style:
+        geo = (source.get("geo") or "").lower()
+        name = (source.get("name") or "").lower()
+        style = "wwr" if (geo == "remote" or "remote" in name) else "employer"
     root = ET.fromstring(xml_text)
     channel = root.find("channel")
     items = channel.findall("item") if channel is not None else []
@@ -87,8 +92,9 @@ def _parse_employer_item(item, source):
     salary_match = _SALARY_RE.search(description)
     salary_text = salary_match.group(0) if salary_match else ""
     url = _child_text(item, "link") or _child_text(item, "guid")
+    employer = (source.get("config") or {}).get("employer") or source.get("name", "")
     return {
-        "title": title, "employer": (source.get("config") or {}).get("employer", ""),
+        "title": title, "employer": employer,
         "location_text": location_text, "city": city, "url": url,
         "date_posted": _to_iso_date(_child_text(item, "pubDate")),
         "salary_text": salary_text, "benefits_text": "", "hours_text": "",

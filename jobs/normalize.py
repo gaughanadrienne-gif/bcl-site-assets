@@ -16,7 +16,8 @@ from shared.bcl_ingest import (
 EXCLUDE_KEYWORDS = (
     "mlm", "multi-level marketing", "pay to start", "pay-to-start",
     "mystery shop", "mystery shopping", "reshipping", "re-shipping",
-    "work from your phone", "commission only", "commission-only",
+    "work from phone", "commission only", "commission-only",
+    "lead gen", "lead-gen",
 )
 
 
@@ -26,7 +27,7 @@ def normalize_job(raw, source, today):
     tier = "remote" if remote else classify_geo(city)
     minutes = None if remote else commute_minutes(city)
     title = sanitize_text(raw.get("title", ""))
-    employer = sanitize_text(raw.get("employer", ""))
+    employer = sanitize_text(raw.get("employer", "")) or sanitize_text(source.get("name", ""))
     url = raw.get("url", "") or ""
     salary = parse_salary(raw.get("salary_text", ""))
     posted = raw.get("date_posted", "") or ""
@@ -56,7 +57,7 @@ def normalize_job(raw, source, today):
         "benefits_text": sanitize_text(raw.get("benefits_text", "")),
         "hours_text": sanitize_text(raw.get("hours_text", "")),
         "schedule": sanitize_text(raw.get("hours_text", "")),
-        "category": source.get("platform", ""),
+        "category": raw.get("category", ""),
         "posted_at": posted,
         "application_deadline": sanitize_text(raw.get("application_deadline", "")),
         "canonical_url": url,

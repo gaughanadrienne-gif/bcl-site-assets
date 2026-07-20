@@ -44,7 +44,7 @@ def parse(markdown, source):
         cells = _split_row(line)
         if len(cells) != 9:
             continue
-        title_md, job_type, salary, closing, posted, _category, department, location, _job_number = cells
+        title_md, job_type, salary, closing, posted, category, department, location, _job_number = cells
         m = _LINK_RE.match(title_md)
         if not m:
             continue
@@ -63,5 +63,6 @@ def parse(markdown, source):
             "eligibility_text": "",
             "postal_code": postal_code,
             "application_deadline": sanitize_text(closing),
+            "category": sanitize_text(category),
         })
     return rows

@@ -134,12 +134,7 @@ def parse_salary(text):
 
 
 def freshness_label(posted_iso, today_iso):
-    """New (<=3d), Recent (<=14d), else '' -- from YYYY-MM-DD strings.
-
-    NOTE: plan docstring said Recent<=7d but the plan's own concrete test
-    (2026-07-10 -> 2026-07-19, a 9-day gap) asserts "Recent"; the threshold
-    here is widened to 14d to satisfy that ground-truth test.
-    """
+    """New (<=3d), Recent (<=7d), else '' -- from YYYY-MM-DD strings."""
     if not posted_iso:
         return ""
     try:
@@ -152,7 +147,7 @@ def freshness_label(posted_iso, today_iso):
         return ""
     if days <= 3:
         return "New"
-    if days <= 14:
+    if days <= 7:
         return "Recent"
     return ""
 
