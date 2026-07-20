@@ -414,9 +414,11 @@
   function filterRentals(rows, opts) {
     opts = opts || {};
     var q = (opts.q || "").toLowerCase();
+    var town = opts.town || "";
     var rows2 = rows.filter(function (r) {
       if (opts.minBeds && !(r.bedrooms >= opts.minBeds)) return false;
       if (opts.verifiedOnly && r.verification_status !== "verified") return false;
+      if (town && town !== "all" && r.locality !== town) return false;
       if (q) {
         var hay = ((r.headline || "") + " " + (r.city || "") + " " + (r.property_type || "")).toLowerCase();
         if (hay.indexOf(q) < 0) return false;
@@ -434,7 +436,7 @@
   function rentalCard(rental) {
     var h = '<div class="bcl-rental-card">';
     h += '<div class="bcl-name">' + esc(rental.headline) + "</div>";
-    h += '<div class="bcl-sub"><span class="bcl-badge">' + esc(rental.postal_code || "95006") + "</span> · " + esc(rental.city || "") + "</div>";
+    h += '<div class="bcl-sub"><span class="bcl-badge">' + esc(rental.locality || rental.postal_code || "") + "</span> · " + esc(rental.city || "") + "</div>";
     h += '<div class="bcl-meta">' + (rental.monthly_rent ? esc(rentalMoneyText(rental.monthly_rent)) : "Contact for rent") + "</div>";
     var beds = rental.bedrooms != null ? rental.bedrooms + " bd" : "";
     var baths = rental.bathrooms != null ? rental.bathrooms + " ba" : "";
@@ -457,16 +459,22 @@
         '<div class="bcl-controls">' +
         '<input type="search" placeholder="Search by address, city, or property type" aria-label="Search rentals">' +
         '<select aria-label="Minimum bedrooms"><option value="0">Any beds</option><option value="1">1+ bd</option><option value="2">2+ bd</option><option value="3">3+ bd</option></select>' +
+        '<select aria-label="Town" class="bcl-town-select"><option value="all">All towns</option><option value="Boulder Creek">Boulder Creek</option>' +
+        '<option value="Ben Lomond">Ben Lomond</option><option value="Felton">Felton</option><option value="Brookdale">Brookdale</option></select>' +
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-verified-only" checked> Verified only</label>' +
         "</div>" +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
         '<div class="bcl-note">Boulder Creek Local is not the landlord or property manager and does not handle applications, deposits, or keys. ' +
         'Never wire money or pay a deposit before viewing a property in person and verifying the lister. Report suspicious listings. ' +
-        'This site does not discriminate and does not knowingly list rentals that violate fair housing law. ' +
-        '<a href="/submit">Send an update</a>.</div>';
+        'This site does not discriminate and does not knowingly list rentals that violate fair housing law in the San Lorenzo Valley ' +
+        '(Boulder Creek, Ben Lomond, Felton, Brookdale). ' +
+        '<a href="/submit">Send an update</a>.</div>' +
+        '<div class="bcl-actionrow">Looking further? See more valley rentals on ' +
+        '<a href="https://www.zillow.com/boulder-creek-ca/rentals/" target="_blank" rel="noopener">Zillow</a>.</div>';
 
       var input = root.querySelector("input");
       var bedsSel = root.querySelector("select");
+      var townSel = root.querySelector(".bcl-town-select");
       var verifiedBox = root.querySelector(".bcl-verified-only");
       var count = root.querySelector(".bcl-count");
       var list = root.querySelector(".bcl-list");
@@ -475,17 +483,19 @@
         var rows = filterRentals(all, {
           q: input.value || "",
           minBeds: parseInt(bedsSel.value, 10) || 0,
-          verifiedOnly: !!verifiedBox.checked
+          verifiedOnly: !!verifiedBox.checked,
+          town: townSel.value || "all"
         });
-        count.textContent = rows.length + " OF " + all.length + " 95006 RENTALS · UPDATED " + (data.updated || "");
+        count.textContent = rows.length + " OF " + all.length + " SAN LORENZO VALLEY RENTALS · UPDATED " + (data.updated || "");
         if (!rows.length) {
-          list.innerHTML = '<div class="bcl-unavailable">No verified 95006 rentals are listed right now. <a href="/submit">Suggest one</a>.</div>';
+          list.innerHTML = '<div class="bcl-unavailable">No verified San Lorenzo Valley rentals are listed right now. <a href="/submit">Suggest one</a>.</div>';
           return;
         }
         list.innerHTML = rows.map(rentalCard).join("");
       }
       input.addEventListener("input", render);
       bedsSel.addEventListener("change", render);
+      townSel.addEventListener("change", render);
       verifiedBox.addEventListener("change", render);
       render();
     }).catch(function () {
