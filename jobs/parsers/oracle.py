@@ -10,6 +10,19 @@ Each requisition in `data["items"][0]["requisitionList"]` looks like:
 from shared.bcl_ingest import sanitize_text
 
 
+def _city_from_primary_location(primary_location):
+    """PrimaryLocation is "City, ST, Country" -- only accept the city when
+    the 2nd comma-segment is the CA state code, so a same-named city in
+    another state (e.g. "Santa Clara, UT, United States") never leaks in."""
+    text = (primary_location or "").strip()
+    if not text:
+        return ""
+    parts = [p.strip() for p in text.split(",")]
+    if len(parts) < 2 or parts[1].upper() != "CA":
+        return ""
+    return parts[0]
+
+
 def parse(data, source):
     config = source.get("config") or {}
     job_url_pattern = config.get("job_url")
@@ -22,7 +35,7 @@ def parse(data, source):
     for req in requisitions:
         title = sanitize_text(req.get("Title", ""))
         primary_location = sanitize_text(req.get("PrimaryLocation", ""))
-        city = primary_location.split(",")[0].strip() if primary_location else ""
+        city = _city_from_primary_location(primary_location)
         req_id = req.get("Id", "") or ""
         url = job_url_pattern.format(id=req_id) if job_url_pattern else fallback_url
         workplace_type = req.get("WorkplaceType", "") or ""

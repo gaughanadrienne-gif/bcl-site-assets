@@ -26,10 +26,13 @@ def test_parses_all_postings():
     assert all(r["url"] for r in rows)
 
 
-def test_scotts_valley_posting_city():
+def test_non_ca_posting_has_empty_city_but_other_fields_still_parsed():
+    # "US OK, Jenks" is a real Oklahoma posting, not CA -- per the geo-guard,
+    # city must be blank (so it geo-queues) even though the rest of the row
+    # parses normally.
     rows = workday.parse(_load(), _source())
     row = next(r for r in rows if r["location_text"] == "US OK, Jenks")
-    assert row["city"] == "Jenks"
+    assert row["city"] == ""
     assert row["url"] == (
         "https://foxfactory.wd1.myworkdayjobs.com/en-US/FOX"
         "/job/US-OK-Jenks/Hitter-s-House-Sales-Clerk---Oklahoma_JR112826"
@@ -43,3 +46,13 @@ def test_multi_location_posting_city_is_empty():
     rows = workday.parse(_load(), _source())
     row = next(r for r in rows if r["location_text"] == "3 Locations")
     assert row["city"] == ""
+
+
+def test_non_ca_state_token_yields_empty_city():
+    # "US UT, Santa Clara" -- same city name as a Bay Area CA city, but the
+    # state token is UT. Must not be accepted as a CA city.
+    assert workday._city_from_locations_text("US UT, Santa Clara") == ""
+
+
+def test_ca_state_token_yields_city():
+    assert workday._city_from_locations_text("US CA, Scotts Valley") == "Scotts Valley"

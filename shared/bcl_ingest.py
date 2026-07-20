@@ -325,7 +325,12 @@ def http_get(url, timeout=25, min_interval=0.0, opener=None):
     """
     _throttle(min_interval)
     fetch = opener or urlopen
-    req = Request(url, headers={"User-Agent": USER_AGENT})
+    # Some captured/verified source URLs (e.g. Oracle Recruiting Cloud finder
+    # calls) carry a literal space in a query value. http.client rejects raw
+    # spaces at the socket layer, so percent-encode ONLY the space here --
+    # never re-encode anything else, since the URL may already contain
+    # correctly percent-encoded segments.
+    req = Request(url.replace(" ", "%20"), headers={"User-Agent": USER_AGENT})
     with fetch(req, timeout=timeout) as resp:
         return resp.read().decode("utf-8", "replace")
 

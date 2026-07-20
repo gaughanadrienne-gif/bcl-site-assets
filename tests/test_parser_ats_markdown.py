@@ -33,6 +33,12 @@ def test_paycom_local_city_and_hot_job_stripped():
     assert row["hours_text"] == "On-Call"
 
 
+def test_paycom_missing_space_before_cruz_is_normalized():
+    rows = paycom.parse(_read("paycom_communitybridges.md"), {"name": "Community Bridges"})
+    row = next(r for r in rows if r["url"].endswith("/jobs/169044"))
+    assert row["city"] == "Santa Cruz"
+
+
 def test_paylocity_single_site_empty_city():
     rows = paylocity.parse(_read("paylocity_dreaminn.md"), {"name": "Dream Inn Santa Cruz"})
     assert len(rows) == 1

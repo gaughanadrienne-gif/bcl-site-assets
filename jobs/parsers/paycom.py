@@ -52,6 +52,10 @@ def parse(markdown, source):
 
         loc_m = _LOC_RE.search(location_text)
         city = loc_m.group(1).strip() if loc_m else ""
+        # Some listings drop the space before "Cruz" (e.g. "SantaCruz, CA
+        # 95060"), which fails the commute-table lookup; normalize it.
+        if city == "SantaCruz":
+            city = "Santa Cruz"
 
         rows.append({
             "title": title, "employer": sanitize_text(source.get("name", "")),

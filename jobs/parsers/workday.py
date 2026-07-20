@@ -14,6 +14,7 @@ import re
 from shared.bcl_ingest import parse_relative_date, sanitize_text
 
 _MULTI_LOCATIONS_RE = re.compile(r"^\d+\s+Locations?$", re.I)
+_CA_STATE_RE = re.compile(r"(?:^|\s)CA(?:\s|,|$)", re.I)
 
 
 def _city_from_locations_text(locations_text):
@@ -21,6 +22,9 @@ def _city_from_locations_text(locations_text):
     if not text or _MULTI_LOCATIONS_RE.match(text):
         return ""
     if "," not in text:
+        return ""
+    state_part = text.rsplit(",", 1)[0].strip()
+    if not _CA_STATE_RE.search(state_part):
         return ""
     return text.rsplit(",", 1)[-1].strip()
 

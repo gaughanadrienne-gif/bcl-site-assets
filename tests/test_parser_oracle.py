@@ -41,3 +41,13 @@ def test_job_url_pattern_uses_id():
 def test_falls_back_to_source_url_without_pattern():
     rows = oracle.parse(_load(), _source())
     assert rows[0]["url"] == "https://www.albertsonscompanies.com/careers/find-a-job.html"
+
+
+def test_non_ca_state_segment_yields_empty_city():
+    # "Santa Clara, UT, United States" -- same city name as a Bay Area CA
+    # city, but the state segment is UT. Must not be accepted as a CA city.
+    assert oracle._city_from_primary_location("Santa Clara, UT, United States") == ""
+
+
+def test_ca_state_segment_yields_city():
+    assert oracle._city_from_primary_location("Los Gatos, CA, United States") == "Los Gatos"
