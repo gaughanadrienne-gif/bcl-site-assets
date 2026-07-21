@@ -136,17 +136,19 @@
       ".bcl-range{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px;}",
       ".bcl-range button{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:8px 14px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;text-transform:uppercase;}",
       ".bcl-range button.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
-      ".bcl-today{background:#fffdf8 !important;color:#1c2a26 !important;border:1px solid #d9d8ce;border-top:3px solid #d56e47;padding:26px 28px;font-family:Inter,Arial,sans-serif;}",
+      /* Forest-green card: the homepage's one dark block, so the live conditions
+         read first. Every child colour is re-stated for the dark ground. */
+      ".bcl-today{background:#173f36 !important;color:#f5f1e7 !important;border:1px solid #0d2c26;border-top:3px solid #d56e47;border-radius:16px;overflow:hidden;padding:26px 28px;font-family:Inter,Arial,sans-serif;box-shadow:0 14px 34px rgba(13,44,38,.16);}",
       ".bcl-today-head{display:flex;align-items:center;gap:10px;margin:0 0 12px;}",
       ".bcl-today-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
-      ".bcl-today-head h2{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.7rem;margin:0 !important;line-height:1;}",
-      ".bcl-today-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:#67716b !important;margin-left:auto;text-transform:uppercase;}",
-      ".bcl-today-row{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.9rem;color:#1c2a26 !important;margin:0 0 4px;}",
-      ".bcl-today-row b{color:#2f6754 !important;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px;font-weight:500;}",
-      ".bcl-today-ev{margin:10px 0 0;padding-top:10px;border-top:1px solid #e3ddcf;}",
-      ".bcl-today-ev div{font-size:.9rem;margin:3px 0;color:#1c2a26 !important;}",
-      ".bcl-today-ev span{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#d56e47 !important;margin-right:8px;}",
-      ".bcl-today a{color:#2e6b46 !important;text-decoration:underline;}",
+      ".bcl-today-head h2{font-family:'Cormorant Garamond',Georgia,serif;color:#fffdf8 !important;font-size:1.7rem;margin:0 !important;line-height:1;}",
+      ".bcl-today-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:#9fb8a9 !important;margin-left:auto;text-transform:uppercase;}",
+      ".bcl-today-row{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.9rem;color:#f5f1e7 !important;margin:0 0 4px;}",
+      ".bcl-today-row b{color:#a8bd7f !important;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:2px;font-weight:500;}",
+      ".bcl-today-ev{margin:10px 0 0;padding-top:10px;border-top:1px solid rgba(245,241,231,.2);}",
+      ".bcl-today-ev div{font-size:.9rem;margin:3px 0;color:#f5f1e7 !important;}",
+      ".bcl-today-ev span{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#f0a883 !important;margin-right:8px;}",
+      ".bcl-today a{color:#f0a883 !important;text-decoration:underline;}",
       ".bcl-today-links{margin-top:12px;font-size:.82rem;}",
       "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-controls input,.bcl-controls select{flex:0 0 auto;width:100%;}.bcl-today-head span{margin-left:0;}}",
       /* Homepage: Latest from Around Town + consolidated Explore grid */
@@ -167,7 +169,22 @@
       ".bcl-tile-ico svg{width:22px;height:22px;}",
       ".bcl-tile-txt h3{font-family:'Cormorant Garamond',Georgia,serif;color:#0d2c26 !important;font-size:1.2rem;margin:0 0 3px !important;}",
       ".bcl-tile-txt p{margin:0 !important;font-size:.82rem;color:#67716b !important;line-height:1.4;}",
-      "@media (max-width:820px){.bcl-recent,.bcl-explore{grid-template-columns:1fr;}}",
+      /* Homepage live board: next events, newest jobs, current rentals */
+      ".bcl-hb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}",
+      ".bcl-hb-card{display:flex;flex-direction:column;gap:4px;background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:12px;padding:16px 18px;text-decoration:none !important;transition:border-color .15s,transform .15s;}",
+      ".bcl-hb-card:hover{border-color:#d56e47;transform:translateY(-2px);}",
+      ".bcl-hb-kick{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#d56e47 !important;}",
+      ".bcl-hb-title{font-weight:600;color:#173f36 !important;font-size:1rem;line-height:1.3;}",
+      ".bcl-hb-meta{font-size:.84rem;color:#33413b !important;line-height:1.4;}",
+      ".bcl-hb-foot{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.06em;color:#67716b !important;margin-top:auto;padding-top:6px;}",
+      ".bcl-today-alerts{margin:0 0 12px;}",
+      ".bcl-today-alerts .bcl-alert{margin:0 0 8px;border-radius:10px;border:1px solid #a35d51;}",
+      ".bcl-today-noalert{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:#9fb8a9 !important;}",
+      /* Article pages: "Keep reading" cards under the body */
+      ".bcl-related{max-width:900px;margin:0 auto;padding:34px 20px 48px;border-top:1px solid #e3ddcf;}",
+      ".bcl-related h2{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.6rem;margin:0 0 14px !important;line-height:1.1;}",
+      ".bcl-related-kicker{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#d56e47 !important;margin:0 0 4px !important;}",
+      "@media (max-width:820px){.bcl-recent,.bcl-explore,.bcl-hb-grid{grid-template-columns:1fr;}}",
       /* Residents page: compact jump-nav */
       ".bcl-jumpnav-sec{background:#fffdf8;padding:16px 0;border-bottom:1px solid #ece6d8;}",
       ".bcl-jumpnav{display:flex;flex-wrap:wrap;gap:8px;}",
@@ -869,44 +886,238 @@
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + EXPLORE_ICONS[name] + "</svg>";
   }
 
-  /* Pull the newest published Around Town posts (title, watercolor header,
-     date) straight from the live blog collection so the homepage stays
-     current on its own. Same-origin JSON, so no CORS and no data upkeep. */
+  /* Pull published Around Town posts (title, watercolor header, date) straight
+     from the live blog collection so the homepage and article pages stay
+     current on their own. Same-origin JSON, so no CORS and no data upkeep. */
+
+  var CARD_MONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  function blogItemsFrom(data) {
+    return (data.items || []).filter(function (it) { return it && it.assetUrl && it.urlId; });
+  }
+
+  /* Squarespace pages the blog JSON, so walk it with the publishOn cursor until
+     the collection runs out or the page budget does. */
+  function fetchBlogItems(maxPages) {
+    var out = [];
+    function step(offset, page) {
+      var url = "/around-town?format=json" + (offset ? "&offset=" + offset : "");
+      return fetch(url, { credentials: "same-origin" })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          var items = blogItemsFrom(data);
+          out = out.concat(items);
+          var last = (data.items || [])[(data.items || []).length - 1];
+          var more = data.pagination && data.pagination.nextPage;
+          if (page + 1 >= maxPages || !more || !last || !last.publishOn) return out;
+          return step(last.publishOn, page + 1);
+        });
+    }
+    return step(0, 0);
+  }
+
+  function articleCardHTML(it) {
+    var title = (it.seoData && it.seoData.seoTitle) || it.title || prettifySlug(it.urlId);
+    var cat = (it.categories && it.categories[0]) || "Around Town";
+    // The watercolor card already carries the title, so show a one-line
+    // summary here instead of repeating it (title moves to the img alt).
+    var summary = (it.seoData && it.seoData.seoDescription) || String(it.excerpt || "").replace(/<[^>]*>/g, "").trim();
+    var d = new Date(it.publishOn || 0);
+    var date = CARD_MONS[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+    var url = it.fullUrl || ("/around-town/" + it.urlId);
+    var img = it.assetUrl + (it.assetUrl.indexOf("?") < 0 ? "?format=750w" : "");
+    return '<a class="bcl-recent-card" href="' + esc(url) + '">' +
+      '<div class="bcl-recent-img"><img src="' + esc(img) + '" alt="' + esc(title) + '" loading="lazy"></div>' +
+      '<div class="bcl-recent-body">' +
+      '<span class="bcl-recent-cat">' + esc(cat) + "</span>" +
+      '<p class="bcl-recent-sum">' + esc(summary) + "</p>" +
+      '<span class="bcl-recent-date">' + esc(date) + " &middot; Around Town</span>" +
+      "</div></a>";
+  }
+
   function initRecentArticles(root) {
     if (!root) return;
-    var mons = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    fetch("/around-town?format=json", { credentials: "same-origin" })
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
-        var items = (data.items || [])
-          .filter(function (it) { return it && it.assetUrl && it.urlId; })
+    fetchBlogItems(1)
+      .then(function (items) {
+        var newest = items
           .sort(function (a, b) { return (b.publishOn || 0) - (a.publishOn || 0); })
           .slice(0, 3);
-        if (!items.length) throw new Error("no items");
-        root.innerHTML = items.map(function (it) {
-          var title = (it.seoData && it.seoData.seoTitle) || prettifySlug(it.urlId);
-          var cat = (it.categories && it.categories[0]) || "Around Town";
-          // The watercolor card already carries the title, so show a one-line
-          // summary here instead of repeating it (title moves to the img alt).
-          var summary = (it.seoData && it.seoData.seoDescription) || String(it.excerpt || "").replace(/<[^>]*>/g, "").trim();
-          var d = new Date(it.publishOn || 0);
-          var date = mons[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
-          var url = it.fullUrl || ("/around-town/" + it.urlId);
-          var img = it.assetUrl + (it.assetUrl.indexOf("?") < 0 ? "?format=750w" : "");
-          return '<a class="bcl-recent-card" href="' + esc(url) + '">' +
-            '<div class="bcl-recent-img"><img src="' + esc(img) + '" alt="' + esc(title) + '" loading="lazy"></div>' +
-            '<div class="bcl-recent-body">' +
-            '<span class="bcl-recent-cat">' + esc(cat) + "</span>" +
-            '<p class="bcl-recent-sum">' + esc(summary) + "</p>" +
-            '<span class="bcl-recent-date">' + esc(date) + " &middot; Around Town</span>" +
-            "</div></a>";
-        }).join("");
+        if (!newest.length) throw new Error("no items");
+        root.innerHTML = newest.map(articleCardHTML).join("");
       })
       .catch(function () {
         // If the feed is unavailable, drop the whole section rather than show an empty block.
         var sec = root.closest(".bcl-section");
         if (sec) sec.remove();
       });
+  }
+
+  /* ---------- related articles (bottom of an Around Town post) ---------- */
+
+  /* Rank by how many categories/tags a post shares with the one being read, then
+     by recency. Returns [] when there is nothing else published to point at. */
+  function pickRelatedArticles(items, currentSlug, n) {
+    var rows = (items || []).filter(function (it) { return it && it.urlId && it.assetUrl; });
+    var current = null;
+    rows.forEach(function (it) { if (it.urlId === currentSlug) current = it; });
+    var mine = ((current && current.categories) || []).concat((current && current.tags) || []);
+    function shared(it) {
+      var theirs = (it.categories || []).concat(it.tags || []);
+      var hits = 0;
+      for (var i = 0; i < theirs.length; i++) if (mine.indexOf(theirs[i]) > -1) hits++;
+      return hits;
+    }
+    return rows
+      .filter(function (it) { return it.urlId !== currentSlug; })
+      .sort(function (a, b) {
+        var d = shared(b) - shared(a);
+        if (d) return d;
+        return (b.publishOn || 0) - (a.publishOn || 0);
+      })
+      .slice(0, n);
+  }
+
+  function initRelatedArticles() {
+    var slug = articleSlugFromPath(location.pathname);
+    if (!slug) return;
+    if (document.getElementById("bcl-related")) return;
+    var target = document.querySelector(".blog-item-content");
+    if (!target) return;
+
+    fetchBlogItems(5).then(function (items) {
+      var picks = pickRelatedArticles(items, slug, 3);
+      if (!picks.length) return;
+      var sec = document.createElement("section");
+      sec.id = "bcl-related";
+      sec.className = "bcl-related";
+      sec.setAttribute("aria-label", "More Around Town stories");
+      sec.innerHTML = '<p class="bcl-related-kicker">Keep reading</p><h2>More from Around Town</h2>' +
+        '<div class="bcl-recent">' + picks.map(articleCardHTML).join("") + "</div>";
+      var host = target.parentNode || target;
+      if (host === target) target.appendChild(sec);
+      else host.insertBefore(sec, target.nextSibling);
+    }).catch(function () {
+      /* No feed, no recommendations. Leave the post as it is. */
+    });
+  }
+
+  /* ---------- homepage live board: next events, newest jobs, current rentals ---------- */
+
+  function homeSectionHTML(kicker, heading, href, linkLabel, slotId) {
+    return '<div class="bcl-wrap"><div class="bcl-section-head"><div><p class="bcl-kicker">' + esc(kicker) +
+      "</p><h2>" + esc(heading) + '</h2></div><a class="bcl-sec-viewall" href="' + esc(href) + '">' +
+      esc(linkLabel) + ' &rarr;</a></div><div id="' + esc(slotId) + '" class="bcl-hb-grid"></div></div>';
+  }
+
+  /* ISO date strings compare correctly as strings, so "still upcoming" is a
+     plain >= against today's key. Multi-day events stay listed until they end. */
+  function nextEvents(rows, todayKey, n) {
+    return (rows || [])
+      .filter(function (e) { return e && String(e.end || e.start || "").slice(0, 10) >= todayKey; })
+      .sort(function (a, b) { return String(a.start).localeCompare(String(b.start)); })
+      .slice(0, n);
+  }
+
+  /* Local jobs first; only widen to the extended commute if the valley is quiet. */
+  function homeJobs(rows, n) {
+    var local = filterJobs(rows, { tab: "local" });
+    if (local.length >= n) return local.slice(0, n);
+    return filterJobs(rows, { tab: "local", includeExtended: true }).slice(0, n);
+  }
+
+  /* Verified rentals first; fall back to the full list rather than showing nothing. */
+  function homeRentals(rows, n) {
+    var verified = filterRentals(rows, { verifiedOnly: true });
+    if (verified.length >= n) return verified.slice(0, n);
+    return filterRentals(rows, {}).slice(0, n);
+  }
+
+  function homeJobCard(job) {
+    var meta = [job.city, job.employment_type, jobSalaryText(job)].filter(Boolean).join(" · ");
+    var when = job.posted_at ? "Posted " + job.posted_at : (job.first_seen_at ? "First seen " + job.first_seen_at : "");
+    return '<a class="bcl-hb-card" href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">' +
+      '<span class="bcl-hb-kick">' + esc(job.employer_name || "") + "</span>" +
+      '<span class="bcl-hb-title">' + esc(job.title || "") + "</span>" +
+      '<span class="bcl-hb-meta">' + esc(meta) + "</span>" +
+      '<span class="bcl-hb-foot">' + esc(when) + "</span></a>";
+  }
+
+  function homeRentalCard(rental) {
+    var beds = rental.bedrooms != null ? rental.bedrooms + " bd" : "";
+    var baths = rental.bathrooms != null ? rental.bathrooms + " ba" : "";
+    var meta = [
+      rental.monthly_rent ? rentalMoneyText(rental.monthly_rent) : "Contact for rent",
+      beds, baths, rental.property_type
+    ].filter(Boolean).join(" · ");
+    return '<a class="bcl-hb-card" href="' + esc(rental.canonical_url) + '" target="_blank" rel="noopener">' +
+      '<span class="bcl-hb-kick">' + esc(rental.locality || rental.city || "") + "</span>" +
+      '<span class="bcl-hb-title">' + esc(rental.headline || "") + "</span>" +
+      '<span class="bcl-hb-meta">' + esc(meta) + "</span>" +
+      '<span class="bcl-hb-foot">' + esc(rental.available_date ? "Available " + rental.available_date : "") + "</span></a>";
+  }
+
+  /* Shared loader for the three data-backed homepage strips. An empty feed states
+     that plainly and a broken feed says it is unavailable; neither is an all-clear. */
+  function fillHomeSlot(slotId, file, opts) {
+    var slot = document.getElementById(slotId);
+    if (!slot) return;
+    slot.innerHTML = '<div class="bcl-count">' + esc(opts.loading) + "</div>";
+    fetchJSON(REPO + "/data/" + file).then(function (data) {
+      var rows = opts.pick(data[opts.key] || []);
+      if (!rows.length) {
+        slot.innerHTML = '<div class="bcl-unavailable">' + opts.empty + "</div>";
+        return;
+      }
+      slot.innerHTML = rows.map(opts.card).join("");
+    }).catch(function () {
+      slot.innerHTML = '<div class="bcl-unavailable">' + esc(opts.label) +
+        " isn't loading right now. That means the data is unavailable, not that there is nothing to show. " +
+        '<a href="' + esc(opts.href) + '">Open the full ' + esc(opts.what) + "</a>.</div>";
+    });
+  }
+
+  function initHomeBoard(home, after) {
+    var todayKey = (function () {
+      var t = new Date();
+      var mo = t.getMonth() + 1, d = t.getDate();
+      return t.getFullYear() + "-" + (mo < 10 ? "0" : "") + mo + "-" + (d < 10 ? "0" : "") + d;
+    })();
+
+    var strips = [
+      { cls: "bcl-section", html: homeSectionHTML("On the calendar", "Happening next", "/events", "All events", "bcl-home-events") },
+      { cls: "bcl-section bcl-cream", html: homeSectionHTML("Work in the valley", "Recently added jobs", "/jobs", "All jobs", "bcl-home-jobs") },
+      { cls: "bcl-section", html: homeSectionHTML("Places to live", "Current rentals", "/rentals", "All rentals", "bcl-home-rentals") }
+    ];
+    var anchor = after;
+    strips.forEach(function (s) {
+      var sec = document.createElement("section");
+      sec.className = s.cls;
+      sec.innerHTML = s.html;
+      if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(sec, anchor.nextSibling);
+      else home.appendChild(sec);
+      anchor = sec;
+    });
+
+    fillHomeSlot("bcl-home-events", "events.json", {
+      key: "events", loading: "Loading events…", label: "The events calendar", href: "/events", what: "calendar",
+      pick: function (rows) { return nextEvents(rows, todayKey, 3); },
+      card: eventCard,
+      empty: 'No verified upcoming events right now. Events appear here only after a person confirms the details with the organizer. <a href="/contact">Tell us about one</a>.'
+    });
+    fillHomeSlot("bcl-home-jobs", "jobs.json", {
+      key: "jobs", loading: "Loading jobs…", label: "The jobs board", href: "/jobs", what: "jobs board",
+      pick: function (rows) { return homeJobs(rows, 3); },
+      card: homeJobCard,
+      empty: 'No local job postings right now. <a href="/jobs">See remote and extended-commute roles</a>.'
+    });
+    fillHomeSlot("bcl-home-rentals", "rentals.json", {
+      key: "rentals", loading: "Loading rentals…", label: "The rentals board", href: "/rentals", what: "rentals board",
+      pick: function (rows) { return homeRentals(rows, 3); },
+      card: homeRentalCard,
+      empty: 'No San Lorenzo Valley rentals are listed right now. <a href="/contact">Suggest one</a>.'
+    });
+
+    return anchor;
   }
 
   /* Homepage: add a visual "Latest from Around Town" strip, and fold the two
@@ -939,20 +1150,24 @@
     var anchor = usefulSec || creamGrid;
     if (anchor) {
       var explore = document.createElement("section");
-      explore.className = "bcl-section bcl-cream";
+      // Plain band: the new live strips above it already alternate into cream.
+      explore.className = "bcl-section";
       explore.innerHTML = exploreInner;
       anchor.parentNode.replaceChild(explore, anchor);
     }
     if (creamGrid && creamGrid !== anchor) creamGrid.remove();
 
-    // Insert "Latest from Around Town" right after the Today widget.
+    /* Live board under the Today widget: events, jobs, rentals, then the latest
+       Around Town posts. The homepage leads with what changed since yesterday. */
     var today = document.getElementById("bcl-today");
     var todaySec = today && today.closest("section");
+    var lastBoardSec = todaySec ? initHomeBoard(home, todaySec) : null;
+
     var recent = document.createElement("section");
-    recent.className = "bcl-section";
+    recent.className = "bcl-section bcl-cream";
     recent.innerHTML = '<div class="bcl-wrap"><div class="bcl-section-head"><div><p class="bcl-kicker">Fresh from the site</p><h2>Latest from Around Town</h2></div><a class="bcl-sec-viewall" href="/around-town">All articles &rarr;</a></div><div id="bcl-recent" class="bcl-recent"></div></div>';
-    if (todaySec && todaySec.parentNode) {
-      todaySec.parentNode.insertBefore(recent, todaySec.nextSibling);
+    if (lastBoardSec && lastBoardSec.parentNode) {
+      lastBoardSec.parentNode.insertBefore(recent, lastBoardSec.nextSibling);
     } else if (anchor && explore) {
       explore.parentNode.insertBefore(recent, explore);
     } else {
@@ -1231,6 +1446,7 @@
     root.innerHTML =
       '<div class="bcl-today">' +
       '<div class="bcl-today-head"><h2>Today in Boulder Creek</h2><span>' + stamp + "</span></div>" +
+      '<div class="bcl-today-alerts"><div class="bcl-today-noalert">Checking National Weather Service alerts…</div></div>' +
       '<div class="bcl-today-row">' +
       '<div class="bcl-td-wx"><b>Weather</b>Checking…</div>' +
       '<div class="bcl-td-air"><b>Air</b>Checking…</div>' +
@@ -1242,14 +1458,49 @@
     var wx = root.querySelector(".bcl-td-wx");
     var air = root.querySelector(".bcl-td-air");
     var ev = root.querySelector(".bcl-today-ev");
+    var al = root.querySelector(".bcl-today-alerts");
 
+    /* Current conditions come from the hourly grid; the daily period supplies the
+       high/low so the line reads as "right now, and where today is heading". */
     fetchJSON("https://api.weather.gov/points/" + NWS_POINT.lat + "," + NWS_POINT.lon)
-      .then(function (p) { return fetchJSON(p.properties.forecast); })
-      .then(function (f) {
-        var p0 = ((f.properties || {}).periods || [])[0];
-        if (!p0) throw new Error("no period");
-        wx.innerHTML = "<b>Weather</b>" + esc(p0.shortForecast) + ", " + (p0.isDaytime ? "high" : "low") + " " + esc(String(p0.temperature)) + "°";
+      .then(function (p) {
+        var props = p.properties || {};
+        return Promise.all([
+          fetchJSON(props.forecast),
+          fetchJSON(props.forecastHourly).catch(function () { return null; })
+        ]);
+      })
+      .then(function (res) {
+        var p0 = ((res[0].properties || {}).periods || [])[0];
+        var now = res[1] && ((res[1].properties || {}).periods || [])[0];
+        if (!p0 && !now) throw new Error("no period");
+        var lead = now
+          ? esc(String(now.temperature)) + "° " + esc(now.shortForecast || "")
+          : esc(p0.shortForecast || "");
+        var trail = p0
+          ? " · " + (p0.isDaytime ? "high" : "low") + " " + esc(String(p0.temperature)) + "°"
+          : "";
+        wx.innerHTML = "<b>Weather</b>" + lead + trail;
       }).catch(function () { wx.innerHTML = '<b>Weather</b><a href="https://www.weather.gov/mtr/" target="_blank" rel="noopener">weather.gov</a>'; });
+
+    /* Active NWS alerts for the Boulder Creek point. An empty list is an explicit
+       "none active as of <time>", and a failed fetch is never rendered as all-clear. */
+    fetchJSON("https://api.weather.gov/alerts/active?point=" + NWS_POINT.lat + "," + NWS_POINT.lon)
+      .then(function (d) {
+        var feats = d.features || [];
+        if (!feats.length) {
+          al.innerHTML = '<div class="bcl-today-noalert">No active NWS alerts for Boulder Creek · checked ' + esc(new Date().toLocaleTimeString()) + "</div>";
+          return;
+        }
+        al.innerHTML = feats.slice(0, 3).map(function (a) {
+          var p = a.properties || {};
+          return '<div class="bcl-alert"><strong>' + esc(p.event || "Weather alert") + "</strong> " + esc(p.headline || "") +
+            ' <a href="https://www.weather.gov/mtr/" target="_blank" rel="noopener">Details at weather.gov</a></div>';
+        }).join("");
+      })
+      .catch(function () {
+        al.innerHTML = '<div class="bcl-today-noalert">NWS alerts are not loading. That is not an all-clear — check <a href="https://www.weather.gov/mtr/" target="_blank" rel="noopener">weather.gov</a>.</div>';
+      });
 
     fetchJSON("https://air-quality-api.open-meteo.com/v1/air-quality?latitude=" + NWS_POINT.lat + "&longitude=" + NWS_POINT.lon + "&current=us_aqi&timezone=America%2FLos_Angeles")
       .then(function (d) {
@@ -1335,6 +1586,7 @@
     repairPageHeadings();
     initArticleHeader();
     initArticleContent();
+    initRelatedArticles();
     initThumbAlts();
     var d = document.getElementById("bcl-directory");
     if (d) initListings(d, "directory.json", "directory");
@@ -1358,6 +1610,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeJobCard: homeJobCard, homeRentalCard: homeRentalCard, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML };
   }
 })();
