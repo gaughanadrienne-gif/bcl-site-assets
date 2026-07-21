@@ -819,7 +819,9 @@
       var key = k ? k.textContent.trim().toLowerCase() : "";
       if (key === "essential links") { s.remove(); return; }
       if (key === "emergency readiness") {
-        var p = s.querySelector(".bcl-section-head p");
+        // The kicker is itself a <p>, so target the intro paragraph that is a
+        // DIRECT child of the section head (not the kicker inside the inner div).
+        var p = s.querySelector(".bcl-section-head > p");
         if (p) p.textContent = "Set these official programs up before you need them.";
       }
     });
