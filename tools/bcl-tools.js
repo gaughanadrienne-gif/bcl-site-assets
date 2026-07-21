@@ -168,6 +168,11 @@
       ".bcl-tile-txt h3{font-family:'Cormorant Garamond',Georgia,serif;color:#0d2c26 !important;font-size:1.2rem;margin:0 0 3px !important;}",
       ".bcl-tile-txt p{margin:0 !important;font-size:.82rem;color:#67716b !important;line-height:1.4;}",
       "@media (max-width:820px){.bcl-recent,.bcl-explore{grid-template-columns:1fr;}}",
+      /* Residents page: compact jump-nav */
+      ".bcl-jumpnav-sec{background:#fffdf8;padding:16px 0;border-bottom:1px solid #ece6d8;}",
+      ".bcl-jumpnav{display:flex;flex-wrap:wrap;gap:8px;}",
+      ".bcl-jumpnav a{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:#173f36 !important;border:1px solid #d9d3c4;border-radius:999px;padding:7px 14px;text-decoration:none !important;transition:border-color .15s,color .15s;}",
+      ".bcl-jumpnav a:hover{border-color:#d56e47;color:#d56e47 !important;}",
       ".bcl-tabs{display:flex;gap:8px;margin:0 0 14px;}",
       ".bcl-tab{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;}",
       ".bcl-tab.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
@@ -786,6 +791,60 @@
     });
   }
 
+  /* Residents page: drop the hero verification box + the redundant "Essential
+     links" summary grid (its agencies reappear in detail below), soften the
+     Emergency-readiness defensive line, and add a compact jump-nav so the long
+     page is scannable. Owner request. */
+  var RES_JUMP_LABELS = {
+    "new resident quick start": "Quick start",
+    "trash, recycling, and green waste": "Trash & recycling",
+    "water and power": "Water & power",
+    "emergency readiness": "Emergency",
+    "roads": "Roads",
+    "schools and families": "Schools",
+    "permits and building": "Permits",
+    "internet and cell": "Internet & cell",
+    "everyday places": "Everyday places"
+  };
+  function repairResidentsPage() {
+    var page = document.getElementById("bcl-residents");
+    if (!page) return;
+    // 1. Remove the hero verification box.
+    var heroNote = page.querySelector(".bcl-hero .bcl-note");
+    if (heroNote) heroNote.remove();
+    // 2. Remove the redundant "Essential links" summary grid; 3. soften the
+    //    Emergency-readiness intro line.
+    [].slice.call(page.querySelectorAll("section.bcl-section")).forEach(function (s) {
+      var k = s.querySelector(".bcl-kicker");
+      var key = k ? k.textContent.trim().toLowerCase() : "";
+      if (key === "essential links") { s.remove(); return; }
+      if (key === "emergency readiness") {
+        var p = s.querySelector(".bcl-section-head p");
+        if (p) p.textContent = "Set these official programs up before you need them.";
+      }
+    });
+    // 4. Build the jump-nav from the remaining content sections.
+    var links = [];
+    [].slice.call(page.querySelectorAll("section.bcl-section")).forEach(function (s) {
+      var k = s.querySelector(".bcl-kicker");
+      var label = k && RES_JUMP_LABELS[k.textContent.trim().toLowerCase()];
+      if (!label) return;
+      var id = "res-" + k.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      s.id = id;
+      s.style.scrollMarginTop = "80px";
+      links.push('<a href="#' + id + '">' + esc(label) + "</a>");
+    });
+    if (links.length) {
+      var hero = page.querySelector(".bcl-hero");
+      if (hero) {
+        var nav = document.createElement("div");
+        nav.className = "bcl-jumpnav-sec";
+        nav.innerHTML = '<div class="bcl-wrap"><nav class="bcl-jumpnav" aria-label="On this page">' + links.join("") + "</nav></div>";
+        hero.parentNode.insertBefore(nav, hero.nextSibling);
+      }
+    }
+  }
+
   /* ---------- homepage refresh ---------- */
 
   var EXPLORE_TILES = [
@@ -1267,6 +1326,7 @@
     repairKnownLinks();
     repairEmbedScaffolding();
     repairStatusPage();
+    repairResidentsPage();
     repairPageHeadings();
     initArticleHeader();
     initArticleContent();
