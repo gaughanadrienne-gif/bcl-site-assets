@@ -12,10 +12,11 @@ Public asset and tool layer for [Boulder Creek Local](https://bouldercreeklocal.
   - `#bcl-jobs` — San Lorenzo Valley job board
   - `#bcl-rentals` — San Lorenzo Valley rentals board
   - `#bcl-home` + `#bcl-today` — homepage dashboard. `#bcl-today` shows current
-    conditions and any active NWS alerts; the script then injects live strips for
-    the next three events, three recently added jobs, three current rentals, and
-    the latest Around Town posts, plus the consolidated Explore grid. These are
-    runtime injections, so the Squarespace home code block stays as-is.
+    conditions and any active NWS alerts; the script then injects "The local
+    board" (one section, three columns: next three events, three recently added
+    jobs, three current rentals), the latest Around Town posts, and the
+    consolidated Explore grid. These are runtime injections, so the Squarespace
+    home code block stays as-is.
   - Around Town posts additionally get a "More from Around Town" card row under
     the body, ranked by shared category/tag then recency.
 - `data/directory.json`, `data/food.json` — published listings only (high-confidence, owner-approved; internal review fields stripped; home-based businesses carry no address). Generated from the private research master; do not hand-edit records here without updating the master.

@@ -138,7 +138,7 @@
       ".bcl-range button.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
       /* Forest-green card: the homepage's one dark block, so the live conditions
          read first. Every child colour is re-stated for the dark ground. */
-      ".bcl-today{background:#173f36 !important;color:#f5f1e7 !important;border:1px solid #0d2c26;border-top:3px solid #d56e47;border-radius:16px;overflow:hidden;padding:26px 28px;font-family:Inter,Arial,sans-serif;box-shadow:0 14px 34px rgba(13,44,38,.16);}",
+      ".bcl-today{background:#173f36 !important;color:#f5f1e7 !important;border:1px solid #0d2c26;border-radius:16px;overflow:hidden;padding:26px 28px;font-family:Inter,Arial,sans-serif;box-shadow:0 14px 34px rgba(13,44,38,.16);}",
       ".bcl-today-head{display:flex;align-items:center;gap:10px;margin:0 0 12px;}",
       ".bcl-today-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
       ".bcl-today-head h2{font-family:'Cormorant Garamond',Georgia,serif;color:#fffdf8 !important;font-size:1.7rem;margin:0 !important;line-height:1;}",
@@ -169,14 +169,22 @@
       ".bcl-tile-ico svg{width:22px;height:22px;}",
       ".bcl-tile-txt h3{font-family:'Cormorant Garamond',Georgia,serif;color:#0d2c26 !important;font-size:1.2rem;margin:0 0 3px !important;}",
       ".bcl-tile-txt p{margin:0 !important;font-size:.82rem;color:#67716b !important;line-height:1.4;}",
-      /* Homepage live board: next events, newest jobs, current rentals */
-      ".bcl-hb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}",
-      ".bcl-hb-card{display:flex;flex-direction:column;gap:4px;background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:12px;padding:16px 18px;text-decoration:none !important;transition:border-color .15s,transform .15s;}",
-      ".bcl-hb-card:hover{border-color:#d56e47;transform:translateY(-2px);}",
-      ".bcl-hb-kick{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#d56e47 !important;}",
-      ".bcl-hb-title{font-weight:600;color:#173f36 !important;font-size:1rem;line-height:1.3;}",
-      ".bcl-hb-meta{font-size:.84rem;color:#33413b !important;line-height:1.4;}",
-      ".bcl-hb-foot{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.06em;color:#67716b !important;margin-top:auto;padding-top:6px;}",
+      /* Homepage local board: one section, three columns (events, jobs, rentals).
+         The column is the card; rows inside are hairline-separated so three
+         categories cost about the height one strip used to. */
+      ".bcl-board{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}",
+      ".bcl-board-col{display:flex;flex-direction:column;background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:14px;padding:4px 20px 6px;}",
+      ".bcl-board-head{display:flex;align-items:baseline;gap:10px;padding:16px 0 10px;border-bottom:2px solid #173f36;}",
+      ".bcl-board-head h3{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.25rem;margin:0 !important;line-height:1;}",
+      ".bcl-board-head a{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:#d56e47 !important;text-decoration:none !important;margin-left:auto;white-space:nowrap;}",
+      ".bcl-board-head a:hover{text-decoration:underline !important;}",
+      ".bcl-bi{display:block;padding:13px 0;border-bottom:1px solid #ece6d8;text-decoration:none !important;transition:padding-left .15s;}",
+      ".bcl-board-list .bcl-bi:last-child{border-bottom:0;}",
+      ".bcl-bi:hover{padding-left:5px;}",
+      ".bcl-bi-kick{display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#d56e47 !important;margin-bottom:3px;}",
+      ".bcl-bi-title{display:block;font-weight:600;color:#173f36 !important;font-size:.95rem;line-height:1.3;}",
+      ".bcl-bi-meta{display:block;font-size:.8rem;color:#67716b !important;line-height:1.4;margin-top:2px;}",
+      ".bcl-board .bcl-unavailable,.bcl-board .bcl-count{margin:14px 0;font-size:.85rem;}",
       ".bcl-today-alerts{margin:0 0 12px;}",
       ".bcl-today-alerts .bcl-alert{margin:0 0 8px;border-radius:10px;border:1px solid #a35d51;}",
       ".bcl-today-noalert{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:#9fb8a9 !important;}",
@@ -184,7 +192,8 @@
       ".bcl-related{max-width:900px;margin:0 auto;padding:34px 20px 48px;border-top:1px solid #e3ddcf;}",
       ".bcl-related h2{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.6rem;margin:0 0 14px !important;line-height:1.1;}",
       ".bcl-related-kicker{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#d56e47 !important;margin:0 0 4px !important;}",
-      "@media (max-width:820px){.bcl-recent,.bcl-explore,.bcl-hb-grid{grid-template-columns:1fr;}}",
+      "@media (max-width:960px){.bcl-board{grid-template-columns:1fr;}}",
+      "@media (max-width:820px){.bcl-recent,.bcl-explore{grid-template-columns:1fr;}}",
       /* Residents page: compact jump-nav */
       ".bcl-jumpnav-sec{background:#fffdf8;padding:16px 0;border-bottom:1px solid #ece6d8;}",
       ".bcl-jumpnav{display:flex;flex-wrap:wrap;gap:8px;}",
@@ -1003,10 +1012,17 @@
 
   /* ---------- homepage live board: next events, newest jobs, current rentals ---------- */
 
-  function homeSectionHTML(kicker, heading, href, linkLabel, slotId) {
-    return '<div class="bcl-wrap"><div class="bcl-section-head"><div><p class="bcl-kicker">' + esc(kicker) +
-      "</p><h2>" + esc(heading) + '</h2></div><a class="bcl-sec-viewall" href="' + esc(href) + '">' +
-      esc(linkLabel) + ' &rarr;</a></div><div id="' + esc(slotId) + '" class="bcl-hb-grid"></div></div>';
+  function boardColumnHTML(heading, href, linkLabel, slotId) {
+    return '<div class="bcl-board-col"><div class="bcl-board-head"><h3>' + esc(heading) +
+      '</h3><a href="' + esc(href) + '">' + esc(linkLabel) + ' &rarr;</a></div>' +
+      '<div id="' + esc(slotId) + '" class="bcl-board-list"></div></div>';
+  }
+
+  function boardRow(href, external, kick, title, meta) {
+    return '<a class="bcl-bi" href="' + esc(href) + '"' + (external ? ' target="_blank" rel="noopener"' : "") + ">" +
+      '<span class="bcl-bi-kick">' + esc(kick) + "</span>" +
+      '<span class="bcl-bi-title">' + esc(title) + "</span>" +
+      (meta ? '<span class="bcl-bi-meta">' + esc(meta) + "</span>" : "") + "</a>";
   }
 
   /* ISO date strings compare correctly as strings, so "still upcoming" is a
@@ -1032,28 +1048,25 @@
     return filterRentals(rows, {}).slice(0, n);
   }
 
-  function homeJobCard(job) {
-    var meta = [job.city, job.employment_type, jobSalaryText(job)].filter(Boolean).join(" · ");
-    var when = job.posted_at ? "Posted " + job.posted_at : (job.first_seen_at ? "First seen " + job.first_seen_at : "");
-    return '<a class="bcl-hb-card" href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">' +
-      '<span class="bcl-hb-kick">' + esc(job.employer_name || "") + "</span>" +
-      '<span class="bcl-hb-title">' + esc(job.title || "") + "</span>" +
-      '<span class="bcl-hb-meta">' + esc(meta) + "</span>" +
-      '<span class="bcl-hb-foot">' + esc(when) + "</span></a>";
+  function homeEventRow(e) {
+    var where = e.location ? String(e.location).split(",")[0] : "";
+    var meta = [where, e.category].filter(Boolean).join(" · ");
+    return boardRow(e.url || "/events", !!e.url, evDateChip(e.start), e.title || "", meta);
   }
 
-  function homeRentalCard(rental) {
+  function homeJobRow(job) {
+    var meta = [job.city, job.employment_type, jobSalaryText(job)].filter(Boolean).join(" · ");
+    return boardRow(job.canonical_url, true, job.employer_name || "", job.title || "", meta);
+  }
+
+  function homeRentalRow(rental) {
     var beds = rental.bedrooms != null ? rental.bedrooms + " bd" : "";
     var baths = rental.bathrooms != null ? rental.bathrooms + " ba" : "";
     var meta = [
       rental.monthly_rent ? rentalMoneyText(rental.monthly_rent) : "Contact for rent",
-      beds, baths, rental.property_type
+      beds, baths
     ].filter(Boolean).join(" · ");
-    return '<a class="bcl-hb-card" href="' + esc(rental.canonical_url) + '" target="_blank" rel="noopener">' +
-      '<span class="bcl-hb-kick">' + esc(rental.locality || rental.city || "") + "</span>" +
-      '<span class="bcl-hb-title">' + esc(rental.headline || "") + "</span>" +
-      '<span class="bcl-hb-meta">' + esc(meta) + "</span>" +
-      '<span class="bcl-hb-foot">' + esc(rental.available_date ? "Available " + rental.available_date : "") + "</span></a>";
+    return boardRow(rental.canonical_url, true, rental.locality || rental.city || "", rental.headline || "", meta);
   }
 
   /* Shared loader for the three data-backed homepage strips. An empty feed states
@@ -1083,41 +1096,40 @@
       return t.getFullYear() + "-" + (mo < 10 ? "0" : "") + mo + "-" + (d < 10 ? "0" : "") + d;
     })();
 
-    var strips = [
-      { cls: "bcl-section", html: homeSectionHTML("On the calendar", "Happening next", "/events", "All events", "bcl-home-events") },
-      { cls: "bcl-section bcl-cream", html: homeSectionHTML("Work in the valley", "Recently added jobs", "/jobs", "All jobs", "bcl-home-jobs") },
-      { cls: "bcl-section", html: homeSectionHTML("Places to live", "Current rentals", "/rentals", "All rentals", "bcl-home-rentals") }
-    ];
-    var anchor = after;
-    strips.forEach(function (s) {
-      var sec = document.createElement("section");
-      sec.className = s.cls;
-      sec.innerHTML = s.html;
-      if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(sec, anchor.nextSibling);
-      else home.appendChild(sec);
-      anchor = sec;
-    });
+    var sec = document.createElement("section");
+    sec.className = "bcl-section";
+    sec.innerHTML = '<div class="bcl-wrap">' +
+      '<div class="bcl-section-head"><div><p class="bcl-kicker">What changed since yesterday</p>' +
+      "<h2>The local board</h2></div>" +
+      '<p class="bcl-dim">Events, work, and places to live in the San Lorenzo Valley, refreshed daily with the source on every listing.</p></div>' +
+      '<div class="bcl-board">' +
+      boardColumnHTML("Happening next", "/events", "All events", "bcl-home-events") +
+      boardColumnHTML("Recently added jobs", "/jobs", "All jobs", "bcl-home-jobs") +
+      boardColumnHTML("Current rentals", "/rentals", "All rentals", "bcl-home-rentals") +
+      "</div></div>";
+    if (after && after.parentNode) after.parentNode.insertBefore(sec, after.nextSibling);
+    else home.appendChild(sec);
 
     fillHomeSlot("bcl-home-events", "events.json", {
       key: "events", loading: "Loading events…", label: "The events calendar", href: "/events", what: "calendar",
       pick: function (rows) { return nextEvents(rows, todayKey, 3); },
-      card: eventCard,
+      card: homeEventRow,
       empty: 'No verified upcoming events right now. Events appear here only after a person confirms the details with the organizer. <a href="/contact">Tell us about one</a>.'
     });
     fillHomeSlot("bcl-home-jobs", "jobs.json", {
       key: "jobs", loading: "Loading jobs…", label: "The jobs board", href: "/jobs", what: "jobs board",
       pick: function (rows) { return homeJobs(rows, 3); },
-      card: homeJobCard,
+      card: homeJobRow,
       empty: 'No local job postings right now. <a href="/jobs">See remote and extended-commute roles</a>.'
     });
     fillHomeSlot("bcl-home-rentals", "rentals.json", {
       key: "rentals", loading: "Loading rentals…", label: "The rentals board", href: "/rentals", what: "rentals board",
       pick: function (rows) { return homeRentals(rows, 3); },
-      card: homeRentalCard,
+      card: homeRentalRow,
       empty: 'No San Lorenzo Valley rentals are listed right now. <a href="/contact">Suggest one</a>.'
     });
 
-    return anchor;
+    return sec;
   }
 
   /* Homepage: add a visual "Latest from Around Town" strip, and fold the two
@@ -1610,6 +1622,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeJobCard: homeJobCard, homeRentalCard: homeRentalCard, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML };
   }
 })();

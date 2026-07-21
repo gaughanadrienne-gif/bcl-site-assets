@@ -24,6 +24,17 @@ test("nextEvents returns empty when nothing is upcoming", () => {
   assert.deepEqual(t.nextEvents(EVENTS, "2027-01-01", 3), []);
   assert.deepEqual(t.nextEvents(null, "2026-07-21", 3), []);
 });
+test("homeEventRow shows the date chip, title, place, and category", () => {
+  const html = t.homeEventRow(EVENTS[2]);
+  assert.ok(html.includes("WED JUL 22 · 9 AM"));
+  assert.ok(html.includes("Farmers Market"));
+  assert.ok(html.includes("Hwy 9 · Markets"));
+  assert.ok(!html.includes("undefined"));
+});
+test("homeEventRow falls back to the calendar when an event has no url", () => {
+  assert.ok(t.homeEventRow(EVENTS[2]).includes('href="/events"'));
+  assert.ok(!t.homeEventRow(EVENTS[2]).includes("noopener"));
+});
 
 const JOBS = [
   { title: "Barista", employer_name: "Cafe", city: "Boulder Creek", geography_tier: "core",
@@ -46,13 +57,17 @@ test("homeJobs prefers local, newest first, and never shows remote", () => {
 test("homeJobs widens to extended commute only when local is thin", () => {
   assert.deepEqual(t.homeJobs(JOBS, 3).map((j) => j.title), ["Barista", "Driver", "Clerk"]);
 });
-test("homeJobCard shows employer, title, pay fallback, and no undefined", () => {
-  const html = t.homeJobCard(JOBS[1]);
+test("homeJobRow shows employer, title, pay fallback, and no undefined", () => {
+  const html = t.homeJobRow(JOBS[1]);
   assert.ok(html.includes("Market"));
   assert.ok(html.includes("Clerk"));
-  assert.ok(html.includes("Pay not listed"));
-  assert.ok(html.includes("Posted 2026-07-15"));
+  assert.ok(html.includes("Felton · Full-Time · Pay not listed"));
   assert.ok(!html.includes("undefined"));
+});
+test("homeJobRow links out to the source listing in a new tab", () => {
+  const html = t.homeJobRow(JOBS[1]);
+  assert.ok(html.includes('href="https://x/2"'));
+  assert.ok(html.includes('rel="noopener"'));
 });
 
 const RENTALS = [
@@ -78,9 +93,9 @@ test("homeRentals falls back to the full list rather than showing nothing", () =
   assert.equal(picked.length, 3);
   assert.ok(picked.includes("44 Alba, Ben Lomond"));
 });
-test("homeRentalCard formats rent, beds, and the contact fallback", () => {
-  assert.ok(t.homeRentalCard(RENTALS[0]).includes("$2,400/mo"));
-  assert.ok(t.homeRentalCard(RENTALS[0]).includes("2 bd · 1 ba"));
-  assert.ok(t.homeRentalCard(RENTALS[1]).includes("Contact for rent"));
-  assert.ok(!t.homeRentalCard(RENTALS[1]).includes("undefined"));
+test("homeRentalRow formats rent, beds, and the contact fallback", () => {
+  assert.ok(t.homeRentalRow(RENTALS[0]).includes("$2,400/mo"));
+  assert.ok(t.homeRentalRow(RENTALS[0]).includes("2 bd · 1 ba"));
+  assert.ok(t.homeRentalRow(RENTALS[1]).includes("Contact for rent"));
+  assert.ok(!t.homeRentalRow(RENTALS[1]).includes("undefined"));
 });
