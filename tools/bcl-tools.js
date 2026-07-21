@@ -886,10 +886,55 @@
     }).catch(function () { ev.innerHTML = '<div><a href="/events">See the calendar</a></div>'; });
   }
 
+  /* ---------- thumbnail alt text ----------
+     Squarespace has no asset-level alt field, so blog-list / related-post featured
+     images fall back to the filename (slug.jpg) as their alt. Since these are title
+     cards (headline baked into the image) shown as image-only links, rewrite those
+     filename-alts to a readable title derived from the slug. Self-maintaining. */
+
+  function prettifySlug(slug) {
+    var low = { of: 1, the: 1, and: 1, a: 1, to: 1, "in": 1, on: 1, by: 1, "for": 1, with: 1, at: 1 };
+    var up = { slv: "SLV", bcvfd: "BCVFD", bcfd: "BCFD" };
+    var cap = { san: "San", lorenzo: "Lorenzo" };
+    return slug.split("-").map(function (w, i) {
+      var lw = w.toLowerCase();
+      if (up[lw]) return up[lw];
+      if (cap[lw]) return cap[lw];
+      if (low[lw] && i > 0) return lw;
+      return w.charAt(0).toUpperCase() + w.slice(1);
+    }).join(" ");
+  }
+
+  function fixThumbAlts() {
+    var imgs = document.querySelectorAll("img[alt]");
+    for (var k = 0; k < imgs.length; k++) {
+      var im = imgs[k];
+      if (im.id === "bcl-article-header") continue;
+      var m = (im.getAttribute("alt") || "").match(/^([a-z0-9]+(?:-[a-z0-9]+)+)\.(jpg|jpeg|png)$/i);
+      if (m && (im.src || "").indexOf("squarespace-cdn") > -1) {
+        im.setAttribute("alt", prettifySlug(m[1].toLowerCase()));
+      }
+    }
+  }
+
+  function initThumbAlts() {
+    fixThumbAlts();
+    [400, 1200, 3000].forEach(function (ms) { setTimeout(fixThumbAlts, ms); });
+    if (typeof MutationObserver !== "undefined") {
+      var pending = false;
+      new MutationObserver(function () {
+        if (pending) return;
+        pending = true;
+        setTimeout(function () { pending = false; fixThumbAlts(); }, 300);
+      }).observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
   /* ---------- boot ---------- */
 
   function boot() {
     initArticleHeader();
+    initThumbAlts();
     injectCSS();
     var d = document.getElementById("bcl-directory");
     if (d) initListings(d, "directory.json", "directory");
