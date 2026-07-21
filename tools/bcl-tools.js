@@ -751,6 +751,21 @@
       });
     }
   }
+  /* Mountain Status shipped with the same "we are not an emergency service"
+     caveat in three places. This is a blog/directory, not an alert service,
+     so trim it to one calm 911 pointer (owner request) while still routing
+     emergencies to 911 and the official sources. Position/regex based so it
+     works regardless of the exact live copy and no-ops on a clean re-paste. */
+  function repairStatusPage() {
+    var page = document.getElementById("bcl-mountain-status");
+    if (!page) return;
+    var heroNote = page.querySelector(".bcl-hero .bcl-note");
+    if (heroNote) heroNote.innerHTML = "For emergencies, call 911. For official alerts and closures, use the sources below.";
+    // Drop the trailing "does not report whether ... safe" defensive clause.
+    [].slice.call(page.querySelectorAll(".bcl-note")).forEach(function (n) {
+      n.innerHTML = n.innerHTML.replace(/\s*This page points to official sources;\s*it does not report whether any road, area, or condition is safe\.?/i, "");
+    });
+  }
   function initEvents(root) {
     root.innerHTML = '<div class="bcl-count">Loading events…</div>';
     fetchJSON(REPO + "/data/events.json").then(function (data) {
@@ -1121,6 +1136,7 @@
     injectCSS();
     repairKnownLinks();
     repairEmbedScaffolding();
+    repairStatusPage();
     repairPageHeadings();
     initArticleHeader();
     initArticleContent();
