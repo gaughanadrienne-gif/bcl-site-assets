@@ -36,8 +36,39 @@ Swap the div id per page. One script tag per page is enough for any number of to
 
 1. Edit the research master + owner workbook (private, OneDrive), regenerate the public JSON, commit, push.
 2. For article bodies, refresh `data/live-article-slugs.json` from the public Squarespace sitemap, then run `python scripts/build_articles.py --as-of YYYY-MM-DD`; the builder emits every live slug and withholds drafts absent from the sitemap.
-3. Purge jsDelivr so changes appear promptly:
-   `https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/directory.json` (repeat per changed file).
+3. Publish the change to the site by bumping the pinned SHA — see Releasing
+   below. Purging `@main` is not sufficient and not how the site loads this
+   script.
+
+## Releasing
+
+Squarespace loads this script from **Code Injection > Footer**, pinned to an
+immutable commit SHA, never `@main` — jsDelivr's `@main` edge caches lag per
+region by up to twelve hours, so a push alone does not reach readers.
+
+```bash
+node --test "tools/tests/*.test.js"     # 53 tests, all must pass
+git commit && git push                  # note the short SHA
+curl -sI https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@<sha>/tools/bcl-tools.js
+```
+
+Then change the SHA in the `<script src>` line in Squarespace Code Injection >
+Footer, in place. Do not paste the whole footer file over it; the live block
+carries the ridge/parallax layer and other fixes. Mirror the new SHA in
+`boulder-creek-local/squarespace/02_FOOTER.html`.
+
+Roll back by repointing at the previous SHA. Old commits stay on jsDelivr
+permanently, so rollback is one line.
+
+To preview a release against the live site without publishing, open the page and
+run this in the console — it affects only that tab:
+
+```js
+document.querySelectorAll('style[id^="bcl-tools-css"]').forEach(n => n.remove());
+const s = document.createElement('script');
+s.src = 'https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@<sha>/tools/bcl-tools.js';
+document.body.appendChild(s);
+```
 
 ## Rules
 
