@@ -158,7 +158,7 @@
       ".bcl-recent-img img{width:100%;height:100%;object-fit:cover;display:block;}",
       ".bcl-recent-body{padding:15px 18px 18px;}",
       ".bcl-recent-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#d56e47 !important;}",
-      ".bcl-recent-title{font-family:'Cormorant Garamond',Georgia,serif;color:#0d2c26 !important;font-size:1.3rem;line-height:1.15;margin:6px 0 9px !important;}",
+      ".bcl-recent-sum{color:#33413b !important;font-size:.92rem;line-height:1.45;margin:7px 0 10px !important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}",
       ".bcl-recent-date{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#67716b !important;}",
       ".bcl-explore{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}",
       ".bcl-tile{display:flex;align-items:flex-start;gap:14px;background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:12px;padding:18px;text-decoration:none !important;transition:border-color .15s,transform .15s;}",
@@ -886,15 +886,18 @@
         root.innerHTML = items.map(function (it) {
           var title = (it.seoData && it.seoData.seoTitle) || prettifySlug(it.urlId);
           var cat = (it.categories && it.categories[0]) || "Around Town";
+          // The watercolor card already carries the title, so show a one-line
+          // summary here instead of repeating it (title moves to the img alt).
+          var summary = (it.seoData && it.seoData.seoDescription) || String(it.excerpt || "").replace(/<[^>]*>/g, "").trim();
           var d = new Date(it.publishOn || 0);
           var date = mons[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
           var url = it.fullUrl || ("/around-town/" + it.urlId);
           var img = it.assetUrl + (it.assetUrl.indexOf("?") < 0 ? "?format=750w" : "");
           return '<a class="bcl-recent-card" href="' + esc(url) + '">' +
-            '<div class="bcl-recent-img"><img src="' + esc(img) + '" alt="" loading="lazy"></div>' +
+            '<div class="bcl-recent-img"><img src="' + esc(img) + '" alt="' + esc(title) + '" loading="lazy"></div>' +
             '<div class="bcl-recent-body">' +
             '<span class="bcl-recent-cat">' + esc(cat) + "</span>" +
-            '<h3 class="bcl-recent-title">' + esc(title) + "</h3>" +
+            '<p class="bcl-recent-sum">' + esc(summary) + "</p>" +
             '<span class="bcl-recent-date">' + esc(date) + " &middot; Around Town</span>" +
             "</div></a>";
         }).join("");
