@@ -74,7 +74,7 @@
     });
   }
 
-  var CSS_ID = "bcl-tools-css-v5";
+  var CSS_ID = "bcl-tools-css-v6";
   function injectCSS() {
     if (document.getElementById(CSS_ID)) return;
     /* An older cached copy of this script may have injected its stylesheet
@@ -155,7 +155,19 @@
       ".bcl-checklabel{display:flex;align-items:center;gap:6px;font-size:.85rem;color:#1c2a26 !important;flex:0 0 auto;}",
       ".bcl-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;background:#dde2d8;color:#173f36 !important;padding:2px 7px;}",
       ".bcl-job-card,.bcl-rental-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
-      ".bcl-job-card .bcl-actionrow a,.bcl-rental-card .bcl-actionrow a{color:#d56e47 !important;}"
+      ".bcl-job-card .bcl-actionrow a,.bcl-rental-card .bcl-actionrow a{color:#d56e47 !important;}",
+      ".bcl-sr-only{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0,0,0,0) !important;white-space:nowrap !important;border:0 !important;}",
+      ".bcl-article-body{max-width:760px;margin:0 auto;padding:0 0 42px;font-family:Inter,Arial,sans-serif;color:#1c2a26;line-height:1.72;font-size:1rem;}",
+      ".bcl-article-body h2,.bcl-article-body h3{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36;line-height:1.15;}",
+      ".bcl-article-body h2{font-size:clamp(1.8rem,4vw,2.35rem);margin:1.8em 0 .55em;}",
+      ".bcl-article-body h3{font-size:1.45rem;margin:1.5em 0 .45em;}",
+      ".bcl-article-body p,.bcl-article-body li{font-size:1rem;}",
+      ".bcl-article-body a{color:#2e6b46;text-decoration:underline;text-underline-offset:2px;}",
+      ".bcl-article-body blockquote{border-left:3px solid #d56e47;margin:1.5em 0;padding:.2em 0 .2em 1.25em;color:#4f5e57;}",
+      ".bcl-article-body table{border-collapse:collapse;display:block;max-width:100%;overflow-x:auto;margin:1.5em 0;}",
+      ".bcl-article-body th,.bcl-article-body td{border:1px solid #e3ddcf;padding:9px 12px;text-align:left;}",
+      ".bcl-article-reviewed{font-family:'IBM Plex Mono',monospace;font-size:.7rem !important;letter-spacing:.06em;text-transform:uppercase;color:#67716b;border-top:1px solid #e3ddcf;padding-top:14px;margin-top:36px;}",
+      ".bcl-draft-state{max-width:760px;margin:18px auto 42px;background:#f5f1e7;border:1px solid #e3ddcf;padding:18px 20px;font-family:Inter,Arial,sans-serif;color:#4f5e57;}"
     ].join("");
     var el = document.createElement("style");
     el.id = CSS_ID;
@@ -566,6 +578,133 @@
     target.insertBefore(img, target.firstChild);
   }
 
+  function articleSlugFromPath(pathname) {
+    var match = String(pathname || "").match(/^\/around-town\/([^\/]+)\/?$/);
+    return match ? decodeURIComponent(match[1]) : "";
+  }
+
+  function articleTitleFromMetadata() {
+    var ogt = document.querySelector('meta[property="og:title"]');
+    var title = (ogt ? ogt.getAttribute("content") : "") || document.title || "";
+    return title.replace(/\s*[|–—-]\s*Boulder Creek Local\s*$/i, "").replace(/\s*\(Copy\)\s*$/i, "").trim();
+  }
+
+  function upsertRobots(content) {
+    var meta = document.querySelector('meta[name="robots"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "robots");
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute("content", content);
+  }
+
+  function ensureHiddenHeading(title) {
+    if (!title) return null;
+    var heading = document.querySelector("main h1, h1.entry-title");
+    if (!heading) {
+      heading = document.createElement("h1");
+      var main = document.querySelector("main") || document.body;
+      main.insertBefore(heading, main.firstChild);
+    }
+    if (!heading.textContent.trim()) heading.textContent = title;
+    heading.classList.add("bcl-sr-only");
+    return heading;
+  }
+
+  function hasNativeArticleBody(target) {
+    var clone = target.cloneNode(true);
+    var injected = clone.querySelector("#bcl-article-header, #bcl-article-body, .bcl-draft-state");
+    while (injected) {
+      injected.parentNode.removeChild(injected);
+      injected = clone.querySelector("#bcl-article-header, #bcl-article-body, .bcl-draft-state");
+    }
+    return clone.textContent.replace(/\s+/g, " ").trim().length > 120;
+  }
+
+  function initArticleContent() {
+    var slug = articleSlugFromPath(location.pathname);
+    if (!slug) return;
+    var target = document.querySelector(".blog-item-content");
+    if (!target) return;
+    var nativeBody = hasNativeArticleBody(target);
+
+    fetchJSON(REPO + "/data/articles.json").then(function (data) {
+      var record = (data.articles || {})[slug];
+      if (record) {
+        ensureHiddenHeading(record.title || articleTitleFromMetadata());
+        var hero = document.getElementById("bcl-article-header");
+        if (hero) {
+          hero.alt = "";
+          hero.setAttribute("aria-hidden", "true");
+        }
+        if (nativeBody || document.getElementById("bcl-article-body")) return;
+        var body = document.createElement("div");
+        body.id = "bcl-article-body";
+        body.className = "bcl-article-body";
+        body.innerHTML = record.html || "";
+        if (record.reviewedAt) {
+          var reviewed = document.createElement("p");
+          reviewed.className = "bcl-article-reviewed";
+          reviewed.textContent = "Information checked " + record.reviewedAt;
+          body.appendChild(reviewed);
+        }
+        target.appendChild(body);
+        return;
+      }
+
+      if ((data.withheldSlugs || []).indexOf(slug) >= 0) {
+        upsertRobots("noindex, nofollow");
+        ensureHiddenHeading(articleTitleFromMetadata());
+        if (!nativeBody && !target.querySelector(".bcl-draft-state")) {
+          var note = document.createElement("p");
+          note.className = "bcl-draft-state";
+          note.innerHTML = 'This guide is not published yet. <a href="/around-town">Browse published Around Town stories</a>.';
+          target.appendChild(note);
+        }
+      }
+    }).catch(function () {
+      /* Leave native Squarespace content untouched when the feed is unavailable. */
+    });
+  }
+
+  function pageHeadingForPath(pathname) {
+    var path = String(pathname || "").replace(/\/$/, "");
+    if (path === "/contact") return "Contact and submit";
+    if (path === "/jobs") return "Jobs in the San Lorenzo Valley";
+    if (path === "/rentals") return "Rentals in the San Lorenzo Valley";
+    if (path === "/around-town") return "Around Town";
+    var category = path.match(/^\/around-town\/category\/(.+)$/);
+    if (category) return decodeURIComponent(category[1].replace(/\+/g, " ")) + " articles";
+    return "";
+  }
+
+  function repairPageHeadings() {
+    var path = location.pathname.replace(/\/$/, "");
+    if (path === "/file-uploads") upsertRobots("noindex, nofollow");
+
+    if (path === "/around-town" || /^\/around-town\/category\//.test(path)) {
+      [].slice.call(document.querySelectorAll("h1.entry-title")).forEach(function (heading) {
+        var link = heading.closest("article") && heading.closest("article").querySelector('a[href*="/around-town/"]');
+        var slug = link ? articleSlugFromPath(new URL(link.href, location.href).pathname) : "";
+        var replacement = document.createElement("h2");
+        replacement.className = (heading.className || "") + " bcl-sr-only";
+        replacement.textContent = slug ? prettifySlug(slug) : "Article";
+        heading.parentNode.replaceChild(replacement, heading);
+      });
+    }
+
+    var title = pageHeadingForPath(path);
+    if (title && ![].slice.call(document.querySelectorAll("h1")).some(function (h) { return h.textContent.trim(); })) {
+      ensureHiddenHeading(title);
+    }
+  }
+
+  function repairKnownLinks() {
+    [].slice.call(document.querySelectorAll('a[href="https://www.bcrpd.org/summer-camps"]')).forEach(function (link) {
+      link.href = "https://www.bcrpd.org/kids-classes";
+    });
+  }
   function initEvents(root) {
     root.innerHTML = '<div class="bcl-count">Loading events…</div>';
     fetchJSON(REPO + "/data/events.json").then(function (data) {
@@ -933,9 +1072,12 @@
   /* ---------- boot ---------- */
 
   function boot() {
-    initArticleHeader();
-    initThumbAlts();
     injectCSS();
+    repairKnownLinks();
+    repairPageHeadings();
+    initArticleHeader();
+    initArticleContent();
+    initThumbAlts();
     var d = document.getElementById("bcl-directory");
     if (d) initListings(d, "directory.json", "directory");
     var f = document.getElementById("bcl-food");
@@ -957,6 +1099,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath };
   }
 })();
