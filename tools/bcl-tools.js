@@ -173,12 +173,12 @@
          The column is the card; rows inside are hairline-separated so three
          categories cost about the height one strip used to. */
       ".bcl-board{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}",
-      ".bcl-board-col{display:flex;flex-direction:column;background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:14px;padding:4px 20px 6px;}",
+      ".bcl-board-col{display:flex;flex-direction:column;background:rgba(23,63,54,.055) !important;border:1px solid rgba(23,63,54,.16);border-radius:14px;padding:4px 20px 6px;}",
       ".bcl-board-head{display:flex;align-items:baseline;gap:10px;padding:16px 0 10px;border-bottom:2px solid #173f36;}",
       ".bcl-board-head h3{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.25rem;margin:0 !important;line-height:1;}",
       ".bcl-board-head a{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:#d56e47 !important;text-decoration:none !important;margin-left:auto;white-space:nowrap;}",
       ".bcl-board-head a:hover{text-decoration:underline !important;}",
-      ".bcl-bi{display:block;padding:13px 0;border-bottom:1px solid #ece6d8;text-decoration:none !important;transition:padding-left .15s;}",
+      ".bcl-bi{display:block;padding:13px 0;border-bottom:1px solid rgba(23,63,54,.13);text-decoration:none !important;transition:padding-left .15s;}",
       ".bcl-board-list .bcl-bi:last-child{border-bottom:0;}",
       ".bcl-bi:hover{padding-left:5px;}",
       ".bcl-bi-kick{display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#d56e47 !important;margin-bottom:3px;}",
@@ -186,7 +186,11 @@
       ".bcl-bi-meta{display:block;font-size:.8rem;color:#67716b !important;line-height:1.4;margin-top:2px;}",
       ".bcl-board .bcl-unavailable,.bcl-board .bcl-count{margin:14px 0;font-size:.85rem;}",
       ".bcl-today-alerts{margin:0 0 12px;}",
-      ".bcl-today-alerts .bcl-alert{margin:0 0 8px;border-radius:10px;border:1px solid #a35d51;}",
+      /* On the green card a solid brick block fights the ground, so the alert
+         inverts to cream and carries its urgency in a brick edge and headword. */
+      ".bcl-today-alerts .bcl-alert{background:#f5f1e7 !important;color:#1c2a26 !important;border:1px solid #e3ddcf;border-left:4px solid #8f4f45;border-radius:10px;margin:0 0 8px;padding:12px 16px;font-size:.9rem;}",
+      ".bcl-today-alerts .bcl-alert strong{color:#8f4f45 !important;}",
+      ".bcl-today-alerts .bcl-alert a{color:#2e6b46 !important;font-weight:600;text-decoration:underline;}",
       ".bcl-today-noalert{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:#9fb8a9 !important;}",
       /* Article pages: "Keep reading" cards under the body */
       ".bcl-related{max-width:900px;margin:0 auto;padding:34px 20px 48px;border-top:1px solid #e3ddcf;}",
@@ -1097,6 +1101,7 @@
     })();
 
     var sec = document.createElement("section");
+    sec.id = "bcl-home-board";
     sec.className = "bcl-section";
     sec.innerHTML = '<div class="bcl-wrap">' +
       '<div class="bcl-section-head"><div><p class="bcl-kicker">What changed since yesterday</p>' +
@@ -1138,6 +1143,14 @@
   function initHome() {
     var home = document.getElementById("bcl-home");
     if (!home) return;
+    /* The board and Around Town strips are appended, so a second run (a cached
+       copy of this script, or a console-injected preview) would stack a duplicate
+       of each. Clear our own prior work first. Explore is exempt: it replaces the
+       static section it is built from, so it can never double. */
+    ["bcl-home-board", "bcl-home-recent"].forEach(function (id) {
+      var prior = document.getElementById(id);
+      if (prior) prior.remove();
+    });
     var sections = [].slice.call(home.querySelectorAll("section.bcl-section"));
     var usefulSec = sections.filter(function (s) {
       var k = s.querySelector(".bcl-kicker");
@@ -1162,7 +1175,8 @@
     var anchor = usefulSec || creamGrid;
     if (anchor) {
       var explore = document.createElement("section");
-      // Plain band: the new live strips above it already alternate into cream.
+      explore.id = "bcl-home-explore";
+      // Plain band: the live board above it already alternates into cream.
       explore.className = "bcl-section";
       explore.innerHTML = exploreInner;
       anchor.parentNode.replaceChild(explore, anchor);
@@ -1176,6 +1190,7 @@
     var lastBoardSec = todaySec ? initHomeBoard(home, todaySec) : null;
 
     var recent = document.createElement("section");
+    recent.id = "bcl-home-recent";
     recent.className = "bcl-section bcl-cream";
     recent.innerHTML = '<div class="bcl-wrap"><div class="bcl-section-head"><div><p class="bcl-kicker">Fresh from the site</p><h2>Latest from Around Town</h2></div><a class="bcl-sec-viewall" href="/around-town">All articles &rarr;</a></div><div id="bcl-recent" class="bcl-recent"></div></div>';
     if (lastBoardSec && lastBoardSec.parentNode) {
