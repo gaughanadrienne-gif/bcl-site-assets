@@ -11,7 +11,7 @@ Public asset and tool layer for [Boulder Creek Local](https://bouldercreeklocal.
   - `#bcl-status` — Mountain Status (live NWS alerts + forecast client-side, official links for roads/power/air)
 - `data/directory.json`, `data/food.json` — published listings only (high-confidence, owner-approved; internal review fields stripped; home-based businesses carry no address). Generated from the private research master; do not hand-edit records here without updating the master.
 - `data/events.json` — owner-verified events only. Empty until events are confirmed with organizers.
-- `data/articles.json` — rendered bodies for register-approved articles only. Future and draft slugs are emitted only in a withheld list so live placeholder URLs receive `noindex`.
+- `data/articles.json` — rendered bodies for the 67 article URLs in the live Squarespace sitemap. The two drafts absent from the sitemap are emitted only in a withheld list so accidental placeholder URLs receive `noindex`.
 
 ## Embed snippet (Squarespace code block)
 
@@ -25,7 +25,7 @@ Swap the div id per page. One script tag per page is enough for any number of to
 ## Updating data
 
 1. Edit the research master + owner workbook (private, OneDrive), regenerate the public JSON, commit, push.
-2. For article bodies, run `python scripts/build_articles.py --as-of YYYY-MM-DD`; the builder reads the private article register and emits only approved/due content.
+2. For article bodies, refresh `data/live-article-slugs.json` from the public Squarespace sitemap, then run `python scripts/build_articles.py --as-of YYYY-MM-DD`; the builder emits every live slug and withholds drafts absent from the sitemap.
 3. Purge jsDelivr so changes appear promptly:
    `https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/directory.json` (repeat per changed file).
 

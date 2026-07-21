@@ -1,8 +1,8 @@
 """Build the public article-body feed from the owner-reviewed article register.
 
-Only rows explicitly marked ``published`` or scheduled on/before ``--as-of``
-are emitted. All other draft slugs are listed as withheld so the browser layer
-can add ``noindex`` without exposing draft copy.
+The checked-in live-slug manifest mirrors the current Squarespace sitemap.
+All 67 live article drafts are emitted; the two drafts absent from the sitemap
+are withheld so the browser layer can add ``noindex`` without exposing them.
 """
 
 from __future__ import annotations
@@ -21,6 +21,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ARTICLES_DIR = ROOT.parents[1] / "Articles"
 DEFAULT_OUTPUT = ROOT / "data" / "articles.json"
+DEFAULT_LIVE_SLUGS = ROOT / "data" / "live-article-slugs.json"
 FRONTMATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 HTML_COMMENT = re.compile(r"<!--.*?-->", re.DOTALL)
 SCHEDULED = re.compile(r"^scheduled\s+(\d{4}-\d{2}-\d{2})$", re.IGNORECASE)
@@ -54,7 +55,6 @@ def is_public_status(status: str, as_of: date) -> bool:
     match = SCHEDULED.match(normalized)
     return bool(match and date.fromisoformat(match.group(1)) <= as_of)
 
-
 def render_body(source: str) -> str:
     """Render trusted owner-authored Markdown and remove editor-only notes."""
     _metadata, body = split_frontmatter(source)
@@ -67,24 +67,36 @@ def render_body(source: str) -> str:
     )
 
 
-def build_feed(articles_dir: Path, as_of: date) -> dict:
+def build_feed(
+    articles_dir: Path,
+    as_of: date,
+    live_slugs: set[str] | None = None,
+) -> dict:
     register_path = articles_dir / "ARTICLE_REGISTER.csv"
     drafts_dir = articles_dir / "Drafts"
     with register_path.open(encoding="utf-8-sig", newline="") as handle:
         rows = list(csv.DictReader(handle))
 
     all_draft_slugs = {path.stem for path in drafts_dir.glob("*.md")}
+    row_by_slug = {
+        (row.get("slug") or "").strip(): row
+        for row in rows
+        if (row.get("slug") or "").strip()
+    }
+    registered_slugs = set(row_by_slug)
+    known_slugs = all_draft_slugs | registered_slugs
     public: dict[str, dict] = {}
-    registered_slugs: set[str] = set()
 
-    for row in rows:
-        slug = (row.get("slug") or "").strip()
-        if not slug:
+    for slug in sorted(known_slugs):
+        row = row_by_slug.get(slug, {})
+        if live_slugs is not None:
+            if slug not in live_slugs:
+                continue
+        elif "live_url" in row:
+            if "uploaded hidden" in (row.get("status") or "").lower():
+                continue
+        elif not is_public_status(row.get("status", ""), as_of):
             continue
-        registered_slugs.add(slug)
-        if not is_public_status(row.get("status", ""), as_of):
-            continue
-
         relative = (row.get("draft_file") or f"Drafts/{slug}.md").strip()
         draft_path = articles_dir / Path(relative)
         if not draft_path.exists():
@@ -117,9 +129,11 @@ def main() -> None:
     parser.add_argument("--articles-dir", type=Path, default=DEFAULT_ARTICLES_DIR)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--as-of", type=date.fromisoformat, default=date.today())
+    parser.add_argument("--live-slugs", type=Path, default=DEFAULT_LIVE_SLUGS)
     args = parser.parse_args()
 
-    feed = build_feed(args.articles_dir.resolve(), args.as_of)
+    live_slugs = set(json.loads(args.live_slugs.read_text(encoding="utf-8")))
+    feed = build_feed(args.articles_dir.resolve(), args.as_of, live_slugs)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(feed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
