@@ -149,6 +149,25 @@
       ".bcl-today a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-today-links{margin-top:12px;font-size:.82rem;}",
       "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-controls input,.bcl-controls select{flex:0 0 auto;width:100%;}.bcl-today-head span{margin-left:0;}}",
+      /* Homepage: Latest from Around Town + consolidated Explore grid */
+      ".bcl-sec-viewall{color:#d56e47 !important;font-weight:600;font-size:.92rem;text-decoration:none !important;white-space:nowrap;}",
+      ".bcl-recent{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}",
+      ".bcl-recent-card{display:flex;flex-direction:column;background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:14px;overflow:hidden;text-decoration:none !important;transition:transform .15s,box-shadow .15s;}",
+      ".bcl-recent-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(23,63,54,.12);}",
+      ".bcl-recent-img{aspect-ratio:1200/630;background:#a8bd7f;overflow:hidden;}",
+      ".bcl-recent-img img{width:100%;height:100%;object-fit:cover;display:block;}",
+      ".bcl-recent-body{padding:15px 18px 18px;}",
+      ".bcl-recent-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#d56e47 !important;}",
+      ".bcl-recent-title{font-family:'Cormorant Garamond',Georgia,serif;color:#0d2c26 !important;font-size:1.3rem;line-height:1.15;margin:6px 0 9px !important;}",
+      ".bcl-recent-date{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#67716b !important;}",
+      ".bcl-explore{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}",
+      ".bcl-tile{display:flex;align-items:flex-start;gap:14px;background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:12px;padding:18px;text-decoration:none !important;transition:border-color .15s,transform .15s;}",
+      ".bcl-tile:hover{border-color:#d56e47;transform:translateY(-2px);}",
+      ".bcl-tile-ico{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:rgba(213,110,71,.1);color:#d56e47;display:flex;align-items:center;justify-content:center;}",
+      ".bcl-tile-ico svg{width:22px;height:22px;}",
+      ".bcl-tile-txt h3{font-family:'Cormorant Garamond',Georgia,serif;color:#0d2c26 !important;font-size:1.2rem;margin:0 0 3px !important;}",
+      ".bcl-tile-txt p{margin:0 !important;font-size:.82rem;color:#67716b !important;line-height:1.4;}",
+      "@media (max-width:820px){.bcl-recent,.bcl-explore{grid-template-columns:1fr;}}",
       ".bcl-tabs{display:flex;gap:8px;margin:0 0 14px;}",
       ".bcl-tab{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;}",
       ".bcl-tab.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
@@ -766,6 +785,117 @@
       n.innerHTML = n.innerHTML.replace(/\s*This page points to official sources;\s*it does not report whether any road, area, or condition is safe\.?/i, "");
     });
   }
+
+  /* ---------- homepage refresh ---------- */
+
+  var EXPLORE_TILES = [
+    ["mountain", "Mountain Status", "Weather, roads, smoke, and outages, with official sources.", "/mountain-status"],
+    ["calendar", "Events", "Community gatherings, music, markets, and workshops.", "/events"],
+    ["pin", "Directory", "Local services, shops, organizations, and contacts.", "/directory"],
+    ["fork", "Food & Drink", "Restaurants, coffee, markets, and places to gather.", "/food"],
+    ["house", "Resident Resources", "Utilities, preparedness, schools, and mountain life.", "/residents"],
+    ["map", "Visit", "Plan a respectful visit to town and the redwoods.", "/visit"]
+  ];
+  var EXPLORE_ICONS = {
+    mountain: '<path d="M3 20l6-11 4 6 2-3 6 8z"/>',
+    calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/>',
+    pin: '<path d="M12 21s7-6.3 7-11a7 7 0 10-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/>',
+    fork: '<path d="M7 3v8a2 2 0 004 0V3M9 11v10M17 3c-1.5 0-2.5 2-2.5 5s1 4 2.5 4 2.5-1 2.5-4-1-5-2.5-5zM17 16v5"/>',
+    house: '<path d="M4 11l8-7 8 7M6 10v10h12V10"/>',
+    map: '<path d="M9 4L4 6v14l5-2 6 2 5-2V4l-5 2-6-2zM9 4v14M15 6v14"/>'
+  };
+  function exploreIcon(name) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + EXPLORE_ICONS[name] + "</svg>";
+  }
+
+  /* Pull the newest published Around Town posts (title, watercolor header,
+     date) straight from the live blog collection so the homepage stays
+     current on its own. Same-origin JSON, so no CORS and no data upkeep. */
+  function initRecentArticles(root) {
+    if (!root) return;
+    var mons = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    fetch("/around-town?format=json", { credentials: "same-origin" })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var items = (data.items || [])
+          .filter(function (it) { return it && it.assetUrl && it.urlId; })
+          .sort(function (a, b) { return (b.publishOn || 0) - (a.publishOn || 0); })
+          .slice(0, 3);
+        if (!items.length) throw new Error("no items");
+        root.innerHTML = items.map(function (it) {
+          var title = (it.seoData && it.seoData.seoTitle) || prettifySlug(it.urlId);
+          var cat = (it.categories && it.categories[0]) || "Around Town";
+          var d = new Date(it.publishOn || 0);
+          var date = mons[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+          var url = it.fullUrl || ("/around-town/" + it.urlId);
+          var img = it.assetUrl + (it.assetUrl.indexOf("?") < 0 ? "?format=750w" : "");
+          return '<a class="bcl-recent-card" href="' + esc(url) + '">' +
+            '<div class="bcl-recent-img"><img src="' + esc(img) + '" alt="" loading="lazy"></div>' +
+            '<div class="bcl-recent-body">' +
+            '<span class="bcl-recent-cat">' + esc(cat) + "</span>" +
+            '<h3 class="bcl-recent-title">' + esc(title) + "</h3>" +
+            '<span class="bcl-recent-date">' + esc(date) + " &middot; Around Town</span>" +
+            "</div></a>";
+        }).join("");
+      })
+      .catch(function () {
+        // If the feed is unavailable, drop the whole section rather than show an empty block.
+        var sec = root.closest(".bcl-section");
+        if (sec) sec.remove();
+      });
+  }
+
+  /* Homepage: add a visual "Latest from Around Town" strip, and fold the two
+     redundant link-grid sections (plus the quick-links bar) into one Explore
+     section. Runtime transform so the page code block stays untouched. */
+  function initHome() {
+    var home = document.getElementById("bcl-home");
+    if (!home) return;
+    var sections = [].slice.call(home.querySelectorAll("section.bcl-section"));
+    var usefulSec = sections.filter(function (s) {
+      var k = s.querySelector(".bcl-kicker");
+      return k && /useful today/i.test(k.textContent || "");
+    })[0];
+    var creamGrid = sections.filter(function (s) {
+      return s.classList.contains("bcl-cream") && s.querySelector('a[href="/food"]') && s.querySelector('a[href="/visit"]');
+    })[0];
+
+    // The quick-links bar duplicates the Explore destinations; drop it.
+    var strip = home.querySelector(".bcl-strip");
+    if (strip) strip.remove();
+
+    // Build the consolidated Explore section.
+    var tiles = EXPLORE_TILES.map(function (t) {
+      return '<a class="bcl-tile" href="' + t[3] + '">' +
+        '<span class="bcl-tile-ico">' + exploreIcon(t[0]) + "</span>" +
+        '<span class="bcl-tile-txt"><h3>' + esc(t[1]) + "</h3><p>" + esc(t[2]) + "</p></span></a>";
+    }).join("");
+    var exploreInner = '<div class="bcl-wrap"><div class="bcl-section-head"><div><p class="bcl-kicker">Everything in one place</p><h2>Explore Boulder Creek</h2></div><p class="bcl-dim">Local information without the scavenger hunt, with sources shown.</p></div><div class="bcl-explore">' + tiles + "</div></div>";
+
+    var anchor = usefulSec || creamGrid;
+    if (anchor) {
+      var explore = document.createElement("section");
+      explore.className = "bcl-section bcl-cream";
+      explore.innerHTML = exploreInner;
+      anchor.parentNode.replaceChild(explore, anchor);
+    }
+    if (creamGrid && creamGrid !== anchor) creamGrid.remove();
+
+    // Insert "Latest from Around Town" right after the Today widget.
+    var today = document.getElementById("bcl-today");
+    var todaySec = today && today.closest("section");
+    var recent = document.createElement("section");
+    recent.className = "bcl-section";
+    recent.innerHTML = '<div class="bcl-wrap"><div class="bcl-section-head"><div><p class="bcl-kicker">Fresh from the site</p><h2>Latest from Around Town</h2></div><a class="bcl-sec-viewall" href="/around-town">All articles &rarr;</a></div><div id="bcl-recent" class="bcl-recent"></div></div>';
+    if (todaySec && todaySec.parentNode) {
+      todaySec.parentNode.insertBefore(recent, todaySec.nextSibling);
+    } else if (anchor && explore) {
+      explore.parentNode.insertBefore(recent, explore);
+    } else {
+      home.appendChild(recent);
+    }
+    initRecentArticles(document.getElementById("bcl-recent"));
+  }
   function initEvents(root) {
     root.innerHTML = '<div class="bcl-count">Loading events…</div>';
     fetchJSON(REPO + "/data/events.json").then(function (data) {
@@ -1149,6 +1279,7 @@
     if (e) initEvents(e);
     var s = document.getElementById("bcl-status");
     if (s) initStatus(s);
+    if (document.getElementById("bcl-home")) initHome();
     var t = document.getElementById("bcl-today");
     if (t) initToday(t);
     var j = document.getElementById("bcl-jobs");
