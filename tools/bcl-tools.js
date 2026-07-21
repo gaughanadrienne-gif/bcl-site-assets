@@ -701,7 +701,7 @@
   }
 
   function repairKnownLinks() {
-    [].slice.call(document.querySelectorAll('a[href="https://www.bcrpd.org/summer-camps"]')).forEach(function (link) {
+    [].slice.call(document.querySelectorAll('a[href="https://www.bcrpd.org/kids-classes"]')).forEach(function (link) {
       link.href = "https://www.bcrpd.org/kids-classes";
     });
   }
