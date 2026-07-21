@@ -36,9 +36,16 @@ Swap the div id per page. One script tag per page is enough for any number of to
 
 1. Edit the research master + owner workbook (private, OneDrive), regenerate the public JSON, commit, push.
 2. For article bodies, refresh `data/live-article-slugs.json` from the public Squarespace sitemap, then run `python scripts/build_articles.py --as-of YYYY-MM-DD`; the builder emits every live slug and withholds drafts absent from the sitemap.
-3. Publish the change to the site by bumping the pinned SHA — see Releasing
-   below. Purging `@main` is not sufficient and not how the site loads this
-   script.
+3. Purge jsDelivr so the change appears promptly:
+   `https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/articles.json`
+   (repeat per changed file), then verify against the CDN itself, not the purge
+   response.
+
+**The script and the data ship differently, and this trips people up.** The
+`<script>` tag in Squarespace is pinned to a commit SHA, so a new
+`bcl-tools.js` only goes live when that pin moves. But the script fetches
+`data/*.json` from `@main` at runtime, so data changes go live on push plus a
+purge, with no pin bump at all. Editing an article body is a data change.
 
 ## Releasing
 
