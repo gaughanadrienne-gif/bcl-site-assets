@@ -705,38 +705,50 @@
       link.href = "https://www.bcrpd.org/kids-classes";
     });
   }
-  /* The /food page shipped with static scaffolding that reads oddly for
-     visitors: a "Before you go" aside, a redundant "Find a place" intro
-     wrapping the finder, and three generic Breakfast/Lunch/Dinner blurb
-     cards sitting AFTER the listings. Strip them at runtime so the page is
-     just the finder plus the useful cross-link note. Idempotent, so a clean
-     re-paste of food.html (already fixed at source) simply no-ops. */
-  function repairFoodPage() {
-    var page = document.getElementById("bcl-page-food");
-    if (!page) return;
-    var foodMount = document.getElementById("bcl-food");
-    // 1. Drop the "Before you go" aside in the hero.
-    [].slice.call(page.querySelectorAll(".bcl-hero .bcl-card, .bcl-hero aside")).forEach(function (n) { n.remove(); });
-    // 2. Strip the redundant intro around the finder: the tool head, and any
-    //    heading/paragraph siblings that precede the #bcl-food mount.
-    if (foodMount) {
-      var tool = foodMount.closest(".bcl-tool") || page;
+  /* The widget pages (Food, Directory, Events, Submit) shipped with build
+     scaffolding that reads oddly for visitors: placeholder "... slot" labels,
+     redundant intro boxes wrapping each tool, a "Before you go" aside, and
+     generic blurb-card sections ("Planned categories" / Breakfast-Lunch-
+     Dinner) sitting AFTER the live listings. Strip them at runtime so each
+     page is just the tool plus genuinely useful context. Idempotent, so a
+     clean re-paste of the fixed source simply no-ops. */
+  function repairEmbedScaffolding() {
+    // Site-wide: remove placeholder "... slot" labels (e.g. "Submission form
+    // slot"). Unusual enough that only build scaffolding matches.
+    [].slice.call(document.querySelectorAll(".bcl-label")).forEach(function (lbl) {
+      if (/\bslot\b/i.test(lbl.textContent || "")) lbl.remove();
+    });
+    // Widget finders: drop the redundant intro box (tool head + any
+    // heading/paragraph siblings that precede the mount).
+    ["bcl-food", "bcl-directory", "bcl-events"].forEach(function (id) {
+      var mount = document.getElementById(id);
+      if (!mount) return;
+      var tool = mount.closest(".bcl-tool");
+      if (!tool) return;
       var head = tool.querySelector(".bcl-tool-head");
       if (head) head.remove();
-      [].slice.call(foodMount.parentNode.children).forEach(function (n) {
-        if (n !== foodMount) n.remove();
+      [].slice.call(mount.parentNode.children).forEach(function (n) {
+        if (n !== mount) n.remove();
       });
+    });
+    // /food only: drop the "Before you go" hero aside.
+    var foodPage = document.getElementById("bcl-page-food");
+    if (foodPage) {
+      [].slice.call(foodPage.querySelectorAll(".bcl-hero .bcl-card, .bcl-hero aside")).forEach(function (n) { n.remove(); });
     }
-    // 3. Remove the generic category cards, but keep the "Planning a day in
-    //    town" cross-link note by moving it directly under the listings.
-    var cream = page.querySelector(".bcl-section.bcl-cream");
-    if (cream) {
-      var note = cream.querySelector(".bcl-note");
-      if (note && foodMount) {
-        note.style.marginTop = "24px";
-        (foodMount.closest(".bcl-wrap") || foodMount.parentNode).appendChild(note);
-      }
-      cream.remove();
+    // Generic blurb-card sections after a widget add nothing actionable.
+    // Remove the card grid + its dev-language head; keep any cross-link note
+    // (drop the whole section only if nothing useful remains).
+    var page = document.getElementById("bcl-page-food") || document.getElementById("bcl-page-directory") || document.getElementById("bcl-page-events");
+    if (page) {
+      [].slice.call(page.querySelectorAll(".bcl-section.bcl-cream")).forEach(function (sec) {
+        var grid = sec.querySelector(".bcl-grid-3, .bcl-grid");
+        if (!grid || sec.querySelectorAll("article.bcl-card").length < 2) return;
+        grid.remove();
+        var head = sec.querySelector(".bcl-section-head");
+        if (head) head.remove();
+        if (!sec.querySelector(".bcl-note")) sec.remove();
+      });
     }
   }
   function initEvents(root) {
@@ -1108,7 +1120,7 @@
   function boot() {
     injectCSS();
     repairKnownLinks();
-    repairFoodPage();
+    repairEmbedScaffolding();
     repairPageHeadings();
     initArticleHeader();
     initArticleContent();
