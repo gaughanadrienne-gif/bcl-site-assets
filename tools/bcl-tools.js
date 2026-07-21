@@ -705,6 +705,40 @@
       link.href = "https://www.bcrpd.org/kids-classes";
     });
   }
+  /* The /food page shipped with static scaffolding that reads oddly for
+     visitors: a "Before you go" aside, a redundant "Find a place" intro
+     wrapping the finder, and three generic Breakfast/Lunch/Dinner blurb
+     cards sitting AFTER the listings. Strip them at runtime so the page is
+     just the finder plus the useful cross-link note. Idempotent, so a clean
+     re-paste of food.html (already fixed at source) simply no-ops. */
+  function repairFoodPage() {
+    var page = document.getElementById("bcl-page-food");
+    if (!page) return;
+    var foodMount = document.getElementById("bcl-food");
+    // 1. Drop the "Before you go" aside in the hero.
+    [].slice.call(page.querySelectorAll(".bcl-hero .bcl-card, .bcl-hero aside")).forEach(function (n) { n.remove(); });
+    // 2. Strip the redundant intro around the finder: the tool head, and any
+    //    heading/paragraph siblings that precede the #bcl-food mount.
+    if (foodMount) {
+      var tool = foodMount.closest(".bcl-tool") || page;
+      var head = tool.querySelector(".bcl-tool-head");
+      if (head) head.remove();
+      [].slice.call(foodMount.parentNode.children).forEach(function (n) {
+        if (n !== foodMount) n.remove();
+      });
+    }
+    // 3. Remove the generic category cards, but keep the "Planning a day in
+    //    town" cross-link note by moving it directly under the listings.
+    var cream = page.querySelector(".bcl-section.bcl-cream");
+    if (cream) {
+      var note = cream.querySelector(".bcl-note");
+      if (note && foodMount) {
+        note.style.marginTop = "24px";
+        (foodMount.closest(".bcl-wrap") || foodMount.parentNode).appendChild(note);
+      }
+      cream.remove();
+    }
+  }
   function initEvents(root) {
     root.innerHTML = '<div class="bcl-count">Loading events…</div>';
     fetchJSON(REPO + "/data/events.json").then(function (data) {
@@ -1074,6 +1108,7 @@
   function boot() {
     injectCSS();
     repairKnownLinks();
+    repairFoodPage();
     repairPageHeadings();
     initArticleHeader();
     initArticleContent();
