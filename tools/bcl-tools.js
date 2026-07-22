@@ -102,6 +102,8 @@
       ".bcl-note{background:#dde2d8;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
       ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#67716b !important;}",
       ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;padding:14px 18px;margin:0 0 14px;}",
+      ".bcl-promo{display:block;margin:0 0 22px;line-height:0;}",
+      ".bcl-promo img{width:100%;height:auto;display:block;border:1px solid #e3ddcf;}",
       ".bcl-alert a{color:#fffdf8 !important;font-weight:600;}",
       ".bcl-actionrow{font-size:.9rem;margin:6px 0;padding-left:16px;position:relative;}",
       ".bcl-actionrow:before{content:'';position:absolute;left:0;top:.45em;width:7px;height:11px;background:#d56e47;}",
@@ -1146,6 +1148,17 @@
   function initHome() {
     var home = document.getElementById("bcl-home");
     if (!home) return;
+    /* BCFD Summer BBQ & Dance promo (campaign branding from the BCFD kit).
+       Self-expires the morning after the Aug 22, 2026 event. */
+    if (Date.now() < Date.parse("2026-08-23T07:00:00Z") && !document.getElementById("bcl-promo-bbq")) {
+      var promo = document.createElement("a");
+      promo.id = "bcl-promo-bbq";
+      promo.className = "bcl-promo";
+      promo.href = "/around-town/bcvfd-summer-bbq-dance";
+      promo.setAttribute("aria-label", "BCFD Summer BBQ Dinner and Dance, Saturday August 22, 5:30 to 11 p.m. Tickets and details.");
+      promo.innerHTML = '<img src="' + REPO + '/promo/bcfd-bbq-banner-2026.png" alt="Boulder Creek Fire Department presents the Summer BBQ Dinner and Dance, Saturday August 22, 2026, 5:30 to 11 p.m. Get tickets, 30 dollars, kids under 5 free.">';
+      home.insertBefore(promo, home.firstChild);
+    }
     /* The board and Around Town strips are appended, so a second run (a cached
        copy of this script, or a console-injected preview) would stack a duplicate
        of each. Clear our own prior work first. Explore is exempt: it replaces the
