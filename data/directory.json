@@ -1,7 +1,7 @@
 {
  "updated": "2026-07-22",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
- "count": 308,
+ "count": 309,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -4592,6 +4592,22 @@
    "website": "https://robertbimbiconstruction.com/",
    "hours_text": null,
    "service_area": "Santa Cruz and Santa Clara counties",
+   "verified_at": "2026-07-22",
+   "lat": null,
+   "lon": null,
+   "tile": null
+  },
+  {
+   "name": "Ginia's Gems",
+   "category": "Shopping",
+   "subcategory": "Handmade jewelry and gifts",
+   "description": "Handmade memory wire jewelry with semiprecious stones and crystals, plus herbal remedies and local honey, from a longtime Boulder Creek maker. The downtown shop keeps irregular hours, so call ahead.",
+   "address": "13133 Highway 9",
+   "locality": "Boulder Creek",
+   "phone": "831-332-3681",
+   "website": "https://www.giniasgems.com/",
+   "hours_text": "Hours vary; call ahead",
+   "service_area": "Boulder Creek",
    "verified_at": "2026-07-22",
    "lat": null,
    "lon": null,
