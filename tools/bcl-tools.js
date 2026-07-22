@@ -78,6 +78,46 @@
   }
 
   var CSS_ID = "bcl-tools-css-v6";
+  /* The header-injection CSS breaks BCL code blocks out of Squarespace's
+     Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
+     (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
+     rules entirely, collapsing every tool page into a ~200px column.
+     Reproduce: strip :has() rules in devtools; a museum visitor hit this
+     on 2026-07-22. Fallback: tag the same ancestors with a real class and
+     inject equivalent class-keyed rules. */
+  function legacyFullWidthFallback() {
+    var supportsHas = false;
+    try {
+      supportsHas = !!(window.CSS && CSS.supports && CSS.supports("selector(:has(*))"));
+    } catch (e) { supportsHas = false; }
+    if (supportsHas) return;
+    if (document.getElementById("bcl-hasfull-fallback")) return;
+    var fulls = document.querySelectorAll(".bcl-full");
+    if (!fulls.length) return;
+    for (var i = 0; i < fulls.length; i++) {
+      var node = fulls[i].parentNode;
+      while (node && node.nodeType === 1 && node !== document.body) {
+        var cl = node.classList;
+        if (cl && (cl.contains("page-section") || cl.contains("fluid-engine") || cl.contains("fe-block") || cl.contains("sqs-block-code") || cl.contains("sqs-block") || node.tagName === "SECTION")) {
+          cl.add("bcl-hasfull");
+        }
+        node = node.parentNode;
+      }
+    }
+    var css = [
+      ".page-section.bcl-hasfull .content-wrapper, section.bcl-hasfull .content-wrapper { max-width: none !important; padding: 0 !important; }",
+      ".page-section.bcl-hasfull { min-height: 0 !important; }",
+      ".fluid-engine.bcl-hasfull { grid-template-columns: 1fr !important; grid-template-rows: auto !important; }",
+      ".fe-block.bcl-hasfull { grid-area: auto !important; grid-column: 1 / -1 !important; position: static !important; transform: none !important; width: 100% !important; }",
+      ".sqs-block-code.bcl-hasfull, .sqs-block-code.bcl-hasfull .sqs-block-content { padding: 0 !important; width: 100% !important; }",
+      ".sqs-block.bcl-hasfull { padding: 0 !important; }"
+    ].join("\n");
+    var st = document.createElement("style");
+    st.id = "bcl-hasfull-fallback";
+    st.appendChild(document.createTextNode(css));
+    document.head.appendChild(st);
+  }
+
   function injectCSS() {
     if (document.getElementById(CSS_ID)) return;
     /* An older cached copy of this script may have injected its stylesheet
@@ -1673,6 +1713,7 @@
   }
 
   function boot() {
+    legacyFullWidthFallback();
     injectCSS();
     repairKnownLinks();
     repairEmbedScaffolding();
