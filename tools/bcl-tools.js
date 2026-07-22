@@ -102,11 +102,12 @@
       ".bcl-note{background:#dde2d8;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
       ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#67716b !important;}",
       ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;padding:14px 18px;margin:0 0 14px;}",
-      ".bcl-promo-band{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:18px 0 22px;padding:14px 20px;background:linear-gradient(160deg,#1C4266 0%,#14304C 70%);border:1px solid #0d2438;}",
-      ".bcl-promo-badge{width:46px;height:auto;flex:0 0 auto;}",
+      ".bcl-promo-band{width:100vw;margin:20px calc(50% - 50vw) 26px;background:linear-gradient(160deg,#1C4266 0%,#14304C 70%);border-top:1px solid #0d2438;border-bottom:1px solid #0d2438;}",
+      ".bcl-promo-inner{display:flex;align-items:center;gap:20px;flex-wrap:wrap;max-width:1180px;margin:0 auto;padding:20px 28px;}",
+      ".bcl-promo-badge{width:56px;height:auto;flex:0 0 auto;}",
       ".bcl-promo-text{display:flex;flex-direction:column;gap:2px;flex:1 1 260px;min-width:220px;}",
       ".bcl-promo-kicker{font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.22em;color:#FCF8EF !important;text-transform:uppercase;opacity:.85;}",
-      ".bcl-promo-title{font-family:'Oswald',Impact,sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:.02em;color:#fff !important;text-transform:uppercase;line-height:1.1;}",
+      ".bcl-promo-title{font-family:'Oswald',Impact,sans-serif;font-size:1.45rem;font-weight:700;letter-spacing:.02em;color:#fff !important;text-transform:uppercase;line-height:1.1;}",
       ".bcl-promo-when{font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.12em;color:#FCF8EF !important;text-transform:uppercase;}",
       ".bcl-promo-when b{color:#E8A33D !important;font-weight:600;}",
       ".bcl-promo-actions{display:flex;align-items:center;gap:14px;flex:0 0 auto;}",
@@ -1165,6 +1166,7 @@
       promo.id = "bcl-promo-bbq";
       promo.className = "bcl-promo-band";
       promo.innerHTML =
+        '<div class="bcl-promo-inner">' +
         '<img class="bcl-promo-badge" src="' + REPO + '/promo/bcfd-badge.png" alt="">' +
         '<div class="bcl-promo-text">' +
         '<span class="bcl-promo-kicker">Boulder Creek Fire Department presents</span>' +
@@ -1174,7 +1176,7 @@
         '<span class="bcl-promo-actions">' +
         '<a class="bcl-promo-btn" href="https://events.com/r/en_us/tickets/bcfd-summer-bbq-and-dance-boulder-creek-august-1064895" target="_blank" rel="noopener">Get Tickets</a>' +
         '<a class="bcl-promo-more" href="/around-town/bcvfd-summer-bbq-dance">Details</a>' +
-        "</span>";
+        "</span></div>";
       if (todayMount && todayMount.parentNode) {
         todayMount.parentNode.insertBefore(promo, todayMount.nextSibling);
       } else {
