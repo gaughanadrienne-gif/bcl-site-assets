@@ -39,16 +39,19 @@
     return { local: local, nearby: nearby };
   }
 
+  /* Resident-first ordering (owner, 2026-07-22): everyday needs lead
+     (home trades, health, salons, shops, money); search-once categories
+     (weddings, celebrations) close the page. */
   var CAT_GROUPS = [
-    ["Weddings & Celebrations", ["Event Venues", "Catering & Bar", "Cakes & Desserts", "Wedding Services", "Party Rentals & Decor", "Kids Parties"]],
     ["Home & Property", ["General Contractors & Construction", "Plumbing & HVAC", "Electrical & Solar", "Landscaping & Gardening", "Tree Care & Defensible Space", "Excavation, Grading & Paving", "Handyman & Property Maintenance", "House Cleaning", "Well & Pump / Water", "Home Services & Repair"]],
-    ["Food & Drink", ["Vineyards & Wine Tasting"]],
     ["Health & Personal", ["Health & Wellness", "Personal Services", "Pets & Animals", "Florists"]],
-    ["Family & Learning", ["Education & Childcare"]],
     ["Shops & Essentials", ["Shopping", "Errands & Essentials", "Automotive", "Transportation", "Utilities & Essential Services"]],
     ["Money & Property", ["Money & Professional Services", "Real Estate"]],
+    ["Family & Learning", ["Education & Childcare"]],
     ["Community & Civic", ["Community & Nonprofit", "Government & Public Services", "Emergency & Public Safety", "Parks & Recreation", "Arts & Culture"]],
-    ["Stay", ["Lodging"]]
+    ["Food & Drink", ["Vineyards & Wine Tasting"]],
+    ["Stay", ["Lodging"]],
+    ["Weddings & Celebrations", ["Event Venues", "Catering & Bar", "Cakes & Desserts", "Wedding Services", "Party Rentals & Decor", "Kids Parties"]]
   ];
   var CAT_ORDER = [];
   var GROUP_OF = {};

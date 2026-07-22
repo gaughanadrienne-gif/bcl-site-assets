@@ -41,7 +41,7 @@ test("arrangeListings: cap 0 means no limit", () => {
 });
 test("orderedCategoryNames: known categories follow CAT_ORDER, unknown appended alpha", () => {
   const out = t.orderedCategoryNames(["Lodging", "Event Venues", "Zzz Unknown", "Plumbing & HVAC"]);
-  assert.deepEqual(out, ["Event Venues", "Plumbing & HVAC", "Lodging", "Zzz Unknown"]);
+  assert.deepEqual(out, ["Plumbing & HVAC", "Lodging", "Event Venues", "Zzz Unknown"]);
 });
 test("groupLabelOf: maps categories to their group", () => {
   assert.equal(t.groupLabelOf("Event Venues"), "Weddings & Celebrations");
@@ -63,7 +63,7 @@ test("buildDirectoryHTML: group label, local-first, divider, cap", () => {
 });
 test("buildCategoryOptions: ordered options", () => {
   const opts = t.buildCategoryOptions(["Lodging", "Event Venues"]);
-  assert.ok(opts.indexOf("Event Venues") < opts.indexOf("Lodging"));
+  assert.ok(opts.indexOf("Lodging") < opts.indexOf("Event Venues"));
 });
 test("buildDirectoryHTML: essential (cap-exempt) categories are never capped", () => {
   const rows = [];
