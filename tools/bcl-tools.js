@@ -102,7 +102,11 @@
       ".bcl-note{background:#dde2d8;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
       ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#67716b !important;}",
       ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;padding:14px 18px;margin:0 0 14px;}",
-      ".bcl-promo-band{width:100vw;margin:20px calc(50% - 50vw) 26px;background:linear-gradient(160deg,#1C4266 0%,#14304C 70%);border-top:1px solid #0d2438;border-bottom:1px solid #0d2438;}",
+      ".bcl-promo-band{width:100vw;margin:0 calc(50% - 50vw);background:linear-gradient(160deg,#1C4266 0%,#14304C 70%);border-top:1px solid #0d2438;border-bottom:1px solid #0d2438;}",
+      ".bcl-ticker{display:block;width:100%;background:#14304C;color:#FCF8EF !important;font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:9px 14px;text-decoration:none !important;border-bottom:2px solid #C3281C;}",
+      ".bcl-ticker b{color:#E8A33D !important;}",
+      ".bcl-ticker u{text-underline-offset:3px;}",
+      ".bcl-ticker:hover{background:#1C4266;}",
       ".bcl-promo-inner{display:flex;align-items:center;gap:20px;flex-wrap:wrap;max-width:1180px;margin:0 auto;padding:20px 28px;}",
       ".bcl-promo-badge{width:56px;height:auto;flex:0 0 auto;}",
       ".bcl-promo-text{display:flex;flex-direction:column;gap:2px;flex:1 1 260px;min-width:220px;}",
@@ -1130,6 +1134,28 @@
     if (after && after.parentNode) after.parentNode.insertBefore(sec, after.nextSibling);
     else home.appendChild(sec);
 
+    /* BCFD Summer BBQ & Dance promo band: flush against the top edge of this
+       white section (owner, 2026-07-22). Self-expires after Aug 22, 2026. */
+    if (Date.now() < Date.parse("2026-08-23T07:00:00Z") && !document.getElementById("bcl-promo-bbq") && sec.parentNode) {
+      var promo = document.createElement("div");
+      promo.id = "bcl-promo-bbq";
+      promo.className = "bcl-promo-band";
+      promo.innerHTML =
+        '<div class="bcl-promo-inner">' +
+        '<img class="bcl-promo-badge" src="' + REPO + '/promo/bcfd-badge.png" alt="">' +
+        '<div class="bcl-promo-text">' +
+        '<span class="bcl-promo-kicker">Boulder Creek Fire Department presents</span>' +
+        '<span class="bcl-promo-title">Summer BBQ Dinner &amp; Dance</span>' +
+        '<span class="bcl-promo-when">Saturday, <b>August 22</b> &middot; 5:30 to 11 p.m. &middot; $30 &middot; kids under 5 free</span>' +
+        "</div>" +
+        '<span class="bcl-promo-actions">' +
+        '<a class="bcl-promo-btn" href="https://events.com/r/en_us/tickets/bcfd-summer-bbq-and-dance-boulder-creek-august-1064895" target="_blank" rel="noopener">Get Tickets</a>' +
+        '<a class="bcl-promo-more" href="/around-town/bcvfd-summer-bbq-dance">Details</a>' +
+        "</span></div>";
+      sec.parentNode.insertBefore(promo, sec);
+      loadPromoFont();
+    }
+
     fillHomeSlot("bcl-home-events", "events.json", {
       key: "events", loading: "Loading events…", label: "The events calendar", href: "/events", what: "calendar",
       pick: function (rows) { return nextEvents(rows, todayKey, 3); },
@@ -1158,38 +1184,6 @@
   function initHome() {
     var home = document.getElementById("bcl-home");
     if (!home) return;
-    /* BCFD Summer BBQ & Dance promo band (campaign colors, real ticket link).
-       Sits below the hero + Today section; self-expires after Aug 22, 2026. */
-    if (Date.now() < Date.parse("2026-08-23T07:00:00Z") && !document.getElementById("bcl-promo-bbq")) {
-      var todayMount = document.getElementById("bcl-today");
-      var promo = document.createElement("div");
-      promo.id = "bcl-promo-bbq";
-      promo.className = "bcl-promo-band";
-      promo.innerHTML =
-        '<div class="bcl-promo-inner">' +
-        '<img class="bcl-promo-badge" src="' + REPO + '/promo/bcfd-badge.png" alt="">' +
-        '<div class="bcl-promo-text">' +
-        '<span class="bcl-promo-kicker">Boulder Creek Fire Department presents</span>' +
-        '<span class="bcl-promo-title">Summer BBQ Dinner &amp; Dance</span>' +
-        '<span class="bcl-promo-when">Saturday, <b>August 22</b> &middot; 5:30 to 11 p.m. &middot; $30 &middot; kids under 5 free</span>' +
-        "</div>" +
-        '<span class="bcl-promo-actions">' +
-        '<a class="bcl-promo-btn" href="https://events.com/r/en_us/tickets/bcfd-summer-bbq-and-dance-boulder-creek-august-1064895" target="_blank" rel="noopener">Get Tickets</a>' +
-        '<a class="bcl-promo-more" href="/around-town/bcvfd-summer-bbq-dance">Details</a>' +
-        "</span></div>";
-      if (todayMount && todayMount.parentNode) {
-        todayMount.parentNode.insertBefore(promo, todayMount.nextSibling);
-      } else {
-        home.insertBefore(promo, home.firstChild);
-      }
-      if (!document.getElementById("bcl-promo-font")) {
-        var fl = document.createElement("link");
-        fl.id = "bcl-promo-font";
-        fl.rel = "stylesheet";
-        fl.href = "https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap";
-        document.head.appendChild(fl);
-      }
-    }
     /* The board and Around Town strips are appended, so a second run (a cached
        copy of this script, or a console-injected preview) would stack a duplicate
        of each. Clear our own prior work first. Explore is exempt: it replaces the
@@ -1651,6 +1645,33 @@
 
   /* ---------- boot ---------- */
 
+  function loadPromoFont() {
+    if (document.getElementById("bcl-promo-font")) return;
+    var fl = document.createElement("link");
+    fl.id = "bcl-promo-font";
+    fl.rel = "stylesheet";
+    fl.href = "https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap";
+    document.head.appendChild(fl);
+  }
+
+  /* Site-wide one-line ticker above the header for the BBQ (owner, 2026-07-22).
+     Never on /mountain-status (no event promos above safety info), never in
+     addition to itself, self-expires after Aug 22, 2026. */
+  function initPromoTicker() {
+    if (Date.now() >= Date.parse("2026-08-23T07:00:00Z")) return;
+    if (location.pathname.indexOf("/mountain-status") === 0) return;
+    if (document.getElementById("bcl-ticker-bbq")) return;
+    var bar = document.createElement("a");
+    bar.id = "bcl-ticker-bbq";
+    bar.className = "bcl-ticker";
+    bar.href = "https://events.com/r/en_us/tickets/bcfd-summer-bbq-and-dance-boulder-creek-august-1064895";
+    bar.target = "_blank";
+    bar.rel = "noopener";
+    bar.innerHTML = 'BCFD Summer BBQ &amp; Dance &middot; Sat, <b>Aug 22</b> &middot; 5:30 to 11 p.m. &middot; <u>Get tickets</u>';
+    document.body.insertBefore(bar, document.body.firstChild);
+    loadPromoFont();
+  }
+
   function boot() {
     injectCSS();
     repairKnownLinks();
@@ -1670,6 +1691,7 @@
     if (e) initEvents(e);
     var s = document.getElementById("bcl-status");
     if (s) initStatus(s);
+    initPromoTicker();
     if (document.getElementById("bcl-home")) initHome();
     var t = document.getElementById("bcl-today");
     if (t) initToday(t);
