@@ -102,8 +102,17 @@
       ".bcl-note{background:#dde2d8;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
       ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#67716b !important;}",
       ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;padding:14px 18px;margin:0 0 14px;}",
-      ".bcl-promo{display:block;margin:0 0 22px;line-height:0;}",
-      ".bcl-promo img{width:100%;height:auto;display:block;border:1px solid #e3ddcf;}",
+      ".bcl-promo-band{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:18px 0 22px;padding:14px 20px;background:linear-gradient(160deg,#1C4266 0%,#14304C 70%);border:1px solid #0d2438;}",
+      ".bcl-promo-badge{width:46px;height:auto;flex:0 0 auto;}",
+      ".bcl-promo-text{display:flex;flex-direction:column;gap:2px;flex:1 1 260px;min-width:220px;}",
+      ".bcl-promo-kicker{font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.22em;color:#FCF8EF !important;text-transform:uppercase;opacity:.85;}",
+      ".bcl-promo-title{font-family:'Oswald',Impact,sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:.02em;color:#fff !important;text-transform:uppercase;line-height:1.1;}",
+      ".bcl-promo-when{font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.12em;color:#FCF8EF !important;text-transform:uppercase;}",
+      ".bcl-promo-when b{color:#E8A33D !important;font-weight:600;}",
+      ".bcl-promo-actions{display:flex;align-items:center;gap:14px;flex:0 0 auto;}",
+      ".bcl-promo-btn{display:inline-block;background:#C3281C !important;color:#fff !important;font-family:'Oswald',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;padding:10px 22px;text-decoration:none !important;box-shadow:0 3px 0 #8f1d14;}",
+      ".bcl-promo-btn:hover{background:#a52015 !important;}",
+      ".bcl-promo-more{font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.14em;color:#FCF8EF !important;text-transform:uppercase;text-decoration:underline;}",
       ".bcl-alert a{color:#fffdf8 !important;font-weight:600;}",
       ".bcl-actionrow{font-size:.9rem;margin:6px 0;padding-left:16px;position:relative;}",
       ".bcl-actionrow:before{content:'';position:absolute;left:0;top:.45em;width:7px;height:11px;background:#d56e47;}",
@@ -1148,16 +1157,36 @@
   function initHome() {
     var home = document.getElementById("bcl-home");
     if (!home) return;
-    /* BCFD Summer BBQ & Dance promo (campaign branding from the BCFD kit).
-       Self-expires the morning after the Aug 22, 2026 event. */
+    /* BCFD Summer BBQ & Dance promo band (campaign colors, real ticket link).
+       Sits below the hero + Today section; self-expires after Aug 22, 2026. */
     if (Date.now() < Date.parse("2026-08-23T07:00:00Z") && !document.getElementById("bcl-promo-bbq")) {
-      var promo = document.createElement("a");
+      var todayMount = document.getElementById("bcl-today");
+      var promo = document.createElement("div");
       promo.id = "bcl-promo-bbq";
-      promo.className = "bcl-promo";
-      promo.href = "/around-town/bcvfd-summer-bbq-dance";
-      promo.setAttribute("aria-label", "BCFD Summer BBQ Dinner and Dance, Saturday August 22, 5:30 to 11 p.m. Tickets and details.");
-      promo.innerHTML = '<img src="' + REPO + '/promo/bcfd-bbq-banner-2026.png" alt="Boulder Creek Fire Department presents the Summer BBQ Dinner and Dance, Saturday August 22, 2026, 5:30 to 11 p.m. Get tickets, 30 dollars, kids under 5 free.">';
-      home.insertBefore(promo, home.firstChild);
+      promo.className = "bcl-promo-band";
+      promo.innerHTML =
+        '<img class="bcl-promo-badge" src="' + REPO + '/promo/bcfd-badge.png" alt="">' +
+        '<div class="bcl-promo-text">' +
+        '<span class="bcl-promo-kicker">Boulder Creek Fire Department presents</span>' +
+        '<span class="bcl-promo-title">Summer BBQ Dinner &amp; Dance</span>' +
+        '<span class="bcl-promo-when">Saturday, <b>August 22</b> &middot; 5:30 to 11 p.m. &middot; $30 &middot; kids under 5 free</span>' +
+        "</div>" +
+        '<span class="bcl-promo-actions">' +
+        '<a class="bcl-promo-btn" href="https://events.com/r/en_us/tickets/bcfd-summer-bbq-and-dance-boulder-creek-august-1064895" target="_blank" rel="noopener">Get Tickets</a>' +
+        '<a class="bcl-promo-more" href="/around-town/bcvfd-summer-bbq-dance">Details</a>' +
+        "</span>";
+      if (todayMount && todayMount.parentNode) {
+        todayMount.parentNode.insertBefore(promo, todayMount.nextSibling);
+      } else {
+        home.insertBefore(promo, home.firstChild);
+      }
+      if (!document.getElementById("bcl-promo-font")) {
+        var fl = document.createElement("link");
+        fl.id = "bcl-promo-font";
+        fl.rel = "stylesheet";
+        fl.href = "https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap";
+        document.head.appendChild(fl);
+      }
     }
     /* The board and Around Town strips are appended, so a second run (a cached
        copy of this script, or a console-injected preview) would stack a duplicate
