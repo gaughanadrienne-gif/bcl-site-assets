@@ -1111,15 +1111,14 @@
    "name": "Travis Martin Plumbing, Inc.",
    "category": "Plumbing & HVAC",
    "subcategory": "Plumbing and water heaters",
-   "description": "Boulder Creek family plumbing company (DBA San Lorenzo Valley Water Heaters) handling drains, fixtures, water heaters, and filtration, licensed C-36.",
+   "description": "Boulder Creek family plumbing company (DBA San Lorenzo Valley Water Heaters) handling drains, fixtures, water heaters, and filtration, licensed C-36, now with a storefront on Graham Hill Road in Felton.",
    "locality": "Boulder Creek",
    "phone": "831-461-4300",
    "website": "https://www.santacruzcaplumber.com/",
-   "verified_at": "2026-07-16",
-   "no_storefront": true,
+   "verified_at": "2026-07-22",
    "license": "CSLB #1048423 (active, C-36)",
    "hours_text": null,
-   "address": null,
+   "address": "6185 Graham Hill Rd, Felton",
    "tile": "travis-martin-plumbing-inc.png"
   },
   {
