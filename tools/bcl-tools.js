@@ -350,8 +350,12 @@
     });
     return out;
   }
+  /* The dropdown is a flat jump-to list, so it reads best alphabetically
+     (owner, 2026-07-23). The on-page sections keep the resident-first
+     grouped order via orderedCategoryNames in buildDirectoryHTML. */
   function buildCategoryOptions(present) {
-    return orderedCategoryNames(present).map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("");
+    return present.slice().sort(function (a, b) { return String(a).localeCompare(String(b)); })
+      .map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("");
   }
 
   function initListings(root, dataFile, label) {

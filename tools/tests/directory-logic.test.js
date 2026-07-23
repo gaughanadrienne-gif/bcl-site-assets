@@ -61,9 +61,9 @@ test("buildDirectoryHTML: group label, local-first, divider, cap", () => {
   assert.ok(html.indexOf("Also serving the area") < html.indexOf("SC DJ")); // nearby below divider
   assert.equal(html.indexOf("Aptos DJ"), -1);                        // capped out (cap 1, SC ranks closer)
 });
-test("buildCategoryOptions: ordered options", () => {
+test("buildCategoryOptions: alphabetical options", () => {
   const opts = t.buildCategoryOptions(["Lodging", "Event Venues"]);
-  assert.ok(opts.indexOf("Lodging") < opts.indexOf("Event Venues"));
+  assert.ok(opts.indexOf("Event Venues") < opts.indexOf("Lodging"));
 });
 test("buildDirectoryHTML: essential (cap-exempt) categories are never capped", () => {
   const rows = [];

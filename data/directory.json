@@ -1,7 +1,7 @@
 {
- "updated": "2026-07-22",
+ "updated": "2026-07-23",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
- "count": 315,
+ "count": 316,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -4283,14 +4283,14 @@
    "subcategory": "Dog training",
    "description": "Reward-based dog training with trainer Hannah, offering basic obedience, reactivity, and puppy programs plus train-walks and boarding. Works with all breeds.",
    "address": null,
-   "locality": "Santa Cruz Mountains",
+   "locality": "Boulder Creek",
    "phone": "408-805-4583",
    "website": "https://www.siriusk9-training.com/",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-07-17",
    "hours_text": null,
    "no_storefront": true,
-   "tile": "sirius-k9-training.png"
+   "tile": "sirius-k9-training.jpg"
   },
   {
    "category": "Vineyards & Wine Tasting",
@@ -4708,6 +4708,21 @@
    "lat": null,
    "lon": null,
    "tile": null
+  },
+  {
+   "name": "Doughlicious Farmstand",
+   "category": "Errands & Essentials",
+   "subcategory": "Farm stand",
+   "description": "Neighborhood farm stand from baker Liz De Spain, known for sourdough and seasonal goods. Active on Facebook and Instagram.",
+   "address": "280 Lake Drive, Boulder Creek, CA 95006",
+   "locality": "Boulder Creek",
+   "phone": null,
+   "website": null,
+   "hours_text": null,
+   "verified_at": "2026-07-17",
+   "lat": 37.1532933,
+   "lon": -122.1642495,
+   "tile": "doughlicious-farmstand.jpg"
   }
  ]
 }
