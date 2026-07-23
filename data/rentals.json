@@ -1,6 +1,6 @@
 {
  "_note": "Boulder Creek Local rentals board. Auto-refreshed; see refresh_rentals.py.",
- "updated": "2026-07-22",
+ "updated": "2026-07-23",
  "count": 6,
  "rentals": [
   {
@@ -34,8 +34,8 @@
    "canonical_url": "https://www.pmisantacruz.com/santa-cruz-homes-for-rent/241/10510-highway-9-ben-lomond-ca-95005",
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
-   "first_seen_at": "2026-07-22",
-   "last_verified_at": "2026-07-22",
+   "first_seen_at": "2026-07-23",
+   "last_verified_at": "2026-07-23",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -70,8 +70,8 @@
    "canonical_url": "https://www.pmisantacruz.com/santa-cruz-homes-for-rent/179/12895-highway-9-boulder-creek-ca-95006",
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
-   "first_seen_at": "2026-07-22",
-   "last_verified_at": "2026-07-22",
+   "first_seen_at": "2026-07-23",
+   "last_verified_at": "2026-07-23",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -106,8 +106,8 @@
    "canonical_url": "https://streamline831.com/rental-listings/",
    "source": "Streamline 831",
    "property_manager": "Streamline 831",
-   "first_seen_at": "2026-07-22",
-   "last_verified_at": "2026-07-22",
+   "first_seen_at": "2026-07-23",
+   "last_verified_at": "2026-07-23",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -142,8 +142,8 @@
    "canonical_url": "https://baileypm.appfolio.com/listings/detail/7450155b-4137-4936-b7eb-215757c4ac1f",
    "source": "Bailey Property Management",
    "property_manager": "Bailey Property Management",
-   "first_seen_at": "2026-07-22",
-   "last_verified_at": "2026-07-22",
+   "first_seen_at": "2026-07-23",
+   "last_verified_at": "2026-07-23",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -178,8 +178,8 @@
    "canonical_url": "https://powerwest.appfolio.com/listings/detail/ba641b81-cd8c-4de1-889e-9e2d447b20a3",
    "source": "PowerWest Properties",
    "property_manager": "PowerWest Properties",
-   "first_seen_at": "2026-07-22",
-   "last_verified_at": "2026-07-22",
+   "first_seen_at": "2026-07-23",
+   "last_verified_at": "2026-07-23",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -214,8 +214,8 @@
    "canonical_url": "https://andersonchristierealestate.appfolio.com/listings/detail/f88bbaca-fd96-42ce-af3a-5f05815ca600",
    "source": "Anderson Christie Real Estate",
    "property_manager": "Anderson Christie Real Estate",
-   "first_seen_at": "2026-07-22",
-   "last_verified_at": "2026-07-22",
+   "first_seen_at": "2026-07-23",
+   "last_verified_at": "2026-07-23",
    "verification_status": "verified",
    "freshness_label": ""
   }
