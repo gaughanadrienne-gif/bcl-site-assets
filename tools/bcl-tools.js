@@ -755,17 +755,28 @@
           hero.alt = "";
           hero.setAttribute("aria-hidden", "true");
         }
-        if (nativeBody || document.getElementById("bcl-article-body")) return;
+        /* The reviewed date is owned by articles.json, so the stamp has to appear
+           whether the body is injected here or served natively by Squarespace.
+           Articles migrated into the post body skip the injection path below and
+           would otherwise silently lose it. */
+        function appendReviewed(parent) {
+          if (!record.reviewedAt) return;
+          if (document.querySelector(".bcl-article-reviewed")) return;
+          var reviewed = document.createElement("p");
+          reviewed.className = "bcl-article-reviewed";
+          reviewed.textContent = "Information checked " + record.reviewedAt;
+          parent.appendChild(reviewed);
+        }
+
+        if (nativeBody || document.getElementById("bcl-article-body")) {
+          appendReviewed(document.getElementById("bcl-article-body") || target);
+          return;
+        }
         var body = document.createElement("div");
         body.id = "bcl-article-body";
         body.className = "bcl-article-body";
         body.innerHTML = record.html || "";
-        if (record.reviewedAt) {
-          var reviewed = document.createElement("p");
-          reviewed.className = "bcl-article-reviewed";
-          reviewed.textContent = "Information checked " + record.reviewedAt;
-          body.appendChild(reviewed);
-        }
+        appendReviewed(body);
         target.appendChild(body);
         return;
       }
