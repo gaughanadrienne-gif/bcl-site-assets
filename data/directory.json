@@ -1,7 +1,7 @@
 {
   "updated": "2026-07-23",
   "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
-  "count": 316,
+  "count": 315,
   "listings": [
     {
       "name": "Hennig Studios",
@@ -4013,21 +4013,6 @@
       "hours_text": null,
       "no_storefront": true,
       "tile": "kyer-wiltshire.svg"
-    },
-    {
-      "name": "Pretty Petals Arrangements",
-      "category": "Florists",
-      "subcategory": "Florist",
-      "description": "Floral studio offering wedding and event flowers, serving the San Lorenzo Valley and Monterey Bay.",
-      "address": null,
-      "locality": "Ben Lomond",
-      "phone": null,
-      "website": "https://prettypetalsarrangements.com/",
-      "service_area": "San Lorenzo Valley and Monterey Bay",
-      "verified_at": "2026-07-17",
-      "hours_text": null,
-      "no_storefront": true,
-      "tile": "pretty-petals-arrangements.png"
     },
     {
       "name": "Dahlias & Details",
