@@ -1,7 +1,7 @@
 {
   "updated": "2026-07-23",
   "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
-  "count": 317,
+  "count": 316,
   "listings": [
     {
       "name": "Hennig Studios",
@@ -3636,12 +3636,12 @@
       "category": "Education & Childcare",
       "subcategory": "Recreation preschool program",
       "description": "Year-round enrichment preschool program run by Santa Cruz County Parks for children ages 3 to 6, meeting at Wilder Hall in Highlands Park with art, music, creative play, nature crafts, outdoor activities, and monthly field trips. A license-exempt recreation program (like BCRPD's Little Explorers). Register through the county parks ActiveNet system.",
-      "address": "8500 Highway 9",
+      "address": "Wilder Hall, Ben Lomond Park, 9525 Mill Street",
       "locality": "Ben Lomond",
       "website": "https://parks.santacruzcountyca.gov/Home/FindaProgram/Recreation/KreativeKidsPreschool.aspx",
       "hours_text": "Monday-Thursday 9:30am-1:30pm",
       "service_area": "San Lorenzo Valley and Santa Cruz County",
-      "verified_at": "2026-07-17",
+      "verified_at": "2026-07-24",
       "license": "License-exempt recreation program (Santa Cruz County Parks; no state child care license required)",
       "lat": 37.0803128,
       "lon": -122.0815904,
@@ -4538,14 +4538,14 @@
       "name": "Treetop Pilates & Wellness",
       "category": "Health & Wellness",
       "subcategory": "Classical pilates studio",
-      "description": "Fully equipped classical pilates studio offering mat, tower, and reformer classes plus private lessons.",
+      "description": "Classical Pilates studio offering mat, tower, and reformer work through private lessons and small classes. Second line 831-421-1224.",
       "address": "125 Forest Street",
       "locality": "Boulder Creek",
-      "phone": "831-421-1224",
+      "phone": "831-419-0202",
       "website": "https://treetoppilates.wordpress.com/",
       "hours_text": null,
       "service_area": "San Lorenzo Valley",
-      "verified_at": "2026-07-22",
+      "verified_at": "2026-07-24",
       "lat": null,
       "lon": null,
       "tile": null
@@ -4707,19 +4707,6 @@
       "verified_at": "2026-07-17",
       "tile": "doughlicious-farmstand.jpg",
       "no_storefront": true
-    },
-    {
-      "name": "Treetop Pilates and Wellness",
-      "category": "Health & Fitness",
-      "subcategory": "Pilates studio",
-      "description": "Classical Pilates studio offering mat, tower, and reformer work through private lessons and small classes.",
-      "address": "125 Forest Street",
-      "locality": "Boulder Creek",
-      "phone": "831-419-0202",
-      "website": "https://treetoppilates.wordpress.com/",
-      "hours_text": null,
-      "service_area": "Boulder Creek",
-      "verified_at": "2026-07-24"
     },
     {
       "name": "Lone Wolf Kenpo Academy",
