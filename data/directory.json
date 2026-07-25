@@ -2646,18 +2646,17 @@
       "tile": "queen-nails.png"
     },
     {
-      "name": "Oli Nail Art",
+      "name": "Oli Nails",
       "category": "Personal Services",
       "subcategory": "Nail artist",
-      "description": "Independent nail artist in Santa Cruz offering nail art and manicure services by appointment.",
-      "locality": "Santa Cruz",
-      "website": "https://www.instagram.com/oli_nail_art_santacruz/",
-      "service_area": "Santa Cruz area",
-      "verified_at": "2026-07-17",
+      "description": "Independent nail artist based in Boulder Creek, offering in-home appointments locally and working from a salon space in Scotts Valley. Booking through Instagram.",
+      "locality": "Boulder Creek",
+      "website": "https://www.instagram.com/olive__oli_nails/",
+      "service_area": "Boulder Creek and the San Lorenzo Valley, plus a Scotts Valley salon space",
+      "verified_at": "2026-07-24",
       "no_storefront": true,
       "address": null,
-      "hours_text": null,
-      "tile": "oli-nail-art.png"
+      "hours_text": null
     },
     {
       "name": "Lilia Skin",
