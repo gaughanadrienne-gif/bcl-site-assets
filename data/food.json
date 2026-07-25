@@ -6,8 +6,8 @@
     {
       "name": "Bella's Cafe",
       "category": "Restaurant",
-      "subcategory": "Breakfast and lunch cafe",
-      "description": "A locally owned American breakfast and lunch cafe in downtown Boulder Creek.",
+      "subcategory": "Sit-down breakfast and lunch diner",
+      "description": "A locally owned sit-down breakfast and lunch spot in downtown Boulder Creek, a diner rather than a coffee bar.",
       "address": "13132 Central Ave, Boulder Creek, CA 95006",
       "locality": "Boulder Creek",
       "phone": "(831) 217-5070",
@@ -37,8 +37,8 @@
     {
       "name": "Butter Late Than Never Baking Co.",
       "category": "Bakery & Sweets",
-      "subcategory": "Cottage bakery",
-      "description": "Licensed Boulder Creek cottage bakery selling small-batch baked goods, custom orders, and wholesale orders.",
+      "subcategory": "Cottage bakery, online orders only",
+      "description": "Licensed Boulder Creek cottage bakery selling small-batch baked goods through its online shop. No storefront.",
       "address": null,
       "locality": "Boulder Creek",
       "phone": "(510) 390-5548",
@@ -51,8 +51,8 @@
     {
       "name": "El Rey Leon",
       "category": "Restaurant",
-      "subcategory": "Mexican food truck",
-      "description": "Mexican food truck serving counter-service plates with online ordering, parked at its downtown spot during posted hours.",
+      "subcategory": "Mexican food truck with outdoor seating",
+      "description": "Mexican food truck that stays parked at its downtown spot, with outdoor seating, counter service, and online ordering.",
       "address": "12890 Central Avenue",
       "locality": "Boulder Creek",
       "phone": "(831) 282-7792",
@@ -186,8 +186,8 @@
     {
       "name": "Taqueria Los Gallos",
       "category": "Restaurant",
-      "subcategory": "Counter-service taqueria",
-      "description": "A counter-service taqueria in downtown Boulder Creek serving tacos, burritos, and other Mexican dishes.",
+      "subcategory": "Sit-down taqueria",
+      "description": "A sit-down taqueria in downtown Boulder Creek serving tacos, burritos, and other Mexican dishes.",
       "address": "13070 Central Ave, Boulder Creek, CA 95006",
       "locality": "Boulder Creek",
       "phone": "(831) 217-5000",
@@ -248,7 +248,7 @@
     {
       "name": "Wildstone Bakery",
       "category": "Bakery & Sweets",
-      "subcategory": "Sourdough bread and pastry bakery",
+      "subcategory": "Sourdough bakery, farmers markets only",
       "description": "Boulder Creek bakery producing naturally fermented breads, bagels, pastries, and seasonal tarts for regional farmers markets.",
       "address": null,
       "locality": "Boulder Creek",
@@ -335,15 +335,16 @@
     {
       "name": "Dessert First Bakery",
       "category": "Bakery & Sweets",
-      "subcategory": "Bakery - custom wedding and celebration cakes",
-      "description": "Boulder Creek bakery specializing in custom wedding and celebration cakes and desserts made with all-natural ingredients, no preservatives or additives. Also offers daily baked goods, cupcakes, cookies, and pastries.",
-      "address": "13090 Highway 9, Suite 2",
+      "subcategory": "Custom cakes, by order (no storefront)",
+      "description": "Custom wedding and celebration cakes and desserts made with all-natural ingredients, no preservatives or additives. No public storefront: it shares a kitchen with Jenna Sue's Cafe, where some of its baked goods are sold, and custom work is ordered directly through the bakery.",
+      "address": null,
       "locality": "Boulder Creek",
-      "phone": "831-338-7008",
+      "phone": null,
       "website": "https://www.facebook.com/Dessertfirstbskery/",
-      "hours_text": "Open daily 6:30am-1:30pm",
+      "hours_text": null,
       "service_area": "Boulder Creek and the San Lorenzo Valley",
-      "verified_at": "2026-07-17"
+      "verified_at": "2026-07-17",
+      "no_storefront": true
     },
     {
       "name": "Creative Heart Kitchen",
