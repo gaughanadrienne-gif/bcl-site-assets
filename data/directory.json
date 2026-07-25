@@ -1,7 +1,7 @@
 {
   "updated": "2026-07-23",
   "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
-  "count": 315,
+  "count": 317,
   "listings": [
     {
       "name": "Hennig Studios",
@@ -4707,6 +4707,32 @@
       "verified_at": "2026-07-17",
       "tile": "doughlicious-farmstand.jpg",
       "no_storefront": true
+    },
+    {
+      "name": "Treetop Pilates and Wellness",
+      "category": "Health & Fitness",
+      "subcategory": "Pilates studio",
+      "description": "Classical Pilates studio offering mat, tower, and reformer work through private lessons and small classes.",
+      "address": "125 Forest Street",
+      "locality": "Boulder Creek",
+      "phone": "831-419-0202",
+      "website": "https://treetoppilates.wordpress.com/",
+      "hours_text": null,
+      "service_area": "Boulder Creek",
+      "verified_at": "2026-07-24"
+    },
+    {
+      "name": "Lone Wolf Kenpo Academy",
+      "category": "Health & Fitness",
+      "subcategory": "Martial arts school",
+      "description": "Kenpo karate school in downtown Boulder Creek teaching a range of ages. Call for current class times.",
+      "address": "13089 Highway 9",
+      "locality": "Boulder Creek",
+      "phone": "831-703-4372",
+      "website": "https://www.karatebouldercreek.com/",
+      "hours_text": null,
+      "service_area": "Boulder Creek and the San Lorenzo Valley",
+      "verified_at": "2026-07-24"
     }
   ]
 }
