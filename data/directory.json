@@ -4420,7 +4420,7 @@
       "verified_at": "2026-07-22",
       "lat": null,
       "lon": null,
-      "tile": null
+      "tile": "liberty-bank-boulder-creek.png"
     },
     {
       "name": "Klus Services",
@@ -4452,7 +4452,7 @@
       "verified_at": "2026-07-22",
       "lat": null,
       "lon": null,
-      "tile": null
+      "tile": "houdesheldt-traditional-team.png"
     },
     {
       "name": "Adventure Gift Store",
@@ -4548,7 +4548,7 @@
       "verified_at": "2026-07-24",
       "lat": null,
       "lon": null,
-      "tile": null
+      "tile": "treetop-pilates-wellness.png"
     },
     {
       "name": "Nolf Electric Services",
@@ -4612,7 +4612,7 @@
       "verified_at": "2026-07-22",
       "lat": null,
       "lon": null,
-      "tile": null
+      "tile": "boulder-creek-business-association.png"
     },
     {
       "name": "San Lorenzo Valley Chamber of Commerce",
@@ -4628,7 +4628,7 @@
       "verified_at": "2026-07-22",
       "lat": null,
       "lon": null,
-      "tile": null
+      "tile": "san-lorenzo-valley-chamber-of-commerce.png"
     },
     {
       "name": "Ben Lomond Fire Protection District",
@@ -4660,7 +4660,7 @@
       "verified_at": "2026-07-22",
       "lat": null,
       "lon": null,
-      "tile": null
+      "tile": "felton-fire-protection-district.png"
     },
     {
       "name": "Zayante Fire Protection District",
@@ -4676,7 +4676,7 @@
       "verified_at": "2026-07-22",
       "lat": null,
       "lon": null,
-      "tile": null
+      "tile": "zayante-fire-protection-district.png"
     },
     {
       "name": "Scotts Valley Fire District",
@@ -4692,7 +4692,7 @@
       "verified_at": "2026-07-22",
       "lat": null,
       "lon": null,
-      "tile": null
+      "tile": "scotts-valley-fire-district.png"
     },
     {
       "name": "Doughlicious Farmstand",
