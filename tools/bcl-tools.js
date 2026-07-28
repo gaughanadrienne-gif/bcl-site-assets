@@ -179,6 +179,7 @@
       ".bcl-search-btn{background:none;border:0;padding:6px;cursor:pointer;color:#173f36;display:inline-flex;align-items:center;}",
       ".bcl-search-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}",
       ".bcl-search-btn:hover{color:#d56e47;}",
+      ".bcl-search-btn--fixed{position:fixed;top:12px;right:12px;z-index:9998;background:#fffdf8;border:1px solid #e3ddcf;border-radius:50%;width:40px;height:40px;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);}",
       ".bcl-search-overlay{position:fixed;inset:0;z-index:99999;background:rgba(13,44,38,.55);display:flex;justify-content:center;align-items:flex-start;padding:8vh 16px 16px;}",
       ".bcl-search-panel{background:#fffdf8 !important;border:1px solid #e3ddcf;width:100%;max-width:640px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.28);}",
       ".bcl-search-bar{display:flex;gap:8px;padding:12px;border-bottom:1px solid #e3ddcf;}",
@@ -1825,8 +1826,26 @@
 
   function initSiteSearch() {
     if (document.getElementById("bcl-search-btn")) return;
-    var nav = document.querySelector(".header-nav-list, .header-nav .header-nav-list, nav");
-    var host = document.querySelector(".header-actions, .header-nav, header") || document.body;
+    /* A comma selector returns the first match in DOCUMENT ORDER, not the
+       first selector that matches - so ".header-actions, .header-nav, header"
+       returned <header> itself and the button was appended as its last child,
+       outside the visible nav row. Ask for each candidate separately, in
+       priority order, and only accept one that is actually rendered. */
+    function pick() {
+      var sels = [".header-actions--right", ".header-actions",
+                  ".header-nav-wrapper", ".header-title-nav-wrapper"];
+      for (var i = 0; i < sels.length; i++) {
+        var el = document.querySelector(sels[i]);
+        if (el && el.offsetParent !== null) return el;   /* visible right now */
+      }
+      /* Mobile: Squarespace hides header-actions and shows the burger. */
+      var burger = document.querySelector(".header-burger");
+      if (burger && burger.offsetParent !== null) return burger;
+      return null;
+    }
+    var host = pick();
+    var useFixed = !host;
+    if (!host) host = document.body;
 
     var btn = document.createElement("button");
     btn.id = "bcl-search-btn";
@@ -1835,6 +1854,7 @@
     btn.setAttribute("aria-label", "Search Boulder Creek Local");
     btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
       '<circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>';
+    if (useFixed) btn.classList.add("bcl-search-btn--fixed");
     host.appendChild(btn);
 
     var overlay = null, records = null, loading = false, active = -1, rows = [];
