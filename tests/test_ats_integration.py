@@ -53,7 +53,7 @@ def _fetchers():
 
 def test_local_roles_publish_and_nonlocal_roles_are_filtered():
     sources = _by_name("Fox Factory", "New Leaf Community Markets", "Safeway (Albertsons)")
-    published, queued = build_jobs(sources, _fetchers(), "2026-07-19", manual_path="__no_such_file__.json")
+    published, queued, _counts = build_jobs(sources, _fetchers(), "2026-07-19", manual_path="__no_such_file__.json")
 
     # Fox Factory (Workday): a Scotts Valley... wait, fixture has no Scotts
     # Valley row -- it has Burnaby (BC, unknown), Jenks (OK, unknown), and a
@@ -83,7 +83,7 @@ def test_local_roles_publish_and_nonlocal_roles_are_filtered():
 
 def test_single_site_paylocity_resolves_city_from_employer_geo_hint():
     sources = _by_name("Dream Inn Santa Cruz")
-    published, queued = build_jobs(sources, _fetchers(), "2026-07-19", manual_path="__no_such_file__.json")
+    published, queued, _counts = build_jobs(sources, _fetchers(), "2026-07-19", manual_path="__no_such_file__.json")
     assert len(published) == 1
     job = published[0]
     assert job["title"] == "Front Desk Agent"

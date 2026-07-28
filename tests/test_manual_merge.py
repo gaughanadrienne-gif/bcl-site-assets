@@ -32,7 +32,7 @@ def test_manual_job_in_core_city_publishes(tmp_path):
             "submitted_at": TODAY, "renewed_at": None,
         },
     ])
-    published, queued = build_jobs([], _empty_job_fetchers(), TODAY, manual_path=manual_path)
+    published, queued, _counts = build_jobs([], _empty_job_fetchers(), TODAY, manual_path=manual_path)
     assert any(j["title"] == "Line Cook" for j in published)
     assert all(j.get("source") == "Community submission" for j in published)
 
@@ -45,7 +45,7 @@ def test_manual_job_in_unknown_city_queues(tmp_path):
             "submitted_at": TODAY, "renewed_at": None,
         },
     ])
-    published, queued = build_jobs([], _empty_job_fetchers(), TODAY, manual_path=manual_path)
+    published, queued, _counts = build_jobs([], _empty_job_fetchers(), TODAY, manual_path=manual_path)
     assert not any(j["title"] == "Remote-ish Helper" for j in published)
     assert any(j["title"] == "Remote-ish Helper" for j in queued)
     hit = next(j for j in queued if j["title"] == "Remote-ish Helper")
@@ -60,7 +60,7 @@ def test_expired_manual_job_does_not_appear(tmp_path):
             "submitted_at": "2026-05-01", "renewed_at": None,  # well over 30 days before TODAY
         },
     ])
-    published, queued = build_jobs([], _empty_job_fetchers(), TODAY, manual_path=manual_path)
+    published, queued, _counts = build_jobs([], _empty_job_fetchers(), TODAY, manual_path=manual_path)
     titles = [j["title"] for j in published] + [j["title"] for j in queued]
     assert "Stale Job" not in titles
 

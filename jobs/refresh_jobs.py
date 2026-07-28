@@ -23,6 +23,7 @@ from jobs.parsers import (  # noqa: E402
     remote_json, rss, workday,
 )
 from jobs.sources import JOB_SOURCES  # noqa: E402
+from shared.source_yield import record_yields, format_alarms  # noqa: E402
 
 PUBLIC_SCHEMA_KEYS = (
     "id", "slug", "title", "title_original", "employer_name", "description_summary",
@@ -65,6 +66,7 @@ _REVIEW_DIR = os.path.join(_ROOT_DIR, "review")
 _PARTIALS_DIR = os.path.join(_ROOT_DIR, "partials")
 JOBS_PATH = os.path.join(_DATA_DIR, "jobs.json")
 QUEUE_PATH = os.path.join(_REVIEW_DIR, "jobs-pending.json")
+YIELD_PATH = os.path.join(_REVIEW_DIR, "jobs-source-yield.json")
 REVIEW_BOARD_PATH = os.path.join(_REVIEW_DIR, "review-board.html")
 MANUAL_JOBS_PATH = os.path.join(_PARTIALS_DIR, "manual-jobs.json")
 MANUAL_TTL_DAYS = 30
@@ -125,6 +127,9 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
 
     published = []
     queued = []
+    # Rows produced per ENABLED source, so a source that quietly stops
+    # returning anything can be alarmed on. See shared/source_yield.py.
+    counts = {}
     for source in sources:
         if not source.get("enabled"):
             continue
@@ -140,7 +145,9 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
             raw_rows = parser_fn(raw_data, source_ctx)
         except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
             print("refresh_jobs: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
+            counts[source.get("name")] = 0
             continue
+        counts[source.get("name")] = len(raw_rows)
 
         for raw in raw_rows:
             try:
@@ -177,7 +184,7 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
     published = dedupe_by(
         published, lambda j: record_fingerprint([j["title"], j["employer_name"], j["city"]])
     )
-    return published, queued
+    return published, queued, counts
 
 
 def _pacific_today():
@@ -191,7 +198,7 @@ def _pacific_today():
 
 def main():
     today = _pacific_today()
-    published, queued = build_jobs(
+    published, queued, counts = build_jobs(
         JOB_SOURCES,
         {"http_get": http_get, "http_json": http_json, "firecrawl_markdown": firecrawl_markdown},
         today,
@@ -216,7 +223,11 @@ def main():
         for job in queued
     ]
     render_review_board(review_items, "jobs", REVIEW_BOARD_PATH)
+    alarms = record_yields(YIELD_PATH, counts, today)
     print("refresh_jobs: published=%d queued=%d" % (len(published), len(queued)))
+    if alarms:
+        # stderr so it stands out in refresh.log next to real failures
+        print(format_alarms(alarms, "jobs"), file=sys.stderr)
 
 
 if __name__ == "__main__":

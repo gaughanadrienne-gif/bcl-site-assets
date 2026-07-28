@@ -23,7 +23,7 @@ def _ok_fetchers():
 
 
 def test_build_jobs_produces_valid_published_rows():
-    published, queued = build_jobs(SUBSET, _ok_fetchers(), TODAY)
+    published, queued, _counts = build_jobs(SUBSET, _ok_fetchers(), TODAY)
     assert published
     for job in published:
         for key in PUBLIC_SCHEMA_KEYS:
@@ -33,8 +33,8 @@ def test_build_jobs_produces_valid_published_rows():
 
 
 def test_build_jobs_is_idempotent():
-    published1, _ = build_jobs(SUBSET, _ok_fetchers(), TODAY)
-    published2, _ = build_jobs(SUBSET, _ok_fetchers(), TODAY)
+    published1, _, _ = build_jobs(SUBSET, _ok_fetchers(), TODAY)
+    published2, _, _ = build_jobs(SUBSET, _ok_fetchers(), TODAY)
     assert len(published1) == len(published2)
 
 
@@ -46,6 +46,6 @@ def test_per_source_exception_does_not_abort_run():
 
     # Break the Remotive fetch only; Second Harvest should still produce jobs.
     fetchers["http_json"] = _boom
-    published, queued = build_jobs(SUBSET, fetchers, TODAY)
+    published, queued, _counts = build_jobs(SUBSET, fetchers, TODAY)
     assert published
     assert all(job["source"] == "Second Harvest (RSS)" for job in published)
