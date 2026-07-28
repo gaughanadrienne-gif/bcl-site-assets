@@ -76,6 +76,11 @@ def fetch_raw(source, http_get_fn, http_json_fn, firecrawl_markdown_fn, http_pos
     config = source.get("config") or {}
     if platform == "remote_json":
         return http_json_fn(source["url"])
+    if platform == "http_json":
+        # Same transport as remote_json, deliberately a separate name:
+        # "remote_json" also carries the meaning "a remote-WORK board" in the
+        # registry and its tests, and EDJOIN is the opposite of that.
+        return http_json_fn(source["url"])
     if platform == "rss":
         return http_get_fn(source["url"])
     if platform == "workday":

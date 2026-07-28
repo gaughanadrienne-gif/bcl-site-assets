@@ -36,18 +36,25 @@ JOB_SOURCES = [
     _s("Scotts Valley Water District", "direct_page_reviewed", "custom_html", "custom_html",
        "https://www.svwd.org/HR", "area", 7, False, False, "custom; PDF"),
     # --- Education (EDJOIN) ---
-    _s("SLVUSD (EDJOIN)", "direct_page_reviewed", "edjoin", "edjoin",
-       "https://www.edjoin.org/Home/Jobs?districtID=813", "area", 5, True, True, "Ben Lomond"),
-    _s("Live Oak Elementary (EDJOIN)", "direct_page_reviewed", "edjoin", "edjoin",
-       "https://www.edjoin.org/LOSD", "area", 5, True, True, "NOT LOUSD Central Valley"),
-    _s("Santa Cruz City Schools (EDJOIN)", "direct_page_reviewed", "edjoin", "edjoin",
-       "https://www.edjoin.org/sccs", "area", 5, True, True),
-    _s("Soquel Union (EDJOIN)", "direct_page_reviewed", "edjoin", "edjoin",
-       "https://www.edjoin.org/suesd", "area", 5, True, True),
-    _s("Santa Cruz COE (EDJOIN)", "direct_page_reviewed", "edjoin", "edjoin",
-       "https://www.edjoin.org/santacruzcoe", "area", 5, True, True),
-    _s("Scotts Valley USD (EDJOIN)", "direct_page_reviewed", "edjoin", "edjoin",
-       "https://www.edjoin.org/scottsvalley", "area", 5, True, True, "NOT Scott Valley USD Siskiyou"),
+    # ONE county-wide source replaces the six per-district entries that used to
+    # sit here (SLVUSD, Live Oak, Santa Cruz City Schools, Soquel Union,
+    # Santa Cruz COE, Scotts Valley USD). Two reasons, both found 2026-07-28:
+    #
+    #  1. All six were enabled and contributing ZERO. EDJOIN renders rows
+    #     client-side, firecrawl started returning their "Important Notice"
+    #     interstitial, and an empty parse is not an error -- so the run
+    #     reported success while 84 local openings went unpublished.
+    #  2. `regions=<countyID>` returns every district in the county in a single
+    #     call, so new districts and charters appear without a registry edit.
+    #     `regions=44` is Santa Cruz County. (`regionID` is NOT a county
+    #     filter: regionID=44 returns statewide results.)
+    #
+    # The geography gate in include_job still decides what actually publishes.
+    _s("Santa Cruz County schools (EDJOIN)", "direct_page_reviewed", "http_json", "edjoin",
+       "https://www.edjoin.org/Home/LoadJobs?rows=300&page=1&sort=postingDate&sortVal=0&order=desc&keywords=&location=&searchType=all&regions=44&jobTypes=&days=0&empType=&catID=0&onlineApps=&recruitmentCenterID=0&stateID=0&regionID=0&districtID=0&searchID=0",
+       "area", 5, True, True,
+       "County-wide EDJOIN JSON; covers SLVUSD, Live Oak, SC City Schools, "
+       "Soquel, SC COE, Scotts Valley USD and any new district"),
     _s("UC Santa Cruz", "direct_page_reviewed", "peoplesoft", "peoplesoft",
        "https://www.ucsc.edu/careers/", "employer:Santa Cruz", 6, False, False, "PeopleSoft; session-gated, render check"),
     # --- Healthcare ---

@@ -10,7 +10,7 @@ def test_all_jobs_tool():
 
 def test_core_structured_sources_enabled():
     by_name = {s["name"]: s for s in JOB_SOURCES}
-    for name in ("County of Santa Cruz", "City of Scotts Valley", "SLVUSD (EDJOIN)",
+    for name in ("County of Santa Cruz", "City of Scotts Valley", "Santa Cruz County schools (EDJOIN)",
                  "Second Harvest (RSS)", "Remotive (remote)"):
         assert by_name[name]["enabled"] is True, name
 
