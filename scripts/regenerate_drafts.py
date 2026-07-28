@@ -36,6 +36,20 @@ BANNER = ("<!-- BODY REGENERATED FROM data/articles.json ON 2026-07-27. That fil
           "     Edit the feed, then re-run scripts/regenerate_drafts.py. -->")
 
 
+def _sync_field(front: str, key: str, value: str) -> str:
+    """Rewrite one top-level frontmatter scalar to match the feed, if it is present."""
+    pattern = re.compile(r"(?m)^%s:.*$" % re.escape(key))
+    if not pattern.search(front):
+        return front
+    if value and (":" in value or '"' in value or value.strip() != value):
+        replacement = '%s: "%s"' % (key, value.replace('"', "'"))
+    elif value:
+        replacement = "%s: %s" % (key, value)
+    else:
+        replacement = "%s:" % key
+    return pattern.sub(lambda _: replacement, front, count=1)
+
+
 def render(md_text: str) -> str:
     """Exactly build_articles.render_body's markdown call."""
     return markdown.markdown(
@@ -71,6 +85,11 @@ def main() -> int:
         else:
             missing_fm.append(slug)
             continue
+        # build_articles resolves reviewedAt and title from FRONTMATTER FIRST and only
+        # then from the register, so a draft left with a stale value silently reverts the
+        # feed on the next rebuild. Mirror both from the feed while we are here.
+        front = _sync_field(front, "reviewed_at", articles[slug].get("reviewedAt") or "")
+        front = _sync_field(front, "title", articles[slug].get("title") or "")
         path.write_text(f"{front}\n{BANNER}\n\n{body}", encoding="utf-8")
 
     print(f"round-trip clean : {len(good)}")
