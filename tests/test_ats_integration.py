@@ -20,8 +20,16 @@ def _read(name):
 
 
 def _by_name(*names):
+    """Return the named sources, force-enabled.
+
+    These tests exercise parsing and the geography gate against fixtures, not
+    production registry state. Without the override, disabling a source for
+    operational reasons (Dayforce went client-side and its API 403s, so both
+    Dayforce sources were disabled 2026-07-28) silently breaks an unrelated
+    test, which is a trap worth removing once rather than rediscovering.
+    """
     by_name = {s["name"]: s for s in JOB_SOURCES}
-    return [by_name[n] for n in names]
+    return [dict(by_name[n], enabled=True) for n in names]
 
 
 def _fake_http_json(url):

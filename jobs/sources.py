@@ -21,7 +21,10 @@ JOB_SOURCES = [
        "https://www.governmentjobs.com/careers/scottsvalley", "area", 5, True, True),
     _s("Santa Cruz METRO", "direct_page_reviewed", "workday", "workday",
        "https://scmtd.wd12.myworkdayjobs.com/METRO_Careers", "area", 5, True, True,
-       "Workday POST json /wday/cxs/scmtd/METRO_Careers/jobs",
+       "Workday POST json /wday/cxs/scmtd/METRO_Careers/jobs. "
+       "VERIFIED HEALTHY 2026-07-28: endpoint returns HTTP 200 with total=0, "
+       "i.e. METRO genuinely has no openings. If the zero-yield alarm flags "
+       "this source, re-check the endpoint before assuming it is broken.",
        {"host": "https://scmtd.wd12.myworkdayjobs.com", "tenant": "scmtd", "site": "METRO_Careers"}),
     _s("Cabrillo College", "direct_page_reviewed", "neogov", "neogov",
        "https://www.schooljobs.com/careers/cabrilloedu", "area", 5, True, True),
@@ -68,10 +71,22 @@ JOB_SOURCES = [
     _s("Central CA Alliance for Health", "direct_page_reviewed", "icims", "icims",
        "https://thealliance.health/about-the-alliance/careers/", "employer:Scotts Valley", 7, False, False, "iCIMS widget; verify"),
     # --- Top employers (structured ATS) ---
+    # DISABLED 2026-07-28, both Dayforce sources. Their portals are Next.js and
+    # render job rows client-side, so firecrawl returns only a ~1.5KB shell
+    # (logo, "Sign In", "Search Jobs" and nothing else). Their own API,
+    # /api/geo/<namespace>/jobposting/search, returns 403 to any non-browser
+    # client including a full cookie-bearing session, so it is deliberately
+    # closed rather than merely undocumented. Working these would need a real
+    # JS-executing browser.
+    # Left DISABLED rather than enabled-and-permanently-dry: an enabled source
+    # that cannot work would trip the zero-yield alarm every single run and
+    # train everyone to ignore it, which is worse than not watching at all.
     _s("Bay Photo Lab", "direct_page_reviewed", "dayforce", "dayforce",
-       "https://jobs.dayforcehcm.com/en-US/sensaria/CANDIDATEPORTAL", "employer:Scotts Valley", 8, True, True),
+       "https://jobs.dayforcehcm.com/en-US/sensaria/CANDIDATEPORTAL", "employer:Scotts Valley", 8, False, True,
+       "Dayforce SPA; API 403s to non-browser clients. Needs a rendering fetch."),
     _s("New Leaf Community Markets", "direct_page_reviewed", "dayforce", "dayforce",
-       "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF", "area", 8, True, True),
+       "https://jobs.dayforcehcm.com/en-US/gfh/NEWLEAF", "area", 8, False, True,
+       "Dayforce SPA; API 403s to non-browser clients. Needs a rendering fetch."),
     _s("Fox Factory", "direct_page_reviewed", "workday", "workday",
        "https://foxfactory.wd1.myworkdayjobs.com/FOX", "area", 9, True, True,
        "geo-filter to Scotts Valley/Watsonville",
