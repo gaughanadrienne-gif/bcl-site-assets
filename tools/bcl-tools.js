@@ -176,6 +176,23 @@
       ".bcl-cat-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
       ".bcl-cat-head h3{margin:0 !important;font-size:1.3rem !important;}",
       ".bcl-cat-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#67716b !important;}",
+      ".bcl-search-btn{background:none;border:0;padding:6px;cursor:pointer;color:#173f36;display:inline-flex;align-items:center;}",
+      ".bcl-search-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}",
+      ".bcl-search-btn:hover{color:#d56e47;}",
+      ".bcl-search-overlay{position:fixed;inset:0;z-index:99999;background:rgba(13,44,38,.55);display:flex;justify-content:center;align-items:flex-start;padding:8vh 16px 16px;}",
+      ".bcl-search-panel{background:#fffdf8 !important;border:1px solid #e3ddcf;width:100%;max-width:640px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.28);}",
+      ".bcl-search-bar{display:flex;gap:8px;padding:12px;border-bottom:1px solid #e3ddcf;}",
+      ".bcl-search-input{flex:1;font-size:1rem;padding:10px 12px;border:1px solid #e3ddcf;background:#fff !important;color:#1c2a26 !important;}",
+      ".bcl-search-close{background:none;border:1px solid #e3ddcf;padding:0 12px;cursor:pointer;color:#67716b !important;font-size:.8rem;}",
+      ".bcl-search-results{overflow-y:auto;padding:6px 0 10px;}",
+      ".bcl-search-group{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#67716b !important;margin:12px 14px 4px !important;}",
+      ".bcl-search-hit{display:block;padding:8px 14px;text-decoration:none !important;border-left:3px solid transparent;}",
+      ".bcl-search-hit strong{display:block;color:#173f36 !important;font-size:.95rem;font-weight:600;}",
+      ".bcl-search-hit span{display:block;color:#67716b !important;font-size:.8rem;line-height:1.35;margin-top:2px;}",
+      ".bcl-search-hit:hover,.bcl-search-hit.is-active{background:#f5f1e7 !important;border-left-color:#d56e47;}",
+      ".bcl-search-hint{padding:18px 14px;color:#67716b !important;font-size:.88rem;}",
+      ".bcl-search-hint a{color:#2e6b46 !important;text-decoration:underline;}",
+      "@media (max-width:600px){.bcl-search-overlay{padding:0;}.bcl-search-panel{max-width:none;max-height:100vh;height:100vh;}}",
       ".bcl-dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}",
       ".bcl-dir-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:13px 14px;display:flex;flex-direction:column;gap:4px;}",
       ".bcl-dir-head{display:flex;align-items:center;gap:10px;}",
@@ -379,6 +396,11 @@
       var select = root.querySelector("select");
       var count = root.querySelector(".bcl-count");
       var list = root.querySelector(".bcl-list");
+      /* A search-overlay hit links to /directory?q=Name, so honour it. */
+      try {
+        var pre = new URLSearchParams(location.search).get("q");
+        if (pre) input.value = pre;
+      } catch (e) { /* older browser: just show the full list */ }
 
       function render() {
         var q = (input.value || "").toLowerCase();
@@ -1727,6 +1749,211 @@
     loadPromoFont();
   }
 
+  /* ---------- site search -------------------------------------------------
+     One overlay searching everything: articles, businesses, food, events,
+     jobs, rentals. The index is a purpose-built file (data/search-index.json,
+     ~196KB, 723 records) fetched LAZILY on first open, so no page pays for it
+     unless the reader actually searches. articles.json itself is ~1.4MB and
+     would be absurd to load for this.
+
+     The trigger is injected into the existing nav by JS, so shipping this
+     needs no Code Injection edit - only the usual SHA repin. */
+
+  var SEARCH_TYPES = {
+    page: "Pages",
+    business: "Businesses",
+    food: "Food & Drink",
+    article: "Around Town",
+    event: "Events",
+    job: "Jobs",
+    rental: "Rentals"
+  };
+  /* Order results by what a resident most often wants, not alphabetically. */
+  var SEARCH_ORDER = ["page", "business", "food", "article", "event", "job", "rental"];
+
+  function searchTerms(q) {
+    return String(q || "").toLowerCase().split(/[^a-z0-9']+/).filter(function (t) {
+      return t.length > 1;
+    });
+  }
+
+  /* Score one record. Word-boundary and prefix hits beat mid-word ones, and a
+     name hit beats a body hit, so "plumb" ranks a plumber above an article
+     that mentions plumbing once. Returns 0 when any term is missing, making
+     multi-word queries AND rather than OR. */
+  function scoreRecord(rec, terms) {
+    if (!terms.length) return 0;
+    var name = (rec.n || "").toLowerCase();
+    var snip = (rec.s || "").toLowerCase();
+    var keys = (rec.k || "").toLowerCase();
+    var total = 0;
+    for (var i = 0; i < terms.length; i++) {
+      var t = terms[i], s = 0;
+      if (name === t) s = 120;
+      else if (name.indexOf(t) === 0) s = 90;
+      else if (new RegExp("\\b" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).test(name)) s = 70;
+      else if (name.indexOf(t) >= 0) s = 40;
+      if (!s && keys.indexOf(t) >= 0) s = 25;
+      if (!s && snip.indexOf(t) >= 0) s = 12;
+      if (!s) return 0;
+      total += s;
+    }
+    return total;
+  }
+
+  function searchRecords(records, q, limit) {
+    var terms = searchTerms(q);
+    if (!terms.length) return [];
+    var hits = [];
+    for (var i = 0; i < records.length; i++) {
+      var sc = scoreRecord(records[i], terms);
+      if (sc > 0) hits.push({ rec: records[i], score: sc, i: i });
+    }
+    hits.sort(function (a, b) {
+      if (b.score !== a.score) return b.score - a.score;
+      return a.i - b.i;                      /* stable: index order breaks ties */
+    });
+    return hits.slice(0, limit || 40);
+  }
+
+  function groupHits(hits) {
+    var by = {};
+    hits.forEach(function (h) { (by[h.rec.t] = by[h.rec.t] || []).push(h.rec); });
+    return SEARCH_ORDER.filter(function (t) { return by[t] && by[t].length; })
+      .map(function (t) { return { type: t, label: SEARCH_TYPES[t] || t, items: by[t] }; });
+  }
+
+  function initSiteSearch() {
+    if (document.getElementById("bcl-search-btn")) return;
+    var nav = document.querySelector(".header-nav-list, .header-nav .header-nav-list, nav");
+    var host = document.querySelector(".header-actions, .header-nav, header") || document.body;
+
+    var btn = document.createElement("button");
+    btn.id = "bcl-search-btn";
+    btn.className = "bcl-search-btn";
+    btn.type = "button";
+    btn.setAttribute("aria-label", "Search Boulder Creek Local");
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+      '<circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>';
+    host.appendChild(btn);
+
+    var overlay = null, records = null, loading = false, active = -1, rows = [];
+
+    function close() {
+      if (!overlay) return;
+      overlay.remove();
+      overlay = null;
+      active = -1;
+      document.removeEventListener("keydown", onKey, true);
+      btn.focus();
+    }
+
+    function go() {
+      if (active >= 0 && rows[active]) { window.location.href = rows[active].href; return true; }
+      return false;
+    }
+
+    function onKey(e) {
+      if (!overlay) return;
+      if (e.key === "Escape") { e.preventDefault(); close(); return; }
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        if (!rows.length) return;
+        e.preventDefault();
+        active += (e.key === "ArrowDown" ? 1 : -1);
+        if (active < 0) active = rows.length - 1;
+        if (active >= rows.length) active = 0;
+        rows.forEach(function (r, i) {
+          r.classList.toggle("is-active", i === active);
+          if (i === active && r.scrollIntoView) r.scrollIntoView({ block: "nearest" });
+        });
+        return;
+      }
+      if (e.key === "Enter" && go()) e.preventDefault();
+    }
+
+    function render(list, q) {
+      var out = overlay.querySelector(".bcl-search-results");
+      rows = []; active = -1;
+      if (!q) { out.innerHTML = '<p class="bcl-search-hint">Search businesses, articles, events, jobs and rentals.</p>'; return; }
+      if (!list.length) {
+        out.innerHTML = '<p class="bcl-search-hint">Nothing matched "' + esc(q) +
+          '". Try a shorter word, or <a href="/contact">tell us what is missing</a>.</p>';
+        return;
+      }
+      var html = "";
+      groupHits(list).forEach(function (g) {
+        html += '<p class="bcl-search-group">' + esc(g.label) + "</p>";
+        g.items.forEach(function (r) {
+          html += '<a class="bcl-search-hit" href="' + esc(r.u) + '"><strong>' + esc(r.n) + "</strong>" +
+            (r.s ? "<span>" + esc(r.s) + "</span>" : "") + "</a>";
+        });
+      });
+      out.innerHTML = html;
+      rows = [].slice.call(out.querySelectorAll(".bcl-search-hit"));
+    }
+
+    function open() {
+      if (overlay) return;
+      overlay = document.createElement("div");
+      overlay.className = "bcl-search-overlay";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute("aria-label", "Search Boulder Creek Local");
+      overlay.innerHTML =
+        '<div class="bcl-search-panel">' +
+        '<div class="bcl-search-bar">' +
+        '<input type="search" class="bcl-search-input" placeholder="Search Boulder Creek Local" ' +
+        'aria-label="Search Boulder Creek Local" autocomplete="off">' +
+        '<button type="button" class="bcl-search-close" aria-label="Close search">Close</button>' +
+        "</div>" +
+        '<div class="bcl-search-results" aria-live="polite"></div>' +
+        "</div>";
+      document.body.appendChild(overlay);
+      document.addEventListener("keydown", onKey, true);
+
+      var input = overlay.querySelector(".bcl-search-input");
+      overlay.querySelector(".bcl-search-close").addEventListener("click", close);
+      overlay.addEventListener("mousedown", function (e) { if (e.target === overlay) close(); });
+      input.focus();
+      render([], "");
+
+      function run() {
+        var q = input.value.trim();
+        if (!records) {
+          overlay.querySelector(".bcl-search-results").innerHTML =
+            '<p class="bcl-search-hint">Loading the index...</p>';
+          return;
+        }
+        render(searchRecords(records, q, 40), q);
+      }
+      input.addEventListener("input", run);
+
+      if (!records && !loading) {
+        loading = true;
+        fetchJSON(REPO + "/data/search-index.json").then(function (d) {
+          records = (d && d.records) || [];
+          loading = false;
+          run();
+        }).catch(function () {
+          loading = false;
+          overlay && (overlay.querySelector(".bcl-search-results").innerHTML =
+            '<p class="bcl-search-hint">Search is unavailable right now. ' +
+            'The <a href="/directory">directory</a> and <a href="/around-town">archive</a> still work.</p>');
+        });
+      }
+    }
+
+    btn.addEventListener("click", open);
+    /* "/" opens search from anywhere, unless the reader is typing in a field. */
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "/" || overlay) return;
+      var el = document.activeElement, tag = el && el.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || (el && el.isContentEditable)) return;
+      e.preventDefault();
+      open();
+    });
+  }
+
   function boot() {
     legacyFullWidthFallback();
     injectCSS();
@@ -1747,6 +1974,7 @@
     if (e) initEvents(e);
     var s = document.getElementById("bcl-status");
     if (s) initStatus(s);
+    initSiteSearch();
     initPromoTicker();
     if (document.getElementById("bcl-home")) initHome();
     var t = document.getElementById("bcl-today");
@@ -1762,6 +1990,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML };
+    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
