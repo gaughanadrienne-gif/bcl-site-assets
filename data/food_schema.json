@@ -1,0 +1,484 @@
+{
+ "@context": "https://schema.org",
+ "@type": "ItemList",
+ "name": "Boulder Creek and San Lorenzo Valley restaurants, cafes and markets",
+ "url": "https://www.bouldercreeklocal.com/food",
+ "numberOfItems": 24,
+ "itemListOrder": "https://schema.org/ItemListOrderAscending",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "item": {
+    "@type": "Restaurant",
+    "name": "Bella's Cafe",
+    "description": "A locally owned sit-down breakfast and lunch spot in downtown Boulder Creek, a diner rather than a coffee bar.",
+    "url": "https://www.facebook.com/100057157552126",
+    "telephone": "(831) 217-5070",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13132 Central Ave",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA",
+     "postalCode": "95006"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.1245156,
+     "longitude": -122.1217938
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "item": {
+    "@type": "BarOrPub",
+    "name": "Big Basin Vineyards Estate Vineyard & Tasting Room",
+    "description": "Estate winery offering weekend wine tastings at its Boulder Creek vineyard.",
+    "url": "https://www.bigbasinvineyards.com/visit-2/",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "830 Memory Lane",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.181908,
+     "longitude": -122.159846
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "item": {
+    "@type": "Bakery",
+    "name": "Butter Late Than Never Baking Co.",
+    "description": "Licensed Boulder Creek cottage bakery selling small-batch baked goods through its online shop. No storefront.",
+    "url": "https://www.butterlatethannever.com/",
+    "telephone": "(510) 390-5548",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 4,
+   "item": {
+    "@type": "Restaurant",
+    "name": "Corazon de Leon Mexican Restaurant",
+    "description": "Ben Lomond Mexican restaurant serving Leon-style dishes from Guanajuato, opened in 2026 by longtime Boulder Creek food-truck owner Marco Rocha in the former...",
+    "url": "https://www.facebook.com/p/Corazon-De-Leon-Mexican-Restaurant-61587780960114/",
+    "telephone": "831-289-3014",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "9217 Highway 9",
+     "addressLocality": "Ben Lomond",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.0873503,
+     "longitude": -122.0890233
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 5,
+   "item": {
+    "@type": "FoodEstablishment",
+    "name": "Creative Heart Kitchen",
+    "description": "Prepared meals and meal-prep service with focaccia, soups, salads, sides, and entrees available by the pint and quart.",
+    "url": "https://www.creativeheartkitchen.com/",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "San Lorenzo Valley",
+     "addressRegion": "CA"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 6,
+   "item": {
+    "@type": "Bakery",
+    "name": "Dessert First Bakery",
+    "description": "Custom wedding and celebration cakes and desserts made with all-natural ingredients, no preservatives or additives. No public storefront: it shares a kitchen...",
+    "url": "https://www.facebook.com/Dessertfirstbskery/",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 7,
+   "item": {
+    "@type": "Bakery",
+    "name": "Dough and Dahlias",
+    "description": "Home-based Ben Lomond cottage operation offering homemade sourdough breads and baked goods for local pickup, along with cut-flower bouquets grown in the...",
+    "url": "https://www.instagram.com/doughandahlias/",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Ben Lomond",
+     "addressRegion": "CA"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 8,
+   "item": {
+    "@type": "GroceryStore",
+    "name": "Doughlicious Farmstand",
+    "description": "Home-based farm stand known for sourdough, cookies, cakes, and sweet breads, typically on weekends by preorder or pickup. Address withheld because it operates...",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 9,
+   "item": {
+    "@type": "Restaurant",
+    "name": "El Rey Leon",
+    "description": "Mexican food truck that stays parked at its downtown spot, with outdoor seating, counter service, and online ordering.",
+    "url": "https://elreyleonca.com/",
+    "telephone": "(831) 282-7792",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "12890 Central Avenue",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.121223,
+     "longitude": -122.120809
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 10,
+   "item": {
+    "@type": "BarOrPub",
+    "name": "Felton Music Hall",
+    "description": "Live-music venue in the Santa Cruz Mountains presenting local and touring acts across genres, with craft food and cocktails served in-house from a full bar.",
+    "url": "https://feltonmusichall.com/",
+    "telephone": "831-704-7113",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "6275 Highway 9",
+     "addressLocality": "Felton",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.0526067,
+     "longitude": -122.0734274
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 11,
+   "item": {
+    "@type": "BarOrPub",
+    "name": "Henflings Tavern",
+    "description": "Longtime Santa Cruz Mountains tavern in downtown Ben Lomond, operating since 1946, with live music every weekend, a recurring Sunday Pro Jam, a full bar, food...",
+    "url": "https://www.henflingsslv.com/",
+    "telephone": "831-289-3019",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "9450 Highway 9",
+     "addressLocality": "Ben Lomond",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.0897298,
+     "longitude": -122.0889545
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 12,
+   "item": {
+    "@type": "CafeOrCoffeeShop",
+    "name": "Jenna Sue's Cafe",
+    "description": "A Boulder Creek coffee shop and cafe serving espresso drinks, breakfast, sandwiches, and house-baked goods.",
+    "url": "https://jennasues.wordpress.com/",
+    "telephone": "(831) 338-7008",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13090 Highway 9",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA",
+     "postalCode": "95006"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 13,
+   "item": {
+    "@type": "BarOrPub",
+    "name": "Joe's Bar",
+    "description": "Downtown bar and live-music venue with bands most Wednesday, Friday, and Saturday nights, karaoke on Tuesdays, and a pool tournament on Thursdays. This is a 21...",
+    "url": "http://joesbc.com/",
+    "telephone": "(831) 338-9417",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13118 Highway 9",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 14,
+   "item": {
+    "@type": "GroceryStore",
+    "name": "Johnnie's Super Market & Liquor",
+    "description": "Independent grocery with produce, meat, seafood, bakery, cheese, beer, wine, and spirits, plus a deli counter making fresh sandwiches daily.",
+    "url": "https://www.johnniesmarket.com/",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13225 Highway 9",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.125551,
+     "longitude": -122.122821
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 15,
+   "item": {
+    "@type": "Restaurant",
+    "name": "Red Pearl Chinese Cuisine",
+    "description": "Chinese restaurant preparing dine-in and takeout meals in downtown Boulder Creek.",
+    "url": "https://www.redpearlonline.com/",
+    "telephone": "(831) 338-9800",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13151 Highway 9",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.124614,
+     "longitude": -122.122248
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 16,
+   "item": {
+    "@type": "FoodEstablishment",
+    "name": "Redwood Keg Liquor & Deli",
+    "description": "A Boulder Creek bottle shop and deli known for wood-smoked tri-tip sandwiches, Korean barbecue, and a selection of beer, wine, and liquor.",
+    "url": "https://www.facebook.com/RedwoodKeg/",
+    "telephone": "(831) 338-2727",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "12980 Highway 9",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA",
+     "postalCode": "95006"
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 17,
+   "item": {
+    "@type": "FoodEstablishment",
+    "name": "River Dogs of Boulder Creek",
+    "description": "Outdoor food stand serving hot dogs and sausages, including vegetarian options, with occasional live music.",
+    "url": "https://riverdogsofbc.com/",
+    "telephone": "(831) 400-7025",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "123 Forest Street",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.124132,
+     "longitude": -122.121676
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 18,
+   "item": {
+    "@type": "Restaurant",
+    "name": "Scopazzi's Restaurant & Lounge",
+    "description": "Historic Italian restaurant with a lounge, brunch, takeout, and private-event rooms.",
+    "url": "https://www.scopazzisbc.com/",
+    "telephone": "(831) 338-4444",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13300 Big Basin Way",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.125146,
+     "longitude": -122.124363
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 19,
+   "item": {
+    "@type": "Restaurant",
+    "name": "Tae's Edo Sushi Bar",
+    "description": "Japanese restaurant serving sushi and other Japanese dishes for dinner and limited lunch service.",
+    "url": "https://edosushibc.com/",
+    "telephone": "(831) 338-2099",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13271 Highway 9",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.152322,
+     "longitude": -122.134518
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 20,
+   "item": {
+    "@type": "Restaurant",
+    "name": "Taqueria Los Gallos",
+    "description": "A sit-down taqueria in downtown Boulder Creek serving tacos, burritos, and other Mexican dishes.",
+    "telephone": "(831) 217-5000",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13070 Central Ave",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA",
+     "postalCode": "95006"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.1236572,
+     "longitude": -122.1214797
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 21,
+   "item": {
+    "@type": "Restaurant",
+    "name": "The Sawmill Restaurant & Alehouse",
+    "description": "American restaurant serving burgers, pub fare, and craft beer, with outdoor seating and a music stage.",
+    "url": "https://www.thesawmillbc.com/",
+    "telephone": "(831) 610-8196",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "15520 Highway 9",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.152322,
+     "longitude": -122.134518
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 22,
+   "item": {
+    "@type": "CafeOrCoffeeShop",
+    "name": "The Tree House Cafe",
+    "description": "A cafe and espresso bar at the edge of Boulder Creek with giant redwoods growing through the interior.",
+    "url": "https://www.facebook.com/BC.TreehouseCafe/",
+    "telephone": "(831) 610-8912",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13266 CA-9",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA",
+     "postalCode": "95006"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.1263137,
+     "longitude": -122.1221556
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 23,
+   "item": {
+    "@type": "GroceryStore",
+    "name": "Wild Roots Market - Boulder Creek",
+    "description": "Locally owned grocery with produce, meat, seafood, deli, bakery, and prepared foods.",
+    "url": "https://wildrootsmarket.com/",
+    "telephone": "(831) 338-7211",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "13159 Central Avenue",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.124756,
+     "longitude": -122.122518
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 24,
+   "item": {
+    "@type": "Bakery",
+    "name": "Wildstone Bakery",
+    "description": "Boulder Creek bakery producing naturally fermented breads, bagels, pastries, and seasonal tarts for regional farmers markets.",
+    "url": "https://www.wildstonebakery.com/",
+    "telephone": "(831) 252-0706",
+    "address": {
+     "@type": "PostalAddress",
+     "addressLocality": "Boulder Creek",
+     "addressRegion": "CA"
+    }
+   }
+  }
+ ]
+}
