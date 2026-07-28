@@ -176,7 +176,7 @@
       ".bcl-cat-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
       ".bcl-cat-head h3{margin:0 !important;font-size:1.3rem !important;}",
       ".bcl-cat-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#67716b !important;}",
-      ".bcl-search-btn{background:none;border:0;padding:6px;cursor:pointer;color:#173f36;display:inline-flex;align-items:center;}",
+      ".bcl-search-btn{background:none;border:0;padding:6px;margin-left:10px;cursor:pointer;color:#173f36;display:inline-flex;align-items:center;align-self:center;}",
       ".bcl-search-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}",
       ".bcl-search-btn:hover{color:#d56e47;}",
       ".bcl-search-btn--fixed{position:fixed;top:12px;right:12px;z-index:9998;background:#fffdf8;border:1px solid #e3ddcf;border-radius:50%;width:40px;height:40px;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);}",
@@ -1832,15 +1832,26 @@
        outside the visible nav row. Ask for each candidate separately, in
        priority order, and only accept one that is actually rendered. */
     function pick() {
-      var sels = [".header-actions--right", ".header-actions",
+      /* .header-nav-list is the actual visible nav row and is FIRST on purpose.
+         .header-actions--right exists on this site but is permanently hidden:
+         no header buttons are configured, so Squarespace marks the header
+         "no-actions". Measured on the live page 2026-07-28. */
+      var sels = [".header-nav-list", ".header-actions--right",
                   ".header-nav-wrapper", ".header-title-nav-wrapper"];
-      for (var i = 0; i < sels.length; i++) {
-        var el = document.querySelector(sels[i]);
-        if (el && el.offsetParent !== null) return el;   /* visible right now */
+      var i, el;
+      var shown = function (n) {
+        return n && (n.offsetParent !== null || n.getClientRects().length > 0);
+      };
+      for (i = 0; i < sels.length; i++) {          /* prefer a visible mount */
+        el = document.querySelector(sels[i]);
+        if (shown(el)) return el;
       }
-      /* Mobile: Squarespace hides header-actions and shows the burger. */
-      var burger = document.querySelector(".header-burger");
-      if (burger && burger.offsetParent !== null) return burger;
+      var burger = document.querySelector(".header-burger");   /* mobile */
+      if (shown(burger)) return burger;
+      for (i = 0; i < sels.length; i++) {          /* exists but unmeasurable */
+        el = document.querySelector(sels[i]);
+        if (el) return el;
+      }
       return null;
     }
     var host = pick();
