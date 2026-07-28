@@ -179,7 +179,10 @@
       ".bcl-search-btn{background:none;border:0;padding:6px;margin-left:10px;cursor:pointer;color:#173f36;display:inline-flex;align-items:center;align-self:center;}",
       ".bcl-search-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}",
       ".bcl-search-btn:hover{color:#d56e47;}",
-      ".bcl-search-btn--fixed{position:fixed;top:12px;right:12px;z-index:9998;background:#fffdf8;border:1px solid #e3ddcf;border-radius:50%;width:40px;height:40px;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);}",
+      ".bcl-search-btn--fixed{position:fixed;bottom:22px;right:22px;z-index:9998;background:#173f36;color:#fffdf8;border:0;border-radius:999px;height:52px;padding:0 20px 0 17px;gap:9px;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.22);font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;}",
+      ".bcl-search-btn--fixed:hover{background:#d56e47;color:#fffdf8;}",
+      ".bcl-search-btn--fixed svg{width:19px;height:19px;}",
+      "@media (max-width:600px){.bcl-search-btn--fixed{bottom:16px;right:16px;height:48px;width:48px;padding:0;}.bcl-search-btn--fixed .bcl-search-btn-label{display:none;}}",
       ".bcl-search-overlay{position:fixed;inset:0;z-index:99999;background:rgba(13,44,38,.55);display:flex;justify-content:center;align-items:flex-start;padding:8vh 16px 16px;}",
       ".bcl-search-panel{background:#fffdf8 !important;border:1px solid #e3ddcf;width:100%;max-width:640px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.28);}",
       ".bcl-search-bar{display:flex;gap:8px;padding:12px;border-bottom:1px solid #e3ddcf;}",
@@ -1831,32 +1834,21 @@
        returned <header> itself and the button was appended as its last child,
        outside the visible nav row. Ask for each candidate separately, in
        priority order, and only accept one that is actually rendered. */
-    function pick() {
-      /* .header-nav-list is the actual visible nav row and is FIRST on purpose.
-         .header-actions--right exists on this site but is permanently hidden:
-         no header buttons are configured, so Squarespace marks the header
-         "no-actions". Measured on the live page 2026-07-28. */
-      var sels = [".header-nav-list", ".header-actions--right",
-                  ".header-nav-wrapper", ".header-title-nav-wrapper"];
-      var i, el;
-      var shown = function (n) {
-        return n && (n.offsetParent !== null || n.getClientRects().length > 0);
-      };
-      for (i = 0; i < sels.length; i++) {          /* prefer a visible mount */
-        el = document.querySelector(sels[i]);
-        if (shown(el)) return el;
-      }
-      var burger = document.querySelector(".header-burger");   /* mobile */
-      if (shown(burger)) return burger;
-      for (i = 0; i < sels.length; i++) {          /* exists but unmeasurable */
-        el = document.querySelector(sels[i]);
-        if (el) return el;
-      }
-      return null;
-    }
-    var host = pick();
-    var useFixed = !host;
-    if (!host) host = document.body;
+    /* DELIBERATE FLOATING BUTTON, not a header mount.
+       Two attempts to thread this into Squarespace's header both failed, for
+       two different reasons, and the second one is why this approach is now
+       the right one rather than a retreat:
+         1. ".header-actions, .header-nav, header" resolved to <header> itself,
+            because a comma selector matches in DOCUMENT ORDER. Button landed
+            at x0 y1064.
+         2. This theme renders TWO header instances (in-flow plus a sticky
+            clone). ".header-nav-list" matched the in-flow one, so the button
+            sat at y=-3682 while the visible nav reported y=0.
+       A fixed-position control owns its own placement, cannot be orphaned by a
+       sticky clone, needs no knowledge of Squarespace internals, and behaves
+       identically on mobile. Bottom-right keeps it clear of the announcement
+       bar and the sticky header. */
+    var host = document.body;
 
     var btn = document.createElement("button");
     btn.id = "bcl-search-btn";
@@ -1864,8 +1856,9 @@
     btn.type = "button";
     btn.setAttribute("aria-label", "Search Boulder Creek Local");
     btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
-      '<circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>';
-    if (useFixed) btn.classList.add("bcl-search-btn--fixed");
+      '<circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>' +
+      '<span class="bcl-search-btn-label">Search</span>';
+    btn.classList.add("bcl-search-btn--fixed");
     host.appendChild(btn);
 
     var overlay = null, records = null, loading = false, active = -1, rows = [];
