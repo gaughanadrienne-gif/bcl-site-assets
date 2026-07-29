@@ -77,7 +77,7 @@
     });
   }
 
-  var CSS_ID = "bcl-tools-css-v6";
+  var CSS_ID = "bcl-tools-css-v7";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -209,6 +209,20 @@
       ".bcl-dir-links{font-size:.8rem;margin-top:2px;}",
       ".bcl-dir-links a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-dir-verified{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#67716b !important;margin-top:auto;padding-top:6px;}",
+      ".bcl-dir-flag{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#8a8578 !important;padding-top:4px;}",
+      ".bcl-filter-note,.bcl-open-note{font-size:.8rem;color:#67716b !important;margin:0 0 14px;max-width:70ch;line-height:1.45;}",
+      ".bcl-filter-note:empty,.bcl-open-note:empty{margin:0;}",
+      ".bcl-daterange{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 14px;font-size:.82rem;color:#67716b !important;}",
+      ".bcl-daterange label{display:flex;align-items:center;gap:6px;}",
+      ".bcl-daterange input{font-family:Inter,Arial,sans-serif;font-size:.85rem;padding:7px 10px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;}",
+      ".bcl-daterange button{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#67716b !important;cursor:pointer;}",
+      ".bcl-daterange button:hover{border-color:#173f36;color:#173f36 !important;}",
+      ".bcl-ics{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#2e6b46 !important;cursor:pointer;align-self:flex-start;}",
+      ".bcl-ics:hover{border-color:#2e6b46;}",
+      ".bcl-river-rows{display:flex;flex-wrap:wrap;gap:6px 20px;margin:6px 0;}",
+      ".bcl-river-rows div b{display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;font-weight:500;}",
+      ".bcl-river-rows div span{font-size:1.15rem;color:#173f36 !important;}",
+      ".bcl-river-cats{font-size:.8rem;color:#67716b !important;line-height:1.5;margin:6px 0 0;}",
       ".bcl-links li{margin:6px 0;font-size:.92rem;}",
       ".bcl-links a{color:#2e6b46 !important;}",
       ".bcl-group-head{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#8f4f45 !important;border-bottom:1px solid #e3ddcf;padding:0 0 6px;margin:34px 0 4px;}",
@@ -323,9 +337,198 @@
     });
   }
 
+  /* ---------- dates shared by every tool ---------- */
+
+  var MON_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+
+  /* Local calendar day as YYYY-MM-DD. ISO day keys compare correctly as
+     strings, which is what the range filters rely on. */
+  function todayKey(now) {
+    var t = now || new Date();
+    return t.getFullYear() + "-" + pad2(t.getMonth() + 1) + "-" + pad2(t.getDate());
+  }
+
+  function dayKeyToUTC(key) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(key == null ? "" : key));
+    return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) : null;
+  }
+
+  /* Whole days from dateKey to todayKey. Negative means the date is ahead of
+     today, which happens when a source posts with a future date. */
+  function dayAge(dateKey, today) {
+    var a = dayKeyToUTC(dateKey), b = dayKeyToUTC(today || todayKey());
+    if (a == null || b == null) return null;
+    return Math.round((b - a) / 86400000);
+  }
+
+  /* Month-year granularity: a listing verified on the 15th is not more
+     trustworthy on the 16th, and a day-precise stamp implies it is. */
+  function monthYear(dateKey) {
+    var m = /^(\d{4})-(\d{2})/.exec(String(dateKey == null ? "" : dateKey));
+    if (!m) return "";
+    var mo = +m[2];
+    if (mo < 1 || mo > 12) return "";
+    return MON_SHORT[mo - 1] + " " + m[1];
+  }
+
+  /* A count line used to read "UPDATED " with nothing after it whenever a feed
+     shipped without a stamp, and would happily print a stamp from months ago.
+     Both are worse than saying nothing, so an unparseable or stale date prints
+     no claim at all rather than a claim the reader has to discount. */
+  var STAMP_MAX_AGE_DAYS = 45;
+  function updatedSuffix(stamp, today) {
+    var age = dayAge(stamp, today);
+    if (age == null || age > STAMP_MAX_AGE_DAYS) return "";
+    return " · UPDATED " + stamp;
+  }
+
   /* ---------- listings (directory + food) ---------- */
 
-  function listingCard(l) {
+  /* Opening-hours parsing, deliberately strict.
+     hours_text is written for people, so plenty of it is honest but not
+     machine-readable: "by appointment", "See school calendar", "Winter:
+     Tuesday-Thursday ...". The parser accepts only the shapes it can be sure
+     of and returns null for everything else. null never removes a listing from
+     the results; it only means we cannot say whether the door is open, and the
+     card says so. Hiding a business that is in fact open is a worse failure
+     than showing one that is closed. */
+
+  var DAY_INDEX = {
+    sunday: 0, sun: 0, monday: 1, mon: 1, tuesday: 2, tue: 2, tues: 2,
+    wednesday: 3, wed: 3, weds: 3, thursday: 4, thu: 4, thur: 4, thurs: 4,
+    friday: 5, fri: 5, saturday: 6, sat: 6
+  };
+  /* Words that make an hours line conditional. Any of them and we do not
+     pretend to know the schedule, even if the rest of the line parses. */
+  var HOURS_QUALIFIERS = /\b(appointment|varies|vary|seasonal|weather|call|see|sunset|dusk|dawn|approximate|approximately|typically|usually|generally|depending|holiday|holidays|winter|summer|spring|autumn|check)\b/;
+
+  function normalizeHoursText(text) {
+    return String(text == null ? "" : text)
+      .toLowerCase()
+      .replace(/[–—]/g, "-")
+      .replace(/a\.m\./g, "am")
+      .replace(/p\.m\./g, "pm")
+      .replace(/\bnoon\b/g, "12pm")
+      .replace(/\bmidnight\b/g, "12am")
+      .replace(/\s+to\s+/g, "-")
+      .replace(/\s*-\s*/g, "-")
+      .replace(/\s+/g, " ")
+      .replace(/(\d)\s+(am|pm)/g, "$1$2")
+      .trim()
+      .replace(/\.$/, "");
+  }
+
+  function parseClock(token, fallbackMeridiem) {
+    var m = /^(\d{1,2})(?::(\d{2}))?(am|pm)?$/.exec(token);
+    if (!m) return null;
+    var h = +m[1], mi = m[2] ? +m[2] : 0;
+    var mer = m[3] || fallbackMeridiem;
+    if (mi > 59) return null;
+    if (mer) {
+      if (h < 1 || h > 12) return null;
+      if (mer === "am") h = h === 12 ? 0 : h;
+      else h = h === 12 ? 12 : h + 12;
+    } else if (h > 23) return null;
+    return { min: h * 60 + mi, hadMeridiem: !!m[3] };
+  }
+
+  /* "4:00-7:00 pm" only marks the end, so an unmarked start borrows the end's
+     meridiem and flips when that ordering is impossible ("8-5pm" is 8am-5pm). */
+  function parseTimeRange(text) {
+    var parts = text.split("-");
+    if (parts.length !== 2) return null;
+    var endMer = (/(am|pm)$/.exec(parts[1]) || [])[1] || null;
+    var end = parseClock(parts[1], null);
+    var start = parseClock(parts[0], endMer);
+    if (!start || !end) return null;
+    if (!start.hadMeridiem && endMer && start.min >= end.min) {
+      start.min = (start.min + 720) % 1440;
+    }
+    var e = end.min;
+    if (e <= start.min) e += 1440;          /* closes after midnight */
+    return { s: start.min, e: e };
+  }
+
+  function parseDayList(text) {
+    var out = [];
+    var chunks = text.split(/,| and /);
+    for (var i = 0; i < chunks.length; i++) {
+      var chunk = chunks[i].trim();
+      if (!chunk) continue;
+      if (chunk === "daily" || chunk === "every day" || chunk === "everyday") {
+        return [0, 1, 2, 3, 4, 5, 6];
+      }
+      var range = chunk.split("-");
+      if (range.length === 2) {
+        var a = DAY_INDEX[range[0].trim()], b = DAY_INDEX[range[1].trim()];
+        if (a == null || b == null) return null;
+        for (var d = a; ; d = (d + 1) % 7) {
+          out.push(d);
+          if (d === b) break;
+        }
+        continue;
+      }
+      var one = DAY_INDEX[chunk];
+      if (one == null) return null;
+      out.push(one);
+    }
+    return out.length ? out : null;
+  }
+
+  function parseHours(text) {
+    var norm = normalizeHoursText(text);
+    if (!norm) return null;
+    if (/^[a-z ]*24\s*\/\s*7(\s*\/\s*365)?[a-z ]*$/.test(norm)) return { always: true, intervals: [] };
+    if (HOURS_QUALIFIERS.test(norm)) return null;
+
+    var segments = norm.split(";");
+    var intervals = [];
+    for (var i = 0; i < segments.length; i++) {
+      var seg = segments[i].trim();
+      if (!seg) continue;
+      var split = /^(.+?) (closed|\d.*)$/.exec(seg);
+      if (!split) return null;
+      var days = parseDayList(split[1].trim());
+      if (!days) return null;
+      if (split[2] === "closed") continue;          /* stated closures add nothing */
+      var ranges = split[2].split(" and ");
+      for (var r = 0; r < ranges.length; r++) {
+        var span = parseTimeRange(ranges[r].trim());
+        if (!span) return null;
+        for (var d = 0; d < days.length; d++) {
+          intervals.push({ d: days[d], s: span.s, e: span.e });
+        }
+      }
+    }
+    return intervals.length ? { always: false, intervals: intervals } : null;
+  }
+
+  function isOpenAt(parsed, when) {
+    if (!parsed) return false;
+    if (parsed.always) return true;
+    var now = when || new Date();
+    var day = now.getDay();
+    var minutes = now.getHours() * 60 + now.getMinutes();
+    for (var i = 0; i < parsed.intervals.length; i++) {
+      var iv = parsed.intervals[i];
+      if (iv.d === day && minutes >= iv.s && minutes < iv.e) return true;
+      /* an interval that runs past midnight still covers the early hours of
+         the following day */
+      if (iv.e > 1440 && iv.d === (day + 6) % 7 && minutes + 1440 < iv.e) return true;
+    }
+    return false;
+  }
+
+  /* "open", "closed", or "unknown". Only "closed" may be filtered out. */
+  function listingOpenState(listing, when) {
+    var parsed = parseHours(listing && listing.hours_text);
+    if (!parsed) return "unknown";
+    return isOpenAt(parsed, when) ? "open" : "closed";
+  }
+
+  function listingCard(l, opts) {
     var h = '<div class="bcl-dir-card">';
     var tile = l.tile
       ? '<img class="bcl-dir-tile" src="' + REPO + "/brand/listings/" + esc(l.tile) + '" alt="" loading="lazy">'
@@ -344,6 +547,13 @@
     if (l.phone) links.push('<a href="tel:' + esc(String(l.phone).replace(/[^0-9+]/g, "")) + '">' + esc(l.phone) + "</a>");
     if (l.website) links.push('<a href="' + esc(l.website) + '" target="_blank" rel="noopener">Website</a>');
     if (links.length) h += '<div class="bcl-dir-links">' + links.join(" · ") + "</div>";
+    /* Only worth flagging while the reader is filtering by open hours: it
+       explains why a listing survived a filter it could not be tested against. */
+    if (opts && opts.openNow && listingOpenState(l, opts.now) === "unknown") {
+      h += '<div class="bcl-dir-flag">Hours not auto-checked</div>';
+    }
+    var verified = monthYear(l.verified_at);
+    if (verified) h += '<div class="bcl-dir-verified">Last verified ' + esc(verified) + "</div>";
     return h + "</div>";
   }
 
@@ -360,13 +570,16 @@
       var catCap = CAP_EXEMPT.indexOf(c) >= 0 ? 0 : (opts.cap || 0);
       var a = arrangeListings(byCat[c], catCap);
       var shown = a.local.length + a.nearby.length;
+      function cards(rows) {
+        return rows.map(function (l) { return listingCard(l, opts); }).join("");
+      }
       out += '<div class="bcl-cat-head"><h3>' + esc(c) + "</h3><span>" + shown + "</span></div>";
       if (a.local.length) {
-        out += '<div class="bcl-dir-grid">' + a.local.map(listingCard).join("") + "</div>";
+        out += '<div class="bcl-dir-grid">' + cards(a.local) + "</div>";
       }
       if (a.nearby.length) {
         if (a.local.length) out += '<div class="bcl-tier-divider">Also serving the area</div>';
-        out += '<div class="bcl-dir-grid">' + a.nearby.map(listingCard).join("") + "</div>";
+        out += '<div class="bcl-dir-grid">' + cards(a.nearby) + "</div>";
       }
     });
     return out;
@@ -392,12 +605,14 @@
         '<select aria-label="Jump to category"><option value="">All categories</option>' +
         buildCategoryOptions(cats) +
         "</select>" +
+        '<label class="bcl-checklabel"><input type="checkbox" class="bcl-open-now"> Open now</label>' +
         "</div>" +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
         '<div class="bcl-note">Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
 
       var input = root.querySelector("input");
       var select = root.querySelector("select");
+      var openBox = root.querySelector(".bcl-open-now");
       var count = root.querySelector(".bcl-count");
       var list = root.querySelector(".bcl-list");
       /* A search-overlay hit links to /directory?q=Name, so honour it. */
@@ -409,21 +624,35 @@
       function render() {
         var q = (input.value || "").toLowerCase();
         var cat = select.value;
+        var openNow = !!openBox.checked;
+        var now = new Date();
         var rows = all.filter(function (l) {
           if (cat && l.category !== cat) return false;
+          /* "unknown" survives on purpose: an unparseable hours line is not
+             evidence that the place is shut. */
+          if (openNow && listingOpenState(l, now) === "closed") return false;
           if (!q) return true;
           return (l.name + " " + (l.subcategory || "") + " " + (l.description || "")).toLowerCase().indexOf(q) >= 0;
         });
-        count.textContent = rows.length + " OF " + all.length + " LISTINGS · UPDATED " + (data.updated || "");
+        count.textContent = rows.length + " OF " + all.length + " LISTINGS" + updatedSuffix(data.updated);
         if (!rows.length) {
           list.innerHTML = '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/contact">Suggest it</a>.</div>';
           return;
         }
         // Cap the nearby tier only when browsing (no active search), so a search never hides matches.
-        list.innerHTML = buildDirectoryHTML(rows, { cap: q ? 0 : 6 });
+        list.innerHTML = buildDirectoryHTML(rows, { cap: q ? 0 : 6, openNow: openNow, now: now });
+        if (openNow) {
+          note.textContent = "Open now uses each listing's posted hours. Listings whose hours cannot be read as set times stay in the results and are marked, because unreadable hours are not the same as closed.";
+        } else {
+          note.textContent = "";
+        }
       }
+      var note = document.createElement("div");
+      note.className = "bcl-count bcl-open-note";
+      count.parentNode.insertBefore(note, count.nextSibling);
       input.addEventListener("input", render);
       select.addEventListener("change", render);
+      openBox.addEventListener("change", render);
       render();
     }).catch(function () {
       unavailable(root, "The " + label + " list", 'You can still <a href="/contact">send an update</a>.');
@@ -438,6 +667,47 @@
 
   function jobSalaryText(job) {
     return job.salary_disclosed ? job.salary_text : "Pay not listed";
+  }
+
+  /* Pay bands compare an hourly equivalent, because the feed mixes hourly,
+     monthly, and annual rates in one list. Full-time conversions only: 2,080
+     hours a year, 173.33 a month. Anything posted by the day, or with no
+     period at all, has no honest hourly equivalent, so it sits outside the
+     bands rather than being guessed into one. The bottom of a posted range is
+     used, so a band means "starts at or above this rate", and the control says
+     so on the page. */
+  var HOURS_PER_PERIOD = { hour: 1, hourly: 1, month: 173.33, monthly: 173.33, year: 2080, annual: 2080, yearly: 2080 };
+  var PAY_BANDS = [20, 25, 30];
+
+  function jobHourlyEquivalent(job) {
+    if (!job || !job.salary_disclosed) return null;
+    var per = HOURS_PER_PERIOD[String(job.salary_period || "").toLowerCase()];
+    if (!per) return null;
+    var floor = job.salary_min != null ? job.salary_min : job.salary_max;
+    floor = Number(floor);
+    if (!isFinite(floor) || floor <= 0) return null;
+    return floor / per;
+  }
+
+  /* posted_at is the employer's own date and is missing from some sources, so
+     the fallback to our first_seen_at is stated in the control's label instead
+     of being hidden inside it. */
+  function jobDateKey(job) {
+    return (job && (job.posted_at || job.first_seen_at)) || "";
+  }
+
+  function jobPostedWithin(job, days, today) {
+    var age = dayAge(jobDateKey(job), today);
+    return age != null && age < days;
+  }
+
+  function jobEmployers(rows) {
+    var seen = {}, out = [];
+    (rows || []).forEach(function (j) {
+      var name = j && j.employer_name;
+      if (name && !seen[name]) { seen[name] = 1; out.push(name); }
+    });
+    return out.sort(function (a, b) { return String(a).localeCompare(String(b)); });
   }
 
   function jobSortKey(job) {
@@ -467,6 +737,13 @@
       if (jobTab(j) !== tab) return false;
       if (tab === "local" && j.geography_tier === "extended" && !opts.includeExtended) return false;
       if (opts.category && j.category !== opts.category) return false;
+      if (opts.employer && j.employer_name !== opts.employer) return false;
+      if (opts.payListedOnly && !j.salary_disclosed) return false;
+      if (opts.minHourly) {
+        var hourly = jobHourlyEquivalent(j);
+        if (hourly == null || hourly < opts.minHourly) return false;
+      }
+      if (opts.postedWithinDays && !jobPostedWithin(j, opts.postedWithinDays, opts.today)) return false;
       if (q) {
         var hay = ((j.title || "") + " " + (j.employer_name || "") + " " + (j.city || "")).toLowerCase();
         if (hay.indexOf(q) < 0) return false;
@@ -507,30 +784,66 @@
         '<select aria-label="Filter by category"><option value="">All categories</option>' +
         cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") +
         "</select>" +
+        '<select class="bcl-job-employer" aria-label="Filter by employer"><option value="">All employers</option></select>' +
+        '<select class="bcl-job-pay" aria-label="Minimum pay"><option value="0">Any pay</option>' +
+        PAY_BANDS.map(function (b) { return '<option value="' + b + '">$' + b + "+ per hour equivalent</option>"; }).join("") +
+        "</select>" +
         '<label class="bcl-checklabel bcl-ext-wrap"><input type="checkbox" class="bcl-ext"> Include extended commute</label>' +
+        '<label class="bcl-checklabel"><input type="checkbox" class="bcl-pay-listed"> Pay listed</label>' +
+        '<label class="bcl-checklabel"><input type="checkbox" class="bcl-fresh"> Posted this week</label>' +
         "</div>" +
-        '<div class="bcl-count"></div><div class="bcl-list"></div>' +
+        '<div class="bcl-count"></div><div class="bcl-filter-note"></div><div class="bcl-list"></div>' +
         '<div class="bcl-note">Boulder Creek Local is not the employer and does not process applications. Verify details and apply directly with the employer. ' +
         'Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
 
       var input = root.querySelector("input");
       var select = root.querySelector("select");
+      var employerSel = root.querySelector(".bcl-job-employer");
+      var paySel = root.querySelector(".bcl-job-pay");
+      var payListedBox = root.querySelector(".bcl-pay-listed");
+      var freshBox = root.querySelector(".bcl-fresh");
       var extBox = root.querySelector(".bcl-ext");
       var extWrap = root.querySelector(".bcl-ext-wrap");
       var count = root.querySelector(".bcl-count");
+      var note = root.querySelector(".bcl-filter-note");
       var list = root.querySelector(".bcl-list");
       var tabBtns = [].slice.call(root.querySelectorAll(".bcl-tab"));
       var tab = "local";
 
+      /* The employer list is built from whatever is on the board today, and
+         rebuilt per tab so it never offers an employer with nothing to show.
+         A selection that survives the tab change is kept. */
+      function syncEmployers() {
+        var scope = filterJobs(all, { tab: tab, includeExtended: true });
+        var names = jobEmployers(scope);
+        var keep = employerSel.value;
+        employerSel.innerHTML = '<option value="">All employers</option>' +
+          names.map(function (n) { return '<option value="' + esc(n) + '">' + esc(n) + "</option>"; }).join("");
+        employerSel.value = names.indexOf(keep) >= 0 ? keep : "";
+      }
+
       function render() {
         extWrap.style.display = tab === "local" ? "" : "none";
+        var minHourly = parseFloat(paySel.value) || 0;
         var rows = filterJobs(all, {
           tab: tab,
           q: input.value || "",
           category: select.value,
+          employer: employerSel.value,
+          minHourly: minHourly,
+          payListedOnly: !!payListedBox.checked,
+          postedWithinDays: freshBox.checked ? 7 : 0,
           includeExtended: !!extBox.checked
         });
-        count.textContent = rows.length + " OF " + all.filter(function (j) { return jobTab(j) === tab; }).length + " " + tab.toUpperCase() + " JOBS · UPDATED " + (data.updated || "");
+        count.textContent = rows.length + " OF " + all.filter(function (j) { return jobTab(j) === tab; }).length + " " + tab.toUpperCase() + " JOBS" + updatedSuffix(data.updated);
+        var notes = [];
+        if (minHourly) {
+          notes.push("Pay bands use an hourly equivalent from the bottom of each posted range: annual divided by 2,080 hours, monthly by 173.33. Jobs with no posted pay, or pay posted by the day, are not in these bands.");
+        }
+        if (freshBox.checked) {
+          notes.push("Posted this week uses the employer's posting date where there is one, and the date we first saw the listing where there is not.");
+        }
+        note.textContent = notes.join(" ");
         if (!rows.length) {
           list.innerHTML = '<div class="bcl-unavailable">No jobs match right now. <a href="/contact">Suggest one</a>.</div>';
           return;
@@ -541,12 +854,18 @@
         btn.addEventListener("click", function () {
           tab = btn.getAttribute("data-tab");
           tabBtns.forEach(function (b) { b.className = "bcl-tab" + (b === btn ? " bcl-on" : ""); });
+          syncEmployers();
           render();
         });
       });
       input.addEventListener("input", render);
       select.addEventListener("change", render);
+      employerSel.addEventListener("change", render);
+      paySel.addEventListener("change", render);
+      payListedBox.addEventListener("change", render);
+      freshBox.addEventListener("change", render);
       extBox.addEventListener("change", render);
+      syncEmployers();
       render();
     }).catch(function () {
       unavailable(root, "The jobs board", 'You can still <a href="/contact">send an update</a>.');
@@ -641,7 +960,7 @@
           verifiedOnly: !!verifiedBox.checked,
           town: townSel.value || "all"
         });
-        count.textContent = rows.length + " OF " + all.length + " SAN LORENZO VALLEY RENTALS · UPDATED " + (data.updated || "");
+        count.textContent = rows.length + " OF " + all.length + " SAN LORENZO VALLEY RENTALS" + updatedSuffix(data.updated);
         if (!rows.length) {
           list.innerHTML = '<div class="bcl-unavailable">No verified San Lorenzo Valley rentals are listed right now. <a href="/contact">Suggest one</a>.</div>';
           return;
@@ -681,6 +1000,131 @@
     return out;
   }
 
+  /* ---------- one event, as a calendar file ----------
+     Ported from the Ambitious Harvest garden-events embed (the data-ics button
+     plus a VCALENDAR built in the browser and handed over as a Blob, so no
+     server is involved). Two deliberate changes for this feed: BCL events are
+     either a bare "YYYY-MM-DD" or a local "YYYY-MM-DDTHH:MM", so all-day
+     events are written as DTSTART;VALUE=DATE and timed ones as floating local
+     times. Running these through toISOString the way the garden embed does
+     would drag a date-only event back into the previous day for anyone reading
+     it west of UTC, which is everyone here. */
+
+  function icsEscape(v) {
+    return String(v == null ? "" : v)
+      .replace(/\\/g, "\\\\").replace(/\r?\n/g, "\\n")
+      .replace(/,/g, "\\,").replace(/;/g, "\\;");
+  }
+
+  function icsStamp(now) {
+    var d = now || new Date();
+    return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate()) + "T" +
+      pad2(d.getUTCHours()) + pad2(d.getUTCMinutes()) + pad2(d.getUTCSeconds()) + "Z";
+  }
+
+  function icsDate(parts, addDay) {
+    var d = new Date(parts.y, parts.mo - 1, parts.d + (addDay ? 1 : 0));
+    return d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate());
+  }
+
+  function icsDateTime(parts) {
+    return icsDate(parts, false) + "T" + pad2(parts.h) + pad2(parts.mi || 0) + "00";
+  }
+
+  function icsUID(e) {
+    return String(e.start || "").replace(/[^0-9T]/g, "") + "-" +
+      String(e.title || "event").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") +
+      "@bouldercreeklocal.com";
+  }
+
+  function icsFileName(e) {
+    var slug = String(e.title || "event").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    return (slug || "event") + ".ics";
+  }
+
+  function icsForEvent(e, now) {
+    var start = evParts(e.start);
+    if (!start) return "";
+    var end = evParts(e.end) || null;
+    var lines = [
+      "BEGIN:VCALENDAR", "VERSION:2.0",
+      "PRODID:-//Boulder Creek Local//Events//EN", "CALSCALE:GREGORIAN",
+      "BEGIN:VEVENT",
+      "UID:" + icsUID(e),
+      "DTSTAMP:" + icsStamp(now)
+    ];
+    if (start.h == null) {
+      /* All-day: DTEND is exclusive in iCalendar, so a one-day event ends on
+         the following morning and a run of days ends the day after the last. */
+      lines.push("DTSTART;VALUE=DATE:" + icsDate(start, false));
+      lines.push("DTEND;VALUE=DATE:" + icsDate(end && end.h == null ? end : start, true));
+    } else {
+      lines.push("DTSTART:" + icsDateTime(start));
+      lines.push("DTEND:" + icsDateTime(end && end.h != null ? end : start));
+    }
+    lines.push("SUMMARY:" + icsEscape(e.title));
+    if (e.location) lines.push("LOCATION:" + icsEscape(e.location));
+    var description = [e.description, e.notice].filter(Boolean).join(" ");
+    /* Times change and this file cannot update itself, so the description
+       carries the organizer link rather than implying the details are fixed. */
+    if (description) lines.push("DESCRIPTION:" + icsEscape(description + (e.url ? " Confirm with the organizer: " + e.url : "")));
+    else if (e.url) lines.push("DESCRIPTION:" + icsEscape("Confirm with the organizer: " + e.url));
+    if (e.url) lines.push("URL:" + icsEscape(e.url));
+    lines.push("END:VEVENT", "END:VCALENDAR");
+    return lines.join("\r\n") + "\r\n";
+  }
+
+  function downloadIcs(e) {
+    var body = icsForEvent(e);
+    if (!body) return;
+    var blob = new Blob([body], { type: "text/calendar;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = icsFileName(e);
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+  }
+
+  /* Range chips and the two date boxes share one predicate so the count line,
+     the chips, and the custom range can never disagree. */
+  function eventInRange(e, opts) {
+    opts = opts || {};
+    var range = opts.range || "all";
+    var p = evParts(e && e.start);
+    if (!p) return range === "all";
+    var day = new Date(p.y, p.mo - 1, p.d).getTime();
+    var today = opts.today ? new Date(opts.today.getTime()) : new Date();
+    today.setHours(0, 0, 0, 0);
+    if (range === "custom") {
+      var from = dayKeyToUTC(opts.from), to = dayKeyToUTC(opts.to);
+      var key = Date.UTC(p.y, p.mo - 1, p.d);
+      if (from != null && key < from) return false;
+      if (to != null && key > to) return false;
+      return true;
+    }
+    if (range === "all") return true;
+    if (range === "today") return day === today.getTime();
+    if (range === "7" || range === "30") {
+      var span = new Date(today);
+      span.setDate(today.getDate() + parseInt(range, 10));
+      return day >= today.getTime() && day <= span.getTime();
+    }
+    if (range === "weekend") {
+      /* the coming (or current) Friday through Sunday, never earlier than today */
+      var dow = today.getDay();
+      var fri = new Date(today);
+      if (dow === 6) fri.setDate(today.getDate() - 1);
+      else if (dow === 0) fri.setDate(today.getDate() - 2);
+      else fri.setDate(today.getDate() + (5 - dow));
+      var sun = new Date(fri);
+      sun.setDate(fri.getDate() + 2);
+      var lo = Math.max(fri.getTime(), today.getTime());
+      return day >= lo && day <= sun.getTime();
+    }
+    return true;
+  }
+
   function eventCard(e) {
     var h = '<div class="bcl-event-card">';
     h += '<div class="bcl-event-date">' + evDateChip(e.start) + "</div>";
@@ -690,6 +1134,7 @@
        know BEFORE turning up (age limits, ticket-only) goes here or it is invisible. */
     if (e.notice) h += '<div class="bcl-event-notice">' + esc(e.notice) + "</div>";
     if (e.url) h += '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">Details</a>';
+    if (e.id) h += '<button type="button" class="bcl-ics" data-ics="' + esc(e.id) + '">Add to calendar</button>';
     h += '<div class="bcl-event-cat">' + esc(e.category || "Community") + "</div>";
     return h + "</div>";
   }
@@ -1194,11 +1639,7 @@
   }
 
   function initHomeBoard(home, after) {
-    var todayKey = (function () {
-      var t = new Date();
-      var mo = t.getMonth() + 1, d = t.getDate();
-      return t.getFullYear() + "-" + (mo < 10 ? "0" : "") + mo + "-" + (d < 10 ? "0" : "") + d;
-    })();
+    var today = todayKey();
 
     var sec = document.createElement("section");
     sec.id = "bcl-home-board";
@@ -1239,7 +1680,7 @@
 
     fillHomeSlot("bcl-home-events", "events.json", {
       key: "events", loading: "Loading events…", label: "The events calendar", href: "/events", what: "calendar",
-      pick: function (rows) { return nextEvents(rows, todayKey, 3); },
+      pick: function (rows) { return nextEvents(rows, today, 3); },
       card: homeEventRow,
       empty: 'No verified upcoming events right now. Events appear here only after a person confirms the details with the organizer. <a href="/contact">Tell us about one</a>.'
     });
@@ -1333,6 +1774,9 @@
         var p = evParts(e.end || e.start);
         return p && new Date(p.y, p.mo - 1, p.d, 23, 59) >= now;
       });
+      /* Stable handle for the calendar button: the feed has no ids, and a
+         position in the rendered list changes every time a filter does. */
+      all.forEach(function (e, i) { if (!e.id) e.id = "bclev" + i; });
 
       if (!all.length) {
         root.innerHTML =
@@ -1346,9 +1790,13 @@
       cats.sort();
 
       root.innerHTML =
-        '<div class="bcl-range"><button data-r="all" class="bcl-on">All upcoming</button><button data-r="today">Today</button><button data-r="weekend">This weekend</button></div>' +
+        '<div class="bcl-range"><button data-r="all" class="bcl-on">All upcoming</button><button data-r="today">Today</button>' +
+        '<button data-r="weekend">This weekend</button><button data-r="7">Next 7 days</button><button data-r="30">Next 30 days</button></div>' +
+        '<div class="bcl-daterange"><label>From <input type="date" class="bcl-ev-from" aria-label="Events from date"></label>' +
+        '<label>To <input type="date" class="bcl-ev-to" aria-label="Events to date"></label>' +
+        '<button type="button" class="bcl-ev-clear">Clear dates</button></div>' +
         '<div class="bcl-controls">' +
-        '<input type="search" placeholder="Search events" aria-label="Search events">' +
+        '<input type="search" class="bcl-ev-q" placeholder="Search events" aria-label="Search events">' +
         '<select class="bcl-ev-cat" aria-label="Filter by type"><option value="">All types</option>' +
         cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") + "</select>" +
         '<select class="bcl-ev-sort" aria-label="Sort events"><option value="date">Soonest first</option><option value="name">Name A to Z</option><option value="type">By type</option></select>' +
@@ -1356,37 +1804,32 @@
         '<div class="bcl-count"></div><div class="bcl-event-grid"></div>' +
         '<div class="bcl-note">Details change. Confirm with the organizer before you go. <a href="/contact">Send a correction or add an event</a>.</div>';
 
-      var input = root.querySelector("input");
+      var input = root.querySelector(".bcl-ev-q");
       var catSel = root.querySelector(".bcl-ev-cat");
       var sortSel = root.querySelector(".bcl-ev-sort");
+      var fromInput = root.querySelector(".bcl-ev-from");
+      var toInput = root.querySelector(".bcl-ev-to");
+      var clearBtn = root.querySelector(".bcl-ev-clear");
       var count = root.querySelector(".bcl-count");
       var grid = root.querySelector(".bcl-event-grid");
       var range = "all";
       var rangeBtns = [].slice.call(root.querySelectorAll(".bcl-range button"));
 
-      function inRange(e) {
-        if (range === "all") return true;
-        var p = evParts(e.start);
-        if (!p) return false;
-        var d = new Date(p.y, p.mo - 1, p.d).getTime();
-        var today = new Date(); today.setHours(0, 0, 0, 0);
-        if (range === "today") return d === today.getTime();
-        // weekend: upcoming (or current) Friday through Sunday, never before today
-        var dow = today.getDay();
-        var fri = new Date(today);
-        if (dow === 6) fri.setDate(today.getDate() - 1);
-        else if (dow === 0) fri.setDate(today.getDate() - 2);
-        else fri.setDate(today.getDate() + (5 - dow));
-        var sun = new Date(fri); sun.setDate(fri.getDate() + 2);
-        var lo = Math.max(fri.getTime(), today.getTime());
-        return d >= lo && d <= sun.getTime();
+      /* Typing a date is an explicit request, so it takes over from the chips
+         and the chips clear themselves rather than silently fighting it. */
+      function activeRange() {
+        return (fromInput.value || toInput.value) ? "custom" : range;
       }
 
       function render() {
         var q = (input.value || "").toLowerCase();
         var cat = catSel.value;
+        var mode2 = activeRange();
+        rangeBtns.forEach(function (b) {
+          b.className = (mode2 !== "custom" && b.getAttribute("data-r") === range) ? "bcl-on" : "";
+        });
         var rows = all.filter(function (e) {
-          if (!inRange(e)) return false;
+          if (!eventInRange(e, { range: mode2, from: fromInput.value, to: toInput.value })) return false;
           if (cat && (e.category || "Community") !== cat) return false;
           if (!q) return true;
           return (e.title + " " + (e.location || "") + " " + (e.description || "")).toLowerCase().indexOf(q) >= 0;
@@ -1397,7 +1840,7 @@
           if (mode === "type") return (a.category || "").localeCompare(b.category || "") || String(a.start).localeCompare(String(b.start));
           return String(a.start).localeCompare(String(b.start));
         });
-        count.textContent = rows.length + " OF " + all.length + " UPCOMING · UPDATED " + (data.updated || "");
+        count.textContent = rows.length + " OF " + all.length + " UPCOMING" + updatedSuffix(data.updated);
         var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         function monthKey(e) {
           var p = evParts(e.start);
@@ -1425,13 +1868,31 @@
       rangeBtns.forEach(function (btn) {
         btn.addEventListener("click", function () {
           range = btn.getAttribute("data-r");
-          rangeBtns.forEach(function (b) { b.className = b === btn ? "bcl-on" : ""; });
+          fromInput.value = "";
+          toInput.value = "";
           render();
         });
+      });
+      clearBtn.addEventListener("click", function () {
+        fromInput.value = "";
+        toInput.value = "";
+        render();
+      });
+      /* One delegated handler: the grid is rebuilt on every keystroke, so
+         per-button listeners would be re-bound constantly and leak. */
+      root.addEventListener("click", function (ev) {
+        var btn = ev.target && ev.target.closest && ev.target.closest("[data-ics]");
+        if (!btn) return;
+        var id = btn.getAttribute("data-ics");
+        for (var i = 0; i < all.length; i++) {
+          if (all[i].id === id) { downloadIcs(all[i]); return; }
+        }
       });
       input.addEventListener("input", render);
       catSel.addEventListener("change", render);
       sortSel.addEventListener("change", render);
+      fromInput.addEventListener("change", render);
+      toInput.addEventListener("change", render);
       render();
     }).catch(function () {
       unavailable(root, "The events calendar", "");
@@ -1522,6 +1983,104 @@
       });
   }
 
+  /* ---------- San Lorenzo River gauge ----------
+     USGS 11160500, SAN LORENZO R A BIG TREES CA, is the nearest real-time
+     gauge upstream of Santa Cruz and downstream of Boulder Creek (Felton, at
+     Henry Cowell). Verified 2026-07-29 against the USGS instantaneous-values
+     API: it currently reports both gage height (00065) and discharge (00060),
+     and both services send Access-Control-Allow-Origin, so the page fetches
+     them directly like the air and roads cards.
+
+     The card publishes numbers and nothing else. It does not say whether the
+     river is high, safe, or normal, and it never converts a reading into a
+     condition. The NWS flood categories come from the National Water
+     Prediction Service record for forecast point BTEC1, which carries USGS id
+     11160500, so they are quoted with attribution rather than invented; if
+     that call fails the thresholds are simply absent. A failed reading is
+     stated as unavailable, which is not an all-clear. */
+
+  var RIVER = {
+    site: "11160500",
+    name: "San Lorenzo River at Big Trees",
+    place: "Felton, upstream gauge for the valley",
+    usgs: "https://waterdata.usgs.gov/monitoring-location/USGS-11160500/",
+    lid: "BTEC1",
+    nws: "https://water.noaa.gov/gauges/BTEC1"
+  };
+  var RIVER_CATEGORY_ORDER = ["action", "minor", "moderate", "major"];
+  var RIVER_CATEGORY_LABELS = { action: "Action", minor: "Minor flood", moderate: "Moderate flood", major: "Major flood" };
+
+  function riverReading(json) {
+    var series = ((json || {}).value || {}).timeSeries || [];
+    var out = { stage: null, flow: null, at: "", provisional: false };
+    series.forEach(function (s) {
+      var code = (((s.variable || {}).variableCode || [])[0] || {}).value;
+      var v = (((s.values || [])[0] || {}).value || [])[0];
+      if (!v || v.value == null) return;
+      var n = parseFloat(v.value);
+      if (!isFinite(n) || n <= -999998) return;
+      if (code === "00065") out.stage = n;
+      else if (code === "00060") out.flow = n;
+      else return;
+      if (v.dateTime) out.at = v.dateTime;
+      if ((v.qualifiers || []).indexOf("P") >= 0) out.provisional = true;
+    });
+    return (out.stage == null && out.flow == null) ? null : out;
+  }
+
+  function riverFloodCategories(json) {
+    var cats = (((json || {}).flood || {}).categories) || {};
+    return RIVER_CATEGORY_ORDER.filter(function (k) {
+      return cats[k] && typeof cats[k].stage === "number";
+    }).map(function (k) {
+      return { key: k, label: RIVER_CATEGORY_LABELS[k] || k, stage: cats[k].stage };
+    });
+  }
+
+  function riverTimeText(iso) {
+    var d = new Date(iso);
+    return isNaN(d.getTime()) ? "" : d.toLocaleString();
+  }
+
+  function riverCardHTML(reading, cats) {
+    var h = '<div class="bcl-name">' + esc(RIVER.name) + "</div>" +
+      '<div class="bcl-sub">' + esc(RIVER.place) + "</div>" +
+      '<div class="bcl-river-rows">';
+    if (reading.stage != null) h += "<div><b>Gage height</b><span>" + reading.stage.toFixed(2) + " ft</span></div>";
+    if (reading.flow != null) h += "<div><b>Streamflow</b><span>" + Math.round(reading.flow) + " cfs</span></div>";
+    h += "</div>";
+    var when = riverTimeText(reading.at);
+    h += '<div class="bcl-meta">USGS gauge ' + esc(RIVER.site) + (when ? ", reading taken " + esc(when) : "") +
+      (reading.provisional ? ". Provisional data, subject to revision." : "") + "</div>";
+    if (cats && cats.length) {
+      h += '<p class="bcl-river-cats">National Weather Service stages for this gauge: ' +
+        cats.map(function (c) { return esc(c.label) + " " + c.stage + " ft"; }).join(", ") +
+        '. Those thresholds are published by the <a href="' + RIVER.nws + '" target="_blank" rel="noopener">NWS river forecast page</a>, which is where flooding is called, not here.</p>';
+    }
+    h += '<p><a href="' + RIVER.usgs + '" target="_blank" rel="noopener">USGS gauge page</a> · ' +
+      '<a href="' + RIVER.nws + '" target="_blank" rel="noopener">NWS river forecast</a></p>';
+    return h;
+  }
+
+  function fillRiver(el) {
+    if (!el) return;
+    var iv = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=" + RIVER.site + "&parameterCd=00060,00065";
+    Promise.all([
+      fetchJSON(iv),
+      /* thresholds are a bonus, never a blocker */
+      fetchJSON("https://api.water.noaa.gov/nwps/v1/gauges/" + RIVER.lid).catch(function () { return null; })
+    ]).then(function (res) {
+      var reading = riverReading(res[0]);
+      if (!reading) throw new Error("no reading");
+      el.innerHTML = riverCardHTML(reading, riverFloodCategories(res[1]));
+    }).catch(function () {
+      el.innerHTML = '<div class="bcl-name">River gauge: unavailable</div>' +
+        "<p>The San Lorenzo River reading didn't load. That means there is no reading here, not that the river is low. " +
+        'Check the <a href="' + RIVER.usgs + '" target="_blank" rel="noopener">USGS gauge page</a> and the ' +
+        '<a href="' + RIVER.nws + '" target="_blank" rel="noopener">NWS river forecast</a>.</p>';
+    });
+  }
+
   function rightNowStatic() {
     return '<div class="bcl-card">' +
       '<div class="bcl-name">Power</div>' +
@@ -1545,6 +2104,7 @@
       '<div class="bcl-status-grid">' +
       '<div class="bcl-card bcl-aqi"><div class="bcl-count">Checking air quality…</div></div>' +
       '<div class="bcl-card bcl-roads"><div class="bcl-count">Checking Caltrans closures…</div></div>' +
+      '<div class="bcl-card bcl-river"><div class="bcl-count">Checking the river gauge…</div></div>' +
       rightNowStatic() +
       "</div>" +
       '<div class="bcl-count" style="margin-top:10px;">LIVE ITEMS RETRIEVED WHEN YOU LOADED THIS PAGE · ' + esc(new Date().toLocaleString()) + "</div>" +
@@ -1553,6 +2113,7 @@
 
     fillAQI(root.querySelector(".bcl-aqi"));
     fillCaltrans(root.querySelector(".bcl-roads"));
+    fillRiver(root.querySelector(".bcl-river"));
 
     var nwsRoot = root.querySelector(".bcl-nws");
     var pt = "https://api.weather.gov/points/" + NWS_POINT.lat + "," + NWS_POINT.lon;
@@ -2014,6 +2575,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
