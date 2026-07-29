@@ -32,7 +32,14 @@ RENTAL_SOURCES = [
        "333 Dakenbrook Drive, Ben Lomond 95005 confirmed; AppFolio parser verified", {"slug": "powerwest"}),
     _s("Anderson Christie Real Estate", "direct_page_reviewed", "appfolio", "appfolio",
        "https://andersonchristierealestate.appfolio.com/listings", 6, True, True,
-       "13127 Hazel Ave, Boulder Creek 95006 confirmed; AppFolio parser verified", {"slug": "andersonchristierealestate"}),
+       "13127 Hazel Ave, Boulder Creek 95006 confirmed; AppFolio parser verified. "
+       "2026-07-29 re-verified: portal serves 17 listings to a plain HTTP client "
+       "(no browser needed), parser returns 15 rows, and NONE are in an SLV ZIP -- "
+       "nearest are Mount Hermon 95041 and Scotts Valley 95066. Publishing 0 is "
+       "the tier filter working, not a broken adapter. The ~71 listings on "
+       "andersonchristie.com are MLS FOR-SALE properties (PropertyMinder IDX), "
+       "not rentals, and are out of scope for this board.",
+       {"slug": "andersonchristierealestate"}),
     # --- Serve SLV, unverified slug/parser -> SLV follow-up ---
     _s("Santa Cruz Property Management Co.", "direct_page_reviewed", "custom_html", "custom_html",
        "https://santacruzproperty.com/rental_listings.cfm", 7, False, False, "ColdFusion; unverified -- SLV follow-up"),
