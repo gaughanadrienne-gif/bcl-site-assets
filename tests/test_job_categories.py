@@ -41,6 +41,13 @@ def test_the_source_category_is_a_signal_not_an_output():
     assert classify_job("Emergency Dispatcher/Clerk I", "Police Dept", "911 Telecommunications") == "Public Safety"
 
 
+def test_legal_work_is_office_admin_unless_it_is_the_das_office():
+    """Only the district attorney's office is public safety. Filing every
+    "Attorney" there put Webflow's corporate counsel under Public Safety."""
+    assert classify_job("ATTORNEY I - DISTRICT ATTORNEY", "District Attorney") == "Public Safety"
+    assert classify_job("Associate General Counsel, Corporate", "Webflow") == "Office & Admin"
+
+
 def test_the_employer_decides_only_when_the_title_says_nothing():
     assert classify_job("General Resource Assistant, Essential Supports Center", "Cabrillo College") == "Education"
     assert classify_job("Banquet Set Up", "Seascape Beach Resort") == "Food & Hospitality"

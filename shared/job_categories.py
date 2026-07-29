@@ -67,7 +67,7 @@ ORDERED_RULES = (
     (PUBLIC_SAFETY, (
         "police", "sheriff", "deputy", "firefighter", "fire captain",
         "fire engineer", "dispatcher", "911", "telecommunicator", "correctional",
-        "code enforcement", "park ranger", "ranger", "attorney", "district attorney",
+        "code enforcement", "park ranger", "ranger", "district attorney",
         "public safety", "emergency dispatch", "reserve officer",
     )),
     # 3. Clinical and care work.
@@ -111,7 +111,10 @@ ORDERED_RULES = (
         "secretary", "clerical", "accountant", "accounting", "payroll",
         "bookkeep", "data entry", "human resources", "executive assistant",
         "billing", "financial analyst", "auditor", "audit officer", "controller",
-        "office manager", "records ", "paralegal", "scheduler", "dispatch clerk",
+        "office manager", "records ", "scheduler", "dispatch clerk",
+        # Legal sits here, NOT in Public Safety: only the district attorney's
+        # office is public safety, and that keyword is matched above.
+        "attorney", "counsel", "paralegal", "legal ",
     )),
     # 8. Revenue-facing roles. Above Technology so "Solutions Engineer" and
     #    "Sales Engineer" file where a jobseeker would look for them.
