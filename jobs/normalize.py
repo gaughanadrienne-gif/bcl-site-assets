@@ -12,6 +12,7 @@ from shared.bcl_ingest import (
     classify_geo, commute_minutes, make_slug, parse_salary,
     record_fingerprint, sanitize_text, scrub_pii, freshness_label,
 )
+from shared.job_categories import classify_job
 
 EXCLUDE_KEYWORDS = (
     "mlm", "multi-level marketing", "pay to start", "pay-to-start",
@@ -35,6 +36,15 @@ def normalize_job(raw, source, today):
     url = raw.get("url", "") or ""
     salary = parse_salary(raw.get("salary_text", ""))
     posted = raw.get("date_posted", "") or ""
+    description = scrub_pii(sanitize_text(raw.get("description", "")))[:400]
+    # The published category is ALWAYS the classifier's, never the source's:
+    # the jobs tool builds its dropdown from these strings, so they have to come
+    # from one fixed vocabulary. A source-supplied value is passed in as a hint.
+    category = classify_job(
+        title, employer=employer,
+        source_category=sanitize_text(raw.get("category", "")),
+        description=description,
+    )
 
     return {
         "id": record_fingerprint([title, employer, city, url]),
@@ -42,7 +52,7 @@ def normalize_job(raw, source, today):
         "title": title,
         "title_original": raw.get("title", "") or "",
         "employer_name": employer,
-        "description_summary": scrub_pii(sanitize_text(raw.get("description", "")))[:400],
+        "description_summary": description,
         "employment_type": sanitize_text(raw.get("hours_text", "")),
         "work_mode": raw.get("work_mode") or ("remote" if remote else "on-site"),
         "remote_regions": sanitize_text(raw.get("eligibility_text", "")) if remote else "",
@@ -61,7 +71,7 @@ def normalize_job(raw, source, today):
         "benefits_text": sanitize_text(raw.get("benefits_text", "")),
         "hours_text": sanitize_text(raw.get("hours_text", "")),
         "schedule": sanitize_text(raw.get("hours_text", "")),
-        "category": raw.get("category", ""),
+        "category": category,
         "posted_at": posted,
         "application_deadline": sanitize_text(raw.get("application_deadline", "")),
         "canonical_url": url,
