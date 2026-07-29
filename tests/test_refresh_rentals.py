@@ -24,7 +24,7 @@ def _ok_fetchers():
 
 
 def test_build_rentals_publishes_slv_and_queues_undisclosed():
-    published, queued, had_errors = build_rentals(SUBSET, _ok_fetchers(), TODAY)
+    published, queued, had_errors, _counts = build_rentals(SUBSET, _ok_fetchers(), TODAY)
     assert had_errors is False
 
     for rental in published:
@@ -49,8 +49,8 @@ def test_build_rentals_publishes_slv_and_queues_undisclosed():
 
 
 def test_build_rentals_is_idempotent():
-    published1, queued1, _ = build_rentals(SUBSET, _ok_fetchers(), TODAY)
-    published2, queued2, _ = build_rentals(SUBSET, _ok_fetchers(), TODAY)
+    published1, queued1, _, _ = build_rentals(SUBSET, _ok_fetchers(), TODAY)
+    published2, queued2, _, _ = build_rentals(SUBSET, _ok_fetchers(), TODAY)
     assert len(published1) == len(published2)
     assert len(queued1) == len(queued2)
 
@@ -69,7 +69,7 @@ def test_bad_row_is_skipped_without_setting_had_errors(monkeypatch):
 
     monkeypatch.setattr(refresh_rentals_mod, "normalize_rental", flaky_normalize)
 
-    published, queued, had_errors = build_rentals(SUBSET, _ok_fetchers(), TODAY)
+    published, queued, had_errors, _counts = build_rentals(SUBSET, _ok_fetchers(), TODAY)
 
     assert had_errors is False
     assert calls["n"] > 1  # later rows in the same/other sources still processed
@@ -82,7 +82,32 @@ def test_per_source_exception_sets_had_errors_but_other_source_still_yields():
             raise RuntimeError("network down")
         return _markdown_by_url(url, **kw)
 
-    published, queued, had_errors = build_rentals(SUBSET, {"firecrawl_markdown": _fetch}, TODAY)
+    published, queued, had_errors, _counts = build_rentals(SUBSET, {"firecrawl_markdown": _fetch}, TODAY)
     assert had_errors is True
     assert published or queued
     assert all(r["source"] == "Streamline 831" for r in published)
+
+
+def test_build_rentals_reports_rows_parsed_per_source_for_the_alarm():
+    """The alarm has to watch rows PARSED, not rows PUBLISHED.
+
+    Most SLV property managers list the whole county, so an SLV-empty week is
+    ordinary and must never alarm. A parser that has stopped matching anything
+    is the failure the alarm exists for, and only the parse count can tell
+    them apart.
+    """
+    _published, _queued, _had_errors, counts = build_rentals(SUBSET, _ok_fetchers(), TODAY)
+    assert set(counts) == {"PMI Santa Cruz", "Streamline 831"}
+    assert all(n > 0 for n in counts.values())
+
+
+def test_a_source_that_fails_to_fetch_is_counted_as_zero_not_omitted():
+    """Omitting it would let the streak reset itself every time a source broke."""
+    def _fetch(url, **kw):
+        if url == RENTVINE_SOURCE["url"]:
+            raise RuntimeError("network down")
+        return _markdown_by_url(url, **kw)
+
+    _p, _q, _e, counts = build_rentals(SUBSET, {"firecrawl_markdown": _fetch}, TODAY)
+    assert counts["PMI Santa Cruz"] == 0
+    assert counts["Streamline 831"] > 0

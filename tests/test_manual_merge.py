@@ -74,7 +74,7 @@ def test_manual_rental_with_95006_publishes(tmp_path):
             "submitted_at": TODAY, "renewed_at": None,
         },
     ])
-    published, queued, had_errors = build_rentals(
+    published, queued, had_errors, _counts = build_rentals(
         [], _empty_rental_fetchers(), TODAY, manual_path=manual_path,
     )
     assert had_errors is False
@@ -91,7 +91,7 @@ def test_manual_rental_without_95006_confirmation_queues(tmp_path):
             "submitted_at": TODAY, "renewed_at": None,
         },
     ])
-    published, queued, had_errors = build_rentals(
+    published, queued, had_errors, _counts = build_rentals(
         [], _empty_rental_fetchers(), TODAY, manual_path=manual_path,
     )
     assert not any(r["headline"] == "Unverified Room" for r in published)
@@ -107,7 +107,7 @@ def test_expired_manual_rental_does_not_appear(tmp_path):
             "submitted_at": "2026-06-01", "renewed_at": None,  # well over 14 days before TODAY
         },
     ])
-    published, queued, had_errors = build_rentals(
+    published, queued, had_errors, _counts = build_rentals(
         [], _empty_rental_fetchers(), TODAY, manual_path=manual_path,
     )
     titles = [r["headline"] for r in published] + [r["headline"] for r in queued]

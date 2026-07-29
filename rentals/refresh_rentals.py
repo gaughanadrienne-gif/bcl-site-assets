@@ -18,6 +18,7 @@ from shared.bcl_ingest import (  # noqa: E402
     record_fingerprint, write_json_atomic, write_rentals_guarded,
 )
 from shared.review_board import render_review_board  # noqa: E402
+from shared.source_yield import format_alarms, record_yields  # noqa: E402
 from rentals.normalize import include_rental, normalize_rental  # noqa: E402
 from rentals.parsers import appfolio, custom_html, rentvine  # noqa: E402
 from rentals.safety import safety_status  # noqa: E402
@@ -48,6 +49,7 @@ _REVIEW_DIR = os.path.join(_ROOT_DIR, "review")
 _PARTIALS_DIR = os.path.join(_ROOT_DIR, "partials")
 RENTALS_PATH = os.path.join(_DATA_DIR, "rentals.json")
 QUEUE_PATH = os.path.join(_REVIEW_DIR, "rentals-pending.json")
+YIELD_PATH = os.path.join(_REVIEW_DIR, "rentals-source-yield.json")
 REVIEW_BOARD_PATH = os.path.join(_REVIEW_DIR, "review-board.html")
 MANUAL_RENTALS_PATH = os.path.join(_PARTIALS_DIR, "manual-rentals.json")
 MANUAL_TTL_DAYS = 14
@@ -63,7 +65,7 @@ _MANUAL_SOURCE = {"name": "Community submission"}
 
 
 def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
-    """Fetch+parse+normalize every ENABLED source; return (published, queued, had_errors).
+    """Fetch+parse+normalize every ENABLED source; return (published, queued, had_errors, counts).
 
     `fetchers` is a dict with a firecrawl_markdown callable (injected so this
     is fully testable against fixtures, offline). A per-source exception (a
@@ -81,6 +83,7 @@ def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
     published = []
     queued = []
     had_errors = False
+    counts = {}
 
     for source in sources:
         if not source.get("enabled"):
@@ -94,7 +97,9 @@ def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
         except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
             had_errors = True
             print("refresh_rentals: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
+            counts[source.get("name")] = 0
             continue
+        counts[source.get("name")] = len(raw_rows)
 
         for raw in raw_rows:
             try:
@@ -145,7 +150,7 @@ def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
     published = dedupe_by(
         published, lambda r: record_fingerprint([r["address_public"], r["city"]])
     )
-    return published, queued, had_errors
+    return published, queued, had_errors, counts
 
 
 def _pacific_today():
@@ -159,7 +164,7 @@ def _pacific_today():
 
 def main():
     today = _pacific_today()
-    published, queued, had_errors = build_rentals(
+    published, queued, had_errors, counts = build_rentals(
         RENTAL_SOURCES, {"firecrawl_markdown": firecrawl_markdown}, today,
     )
     write_rentals_guarded(
@@ -182,7 +187,11 @@ def main():
         for rental in queued
     ]
     render_review_board(review_items, "rentals", REVIEW_BOARD_PATH)
+    alarms = record_yields(YIELD_PATH, counts, today)
     print("refresh_rentals: published=%d queued=%d had_errors=%s" % (len(published), len(queued), had_errors))
+    if alarms:
+        # stderr so it stands out in refresh.log next to real failures
+        print(format_alarms(alarms, "rentals"), file=sys.stderr)
 
 
 if __name__ == "__main__":
