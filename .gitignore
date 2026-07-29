@@ -6,3 +6,13 @@ partials/detail_cache.json
 __pycache__/
 *.pyc
 .pytest_cache/
+AGENTS.md
+CLAUDE.md
+docs/submissions/
+docs/superpowers/
+jobs/refresh.log
+*.log
+node_modules/
+__pycache__/
+*.tmp
+.env
