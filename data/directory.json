@@ -1972,7 +1972,7 @@
     },
     {
       "name": "SCM Community Fitness",
-      "category": "Health & Wellness",
+      "category": "Sports & Fitness",
       "subcategory": "Gym",
       "description": "Functional-fitness gym in Felton offering CrossFit-style group classes combining strength training, conditioning, and mobility work plus yoga sessions.",
       "address": "6500 Highway 9",
@@ -1988,7 +1988,7 @@
     },
     {
       "name": "San Lorenzo Valley Martial Arts",
-      "category": "Health & Wellness",
+      "category": "Sports & Fitness",
       "subcategory": "Martial arts",
       "description": "Martial arts studio in Felton offering Tae Kwon Do for all ages plus cardio kickboxing, Tabata bootcamp, and after-school programs.",
       "address": "6116 Highway 9, Suite 2B",
@@ -2002,7 +2002,7 @@
     },
     {
       "name": "Oakstrong Martial Arts",
-      "category": "Health & Wellness",
+      "category": "Sports & Fitness",
       "subcategory": "Martial arts",
       "description": "Tang Soo Do karate school teaching self-defense and weapons classes for teens and adults at the Felton Community Hall.",
       "address": "6191 Highway 9 (Felton Community Hall)",
@@ -2015,7 +2015,7 @@
     },
     {
       "name": "Scotts Valley Gym",
-      "category": "Health & Wellness",
+      "category": "Sports & Fitness",
       "subcategory": "Gym",
       "description": "Strength and powerlifting gym open around the clock to members with Rogue equipment, personal training, and small-group coaching.",
       "address": "105 Whispering Pines Drive",
@@ -2031,7 +2031,7 @@
     },
     {
       "name": "Toadal Fitness Scotts Valley",
-      "category": "Health & Wellness",
+      "category": "Sports & Fitness",
       "subcategory": "Gym",
       "description": "Family-oriented full-service health club in Scotts Valley with group classes and a supervised kids area for ages 3 months to 12 years.",
       "address": "269 Mount Hermon Road",
@@ -2466,7 +2466,7 @@
     },
     {
       "name": "MADabolic Scotts Valley",
-      "category": "Health & Wellness",
+      "category": "Sports & Fitness",
       "subcategory": "Gym",
       "description": "Strength-driven interval training studio offering coached strength and conditioning classes built around structured work-to-rest ratios, the MADabolic franchise's first California location.",
       "address": "262 Mount Hermon Road, Suite 101",
@@ -2480,7 +2480,7 @@
     },
     {
       "name": "Enterprise Sports Club",
-      "category": "Health & Wellness",
+      "category": "Sports & Fitness",
       "subcategory": "Athletic club",
       "description": "Full-service 26,000 square foot athletic club with exercise equipment, group fitness classes, personal training, a heated outdoor pool, spa, sauna, and tennis, pickleball, and basketball courts. Formerly a private employee club, open to the public since 2020.",
       "address": "100 Enterprise Way, Suite G100",
@@ -4521,7 +4521,7 @@
     },
     {
       "name": "Treetop Pilates & Wellness",
-      "category": "Health & Wellness",
+      "category": "Sports & Fitness",
       "subcategory": "Classical pilates studio",
       "description": "Classical Pilates studio offering mat, tower, and reformer work through private lessons and small classes. Second line 831-421-1224.",
       "address": "125 Forest Street",
@@ -4695,7 +4695,7 @@
     },
     {
       "name": "Lone Wolf Kenpo Academy",
-      "category": "Health & Fitness",
+      "category": "Sports & Fitness",
       "subcategory": "Martial arts school",
       "description": "Kenpo karate school in downtown Boulder Creek teaching a range of ages. Call for current class times.",
       "address": "13089 Highway 9",
