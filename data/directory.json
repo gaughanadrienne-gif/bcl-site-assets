@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-23",
+  "updated": "2026-07-29",
   "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
   "count": 316,
   "listings": [
@@ -3583,21 +3583,6 @@
       "lat": 37.126117,
       "lon": -122.121578,
       "tile": "little-explorers-bcrpd.png"
-    },
-    {
-      "name": "Mountain Monsters Daycare",
-      "category": "Education & Childcare",
-      "subcategory": "Family daycare",
-      "description": "Licensed home-based family child care in Ben Lomond offering full-day care with a large yard, meals and snacks, play structures, and pickup from local schools.",
-      "locality": "Ben Lomond",
-      "phone": "831-239-0323",
-      "hours_text": "Weekdays; call to confirm hours",
-      "service_area": "Ben Lomond and San Lorenzo Valley",
-      "verified_at": "2026-07-17",
-      "no_storefront": true,
-      "license": "California licensed family child care home (home-based, capacity 8)",
-      "address": null,
-      "tile": "mountain-monsters-daycare.png"
     },
     {
       "name": "Osito's Day Care",
