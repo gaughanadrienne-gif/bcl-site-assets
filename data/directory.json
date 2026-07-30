@@ -449,7 +449,7 @@
     },
     {
       "name": "Redwood Mountain Spa",
-      "category": "Health & Wellness",
+      "category": "Beauty",
       "subcategory": "Day spa, massage, and facials",
       "description": "Day spa offering massage, skin care, waxing, and wellness treatments by appointment, including facials and skin care.",
       "address": "12560 Highway 9",
@@ -1751,7 +1751,7 @@
     },
     {
       "name": "Hair Hut",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Hair salon",
       "description": "Long-running full-service hair salon offering cuts, color, highlights, perms, and extensions for men, women, and children.",
       "address": "13266 Highway 9, Suite A",
@@ -1765,7 +1765,7 @@
     },
     {
       "name": "Central Avenue Salon",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Hair salon",
       "description": "Hair salon owned by stylist Dana Bernhardt offering cuts, color, and extensions by appointment.",
       "address": "13162 Central Avenue",
@@ -1781,7 +1781,7 @@
     },
     {
       "name": "Oh Suzannah Hair Designers",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Hair salon",
       "description": "Hair salon offering color, cuts, perms, relaxers, and facial waxing.",
       "address": "13090 Highway 9",
@@ -1795,7 +1795,7 @@
     },
     {
       "name": "VIP Hair Studio",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Hair salon",
       "description": "Hair salon run by longtime San Lorenzo Valley stylist Melissa Bumbaca offering cut and color services by appointment.",
       "address": "10090 Highway 9, Suite 2",
@@ -1809,7 +1809,7 @@
     },
     {
       "name": "K-Salon",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Hair salon",
       "description": "Home-based hair salon run by stylist Krishna offering cut and color services in a private redwood setting.",
       "locality": "Ben Lomond",
@@ -2199,7 +2199,7 @@
     },
     {
       "name": "Society Barbershop",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Barbershop",
       "description": "Full-service barbershop on Highway 9 in Felton offering scissor cuts, fades, tapers, beard work, and straight-razor shaves, with online booking.",
       "address": "6287 Highway 9",
@@ -2633,7 +2633,7 @@
     },
     {
       "name": "Queen Nails",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Nail salon",
       "description": "Nail salon in Scotts Valley offering manicures, pedicures, acrylic, gel, and dip powder services.",
       "address": "266 Mt Hermon Road, Suite M",
@@ -2647,7 +2647,7 @@
     },
     {
       "name": "Oli Nails",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Nail artist",
       "description": "Independent nail artist based in Boulder Creek, offering in-home appointments locally and working from a salon space in Scotts Valley. Booking through Instagram.",
       "locality": "Boulder Creek",
@@ -2660,7 +2660,7 @@
     },
     {
       "name": "Lilia Skin",
-      "category": "Health & Wellness",
+      "category": "Beauty",
       "subcategory": "Skin care and facials",
       "description": "Licensed esthetician in Felton offering holistic facials by appointment.",
       "locality": "Felton",
@@ -2689,7 +2689,7 @@
     },
     {
       "name": "Paper Moon Skincare Studio",
-      "category": "Health & Wellness",
+      "category": "Beauty",
       "subcategory": "Skin care studio",
       "description": "Skincare studio in Scotts Valley offering organic facials, waxing, sugaring, threading, and brow and lash services.",
       "address": "4 Camp Evers Lane",
@@ -2705,7 +2705,7 @@
     },
     {
       "name": "Kalani Day Spa",
-      "category": "Health & Wellness",
+      "category": "Beauty",
       "subcategory": "Day spa",
       "description": "Full-service day spa in Scotts Valley offering customized facials, HydraFacials, massage, waxing, and lash and brow services.",
       "address": "245 Mt Hermon Road, Suite D",
@@ -2719,7 +2719,7 @@
     },
     {
       "name": "SuperNatural Beauty & Aesthetics",
-      "category": "Health & Wellness",
+      "category": "Beauty",
       "subcategory": "Medical spa and skin care",
       "description": "Med spa in Boulder Creek founded by an aesthetic RN offering neurotoxin injections, dermal fillers, chemical peels, microneedling, red light therapy, and medical-grade skincare.",
       "address": "13350 Big Basin Way, Suite J",
@@ -2748,7 +2748,7 @@
     },
     {
       "name": "Felton Nails",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Nail salon",
       "description": "Family-owned nail salon in the Felton Faire center, in business since 2001. Owner-recommended; confirm hours by phone.",
       "address": "6265 Graham Hill Road, Felton, CA 95018",
@@ -2763,7 +2763,7 @@
     },
     {
       "name": "Millie's Nail & Spa",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Nail salon",
       "description": "Nail salon on Scotts Valley Drive. Owner-recommended; confirm hours by phone.",
       "address": null,
@@ -2776,7 +2776,7 @@
     },
     {
       "name": "Kathy Nails",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Nail salon",
       "description": "Nail salon on Highway 9 in Felton. Owner-recommended; confirm hours by phone.",
       "address": "6198 Highway 9, Felton, CA 95018",
@@ -2791,7 +2791,7 @@
     },
     {
       "name": "Bella Nails",
-      "category": "Personal Services",
+      "category": "Beauty",
       "subcategory": "Nail salon",
       "description": "Nail salon in the Mt Hermon Road shopping corridor. Owner-recommended; confirm hours by phone.",
       "address": "245U Mt Hermon Road, Scotts Valley, CA 95066",
