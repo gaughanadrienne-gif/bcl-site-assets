@@ -16,3 +16,5 @@ node_modules/
 __pycache__/
 *.tmp
 .env
+# Visual harness output (screenshots + generated harness pages)
+tools/tests/manual/_render/

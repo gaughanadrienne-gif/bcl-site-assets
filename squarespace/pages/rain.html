@@ -1,0 +1,64 @@
+<!-- Boulder Creek Local: /rain page. Paste as a single custom-HTML code block.
+     The tool renders from data/rain.json (rebuilt by rain/refresh_rain.py from
+     NOAA ACIS) into #bcl-rain.
+
+     WHY THE COPY LIVES INSIDE THE MOUNT DIV: initRain(root) sets
+     root.innerHTML as its first statement, so everything between the markers
+     below is served in the HTML, indexed by crawlers, read by no-JS users and
+     screen readers, then replaced by the interactive tool the moment the script
+     runs. That is progressive enhancement, not cloaking: the fallback carries
+     the same figures and the same caveats the tool shows. It also means this
+     page needs no JS release and no SHA repin of its own.
+
+     The static figures below were read from data/rain.json on 2026-07-29 and
+     match the rainfall article exactly. Re-read them from that file if you
+     ever re-paste this block; a stale hard-coded number here would contradict
+     the live tool sitting on top of it. -->
+<div class="bcl bcl-full" id="bcl-rain">
+<!--BCL_SR_START-->
+
+  <section class="bcl-hero">
+    <div class="bcl-wrap">
+      <p class="bcl-kicker">San Lorenzo Valley rain tracker</p>
+      <h1>How much rain has the valley actually had?</h1>
+      <p class="bcl-hero-lede">Season-to-date rainfall at the valley's longest gauge, drawn against the eighty-seven years behind it. Water year totals, storm totals, and the wettest and driest years on record. Loading the interactive version needs JavaScript; the figures below are the same ones it shows.</p>
+      <p class="bcl-note">This is a record, not a warning. For roads, air quality, the river gauge and official alerts, use <a href="/mountain-status">Mountain Status</a>. In an emergency, call 911.</p>
+    </div>
+  </section>
+
+  <section class="bcl-section">
+    <div class="bcl-wrap">
+      <div class="bcl-section-head"><h2>What this measures</h2></div>
+      <p>Rainfall on this page comes from one National Weather Service cooperative gauge: <strong>Ben Lomond No. 4</strong>, station USC00040673, at 435 feet, about five miles down-canyon from downtown Boulder Creek. It has logged daily rainfall since <strong>1937</strong> and is still reporting. It is used here because it is the only gauge near the valley with a record long enough to say what normal means. Readings are read through the NOAA Regional Climate Centers ACIS service.</p>
+      <p>Totals are counted by <strong>water year</strong>, October 1 through September 30, named for the calendar year it ends in. A water year holds exactly one winter, which is how storms actually arrive. Splitting rainfall by calendar year cuts every wet season in half and makes two winters impossible to compare.</p>
+      <p>Ben Lomond No. 4 is a once-a-day gauge and its readings reach NOAA on a delay, so the last day or two of a storm often has not arrived yet. That is why every figure on this page wears the date it was read. It is a history layer, not a live feed.</p>
+    </div>
+  </section>
+
+  <section class="bcl-section">
+    <div class="bcl-wrap">
+      <div class="bcl-section-head"><h2>How missing data is handled</h2></div>
+      <p>Some days in this record have no reading at all. Those gaps are counted, published, and left alone. Nothing is estimated, interpolated, or filled in from a neighbouring gauge.</p>
+      <ul>
+        <li>A water year missing <strong>more than five days</strong> is excluded from every average, percentile band and ranking on this page. Of the ninety water years the gauge has recorded, <strong>67 are complete enough to report</strong>, covering 1940 through 2023.</li>
+        <li>The excluded years are named rather than hidden. The largest gaps fall in 1937 through 1939, 1941, 2011, 2012 and 2024. Water year 2025 is missing fourteen days plus one multi-day accumulated total, so it is reported as approximate and left out of the averages.</li>
+        <li>A season total that contains a gap is described as a <strong>floor</strong>, not a total: the real figure is that much or more. The tool says how many readings are missing and on which dates, because a missed day in January can cost inches while a missed day in July costs almost nothing.</li>
+        <li>A trace, less than five thousandths of an inch, is a real observation and counts as zero. A missing day is not zero and is never treated as a dry day.</li>
+        <li>If the gauge stops reporting, the page says the record is behind. A season total that has stopped moving means the readings have stopped arriving, not that it has stopped raining.</li>
+        <li>Every water-year total is computed twice, once from the daily records and once from an independent monthly aggregation, and the file refuses to publish if the two disagree.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bcl-section">
+    <div class="bcl-wrap">
+      <div class="bcl-section-head"><h2>The record, in short</h2></div>
+      <p>Across the 67 reportable water years, the <strong>average is 49.09 inches</strong> and the <strong>median is 42.69 inches</strong>. The gap between them is the useful part: a handful of enormous years pull the average above the year you are actually likely to get, so the median is the better number for sizing a culvert, a tank or a ditch.</p>
+      <p>The <strong>wettest water years</strong> on record are 1983 at 95.65 inches, 2017 at 94.62, 2023 at 85.13, 1998 at 82.80 and 1958 at 80.61. The <strong>driest</strong> are 1977 at 19.97 inches, 2021 at 21.51, 1976 at 21.60, 2014 at 22.83 and 1990 at 24.30. The wettest single day in the whole record is January 4, 1982, at 11.47 inches.</p>
+      <p>Water year 2021 and water year 2023 sit two years apart: 21.51 inches and 85.13 inches. A four-fold swing inside two winters is not an anomaly here, it is the shape of the record, and it is the reason the word average does so little work in this valley.</p>
+      <p>One gauge is not a valley. Rainfall at your own place will differ with elevation, canyon and aspect. The <a href="/around-town/twenty-years-of-rain-san-lorenzo-valley">full write-up of this record</a> covers how closely Boulder Creek tracks Ben Lomond, and what the swings mean for a house up here.</p>
+    </div>
+  </section>
+
+<!--BCL_SR_END-->
+</div>

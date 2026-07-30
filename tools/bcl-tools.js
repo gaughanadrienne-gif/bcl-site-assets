@@ -1,6 +1,6 @@
 /* Boulder Creek Local — embedded tools (GitHub + jsDelivr, no app server).
  * Renders into whichever of these divs exists on the page:
- *   #bcl-directory  #bcl-food  #bcl-events  #bcl-status
+ *   #bcl-directory  #bcl-food  #bcl-events  #bcl-status  #bcl-rain
  * Data: /data/*.json in this repo, served via jsDelivr.
  * Trust rules: missing data is "unavailable", never an inferred all-clear.
  * Emergencies always route to 911 and official agencies.
@@ -141,6 +141,9 @@
       ".bcl-verified{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#67716b !important;margin-top:10px;}",
       ".bcl-note{background:#dde2d8;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
       ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#67716b !important;}",
+      /* The unavailable state's escape links carry brand link colour like every
+         other tool link. Without this they fell through to the browser default. */
+      ".bcl-unavailable a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;padding:14px 18px;margin:0 0 14px;}",
       ".bcl-promo-band{width:100vw;margin:0 calc(50% - 50vw);background:linear-gradient(160deg,#1C4266 0%,#14304C 70%);border-top:1px solid #0d2438;border-bottom:1px solid #0d2438;}",
       ".bcl-ticker{display:block;width:100%;background:#14304C;color:#FCF8EF !important;font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:9px 14px;text-decoration:none !important;border-bottom:2px solid #C3281C;}",
@@ -326,7 +329,44 @@
       ".bcl-article-body table{border-collapse:collapse;display:block;max-width:100%;overflow-x:auto;margin:1.5em 0;}",
       ".bcl-article-body th,.bcl-article-body td{border:1px solid #e3ddcf;padding:9px 12px;text-align:left;}",
       ".bcl-article-reviewed{font-family:'IBM Plex Mono',monospace;font-size:.7rem !important;letter-spacing:.06em;text-transform:uppercase;color:#67716b;border-top:1px solid #e3ddcf;padding-top:14px;margin-top:36px;}",
-      ".bcl-draft-state{max-width:760px;margin:18px auto 42px;background:#f5f1e7;border:1px solid #e3ddcf;padding:18px 20px;font-family:Inter,Arial,sans-serif;color:#4f5e57;}"
+      ".bcl-draft-state{max-width:760px;margin:18px auto 42px;background:#f5f1e7;border:1px solid #e3ddcf;padding:18px 20px;font-family:Inter,Arial,sans-serif;color:#4f5e57;}",
+      ".bcl-rain-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0 0;}",
+      ".bcl-rain-tile{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:14px 16px;display:flex;flex-direction:column;gap:3px;}",
+      ".bcl-rain-tile-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;}",
+      ".bcl-rain-tile-value{font-size:1.6rem;line-height:1.1;color:#173f36 !important;font-variant-numeric:tabular-nums;}",
+      ".bcl-rain-tile-note{font-size:.78rem;color:#67716b !important;line-height:1.35;}",
+      ".bcl-rain-gap{max-width:80ch;}",
+      ".bcl-rain-src{font-size:.82rem;color:#67716b !important;max-width:80ch;margin:6px 0 0;line-height:1.5;}",
+      ".bcl-rain-src a{color:#2e6b46 !important;}",
+      ".bcl-rain-chart{margin:6px 0 4px;overflow-x:auto;}",
+      /* Below about 760px the chart would shrink its axis text to 7px, so it
+         scrolls inside its own container instead. The page body never scrolls
+         sideways; only the chart does. */
+      ".bcl-rain-chart svg{min-width:720px;}",
+      ".bcl-rain-key{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8rem;color:#1c2a26 !important;margin:0 0 6px;}",
+      ".bcl-rain-key span{display:inline-flex;align-items:center;gap:7px;}",
+      ".bcl-rain-key i{display:inline-block;width:18px;height:12px;flex:0 0 18px;}",
+      ".bcl-rain-sw-line{height:0 !important;border-top:2px solid #2a7d55;}",
+      ".bcl-rain-sw-med{height:0 !important;border-top:1px solid #67716b;}",
+      ".bcl-rain-sw-b50{background:#d9d4c2;}",
+      ".bcl-rain-sw-b90{background:#eae6d8;}",
+      ".bcl-rain-controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;margin:14px 0 10px;}",
+      ".bcl-rain-field{display:flex;flex-direction:column;gap:5px;flex:0 1 auto;order:1;}",
+      ".bcl-rain-field label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;}",
+      ".bcl-rain-field select{font-family:Inter,Arial,sans-serif;font-size:.95rem;padding:9px 12px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;max-width:100%;}",
+      ".bcl-rain-msg{flex:0 0 100%;order:9;margin:0;font-size:.88rem;color:#1c2a26 !important;line-height:1.5;max-width:80ch;}",
+      ".bcl-rain-msg:empty{display:none;}",
+      ".bcl-rain-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:12px 0 0;}",
+      ".bcl-rain-table{border-collapse:collapse;width:100%;font-size:.86rem;margin:8px 0 0;}",
+      ".bcl-rain-table caption{text-align:left;font-size:.8rem;color:#67716b !important;padding:0 0 6px;line-height:1.45;}",
+      ".bcl-rain-table th,.bcl-rain-table td{border:1px solid #e3ddcf;padding:6px 10px;text-align:left;color:#1c2a26 !important;font-variant-numeric:tabular-nums;}",
+      ".bcl-rain-table thead th{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#67716b !important;font-weight:500;}",
+      ".bcl-rain-table tbody th{font-weight:600;}",
+      ".bcl-rain-flag{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:#8f4f45 !important;display:block;font-weight:500;}",
+      ".bcl-rain-details{margin:8px 0 0;}",
+      ".bcl-rain-details summary{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#2e6b46 !important;cursor:pointer;}",
+      ".bcl-rain-details[open] summary{margin-bottom:6px;}",
+      "@media (max-width:600px){.bcl-rain-field,.bcl-rain-field select{flex:1 1 100%;width:100%;}}"
     ].join("");
     var el = document.createElement("style");
     el.id = CSS_ID;
@@ -2265,6 +2305,720 @@
     });
   }
 
+  /* ---------- SLV rain and water year tracker ----------
+     History layer for Mountain Status, never a replacement for it. Mountain
+     Status answers "what is happening right now"; this answers "how does this
+     season compare with the eighty-seven years on record". The two are linked
+     both ways and neither speaks for the other.
+
+     Data: data/rain.json, rebuilt by rain/refresh_rain.py from NOAA ACIS,
+     station USC00040673 (Ben Lomond No. 4, 435 ft, daily since 1937). The
+     method matches the rainfall article exactly, and the refresh refuses to
+     write a payload whose water-year totals disagree with an independent
+     monthly aggregation, so the tool and the article cannot drift apart.
+
+     Freshness rules, the Mountain Status standard applied to a record rather
+     than to live conditions:
+       * every number wears the date it was read and the age of that reading;
+       * a gap in the record is stated as a gap, with the dates, and season
+         totals that contain one are called a floor rather than a total;
+       * a station that has stopped reporting is reported as behind, never as
+         a dry spell, and the reader is sent to the live sources;
+       * a failed fetch says the record is unavailable, which is not an
+         all-clear about rain, drought, or anything else.
+
+     Colour: one validated hue #2a7d55 on surface #fffdf8 (all six dataviz
+     checks pass). The historical band and median are deliberately neutral
+     gray, not a second hue, because this is an emphasis chart: the current
+     season is the series, history is context. Two steps of the brand green
+     fail the normal-vision separation floor, so emphasis is carried by direct
+     labels. See agent-memory/bcl-chart-palette.md. */
+
+  var RAIN = {
+    file: "rain.json",
+    article: "/around-town/twenty-years-of-rain-san-lorenzo-valley",
+    status: "/mountain-status",
+    nws: "https://www.weather.gov/mtr/",
+    acis: "https://www.rcc-acis.org/",
+    hue: "#2a7d55",
+    surface: "#fffdf8",
+    grid: "#e6e1d4",
+    ink: "#1c2a26",
+    muted: "#67716b",
+    band90: "#eae6d8",
+    band50: "#d9d4c2",
+    stale_days: 4
+  };
+
+  /* The canonical 365-day water year, October through September, built from the
+     month lengths so it cannot drift from the Python side. February 29 shares
+     February 28's slot: its rain still lands in every later cumulative total. */
+  var RAIN_MONTHS = [[10, 31], [11, 30], [12, 31], [1, 31], [2, 28], [3, 31],
+                     [4, 30], [5, 31], [6, 30], [7, 31], [8, 31], [9, 30]];
+  var RAIN_WY_DAYS = 365;
+
+  function rainMonthStarts() {
+    var out = [], i = 1;
+    RAIN_MONTHS.forEach(function (m) {
+      out.push({ month: m[0], start: i, end: i + m[1] - 1, label: MON_SHORT[m[0] - 1] });
+      i += m[1];
+    });
+    return out;
+  }
+
+  function rainWaterYear(dayKey) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(dayKey || ""));
+    if (!m) return null;
+    return +m[2] >= 10 ? +m[1] + 1 : +m[1];
+  }
+
+  function rainWaterYearDay(dayKey) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(dayKey || ""));
+    if (!m) return null;
+    var month = +m[2], day = Math.min(+m[3], month === 2 ? 28 : 31);
+    var starts = rainMonthStarts(), i;
+    for (i = 0; i < starts.length; i++) {
+      if (starts[i].month === month) return starts[i].start + day - 1;
+    }
+    return null;
+  }
+
+  /* Today in Pacific time, computed for the date in question. Never a fixed
+     UTC offset: America/Los_Angeles is -7 in summer and -8 from the first
+     Sunday in November, and a constant silently shifts every date across that
+     boundary. If the browser cannot resolve the zone we return null and the
+     page omits the age lines rather than printing a guess. */
+  function rainPacificDay(now) {
+    var t = now || new Date();
+    try {
+      var parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit"
+      }).formatToParts(t);
+      var got = {};
+      parts.forEach(function (p) { got[p.type] = p.value; });
+      if (!got.year || !got.month || !got.day) return null;
+      return got.year + "-" + got.month + "-" + got.day;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function rainInches(n) {
+    return (n == null || isNaN(n)) ? "" : Number(n).toFixed(2) + " in";
+  }
+
+  function rainLongDate(dayKey) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(dayKey || ""));
+    if (!m) return "";
+    return MON_SHORT[+m[2] - 1] + " " + +m[3] + ", " + m[1];
+  }
+
+  function rainAgeWords(days) {
+    if (days == null) return "";
+    if (days <= 0) return "today";
+    if (days === 1) return "yesterday";
+    return days + " days ago";
+  }
+
+  /* What the reader is told about how current the record is. Two separate
+     clocks, because they fail separately: the station can stop reporting while
+     the file rebuilds fine, and the file can go stale while the station reports. */
+  function rainFreshness(payload, today) {
+    var current = (payload || {}).current || {};
+    var obsAge = current.through ? dayAge(current.through, today) : null;
+    var fileAge = payload && payload.updated ? dayAge(payload.updated, today) : null;
+    return {
+      through: current.through || "",
+      observationAge: obsAge,
+      fileAge: fileAge,
+      behind: obsAge != null && obsAge > RAIN.stale_days,
+      knownToday: !!today
+    };
+  }
+
+  function rainFreshnessHTML(payload, today) {
+    var f = rainFreshness(payload, today);
+    var station = (payload || {}).station || {};
+    var h = '<div class="bcl-count">';
+    if (f.through) {
+      h += "LAST READING AT THE GAUGE " + esc(rainLongDate(f.through).toUpperCase());
+      if (f.knownToday && f.observationAge != null) {
+        h += " · " + esc(rainAgeWords(f.observationAge).toUpperCase());
+      }
+    } else {
+      h += "NO READING DATE IN THIS FILE";
+    }
+    if (payload && payload.updated) {
+      h += " · RECORD REBUILT " + esc(rainLongDate(payload.updated).toUpperCase());
+    }
+    h += "</div>";
+    if (f.behind || !f.through) {
+      h += '<div class="bcl-note"><strong>The gauge record is behind.</strong> ' +
+        "Ben Lomond No. 4 is a once-a-day cooperative gauge and its readings reach NOAA on a delay, " +
+        "so rain that fell in the last few days may not be counted here yet. A season total that has " +
+        "stopped moving means the record has stopped arriving, not that it has stopped raining. " +
+        'For what is falling now, use the <a href="' + RAIN.nws + '" target="_blank" rel="noopener">National Weather Service</a> ' +
+        'and <a href="' + RAIN.status + '">Mountain Status</a>.</div>';
+    } else if (station.name) {
+      h += '<p class="bcl-rain-src">Source: NOAA cooperative gauge ' + esc(station.name) +
+        " (" + esc(station.id || "") + "), " + esc(station.elevation_ft || "") +
+        ' ft, daily rainfall since ' + esc(station.record_starts || "") +
+        ', read through the <a href="' + RAIN.acis + '" target="_blank" rel="noopener">NOAA Regional Climate Centers ACIS service</a>. ' +
+        'This is history, not a forecast: for current conditions see <a href="' + RAIN.status + '">Mountain Status</a>.</p>';
+    }
+    return h;
+  }
+
+  /* The gap sentence. It says how many readings are missing, when they fell,
+     and what that does to the season total, because "7 missing days" means
+     something very different in January than in July. */
+  function rainGapNote(current) {
+    var gaps = (current || {}).gaps || [];
+    var n = (current || {}).missing_days || 0;
+    if (!n) {
+      return "Every day of this water year has a reading, so the season total is a complete total.";
+    }
+    var wet = (current || {}).wet_season_gaps || 0;
+    var s = n === 1 ? "One day" : n + " days";
+    var note = s + " of this water year " + (n === 1 ? "has" : "have") +
+      " no reading at the gauge, so the season total is a floor rather than a full total: " +
+      "the true figure is at least that much.";
+    if (wet === 0) {
+      note += " All of the gaps fall outside the wet half of the year, October through March, " +
+        "which is when nearly all of the valley's rain arrives, so the undercount is small.";
+    } else {
+      note += " " + (wet === 1 ? "One gap falls" : wet + " of the gaps fall") +
+        " inside the wet season, October through March, when a single missed day can cost inches.";
+    }
+    if (gaps.length && gaps.length <= 14) {
+      note += " Missing: " + gaps.map(rainLongDate).join(", ") + ".";
+    }
+    if ((current || {}).accumulated_days) {
+      note += " " + current.accumulated_days +
+        " reading" + (current.accumulated_days === 1 ? "" : "s") +
+        " arrived as a multi-day accumulated total, which keeps the season sum right while leaving those individual days unknown.";
+    }
+    return note;
+  }
+
+  /* Season to date against the same date in the reportable years. Deliberately
+     phrased as a count of years, not a percentile: "wetter than 36 of 67 years
+     by this date" is checkable, and it does not imply a smoothness the record
+     does not have. */
+  function rainSeasonSummary(payload) {
+    var current = (payload || {}).current || {};
+    var record = (payload || {}).record || {};
+    var normal = current.normal_to_date;
+    var pct = (normal != null && normal > 0 && current.to_date != null)
+      ? Math.round((current.to_date / normal) * 100) : null;
+    return {
+      wy: current.wy,
+      toDate: current.to_date,
+      normal: normal,
+      pctOfNormal: pct,
+      drier: current.drier_years_to_date,
+      years: current.years_compared,
+      through: current.through,
+      median: record.median,
+      floor: !!current.missing_days
+    };
+  }
+
+  function rainRankText(drier, years) {
+    if (drier == null || !years) return "";
+    if (drier === 0) return "the driest start to a year in the record";
+    if (drier === years) return "the wettest start to a year in the record";
+    return "wetter than " + drier + " of " + years + " years by this date";
+  }
+
+  function rainStatsHTML(payload) {
+    var s = rainSeasonSummary(payload);
+    var tiles = [];
+    tiles.push(["Season to date, water year " + (s.wy || ""),
+                s.floor ? rainInches(s.toDate) + " or more" : rainInches(s.toDate),
+                s.through ? "through " + rainLongDate(s.through) : ""]);
+    tiles.push(["Typical by this date", rainInches(s.normal),
+                "median of " + (s.years || 0) + " reportable years"]);
+    tiles.push(["Against that typical year",
+                s.pctOfNormal != null ? s.pctOfNormal + "%" : "not available",
+                rainRankText(s.drier, s.years)]);
+    tiles.push(["Typical full water year", rainInches(s.median),
+                "median, October to September"]);
+    return '<div class="bcl-rain-tiles">' + tiles.map(function (t) {
+      return '<div class="bcl-rain-tile"><span class="bcl-rain-tile-label">' + esc(t[0]) +
+        '</span><span class="bcl-rain-tile-value">' + esc(t[1]) +
+        '</span><span class="bcl-rain-tile-note">' + esc(t[2]) + "</span></div>";
+    }).join("") + "</div>";
+  }
+
+  /* ---------- chart A: this season against the record ----------
+     Emphasis form. One series in the accent hue (this water year), history as
+     neutral washes behind it. Month-wide hit rectangles carry <title> text so
+     the chart has native tooltips without any hover JS, and the month table
+     below it carries every number for anyone the tooltips do not reach. */
+
+  function rainNiceMax(v) {
+    var step = v > 60 ? 20 : 10;
+    return Math.max(step, Math.ceil((v * 1.04) / step) * step);
+  }
+
+  function rainSeasonChart(payload) {
+    var band = (payload || {}).band || {};
+    var current = (payload || {}).current || {};
+    var series = current.cumulative || [];
+    var p10 = band.p10 || [], p50 = band.p50 || [], p90 = band.p90 || [];
+    var p25 = band.p25 || [], p75 = band.p75 || [];
+    if (p50.length !== RAIN_WY_DAYS) return "";
+
+    var W = 860, H = 350, L = 46, R = 18, T = 26, B = 44;
+    var PW = W - L - R, PH = H - T - B;
+    var ymax = rainNiceMax(Math.max(p90[p90.length - 1] || 0,
+                                    series.length ? series[series.length - 1] : 0));
+    function X(i) { return L + (i - 1) * PW / (RAIN_WY_DAYS - 1); }
+    function Y(v) { return T + PH - (Math.max(0, v) / ymax) * PH; }
+
+    function areaPath(hi, lo) {
+      var d = [], i;
+      for (i = 0; i < RAIN_WY_DAYS; i++) d.push((i ? "L" : "M") + X(i + 1).toFixed(1) + "," + Y(hi[i]).toFixed(1));
+      for (i = RAIN_WY_DAYS - 1; i >= 0; i--) d.push("L" + X(i + 1).toFixed(1) + "," + Y(lo[i]).toFixed(1));
+      return d.join(" ") + " Z";
+    }
+    function linePath(values) {
+      var d = [], i;
+      for (i = 0; i < values.length; i++) d.push((i ? "L" : "M") + X(i + 1).toFixed(1) + "," + Y(values[i]).toFixed(1));
+      return d.join(" ");
+    }
+
+    var p = [];
+    p.push('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" ' +
+      'aria-label="' + esc("Water year " + (current.wy || "") + " rainfall so far at the Ben Lomond No. 4 gauge, " +
+        rainInches(current.to_date) + " through " + rainLongDate(current.through) +
+        ", drawn against the range of the " + ((payload.record || {}).reportable_years || 0) +
+        " reportable years on record. The typical total by this date is " + rainInches(current.normal_to_date) + ".") + '" ' +
+      'style="max-width:' + W + 'px;height:auto;display:block;margin:0 auto;font-family:inherit">');
+    p.push("<desc>" + esc("Season-to-date rainfall accumulates from October 1. The two gray bands are the middle " +
+      "80 percent and the middle half of the reportable years on record; the thin gray line is the median. " +
+      "The dotted vertical line marks the last reading at the gauge: this year's line stops there and nothing " +
+      "beyond it is a projection. Years missing more than five days of record are left out of the comparison " +
+      "rather than estimated.") + "</desc>");
+    p.push('<rect width="' + W + '" height="' + H + '" fill="' + RAIN.surface + '"/>');
+
+    var step = ymax > 60 ? 20 : 10, v;
+    for (v = 0; v <= ymax; v += step) {
+      p.push('<line x1="' + L + '" y1="' + Y(v).toFixed(1) + '" x2="' + (L + PW) + '" y2="' + Y(v).toFixed(1) +
+        '" stroke="' + RAIN.grid + '" stroke-width="1"/>');
+      p.push('<text x="' + (L - 8) + '" y="' + (Y(v) + 3.5).toFixed(1) + '" text-anchor="end" font-size="11" fill="' +
+        RAIN.muted + '" style="font-variant-numeric:tabular-nums">' + v + "</text>");
+    }
+    p.push('<text x="' + (L - 8) + '" y="' + (T - 10) + '" text-anchor="end" font-size="11" fill="' + RAIN.muted + '">inches</text>');
+
+    if (p10.length === RAIN_WY_DAYS && p90.length === RAIN_WY_DAYS) {
+      p.push('<path d="' + areaPath(p90, p10) + '" fill="' + RAIN.band90 + '"/>');
+    }
+    if (p25.length === RAIN_WY_DAYS && p75.length === RAIN_WY_DAYS) {
+      p.push('<path d="' + areaPath(p75, p25) + '" fill="' + RAIN.band50 + '"/>');
+    }
+    p.push('<path d="' + linePath(p50) + '" fill="none" stroke="' + RAIN.muted + '" stroke-width="1"/>');
+
+    if (series.length > 1) {
+      p.push('<path d="' + linePath(series) + '" fill="none" stroke="' + RAIN.hue +
+        '" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>');
+      var lastI = series.length, lastV = series[series.length - 1];
+      /* A hairline drops from the last reading to the axis. Without it the
+         median line carrying on past the end dot can read as a forecast of
+         where this year is heading, which this page must never imply. */
+      p.push('<line x1="' + X(lastI).toFixed(1) + '" y1="' + Y(lastV).toFixed(1) + '" x2="' + X(lastI).toFixed(1) +
+        '" y2="' + Y(0).toFixed(1) + '" stroke="' + RAIN.muted + '" stroke-width="1" stroke-dasharray="2 3" opacity="0.7"/>');
+      p.push('<circle cx="' + X(lastI).toFixed(1) + '" cy="' + Y(lastV).toFixed(1) + '" r="4.5" fill="' + RAIN.hue +
+        '" stroke="' + RAIN.surface + '" stroke-width="2"/>');
+      /* The one direct label: the number the whole chart exists to show.
+         It flips to the left of the dot once the season runs past the middle,
+         so it can never be clipped by the right edge. */
+      var lx = X(lastI), anchor = "start", dx = 9;
+      if (lx > L + PW * 0.6) { anchor = "end"; dx = -9; }
+      p.push('<text x="' + (lx + dx).toFixed(1) + '" y="' + (Y(lastV) - 8).toFixed(1) + '" text-anchor="' + anchor +
+        '" font-size="11.5" fill="' + RAIN.ink + '" stroke="' + RAIN.surface + '" stroke-width="3.5" paint-order="stroke" ' +
+        'style="font-variant-numeric:tabular-nums">' + esc(Number(lastV).toFixed(2)) + " in</text>");
+      p.push('<text x="' + (lx + dx).toFixed(1) + '" y="' + (Y(lastV) - 21).toFixed(1) + '" text-anchor="' + anchor +
+        '" font-size="10" fill="' + RAIN.muted + '" stroke="' + RAIN.surface + '" stroke-width="3" paint-order="stroke">WY' +
+        esc(current.wy || "") + "</text>");
+    }
+
+    p.push('<line x1="' + L + '" y1="' + Y(0).toFixed(1) + '" x2="' + (L + PW) + '" y2="' + Y(0).toFixed(1) +
+      '" stroke="' + RAIN.grid + '" stroke-width="1"/>');
+    rainMonthStarts().forEach(function (m) {
+      p.push('<text x="' + X(m.start + (m.end - m.start) / 2).toFixed(1) + '" y="' + (T + PH + 16) +
+        '" text-anchor="middle" font-size="10.5" fill="' + RAIN.muted + '">' + esc(m.label) + "</text>");
+      /* Invisible month-wide hit target so the chart has real tooltips with no
+         hover script. Native <title> works for mouse users and is exposed to
+         assistive tech; the month table below carries the same numbers. */
+      var seasonEnd = Math.min(m.end, series.length);
+      var tip = m.label + ": season total " +
+        (seasonEnd >= m.start && series.length >= m.start ? rainInches(series[seasonEnd - 1]) : "no reading yet") +
+        ", typical " + rainInches(p50[m.end - 1]) + " by the end of the month";
+      p.push('<rect x="' + X(m.start).toFixed(1) + '" y="' + T + '" width="' + (X(m.end) - X(m.start) || 1).toFixed(1) +
+        '" height="' + PH + '" fill="transparent"><title>' + esc(tip) + "</title></rect>");
+    });
+    p.push('<text x="' + L + '" y="' + (H - 8) + '" font-size="10.5" fill="' + RAIN.muted + '">' +
+      esc("Water year runs October 1 to September 30. Bands and median from the " +
+        ((payload.record || {}).reportable_years || 0) + " water years complete enough to report. " +
+        "This year's line stops at the last reading, marked by the dotted line.") + "</text>");
+    p.push("</svg>");
+    return p.join("");
+  }
+
+  function rainSeasonLegendHTML(payload) {
+    var years = ((payload || {}).record || {}).reportable_years || 0;
+    return '<div class="bcl-rain-key">' +
+      '<span><i class="bcl-rain-sw-line"></i>This water year</span>' +
+      '<span><i class="bcl-rain-sw-b50"></i>Middle half of the ' + years + ' years on record</span>' +
+      '<span><i class="bcl-rain-sw-b90"></i>Middle 80 percent</span>' +
+      '<span><i class="bcl-rain-sw-med"></i>Median year</span>' +
+      "</div>";
+  }
+
+  /* The table view. Every chart in this tool has one, so nothing is available
+     only by hovering. */
+  function rainMonthTable(payload) {
+    var band = (payload || {}).band || {};
+    var current = (payload || {}).current || {};
+    var series = current.cumulative || [];
+    var p50 = band.p50 || [];
+    if (p50.length !== RAIN_WY_DAYS) return "";
+    var rows = rainMonthStarts().map(function (m) {
+      var haveStart = series.length >= m.start;
+      var end = Math.min(m.end, series.length);
+      var before = m.start > 1 ? (series.length >= m.start - 1 ? series[m.start - 2] : null) : 0;
+      var monthTotal = (haveStart && before != null) ? Math.round((series[end - 1] - before) * 100) / 100 : null;
+      return "<tr><th scope=\"row\">" + esc(m.label) + "</th><td>" +
+        (monthTotal == null ? "no reading yet" : esc(rainInches(monthTotal))) + "</td><td>" +
+        (haveStart ? esc(rainInches(series[end - 1])) : "no reading yet") + "</td><td>" +
+        esc(rainInches(p50[m.end - 1])) + "</td></tr>";
+    }).join("");
+    return '<details class="bcl-rain-details"><summary>Month by month, as a table</summary>' +
+      '<table class="bcl-rain-table"><caption>Water year ' + esc(current.wy || "") +
+      ' at the Ben Lomond No. 4 gauge, against the median of the reportable years.</caption><thead><tr>' +
+      "<th scope=\"col\">Month</th><th scope=\"col\">Rain that month</th>" +
+      "<th scope=\"col\">Season total by month end</th><th scope=\"col\">Typical season total by month end</th>" +
+      "</tr></thead><tbody>" + rows + "</tbody></table></details>";
+  }
+
+  /* ---------- chart B: every reportable water year ----------
+     Same geometry the rainfall article already proved: one hue for every
+     column, median and mean as labelled hairlines, and selective direct
+     labels rather than a second colour. A selected year is marked with an ink
+     tick and its own label, never by recolouring the column, because two
+     steps of this green fail the dataviz separation floor. */
+
+  function rainTotalsChart(payload, scope, selectedWy) {
+    var totals = (payload || {}).totals || {};
+    var record = (payload || {}).record || {};
+    var years = Object.keys(totals).map(Number).sort(function (a, b) { return a - b; });
+    if (!years.length) return "";
+    if (scope === "recent") years = years.slice(-20);
+    var y0 = years[0], y1 = years[years.length - 1];
+    var span = y1 - y0 + 1;
+
+    /* The right margin is wide on purpose: the median and mean labels live
+       OUTSIDE the plot. The article's first chart anchored them in the longest
+       stretch of missing years and they still landed on the 1944 to 1949
+       columns, because the widest gap in this record is only three years wide.
+       Outside the plot they cannot collide with a column at all. */
+    var W = 860, H = 360, L = 46, R = 80, T = 40, B = 62;
+    var PW = W - L - R, PH = H - T - B;
+    var ymax = rainNiceMax(Math.max.apply(null, years.map(function (y) { return totals[y]; })));
+    var bandW = PW / span;
+    var bw = Math.min(24, Math.max(4, bandW - 2));
+    var rad = Math.min(4, bw / 2);
+    function X(year) { return L + (year - y0) * PW / span; }
+    function Y(v) { return T + PH - (Math.max(0, v) / ymax) * PH; }
+
+    var p = [];
+    p.push('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" ' +
+      'aria-label="' + esc("Column chart of water-year rainfall totals at the Ben Lomond No. 4 gauge, " + y0 +
+        " to " + y1 + ". The median is " + record.median + " inches and the mean is " + record.mean + " inches.") + '" ' +
+      'style="max-width:' + W + 'px;height:auto;display:block;margin:0 auto;font-family:inherit">');
+    p.push("<desc>" + esc("One column per water year, October to September. Years missing more than five days of " +
+      "record are left out rather than estimated, which is why some years have no column.") + "</desc>");
+    p.push('<rect width="' + W + '" height="' + H + '" fill="' + RAIN.surface + '"/>');
+
+    var step = ymax > 60 ? 20 : 10, v;
+    for (v = 0; v <= ymax; v += step) {
+      p.push('<line x1="' + L + '" y1="' + Y(v).toFixed(1) + '" x2="' + (L + PW) + '" y2="' + Y(v).toFixed(1) +
+        '" stroke="' + RAIN.grid + '" stroke-width="1"/>');
+      p.push('<text x="' + (L - 8) + '" y="' + (Y(v) + 3.5).toFixed(1) + '" text-anchor="end" font-size="11" fill="' +
+        RAIN.muted + '" style="font-variant-numeric:tabular-nums">' + v + "</text>");
+    }
+    p.push('<text x="' + (L - 8) + '" y="' + (T - 14) + '" text-anchor="end" font-size="11" fill="' + RAIN.muted + '">inches</text>');
+
+    years.forEach(function (year) {
+      var val = totals[year];
+      var x = X(year) + (bandW - bw) / 2, yy = Y(val), h = (T + PH) - yy, r = Math.min(rad, h);
+      p.push('<path d="M' + x.toFixed(2) + "," + (T + PH).toFixed(1) + " L" + x.toFixed(2) + "," + (yy + r).toFixed(2) +
+        " Q" + x.toFixed(2) + "," + yy.toFixed(2) + " " + (x + r).toFixed(2) + "," + yy.toFixed(2) +
+        " L" + (x + bw - r).toFixed(2) + "," + yy.toFixed(2) +
+        " Q" + (x + bw).toFixed(2) + "," + yy.toFixed(2) + " " + (x + bw).toFixed(2) + "," + (yy + r).toFixed(2) +
+        " L" + (x + bw).toFixed(2) + "," + (T + PH).toFixed(1) + ' Z" fill="' + RAIN.hue + '"><title>' +
+        esc("Water year " + year + ": " + Number(val).toFixed(2) + " inches") + "</title></path>");
+    });
+
+    var yr;
+    [[record.median, "median " + record.median], [record.mean, "mean " + record.mean]].forEach(function (ref) {
+      if (ref[0] == null) return;
+      p.push('<line x1="' + L + '" y1="' + Y(ref[0]).toFixed(1) + '" x2="' + (L + PW) + '" y2="' + Y(ref[0]).toFixed(1) +
+        '" stroke="' + RAIN.ink + '" stroke-width="1" opacity="0.55"/>');
+      p.push('<text x="' + (L + PW + 6) + '" y="' + (Y(ref[0]) + 3.5).toFixed(1) + '" font-size="10.5" fill="' +
+        RAIN.ink + '" opacity="0.85">' + esc(ref[1]) + "</text>");
+    });
+
+    /* Selective direct labels: the extremes in view, plus whichever year the
+       reader has looked up. Tall bars label above the cap; short bars label on
+       their own row below the axis with a leader line, so no neighbouring
+       column can crop them. */
+    var marked = {};
+    var ordered = years.slice().sort(function (a, b) { return totals[b] - totals[a]; });
+    ordered.slice(0, 3).forEach(function (y) { marked[y] = 1; });
+    ordered.slice(-2).forEach(function (y) { marked[y] = 1; });
+    if (selectedWy && totals[selectedWy] != null) marked[selectedWy] = 1;
+    Object.keys(marked).map(Number).forEach(function (year) {
+      var val = totals[year];
+      /* Centred text is clamped inside the plot so the first and last columns'
+         labels cannot run off the edge. Measured, not hoped for. */
+      var x = Math.min(Math.max(X(year) + bandW / 2, L + 20), L + PW - 20);
+      var lab = Number(val).toFixed(2).replace(/0$/, "");
+      if (Y(val) > T + PH * 0.5) {
+        p.push('<line x1="' + x.toFixed(1) + '" y1="' + (T + PH + 2) + '" x2="' + x.toFixed(1) + '" y2="' + (T + PH + 26) +
+          '" stroke="' + RAIN.muted + '" stroke-width="1" opacity="0.5"/>');
+        p.push('<text x="' + x.toFixed(1) + '" y="' + (T + PH + 37) + '" text-anchor="middle" font-size="10.5" fill="' +
+          RAIN.ink + '" stroke="' + RAIN.surface + '" stroke-width="3" paint-order="stroke" ' +
+          'style="font-variant-numeric:tabular-nums">' + year + ": " + esc(lab) + "</text>");
+      } else {
+        p.push('<text x="' + x.toFixed(1) + '" y="' + (Y(val) - 8).toFixed(1) + '" text-anchor="middle" font-size="10.5" fill="' +
+          RAIN.ink + '" stroke="' + RAIN.surface + '" stroke-width="3" paint-order="stroke" ' +
+          'style="font-variant-numeric:tabular-nums">' + esc(lab) + "</text>");
+        p.push('<text x="' + x.toFixed(1) + '" y="' + (Y(val) - 19).toFixed(1) + '" text-anchor="middle" font-size="10" fill="' +
+          RAIN.muted + '" stroke="' + RAIN.surface + '" stroke-width="3" paint-order="stroke">' + year + "</text>");
+      }
+    });
+
+    p.push('<line x1="' + L + '" y1="' + (T + PH) + '" x2="' + (L + PW) + '" y2="' + (T + PH) + '" stroke="' + RAIN.grid + '" stroke-width="1"/>');
+    var tick = span > 40 ? 10 : (span > 12 ? 5 : 2);
+    for (yr = Math.ceil(y0 / tick) * tick; yr <= y1; yr += tick) {
+      p.push('<text x="' + (X(yr) + bandW / 2).toFixed(1) + '" y="' + (T + PH + 15) + '" text-anchor="middle" font-size="11" fill="' +
+        RAIN.muted + '" style="font-variant-numeric:tabular-nums">' + yr + "</text>");
+    }
+    p.push('<text x="' + L + '" y="' + (H - 8) + '" font-size="10.5" fill="' + RAIN.muted + '">' +
+      esc("Water years at the Ben Lomond No. 4 gauge. Years missing more than five days of record are omitted.") + "</text>");
+    p.push("</svg>");
+    return p.join("");
+  }
+
+  /* ---------- lookups ---------- */
+
+  function rainYearLookup(payload, wy) {
+    var totals = (payload || {}).totals || {};
+    var record = (payload || {}).record || {};
+    wy = +wy;
+    if (!wy) return null;
+    var excluded = ((payload || {}).excluded || []).filter(function (r) { return r.wy === wy; })[0];
+    if (totals[wy] == null) {
+      if (!excluded) return { wy: wy, known: false };
+      return {
+        wy: wy, known: true, reportable: false, inches: excluded.inches,
+        missing: excluded.missing, partial: !!excluded.partial
+      };
+    }
+    var ranked = Object.keys(totals).map(Number).sort(function (a, b) { return totals[b] - totals[a]; });
+    var rank = ranked.indexOf(wy) + 1;
+    var inches = totals[wy];
+    return {
+      wy: wy, known: true, reportable: true, inches: inches, rank: rank, of: ranked.length,
+      driestRank: ranked.length - rank + 1,
+      pctOfMedian: record.median ? Math.round((inches / record.median) * 100) : null
+    };
+  }
+
+  function rainOrdinal(n) {
+    if (n == null) return "";
+    var mod100 = n % 100, mod10 = n % 10;
+    if (mod100 >= 11 && mod100 <= 13) return n + "th";
+    if (mod10 === 1) return n + "st";
+    if (mod10 === 2) return n + "nd";
+    if (mod10 === 3) return n + "rd";
+    return n + "th";
+  }
+
+  function rainLookupMessage(look) {
+    if (!look) return "";
+    if (!look.known) {
+      return "Water year " + look.wy + " is not in this record.";
+    }
+    if (!look.reportable) {
+      var why = look.partial
+        ? "that water year is not finished yet"
+        : look.missing + " days have no reading, more than the five this record allows";
+      return "Water year " + look.wy + " is not reportable: " + why + ". " +
+        "The days that were recorded add up to " + rainInches(look.inches) +
+        ", which is a floor, not a total. It is left out of the averages and the chart rather than estimated.";
+    }
+    var side = look.rank <= look.of / 2
+      ? rainOrdinal(look.rank) + " wettest"
+      : rainOrdinal(look.driestRank) + " driest";
+    return "Water year " + look.wy + ": " + rainInches(look.inches) + ", " + side +
+      " of the " + look.of + " reportable years" +
+      (look.pctOfMedian != null ? ", " + look.pctOfMedian + " percent of the median year" : "") + ".";
+  }
+
+  function rainExtremesHTML(payload) {
+    function table(rows, heading) {
+      if (!rows || !rows.length) return "";
+      return "<table class=\"bcl-rain-table\"><caption>" + esc(heading) + "</caption><thead><tr>" +
+        "<th scope=\"col\">Rank</th><th scope=\"col\">Water year</th><th scope=\"col\">Inches</th></tr></thead><tbody>" +
+        rows.map(function (r) {
+          return "<tr><th scope=\"row\">" + esc(rainOrdinal(r.rank)) + "</th><td>" + esc(r.wy) +
+            "</td><td>" + esc(Number(r.inches).toFixed(2)) + "</td></tr>";
+        }).join("") + "</tbody></table>";
+    }
+    return '<div class="bcl-rain-two">' +
+      table((payload || {}).wettest, "Wettest water years on record") +
+      table((payload || {}).driest, "Driest water years on record") +
+      "</div>";
+  }
+
+  function rainStormsHTML(payload) {
+    var current = (payload || {}).current || {};
+    var rows = current.storms || [];
+    if (!rows.length) {
+      return "<p>No storm in water year " + esc(current.wy || "") + " has yet totalled half an inch at this gauge" +
+        (current.missing_days ? ", among the days that were recorded" : "") +
+        ". Storm totals appear here as the season's rain arrives.</p>";
+    }
+    return '<table class="bcl-rain-table"><caption>' +
+      esc("Storms of half an inch or more, water year " + (current.wy || "") +
+        ". A storm here is a run of consecutive days with measurable rain at this one gauge.") +
+      "</caption><thead><tr><th scope=\"col\">Dates</th><th scope=\"col\">Days</th>" +
+      "<th scope=\"col\">Total</th><th scope=\"col\">Wettest day</th></tr></thead><tbody>" +
+      rows.map(function (s) {
+        var when = s.start === s.end ? rainLongDate(s.start)
+          : rainLongDate(s.start) + " to " + rainLongDate(s.end);
+        return "<tr><th scope=\"row\">" + esc(when) + (s.incomplete
+          ? ' <span class="bcl-rain-flag">gap alongside, total incomplete</span>' : "") +
+          "</th><td>" + esc(s.days) + "</td><td>" + esc(Number(s.inches).toFixed(2)) +
+          "</td><td>" + esc(Number(s.wettest_day).toFixed(2)) + "</td></tr>";
+      }).join("") + "</tbody></table>";
+  }
+
+  /* The controls row. Every child is either a label-plus-control pair or a
+     full-width sibling with an explicit order, never a message tucked inside a
+     control group: a flex row with align-items:flex-end would otherwise leave
+     the two selects sitting at different heights the moment the aria-live
+     region fills. Tested filled, not just empty. */
+  function rainControlsHTML(payload, message) {
+    var totals = (payload || {}).totals || {};
+    var excluded = ((payload || {}).excluded || []);
+    var options = Object.keys(totals).map(Number).sort(function (a, b) { return b - a; })
+      .map(function (wy) { return '<option value="' + wy + '">' + wy + "</option>"; });
+    var gappy = excluded.map(function (r) { return r.wy; }).sort(function (a, b) { return b - a; })
+      .map(function (wy) { return '<option value="' + wy + '">' + wy + " (not reportable)</option>"; });
+    return '<div class="bcl-rain-controls">' +
+      '<div class="bcl-rain-field"><label for="bcl-rain-year">Look up a water year</label>' +
+      '<select id="bcl-rain-year"><option value="">Choose a year</option>' +
+      options.join("") + gappy.join("") + "</select></div>" +
+      '<div class="bcl-rain-field"><label for="bcl-rain-scope">Show</label>' +
+      '<select id="bcl-rain-scope"><option value="all">Every reportable year</option>' +
+      '<option value="recent">The last twenty reportable years</option></select></div>' +
+      '<p class="bcl-rain-msg" id="bcl-rain-msg" role="status" aria-live="polite">' +
+      esc(message || "") + "</p></div>";
+  }
+
+  function rainMethodHTML(payload) {
+    var record = (payload || {}).record || {};
+    var excluded = (payload || {}).excluded || [];
+    var named = excluded.filter(function (r) { return !r.partial; })
+      .map(function (r) { return r.wy; });
+    return "<h3>How this is measured, and where it is silent</h3>" +
+      "<p>Rain here is counted by <strong>water year</strong>, October 1 through September 30, named for the " +
+      "calendar year it ends in. A water year holds exactly one winter, which is how storms actually arrive. " +
+      "Splitting rainfall by calendar year cuts every wet season in half.</p>" +
+      "<p>Of the " + esc((record.last_water_year || 0) - (record.first_water_year || 0) + 1) +
+      " water years this gauge has recorded, <strong>" + esc(record.reportable_years || 0) +
+      "</strong> are complete enough to report, meaning five or fewer days with no reading. " +
+      "Those " + esc(record.reportable_years || 0) + " years, " + esc(record.first_reportable || "") +
+      " through " + esc(record.last_reportable || "") + ", are the only ones behind the averages, the " +
+      "percentile bands and the rankings on this page. The rest are named and left out rather than patched: " +
+      esc(named.slice(0, 30).join(", ")) + ". Estimating a missing storm would make the chart look " +
+      "complete and the numbers wrong.</p>" +
+      "<p>The typical water year here is <strong>" + esc(rainInches(record.median)) +
+      "</strong> and the average is <strong>" + esc(rainInches(record.mean)) +
+      "</strong>. The gap between them is the point: a handful of enormous years pull the average above the " +
+      "year you are actually likely to get, so the median is the better number for sizing a culvert or a tank. " +
+      (record.wettest_day ? "The wettest single day in the whole record is " +
+        esc(rainLongDate(record.wettest_day.date)) + ", at " + esc(rainInches(record.wettest_day.inches)) + ". " : "") +
+      "</p>" +
+      "<p>One gauge is not a valley. Ben Lomond No. 4 sits at 435 feet, about five miles down-canyon from " +
+      "downtown Boulder Creek, and rainfall at your own place will differ with elevation, canyon and aspect. " +
+      "It is used here because it is the only nearby gauge with a record long enough to say what normal means. " +
+      'The <a href="' + RAIN.article + '">full write-up of this record</a> covers how closely Boulder Creek ' +
+      "tracks it.</p>";
+  }
+
+  function initRain(root) {
+    root.innerHTML = '<div class="bcl-count">Loading the rainfall record…</div>';
+    fetchJSON(REPO + "/data/" + RAIN.file).then(function (payload) {
+      if (!payload || !payload.current || !payload.band || !payload.totals) {
+        throw new Error("unexpected shape");
+      }
+      var today = rainPacificDay();
+      var scope = "all", selected = null;
+
+      root.innerHTML =
+        rainFreshnessHTML(payload, today) +
+        rainStatsHTML(payload) +
+        '<div class="bcl-note bcl-rain-gap">' + esc(rainGapNote(payload.current)) + "</div>" +
+        "<h3>This water year against the record</h3>" +
+        '<div class="bcl-rain-chart" id="bcl-rain-season"></div>' +
+        rainSeasonLegendHTML(payload) +
+        rainMonthTable(payload) +
+        "<h3>Every water year on record</h3>" +
+        rainControlsHTML(payload, "") +
+        '<div class="bcl-rain-chart" id="bcl-rain-totals"></div>' +
+        rainExtremesHTML(payload) +
+        "<h3>Storms this water year</h3>" +
+        '<div id="bcl-rain-storms">' + rainStormsHTML(payload) + "</div>" +
+        rainMethodHTML(payload) +
+        '<div class="bcl-note">This page is a record, not a warning. For road conditions, air quality, the ' +
+        'river gauge and official alerts, use <a href="' + RAIN.status + '">Mountain Status</a>. In an ' +
+        "emergency, call 911.</div>";
+
+      root.querySelector("#bcl-rain-season").innerHTML = rainSeasonChart(payload);
+
+      var totalsEl = root.querySelector("#bcl-rain-totals");
+      var msgEl = root.querySelector("#bcl-rain-msg");
+      var yearEl = root.querySelector("#bcl-rain-year");
+      var scopeEl = root.querySelector("#bcl-rain-scope");
+
+      function draw() {
+        totalsEl.innerHTML = rainTotalsChart(payload, scope, selected);
+      }
+      draw();
+
+      yearEl.addEventListener("change", function () {
+        selected = yearEl.value ? +yearEl.value : null;
+        msgEl.textContent = selected ? rainLookupMessage(rainYearLookup(payload, selected)) : "";
+        draw();
+      });
+      scopeEl.addEventListener("change", function () {
+        scope = scopeEl.value === "recent" ? "recent" : "all";
+        draw();
+      });
+    }).catch(function () {
+      unavailable(root, "The rainfall record",
+        'That is not a statement about rain, drought, or how wet this season has been. ' +
+        'For current conditions use <a href="' + RAIN.status + '">Mountain Status</a> and the ' +
+        '<a href="' + RAIN.nws + '" target="_blank" rel="noopener">National Weather Service</a>.');
+    });
+  }
+
   /* ---------- today module (home page) ---------- */
 
   function initToday(root) {
@@ -2687,6 +3441,8 @@
     if (j) initJobs(j);
     var rn = document.getElementById("bcl-rentals");
     if (rn) initRentals(rn);
+    var rain = document.getElementById("bcl-rain");
+    if (rain) initRain(rain);
   }
 
   if (typeof document !== "undefined") {
@@ -2694,6 +3450,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, JOB_ALERTS: JOB_ALERTS, jobAlertsEndpoint: jobAlertsEndpoint, looksLikeEmail: looksLikeEmail, jobAlertsBody: jobAlertsBody, jobAlertsMessage: jobAlertsMessage, jobAlertsHTML: jobAlertsHTML, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, JOB_ALERTS: JOB_ALERTS, jobAlertsEndpoint: jobAlertsEndpoint, looksLikeEmail: looksLikeEmail, jobAlertsBody: jobAlertsBody, jobAlertsMessage: jobAlertsMessage, jobAlertsHTML: jobAlertsHTML, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
