@@ -302,7 +302,12 @@
       /* Homepage rainfall card. Deliberately a LINK, so the whole band is one
          target, and deliberately number-first: "44.97 in" is the reason to
          click, where a tile reading "Rain" is not. */
-      ".bcl-raincard{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 26px;background:#fffdf8;border:1px solid #e3ddcf;border-left:4px solid #2a7d55;padding:18px 22px;text-decoration:none !important;color:inherit !important;}",
+      /* box-sizing is MANDATORY, same trap as .bcl-ticker: this site has no
+         global border-box reset, so a width:auto block plus 44px of padding and
+         5px of border lands OUTSIDE the parent content box. Harmless at desktop
+         where .bcl-wrap has padding to spare, but on a ~380px phone it totals
+         ~386px and puts a horizontal scrollbar on the homepage. */
+      ".bcl-raincard{box-sizing:border-box;display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 26px;background:#fffdf8;border:1px solid #e3ddcf;border-left:4px solid #2a7d55;padding:18px 22px;text-decoration:none !important;color:inherit !important;}",
       ".bcl-raincard:hover{background:#fbf8ef;}",
       ".bcl-raincard-lab{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;flex:0 0 100%;}",
       ".bcl-raincard-val{font-size:1.7rem;line-height:1.1;color:#173f36 !important;font-variant-numeric:tabular-nums;}",
