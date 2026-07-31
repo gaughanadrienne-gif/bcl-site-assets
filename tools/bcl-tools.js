@@ -146,7 +146,11 @@
       ".bcl-unavailable a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-alert{background:#8f4f45 !important;color:#fffdf8 !important;padding:14px 18px;margin:0 0 14px;}",
       ".bcl-promo-band{width:100vw;margin:0 calc(50% - 50vw);background:linear-gradient(160deg,#1C4266 0%,#14304C 70%);border-top:1px solid #0d2438;border-bottom:1px solid #0d2438;}",
-      ".bcl-ticker{display:block;width:100%;background:#14304C;color:#FCF8EF !important;font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:9px 14px;text-decoration:none !important;border-bottom:2px solid #C3281C;}",
+      /* box-sizing is REQUIRED here: this page has no global border-box reset
+         (exactly one such rule in the served CSS), so width:100% plus 14px of
+         horizontal padding overflowed the viewport and put a horizontal
+         scrollbar on EVERY page, not just the tool pages. */
+      ".bcl-ticker{display:block;width:100%;box-sizing:border-box;background:#14304C;color:#FCF8EF !important;font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:9px 14px;text-decoration:none !important;border-bottom:2px solid #C3281C;}",
       ".bcl-ticker b{color:#E8A33D !important;}",
       ".bcl-ticker u{text-underline-offset:3px;}",
       ".bcl-ticker:hover{background:#1C4266;}",
@@ -330,6 +334,15 @@
       ".bcl-article-body th,.bcl-article-body td{border:1px solid #e3ddcf;padding:9px 12px;text-align:left;}",
       ".bcl-article-reviewed{font-family:'IBM Plex Mono',monospace;font-size:.7rem !important;letter-spacing:.06em;text-transform:uppercase;color:#67716b;border-top:1px solid #e3ddcf;padding-top:14px;margin-top:36px;}",
       ".bcl-draft-state{max-width:760px;margin:18px auto 42px;background:#f5f1e7;border:1px solid #e3ddcf;padding:18px 20px;font-family:Inter,Arial,sans-serif;color:#4f5e57;}",
+      /* #bcl-rain carries .bcl-full so it breaks out of the Fluid Engine grid,
+         same as every other tool page. On /directory that is right: a card grid
+         fills the band. /rain is a READING page, and its own prose already caps
+         at 80ch in three places below, so the breakout left body text running
+         the full window while both charts stayed 860px and looked stranded.
+         Re-impose the site content measure on the tool only. The id beats
+         .bcl-full{margin-left:0;width:100%} on specificity, no !important
+         needed. Values mirror .bcl-wrap in the header injection. */
+      "#bcl-rain{max-width:1180px;margin-left:auto;margin-right:auto;padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px);box-sizing:border-box;}",
       ".bcl-rain-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0 0;}",
       ".bcl-rain-tile{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:14px 16px;display:flex;flex-direction:column;gap:3px;}",
       ".bcl-rain-tile-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;}",
