@@ -2711,7 +2711,7 @@
       'aria-label="' + esc("Water year " + (current.wy || "") + " rainfall so far at the Ben Lomond No. 4 gauge, " +
         rainInches(current.to_date) + " through " + rainLongDate(current.through) +
         ", drawn against the range of the " + ((payload.record || {}).reportable_years || 0) +
-        " reportable years on record. The typical total by this date is " + rainInches(current.normal_to_date) + ".") + '" ' +
+        " reportable years on record. The median total by this date is " + rainInches(current.normal_to_date) + ".") + '" ' +
       'style="max-width:' + W + 'px;height:auto;display:block;margin:0 auto;font-family:inherit">');
     p.push("<desc>" + esc("Season-to-date rainfall accumulates from October 1. The two gray bands are the middle " +
       "80 percent and the middle half of the reportable years on record; the thin gray line is the median. " +
@@ -2772,7 +2772,7 @@
       var seasonEnd = Math.min(m.end, series.length);
       var tip = m.label + ": season total " +
         (seasonEnd >= m.start && series.length >= m.start ? rainInches(series[seasonEnd - 1]) : "no reading yet") +
-        ", typical " + rainInches(p50[m.end - 1]) + " by the end of the month";
+        ", median " + rainInches(p50[m.end - 1]) + " by the end of the month";
       p.push('<rect x="' + X(m.start).toFixed(1) + '" y="' + T + '" width="' + (X(m.end) - X(m.start) || 1).toFixed(1) +
         '" height="' + PH + '" fill="transparent"><title>' + esc(tip) + "</title></rect>");
     });
@@ -3065,7 +3065,7 @@
       "percentile bands and the rankings on this page. The rest are named and left out rather than patched: " +
       esc(named.slice(0, 30).join(", ")) + ". Estimating a missing storm would make the chart look " +
       "complete and the numbers wrong.</p>" +
-      "<p>The typical water year here is <strong>" + esc(rainInches(record.median)) +
+      "<p>The median water year here is <strong>" + esc(rainInches(record.median)) +
       "</strong> and the average is <strong>" + esc(rainInches(record.mean)) +
       "</strong>. The gap between them is the point: a handful of enormous years pull the average above the " +
       "year you are actually likely to get, so the median is the better number for sizing a culvert or a tank. " +

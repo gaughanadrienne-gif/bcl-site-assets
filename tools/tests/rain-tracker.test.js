@@ -245,7 +245,18 @@ test("every month carries a native tooltip so hovering needs no script", () => {
   const svg = t.rainSeasonChart(FAKE);
   const tips = svg.match(/<rect[^>]*fill="transparent"><title>/g) || [];
   assert.equal(tips.length, 12);
-  assert.ok(svg.indexOf("season total") >= 0 && svg.indexOf("typical") >= 0);
+  assert.ok(svg.indexOf("season total") >= 0 && svg.indexOf("median") >= 0);
+});
+/* The tile-only assertion above let "typical" survive in three other user-facing
+   places for a day: the month tooltips, the chart's aria-label, and the prose
+   paragraph, the last of which printed record.median while calling it typical.
+   The owner's ruling was about the WORD anywhere a number is labelled, so the
+   guard is now the whole rendered tool rather than the tiles. */
+test("the word 'typical' appears nowhere the tool labels a number", () => {
+  const surfaces = [t.rainSeasonChart(FAKE), t.rainStatsHTML(FAKE), t.rainMethodHTML(FAKE)]
+    .filter(Boolean).join(" ");
+  assert.equal(/typical/i.test(surfaces), false,
+    "a median must never be called 'typical': mean and median differ by 6.4 in on this record");
 });
 test("months with no reading yet say so instead of showing zero", () => {
   const early = Object.assign({}, FAKE, {
