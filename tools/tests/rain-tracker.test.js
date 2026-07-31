@@ -150,9 +150,32 @@ test("the summary carries the comparison the tiles print", () => {
 test("a season total with a gap is shown as 'or more' on the tile", () => {
   const html = t.rainStatsHTML(FAKE);
   assert.ok(html.indexOf("44.97 in or more") >= 0);
-  assert.ok(html.indexOf("Typical by this date") >= 0);
+  assert.ok(html.indexOf("Median by this date") >= 0);
   assert.equal(html.indexOf("undefined"), -1);
   assert.equal(html.indexOf("NaN"), -1);
+});
+
+/* The tiles must NAME the statistic. Calling a right-skewed record's median
+   "typical" read as an outright error to the owner, who knows the local figure
+   is nearer 50: the median is 42.69 while the mean is 49.09. Guard both halves,
+   the honest label and the mean being shown next to it. */
+test("the tiles say median rather than typical, and print the mean beside it", () => {
+  const html = t.rainStatsHTML(FAKE);
+  assert.ok(html.indexOf("Median full water year") >= 0);
+  assert.equal(html.indexOf("Typical"), -1, "no tile may call a median 'typical'");
+  assert.ok(html.indexOf("The average is") >= 0, "the mean has to appear beside the median");
+});
+
+test("the skew note counts the wet years instead of asserting a fraction", () => {
+  // A hardcoded "a fifth of years" was wrong on the first draft: it is nearer a
+  // third. Derive it, so the prose cannot drift from the record.
+  const note = t.rainSkewNote(FAKE);
+  const big = Object.values(FAKE.totals).filter((v) => v > 60).length;
+  const n = Object.keys(FAKE.totals).length;
+  if (big) assert.ok(note.indexOf(big + " of " + n + " topped 60 inches") >= 0, note);
+  // Degrade rather than invent when the record block is absent.
+  assert.equal(t.rainSkewNote({}), "");
+  assert.equal(t.rainSkewNote(null), "");
 });
 test("with no gaps the tile drops the qualifier", () => {
   const clean = Object.assign({}, FAKE, { current: Object.assign({}, FAKE.current, { missing_days: 0 }) });

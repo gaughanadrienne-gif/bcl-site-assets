@@ -1983,7 +1983,11 @@
         '<span class="bcl-raincard-val">' + esc(rainInches(s.toDate) + (s.floor ? " or more" : "")) + '</span>' +
         /* "of typical" carries no "by this date" because rainRankText already
            ends with it, and the two together read as a stutter. */
-        '<span class="bcl-raincard-note">' + esc(s.pctOfNormal + "% of typical") +
+        /* "of the long-record median", never "of typical": the percentage flips
+           meaning with the baseline (this year is 106% of the 1940-2023 median
+           but only ~97% of the 1991-2020 normal), so the baseline has to be on
+           the card or the headline claim is unfalsifiable. */
+        '<span class="bcl-raincard-note">' + esc(s.pctOfNormal + "% of the long-record median") +
         (note ? esc(", " + note) : esc(" by this date")) + '.</span>' +
         '<span class="bcl-raincard-go">See the rain tracker &rarr;</span>' +
         "</a></div>";
@@ -2619,19 +2623,44 @@
     return "wetter than " + drier + " of " + years + " years by this date";
   }
 
+  /* Why the median and the mean disagree, in one sentence, counted from the
+     record rather than written down. A hardcoded "a fifth of years" was wrong
+     on the first draft (it is nearer a third), which is the argument for
+     deriving it: prose about data goes stale, a count cannot. Returns "" if the
+     shape is not there, so the tile degrades to the plain median. */
+  function rainSkewNote(payload) {
+    var rec = (payload || {}).record || {};
+    var totals = (payload || {}).totals || {};
+    if (rec.mean == null) return "";
+    var vals = Object.keys(totals).map(function (k) { return totals[k]; })
+      .filter(function (v) { return typeof v === "number"; });
+    if (!vals.length) return "The average is " + rainInches(rec.mean) + ".";
+    var big = vals.filter(function (v) { return v > 60; }).length;
+    if (!big) return "The average is " + rainInches(rec.mean) + ".";
+    return "The average is " + rainInches(rec.mean) + ", pulled up by the wettest years: " +
+      big + " of " + vals.length + " topped 60 inches.";
+  }
+
   function rainStatsHTML(payload) {
     var s = rainSeasonSummary(payload);
     var tiles = [];
     tiles.push(["Season to date, water year " + (s.wy || ""),
                 s.floor ? rainInches(s.toDate) + " or more" : rainInches(s.toDate),
                 s.through ? "through " + rainLongDate(s.through) : ""]);
-    tiles.push(["Typical by this date", rainInches(s.normal),
+    /* 🚨 These say MEDIAN, not "typical", and the last one prints the mean beside
+       it (owner, 2026-07-31). She challenged "typical full water year 42.69 in"
+       as impossible and was right to: the figure is arithmetically correct, but
+       this record is strongly right-skewed, so the mean is 49.09 and the
+       1991-2020 normal is 46.62. Calling the lowest defensible number "typical"
+       reads as an error to anyone who remembers a figure near 50. Name the
+       statistic and show the spread instead of picking one and hiding it. */
+    tiles.push(["Median by this date", rainInches(s.normal),
                 "median of " + (s.years || 0) + " reportable years"]);
-    tiles.push(["Against that typical year",
+    tiles.push(["Against that median",
                 s.pctOfNormal != null ? s.pctOfNormal + "%" : "not available",
                 rainRankText(s.drier, s.years)]);
-    tiles.push(["Typical full water year", rainInches(s.median),
-                "median, October to September"]);
+    tiles.push(["Median full water year", rainInches(s.median),
+                "median, October to September. " + rainSkewNote(payload)]);
     return '<div class="bcl-rain-tiles">' + tiles.map(function (t) {
       return '<div class="bcl-rain-tile"><span class="bcl-rain-tile-label">' + esc(t[0]) +
         '</span><span class="bcl-rain-tile-value">' + esc(t[1]) +
@@ -3539,6 +3568,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, JOB_ALERTS: JOB_ALERTS, jobAlertsEndpoint: jobAlertsEndpoint, looksLikeEmail: looksLikeEmail, jobAlertsBody: jobAlertsBody, jobAlertsMessage: jobAlertsMessage, jobAlertsHTML: jobAlertsHTML, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, JOB_ALERTS: JOB_ALERTS, jobAlertsEndpoint: jobAlertsEndpoint, looksLikeEmail: looksLikeEmail, jobAlertsBody: jobAlertsBody, jobAlertsMessage: jobAlertsMessage, jobAlertsHTML: jobAlertsHTML, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
