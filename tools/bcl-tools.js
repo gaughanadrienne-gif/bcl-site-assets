@@ -299,6 +299,16 @@
       ".bcl-related-kicker{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#d56e47 !important;margin:0 0 4px !important;}",
       "@media (max-width:960px){.bcl-board{grid-template-columns:1fr;}}",
       "@media (max-width:820px){.bcl-recent,.bcl-explore{grid-template-columns:1fr;}}",
+      /* Homepage rainfall card. Deliberately a LINK, so the whole band is one
+         target, and deliberately number-first: "44.97 in" is the reason to
+         click, where a tile reading "Rain" is not. */
+      ".bcl-raincard{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 26px;background:#fffdf8;border:1px solid #e3ddcf;border-left:4px solid #2a7d55;padding:18px 22px;text-decoration:none !important;color:inherit !important;}",
+      ".bcl-raincard:hover{background:#fbf8ef;}",
+      ".bcl-raincard-lab{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;flex:0 0 100%;}",
+      ".bcl-raincard-val{font-size:1.7rem;line-height:1.1;color:#173f36 !important;font-variant-numeric:tabular-nums;}",
+      ".bcl-raincard-note{font-size:.86rem;color:#67716b !important;line-height:1.4;flex:1 1 240px;}",
+      ".bcl-raincard-go{font-size:.85rem;font-weight:600;color:#2e6b46 !important;white-space:nowrap;}",
+      "@media (max-width:600px){.bcl-raincard-go{flex:0 0 100%;}}",
       /* Residents page: compact jump-nav */
       ".bcl-jumpnav-sec{background:#fffdf8;padding:16px 0;border-bottom:1px solid #ece6d8;}",
       ".bcl-jumpnav{display:flex;flex-wrap:wrap;gap:8px;}",
@@ -1882,7 +1892,7 @@
        copy of this script, or a console-injected preview) would stack a duplicate
        of each. Clear our own prior work first. Explore is exempt: it replaces the
        static section it is built from, so it can never double. */
-    ["bcl-home-board", "bcl-home-recent"].forEach(function (id) {
+    ["bcl-home-board", "bcl-home-recent", "bcl-home-rain"].forEach(function (id) {
       var prior = document.getElementById(id);
       if (prior) prior.remove();
     });
@@ -1936,7 +1946,67 @@
       home.appendChild(recent);
     }
     initRecentArticles(document.getElementById("bcl-recent"));
+    if (lastBoardSec) initHomeRainCard(lastBoardSec);
   }
+
+  /* Homepage rainfall card (owner, 2026-07-31). The decision behind it: tools get
+     surfaced CONTEXTUALLY, never by widening a 10-item nav, so /rain reaches the
+     homepage as a live NUMBER rather than a menu entry. The number is the draw.
+
+     🚨 It renders NOTHING unless the feed parses into a usable season summary.
+     That is the house emergency-content guardrail applied to a record page: a 200
+     with an unexpected shape must not become a confident figure on the homepage.
+     Rain is history rather than a warning, but a wrong total is still wrong, and
+     an absent card costs a reader nothing. */
+  function initHomeRainCard(afterSec) {
+    if (!afterSec || !afterSec.parentNode) return;
+    if (document.getElementById("bcl-home-rain")) return;
+
+    fetchJSON(REPO + "/data/" + RAIN.file).then(function (payload) {
+      var s = rainSeasonSummary(payload);
+      // Both numbers must be real; the percentage is the comparison that gives
+      // the total meaning, so half a card is not worth shipping.
+      if (!s || s.toDate == null || s.pctOfNormal == null) return;
+      if (document.getElementById("bcl-home-rain")) return;
+
+      var note = rainRankText(s.drier, s.years);
+      var sec = document.createElement("section");
+      sec.id = "bcl-home-rain";
+      sec.className = "bcl-section";
+      sec.innerHTML = '<div class="bcl-wrap"><a class="bcl-raincard" href="/rain">' +
+        '<span class="bcl-raincard-lab">Rainfall, water year ' + esc(String(s.wy || "")) + '</span>' +
+        '<span class="bcl-raincard-val">' + esc(rainInches(s.toDate) + (s.floor ? " or more" : "")) + '</span>' +
+        /* "of typical" carries no "by this date" because rainRankText already
+           ends with it, and the two together read as a stutter. */
+        '<span class="bcl-raincard-note">' + esc(s.pctOfNormal + "% of typical") +
+        (note ? esc(", " + note) : esc(" by this date")) + '.</span>' +
+        '<span class="bcl-raincard-go">See the rain tracker &rarr;</span>' +
+        "</a></div>";
+      afterSec.parentNode.insertBefore(sec, afterSec.nextSibling);
+    }).catch(function () { /* no card, by design */ });
+  }
+
+  /* Footer link to /rain (owner, 2026-07-31). This does a DIFFERENT job from the
+     23 contextual article links: those buy crawl and topical relevance, this is
+     the only route a RETURNING reader has in November without using search.
+
+     Injected here rather than pasted into the footer Code Injection on purpose.
+     That panel cannot be read back, cannot be driven by script, and has caused
+     permanent loss, so a JS release (push + purge) is the safe carrier. Google
+     renders JS, and discovery is already covered by the in-body article links. */
+  function initFooterToolLinks() {
+    var nav = document.querySelector("nav.bcl-footer-links:not(.bcl-footer-social)");
+    if (!nav) return;
+    if (nav.querySelector('a[href="/rain"]')) return;
+    var a = document.createElement("a");
+    a.href = "/rain";
+    a.textContent = "Rain";
+    // Sit with the other tools rather than after Terms & Privacy.
+    var rentals = nav.querySelector('a[href="/rentals"]');
+    if (rentals) nav.insertBefore(a, rentals.nextSibling);
+    else nav.appendChild(a);
+  }
+
   function initEvents(root) {
     root.innerHTML = '<div class="bcl-count">Loading events…</div>';
     fetchJSON(REPO + "/data/events.json").then(function (data) {
@@ -3447,6 +3517,7 @@
     if (s) initStatus(s);
     initSiteSearch();
     initPromoTicker();
+    initFooterToolLinks();
     if (document.getElementById("bcl-home")) initHome();
     var t = document.getElementById("bcl-today");
     if (t) initToday(t);
