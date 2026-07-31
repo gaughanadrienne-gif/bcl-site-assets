@@ -18,3 +18,12 @@ __pycache__/
 .env
 # Visual harness output (screenshots + generated harness pages)
 tools/tests/manual/_render/
+
+# Data backups. THIS REPO IS PUBLIC. Backups taken before a data edit hold the
+# PRE-correction rows, so a removed business name or phone number lives on
+# inside them. Three such files sat untracked here until 2026-07-30, one commit
+# away from being published permanently by a stray `git add -A`. Keep backups
+# outside the repo (Automation & Operations\sync\data-backups\); this rule is
+# the second line of defence, not the first.
+*.bak-*
+*.bak
