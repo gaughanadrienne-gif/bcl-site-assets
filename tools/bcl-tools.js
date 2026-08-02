@@ -1469,16 +1469,15 @@
     var path = location.pathname.replace(/\/$/, "");
     if (path === "/file-uploads") upsertRobots("noindex, nofollow");
 
-    if (path === "/around-town" || /^\/around-town\/category\//.test(path)) {
-      [].slice.call(document.querySelectorAll("h1.entry-title")).forEach(function (heading) {
-        var link = heading.closest("article") && heading.closest("article").querySelector('a[href*="/around-town/"]');
-        var slug = link ? articleSlugFromPath(new URL(link.href, location.href).pathname) : "";
-        var replacement = document.createElement("h2");
-        replacement.className = (heading.className || "") + " bcl-sr-only";
-        replacement.textContent = slug ? prettifySlug(slug) : "Article";
-        heading.parentNode.replaceChild(replacement, heading);
-      });
-    }
+    /* A block here used to demote listing-card h1s, selecting "h1.entry-title".
+       Removed 2026-08-02: the cards ship "h1.blog-title", so the selector matched
+       nothing on /around-town (verified on the live page: 0 entry-title, 21
+       blog-title). It was not merely dead but armed - had it ever matched, it
+       replaced each card's visible title with a HIDDEN slug, blanking the
+       listing. Do not "fix" it by repointing it at .blog-title for that reason.
+       The underlying issue (21 h1s in the SERVED html, which is what crawlers
+       read whether or not any script runs) is a template-level problem and is
+       still open; client-side demotion would not have solved it anyway. */
 
     var title = pageHeadingForPath(path);
     if (title && ![].slice.call(document.querySelectorAll("h1")).some(function (h) { return h.textContent.trim(); })) {
