@@ -1,6 +1,6 @@
 {
  "_note": "Boulder Creek Local rentals board. Auto-refreshed; see refresh_rentals.py.",
- "updated": "2026-08-02",
+ "updated": "2026-08-03",
  "count": 3,
  "rentals": [
   {
@@ -34,8 +34,8 @@
    "canonical_url": "https://www.pmisantacruz.com/santa-cruz-homes-for-rent/241/10510-highway-9-ben-lomond-ca-95005",
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
-   "first_seen_at": "2026-08-02",
-   "last_verified_at": "2026-08-02",
+   "first_seen_at": "2026-08-03",
+   "last_verified_at": "2026-08-03",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -70,8 +70,8 @@
    "canonical_url": "https://www.pmisantacruz.com/santa-cruz-homes-for-rent/179/12895-highway-9-boulder-creek-ca-95006",
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
-   "first_seen_at": "2026-08-02",
-   "last_verified_at": "2026-08-02",
+   "first_seen_at": "2026-08-03",
+   "last_verified_at": "2026-08-03",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -106,8 +106,8 @@
    "canonical_url": "https://streamline831.com/rental-listings/",
    "source": "Streamline 831",
    "property_manager": "Streamline 831",
-   "first_seen_at": "2026-08-02",
-   "last_verified_at": "2026-08-02",
+   "first_seen_at": "2026-08-03",
+   "last_verified_at": "2026-08-03",
    "verification_status": "verified",
    "freshness_label": ""
   }
