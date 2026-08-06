@@ -3,7 +3,7 @@
  "@type": "ItemList",
  "name": "Boulder Creek and San Lorenzo Valley restaurants, cafes and markets",
  "url": "https://www.bouldercreeklocal.com/food",
- "numberOfItems": 24,
+ "numberOfItems": 26,
  "itemListOrder": "https://schema.org/ItemListOrderAscending",
  "itemListElement": [
   {
@@ -54,6 +54,28 @@
    "@type": "ListItem",
    "position": 3,
    "item": {
+    "@type": "Restaurant",
+    "name": "Brookdale Diner",
+    "description": "1950s-style American diner at the Historic Brookdale Lodge serving all-day breakfast, burgers, hand-spun milkshakes, fried chicken, flatbread pizza, steaks,...",
+    "url": "https://www.brookdalediner.net/",
+    "telephone": "(831) 609-6126",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "11570 Highway 9",
+     "addressLocality": "Brookdale",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.107853,
+     "longitude": -122.109227
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 4,
+   "item": {
     "@type": "Bakery",
     "name": "Butter Late Than Never Baking Co.",
     "description": "Licensed Boulder Creek cottage bakery selling small-batch baked goods through its online shop. No storefront.",
@@ -68,7 +90,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 4,
+   "position": 5,
    "item": {
     "@type": "Restaurant",
     "name": "Corazon de Leon Mexican Restaurant",
@@ -90,7 +112,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 5,
+   "position": 6,
    "item": {
     "@type": "FoodEstablishment",
     "name": "Creative Heart Kitchen",
@@ -105,7 +127,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 6,
+   "position": 7,
    "item": {
     "@type": "Bakery",
     "name": "Dessert First Bakery",
@@ -120,7 +142,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 7,
+   "position": 8,
    "item": {
     "@type": "Bakery",
     "name": "Dough and Dahlias",
@@ -135,7 +157,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 8,
+   "position": 9,
    "item": {
     "@type": "GroceryStore",
     "name": "Doughlicious Farmstand",
@@ -149,7 +171,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 9,
+   "position": 10,
    "item": {
     "@type": "Restaurant",
     "name": "El Rey Leon",
@@ -171,7 +193,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 10,
+   "position": 11,
    "item": {
     "@type": "BarOrPub",
     "name": "Felton Music Hall",
@@ -193,7 +215,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 11,
+   "position": 12,
    "item": {
     "@type": "BarOrPub",
     "name": "Henflings Tavern",
@@ -215,7 +237,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 12,
+   "position": 13,
    "item": {
     "@type": "CafeOrCoffeeShop",
     "name": "Jenna Sue's Cafe",
@@ -233,7 +255,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 13,
+   "position": 14,
    "item": {
     "@type": "BarOrPub",
     "name": "Joe's Bar",
@@ -250,7 +272,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 14,
+   "position": 15,
    "item": {
     "@type": "GroceryStore",
     "name": "Johnnie's Super Market & Liquor",
@@ -271,7 +293,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 15,
+   "position": 16,
    "item": {
     "@type": "Restaurant",
     "name": "Red Pearl Chinese Cuisine",
@@ -293,7 +315,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 16,
+   "position": 17,
    "item": {
     "@type": "FoodEstablishment",
     "name": "Redwood Keg Liquor & Deli",
@@ -311,7 +333,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 17,
+   "position": 18,
    "item": {
     "@type": "FoodEstablishment",
     "name": "River Dogs of Boulder Creek",
@@ -333,7 +355,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 18,
+   "position": 19,
    "item": {
     "@type": "Restaurant",
     "name": "Scopazzi's Restaurant & Lounge",
@@ -355,7 +377,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 19,
+   "position": 20,
    "item": {
     "@type": "Restaurant",
     "name": "Tae's Edo Sushi Bar",
@@ -377,7 +399,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 20,
+   "position": 21,
    "item": {
     "@type": "Restaurant",
     "name": "Taqueria Los Gallos",
@@ -399,7 +421,29 @@
   },
   {
    "@type": "ListItem",
-   "position": 21,
+   "position": 22,
+   "item": {
+    "@type": "BarOrPub",
+    "name": "The River Run at Brookdale Lodge",
+    "description": "Cocktail lounge and live-music venue at the Historic Brookdale Lodge, with weekend bands, DJ nights, sports on the big screens, and a summer beer garden...",
+    "url": "https://www.theriverrunbrookdale.com/",
+    "telephone": "(831) 609-6010",
+    "address": {
+     "@type": "PostalAddress",
+     "streetAddress": "11570 Highway 9",
+     "addressLocality": "Brookdale",
+     "addressRegion": "CA"
+    },
+    "geo": {
+     "@type": "GeoCoordinates",
+     "latitude": 37.107853,
+     "longitude": -122.109227
+    }
+   }
+  },
+  {
+   "@type": "ListItem",
+   "position": 23,
    "item": {
     "@type": "Restaurant",
     "name": "The Sawmill Restaurant & Alehouse",
@@ -421,7 +465,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 22,
+   "position": 24,
    "item": {
     "@type": "CafeOrCoffeeShop",
     "name": "The Tree House Cafe",
@@ -444,7 +488,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 23,
+   "position": 25,
    "item": {
     "@type": "GroceryStore",
     "name": "Wild Roots Market - Boulder Creek",
@@ -466,7 +510,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 24,
+   "position": 26,
    "item": {
     "@type": "Bakery",
     "name": "Wildstone Bakery",
