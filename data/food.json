@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-18",
+  "updated": "2026-08-06",
   "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
-  "count": 24,
+  "count": 26,
   "listings": [
     {
       "name": "Bella's Cafe",
@@ -358,6 +358,38 @@
       "service_area": "San Lorenzo Valley and Santa Cruz County",
       "verified_at": "2026-07-17",
       "no_storefront": true
+    },
+    {
+      "name": "Brookdale Diner",
+      "category": "Restaurant",
+      "subcategory": "American diner",
+      "description": "1950s-style American diner at the Historic Brookdale Lodge serving all-day breakfast, burgers, hand-spun milkshakes, fried chicken, flatbread pizza, steaks, and salads.",
+      "address": "11570 Highway 9",
+      "locality": "Brookdale",
+      "phone": "(831) 609-6126",
+      "website": "https://www.brookdalediner.net/",
+      "hours_text": "Monday-Tuesday 2:00-10:00 p.m.; Wednesday-Sunday 7:00 a.m.-10:00 p.m.",
+      "service_area": "Brookdale and the San Lorenzo Valley",
+      "verified_at": "2026-08-06",
+      "lat": 37.107853,
+      "lon": -122.109227,
+      "tile": null
+    },
+    {
+      "name": "The River Run at Brookdale Lodge",
+      "category": "Bar & Nightlife",
+      "subcategory": "Cocktail lounge and live-music venue",
+      "description": "Cocktail lounge and live-music venue at the Historic Brookdale Lodge, with weekend bands, DJ nights, sports on the big screens, and a summer beer garden concert series. Food comes from the Brookdale Diner on the same property.",
+      "address": "11570 Highway 9",
+      "locality": "Brookdale",
+      "phone": "(831) 609-6010",
+      "website": "https://www.theriverrunbrookdale.com/",
+      "hours_text": "Monday 5:00-10:00 p.m.; Tuesday-Thursday 2:00-11:00 p.m.; Friday-Saturday 2:00 p.m.-1:00 a.m.; Sunday 11:00 a.m.-10:00 p.m.",
+      "service_area": "Brookdale and the San Lorenzo Valley",
+      "verified_at": "2026-08-06",
+      "lat": 37.107853,
+      "lon": -122.109227,
+      "tile": null
     }
   ]
 }
