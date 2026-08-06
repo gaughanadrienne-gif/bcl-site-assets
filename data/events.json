@@ -1,15 +1,16 @@
 {
-  "updated": "2026-07-19",
-  "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category.",
+  "updated": "2026-08-05",
+  "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category, notice (optional; besides title, date and location it is the only field an event card renders, so anything a reader must know before turning up goes there). Re-curated 2026-08-05 against first-party organizer sources.",
   "events": [
     {
       "title": "Exhibit: Retrospect",
       "start": "2026-07-16",
-      "end": null,
+      "end": "2026-12-31",
       "location": "Grace Gallery, San Lorenzo Valley Museum, 12547 Hwy 9, Boulder Creek",
       "url": "https://www.slvmuseum.org/",
       "description": "Ongoing exhibit looking back at the first 50 years of the San Lorenzo Valley Historical Society, on view through late 2026 during gallery hours, Wednesday to Sunday 1 to 4 pm.",
-      "category": "Music & Arts"
+      "category": "Music & Arts",
+      "notice": "Gallery open only when a docent is available. Call Grace Gallery 831-338-8382 or Belardi Gallery 831-704-7066 before you go."
     },
     {
       "title": "Exhibit: The Road I Call Home",
@@ -18,402 +19,8 @@
       "location": "Belardi Gallery, San Lorenzo Valley Museum, 6299 Gushee St, Felton",
       "url": "https://www.slvmuseum.org/",
       "description": "Ongoing photography exhibit by Randy Bacon on the lives of people experiencing homelessness, on view through September 20 during gallery hours, Thursday, Saturday and Sunday 1 to 4 pm.",
-      "category": "Music & Arts"
-    },
-    {
-      "title": "Boulder Creek Book Group",
-      "start": "2026-07-16T11:00",
-      "end": "2026-07-16T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15401183",
-      "description": "Monthly library book group meeting in person and via Zoom, 11 am to noon.",
-      "category": "Community"
-    },
-    {
-      "title": "Boulder Creek Farmers Market",
-      "start": "2026-07-16T13:30",
-      "end": "2026-07-16T18:30",
-      "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
-      "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
-      "category": "Market"
-    },
-    {
-      "title": "Volunteer Fuel Reduction Workday at Big Basin",
-      "start": "2026-07-17",
-      "end": null,
-      "location": "Big Basin Redwoods State Park, Boulder Creek",
-      "url": "https://sempervirens.org/events/",
-      "description": "Hands-on volunteer workday with Sempervirens Fund helping with fuel reduction in Big Basin Redwoods State Park; registration details on the Sempervirens events page.",
-      "category": "Outdoors"
-    },
-    {
-      "title": "Discovery Zone Playgroup",
-      "start": "2026-07-17T11:00",
-      "end": "2026-07-17T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15607411",
-      "description": "Drop-in playgroup for young children and caregivers at the library, 11 am to noon.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Free Food Fridays",
-      "start": "2026-07-17T15:00",
-      "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
-      "category": "Community"
-    },
-    {
-      "title": "Flick and Soak Community Night",
-      "start": "2026-07-17T16:00",
-      "end": "2026-07-17T20:00",
-      "location": "Bear Creek Pool, 15685 Forest Hill Dr, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Community night at Bear Creek Pool with the pool open 12:30 to 8 pm, crafts and games 4 to 8 pm, and a movie from 6:30 to 8 pm.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Medicine Road",
-      "start": "2026-07-17T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
-      "description": "Psychedelic, country, rock, and folk from a band formed in Boulder Creek in 2007.",
       "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Heritage Demonstrations at the SLV Museum",
-      "start": "2026-07-18",
-      "end": null,
-      "location": "Grace Gallery, San Lorenzo Valley Museum, 12547 Hwy 9, Boulder Creek",
-      "url": "https://www.slvmuseum.org/",
-      "description": "Third Saturday heritage demonstration series celebrating the San Lorenzo Valley Historical Society's 50th year, running monthly April through August; the gallery is open 1 to 4 pm.",
-      "category": "Community"
-    },
-    {
-      "title": "Print Transfer Workshop with Community Crafters",
-      "start": "2026-07-18T10:00",
-      "end": "2026-07-18T13:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/16863694",
-      "description": "Hands-on print transfer craft workshop with the Boulder Creek Community Crafters, 10 am to 1 pm.",
-      "category": "Music & Arts"
-    },
-    {
-      "title": "Earth Energy Walk at Miller Property",
-      "start": "2026-07-18T10:45",
-      "end": "2026-07-18T13:00",
-      "location": "Miller Property County Park, Kings Creek Road, Boulder Creek",
-      "url": "https://communityseed.org/ongoing-events/energy-walks/miller-property/",
-      "description": "Community Seed hosts an energy walk on the third Saturday of most months. Gather at 10:45 a.m., depart at 11:00 a.m., and return around 1:00 p.m., with a meditation partway.",
-      "category": "Outdoors"
-    },
-    {
-      "title": "Free Food Preservation Class: Dehydration",
-      "start": "2026-07-18T15:30",
-      "end": "2026-07-18T17:30",
-      "location": "Felton Branch Library, Felton",
-      "url": "https://forms.gle/eM8T7zzzCUjFrBHy5",
-      "description": "A free food-preservation class on dehydration, covering electric dehydrators, oven, air, and solar drying, with dehydrated foods to sample and a take-home guidebook. Offered through the Felton Library and led by Raven Ridge Homestead. No registration required, but an RSVP through the Raven Ridge Homestead form is appreciated so they can prepare enough seating, guidebooks, and samples.",
-      "category": "Community"
-    },
-    {
-      "title": "Big Bad Wolf at the SWAG Summer Concert Series",
-      "start": "2026-07-18T17:00",
-      "end": null,
-      "location": "SWAG, 13026 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/JEFFSWAGSTORE/events",
-      "description": "Live music from Big Bad Wolf at SWAG as part of the store's summer concert series.",
-      "category": "Music & Arts"
-    },
-    {
-      "title": "Rancho del Oso Nature and History Center 40th Anniversary",
-      "start": "2026-07-18T18:00",
-      "end": null,
-      "location": "Rancho del Oso, Big Basin Redwoods State Park, Hwy 1 at Waddell Creek",
-      "url": "https://www.parks.ca.gov/Events/?parkUnit=406",
-      "description": "State Parks marks 40 years of the Rancho del Oso Nature and History Center, the former home of naturalist Hulda Hoover McLean, with an evening program at 6 pm.",
-      "category": "Outdoors"
-    },
-    {
-      "title": "Midnight Blue",
-      "start": "2026-07-18T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
-      "description": "50s, 60s, blues, R&B, and rock and roll.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Rancho del Oso Nature and History Center 40th Anniversary",
-      "start": "2026-07-19T15:00",
-      "end": null,
-      "location": "Rancho del Oso, Big Basin Redwoods State Park, Hwy 1 at Waddell Creek",
-      "url": "https://www.parks.ca.gov/Events/?parkUnit=406",
-      "description": "Second day of the Rancho del Oso Nature and History Center 40th anniversary celebration, with an afternoon program at 3 pm.",
-      "category": "Outdoors"
-    },
-    {
-      "title": "The Mountain Road Celtic Music Radio on KBCZ 89.3 FM",
-      "start": "2026-07-20T20:00",
-      "end": null,
-      "location": "KBCZ 89.3 FM, 13200 Highway 9, Suite A, Boulder Creek",
-      "url": "https://www.facebook.com/KBCZ89.3FM/events",
-      "description": "Celtic and Irish music show on Boulder Creek community radio. Listen at 89.3 FM or stream from kbcz.org.",
-      "category": "Music & Arts",
-      "notice": "Radio broadcast"
-    },
-    {
-      "title": "Felton Farmers Market",
-      "start": "2026-07-21T13:30",
-      "end": "2026-07-21T17:30",
-      "location": "St. John's Church lot, 120 Russell Ave, Felton",
-      "url": "https://santacruzfarmersmarket.org/markets/",
-      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
-      "category": "Market"
-    },
-    {
-      "title": "Toddler and Preschool Storytime",
-      "start": "2026-07-22T11:00",
-      "end": "2026-07-22T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/16356818",
-      "description": "Weekly storytime for toddlers and preschoolers at the library, Wednesdays 11 am to noon in July.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Water Park Wednesdays",
-      "start": "2026-07-22T12:00",
-      "end": "2026-07-22T15:00",
-      "location": "Junction Park, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Free weekly outdoor playgroup from the rec district: water play, sand building, river exploration, and rotating activities, Wednesdays 12 to 3 p.m. June through August.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Make and Explore STEAM Program",
-      "start": "2026-07-22T13:30",
-      "end": "2026-07-22T14:30",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/16357062",
-      "description": "Weekly STEAM building and exploration program for kids 6 and up, with a new project each week.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "John Michael Neighborhood Night",
-      "start": "2026-07-22T20:00",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
-      "description": "Solo set spanning rock, funk, soul, blues, and reggae.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Boulder Creek Farmers Market",
-      "start": "2026-07-23T13:30",
-      "end": "2026-07-23T18:30",
-      "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
-      "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
-      "category": "Market"
-    },
-    {
-      "title": "Discovery Zone Playgroup",
-      "start": "2026-07-24T11:00",
-      "end": "2026-07-24T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15607412",
-      "description": "Drop-in playgroup for young children and caregivers at the library, 11 am to noon.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Free Food Fridays",
-      "start": "2026-07-24T15:00",
-      "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
-      "category": "Community"
-    },
-    {
-      "title": "The New Horizons",
-      "start": "2026-07-24T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
-      "description": "A rock and roll night of originals and covers.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Community Crafters",
-      "start": "2026-07-25T10:00",
-      "end": "2026-07-25T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15202663",
-      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
-      "category": "Music & Arts"
-    },
-    {
-      "title": "The Great Summer Playdate",
-      "start": "2026-07-25T10:30",
-      "location": "Boulder Creek (see signup for location)",
-      "category": "Family & Kids",
-      "description": "Third annual free playdate for infants, toddlers, and preschoolers up to age 5, a collaboration between Miss Brooke's Mini & Me Music Classes and Messy Play Kits.",
-      "url": "https://www.instagram.com/missmakermomma/"
-    },
-    {
-      "title": "Write Now! Writing Group",
-      "start": "2026-07-25T15:00",
-      "end": "2026-07-25T16:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/16111355",
-      "description": "Monthly writing group at the library, 3 to 4 pm.",
-      "category": "Community"
-    },
-    {
-      "title": "Sean and the Skinwalkers",
-      "start": "2026-07-25T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
-      "description": "Blues rock and classic rock.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Mobile Health Clinic",
-      "start": "2026-07-28T10:00",
-      "end": "2026-07-28T15:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15201583",
-      "description": "Mobile health clinic visit at the library, 10 am to 3 pm.",
-      "category": "Community"
-    },
-    {
-      "title": "Felton Farmers Market",
-      "start": "2026-07-28T13:30",
-      "end": "2026-07-28T17:30",
-      "location": "St. John's Church lot, 120 Russell Ave, Felton",
-      "url": "https://santacruzfarmersmarket.org/markets/",
-      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
-      "category": "Market"
-    },
-    {
-      "title": "Toddler and Preschool Storytime",
-      "start": "2026-07-29T11:00",
-      "end": "2026-07-29T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/16356819",
-      "description": "Weekly storytime for toddlers and preschoolers at the library, Wednesdays 11 am to noon in July.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Water Park Wednesdays",
-      "start": "2026-07-29T12:00",
-      "end": "2026-07-29T15:00",
-      "location": "Junction Park, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Free weekly outdoor playgroup from the rec district: water play, sand building, river exploration, and rotating activities, Wednesdays 12 to 3 p.m. June through August.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Make and Explore STEAM Program",
-      "start": "2026-07-29T13:30",
-      "end": "2026-07-29T14:30",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/16357063",
-      "description": "Weekly STEAM building and exploration program for kids 6 and up, with a new project each week.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Karin Phoenix Neighborhood Night",
-      "start": "2026-07-29T20:00",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
-      "description": "Singer-songwriter who has shared stages with the Doobie Brothers and Tim McGraw.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Cascada de Flores Bilingual Performance",
-      "start": "2026-07-30T10:30",
-      "end": "2026-07-30T11:30",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/16193825",
-      "description": "Bilingual music performance by Cascada de Flores at the library, 10:30 to 11:30 am.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Boulder Creek Farmers Market",
-      "start": "2026-07-30T13:30",
-      "end": "2026-07-30T18:30",
-      "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
-      "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
-      "category": "Market"
-    },
-    {
-      "title": "Discovery Zone Playgroup",
-      "start": "2026-07-31T11:00",
-      "end": "2026-07-31T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15607413",
-      "description": "Drop-in playgroup for young children and caregivers at the library, 11 am to noon.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Free Food Fridays",
-      "start": "2026-07-31T15:00",
-      "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
-      "category": "Community"
-    },
-    {
-      "title": "Jeff Gardner & The Tools",
-      "start": "2026-07-31T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
-      "description": "Covers and original songs from rock and blues to reggae.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Community Crafters",
-      "start": "2026-08-01T10:00",
-      "end": "2026-08-01T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15202664",
-      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
-      "category": "Music & Arts"
-    },
-    {
-      "title": "SPAM!",
-      "start": "2026-08-01T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Felton Farmers Market",
-      "start": "2026-08-04T13:30",
-      "end": "2026-08-04T17:30",
-      "location": "St. John's Church lot, 120 Russell Ave, Felton",
-      "url": "https://santacruzfarmersmarket.org/markets/",
-      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
-      "category": "Market"
+      "notice": "Gallery open only when a docent is available. Call Grace Gallery 831-338-8382 or Belardi Gallery 831-704-7066 before you go."
     },
     {
       "title": "Water Park Wednesdays",
@@ -425,12 +32,22 @@
       "category": "Family & Kids"
     },
     {
+      "title": "Dave D'oh Neighborhood Night",
+      "start": "2026-08-05T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
       "title": "Boulder Creek Farmers Market",
       "start": "2026-08-06T13:30",
-      "end": "2026-08-06T18:30",
+      "end": "2026-08-06T17:30",
       "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
       "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
       "category": "Market"
     },
     {
@@ -456,19 +73,20 @@
       "start": "2026-08-07T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
     },
     {
       "title": "Sempervirens Guided Hike at Big Basin",
-      "start": "2026-08-08",
-      "end": null,
-      "location": "Big Basin Redwoods State Park, Boulder Creek",
-      "url": "https://sempervirens.org/events/",
-      "description": "Guided hike through the redwoods of Big Basin with Sempervirens Fund; registration details on the Sempervirens events page.",
-      "category": "Outdoors"
+      "start": "2026-08-08T09:00",
+      "end": "2026-08-08T14:00",
+      "location": "Big Basin Redwoods State Park, 21600 Big Basin Highway, Boulder Creek",
+      "url": "https://www.eventbrite.com/e/guided-hike-at-big-basin-redwoods-state-park-tickets-1994098712930",
+      "description": "Volunteer-led guided hike with Sempervirens Fund, 6.4 miles across multiple trails with 1,217 feet of elevation gain, 9 a.m. to 2 p.m.",
+      "category": "Outdoors",
+      "notice": "Registration required and rated hard, for experienced hikers only. Big Basin has no potable water, so bring your own water and lunch."
     },
     {
       "title": "Community Crafters",
@@ -480,11 +98,21 @@
       "category": "Music & Arts"
     },
     {
+      "title": "San Lorenzo Valley Museum 50th Anniversary Dinner & Auction",
+      "start": "2026-08-08T18:00",
+      "end": "2026-08-08T20:30",
+      "location": "Scopazzi's Restaurant & Lounge, 13300 Big Basin Way, Boulder Creek",
+      "url": "https://www.zeffy.com/en-US/ticketing/golden-jubilee-fundraising-dinner-and-auction",
+      "description": "The museum's Golden Jubilee fundraising dinner and auction. No-host bar, live music from Patti Maxine, and the silent auction from 6 p.m., then dinner and the live auction from 7 to 8:30 p.m.",
+      "category": "Fundraiser",
+      "notice": "Ticketed. $80 in advance, $90 at the door, $10 off for members, $25 for children 12 and under."
+    },
+    {
       "title": "Groovy Judy",
       "start": "2026-08-08T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
@@ -526,13 +154,33 @@
       "category": "Family & Kids"
     },
     {
+      "title": "Moonshine Crossroads Neighborhood Night",
+      "start": "2026-08-12T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
       "title": "Boulder Creek Farmers Market",
       "start": "2026-08-13T13:30",
-      "end": "2026-08-13T18:30",
+      "end": "2026-08-13T17:30",
       "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
       "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
       "category": "Market"
+    },
+    {
+      "title": "Volunteer Fuel Reduction at Henry Cowell",
+      "start": "2026-08-14T10:00",
+      "end": "2026-08-14T12:00",
+      "location": "Henry Cowell Redwoods State Park Visitor Center, Redwood Grove Loop Trail, Felton",
+      "url": "https://sempervirens.org/visit/events-and-experiences/",
+      "description": "Sempervirens Fund volunteer workday building brush piles in the Redwood Grove to reduce forest fuels, 10 a.m. to noon.",
+      "category": "Outdoors",
+      "notice": "Registration required and limited to 10 volunteers. Moderately strenuous, on sloped or uneven ground. Liability waiver due by 4 p.m. the day before."
     },
     {
       "title": "Free Food Fridays",
@@ -544,11 +192,21 @@
       "category": "Community"
     },
     {
+      "title": "The Hangout",
+      "start": "2026-08-14T18:00",
+      "end": "2026-08-14T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "New Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., starting August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+    },
+    {
       "title": "Serious Condition",
-      "start": "2026-08-14T20:30",
+      "start": "2026-08-14T20:00",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
@@ -576,7 +234,7 @@
       "start": "2026-08-15T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
@@ -588,7 +246,8 @@
       "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
       "url": "https://www.highlandsparkseniorcenter.org/",
       "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids under 7; cash, credit, or debit. Everyone welcome.",
-      "category": "Community"
+      "category": "Community",
+      "notice": "$12 adults, $5 kids under 7. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
     },
     {
       "title": "Felton Farmers Market",
@@ -609,22 +268,43 @@
       "category": "Family & Kids"
     },
     {
+      "title": "Nick DiSalvo Neighborhood Night",
+      "start": "2026-08-19T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
       "title": "Boulder Creek Book Group",
       "start": "2026-08-20T11:00",
       "end": "2026-08-20T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
       "url": "https://santacruzpl.libnet.info/event/15401184",
       "description": "Monthly library book group meeting in person and via Zoom, 11 am to noon.",
-      "category": "Community"
+      "category": "Community",
+      "notice": "Registration required. Attend in person or by Zoom."
     },
     {
       "title": "Boulder Creek Farmers Market",
       "start": "2026-08-20T13:30",
-      "end": "2026-08-20T18:30",
+      "end": "2026-08-20T17:30",
       "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
       "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
       "category": "Market"
+    },
+    {
+      "title": "Volunteer Fuel Reduction at Big Basin",
+      "start": "2026-08-21T10:00",
+      "end": "2026-08-21T12:00",
+      "location": "Big Basin Redwoods State Park, Historic Headquarters, 21600 Big Basin Hwy, Boulder Creek",
+      "url": "https://sempervirens.org/visit/events-and-experiences/",
+      "description": "Sempervirens Fund volunteer workday building brush piles in the Redwood Grove to reduce forest fuels, 10 a.m. to noon.",
+      "category": "Outdoors",
+      "notice": "Registration required. Moderately strenuous, on sloped or uneven ground. All volunteers sign a liability waiver."
     },
     {
       "title": "Free Food Fridays",
@@ -636,13 +316,14 @@
       "category": "Community"
     },
     {
-      "title": "BCVFD Summer BBQ & Dance",
-      "start": "2026-08-22",
+      "title": "This Close",
+      "start": "2026-08-21T20:30",
       "end": null,
-      "location": "Boulder Creek Fire Station, 13230 Central Avenue, Boulder Creek",
-      "url": "https://www.bcfd.com/",
-      "description": "The Boulder Creek Volunteer Fire Department's annual summer barbecue and dance fundraiser at the fire station. Proceeds support the volunteer firefighters and rescue equipment. Check the department's site for times and tickets.",
-      "category": "Fundraiser"
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
     },
     {
       "title": "Community Crafters",
@@ -656,18 +337,29 @@
     {
       "title": "Herbalism 101 at Air & Fire",
       "start": "2026-08-22T11:00",
-      "end": null,
+      "end": "2026-08-22T18:00",
       "location": "Air & Fire: A Mystical Bazaar, 13150 Highway 9, Boulder Creek",
       "url": "https://www.airandfire.com/home.html",
-      "description": "A full-day herbalism class at Air & Fire covering the basics, including salve and tincture making.",
-      "category": "Community"
+      "description": "A full-day herbalism class at Air & Fire, 11 a.m. to 6 p.m. with an hour for lunch, covering the basics including salve and tincture making.",
+      "category": "Community",
+      "notice": "$225. Register and pay in advance through the shop."
+    },
+    {
+      "title": "BCVFD Summer BBQ & Dance",
+      "start": "2026-08-22T17:30",
+      "end": "2026-08-22T23:00",
+      "location": "Boulder Creek Fire Station, 13230 Central Avenue, Boulder Creek",
+      "url": "https://www.bcfd.com/2026-08-22-summer-bbq-dance",
+      "description": "The Boulder Creek Volunteer Fire Department's annual barbecue and dance fundraiser at the fire station. Doors and dinner from 5:30 p.m., tri-tip and chicken cooked by the firefighters in the apparatus bay, three bands on the outdoor stage (Kentucky Mule at 5:50, Barnstormer at 7:30, Bootleg Country Band at 9:15) and the last dance at 11. Bounce house and face painting for kids. Proceeds buy rescue and medical equipment.",
+      "category": "Fundraiser",
+      "notice": "$30 for dinner and dance, free for kids under 5, $100 family four-pack online only. Buy online in advance or pay at the door."
     },
     {
       "title": "Jefferson's Revival",
       "start": "2026-08-22T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
@@ -700,12 +392,22 @@
       "category": "Family & Kids"
     },
     {
+      "title": "Karin Phoenix Neighborhood Night",
+      "start": "2026-08-26T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
       "title": "Boulder Creek Farmers Market",
       "start": "2026-08-27T13:30",
-      "end": "2026-08-27T18:30",
+      "end": "2026-08-27T17:30",
       "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
       "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 6:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
+      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
       "category": "Market"
     },
     {
@@ -733,7 +435,8 @@
       "location": "Garrahan Park, 15555 Hwy 9, Boulder Creek",
       "url": "https://www.eventbrite.com/e/kbcz-music-fest-2026-tickets-1991480050440",
       "description": "Music festival from Boulder Creek community radio KBCZ 89.3 FM at Garrahan Park, 2 to 7:30 p.m., with live music, food, and vendors. Proceeds support the station.",
-      "category": "Music & Arts"
+      "category": "Music & Arts",
+      "notice": "Tickets through Eventbrite."
     },
     {
       "title": "Write Now! Writing Group",
@@ -745,6 +448,16 @@
       "category": "Community"
     },
     {
+      "title": "Kevin Hamm Band",
+      "start": "2026-08-29T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
       "title": "Felton Farmers Market",
       "start": "2026-09-01T13:30",
       "end": "2026-09-01T17:30",
@@ -752,6 +465,16 @@
       "url": "https://santacruzfarmersmarket.org/markets/",
       "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
       "category": "Market"
+    },
+    {
+      "title": "Diamond & Combs Neighborhood Night",
+      "start": "2026-09-02T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
     },
     {
       "title": "Boulder Creek Farmers Market",
@@ -785,10 +508,19 @@
       "start": "2026-09-04T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-09-05T10:00",
+      "end": "2026-09-05T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202669",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
     },
     {
       "title": "SPLASHFEST",
@@ -797,17 +529,28 @@
       "location": "Garrahan Park, 15555 Hwy 9, Boulder Creek",
       "url": "https://www.bcrpd.org/events",
       "description": "Water play day for kids and teens from BCRPD and Messy Play Kits, noon to 3 pm with a low sensory hour from 11 am to noon, with food and drinks for purchase.",
-      "category": "Family & Kids"
+      "category": "Family & Kids",
+      "notice": "Tickets required. Low sensory hour 11 a.m. to noon. Food and drinks for sale."
     },
     {
       "title": "Sleepless Nights",
       "start": "2026-09-05T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
+    },
+    {
+      "title": "Quilting with Friends",
+      "start": "2026-09-08T10:00",
+      "end": "2026-09-08T15:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15619189",
+      "description": "Drop-in quilting session at the library, 10 a.m. to 3 p.m. All levels welcome, from accomplished quilters to beginners. Bring your own supplies.",
+      "category": "Music & Arts",
+      "notice": "No registration required."
     },
     {
       "title": "Felton Farmers Market",
@@ -819,6 +562,25 @@
       "category": "Market"
     },
     {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-09-09T11:00",
+      "end": "2026-09-09T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958124",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Jim Lewin & Diana Z Neighborhood Night",
+      "start": "2026-09-09T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
       "title": "Boulder Creek Farmers Market",
       "start": "2026-09-10T13:30",
       "end": "2026-09-10T17:30",
@@ -826,6 +588,15 @@
       "url": "https://www.facebook.com/bcrpd.org/events",
       "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
       "category": "Market"
+    },
+    {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-09-11T11:00",
+      "end": "2026-09-11T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607419",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
     },
     {
       "title": "Free Food Fridays",
@@ -837,11 +608,30 @@
       "category": "Community"
     },
     {
+      "title": "Fossil Farm",
+      "start": "2026-09-11T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-09-12T10:00",
+      "end": "2026-09-12T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202670",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
       "title": "JAM and the Buttered Biscuits",
       "start": "2026-09-12T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
@@ -865,6 +655,25 @@
       "category": "Market"
     },
     {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-09-16T11:00",
+      "end": "2026-09-16T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958125",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Boulder Creek Book Group",
+      "start": "2026-09-17T11:00",
+      "end": "2026-09-17T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15401185",
+      "description": "Monthly library book group on the third Thursday, meeting in person and via Zoom, 11 a.m. to noon.",
+      "category": "Community",
+      "notice": "Registration required. Attend in person or by Zoom."
+    },
+    {
       "title": "Boulder Creek Farmers Market",
       "start": "2026-09-17T13:30",
       "end": "2026-09-17T17:30",
@@ -872,6 +681,15 @@
       "url": "https://www.facebook.com/bcrpd.org/events",
       "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
       "category": "Market"
+    },
+    {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-09-18T11:00",
+      "end": "2026-09-18T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607420",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
     },
     {
       "title": "Free Food Fridays",
@@ -883,11 +701,40 @@
       "category": "Community"
     },
     {
+      "title": "Robert Hager & The Wolfpack",
+      "start": "2026-09-18T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-09-19T10:00",
+      "end": "2026-09-19T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202671",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "Let's Go Firewise, Let's Get Wildfire-Ready",
+      "start": "2026-09-19T13:00",
+      "end": "2026-09-19T14:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16394292",
+      "description": "Community talk on the Firewise neighborhood program and the Home Ignition Zone approach to hardening a house, presented at the library, 1 to 2 p.m.",
+      "category": "Community",
+      "notice": "Adults 18 and over."
+    },
+    {
       "title": "Vintage Point",
       "start": "2026-09-19T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
@@ -899,6 +746,16 @@
       "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
       "url": "https://www.highlandsparkseniorcenter.org/",
       "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids under 7; cash, credit, or debit. Everyone welcome.",
+      "category": "Community",
+      "notice": "$12 adults, $5 kids under 7. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
+    },
+    {
+      "title": "Mobile Health Clinic",
+      "start": "2026-09-22T10:00",
+      "end": "2026-09-22T15:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15201585",
+      "description": "The CommonSpirit Health mobile wellness clinic visits the library on the fourth Tuesday of the month, 10 a.m. to 3 p.m., with bilingual staff and evaluation and treatment of acute and chronic conditions.",
       "category": "Community"
     },
     {
@@ -911,6 +768,25 @@
       "category": "Market"
     },
     {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-09-23T11:00",
+      "end": "2026-09-23T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958126",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Patti Maxine & Ginny Mitchell Neighborhood Night",
+      "start": "2026-09-23T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
       "title": "Boulder Creek Farmers Market",
       "start": "2026-09-24T13:30",
       "end": "2026-09-24T17:30",
@@ -918,6 +794,15 @@
       "url": "https://www.facebook.com/bcrpd.org/events",
       "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
       "category": "Market"
+    },
+    {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-09-25T11:00",
+      "end": "2026-09-25T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607421",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
     },
     {
       "title": "Free Food Fridays",
@@ -933,10 +818,19 @@
       "start": "2026-09-25T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-09-26T10:00",
+      "end": "2026-09-26T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202673",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
     },
     {
       "title": "Santa Cruz Mountain Harvest Festival",
@@ -948,11 +842,20 @@
       "category": "Community"
     },
     {
+      "title": "Write Now! Writing Group",
+      "start": "2026-09-26T15:00",
+      "end": "2026-09-26T16:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16111357",
+      "description": "A dedicated hour of writing on the last Saturday of the month: a five minute check-in, fifty minutes of silent focused work, and a five minute wrap-up.",
+      "category": "Community"
+    },
+    {
       "title": "Love Creek",
       "start": "2026-09-26T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
@@ -967,11 +870,20 @@
       "category": "Market"
     },
     {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-09-30T11:00",
+      "end": "2026-09-30T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958127",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
       "title": "Billy Reese Neighborhood Night",
       "start": "2026-09-30T20:00",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
@@ -986,21 +898,85 @@
       "category": "Market"
     },
     {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-10-02T11:00",
+      "end": "2026-10-02T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607422",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Free Food Fridays",
+      "start": "2026-10-02T15:00",
+      "end": null,
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "category": "Community"
+    },
+    {
+      "title": "First Friday Boulder Creek: Spooktacular",
+      "start": "2026-10-02T17:00",
+      "end": "2026-10-02T20:00",
+      "location": "Downtown Boulder Creek",
+      "url": "https://www.bcba.net/events",
+      "description": "Monthly First Friday evening with local shops and specialty vendors along downtown Boulder Creek, 5 to 8 pm, with a Halloween theme this month.",
+      "category": "Community"
+    },
+    {
       "title": "Medicine Road",
       "start": "2026-10-02T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-10-03T10:00",
+      "end": "2026-10-03T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202674",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "The Next Blues Band",
+      "start": "2026-10-03T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Felton Farmers Market",
+      "start": "2026-10-06T13:30",
+      "end": "2026-10-06T17:30",
+      "location": "St. John's Church lot, 120 Russell Ave, Felton",
+      "url": "https://santacruzfarmersmarket.org/markets/felton/",
+      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+      "category": "Market"
+    },
+    {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-10-07T11:00",
+      "end": "2026-10-07T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958128",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
     },
     {
       "title": "Dave D'oh Neighborhood Night",
       "start": "2026-10-07T20:00",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
@@ -1025,14 +1001,89 @@
       "category": "Music & Arts"
     },
     {
-      "title": "Arcane Lullaby",
-      "start": "2026-10-10T20:00",
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-10-09T11:00",
+      "end": "2026-10-09T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607423",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Free Food Fridays",
+      "start": "2026-10-09T15:00",
+      "end": null,
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "category": "Community"
+    },
+    {
+      "title": "Cooper Street",
+      "start": "2026-10-09T20:30",
       "end": null,
       "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "https://www.facebook.com/joesbouldercreek/events",
+      "url": "http://www.drinkatjoes.com/",
       "description": "Live music at Joe's Bar.",
       "category": "Music & Arts",
       "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-10-10T10:00",
+      "end": "2026-10-10T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202675",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "Arcane Lullaby",
+      "start": "2026-10-10T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Felton Farmers Market",
+      "start": "2026-10-13T13:30",
+      "end": "2026-10-13T17:30",
+      "location": "St. John's Church lot, 120 Russell Ave, Felton",
+      "url": "https://santacruzfarmersmarket.org/markets/felton/",
+      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+      "category": "Market"
+    },
+    {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-10-14T11:00",
+      "end": "2026-10-14T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958129",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Jimmy Dillon Neighborhood Night",
+      "start": "2026-10-14T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Boulder Creek Book Group",
+      "start": "2026-10-15T11:00",
+      "end": "2026-10-15T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15401186",
+      "description": "Monthly library book group on the third Thursday, meeting in person and via Zoom, 11 a.m. to noon.",
+      "category": "Community",
+      "notice": "Registration required. Attend in person or by Zoom."
     },
     {
       "title": "Boulder Creek Farmers Market",
@@ -1044,13 +1095,109 @@
       "category": "Market"
     },
     {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-10-16T11:00",
+      "end": "2026-10-16T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607424",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Free Food Fridays",
+      "start": "2026-10-16T15:00",
+      "end": null,
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "category": "Community"
+    },
+    {
+      "title": "Haunted Walk of TERROR",
+      "start": "2026-10-16T20:00",
+      "end": "2026-10-16T21:30",
+      "location": "Bear Creek Estates, 15685 Forest Hill Drive, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "BCRPD's haunted walk, running two October weekends, 8 to 9:30 p.m.",
+      "category": "Family & Kids",
+      "notice": "Ages 8 and up."
+    },
+    {
+      "title": "The Radio",
+      "start": "2026-10-16T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-10-17T10:00",
+      "end": "2026-10-17T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202676",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "Haunted Walk of TERROR",
+      "start": "2026-10-17T20:00",
+      "end": "2026-10-17T21:30",
+      "location": "Bear Creek Estates, 15685 Forest Hill Drive, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "BCRPD's haunted walk, running two October weekends, 8 to 9:30 p.m.",
+      "category": "Family & Kids",
+      "notice": "Ages 8 and up."
+    },
+    {
+      "title": "El Brick",
+      "start": "2026-10-17T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
       "title": "Pancake Breakfast at Highlands Park",
       "start": "2026-10-18T08:30",
       "end": "2026-10-18T12:00",
       "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
       "url": "https://www.highlandsparkseniorcenter.org/",
       "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids under 7; cash, credit, or debit. Everyone welcome.",
-      "category": "Community"
+      "category": "Community",
+      "notice": "$12 adults, $5 kids under 7. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
+    },
+    {
+      "title": "Felton Farmers Market",
+      "start": "2026-10-20T13:30",
+      "end": "2026-10-20T17:30",
+      "location": "St. John's Church lot, 120 Russell Ave, Felton",
+      "url": "https://santacruzfarmersmarket.org/markets/felton/",
+      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+      "category": "Market"
+    },
+    {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-10-21T11:00",
+      "end": "2026-10-21T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958130",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Moonshine Crossroads Neighborhood Night",
+      "start": "2026-10-21T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
     },
     {
       "title": "Boulder Creek Farmers Market",
@@ -1060,6 +1207,34 @@
       "url": "https://www.facebook.com/bcrpd.org/events",
       "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
       "category": "Market"
+    },
+    {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-10-23T11:00",
+      "end": "2026-10-23T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607425",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Free Food Fridays",
+      "start": "2026-10-23T15:00",
+      "end": null,
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "category": "Community"
+    },
+    {
+      "title": "Haunted Walk of TERROR",
+      "start": "2026-10-23T20:00",
+      "end": "2026-10-23T21:30",
+      "location": "Bear Creek Estates, 15685 Forest Hill Drive, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "BCRPD's haunted walk, running two October weekends, 8 to 9:30 p.m.",
+      "category": "Family & Kids",
+      "notice": "Ages 8 and up."
     },
     {
       "title": "Liz Longley at Lille Aeske Arthouse",
@@ -1072,6 +1247,72 @@
       "category": "Music & Arts"
     },
     {
+      "title": "Community Crafters",
+      "start": "2026-10-24T10:00",
+      "end": "2026-10-24T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202677",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "Haunted Walk of TERROR",
+      "start": "2026-10-24T20:00",
+      "end": "2026-10-24T21:30",
+      "location": "Bear Creek Estates, 15685 Forest Hill Drive, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "BCRPD's haunted walk, running two October weekends, 8 to 9:30 p.m.",
+      "category": "Family & Kids",
+      "notice": "Ages 8 and up."
+    },
+    {
+      "title": "Sean and the Skinwalkers",
+      "start": "2026-10-24T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Mobile Health Clinic",
+      "start": "2026-10-27T10:00",
+      "end": "2026-10-27T15:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15201586",
+      "description": "The CommonSpirit Health mobile wellness clinic visits the library on the fourth Tuesday of the month, 10 a.m. to 3 p.m., with bilingual staff and evaluation and treatment of acute and chronic conditions.",
+      "category": "Community"
+    },
+    {
+      "title": "Felton Farmers Market",
+      "start": "2026-10-27T13:30",
+      "end": "2026-10-27T17:30",
+      "location": "St. John's Church lot, 120 Russell Ave, Felton",
+      "url": "https://santacruzfarmersmarket.org/markets/felton/",
+      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
+      "category": "Market"
+    },
+    {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-10-28T11:00",
+      "end": "2026-10-28T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958131",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Nick DiSalvo Neighborhood Night",
+      "start": "2026-10-28T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
       "title": "Boulder Creek Farmers Market",
       "start": "2026-10-29T13:30",
       "end": "2026-10-29T17:30",
@@ -1079,6 +1320,313 @@
       "url": "https://www.facebook.com/bcrpd.org/events",
       "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
       "category": "Market"
+    },
+    {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-10-30T11:00",
+      "end": "2026-10-30T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607426",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Free Food Fridays",
+      "start": "2026-10-30T15:00",
+      "end": null,
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "category": "Community"
+    },
+    {
+      "title": "Jeff Gardner & The Tools",
+      "start": "2026-10-30T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-10-31T10:00",
+      "end": "2026-10-31T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202678",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "Write Now! Writing Group",
+      "start": "2026-10-31T15:00",
+      "end": "2026-10-31T16:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16111358",
+      "description": "A dedicated hour of writing on the last Saturday of the month: a five minute check-in, fifty minutes of silent focused work, and a five minute wrap-up.",
+      "category": "Community"
+    },
+    {
+      "title": "Halloween at BC Rec",
+      "start": "2026-10-31T18:00",
+      "end": "2026-10-31T20:00",
+      "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Halloween open house at the rec center, 6 to 8 p.m.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "High Wire Halloween Dance Party",
+      "start": "2026-10-31T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over. Costume contest with judging between 11:30 p.m. and midnight, and you must be there to win. Complimentary chili and cornbread from 8 p.m. until it runs out."
+    },
+    {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-11-04T11:00",
+      "end": "2026-11-04T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958132",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Patti Maxine & Ginny Mitchell Neighborhood Night",
+      "start": "2026-11-04T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-11-06T11:00",
+      "end": "2026-11-06T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607427",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "First Friday Boulder Creek: Giving Thanks",
+      "start": "2026-11-06T17:00",
+      "end": "2026-11-06T20:00",
+      "location": "Downtown Boulder Creek",
+      "url": "https://www.bcba.net/events",
+      "description": "Monthly First Friday evening with local shops and specialty vendors along downtown Boulder Creek, 5 to 8 pm, with a giving thanks theme this month.",
+      "category": "Community"
+    },
+    {
+      "title": "The Shady Rest Band",
+      "start": "2026-11-06T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-11-07T10:00",
+      "end": "2026-11-07T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202679",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "The Fog",
+      "start": "2026-11-07T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-11-11T11:00",
+      "end": "2026-11-11T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958133",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Jim Lewin & Diana Z Neighborhood Night",
+      "start": "2026-11-11T20:00",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-11-13T11:00",
+      "end": "2026-11-13T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607428",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Serious Condition",
+      "start": "2026-11-13T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-11-14T10:00",
+      "end": "2026-11-14T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202680",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "Groovy Judy",
+      "start": "2026-11-14T20:30",
+      "end": null,
+      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+      "url": "http://www.drinkatjoes.com/",
+      "description": "Live music at Joe's Bar.",
+      "category": "Music & Arts",
+      "notice": "21 and over"
+    },
+    {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-11-18T11:00",
+      "end": "2026-11-18T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958134",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Boulder Creek Book Group",
+      "start": "2026-11-19T11:00",
+      "end": "2026-11-19T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15401187",
+      "description": "Monthly library book group on the third Thursday, meeting in person and via Zoom, 11 a.m. to noon.",
+      "category": "Community",
+      "notice": "Registration required. Attend in person or by Zoom."
+    },
+    {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-11-20T11:00",
+      "end": "2026-11-20T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607429",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-11-21T10:00",
+      "end": "2026-11-21T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202681",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "Mobile Health Clinic",
+      "start": "2026-11-24T10:00",
+      "end": "2026-11-24T15:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15201587",
+      "description": "The CommonSpirit Health mobile wellness clinic visits the library on the fourth Tuesday of the month, 10 a.m. to 3 p.m., with bilingual staff and evaluation and treatment of acute and chronic conditions.",
+      "category": "Community"
+    },
+    {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-11-25T11:00",
+      "end": "2026-11-25T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958135",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Discovery Zone Playgroup",
+      "start": "2026-11-27T11:00",
+      "end": "2026-11-27T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15607430",
+      "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "Community Crafters",
+      "start": "2026-11-28T10:00",
+      "end": "2026-11-28T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/15202683",
+      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
+      "category": "Music & Arts"
+    },
+    {
+      "title": "Write Now! Writing Group",
+      "start": "2026-11-28T15:00",
+      "end": "2026-11-28T16:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16111359",
+      "description": "A dedicated hour of writing on the last Saturday of the month: a five minute check-in, fifty minutes of silent focused work, and a five minute wrap-up.",
+      "category": "Community"
+    },
+    {
+      "title": "Toddler & Preschool Storytime",
+      "start": "2026-12-02T11:00",
+      "end": "2026-12-02T12:00",
+      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+      "url": "https://santacruzpl.libnet.info/event/16958136",
+      "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
+      "category": "Family & Kids"
+    },
+    {
+      "title": "First Friday Boulder Creek: Ugly Sweater",
+      "start": "2026-12-04T17:00",
+      "end": "2026-12-04T20:00",
+      "location": "Downtown Boulder Creek",
+      "url": "https://www.bcba.net/events",
+      "description": "Monthly First Friday evening with local shops and specialty vendors along downtown Boulder Creek, 5 to 8 pm, with an ugly sweater theme this month.",
+      "category": "Community"
+    },
+    {
+      "title": "Winter Festival",
+      "start": "2026-12-05T14:00",
+      "end": "2026-12-05T18:00",
+      "location": "Forest Street, Downtown Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "BCRPD's winter festival on Forest Street in downtown Boulder Creek, 2 to 6 p.m. Vendor applications are open.",
+      "category": "Community"
+    },
+    {
+      "title": "Holiday Show: Once Upon a Time in a Jungle",
+      "start": "2026-12-12T16:30",
+      "end": "2026-12-12T18:30",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "BCRPD's holiday dinner and show, \"Once Upon a Time in a Jungle, Snow White and the 7 Trolls\".",
+      "category": "Family & Kids",
+      "notice": "Dinner 4:30 to 5:30 p.m., show 5:45 to 6:30 p.m. BCRPD has not published the venue yet, so call 831-338-4144 to confirm."
     }
   ]
 }
