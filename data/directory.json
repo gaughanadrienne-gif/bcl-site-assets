@@ -36,6 +36,21 @@
    "tile": "san-lorenzo-valley-museum-grace-episcopal-gallery.png"
   },
   {
+   "name": "Soap Bubble Cleaning Service",
+   "category": "House Cleaning",
+   "subcategory": "House cleaning",
+   "description": "House cleaning service working the San Lorenzo Valley from Brookdale.",
+   "locality": "Brookdale",
+   "phone": "831-252-0720",
+   "website": "https://www.facebook.com/profile.php?id=100066753095564",
+   "service_area": "San Lorenzo Valley",
+   "verified_at": "2026-08-08",
+   "no_storefront": true,
+   "address": null,
+   "hours_text": null,
+   "tile": null
+  },
+  {
    "name": "Viscosity Glass",
    "category": "Arts & Culture",
    "subcategory": "Glass art studio and gallery",

@@ -3,7 +3,7 @@
  "@type": "ItemList",
  "name": "Boulder Creek and San Lorenzo Valley business directory",
  "url": "https://www.bouldercreeklocal.com/directory",
- "numberOfItems": 317,
+ "numberOfItems": 318,
  "itemListOrder": "https://schema.org/ItemListOrderAscending",
  "itemListElement": [
   {
@@ -1590,270 +1590,276 @@
   {
    "@type": "ListItem",
    "position": 272,
+   "name": "Soap Bubble Cleaning Service",
+   "url": "https://www.facebook.com/profile.php?id=100066753095564"
+  },
+  {
+   "@type": "ListItem",
+   "position": 273,
    "name": "Society Barbershop",
    "url": "https://www.societybarbershop.com/"
   },
   {
    "@type": "ListItem",
-   "position": 273,
+   "position": 274,
    "name": "Spa Santangelo",
    "url": "https://spasantangelo.com/"
   },
   {
    "@type": "ListItem",
-   "position": 274,
+   "position": 275,
    "name": "Squatch Valley Property Services"
   },
   {
    "@type": "ListItem",
-   "position": 275,
+   "position": 276,
    "name": "Stellar Tree Care",
    "url": "https://www.stellartreecare.com/"
   },
   {
    "@type": "ListItem",
-   "position": 276,
+   "position": 277,
    "name": "Stumptown Supply",
    "url": "https://www.stumptownsupply.com/"
   },
   {
    "@type": "ListItem",
-   "position": 277,
+   "position": 278,
    "name": "Sugar Bakery Co.",
    "url": "https://www.sugarbakeryco.com/"
   },
   {
    "@type": "ListItem",
-   "position": 278,
+   "position": 279,
    "name": "Sunderland Tree Service",
    "url": "https://sunderlandtree.com/"
   },
   {
    "@type": "ListItem",
-   "position": 279,
+   "position": 280,
    "name": "Sunny's Catering",
    "url": "https://sunnyscatering.com/"
   },
   {
    "@type": "ListItem",
-   "position": 280,
+   "position": 281,
    "name": "Superior Tax Service (Allan R. Polus, EA)",
    "url": "https://taxexperts.naea.org/listing/allan-polus-5628a596ed750.html"
   },
   {
    "@type": "ListItem",
-   "position": 281,
+   "position": 282,
    "name": "SuperNatural Beauty & Aesthetics",
    "url": "https://supernatural.beauty/"
   },
   {
    "@type": "ListItem",
-   "position": 282,
+   "position": 283,
    "name": "SWAG",
    "url": "https://www.swagbouldercreek.com/"
   },
   {
    "@type": "ListItem",
-   "position": 283,
+   "position": 284,
    "name": "Sydalyn Hill",
    "url": "https://sydalynhill.com/"
   },
   {
    "@type": "ListItem",
-   "position": 284,
+   "position": 285,
    "name": "Tails of Redwood Trails LLC",
    "url": "https://www.tailsofredwoodtrails.com/"
   },
   {
    "@type": "ListItem",
-   "position": 285,
+   "position": 286,
    "name": "Tavares Plumbing and Pumps",
    "url": "https://tavareswellpumps.com/"
   },
   {
    "@type": "ListItem",
-   "position": 286,
+   "position": 287,
    "name": "Terry Miller Concrete"
   },
   {
    "@type": "ListItem",
-   "position": 287,
+   "position": 288,
    "name": "The Abbot's Thrift",
    "url": "https://theabbotsthrift.org/"
   },
   {
    "@type": "ListItem",
-   "position": 288,
+   "position": 289,
    "name": "The Barn at River House",
    "url": "https://www.facebook.com/TheRiverHouseBenLomond/"
   },
   {
    "@type": "ListItem",
-   "position": 289,
+   "position": 290,
    "name": "The Buttery",
    "url": "https://www.butterybakery.com/"
   },
   {
    "@type": "ListItem",
-   "position": 290,
+   "position": 291,
    "name": "The Mat - Boulder Creek Laundry",
    "url": "https://www.bouldercreeklaundry.com/"
   },
   {
    "@type": "ListItem",
-   "position": 291,
+   "position": 292,
    "name": "The Sequoia Retreat Center",
    "url": "https://www.sequoiaretreatcenter.com/"
   },
   {
    "@type": "ListItem",
-   "position": 292,
+   "position": 293,
    "name": "The Wild Bite",
    "url": "https://www.instagram.com/thewildbite/"
   },
   {
    "@type": "ListItem",
-   "position": 293,
+   "position": 294,
    "name": "Timothy Imbrie, CPA MBA",
    "url": "https://imbriecpa.com/"
   },
   {
    "@type": "ListItem",
-   "position": 294,
+   "position": 295,
    "name": "Tip Top Taps",
    "url": "https://www.sctiptoptaps.com/"
   },
   {
    "@type": "ListItem",
-   "position": 295,
+   "position": 296,
    "name": "Toadal Fitness Scotts Valley",
    "url": "https://www.toadalfitness.com/scotts-valley"
   },
   {
    "@type": "ListItem",
-   "position": 296,
+   "position": 297,
    "name": "Travis Martin Plumbing, Inc.",
    "url": "https://www.santacruzcaplumber.com/"
   },
   {
    "@type": "ListItem",
-   "position": 297,
+   "position": 298,
    "name": "Travis Tree Professionals",
    "url": "https://www.travistreeprofessionals.com/"
   },
   {
    "@type": "ListItem",
-   "position": 298,
+   "position": 299,
    "name": "Treetop Pilates & Wellness",
    "url": "https://treetoppilates.wordpress.com/"
   },
   {
    "@type": "ListItem",
-   "position": 299,
+   "position": 300,
    "name": "Valley Churches United Missions",
    "url": "https://vcum.org/"
   },
   {
    "@type": "ListItem",
-   "position": 300,
+   "position": 301,
    "name": "Valley Mini Storage",
    "url": "https://www.valleyministorageca.com/"
   },
   {
    "@type": "ListItem",
-   "position": 301,
+   "position": 302,
    "name": "Vargas Academy",
    "url": "https://vargasacademy.com/"
   },
   {
    "@type": "ListItem",
-   "position": 302,
+   "position": 303,
    "name": "VIP Hair Studio",
    "url": "https://vip-hair-studio.com/"
   },
   {
    "@type": "ListItem",
-   "position": 303,
+   "position": 304,
    "name": "Viscosity Glass",
    "url": "https://www.viscositystudio.com/gallery/"
   },
   {
    "@type": "ListItem",
-   "position": 304,
+   "position": 305,
    "name": "VSG Builder"
   },
   {
    "@type": "ListItem",
-   "position": 305,
+   "position": 306,
    "name": "Wade's, Inc."
   },
   {
    "@type": "ListItem",
-   "position": 306,
+   "position": 307,
    "name": "Walnut Avenue Domestic Violence Helpline",
    "url": "https://www.wafwc.org/domestic-violence"
   },
   {
    "@type": "ListItem",
-   "position": 307,
+   "position": 308,
    "name": "Waterfall Lodge and Retreat",
    "url": "https://waterfallsantacruz.com/"
   },
   {
    "@type": "ListItem",
-   "position": 308,
+   "position": 309,
    "name": "Wes White Handyman & General Maintenance"
   },
   {
    "@type": "ListItem",
-   "position": 309,
+   "position": 310,
    "name": "Wild Iris Floral and Botanical",
    "url": "https://www.wildirisfloral.com/"
   },
   {
    "@type": "ListItem",
-   "position": 310,
+   "position": 311,
    "name": "Wild Lilith",
    "url": "https://www.instagram.com/wildlilithbc/"
   },
   {
    "@type": "ListItem",
-   "position": 311,
+   "position": 312,
    "name": "Wilson Electric"
   },
   {
    "@type": "ListItem",
-   "position": 312,
+   "position": 313,
    "name": "Woodland Floral & Creations",
    "url": "https://www.facebook.com/Wfcbouldercreek/"
   },
   {
    "@type": "ListItem",
-   "position": 313,
+   "position": 314,
    "name": "Wylder Space",
    "url": "https://www.wylderspace.com/"
   },
   {
    "@type": "ListItem",
-   "position": 314,
+   "position": 315,
    "name": "XterminatriX Holistic Pest Control",
    "url": "https://xterminatrix.com/"
   },
   {
    "@type": "ListItem",
-   "position": 315,
+   "position": 316,
    "name": "YMCA Camp Campbell",
    "url": "https://www.ymcasv.org/camp-campbell"
   },
   {
    "@type": "ListItem",
-   "position": 316,
+   "position": 317,
    "name": "Zayante Fire Protection District",
    "url": "https://zayantefire.com/"
   },
   {
    "@type": "ListItem",
-   "position": 317,
+   "position": 318,
    "name": "Zephyr Climate Solutions",
    "url": "https://zephyrclimatesolutions.com/"
   }
