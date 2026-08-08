@@ -1,7 +1,7 @@
 {
-  "updated": "2026-07-29",
+  "updated": "2026-08-08",
   "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
-  "count": 315,
+  "count": 317,
   "listings": [
     {
       "name": "Hennig Studios",
@@ -3561,15 +3561,16 @@
       "name": "Busy Bees Playschool",
       "category": "Education & Childcare",
       "subcategory": "Family daycare",
-      "description": "Play-based preschool program founded by Michelle Hamblin Mathews; the Boulder Creek location is a licensed family child care home serving young children. A second location, Busy Bees Playschool Two, operates as a licensed child care center in Ben Lomond (ages 2-6).",
+      "description": "Play-based, child-led licensed family child care home founded by Michelle Hamblin Mathews, for ages 2 through kindergarten, outdoors most of the day. Priced by days per week. A second location, Busy Bees Playschool Two, is a licensed center in Ben Lomond.",
       "locality": "Boulder Creek",
       "service_area": "Boulder Creek and Ben Lomond (San Lorenzo Valley)",
-      "verified_at": "2026-07-17",
+      "verified_at": "2026-08-08",
       "no_storefront": true,
       "license": "License #444417882 (Family Child Care Home, Boulder Creek, active). Second location: Busy Bees Playschool Two, License #444418540 (Child Care Center, active), 7985 B Highway 9, Ben Lomond.",
       "address": null,
-      "hours_text": null,
-      "tile": "busy-bees-playschool.png"
+      "hours_text": "Monday-Thursday 9am-1pm",
+      "tile": "busy-bees-playschool.png",
+      "phone": "831-251-0921"
     },
     {
       "name": "Little Explorers (BCRPD)",
@@ -4707,6 +4708,32 @@
       "hours_text": "Monday-Friday 9am-8:45pm",
       "service_area": "Boulder Creek and the San Lorenzo Valley",
       "verified_at": "2026-08-07"
+    },
+    {
+      "name": "Busy Bees Playschool Two",
+      "category": "Education & Childcare",
+      "subcategory": "Child care center",
+      "description": "Ben Lomond location of Busy Bees Playschool, a licensed play-based child care center for ages 2 to 6, running the full day. Also offers TK aftercare with pickup from the bus stop and parent pickup until 5pm, and summer drop-in days by advance arrangement.",
+      "address": "7985 Highway 9",
+      "locality": "Ben Lomond",
+      "phone": "831-289-3012",
+      "hours_text": "8:00am-5:00pm",
+      "service_area": "San Lorenzo Valley",
+      "verified_at": "2026-08-08",
+      "license": "License #444418540 (child care center, active)"
+    },
+    {
+      "name": "Michelle's Nails",
+      "category": "Beauty",
+      "subcategory": "Nail salon",
+      "description": "Ben Lomond nail salon offering manicures and pedicures, booked by phone or walk-in.",
+      "address": "10090 Highway 9, Suite 1",
+      "locality": "Ben Lomond",
+      "phone": "831-336-8125",
+      "hours_text": "Tuesday-Saturday 9am-7pm; Sunday 12-5pm; closed Monday",
+      "service_area": "San Lorenzo Valley",
+      "verified_at": "2026-08-08",
+      "address_note": "Courtyard Plaza"
     }
   ]
 }
