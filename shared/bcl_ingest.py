@@ -160,7 +160,17 @@ def slv_locality(rec):
     return ""
 
 
-_MONEY_RE = re.compile(r"\$?\s*([\d,]+(?:\.\d+)?)\s*(k)?", re.I)
+_AMOUNT = r"\$?\s*([\d,]+(?:\.\d+)?)\s*(k)?"
+_MONEY_RE = re.compile(_AMOUNT, re.I)
+_DOLLAR_RE = re.compile(r"\$\s*([\d,]+(?:\.\d+)?)\s*(k)?", re.I)
+# A pay range: two amounts joined by a dash or "to". Postings here often omit the
+# second dollar sign ("$9,396 - 11,431 / Month") and sometimes both ("20.00 - 22.04
+# Per Hour"), so neither side can require one.
+_RANGE_RE = re.compile(_AMOUNT + r"\s*(?:-|–|—|to)\s*" + _AMOUNT, re.I)
+# Retirement-plan names carry a number that is not money. Left in, "401(k)" alone
+# makes a posting look like it disclosed pay of $401.
+_NOISE_RE = re.compile(r"\b40[13]\s*\(?k\)?|\b45[27]\s*\(?b\)?|\b403\s*\(?b\)?"
+                       r"|\breq(?:uisition)?\.?\s*#?\s*[\d-]+|#\s*\d+", re.I)
 
 
 def _to_number(num, k):
@@ -171,23 +181,49 @@ def _to_number(num, k):
 
 
 def parse_salary(text):
-    """Parse a free-text pay string into {min, max, period, disclosed}. Never raises."""
+    """Parse a free-text pay string into {min, max, period, disclosed}. Never raises.
+
+    Takes the first explicit range, or failing that the first single amount.
+    It deliberately does NOT min/max over every number in the string: trailing
+    addenda ("+ $2,142 Masters Stipend"), requisition numbers and 401(k) would
+    otherwise become the reported floor or ceiling.
+    """
     out = {"min": None, "max": None, "period": None, "disclosed": False}
     if not text:
         return out
     low = text.lower()
-    nums = _MONEY_RE.findall(text)
-    vals = [_to_number(n, k) for n, k in nums if n.strip(",.")]
-    if not vals:
-        return out
+    clean = _NOISE_RE.sub(" ", text)
+
+    m = _RANGE_RE.search(clean)
+    if m:
+        lo = _to_number(m.group(1), m.group(2))
+        hi = _to_number(m.group(3), m.group(4))
+        # "$120k-$150k" marks only the second with k in some feeds, and a bare
+        # low side then reads as 120 against 150000.
+        if m.group(4) and not m.group(2) and lo < hi / 100:
+            lo *= 1000
+        vals = sorted((lo, hi))
+    else:
+        # No range. Some postings list several discrete rates instead
+        # ("$170 for new substitute/$216 for 1 year+"), so span the amounts that
+        # are explicitly marked with a dollar sign and ignore bare counts.
+        marked = [_to_number(n, k) for n, k in _DOLLAR_RE.findall(clean) if n.strip(",.")]
+        if marked:
+            vals = (min(marked), max(marked))
+        else:
+            nums = [(n, k) for n, k in _MONEY_RE.findall(clean) if n.strip(",.")]
+            if not nums:
+                return out
+            v = _to_number(*nums[0])
+            vals = (v, v)
+
     if "hour" in low or "/hr" in low or "hr" == low.strip():
         out["period"] = "hour"
     elif "month" in low or "/mo" in low:
         out["period"] = "month"
     elif "year" in low or "annual" in low or "/yr" in low or any(v >= 1000 for v in vals):
         out["period"] = "year"
-    out["min"] = min(vals)
-    out["max"] = max(vals)
+    out["min"], out["max"] = vals
     out["disclosed"] = True
     return out
 
