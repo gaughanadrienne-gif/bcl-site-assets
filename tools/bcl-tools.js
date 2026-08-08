@@ -1187,6 +1187,28 @@
     return out;
   }
 
+  /* A run of dates that has already opened. Museum exhibits are the usual case:
+     they qualify as upcoming because they have not closed, but showing them by
+     their START date puts a months-old date at the top of the calendar and
+     reads as a stale feed. Anything already open is labelled by when it CLOSES
+     and grouped under "Happening now" instead. */
+  function evIsOngoing(e, todayOpt) {
+    if (!e || !e.end) return false;
+    var s = evParts(e.start), n = evParts(e.end);
+    if (!s || !n) return false;
+    var today = todayOpt ? new Date(todayOpt.getTime()) : new Date();
+    today.setHours(0, 0, 0, 0);
+    return new Date(s.y, s.mo - 1, s.d) < today &&
+           new Date(n.y, n.mo - 1, n.d, 23, 59) >= today;
+  }
+
+  function evThroughChip(s) {
+    var p = evParts(s);
+    if (!p) return esc(s);
+    var mons = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    return "THROUGH " + mons[p.mo - 1] + " " + p.d;
+  }
+
   /* ---------- one event, as a calendar file ----------
      Ported from the Ambitious Harvest garden-events embed (the data-ics button
      plus a VCALENDAR built in the browser and handed over as a Blob, so no
@@ -1275,27 +1297,39 @@
 
   /* Range chips and the two date boxes share one predicate so the count line,
      the chips, and the custom range can never disagree. */
+  /* An event occupies a RANGE of days, not one day. A museum exhibit that opened
+     in July and closes in December is on today, so "Today" and "This weekend"
+     have to ask whether the event's span OVERLAPS the window, not whether its
+     start day happens to fall inside it. Testing the start alone hid every
+     open exhibit behind those chips. Single-day events are the same test with
+     an end equal to the start, so nothing else changes. */
   function eventInRange(e, opts) {
     opts = opts || {};
     var range = opts.range || "all";
     var p = evParts(e && e.start);
     if (!p) return range === "all";
+    var q = evParts((e && e.end) || (e && e.start)) || p;
     var day = new Date(p.y, p.mo - 1, p.d).getTime();
+    var dayEnd = new Date(q.y, q.mo - 1, q.d).getTime();
+    if (dayEnd < day) dayEnd = day;   // a malformed end must never shrink the span
     var today = opts.today ? new Date(opts.today.getTime()) : new Date();
     today.setHours(0, 0, 0, 0);
+    function overlaps(lo, hi) { return dayEnd >= lo && day <= hi; }
     if (range === "custom") {
       var from = dayKeyToUTC(opts.from), to = dayKeyToUTC(opts.to);
       var key = Date.UTC(p.y, p.mo - 1, p.d);
-      if (from != null && key < from) return false;
+      var keyEnd = Date.UTC(q.y, q.mo - 1, q.d);
+      if (keyEnd < key) keyEnd = key;
+      if (from != null && keyEnd < from) return false;
       if (to != null && key > to) return false;
       return true;
     }
     if (range === "all") return true;
-    if (range === "today") return day === today.getTime();
+    if (range === "today") return overlaps(today.getTime(), today.getTime());
     if (range === "7" || range === "30") {
       var span = new Date(today);
       span.setDate(today.getDate() + parseInt(range, 10));
-      return day >= today.getTime() && day <= span.getTime();
+      return overlaps(today.getTime(), span.getTime());
     }
     if (range === "weekend") {
       /* the coming (or current) Friday through Sunday, never earlier than today */
@@ -1307,14 +1341,15 @@
       var sun = new Date(fri);
       sun.setDate(fri.getDate() + 2);
       var lo = Math.max(fri.getTime(), today.getTime());
-      return day >= lo && day <= sun.getTime();
+      return overlaps(lo, sun.getTime());
     }
     return true;
   }
 
   function eventCard(e) {
     var h = '<div class="bcl-event-card">';
-    h += '<div class="bcl-event-date">' + evDateChip(e.start) + "</div>";
+    h += '<div class="bcl-event-date">' +
+         (evIsOngoing(e) ? evThroughChip(e.end) : evDateChip(e.start)) + "</div>";
     h += '<div class="bcl-event-title">' + esc(e.title) + "</div>";
     if (e.location) h += '<div class="bcl-event-meta">' + esc(e.location) + "</div>";
     /* Event cards deliberately don't render descriptions, so anything a reader must
@@ -2088,11 +2123,19 @@
         rows.sort(function (a, b) {
           if (mode === "name") return a.title.localeCompare(b.title) || String(a.start).localeCompare(String(b.start));
           if (mode === "type") return (a.category || "").localeCompare(b.category || "") || String(a.start).localeCompare(String(b.start));
+          /* Already-open runs go first as ONE block. Their start dates are in the
+             past so they sort first anyway, but the month grouping below emits a
+             fresh heading every time the key changes, so a stray ongoing event in
+             the middle would print "Happening now" twice. */
+          var ao = evIsOngoing(a), bo = evIsOngoing(b);
+          if (ao !== bo) return ao ? -1 : 1;
+          if (ao && bo) return String(a.end).localeCompare(String(b.end));
           return String(a.start).localeCompare(String(b.start));
         });
         count.textContent = rows.length + " OF " + all.length + " UPCOMING" + updatedSuffix(data.updated);
         var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         function monthKey(e) {
+          if (evIsOngoing(e)) return "Happening now";
           var p = evParts(e.start);
           return p ? MONTHS[p.mo - 1] + " " + p.y : "Undated";
         }
@@ -3567,6 +3610,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, JOB_ALERTS: JOB_ALERTS, jobAlertsEndpoint: jobAlertsEndpoint, looksLikeEmail: looksLikeEmail, jobAlertsBody: jobAlertsBody, jobAlertsMessage: jobAlertsMessage, jobAlertsHTML: jobAlertsHTML, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, JOB_ALERTS: JOB_ALERTS, jobAlertsEndpoint: jobAlertsEndpoint, looksLikeEmail: looksLikeEmail, jobAlertsBody: jobAlertsBody, jobAlertsMessage: jobAlertsMessage, jobAlertsHTML: jobAlertsHTML, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
