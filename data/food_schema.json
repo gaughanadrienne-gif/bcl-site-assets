@@ -13,7 +13,6 @@
     "@type": "Restaurant",
     "name": "Bella's Cafe",
     "description": "A locally owned sit-down breakfast and lunch spot in downtown Boulder Creek, a diner rather than a coffee bar.",
-    "url": "https://www.facebook.com/100057157552126",
     "telephone": "(831) 217-5070",
     "address": {
      "@type": "PostalAddress",
@@ -175,7 +174,7 @@
    "item": {
     "@type": "Restaurant",
     "name": "El Rey Leon",
-    "description": "Mexican food truck that stays parked at its downtown spot, with outdoor seating, counter service, and online ordering.",
+    "description": "Mexican food truck at its downtown spot on set days each week, with outdoor seating and counter service.",
     "url": "https://elreyleonca.com/",
     "telephone": "(831) 282-7792",
     "address": {
@@ -260,7 +259,7 @@
     "@type": "BarOrPub",
     "name": "Joe's Bar",
     "description": "Downtown bar and live-music venue with bands most Wednesday, Friday, and Saturday nights, karaoke on Tuesdays, and a pool tournament on Thursdays. This is a 21...",
-    "url": "http://joesbc.com/",
+    "url": "http://www.drinkatjoes.com/",
     "telephone": "(831) 338-9417",
     "address": {
      "@type": "PostalAddress",
@@ -278,6 +277,7 @@
     "name": "Johnnie's Super Market & Liquor",
     "description": "Independent grocery with produce, meat, seafood, bakery, cheese, beer, wine, and spirits, plus a deli counter making fresh sandwiches daily.",
     "url": "https://www.johnniesmarket.com/",
+    "telephone": "(831) 338-6464",
     "address": {
      "@type": "PostalAddress",
      "streetAddress": "13225 Highway 9",
