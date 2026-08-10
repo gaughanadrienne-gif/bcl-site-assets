@@ -126,7 +126,7 @@
     });
   }
 
-  var CSS_ID = "bcl-tools-css-v7";
+  var CSS_ID = "bcl-tools-css-v8";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -375,7 +375,9 @@
       ".bcl-tabs{display:flex;gap:8px;margin:0 0 14px;}",
       ".bcl-tab{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;}",
       ".bcl-tab.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
-      ".bcl-checklabel{display:flex;align-items:center;gap:6px;font-size:.85rem;color:#1c2a26 !important;flex:0 0 auto;}",
+      /* Without nowrap a two-word label breaks one word per line when the
+         search input claims the row. The input shrinks; the label should not. */
+      ".bcl-checklabel{display:flex;align-items:center;gap:6px;font-size:.85rem;color:#1c2a26 !important;flex:0 0 auto;white-space:nowrap;}",
       ".bcl-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;background:#dde2d8;color:#173f36 !important;padding:2px 7px;}",
       ".bcl-job-card,.bcl-rental-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
       ".bcl-alerts{background:#f5f1e7 !important;border:1px solid #e3ddcf;border-top:3px solid #bc5937;padding:16px 18px;margin:0 0 18px;}",
