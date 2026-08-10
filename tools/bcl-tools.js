@@ -69,6 +69,55 @@
   }
   function groupLabelOf(cat) { return GROUP_OF[cat] || null; }
 
+  /* ---------- directory: where a listing is, and who it serves ----------
+     Two different facts that were previously both invisible. The reader had to
+     infer location from the address line and the section it sat in, which does
+     not survive a search that flattens the tiers.
+
+     The badge carries LOCATION only, because it is the fact we have for every
+     one of the 318 listings. Service area is free text with 103 distinct values
+     and 65 blanks, so it cannot carry a badge; it gets its own line when it
+     says Boulder Creek and the business is somewhere else. */
+  var SLV_LOCALITIES = ["Brookdale", "Ben Lomond", "Lompico", "Zayante", "Felton", "San Lorenzo Valley"];
+
+  function servesBoulderCreek(l) {
+    return !!(l && /boulder creek/i.test(l.service_area || ""));
+  }
+  /* True only when the fact is not already obvious from the badge. */
+  function showsServesBoulderCreek(l) {
+    return !!(l && l.locality !== "Boulder Creek" && servesBoulderCreek(l));
+  }
+  function listingBadge(l) {
+    if (!l) return "";
+    var loc = l.locality || "";
+    if (loc === "Boulder Creek") {
+      /* Owner policy: these trades work from home and publish no address, so
+         say they are based here rather than implying a storefront to visit. */
+      return l.no_storefront ? "Boulder Creek based, mobile" : "In Boulder Creek";
+    }
+    if (SLV_LOCALITIES.indexOf(loc) >= 0) return "In the San Lorenzo Valley";
+    if (loc === "Scotts Valley") return "In Scotts Valley";
+    /* Essential and civic services are useful regardless of distance, and the
+       category list that already encodes that is CAP_EXEMPT. Badging a county
+       crisis line "Outside the valley" would be true and useless. */
+    if (CAP_EXEMPT.indexOf(l.category) >= 0) return "Countywide service";
+    /* The ridge wineries carry a Los Gatos mailing address but are local. */
+    if (isLocal(l)) return "In the Santa Cruz Mountains";
+    return "Outside the valley";
+  }
+  function badgeIsBoulderCreek(l) {
+    return l && l.locality === "Boulder Creek";
+  }
+  /* A maps link, only where there is a real published address. Every
+     no_storefront listing carries address null and no coordinates, so this
+     cannot leak a home address; keep the address check rather than trusting
+     the flag alone. */
+  function directionsUrl(l) {
+    if (!l || l.no_storefront || !l.address) return "";
+    var dest = l.address + (l.locality ? ", " + l.locality : "") + ", CA";
+    return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(dest);
+  }
+
   /* ---------- shared ---------- */
 
   function esc(s) {
@@ -215,6 +264,10 @@
       ".bcl-dir-meta{font-size:.78rem;color:#67716b !important;line-height:1.35;}",
       ".bcl-dir-links{font-size:.8rem;margin-top:2px;}",
       ".bcl-dir-links a{color:#2e6b46 !important;text-decoration:underline;}",
+      ".bcl-dir-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid #cfd8d0;border-radius:999px;padding:2px 8px;margin-top:4px;color:#3d5a4b !important;white-space:nowrap;}",
+      ".bcl-dir-badge.is-bc{border-color:#2e6b46;color:#2e6b46 !important;background:#eef4ef;}",
+      ".bcl-dir-serves{font-size:.78rem;color:#3d5a4b !important;line-height:1.35;}",
+      ".bcl-dir-licence{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.02em;line-height:1.4;color:#67716b !important;padding-top:4px;}",
       ".bcl-dir-verified{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#67716b !important;margin-top:auto;padding-top:6px;}",
       ".bcl-dir-flag{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#8a8578 !important;padding-top:4px;}",
       ".bcl-filter-note,.bcl-open-note{font-size:.8rem;color:#67716b !important;margin:0 0 14px;max-width:70ch;line-height:1.45;}",
@@ -614,6 +667,10 @@
       : '<div class="bcl-dir-mono" aria-hidden="true">' + esc((l.name || "?").charAt(0)) + "</div>";
     h += '<div class="bcl-dir-head">' + tile + '<div><div class="bcl-dir-name">' + esc(l.name) + "</div>";
     if (l.subcategory) h += '<div class="bcl-dir-sub">' + esc(l.subcategory) + "</div>";
+    var badge = listingBadge(l);
+    if (badge) {
+      h += '<div class="bcl-dir-badge' + (badgeIsBoulderCreek(l) ? " is-bc" : "") + '">' + esc(badge) + "</div>";
+    }
     h += "</div></div>";
     if (l.description) h += '<div class="bcl-dir-desc">' + esc(l.description) + "</div>";
     if (l.address) h += '<div class="bcl-dir-meta">' + esc(l.address) + "</div>";
@@ -621,11 +678,18 @@
     /* Owner policy: these trades work out of their homes. We never publish a
        home address, so say why the address is missing instead of leaving a gap. */
     if (l.no_storefront) h += '<div class="bcl-dir-meta">Service based, no public storefront. Contact them directly.</div>';
+    /* The badge says where they are; this says they will come to you. */
+    if (showsServesBoulderCreek(l)) h += '<div class="bcl-dir-serves">Serves Boulder Creek</div>';
     if (l.hours_text) h += '<div class="bcl-dir-meta">' + esc(String(l.hours_text).replace(/\s*\(?confirm with the business\)?\.?/gi, "")) + "</div>";
     var links = [];
     if (l.phone) links.push('<a href="tel:' + esc(String(l.phone).replace(/[^0-9+]/g, "")) + '">' + esc(l.phone) + "</a>");
+    var dir = directionsUrl(l);
+    if (dir) links.push('<a href="' + esc(dir) + '" target="_blank" rel="noopener">Directions</a>');
     if (l.website) links.push('<a href="' + esc(l.website) + '" target="_blank" rel="noopener">Website</a>');
     if (links.length) h += '<div class="bcl-dir-links">' + links.join(" · ") + "</div>";
+    /* Collected on 51 listings and checked weekly against CSLB, but never
+       shown until now. It is the strongest trust signal the directory holds. */
+    if (l.license) h += '<div class="bcl-dir-licence">' + esc(l.license) + "</div>";
     /* Only worth flagging while the reader is filtering by open hours: it
        explains why a listing survived a filter it could not be tested against. */
     if (opts && opts.openNow && listingOpenState(l, opts.now) === "unknown") {
@@ -685,6 +749,7 @@
         buildCategoryOptions(cats) +
         "</select>" +
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-open-now"> Open now</label>' +
+        '<label class="bcl-checklabel"><input type="checkbox" class="bcl-bc-only"> In Boulder Creek</label>' +
         "</div>" +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
         '<div class="bcl-note">Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
@@ -692,6 +757,7 @@
       var input = root.querySelector("input");
       var select = root.querySelector("select");
       var openBox = root.querySelector(".bcl-open-now");
+      var bcBox = root.querySelector(".bcl-bc-only");
       var count = root.querySelector(".bcl-count");
       var list = root.querySelector(".bcl-list");
       /* A search-overlay hit links to /directory?q=Name, so honour it. */
@@ -704,9 +770,13 @@
         var q = (input.value || "").toLowerCase();
         var cat = select.value;
         var openNow = !!openBox.checked;
+        var bcOnly = !!bcBox.checked;
         var now = new Date();
         var rows = all.filter(function (l) {
           if (cat && l.category !== cat) return false;
+          /* Same predicate the badge uses, so the filter can never disagree
+             with what the card says. Physically here, not "serves here". */
+          if (bcOnly && !badgeIsBoulderCreek(l)) return false;
           /* "unknown" survives on purpose: an unparseable hours line is not
              evidence that the place is shut. */
           if (openNow && listingOpenState(l, now) === "closed") return false;
@@ -732,6 +802,7 @@
       input.addEventListener("input", render);
       select.addEventListener("change", render);
       openBox.addEventListener("change", render);
+      bcBox.addEventListener("change", render);
       render();
     }).catch(function () {
       unavailable(root, "The " + label + " list", 'You can still <a href="/contact">send an update</a>.');
@@ -3610,6 +3681,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, JOB_ALERTS: JOB_ALERTS, jobAlertsEndpoint: jobAlertsEndpoint, looksLikeEmail: looksLikeEmail, jobAlertsBody: jobAlertsBody, jobAlertsMessage: jobAlertsMessage, jobAlertsHTML: jobAlertsHTML, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, JOB_ALERTS: JOB_ALERTS, jobAlertsEndpoint: jobAlertsEndpoint, looksLikeEmail: looksLikeEmail, jobAlertsBody: jobAlertsBody, jobAlertsMessage: jobAlertsMessage, jobAlertsHTML: jobAlertsHTML, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
