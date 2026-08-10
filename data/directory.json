@@ -507,7 +507,8 @@
    "service_area": "Boulder Creek, San Lorenzo Valley, and Santa Cruz County",
    "verified_at": "2026-07-15",
    "tile": "affordable-septic-excavating-services.png",
-   "no_storefront": true
+   "no_storefront": true,
+   "license": "CSLB #570532 (active, B, A)"
   },
   {
    "name": "Apollo Plumbing",
@@ -522,7 +523,8 @@
    "service_area": "Boulder Creek and Santa Cruz County",
    "verified_at": "2026-07-15",
    "tile": "apollo-plumbing.png",
-   "no_storefront": true
+   "no_storefront": true,
+   "license": "CSLB #1122739 (active, C-36)"
   },
   {
    "name": "Big Basin Electric",
@@ -539,7 +541,8 @@
    "lat": null,
    "lon": null,
    "tile": "big-basin-electric.png",
-   "no_storefront": true
+   "no_storefront": true,
+   "license": "CSLB #1124539 (active, C-10)"
   },
   {
    "name": "Christianson Tree Experts",
@@ -555,7 +558,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.122998,
    "lon": -122.12239,
-   "tile": "christianson-tree-experts.png"
+   "tile": "christianson-tree-experts.png",
+   "license": "CSLB #826077 (active, C-61/D49)"
   },
   {
    "name": "Geist Builders Group",
@@ -571,7 +575,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.124159,
    "lon": -122.122096,
-   "tile": "geist-builders-group.png"
+   "tile": "geist-builders-group.png",
+   "license": "CSLB #1098482 (active, B)"
   },
   {
    "name": "Jeff Vedder Painting",
@@ -586,7 +591,8 @@
    "service_area": "San Lorenzo Valley, Santa Cruz County, Central Coast, and greater San Jose",
    "verified_at": "2026-07-15",
    "tile": "jeff-vedder-painting.png",
-   "no_storefront": true
+   "no_storefront": true,
+   "license": "CSLB #920153 (active, C-33)"
   },
   {
    "name": "PCIS",
@@ -601,7 +607,8 @@
    "service_area": "Boulder Creek and regional residential, commercial, and industrial clients",
    "verified_at": "2026-07-15",
    "tile": "pcis.png",
-   "no_storefront": true
+   "no_storefront": true,
+   "license": "CSLB #1082718 (active, C-7)"
   },
   {
    "name": "SE Electric",
@@ -615,7 +622,8 @@
    "hours_text": "Monday-Friday 9am-5pm; Saturday by appointment; Sunday closed",
    "service_area": "Boulder Creek and surrounding Santa Cruz County communities",
    "verified_at": "2026-07-15",
-   "tile": "se-electric.png"
+   "tile": "se-electric.png",
+   "license": "CSLB #880002 (active, C-10)"
   },
   {
    "name": "Stellar Tree Care",
@@ -660,7 +668,8 @@
    "service_area": "Boulder Creek and the San Lorenzo Valley",
    "verified_at": "2026-07-15",
    "tile": "travis-tree-professionals.png",
-   "no_storefront": true
+   "no_storefront": true,
+   "license": "CSLB #1012641 (active, C-61/D49)"
   },
   {
    "name": "Redwood Christian Park",
@@ -1688,7 +1697,8 @@
    "no_storefront": true,
    "hours_text": null,
    "address": null,
-   "tile": "tavares-plumbing-and-pumps.png"
+   "tile": "tavares-plumbing-and-pumps.png",
+   "license": "CSLB #1100508 (active, C-36, C-57)"
   },
   {
    "name": "Maggiora Bros. Drilling",
@@ -1702,7 +1712,8 @@
    "service_area": "Santa Cruz County; confirm mountain coverage for a specific job",
    "verified_at": "2026-07-16",
    "hours_text": null,
-   "tile": "maggiora-bros-drilling.png"
+   "tile": "maggiora-bros-drilling.png",
+   "license": "CSLB #249957 (active, C-8, C-12, C-42, C-57)"
   },
   {
    "name": "XterminatriX Holistic Pest Control",
@@ -2553,7 +2564,8 @@
    "hours_text": null,
    "verified_at": "2026-07-17",
    "no_storefront": true,
-   "tile": "markey-construction.png"
+   "tile": "markey-construction.png",
+   "license": "CSLB #1145076 (active, B)"
   },
   {
    "name": "Smiling Grille Auto Repair",
@@ -2910,20 +2922,8 @@
    "no_storefront": true,
    "address": null,
    "hours_text": null,
-   "tile": "dr-spa.png"
-  },
-  {
-   "name": "A1 Pool and Spa",
-   "category": "Home Services & Repair",
-   "subcategory": "Pool and hot tub service",
-   "description": "Local pool and spa service (Chris) providing routine maintenance and repairs. Owner-recommended; confirm details by phone.",
-   "locality": "San Lorenzo Valley",
-   "phone": "650-766-5669",
-   "verified_at": "2026-07-17",
-   "no_storefront": true,
-   "address": null,
-   "hours_text": null,
-   "tile": "a1-pool-and-spa.png"
+   "tile": "dr-spa.png",
+   "license": "CSLB #758115 (active, C-61/D35)"
   },
   {
    "name": "Arch Electric",
@@ -3245,7 +3245,8 @@
    "verified_at": "2026-07-17",
    "no_storefront": true,
    "service_area": "San Lorenzo Valley",
-   "tile": "hannah-soriano-gardens.png"
+   "tile": "hannah-soriano-gardens.png",
+   "license": "CSLB #1031253 (active, C-27)"
   },
   {
    "name": "The Sequoia Retreat Center",
@@ -4567,7 +4568,8 @@
    "verified_at": "2026-07-22",
    "lat": null,
    "lon": null,
-   "tile": null
+   "tile": null,
+   "license": "CSLB #981732 (active, C-10)"
   },
   {
    "name": "Robert Bimbi Construction",
@@ -4583,7 +4585,8 @@
    "verified_at": "2026-07-22",
    "lat": null,
    "lon": null,
-   "tile": "robert-bimbi-construction.png"
+   "tile": "robert-bimbi-construction.png",
+   "license": "CSLB #798373 (active, B)"
   },
   {
    "name": "Ginia's Gems",
