@@ -380,17 +380,6 @@
       ".bcl-checklabel{display:flex;align-items:center;gap:6px;font-size:.85rem;color:#1c2a26 !important;flex:0 0 auto;white-space:nowrap;}",
       ".bcl-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;background:#dde2d8;color:#173f36 !important;padding:2px 7px;}",
       ".bcl-job-card,.bcl-rental-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
-      ".bcl-alerts{background:#f5f1e7 !important;border:1px solid #e3ddcf;border-top:3px solid #bc5937;padding:16px 18px;margin:0 0 18px;}",
-      ".bcl-alerts h3{font-family:'IBM Plex Mono',monospace;font-size:.72rem !important;letter-spacing:.08em;text-transform:uppercase;color:#173f36 !important;margin:0 0 6px !important;}",
-      ".bcl-alerts p{margin:0 0 12px;font-size:.9rem;color:#1c2a26 !important;}",
-      ".bcl-alerts form{display:flex;flex-wrap:wrap;gap:8px;margin:0;}",
-      ".bcl-alerts input[type=email]{flex:1 1 240px;min-width:0;font-family:Inter,Arial,sans-serif;font-size:.95rem;padding:10px 14px;border:1px solid #cfc9b8;border-radius:0;background:#fffdf8 !important;color:#1c2a26 !important;}",
-      ".bcl-alerts button{flex:0 0 auto;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:10px 20px;border:1px solid #bc5937;border-radius:0;background:#bc5937 !important;color:#fffdf8 !important;cursor:pointer;}",
-      ".bcl-alerts button:hover{background:#a84c30 !important;border-color:#a84c30;}",
-      ".bcl-alerts button[disabled]{opacity:.6;cursor:default;}",
-      ".bcl-alerts-msg{margin:10px 0 0;font-size:.88rem;color:#1c2a26 !important;}",
-      ".bcl-alerts-msg.bcl-bad{color:#8f3a2b !important;}",
-      "@media (max-width:640px){.bcl-alerts form{flex-direction:column;}.bcl-alerts input[type=email],.bcl-alerts button{flex:0 0 auto;width:100%;}}",
       ".bcl-job-card .bcl-actionrow a,.bcl-rental-card .bcl-actionrow a{color:#d56e47 !important;}",
       ".bcl-sr-only{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0,0,0,0) !important;white-space:nowrap !important;border:0 !important;}",
       ".bcl-article-body{max-width:760px;margin:0 auto;padding:0 0 42px;font-family:Inter,Arial,sans-serif;color:#1c2a26;line-height:1.72;font-size:1rem;}",
@@ -921,110 +910,6 @@
     return h + "</div>";
   }
 
-  /* ---------- job alerts signup (MailerLite embedded form 194352772136568142
-     -> group "BCL Job Alerts" 194345872038823754, double opt-in ON).
-
-     The footer newsletter band hands its markup to MailerLite's universal.js
-     and gets MailerLite's own box back. That is fine in a footer and wrong on
-     a tool page, where the box has to read in the site's voice and sit inside
-     the jobs layout. So this posts to the same endpoint universal.js posts to
-     and keeps the markup ours.
-
-     The endpoint was exercised for real on 2026-07-29: it answers
-     {"success":true} and sends `access-control-allow-origin: *`, so the reply
-     is readable and the box can tell the reader the truth instead of assuming
-     a no-cors post landed. Double opt-in means a successful post is a
-     confirmation email, not a subscription, and the success copy says so.
-     signup_source is a real custom field on the account and was confirmed to
-     stick on the test subscriber. */
-  var JOB_ALERTS = {
-    account: "2514969",
-    form: "194352772136568142",
-    group: "194345872038823754",
-    source: "jobs-board"
-  };
-
-  function jobAlertsEndpoint() {
-    return "https://assets.mailerlite.com/jsonp/" + JOB_ALERTS.account +
-      "/forms/" + JOB_ALERTS.form + "/subscribe";
-  }
-
-  /* Deliberately loose. The only job here is to catch an obvious typo before
-     spending a request; MailerLite is the authority on what an address is. */
-  function looksLikeEmail(value) {
-    var s = String(value == null ? "" : value).trim();
-    if (!s || /\s/.test(s)) return false;
-    return /^[^@]+@[^@.]+(\.[^@.]+)+$/.test(s);
-  }
-
-  function jobAlertsBody(email) {
-    return "fields%5Bemail%5D=" + encodeURIComponent(String(email == null ? "" : email).trim()) +
-      "&fields%5Bsignup_source%5D=" + encodeURIComponent(JOB_ALERTS.source) +
-      "&ml-submit=1&anticsrf=true";
-  }
-
-  var JOB_ALERTS_MESSAGES = {
-    invalid: { text: "That does not look like an email address.", bad: true },
-    sending: { text: "Sending your address.", bad: false },
-    ok: { text: "Almost there. Check your email for a confirmation link; the alerts start once you click it.", bad: false },
-    fail: { text: "That did not go through. Try again in a moment, or email hello@bouldercreeklocal.com and we will add you by hand.", bad: true }
-  };
-
-  function jobAlertsMessage(state) {
-    return JOB_ALERTS_MESSAGES[state] || { text: "", bad: false };
-  }
-
-  function jobAlertsHTML() {
-    return '<div class="bcl-alerts">' +
-      "<h3>Job alerts</h3>" +
-      "<p>New valley jobs in your inbox on Mondays. No noise, unsubscribe anytime.</p>" +
-      '<form novalidate>' +
-      '<label class="bcl-sr-only" for="bcl-alerts-email">Email address</label>' +
-      '<input id="bcl-alerts-email" type="email" name="email" autocomplete="email" placeholder="you@example.com">' +
-      "<button type=\"submit\">Sign up</button>" +
-      "</form>" +
-      '<p class="bcl-alerts-msg" role="status" aria-live="polite"></p>' +
-      "</div>";
-  }
-
-  function initJobAlerts(box) {
-    var form = box.querySelector("form");
-    var input = box.querySelector("input[type=email]");
-    var button = box.querySelector("button");
-    var msg = box.querySelector(".bcl-alerts-msg");
-    if (!form || !input || !button || !msg) return;
-
-    function say(state) {
-      var m = jobAlertsMessage(state);
-      msg.textContent = m.text;
-      msg.className = "bcl-alerts-msg" + (m.bad ? " bcl-bad" : "");
-    }
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var email = input.value;
-      if (!looksLikeEmail(email)) { say("invalid"); input.focus(); return; }
-      button.disabled = true;
-      say("sending");
-      var done = function (state) {
-        button.disabled = false;
-        say(state);
-        if (state === "ok") { form.style.display = "none"; }
-      };
-      if (typeof fetch !== "function") { done("fail"); return; }
-      fetch(jobAlertsEndpoint(), {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: jobAlertsBody(email)
-      }).then(function (res) {
-        if (!res.ok) throw new Error("http " + res.status);
-        return res.json().catch(function () { return { success: true }; });
-      }).then(function (data) {
-        done(data && data.success === false ? "fail" : "ok");
-      }).catch(function () { done("fail"); });
-    });
-  }
-
   function initJobs(root) {
     root.innerHTML = '<div class="bcl-count">Loading jobs…</div>';
     fetchJSON(REPO + "/data/jobs.json").then(function (data) {
@@ -1049,7 +934,6 @@
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-fresh"> Posted this week</label>' +
         "</div>" +
         '<div class="bcl-count"></div><div class="bcl-filter-note"></div>' +
-        jobAlertsHTML() +
         '<div class="bcl-list"></div>' +
         '<div class="bcl-note">Boulder Creek Local is not the employer and does not process applications. Verify details and apply directly with the employer. ' +
         'Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
@@ -1123,8 +1007,6 @@
       payListedBox.addEventListener("change", render);
       freshBox.addEventListener("change", render);
       extBox.addEventListener("change", render);
-      var alertsBox = root.querySelector(".bcl-alerts");
-      if (alertsBox) initJobAlerts(alertsBox);
       syncEmployers();
       render();
     }).catch(function () {
@@ -3683,6 +3565,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, JOB_ALERTS: JOB_ALERTS, jobAlertsEndpoint: jobAlertsEndpoint, looksLikeEmail: looksLikeEmail, jobAlertsBody: jobAlertsBody, jobAlertsMessage: jobAlertsMessage, jobAlertsHTML: jobAlertsHTML, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
