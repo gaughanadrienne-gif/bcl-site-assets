@@ -126,7 +126,7 @@
     });
   }
 
-  var CSS_ID = "bcl-tools-css-v10";
+  var CSS_ID = "bcl-tools-css-v11";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -212,6 +212,13 @@
       /* On a phone the row becomes one swipeable line rather than four stacked
          rows, so the sticky bar cannot eat the screen it is meant to serve. */
       "@media (max-width:640px){.bcl-chips{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;-webkit-overflow-scrolling:touch;}}",
+      /* The Around Town category strip. Same chip idiom as the directory so the
+         two browse surfaces read as one system, but not sticky: a blog listing
+         is a short scroll next to 317 cards, and it is worth no layout fight. */
+      ".bcl-catnav{font-family:Inter,Arial,sans-serif;display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px;}",
+      ".bcl-catnav .bcl-chip{display:inline-block;text-decoration:none !important;}",
+      ".bcl-catnav .bcl-chip:hover{border-color:#173f36;}",
+      "@media (max-width:640px){.bcl-catnav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;}}",
       ".bcl-count{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:#626c66 !important;margin:0 0 14px;}",
       ".bcl-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
       ".bcl-card .bcl-name{font-weight:600;font-size:1.05rem;color:#173f36 !important;}",
@@ -1575,6 +1582,64 @@
     var category = path.match(/^\/around-town\/category\/(.+)$/);
     if (category) return decodeURIComponent(category[1].replace(/\+/g, " ")) + " articles";
     return "";
+  }
+
+  /* Around Town had no way to browse by category. The only route in was the
+     category link printed under a post you had already found, so a reader who
+     wanted "the business spotlights" had to stumble onto one first. This adds
+     the strip, reusing the directory's chip idiom so the two browse surfaces
+     read as one system.
+
+     No counts here, unlike the directory chips: those are computed from the
+     feed the same code renders, whereas a category total lives in Squarespace's
+     paginated listing and could only be guessed at. A guessed number on a live
+     page is worse than no number. */
+  function categoryPathOf(pathname) {
+    var m = String(pathname || "").replace(/\/$/, "").match(/^\/around-town\/category\/(.+)$/);
+    return m ? m[1] : "";
+  }
+
+  function buildCategoryStrip(cats, activeSlug) {
+    var out = '<a class="bcl-chip' + (activeSlug ? "" : " is-on") + '" href="/around-town"' +
+      (activeSlug ? "" : ' aria-current="page"') + ">All stories</a>";
+    (cats || []).forEach(function (c) {
+      if (!c || !c.name || !c.url) return;
+      /* Compared on the encoded tail, because the live URL is the only form
+         both sides are guaranteed to agree on. */
+      var slug = String(c.url).replace(/^.*\/category\//, "");
+      var on = !!activeSlug && slug.toLowerCase() === activeSlug.toLowerCase();
+      out += '<a class="bcl-chip' + (on ? " is-on" : "") + '" href="' + esc(c.url) + '"' +
+        (on ? ' aria-current="page"' : "") + ">" + esc(c.name) + "</a>";
+    });
+    return out;
+  }
+
+  function initCategoryNav() {
+    var path = location.pathname.replace(/\/$/, "");
+    var activeSlug = categoryPathOf(path);
+    if (path !== "/around-town" && !activeSlug) return;
+    /* The listing container varies by Squarespace layout, so try the one this
+       site actually uses first and fall back rather than assuming. */
+    var host = document.querySelector(".blog-masonry-wrapper, .blog-basic-grid, .blog-side-by-side, .blog-single-column");
+    if (!host) {
+      var first = document.querySelector(".blog-item");
+      host = first && first.parentElement;
+    }
+    if (!host || !host.parentNode) return;
+    fetchJSON(REPO + "/data/categories.json").then(function (data) {
+      var cats = (data && data.categories) || [];
+      if (!cats.length) return; /* Never render an empty strip. */
+      var nav = document.createElement("nav");
+      /* Deliberately NOT class "bcl-tool": the header injection gives that class
+         overflow:hidden, which would clip the strip's own overflow-x scroller on
+         a phone. It gets its own font and spacing instead. */
+      nav.className = "bcl-catnav";
+      nav.setAttribute("aria-label", "Browse Around Town by category");
+      nav.innerHTML = buildCategoryStrip(cats, activeSlug);
+      host.parentNode.insertBefore(nav, host);
+    }).catch(function () {
+      /* A missing feed leaves the page exactly as Squarespace served it. */
+    });
   }
 
   function repairPageHeadings() {
@@ -3656,6 +3721,7 @@
     repairStatusPage();
     repairResidentsPage();
     repairPageHeadings();
+    initCategoryNav();
     initArticleHeader();
     initArticleContent();
     initRelatedArticles();
@@ -3689,6 +3755,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();

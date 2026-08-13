@@ -1,0 +1,41 @@
+{
+ "built": "2026-08-13T12:13:16-07:00",
+ "base": "/around-town/category/",
+ "categories": [
+  {
+   "name": "Local News",
+   "url": "/around-town/category/Local+News"
+  },
+  {
+   "name": "Community Life",
+   "url": "/around-town/category/Community+Life"
+  },
+  {
+   "name": "Business Spotlights",
+   "url": "/around-town/category/Business+Spotlights"
+  },
+  {
+   "name": "Food",
+   "url": "/around-town/category/Food"
+  },
+  {
+   "name": "Local Guides",
+   "url": "/around-town/category/Local+Guides"
+  },
+  {
+   "name": "Mountain Living",
+   "url": "/around-town/category/Mountain+Living"
+  },
+  {
+   "name": "Town & History",
+   "url": "/around-town/category/Town+%26+History"
+  }
+ ],
+ "pending": [
+  {
+   "name": "Meet Your Neighbors",
+   "url": "/around-town/category/Meet+Your+Neighbors",
+   "status": 404
+  }
+ ]
+}
