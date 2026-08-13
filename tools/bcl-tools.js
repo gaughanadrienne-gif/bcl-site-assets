@@ -126,7 +126,7 @@
     });
   }
 
-  var CSS_ID = "bcl-tools-css-v9";
+  var CSS_ID = "bcl-tools-css-v10";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -191,7 +191,18 @@
       /* Category chips. 317 directory listings is a scanning problem, so the
          chip row stays put while the page scrolls. Sticky, not fixed: a fixed
          element inside a Squarespace code block has to be reparented to body,
-         whereas sticky degrades to ordinary flow if an ancestor clips it. */
+         whereas sticky degrades to ordinary flow if an ancestor clips it.
+
+         And an ancestor DID clip it. The header injection sets
+         `.bcl-tool{overflow:hidden}`, which makes every tool its own scroll
+         container, and a sticky element inside a container that never scrolls
+         never sticks. Measured on the live page: the chip row sat at the same
+         viewport offset before and after scrolling. The class is added by the
+         chips code itself, so this only ever loosens the wrapper on a page that
+         actually mounts chips, and /rain, /food, /events and /jobs keep the
+         clipping they were given. Verified afterwards that the page still has
+         no horizontal scrollbar (scrollWidth 2545 against a 2560 viewport). */
+      ".bcl-tool.bcl-has-sticky{overflow:visible;}",
       ".bcl-chips{position:sticky;top:0;z-index:6;display:flex;flex-wrap:wrap;gap:6px;background:#f5f1e7 !important;padding:10px 0 10px;margin:0 0 4px;border-bottom:1px solid #e3ddcf;max-height:104px;overflow-y:auto;}",
       ".bcl-chip{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border:1px solid #cfc9b8;border-radius:999px;background:#fffdf8 !important;color:#3d5a4b !important;cursor:pointer;white-space:nowrap;}",
       ".bcl-chip b{font-weight:500;color:#626c66 !important;margin-left:6px;}",
@@ -805,6 +816,12 @@
       var input = root.querySelector("input");
       var select = root.querySelector("select");
       var chips = root.querySelector(".bcl-chips");
+      /* Sticky cannot work inside the .bcl-tool wrapper's overflow:hidden, so
+         the wrapper is opted out here rather than site-wide. See the CSS. */
+      if (chips && chips.closest) {
+        var toolBox = chips.closest(".bcl-tool");
+        if (toolBox) toolBox.className += " bcl-has-sticky";
+      }
       var groupNames = [];
       cats.forEach(function (c) {
         var g = groupBucketOf(c);

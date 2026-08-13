@@ -50,8 +50,20 @@ test("the --bcl-muted override ships, because the token itself lives in Code Inj
   assert.match(SRC, /":root\{--bcl-muted:#[0-9a-f]{6};\}"/i);
 });
 
-test("CSS_ID is bumped whenever the stylesheet changes, or cached CSS survives", () => {
-  // injectCSS() returns early if an element with this id exists, so a stale
-  // copy of the script can leave new markup unstyled.
-  assert.match(SRC, /var CSS_ID = "bcl-tools-css-v9";/);
+test("CSS_ID is versioned, and injectCSS clears older stylesheets before writing", () => {
+  // injectCSS() returns early if an element with this id exists, so the id has
+  // to change whenever the stylesheet does. The sweep of style[id^=...] is what
+  // stops a cached copy of this script leaving new markup unstyled.
+  assert.match(SRC, /var CSS_ID = "bcl-tools-css-v\d+";/);
+  assert.match(SRC, /querySelectorAll\("style\[id\^='bcl-tools-css'\]"\)/);
+});
+
+test("the sticky chip row opts its wrapper out of overflow:hidden, or it cannot stick", () => {
+  // .bcl-tool{overflow:hidden} comes from the header Code Injection and makes
+  // the tool its own scroll container. Measured on the live page before the
+  // opt-out: the chip row did not move relative to the viewport on scroll.
+  assert.match(SRC, /\.bcl-tool\.bcl-has-sticky\{overflow:visible;\}/);
+  assert.match(SRC, /bcl-has-sticky/);
+  // Scoped: the class is added only where chips mount, never site-wide.
+  assert.match(SRC, /closest\("\.bcl-tool"\)/);
 });
