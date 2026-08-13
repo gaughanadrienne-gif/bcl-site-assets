@@ -126,7 +126,7 @@
     });
   }
 
-  var CSS_ID = "bcl-tools-css-v8";
+  var CSS_ID = "bcl-tools-css-v9";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -173,6 +173,14 @@
        already; stale CSS with new markup renders unstyled. Replace it. */
     [].slice.call(document.querySelectorAll("style[id^='bcl-tools-css']")).forEach(function (n) { n.remove(); });
     var css = [
+      /* --bcl-muted was #67716b, which is 4.49:1 on the cream page background
+         and so misses WCAG AA by 0.01. #626c66 is 4.83:1 and visually a step
+         darker at most. The token itself is declared in the header Code
+         Injection, which cannot be read back or driven by script and has caused
+         permanent loss, so it is overridden here instead: this stylesheet is
+         appended to <head> after that block, same :root specificity, so it
+         wins. Do not "fix" this by editing the panel. */
+      ":root{--bcl-muted:#626c66;}",
       ".bcl-tool{font-family:Inter,Arial,sans-serif;color:#1c2a26 !important;line-height:1.5;margin:0 auto;}",
       ".bcl-tool *{box-sizing:border-box;}",
       ".bcl-tool h3{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.5rem;margin:1.6em 0 .5em;}",
@@ -180,16 +188,29 @@
       ".bcl-controls input,.bcl-controls select{font-family:Inter,Arial,sans-serif;font-size:.95rem;padding:10px 14px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;}",
       ".bcl-controls input{flex:1 1 220px;}",
       ".bcl-controls select{flex:0 1 auto;max-width:100%;}",
-      ".bcl-count{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:#67716b !important;margin:0 0 14px;}",
+      /* Category chips. 317 directory listings is a scanning problem, so the
+         chip row stays put while the page scrolls. Sticky, not fixed: a fixed
+         element inside a Squarespace code block has to be reparented to body,
+         whereas sticky degrades to ordinary flow if an ancestor clips it. */
+      ".bcl-chips{position:sticky;top:0;z-index:6;display:flex;flex-wrap:wrap;gap:6px;background:#f5f1e7 !important;padding:10px 0 10px;margin:0 0 4px;border-bottom:1px solid #e3ddcf;max-height:104px;overflow-y:auto;}",
+      ".bcl-chip{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border:1px solid #cfc9b8;border-radius:999px;background:#fffdf8 !important;color:#3d5a4b !important;cursor:pointer;white-space:nowrap;}",
+      ".bcl-chip b{font-weight:500;color:#626c66 !important;margin-left:6px;}",
+      ".bcl-chip.is-on{background:#173f36 !important;border-color:#173f36;color:#fffdf8 !important;}",
+      ".bcl-chip.is-on b{color:#dde2d8 !important;}",
+      ".bcl-chip[disabled]{opacity:.5;cursor:default;}",
+      /* On a phone the row becomes one swipeable line rather than four stacked
+         rows, so the sticky bar cannot eat the screen it is meant to serve. */
+      "@media (max-width:640px){.bcl-chips{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;-webkit-overflow-scrolling:touch;}}",
+      ".bcl-count{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:#626c66 !important;margin:0 0 14px;}",
       ".bcl-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
       ".bcl-card .bcl-name{font-weight:600;font-size:1.05rem;color:#173f36 !important;}",
       ".bcl-card .bcl-sub{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;margin:2px 0 8px;}",
       ".bcl-card p{margin:0 0 8px;font-size:.92rem;color:#1c2a26 !important;}",
-      ".bcl-meta{font-size:.85rem;color:#67716b !important;margin:2px 0;}",
+      ".bcl-meta{font-size:.85rem;color:#626c66 !important;margin:2px 0;}",
       ".bcl-card a{color:#2e6b46 !important;text-decoration:underline;}",
-      ".bcl-verified{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#67716b !important;margin-top:10px;}",
+      ".bcl-verified{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#626c66 !important;margin-top:10px;}",
       ".bcl-note{background:#dde2d8;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
-      ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#67716b !important;}",
+      ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#626c66 !important;}",
       /* The unavailable state's escape links carry brand link colour like every
          other tool link. Without this they fell through to the browser default. */
       ".bcl-unavailable a{color:#2e6b46 !important;text-decoration:underline;}",
@@ -224,14 +245,14 @@
       ".bcl-event-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:14px 15px;display:flex;flex-direction:column;gap:5px;}",
       ".bcl-event-date{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:#d56e47 !important;text-transform:uppercase;}",
       ".bcl-event-title{font-weight:600;color:#173f36 !important;font-size:.96rem;line-height:1.3;}",
-      ".bcl-event-meta{font-size:.8rem;color:#67716b !important;line-height:1.4;}",
+      ".bcl-event-meta{font-size:.8rem;color:#626c66 !important;line-height:1.4;}",
       ".bcl-event-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;margin-top:auto;padding-top:6px;}",
       ".bcl-event-notice{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#8f4f45 !important;text-transform:uppercase;font-weight:700;}",
       ".bcl-event-card a{color:#2e6b46 !important;font-size:.82rem;}",
       ".bcl-cat-head{display:flex;align-items:center;gap:10px;margin:28px 0 12px;}",
       ".bcl-cat-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
       ".bcl-cat-head h3{margin:0 !important;font-size:1.3rem !important;}",
-      ".bcl-cat-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#67716b !important;}",
+      ".bcl-cat-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#626c66 !important;}",
       ".bcl-search-btn{background:none;border:0;padding:6px;margin-left:10px;cursor:pointer;color:#173f36;display:inline-flex;align-items:center;align-self:center;}",
       ".bcl-search-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}",
       ".bcl-search-btn:hover{color:#d56e47;}",
@@ -243,14 +264,14 @@
       ".bcl-search-panel{background:#fffdf8 !important;border:1px solid #e3ddcf;width:100%;max-width:640px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.28);}",
       ".bcl-search-bar{display:flex;gap:8px;padding:12px;border-bottom:1px solid #e3ddcf;}",
       ".bcl-search-input{flex:1;font-size:1rem;padding:10px 12px;border:1px solid #e3ddcf;background:#fff !important;color:#1c2a26 !important;}",
-      ".bcl-search-close{background:none;border:1px solid #e3ddcf;padding:0 12px;cursor:pointer;color:#67716b !important;font-size:.8rem;}",
+      ".bcl-search-close{background:none;border:1px solid #e3ddcf;padding:0 12px;cursor:pointer;color:#626c66 !important;font-size:.8rem;}",
       ".bcl-search-results{overflow-y:auto;padding:6px 0 10px;}",
-      ".bcl-search-group{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#67716b !important;margin:12px 14px 4px !important;}",
+      ".bcl-search-group{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#626c66 !important;margin:12px 14px 4px !important;}",
       ".bcl-search-hit{display:block;padding:8px 14px;text-decoration:none !important;border-left:3px solid transparent;}",
       ".bcl-search-hit strong{display:block;color:#173f36 !important;font-size:.95rem;font-weight:600;}",
-      ".bcl-search-hit span{display:block;color:#67716b !important;font-size:.8rem;line-height:1.35;margin-top:2px;}",
+      ".bcl-search-hit span{display:block;color:#626c66 !important;font-size:.8rem;line-height:1.35;margin-top:2px;}",
       ".bcl-search-hit:hover,.bcl-search-hit.is-active{background:#f5f1e7 !important;border-left-color:#d56e47;}",
-      ".bcl-search-hint{padding:18px 14px;color:#67716b !important;font-size:.88rem;}",
+      ".bcl-search-hint{padding:18px 14px;color:#626c66 !important;font-size:.88rem;}",
       ".bcl-search-hint a{color:#2e6b46 !important;text-decoration:underline;}",
       "@media (max-width:600px){.bcl-search-overlay{padding:0;}.bcl-search-panel{max-width:none;max-height:100vh;height:100vh;}}",
       ".bcl-dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;}",
@@ -261,32 +282,32 @@
       ".bcl-dir-name{font-weight:600;color:#173f36 !important;font-size:.94rem;line-height:1.3;}",
       ".bcl-dir-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;}",
       ".bcl-dir-desc{font-size:.8rem;color:#1c2a26 !important;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}",
-      ".bcl-dir-meta{font-size:.78rem;color:#67716b !important;line-height:1.35;}",
+      ".bcl-dir-meta{font-size:.78rem;color:#626c66 !important;line-height:1.35;}",
       ".bcl-dir-links{font-size:.8rem;margin-top:2px;}",
       ".bcl-dir-links a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-dir-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid #cfd8d0;border-radius:999px;padding:2px 8px;margin-top:4px;color:#3d5a4b !important;white-space:nowrap;}",
       ".bcl-dir-badge.is-bc{border-color:#2e6b46;color:#2e6b46 !important;background:#eef4ef;}",
       ".bcl-dir-serves{font-size:.78rem;color:#3d5a4b !important;line-height:1.35;}",
-      ".bcl-dir-licence{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.02em;line-height:1.4;color:#67716b !important;padding-top:4px;}",
-      ".bcl-dir-verified{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#67716b !important;margin-top:auto;padding-top:6px;}",
+      ".bcl-dir-licence{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.02em;line-height:1.4;color:#626c66 !important;padding-top:4px;}",
+      ".bcl-dir-verified{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#626c66 !important;margin-top:auto;padding-top:6px;}",
       ".bcl-dir-flag{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;color:#8a8578 !important;padding-top:4px;}",
-      ".bcl-filter-note,.bcl-open-note{font-size:.8rem;color:#67716b !important;margin:0 0 14px;max-width:70ch;line-height:1.45;}",
+      ".bcl-filter-note,.bcl-open-note{font-size:.8rem;color:#626c66 !important;margin:0 0 14px;max-width:70ch;line-height:1.45;}",
       ".bcl-filter-note:empty,.bcl-open-note:empty{margin:0;}",
-      ".bcl-daterange{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 14px;font-size:.82rem;color:#67716b !important;}",
+      ".bcl-daterange{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:0 0 14px;font-size:.82rem;color:#626c66 !important;}",
       ".bcl-daterange label{display:flex;align-items:center;gap:6px;}",
       ".bcl-daterange input{font-family:Inter,Arial,sans-serif;font-size:.85rem;padding:7px 10px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;}",
-      ".bcl-daterange button{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#67716b !important;cursor:pointer;}",
+      ".bcl-daterange button{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#626c66 !important;cursor:pointer;}",
       ".bcl-daterange button:hover{border-color:#173f36;color:#173f36 !important;}",
       ".bcl-ics{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#2e6b46 !important;cursor:pointer;align-self:flex-start;}",
       ".bcl-ics:hover{border-color:#2e6b46;}",
       ".bcl-river-rows{display:flex;flex-wrap:wrap;gap:6px 20px;margin:6px 0;}",
-      ".bcl-river-rows div b{display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;font-weight:500;}",
+      ".bcl-river-rows div b{display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#626c66 !important;font-weight:500;}",
       ".bcl-river-rows div span{font-size:1.15rem;color:#173f36 !important;}",
-      ".bcl-river-cats{font-size:.8rem;color:#67716b !important;line-height:1.5;margin:6px 0 0;}",
+      ".bcl-river-cats{font-size:.8rem;color:#626c66 !important;line-height:1.5;margin:6px 0 0;}",
       ".bcl-links li{margin:6px 0;font-size:.92rem;}",
       ".bcl-links a{color:#2e6b46 !important;}",
       ".bcl-group-head{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#8f4f45 !important;border-bottom:1px solid #e3ddcf;padding:0 0 6px;margin:34px 0 4px;}",
-      ".bcl-tier-divider{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#67716b !important;margin:14px 0 10px;}",
+      ".bcl-tier-divider{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#626c66 !important;margin:14px 0 10px;}",
       ".bcl-range{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px;}",
       ".bcl-range button{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:8px 14px;border:1px solid #173f36;background:#fffdf8 !important;color:#173f36 !important;cursor:pointer;text-transform:uppercase;}",
       ".bcl-range button.bcl-on{background:#173f36 !important;color:#f5f1e7 !important;}",
@@ -315,14 +336,14 @@
       ".bcl-recent-body{padding:15px 18px 18px;}",
       ".bcl-recent-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#d56e47 !important;}",
       ".bcl-recent-sum{color:#33413b !important;font-size:.92rem;line-height:1.45;margin:7px 0 10px !important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}",
-      ".bcl-recent-date{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#67716b !important;}",
+      ".bcl-recent-date{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#626c66 !important;}",
       ".bcl-explore{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}",
       ".bcl-tile{display:flex;align-items:flex-start;gap:14px;background:#fffdf8 !important;border:1px solid #e3ddcf;border-radius:12px;padding:18px;text-decoration:none !important;transition:border-color .15s,transform .15s;}",
       ".bcl-tile:hover{border-color:#d56e47;transform:translateY(-2px);}",
       ".bcl-tile-ico{flex:0 0 auto;width:40px;height:40px;border-radius:10px;background:rgba(213,110,71,.1);color:#d56e47;display:flex;align-items:center;justify-content:center;}",
       ".bcl-tile-ico svg{width:22px;height:22px;}",
       ".bcl-tile-txt h3{font-family:'Cormorant Garamond',Georgia,serif;color:#0d2c26 !important;font-size:1.2rem;margin:0 0 3px !important;}",
-      ".bcl-tile-txt p{margin:0 !important;font-size:.82rem;color:#67716b !important;line-height:1.4;}",
+      ".bcl-tile-txt p{margin:0 !important;font-size:.82rem;color:#626c66 !important;line-height:1.4;}",
       /* Homepage local board: one section, three columns (events, jobs, rentals).
          The column is the card; rows inside are hairline-separated so three
          categories cost about the height one strip used to. */
@@ -337,7 +358,7 @@
       ".bcl-bi:hover{padding-left:5px;}",
       ".bcl-bi-kick{display:block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#d56e47 !important;margin-bottom:3px;}",
       ".bcl-bi-title{display:block;font-weight:600;color:#173f36 !important;font-size:.95rem;line-height:1.3;}",
-      ".bcl-bi-meta{display:block;font-size:.8rem;color:#67716b !important;line-height:1.4;margin-top:2px;}",
+      ".bcl-bi-meta{display:block;font-size:.8rem;color:#626c66 !important;line-height:1.4;margin-top:2px;}",
       ".bcl-board .bcl-unavailable,.bcl-board .bcl-count{margin:14px 0;font-size:.85rem;}",
       ".bcl-today-alerts{margin:0 0 12px;}",
       /* On the green card a solid brick block fights the ground, so the alert
@@ -362,9 +383,9 @@
          ~386px and puts a horizontal scrollbar on the homepage. */
       ".bcl-raincard{box-sizing:border-box;display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 26px;background:#fffdf8;border:1px solid #e3ddcf;border-left:4px solid #2a7d55;padding:18px 22px;text-decoration:none !important;color:inherit !important;}",
       ".bcl-raincard:hover{background:#fbf8ef;}",
-      ".bcl-raincard-lab{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;flex:0 0 100%;}",
+      ".bcl-raincard-lab{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#626c66 !important;flex:0 0 100%;}",
       ".bcl-raincard-val{font-size:1.7rem;line-height:1.1;color:#173f36 !important;font-variant-numeric:tabular-nums;}",
-      ".bcl-raincard-note{font-size:.86rem;color:#67716b !important;line-height:1.4;flex:1 1 240px;}",
+      ".bcl-raincard-note{font-size:.86rem;color:#626c66 !important;line-height:1.4;flex:1 1 240px;}",
       ".bcl-raincard-go{font-size:.85rem;font-weight:600;color:#2e6b46 !important;white-space:nowrap;}",
       "@media (max-width:600px){.bcl-raincard-go{flex:0 0 100%;}}",
       /* Residents page: compact jump-nav */
@@ -391,7 +412,7 @@
       ".bcl-article-body blockquote{border-left:3px solid #d56e47;margin:1.5em 0;padding:.2em 0 .2em 1.25em;color:#4f5e57;}",
       ".bcl-article-body table{border-collapse:collapse;display:block;max-width:100%;overflow-x:auto;margin:1.5em 0;}",
       ".bcl-article-body th,.bcl-article-body td{border:1px solid #e3ddcf;padding:9px 12px;text-align:left;}",
-      ".bcl-article-reviewed{font-family:'IBM Plex Mono',monospace;font-size:.7rem !important;letter-spacing:.06em;text-transform:uppercase;color:#67716b;border-top:1px solid #e3ddcf;padding-top:14px;margin-top:36px;}",
+      ".bcl-article-reviewed{font-family:'IBM Plex Mono',monospace;font-size:.7rem !important;letter-spacing:.06em;text-transform:uppercase;color:#626c66;border-top:1px solid #e3ddcf;padding-top:14px;margin-top:36px;}",
       ".bcl-draft-state{max-width:760px;margin:18px auto 42px;background:#f5f1e7;border:1px solid #e3ddcf;padding:18px 20px;font-family:Inter,Arial,sans-serif;color:#4f5e57;}",
       /* #bcl-rain carries .bcl-full so it breaks out of the Fluid Engine grid,
          same as every other tool page. On /directory that is right: a card grid
@@ -404,11 +425,11 @@
       "#bcl-rain{max-width:1180px;margin-left:auto;margin-right:auto;padding-left:clamp(22px,5vw,64px);padding-right:clamp(22px,5vw,64px);box-sizing:border-box;}",
       ".bcl-rain-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:16px 0 0;}",
       ".bcl-rain-tile{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:14px 16px;display:flex;flex-direction:column;gap:3px;}",
-      ".bcl-rain-tile-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;}",
+      ".bcl-rain-tile-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#626c66 !important;}",
       ".bcl-rain-tile-value{font-size:1.6rem;line-height:1.1;color:#173f36 !important;font-variant-numeric:tabular-nums;}",
-      ".bcl-rain-tile-note{font-size:.78rem;color:#67716b !important;line-height:1.35;}",
+      ".bcl-rain-tile-note{font-size:.78rem;color:#626c66 !important;line-height:1.35;}",
       ".bcl-rain-gap{max-width:80ch;}",
-      ".bcl-rain-src{font-size:.82rem;color:#67716b !important;max-width:80ch;margin:6px 0 0;line-height:1.5;}",
+      ".bcl-rain-src{font-size:.82rem;color:#626c66 !important;max-width:80ch;margin:6px 0 0;line-height:1.5;}",
       ".bcl-rain-src a{color:#2e6b46 !important;}",
       ".bcl-rain-chart{margin:6px 0 4px;overflow-x:auto;}",
       /* Below about 760px the chart would shrink its axis text to 7px, so it
@@ -419,20 +440,20 @@
       ".bcl-rain-key span{display:inline-flex;align-items:center;gap:7px;}",
       ".bcl-rain-key i{display:inline-block;width:18px;height:12px;flex:0 0 18px;}",
       ".bcl-rain-sw-line{height:0 !important;border-top:2px solid #2a7d55;}",
-      ".bcl-rain-sw-med{height:0 !important;border-top:1px solid #67716b;}",
+      ".bcl-rain-sw-med{height:0 !important;border-top:1px solid #626c66;}",
       ".bcl-rain-sw-b50{background:#d9d4c2;}",
       ".bcl-rain-sw-b90{background:#eae6d8;}",
       ".bcl-rain-controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;margin:14px 0 10px;}",
       ".bcl-rain-field{display:flex;flex-direction:column;gap:5px;flex:0 1 auto;order:1;}",
-      ".bcl-rain-field label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#67716b !important;}",
+      ".bcl-rain-field label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#626c66 !important;}",
       ".bcl-rain-field select{font-family:Inter,Arial,sans-serif;font-size:.95rem;padding:9px 12px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;max-width:100%;}",
       ".bcl-rain-msg{flex:0 0 100%;order:9;margin:0;font-size:.88rem;color:#1c2a26 !important;line-height:1.5;max-width:80ch;}",
       ".bcl-rain-msg:empty{display:none;}",
       ".bcl-rain-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:12px 0 0;}",
       ".bcl-rain-table{border-collapse:collapse;width:100%;font-size:.86rem;margin:8px 0 0;}",
-      ".bcl-rain-table caption{text-align:left;font-size:.8rem;color:#67716b !important;padding:0 0 6px;line-height:1.45;}",
+      ".bcl-rain-table caption{text-align:left;font-size:.8rem;color:#626c66 !important;padding:0 0 6px;line-height:1.45;}",
       ".bcl-rain-table th,.bcl-rain-table td{border:1px solid #e3ddcf;padding:6px 10px;text-align:left;color:#1c2a26 !important;font-variant-numeric:tabular-nums;}",
-      ".bcl-rain-table thead th{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#67716b !important;font-weight:500;}",
+      ".bcl-rain-table thead th{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#626c66 !important;font-weight:500;}",
       ".bcl-rain-table tbody th{font-weight:600;}",
       ".bcl-rain-flag{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:#8f4f45 !important;display:block;font-weight:500;}",
       ".bcl-rain-details{margin:8px 0 0;}",
@@ -726,7 +747,42 @@
       .map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("");
   }
 
-  function initListings(root, dataFile, label) {
+  /* Chips carry the nine GROUPS, not the 36 categories. Thirty-seven chips in a
+     bar that is supposed to stay on screen just moves the scanning problem into
+     a smaller box; nine fit in a row or two and match the group headings the
+     page already prints. The dropdown still offers every category, so the pair
+     is coarse filter plus precision filter rather than two of the same thing.
+
+     Counts are FACETED: they reflect the search box and the two checkboxes but
+     not the group itself, so a zero means "nothing here matches what you have
+     already asked for". A zero chip is disabled so no click can produce an
+     empty page, except the active one, which must stay clickable to get out. */
+  function groupBucketOf(cat) { return groupLabelOf(cat) || "Other"; }
+
+  function orderedGroupNames(present) {
+    var known = CAT_GROUPS.map(function (g) { return g[0]; })
+      .filter(function (g) { return present.indexOf(g) >= 0; });
+    var unknown = present.filter(function (g) { return known.indexOf(g) < 0; }).sort();
+    return known.concat(unknown);
+  }
+
+  function buildGroupChips(present, counts, active, total) {
+    counts = counts || {};
+    var allOn = !active;
+    var out = '<button type="button" class="bcl-chip' + (allOn ? " is-on" : "") +
+      '" data-group="" aria-pressed="' + (allOn ? "true" : "false") + '">All<b>' + total + "</b></button>";
+    orderedGroupNames(present).forEach(function (g) {
+      var n = counts[g] || 0;
+      var on = g === active;
+      out += '<button type="button" class="bcl-chip' + (on ? " is-on" : "") +
+        '" data-group="' + esc(g) + '" aria-pressed="' + (on ? "true" : "false") + '"' +
+        (n || on ? "" : " disabled") + ">" + esc(g) + "<b>" + n + "</b></button>";
+    });
+    return out;
+  }
+
+  function initListings(root, dataFile, label, opts) {
+    opts = opts || {};
     root.innerHTML = '<div class="bcl-count">Loading ' + esc(label) + "…</div>";
     fetchJSON(REPO + "/data/" + dataFile).then(function (data) {
       var all = data.listings || [];
@@ -742,11 +798,19 @@
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-open-now"> Open now</label>' +
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-bc-only"> In Boulder Creek</label>' +
         "</div>" +
+        (opts.chips ? '<div class="bcl-chips" role="group" aria-label="Filter by category"></div>' : "") +
         '<div class="bcl-count"></div><div class="bcl-list"></div>' +
         '<div class="bcl-note">Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
 
       var input = root.querySelector("input");
       var select = root.querySelector("select");
+      var chips = root.querySelector(".bcl-chips");
+      var groupNames = [];
+      cats.forEach(function (c) {
+        var g = groupBucketOf(c);
+        if (groupNames.indexOf(g) < 0) groupNames.push(g);
+      });
+      var activeGroup = "";
       var openBox = root.querySelector(".bcl-open-now");
       var bcBox = root.querySelector(".bcl-bc-only");
       var count = root.querySelector(".bcl-count");
@@ -763,8 +827,9 @@
         var openNow = !!openBox.checked;
         var bcOnly = !!bcBox.checked;
         var now = new Date();
-        var rows = all.filter(function (l) {
-          if (cat && l.category !== cat) return false;
+        /* Everything except the category, so the chip counts and the list are
+           filtered by one predicate and cannot drift apart. */
+        var base = all.filter(function (l) {
           /* Same predicate the badge uses, so the filter can never disagree
              with what the card says. Physically here, not "serves here". */
           if (bcOnly && !badgeIsBoulderCreek(l)) return false;
@@ -774,6 +839,19 @@
           if (!q) return true;
           return (l.name + " " + (l.subcategory || "") + " " + (l.description || "")).toLowerCase().indexOf(q) >= 0;
         });
+        /* A chosen category is the narrower fact, so it wins over the group and
+           the group chip only lights up to show where you are. */
+        var rows = base;
+        if (cat) rows = base.filter(function (l) { return l.category === cat; });
+        else if (activeGroup) rows = base.filter(function (l) { return groupBucketOf(l.category) === activeGroup; });
+        if (chips) {
+          var counts = {};
+          base.forEach(function (l) {
+            var g = groupBucketOf(l.category);
+            counts[g] = (counts[g] || 0) + 1;
+          });
+          chips.innerHTML = buildGroupChips(groupNames, counts, cat ? groupBucketOf(cat) : activeGroup, base.length);
+        }
         count.textContent = rows.length + " OF " + all.length + " LISTINGS" + updatedSuffix(data.updated);
         if (!rows.length) {
           list.innerHTML = '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/contact">Suggest it</a>.</div>';
@@ -790,10 +868,37 @@
       var note = document.createElement("div");
       note.className = "bcl-count bcl-open-note";
       count.parentNode.insertBefore(note, count.nextSibling);
-      input.addEventListener("input", render);
-      select.addEventListener("change", render);
+      /* Filter as you type, but coalesce the keystrokes: each render rebuilds
+         every visible card, and on the directory that is up to 317 of them. */
+      var typing = null;
+      input.addEventListener("input", function () {
+        if (typing) clearTimeout(typing);
+        typing = setTimeout(render, 120);
+      });
+      /* Picking a category from the dropdown supersedes the broader group
+         filter, rather than intersecting with it and silently returning
+         nothing when the two disagree. */
+      select.addEventListener("change", function () { activeGroup = ""; render(); });
       openBox.addEventListener("change", render);
       bcBox.addEventListener("change", render);
+      if (chips) {
+        /* Delegated, because render() replaces the whole chip row. */
+        chips.addEventListener("click", function (ev) {
+          var btn = ev.target && ev.target.closest ? ev.target.closest(".bcl-chip") : null;
+          if (!btn || btn.disabled) return;
+          activeGroup = btn.getAttribute("data-group") || "";
+          select.value = "";
+          render();
+          /* Re-rendering destroyed the button that had focus. */
+          var again = chips.querySelector('.bcl-chip[data-group="' + activeGroup + '"]');
+          if (again && again.focus) again.focus();
+          /* Filtering from halfway down the page leaves the reader looking at
+             the middle of a list that just changed under them. */
+          if (root.getBoundingClientRect && root.scrollIntoView && root.getBoundingClientRect().top < 0) {
+            root.scrollIntoView();
+          }
+        });
+      }
       render();
     }).catch(function () {
       unavailable(root, "The " + label + " list", 'You can still <a href="/contact">send an update</a>.');
@@ -2158,7 +2263,7 @@
       '<li><a href="https://cad.chp.ca.gov/" target="_blank" rel="noopener">CHP live dispatch log</a>: pick the Monterey Communications Center for Highway 9 and 236 incidents.</li>' +
       '<li><a href="https://www2.santacruzcountyca.gov/SHF/CristaPublic/" target="_blank" rel="noopener">Sheriff calls-for-service lookup</a>: past calls by address (not live; some incident types excluded).</li>' +
       "</ul>" +
-      '<p style="font-size:.85rem;color:#67716b !important;">Law enforcement calls generally are not shown live anywhere public. An empty feed means "not shown," not "nothing happening." For evacuation decisions, rely on <a href="https://www.cruzaware.org/" target="_blank" rel="noopener" style="color:#2e6b46 !important;">CruzAware</a> and official orders.</p>';
+      '<p style="font-size:.85rem;color:#626c66 !important;">Law enforcement calls generally are not shown live anywhere public. An empty feed means "not shown," not "nothing happening." For evacuation decisions, rely on <a href="https://www.cruzaware.org/" target="_blank" rel="noopener" style="color:#2e6b46 !important;">CruzAware</a> and official orders.</p>';
   }
 
   function aqiCategory(v) {
@@ -2433,7 +2538,7 @@
     surface: "#fffdf8",
     grid: "#e6e1d4",
     ink: "#1c2a26",
-    muted: "#67716b",
+    muted: "#626c66",
     band90: "#eae6d8",
     band50: "#d9d4c2",
     stale_days: 4
@@ -3539,7 +3644,9 @@
     initRelatedArticles();
     initThumbAlts();
     var d = document.getElementById("bcl-directory");
-    if (d) initListings(d, "directory.json", "directory");
+    /* Chips are directory-only: /food has few enough categories that the
+       dropdown already covers it, and a second control there would be noise. */
+    if (d) initListings(d, "directory.json", "directory", { chips: true });
     var f = document.getElementById("bcl-food");
     if (f) initListings(f, "food.json", "food and drink");
     var e = document.getElementById("bcl-events");
@@ -3565,6 +3672,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
