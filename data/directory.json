@@ -4752,6 +4752,30 @@
    "service_area": "San Lorenzo Valley",
    "verified_at": "2026-08-08",
    "address_note": "Courtyard Plaza"
+  },
+  {
+   "name": "Steel Bonnet Brewing Company",
+   "category": "Food and Drink",
+   "subcategory": "Brewery and taproom",
+   "description": "Family-run brewery and taproom with Scottish and English ales alongside American styles. Founded by Donald and Sue Cramb, who began brewing in their garage in Boulder Creek before opening in Scotts Valley in 2015. Dog and family friendly.",
+   "address": "20 Victor Square",
+   "locality": "Scotts Valley",
+   "website": "https://www.steelbon.net/",
+   "hours_text": "Monday-Thursday 3-9pm; Friday 2-9pm; Saturday-Sunday 12-9pm",
+   "service_area": "Santa Cruz County",
+   "verified_at": "2026-08-16"
+  },
+  {
+   "name": "Fruition Brewing",
+   "category": "Food and Drink",
+   "subcategory": "Brewery and taproom",
+   "description": "Watsonville brewery and taproom opened in 2019 by David Purgason and Tallula Preston. Purgason began brewing professionally at the Boulder Creek Brewing Company pub, and later brewed at Santa Cruz Mountain Brewing and Venus Spirits.",
+   "address": "918 E Lake Ave",
+   "locality": "Watsonville",
+   "website": "https://www.fruitionbrewing.com/",
+   "hours_text": "Wednesday-Thursday 11:30am-9pm; Friday 11:30am-10pm; Saturday 12-10pm; Sunday 12-8pm",
+   "service_area": "Santa Cruz County",
+   "verified_at": "2026-08-16"
   }
  ]
 }
