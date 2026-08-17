@@ -433,6 +433,22 @@
    "tile": "boulder-creek-dental.jpg"
   },
   {
+   "name": "BC Day Spa",
+   "category": "Health & Wellness",
+   "subcategory": "Massage therapy",
+   "description": "Day spa offering massage, next door to Elevated Wellness on Forest Street. Walk-ins and appointments.",
+   "address": "125 Forest Street",
+   "locality": "Boulder Creek",
+   "phone": "831-889-8349",
+   "website": "",
+   "hours_text": "Daily 9am-10pm (per Yelp listing; confirm by phone)",
+   "service_area": "Boulder Creek",
+   "verified_at": "2026-08-17",
+   "lat": 37.12383,
+   "lon": -122.12212,
+   "tile": ""
+  },
+  {
    "name": "Elevated Wellness Massage & Bodywork",
    "category": "Health & Wellness",
    "subcategory": "Massage therapy",
