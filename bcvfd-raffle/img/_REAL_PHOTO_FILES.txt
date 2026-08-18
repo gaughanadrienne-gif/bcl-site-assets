@@ -1,0 +1,43 @@
+These card images are REAL donor/owner photos, swapped in from
+'BBQ & Dance/Raffle Page/_real photos'. Any regeneration or bulk re-export of
+card images (gen_prize_images.py or similar) MUST NOT overwrite the files
+listed below - a real photo always wins over a generated scene.
+Clobbered twice before this file existed (commits 105a319, c1e01bb on 08-17).
+
+100.jpg
+23.jpg
+34.jpg
+36.jpg
+41.jpg
+47.jpg
+56.jpg
+67.jpg
+69.jpg
+7.jpg
+70.jpg
+71.jpg
+72.jpg
+73.jpg
+74.jpg
+86.jpg
+87.jpg
+88.jpg
+89.jpg
+90.jpg
+91.jpg
+93.jpg
+94.jpg
+95.jpg
+96.jpg
+97.jpg
+98.jpg
+ah-kids.jpg
+ana-luisa-necklace.jpg
+bcl-basket.jpg
+coffee-bags.jpg
+coffee-single.jpg
+farm-supply.jpg
+fire-axe.jpg
+jacket.jpg
+smith-indian-pump.jpg
+tactical-flashlight.jpg
