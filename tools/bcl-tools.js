@@ -126,7 +126,31 @@
     });
   }
 
-  var CSS_ID = "bcl-tools-css-v11";
+  /* ---------- analytics ----------
+     GA4 (G-6367285354) is loaded by Squarespace, so all this does is name the
+     handful of actions that mean somebody got what they came for. Pageviews
+     reward inventory; these reward usefulness. The event dictionary lives at
+     Admin & Brand/analytics-event-dictionary.md and the names there and here
+     must stay in step. No personal data is sent: search terms are typed by the
+     user into a public search box and are trimmed and lowercased, nothing else
+     is collected, and the call is a no-op wherever gtag is absent (local test
+     pages, consent blockers, the node test runner). */
+
+  function track(name, params) {
+    try {
+      if (typeof window === "undefined" || typeof window.gtag !== "function") return false;
+      window.gtag("event", name, params || {});
+      return true;
+    } catch (err) { return false; }
+  }
+
+  /* GA4 truncates string values at 100 characters and silently drops the rest,
+     so trim here where it is visible rather than at the edge. */
+  function trackText(v, max) {
+    return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
+  }
+
+  var CSS_ID = "bcl-tools-css-v12";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -228,6 +252,7 @@
       ".bcl-card a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-verified{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#626c66 !important;margin-top:10px;}",
       ".bcl-note{background:#dde2d8;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
+      ".bcl-dl-note a{color:#173f36 !important;text-decoration:underline;text-underline-offset:2px;}",
       ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#626c66 !important;}",
       /* The unavailable state's escape links carry brand link colour like every
          other tool link. Without this they fell through to the browser default. */
@@ -322,6 +347,8 @@
       ".bcl-river-rows div b{display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#626c66 !important;font-weight:500;}",
       ".bcl-river-rows div span{font-size:1.15rem;color:#173f36 !important;}",
       ".bcl-river-cats{font-size:.8rem;color:#626c66 !important;line-height:1.5;margin:6px 0 0;}",
+      ".bcl-river-stale{border-left:3px solid #8f4f45;padding:6px 0 6px 10px;margin:6px 0;color:#1c2a26 !important;}",
+      ".bcl-river-stale strong{color:#8f4f45 !important;}",
       ".bcl-links li{margin:6px 0;font-size:.92rem;}",
       ".bcl-links a{color:#2e6b46 !important;}",
       ".bcl-group-head{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#8f4f45 !important;border-bottom:1px solid #e3ddcf;padding:0 0 6px;margin:34px 0 4px;}",
@@ -877,6 +904,7 @@
           chips.innerHTML = buildGroupChips(groupNames, counts, cat ? groupBucketOf(cat) : activeGroup, base.length);
         }
         count.textContent = rows.length + " OF " + all.length + " LISTINGS" + updatedSuffix(data.updated);
+        reportSearch(q, rows.length);
         if (!rows.length) {
           list.innerHTML = '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/contact">Suggest it</a>.</div>';
           return;
@@ -892,6 +920,41 @@
       var note = document.createElement("div");
       note.className = "bcl-count bcl-open-note";
       count.parentNode.insertBefore(note, count.nextSibling);
+
+      /* The box filters as you type, so there is no submit to hang a "someone
+         searched" event on. Wait for the typing to settle, then report the
+         query once. Without the settle, "hardware" bills as eight searches and
+         seven of them are zero-result noise that would poison the zero-result
+         list the whole measurement is for. */
+      var searchTimer = null, lastReported = "";
+      function reportSearch(q, hits) {
+        var term = trackText(q, 100);
+        if (searchTimer) clearTimeout(searchTimer);
+        if (term.length < 2 || term === lastReported) return;
+        searchTimer = setTimeout(function () {
+          lastReported = term;
+          track("directory_search", { list: label, search_term: term, results: hits });
+          if (!hits) track("directory_zero_results", { list: label, search_term: term });
+        }, 900);
+      }
+
+      /* Phone, directions and website are the only things a reader can DO with
+         a listing, so they are what "the directory worked" looks like. */
+      list.addEventListener("click", function (ev) {
+        var a = ev.target && ev.target.closest ? ev.target.closest(".bcl-dir-card a") : null;
+        if (!a) return;
+        var card = a.closest(".bcl-dir-card");
+        var nameEl = card && card.querySelector(".bcl-dir-name");
+        var href = a.getAttribute("href") || "";
+        var kind = href.indexOf("tel:") === 0 ? "phone"
+          : href.indexOf("google.com/maps") > -1 ? "directions" : "website";
+        track("directory_result_click", {
+          list: label,
+          business: trackText(nameEl ? nameEl.textContent : "", 100),
+          action: kind,
+          link_url: trackText(href, 100)
+        });
+      });
       /* Filter as you type, but coalesce the keystrokes: each render rebuilds
          every visible card, and on the directory that is up to 317 of them. */
       var typing = null;
@@ -1472,6 +1535,54 @@
     target.insertBefore(img, target.firstChild);
   }
 
+  /* ---------- article dates ----------
+     Squarespace's blog date format renders "Feb 19" and, worse, writes that same
+     string into the datetime attribute, so the visible date has no year and the
+     machine-readable one is not a date at all. The BlogPosting JSON-LD on the
+     same page already carries the full ISO datePublished, so read it from there
+     rather than guessing. Purely a display repair: no date is invented, and if
+     the JSON-LD is missing the markup is left exactly as Squarespace wrote it. */
+
+  var LONG_MONTHS = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+
+  function articleDateFromLD(docObj) {
+    var d = docObj || (typeof document !== "undefined" ? document : null);
+    if (!d) return null;
+    var nodes = d.querySelectorAll('script[type="application/ld+json"]');
+    for (var i = 0; i < nodes.length; i++) {
+      var json;
+      try { json = JSON.parse(nodes[i].textContent || "{}"); } catch (err) { continue; }
+      var list = Array.isArray(json) ? json : [json];
+      for (var j = 0; j < list.length; j++) {
+        var o = list[j] || {};
+        var type = String(o["@type"] || "");
+        if (type !== "BlogPosting" && type !== "Article" && type !== "NewsArticle") continue;
+        var m = String(o.datePublished || "").match(/^(\d{4})-(\d{2})-(\d{2})/);
+        if (m) return { y: +m[1], mo: +m[2], d: +m[3], iso: m[1] + "-" + m[2] + "-" + m[3] };
+      }
+    }
+    return null;
+  }
+
+  function articleDateText(parts) {
+    if (!parts) return "";
+    return LONG_MONTHS[parts.mo - 1] + " " + parts.d + ", " + parts.y;
+  }
+
+  function initArticleDates() {
+    if (!/^\/around-town\/[^\/]+\/?$/.test(location.pathname)) return;
+    var parts = articleDateFromLD(document);
+    if (!parts) return;
+    var els = document.querySelectorAll("time.dt-published, time[data-content-field='published-on']");
+    for (var i = 0; i < els.length; i++) {
+      var t = els[i];
+      t.setAttribute("datetime", parts.iso);
+      var span = t.querySelector("span");
+      (span || t).textContent = articleDateText(parts);
+    }
+  }
+
   function articleSlugFromPath(pathname) {
     var match = String(pathname || "").match(/^\/around-town\/([^\/]+)\/?$/);
     return match ? decodeURIComponent(match[1]) : "";
@@ -1785,6 +1896,63 @@
     }
   }
 
+  /* ---------- pointers to the printable guides ----------
+     /downloads holds nine finished PDFs and, until 2026-08-19, nothing on the
+     site linked to it. These are contextual pointers, placed where somebody is
+     already reading about the thing the checklist covers, rather than a banner.
+     Each one no-ops if its section is not on the page, and re-running boot()
+     cannot double them up. */
+
+  var DL_BASE = REPO + "/downloads/";
+
+  function downloadNote(id, text) {
+    var p = document.createElement("p");
+    p.className = "bcl-note bcl-dl-note";
+    p.id = id;
+    p.innerHTML = text;
+    return p;
+  }
+
+  function dlLink(file, label) {
+    return '<a href="' + DL_BASE + file + '" target="_blank" rel="noopener">' + esc(label) + "</a>";
+  }
+
+  function initDownloadPointers() {
+    var res = document.getElementById("bcl-residents");
+    if (res && !document.getElementById("bcl-dl-res")) {
+      [].slice.call(res.querySelectorAll("section.bcl-section")).forEach(function (s) {
+        var k = s.querySelector(".bcl-kicker");
+        var key = k ? k.textContent.trim().toLowerCase() : "";
+        if (key === "emergency readiness" && !document.getElementById("bcl-dl-res")) {
+          s.appendChild(downloadNote("bcl-dl-res",
+            "Printable versions, one page each, made for the inside of a cupboard door: " +
+            dlLink("Boulder_Creek_Wildfire_Go_Bag_Checklist.pdf", "wildfire go bag") + ", " +
+            dlLink("Boulder_Creek_Defensible_Space_Checklist.pdf", "defensible space") + ", " +
+            dlLink("Boulder_Creek_Winter_Storm_and_Outage_Checklist.pdf", "winter storm and outage") + " and " +
+            dlLink("Boulder_Creek_Emergency_Contacts.pdf", "emergency contacts") + '. All nine are on the <a href="/downloads">printable guides page</a>.'));
+        }
+        if (key === "new resident quick start" && !document.getElementById("bcl-dl-res-new")) {
+          s.appendChild(downloadNote("bcl-dl-res-new",
+            "There is a printable version of this: " +
+            dlLink("New_Resident_Quick_Start.pdf", "New Resident Quick Start") +
+            ', with the rest of the checklists on the <a href="/downloads">printable guides page</a>.'));
+        }
+      });
+    }
+
+    var status = document.getElementById("bcl-mountain-status");
+    if (status && !document.getElementById("bcl-dl-status")) {
+      var hero = status.querySelector(".bcl-hero");
+      if (hero) {
+        hero.appendChild(downloadNote("bcl-dl-status",
+          "Power and cell service go out here, and this page goes with them. Print the " +
+          dlLink("Boulder_Creek_Emergency_Contacts.pdf", "emergency contacts sheet") + " and the " +
+          dlLink("Boulder_Creek_Winter_Storm_and_Outage_Checklist.pdf", "winter storm and outage checklist") +
+          ' before you need them, or take the <a href="/downloads">whole set</a>.'));
+      }
+    }
+  }
+
   /* ---------- homepage refresh ---------- */
 
   var EXPLORE_TILES = [
@@ -1938,11 +2106,22 @@
   }
 
   /* ISO date strings compare correctly as strings, so "still upcoming" is a
-     plain >= against today's key. Multi-day events stay listed until they end. */
-  function nextEvents(rows, todayKey, n) {
+     plain >= against today's key. Multi-day events stay listed until they end.
+     An event is a SPAN, so a run that has already opened sorts by when it
+     CLOSES and sits ahead of the not-yet-started ones, the same rule the
+     events page uses. Sorting the whole list by START would put a museum
+     exhibit that opened in July at the top of "Happening next" under a
+     three-week-old date. See evIsOngoing / evThroughChip. */
+  function nextEvents(rows, todayKey, n, todayOpt) {
+    var today = todayOpt || (todayKey ? new Date(todayKey + "T00:00:00") : null);
     return (rows || [])
       .filter(function (e) { return e && String(e.end || e.start || "").slice(0, 10) >= todayKey; })
-      .sort(function (a, b) { return String(a.start).localeCompare(String(b.start)); })
+      .sort(function (a, b) {
+        var ao = evIsOngoing(a, today), bo = evIsOngoing(b, today);
+        if (ao !== bo) return ao ? -1 : 1;
+        if (ao && bo) return String(a.end).localeCompare(String(b.end));
+        return String(a.start).localeCompare(String(b.start));
+      })
       .slice(0, n);
   }
 
@@ -1960,10 +2139,14 @@
     return filterRentals(rows, {}).slice(0, n);
   }
 
-  function homeEventRow(e) {
+  /* Ongoing runs are labelled by their END date. Showing the start date of an
+     exhibit that opened weeks ago is the single thing that made the homepage
+     look like a dead feed (audit, 2026-08-18). */
+  function homeEventRow(e, todayOpt) {
     var where = e.location ? String(e.location).split(",")[0] : "";
     var meta = [where, e.category].filter(Boolean).join(" · ");
-    return boardRow(e.url || "/events", !!e.url, evDateChip(e.start), e.title || "", meta);
+    var kick = evIsOngoing(e, todayOpt) ? evThroughChip(e.end) : evDateChip(e.start);
+    return boardRow(e.url || "/events", !!e.url, kick, e.title || "", meta);
   }
 
   function homeJobRow(job) {
@@ -2182,14 +2365,59 @@
   function initFooterToolLinks() {
     var nav = document.querySelector("nav.bcl-footer-links:not(.bcl-footer-social)");
     if (!nav) return;
-    if (nav.querySelector('a[href="/rain"]')) return;
-    var a = document.createElement("a");
-    a.href = "/rain";
-    a.textContent = "Rain";
-    // Sit with the other tools rather than after Terms & Privacy.
-    var rentals = nav.querySelector('a[href="/rentals"]');
-    if (rentals) nav.insertBefore(a, rentals.nextSibling);
-    else nav.appendChild(a);
+    if (!nav.querySelector('a[href="/rain"]')) {
+      var a = document.createElement("a");
+      a.href = "/rain";
+      a.textContent = "Rain";
+      // Sit with the other tools rather than after Terms & Privacy.
+      var rentals = nav.querySelector('a[href="/rentals"]');
+      if (rentals) nav.insertBefore(a, rentals.nextSibling);
+      else nav.appendChild(a);
+    }
+    /* Nine finished PDFs sat at /downloads with nothing anywhere on the site
+       linking to them (audit, 2026-08-18). The footer is the one route that
+       reaches every page without an editor session. */
+    if (!nav.querySelector('a[href="/downloads"]')) {
+      var dl = document.createElement("a");
+      dl.href = "/downloads";
+      dl.textContent = "Printable guides";
+      var rain = nav.querySelector('a[href="/rain"]');
+      if (rain) nav.insertBefore(dl, rain.nextSibling);
+      else nav.appendChild(dl);
+    }
+  }
+
+  /* ---------- site-wide action tracking ----------
+     Downloads and corrections happen on pages this script does not otherwise
+     build, so both are delegated off the document rather than wired per page.
+     A PDF opens in a new tab, so there is no navigation to race. */
+  function downloadNameFromHref(href) {
+    var path = String(href || "").split("?")[0].split("#")[0];
+    return decodeURIComponent(path.split("/").pop() || "");
+  }
+
+  function initActionTracking() {
+    document.addEventListener("click", function (ev) {
+      var t = ev.target;
+      var a = t && t.closest ? t.closest('a[href]') : null;
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      if (!/\.pdf(\?|#|$)/i.test(href)) return;
+      track("download_click", {
+        file_name: trackText(downloadNameFromHref(href), 100),
+        page_path: trackText(location.pathname, 100)
+      });
+    }, true);
+
+    /* The contact form is where a wrong hour, a closed business or a bad phone
+       number gets reported. Squarespace posts it over AJAX, so listen in the
+       capture phase and never touch the event. */
+    document.addEventListener("submit", function (ev) {
+      var f = ev.target;
+      if (!f || f.tagName !== "FORM") return;
+      if (f.closest(".bcl-search-overlay")) return;
+      track("correction_submit", { page_path: trackText(location.pathname, 100) });
+    }, true);
   }
 
   function initEvents(root) {
@@ -2305,29 +2533,61 @@
           range = btn.getAttribute("data-r");
           fromInput.value = "";
           toInput.value = "";
+          track("event_filter_use", { filter: "range", value: trackText(range, 40) });
           render();
         });
       });
       clearBtn.addEventListener("click", function () {
         fromInput.value = "";
         toInput.value = "";
+        track("event_filter_use", { filter: "clear_dates", value: "" });
         render();
       });
       /* One delegated handler: the grid is rebuilt on every keystroke, so
          per-button listeners would be re-bound constantly and leak. */
       root.addEventListener("click", function (ev) {
-        var btn = ev.target && ev.target.closest && ev.target.closest("[data-ics]");
-        if (!btn) return;
-        var id = btn.getAttribute("data-ics");
-        for (var i = 0; i < all.length; i++) {
-          if (all[i].id === id) { downloadIcs(all[i]); return; }
+        var t = ev.target;
+        var btn = t && t.closest && t.closest("[data-ics]");
+        if (btn) {
+          var id = btn.getAttribute("data-ics");
+          for (var i = 0; i < all.length; i++) {
+            if (all[i].id === id) {
+              track("event_calendar_add", { event_title: trackText(all[i].title, 100) });
+              downloadIcs(all[i]);
+              return;
+            }
+          }
+          return;
+        }
+        /* Every link out of an event card goes to the organizer. That click is
+           the whole point of the calendar, so it is the event worth counting. */
+        var link = t && t.closest && t.closest(".bcl-event-card a[href]");
+        if (link) {
+          var card = link.closest(".bcl-event-card");
+          var titleEl = card && card.querySelector(".bcl-event-title");
+          track("event_outbound_click", {
+            event_title: trackText(titleEl ? titleEl.textContent : "", 100),
+            link_url: trackText(link.getAttribute("href"), 100)
+          });
         }
       });
       input.addEventListener("input", render);
-      catSel.addEventListener("change", render);
-      sortSel.addEventListener("change", render);
-      fromInput.addEventListener("change", render);
-      toInput.addEventListener("change", render);
+      catSel.addEventListener("change", function () {
+        track("event_filter_use", { filter: "category", value: trackText(catSel.value || "all", 40) });
+        render();
+      });
+      sortSel.addEventListener("change", function () {
+        track("event_filter_use", { filter: "sort", value: trackText(sortSel.value, 40) });
+        render();
+      });
+      fromInput.addEventListener("change", function () {
+        track("event_filter_use", { filter: "date_from", value: trackText(fromInput.value, 40) });
+        render();
+      });
+      toInput.addEventListener("change", function () {
+        track("event_filter_use", { filter: "date_to", value: trackText(toInput.value, 40) });
+        render();
+      });
       render();
     }).catch(function () {
       unavailable(root, "The events calendar", "");
@@ -2374,6 +2634,35 @@
       });
   }
 
+  /* The card a reader sees is route + place + type + delay, and Caltrans files
+     one record per log entry, so a single project can arrive as several rows
+     that render as the same sentence. Two identical "SR-9 near Boulder Creek:
+     alternating lanes, est. delay 5 min" cards shipped on 2026-08-18 that way
+     (closure C9LA logs 17 and 18). Key the dedupe off exactly the fields that
+     reach the page: two rows a reader cannot tell apart are one card. */
+  function caltransCardKey(l) {
+    var b = ((l || {}).location || {}).begin || {};
+    var c = (l || {}).closure || {};
+    var mins = parseInt(c.estimatedDelay, 10);
+    return [
+      b.beginRoute || "",
+      b.beginNearbyPlace || b.beginLocationName || "",
+      String(c.typeOfClosure || "closure").toLowerCase(),
+      mins > 0 ? mins : ""
+    ].join("|");
+  }
+
+  function dedupeCaltrans(rows) {
+    var seen = {}, out = [];
+    (rows || []).forEach(function (l) {
+      var k = caltransCardKey(l);
+      if (seen[k]) return;
+      seen[k] = 1;
+      out.push(l);
+    });
+    return out;
+  }
+
   function fillCaltrans(el) {
     var ROUTES = { "SR-9": 1, "SR-236": 1, "SR-35": 1, "SR-17": 1, "SR-1": 1 };
     fetchJSON("https://cwwp2.dot.ca.gov/data/d5/lcs/lcsStatusD05.json")
@@ -2390,6 +2679,7 @@
           var active = (c.code1097 || {}).isCode1097 === "true" && (c.code1098 || {}).isCode1098 !== "true";
           return active && b.beginCounty === "Santa Cruz" && ROUTES[b.beginRoute];
         });
+        rows = dedupeCaltrans(rows);
         var total = rows.length;
         rows = rows.slice(0, 6);
         var h = "";
@@ -2477,16 +2767,46 @@
     return isNaN(d.getTime()) ? "" : d.toLocaleString();
   }
 
-  function riverCardHTML(reading, cats) {
+  /* A gauge that stops reporting does not error, it just keeps serving its last
+     observation, so the card has to say how old the number is. On 2026-08-18 the
+     latest reading was from Aug 16 and nothing on the page said so. The gauge
+     normally reports every 15 to 30 minutes; anything past a day is flagged. */
+  var RIVER_STALE_HOURS = 24;
+
+  function riverAge(iso, nowOpt) {
+    var d = new Date(iso);
+    if (!iso || isNaN(d.getTime())) return null;
+    var now = nowOpt ? new Date(nowOpt.getTime()) : new Date();
+    var hours = (now.getTime() - d.getTime()) / 3600000;
+    if (hours < 0) hours = 0;
+    var words;
+    if (hours < 1) words = "less than an hour old";
+    else if (hours < 2) words = "1 hour old";
+    else if (hours < 48) words = Math.round(hours) + " hours old";
+    else words = Math.round(hours / 24) + " days old";
+    return { hours: hours, stale: hours >= RIVER_STALE_HOURS, words: words };
+  }
+
+  function riverAgeHTML(iso, nowOpt) {
+    var age = riverAge(iso, nowOpt);
+    if (!age) return '<div class="bcl-meta">This reading carries no timestamp, so its age cannot be shown.</div>';
+    var when = riverTimeText(iso);
+    if (!age.stale) return '<div class="bcl-meta">Reading from ' + esc(when) + ", " + esc(age.words) + ".</div>";
+    return '<div class="bcl-meta bcl-river-stale"><strong>Not current.</strong> The latest reading is from ' +
+      esc(when) + ", " + esc(age.words) + ". The gauge usually reports every 15 to 30 minutes, so this number " +
+      'describes the river then, not now. Check the <a href="' + RIVER.usgs + '" target="_blank" rel="noopener">USGS gauge page</a>.</div>';
+  }
+
+  function riverCardHTML(reading, cats, nowOpt) {
     var h = '<div class="bcl-name">' + esc(RIVER.name) + "</div>" +
       '<div class="bcl-sub">' + esc(RIVER.place) + "</div>" +
       '<div class="bcl-river-rows">';
     if (reading.stage != null) h += "<div><b>Gage height</b><span>" + reading.stage.toFixed(2) + " ft</span></div>";
     if (reading.flow != null) h += "<div><b>Streamflow</b><span>" + Math.round(reading.flow) + " cfs</span></div>";
     h += "</div>";
-    var when = riverTimeText(reading.at);
-    h += '<div class="bcl-meta">USGS gauge ' + esc(RIVER.site) + (when ? ", reading taken " + esc(when) : "") +
-      (reading.provisional ? ". Provisional data, subject to revision." : "") + "</div>";
+    h += riverAgeHTML(reading.at, nowOpt);
+    h += '<div class="bcl-meta">USGS gauge ' + esc(RIVER.site) +
+      (reading.provisional ? ". Provisional data, subject to revision." : ".") + "</div>";
     if (cats && cats.length) {
       h += '<p class="bcl-river-cats">National Weather Service stages for this gauge: ' +
         cats.map(function (c) { return esc(c.label) + " " + c.stage + " ft"; }).join(", ") +
@@ -3400,7 +3720,14 @@
       var upcoming = (data.events || []).filter(function (e) {
         var p = evParts(e.end || e.start);
         return p && new Date(p.y, p.mo - 1, p.d, 23, 59) >= t;
-      }).sort(function (a, b) { return String(a.start).localeCompare(String(b.start)); });
+      }).sort(function (a, b) {
+        /* Already-open runs first, keyed off when they close. Sorting the lot
+           by start hands the "NEXT" slot to an exhibit that opened in July. */
+        var ao = evIsOngoing(a, t), bo = evIsOngoing(b, t);
+        if (ao !== bo) return ao ? -1 : 1;
+        if (ao && bo) return String(a.end).localeCompare(String(b.end));
+        return String(a.start).localeCompare(String(b.start));
+      });
       var todays = upcoming.filter(function (e) { return String(e.start).slice(0, 10) === todayKey; }).slice(0, 3);
       if (todays.length) {
         ev.innerHTML = todays.map(function (e) {
@@ -3408,7 +3735,8 @@
         }).join("");
       } else if (upcoming.length) {
         var n = upcoming[0];
-        ev.innerHTML = "<div><span>NEXT · " + evDateChip(n.start) + "</span>" + esc(n.title) + (n.location ? " · " + esc(String(n.location).split(",")[0]) : "") + "</div>";
+        var kick = evIsOngoing(n, t) ? "ON NOW · " + evThroughChip(n.end) : "NEXT · " + evDateChip(n.start);
+        ev.innerHTML = "<div><span>" + kick + "</span>" + esc(n.title) + (n.location ? " · " + esc(String(n.location).split(",")[0]) : "") + "</div>";
       } else {
         ev.innerHTML = "<div>No verified upcoming events on the calendar.</div>";
       }
@@ -3721,8 +4049,10 @@
     repairStatusPage();
     repairResidentsPage();
     repairPageHeadings();
+    initDownloadPointers();
     initCategoryNav();
     initArticleHeader();
+    initArticleDates();
     initArticleContent();
     initRelatedArticles();
     initThumbAlts();
@@ -3739,6 +4069,7 @@
     initSiteSearch();
     initPromoTicker();
     initFooterToolLinks();
+    initActionTracking();
     if (document.getElementById("bcl-home")) initHome();
     var t = document.getElementById("bcl-today");
     if (t) initToday(t);
@@ -3755,6 +4086,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
