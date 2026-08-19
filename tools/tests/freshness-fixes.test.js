@@ -152,3 +152,25 @@ test("tracked text is trimmed, single-spaced, and capped at the GA4 limit", () =
   assert.equal(T.trackText("x".repeat(200)).length, 100);
   assert.equal(T.trackText(null), "");
 });
+
+/* The live check on 2026-08-19 caught this and the unit tests had not: the
+   homepage renders its rows with rows.map(homeEventRow), so the callback's
+   second argument is the INDEX, not a date. Rows 2 and 3 threw and the whole
+   "Happening next" column rendered as "isn't loading". */
+
+test("a card renderer called through Array.map does not throw on the index", () => {
+  const rows = [EXHIBIT, EXHIBIT2, SOON];
+  let html;
+  assert.doesNotThrow(() => { html = rows.map(T.homeEventRow).join(""); });
+  /* Every row must render, including the ones map hands an index of 1 and 2. */
+  assert.equal((html.match(/bcl-bi-title/g) || []).length, 3, html);
+  assert.ok(html.includes("Farmers market"), html);
+});
+
+test("a non-Date second argument means now, it does not throw", () => {
+  assert.equal(T.isDateLike(1), false);
+  assert.equal(T.isDateLike(new Date("nonsense")), false);
+  assert.equal(T.isDateLike(new Date()), true);
+  assert.doesNotThrow(() => T.evIsOngoing(EXHIBIT, 2));
+  assert.doesNotThrow(() => T.riverAge("2026-08-16T09:00:00-07:00", 2));
+});
