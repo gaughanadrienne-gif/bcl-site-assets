@@ -124,16 +124,66 @@ def build_feed(
     }
 
 
+def diff_against_existing(feed: dict, output: Path) -> tuple[list[str], list[str], int]:
+    """Compare a freshly built feed against the feed already on disk.
+
+    ``data/articles.json`` is the SOURCE OF TRUTH for live body text; the drafts are
+    a mirror of it. A rebuild is therefore only ever expected to be a no-op. Any body
+    this build would change, or any live slug it would drop, means a draft has drifted
+    and the rebuild would destroy published copy. Returns (changed, dropped, net_chars).
+    """
+    if not output.exists():
+        return [], [], 0
+    try:
+        current = json.loads(output.read_text(encoding="utf-8")).get("articles", {})
+    except (OSError, json.JSONDecodeError):
+        return [], [], 0
+    built = feed.get("articles", {})
+    changed = sorted(
+        slug for slug in current
+        if slug in built and built[slug].get("html") != current[slug].get("html")
+    )
+    dropped = sorted(set(current) - set(built))
+    net = sum(len(built[s].get("html", "")) - len(current[s].get("html", "")) for s in changed)
+    net -= sum(len(current[s].get("html", "")) for s in dropped)
+    return changed, dropped, net
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--articles-dir", type=Path, default=DEFAULT_ARTICLES_DIR)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--as-of", type=date.fromisoformat, default=date.today())
     parser.add_argument("--live-slugs", type=Path, default=DEFAULT_LIVE_SLUGS)
+    parser.add_argument(
+        "--allow-body-changes",
+        action="store_true",
+        help="write even if the rebuild would change or drop already-published bodies "
+             "(default: refuse, because that means a draft has drifted from the feed)",
+    )
     args = parser.parse_args()
 
     live_slugs = set(json.loads(args.live_slugs.read_text(encoding="utf-8")))
     feed = build_feed(args.articles_dir.resolve(), args.as_of, live_slugs)
+
+    changed, dropped, net = diff_against_existing(feed, args.output)
+    if (changed or dropped) and not args.allow_body_changes:
+        print(f"REFUSING TO WRITE {args.output}")
+        print(f"  bodies this rebuild would CHANGE : {len(changed)}")
+        print(f"  live slugs it would DROP         : {len(dropped)}")
+        print(f"  net characters of live copy      : {net:+d}")
+        for slug in (changed + dropped)[:20]:
+            print(f"    {slug}")
+        if len(changed) + len(dropped) > 20:
+            print(f"    ... and {len(changed) + len(dropped) - 20} more")
+        print()
+        print("data/articles.json is the source of truth; the drafts mirror it, so a")
+        print("rebuild is only ever expected to be a no-op. Run")
+        print("  python -m scripts.regenerate_drafts        # check, writes nothing")
+        print("to see which drafts have drifted, and reconcile them before rebuilding.")
+        print("Pass --allow-body-changes only if you intend to overwrite live copy.")
+        raise SystemExit(1)
+
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
         json.dumps(feed, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
