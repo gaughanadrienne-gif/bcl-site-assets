@@ -2850,7 +2850,7 @@
     return '<div class="bcl-card">' +
       '<div class="bcl-name">Power</div>' +
       '<div class="bcl-actionrow"><a href="https://pgealerts.alerts.pge.com/outage-tools/outage-map/" target="_blank" rel="noopener">See the 95006 outage map</a></div>' +
-      '<div class="bcl-actionrow"><a href="https://www.pge.com/en/outages-and-safety/outage-preparedness-and-support/outage-alerts.html" target="_blank" rel="noopener">Get outage alerts for your address</a></div>' +
+      '<div class="bcl-actionrow"><a href="https://www.pge.com/en/account/manage-my-account/online-account-preferences/outage-alerts.html" target="_blank" rel="noopener">Get outage alerts for your address</a></div>' +
       '<div class="bcl-actionrow">Report an outage: <a href="tel:18007435002">1-800-743-5002</a></div>' +
       '<div class="bcl-meta">Downed line? Call 911 first, then PG&amp;E at 1-800-743-5000.</div></div>' +
       '<div class="bcl-card">' +
