@@ -1,7 +1,7 @@
 {
- "updated": "2026-08-08",
+ "updated": "2026-08-22",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
- "count": 317,
+ "count": 321,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -1013,8 +1013,9 @@
    "website": "https://www.stumptownsupply.com/",
    "hours_text": "Online store; selected items available locally at SWAG and community events",
    "service_area": "United States shipping; local pickup availability varies",
-   "verified_at": "2026-07-15",
-   "tile": "stumptown-supply.png"
+   "verified_at": "2026-08-22",
+   "tile": "stumptown-supply.png",
+   "no_storefront": true
   },
   {
    "name": "Community Bridges Lift Line",
@@ -4791,6 +4792,70 @@
    "hours_text": "Wednesday-Thursday 11:30am-9pm; Friday 11:30am-10pm; Saturday 12-10pm; Sunday 12-8pm",
    "service_area": "Santa Cruz County",
    "verified_at": "2026-08-16"
+  },
+  {
+   "name": "Joe's Bar",
+   "category": "Food and Drink",
+   "subcategory": "Bar",
+   "description": "Downtown bar with live music, karaoke and pool. 21 and over.",
+   "address": "13118 Highway 9",
+   "locality": "Boulder Creek",
+   "phone": null,
+   "website": null,
+   "hours_text": null,
+   "service_area": "Boulder Creek",
+   "verified_at": "2026-08-22",
+   "lat": null,
+   "lon": null,
+   "tile": null
+  },
+  {
+   "name": "Bowzer Baths",
+   "category": "Pets",
+   "subcategory": "Dog grooming",
+   "description": "Dog grooming on the downtown block.",
+   "address": "13156 Highway 9",
+   "locality": "Boulder Creek",
+   "phone": null,
+   "website": null,
+   "hours_text": null,
+   "service_area": "Boulder Creek",
+   "verified_at": "2026-08-22",
+   "lat": null,
+   "lon": null,
+   "tile": null
+  },
+  {
+   "name": "Herrick Games and Hobbies",
+   "category": "Shopping",
+   "subcategory": "Games and hobbies",
+   "description": "Tabletop games, Warhammer kits, painting supplies, classes and community events.",
+   "address": "13111 Pine Street",
+   "locality": "Boulder Creek",
+   "phone": null,
+   "website": null,
+   "hours_text": null,
+   "service_area": "Boulder Creek",
+   "verified_at": "2026-08-22",
+   "lat": null,
+   "lon": null,
+   "tile": null
+  },
+  {
+   "name": "Springygirl",
+   "category": "Shopping",
+   "subcategory": "Boutique",
+   "description": "Downtown boutique.",
+   "address": "13130 Central Avenue",
+   "locality": "Boulder Creek",
+   "phone": null,
+   "website": null,
+   "hours_text": null,
+   "service_area": "Boulder Creek",
+   "verified_at": "2026-08-22",
+   "lat": null,
+   "lon": null,
+   "tile": null
   }
  ]
 }
