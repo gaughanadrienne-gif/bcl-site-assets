@@ -184,6 +184,35 @@ section:has(.bcl-full) .content-wrapper { max-width: 100% !important; min-width:
 @media (prefers-reduced-motion: reduce) {
   .bcl *, .bcl *:before, .bcl *:after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+/* Menus and service listings in article bodies (added 2026-08-27).
+   Bodies carry classes only; no article body has ever carried a <style>.
+   Fonts are already loaded at the top of this file. Brand design rules:
+   radius 0, no shadows, no left accent bars, flat paper on cream, and the
+   9x16 clay TRAIL BLAZE beside each section heading. The markup is built to
+   read correctly with none of this applied, so a lagging paste degrades to a
+   plain list rather than to nonsense. */
+.bcl-menu{background:#f5f1e7;padding:26px 22px;margin:28px 0;}
+.bcl-menu *{border-radius:0 !important;box-shadow:none !important;}
+.bcl-menu-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;color:#173f36 !important;margin:0 0 4px;}
+.bcl-menu-sub{color:#67716b !important;font-size:.88rem;margin:0 0 18px;max-width:70ch;}
+.bcl-menu-sec{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.24rem;color:#173f36 !important;
+margin:24px 0 8px;display:flex;align-items:center;gap:10px;}
+.bcl-menu-sec:before{content:"";display:inline-block;width:9px;height:16px;background:#d56e47;flex:0 0 9px;}
+.bcl-menu-note{background:#eef0e2;padding:10px 12px;font-size:.86rem;margin:8px 0 12px;max-width:75ch;}
+.bcl-menu-list{list-style:none !important;margin:0;padding:0;}
+.bcl-menu-item{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px;
+padding:9px 0;border-bottom:1px solid #e3ddcf;}
+.bcl-menu-item:last-child{border-bottom:0;}
+.bcl-menu-name{font-weight:500;flex:1 1 60%;}
+.bcl-menu-price{font-family:'IBM Plex Mono',monospace;font-size:.85rem;color:#173f36 !important;
+white-space:nowrap;text-align:right;}
+.bcl-menu-desc{flex:1 1 100%;color:#67716b !important;font-size:.86rem;line-height:1.45;}
+.bcl-menu-item br{display:none;}
+.bcl-menu-foot{font-size:.82rem;color:#67716b !important;margin:20px 0 0;padding-top:13px;
+border-top:1px solid #e3ddcf;line-height:1.55;max-width:78ch;}
+.bcl-menu-foot a{color:#2f6754 !important;}
+@media (max-width:560px){.bcl-menu{padding:18px 14px;}.bcl-menu-price{text-align:left;}}
 </style>
 
 <script>
