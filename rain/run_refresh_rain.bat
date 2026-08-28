@@ -29,9 +29,26 @@ if errorlevel 1 (
     exit /b 1
 )
 
+
+REM River, added 2026-08-27. Same page, same task, ONE commit and ONE push, so
+REM two jobs can never race the git index. A river failure must not block the
+REM rain publish, so it is guarded separately and only adds its file on success.
+set RIVER_OK=0
+python rain\refresh_river.py >> rain\refresh.log 2>&1
+if errorlevel 1 (
+    echo %date% %time% refresh_river.py failed - publishing rain only >> rain\refresh.log
+) else (
+    set RIVER_OK=1
+)
+
+REM Explicit pathspecs only. data/articles.json and other data files are edited by
+REM hand and by other sessions; a bare "git add ." here would commit someone else's
+REM work in progress. See agent-memory a-shared-json-file-commits-another-sessions-work.
 git add data/rain.json
-git commit -m "Daily rain refresh"
+if "%RIVER_OK%"=="1" git add data/river.json
+git commit -m "Daily water refresh: rain and river"
 git push
 curl -s "https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/rain.json" >> rain\refresh.log 2>&1
+if "%RIVER_OK%"=="1" curl -s "https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/river.json" >> rain\refresh.log 2>&1
 
 endlocal
