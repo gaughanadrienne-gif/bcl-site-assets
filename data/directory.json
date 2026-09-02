@@ -81,7 +81,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.124852,
    "lon": -122.12197,
-   "tile": "lille-aeske-arthouse.png"
+   "tile": "lille-aeske-arthouse.png",
+   "article": "/around-town/lille-aeske-arthouse-boulder-creek"
   },
   {
    "name": "Mountain Mechanics",
@@ -479,7 +480,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.119802,
    "lon": -122.120402,
-   "tile": "mountain-sangha.png"
+   "tile": "mountain-sangha.png",
+   "article": "/around-town/mountain-sangha-boulder-creek"
   },
   {
    "name": "Redwood Mountain Spa",
@@ -762,7 +764,8 @@
    "hours_text": "Golf daily 6:30am-7pm; Restaurant Mon-Wed 11:30am-8:30pm, Thu-Fri 11:30am-9pm, Sat 10:30am-9pm, Sun 10:30am-8:30pm; Bar Mon-Thu 1-9pm, Fri 11am-9pm, Sat-Sun 7am-9pm",
    "service_area": "Boulder Creek and visiting golfers",
    "verified_at": "2026-08-08",
-   "tile": "boulder-creek-golf-country-club.jpg"
+   "tile": "boulder-creek-golf-country-club.jpg",
+   "article": "/around-town/boulder-creek-golf-country-club"
   },
   {
    "name": "Boulder Creek Recreation & Park District",
@@ -856,7 +859,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.120916,
    "lon": -122.120778,
-   "tile": "boulder-creek-veterinary-clinic.png"
+   "tile": "boulder-creek-veterinary-clinic.png",
+   "article": "/around-town/boulder-creek-veterinary-clinic"
   },
   {
    "name": "CENTURY 21 Masters - Boulder Creek",
@@ -920,7 +924,8 @@
    "verified_at": "2026-08-06",
    "lat": 37.116622,
    "lon": -122.120185,
-   "tile": "beck-s-shoes-boulder-creek.png"
+   "tile": "beck-s-shoes-boulder-creek.png",
+   "article": "/around-town/becks-shoes-boulder-creek"
   },
   {
    "name": "Boulder Creek Pharmacy",
@@ -936,7 +941,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.123699,
    "lon": -122.122138,
-   "tile": "boulder-creek-pharmacy.png"
+   "tile": "boulder-creek-pharmacy.png",
+   "article": "/around-town/boulder-creek-pharmacy"
   },
   {
    "name": "Creekside Wellness",
@@ -952,7 +958,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.11718,
    "lon": -122.120697,
-   "tile": "creekside-wellness.png"
+   "tile": "creekside-wellness.png",
+   "article": "/around-town/creekside-wellness-boulder-creek"
   },
   {
    "name": "SWAG",
@@ -984,7 +991,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.122595,
    "lon": -122.121042,
-   "tile": "scarborough-building-supply.png"
+   "tile": "scarborough-building-supply.png",
+   "article": "/around-town/scarborough-building-supply-boulder-creek"
   },
   {
    "name": "Scarborough Home & Garden",
@@ -1000,7 +1008,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.124215,
    "lon": -122.121634,
-   "tile": "scarborough-home-garden.png"
+   "tile": "scarborough-home-garden.png",
+   "article": "/around-town/scarborough-home-garden-boulder-creek"
   },
   {
    "name": "Stumptown Supply",
@@ -1015,7 +1024,8 @@
    "service_area": "United States shipping; local pickup availability varies",
    "verified_at": "2026-08-22",
    "tile": "stumptown-supply.png",
-   "no_storefront": true
+   "no_storefront": true,
+   "article": "/around-town/stumptown-supply-boulder-creek"
   },
   {
    "name": "Community Bridges Lift Line",
@@ -3204,7 +3214,8 @@
    "verified_at": "2026-07-17",
    "lat": 37.12543,
    "lon": -122.12224,
-   "tile": "kbcz-89-3-fm.png"
+   "tile": "kbcz-89-3-fm.png",
+   "article": "/around-town/kbcz-boulder-creek-radio"
   },
   {
    "name": "Silverfern Gardens",
@@ -4490,7 +4501,8 @@
    "verified_at": "2026-08-16",
    "lat": null,
    "lon": null,
-   "tile": null
+   "tile": null,
+   "article": "/around-town/good-vibes-boulder-creek"
   },
   {
    "name": "Wild Lilith",
@@ -4506,7 +4518,8 @@
    "verified_at": "2026-08-16",
    "lat": null,
    "lon": null,
-   "tile": null
+   "tile": null,
+   "article": "/around-town/wild-lilith-boulder-creek"
   },
   {
    "name": "Boulder Creek Antiques at Mac's Place",
@@ -4522,7 +4535,8 @@
    "verified_at": "2026-07-22",
    "lat": null,
    "lon": null,
-   "tile": null
+   "tile": null,
+   "article": "/around-town/boulder-creek-antiques-macs-place"
   },
   {
    "name": "Boulder Creek American",
@@ -4604,7 +4618,8 @@
    "verified_at": "2026-07-22",
    "lat": null,
    "lon": null,
-   "tile": null
+   "tile": null,
+   "article": "/around-town/ginias-gems-boulder-creek"
   },
   {
    "name": "Boulder Creek Business Association",
@@ -4727,7 +4742,8 @@
    "website": "https://www.karatebouldercreek.com/",
    "hours_text": "Monday-Friday 9am-8:45pm",
    "service_area": "Boulder Creek and the San Lorenzo Valley",
-   "verified_at": "2026-08-07"
+   "verified_at": "2026-08-07",
+   "article": "/around-town/lone-wolf-kenpo-boulder-creek"
   },
   {
    "name": "Busy Bees Playschool Two",
@@ -4793,7 +4809,8 @@
    "verified_at": "2026-08-22",
    "lat": null,
    "lon": null,
-   "tile": null
+   "tile": null,
+   "article": "/around-town/joes-bar-boulder-creek"
   },
   {
    "name": "Bowzer Baths",
@@ -4809,7 +4826,8 @@
    "verified_at": "2026-08-22",
    "lat": null,
    "lon": null,
-   "tile": null
+   "tile": null,
+   "article": "/around-town/bowzer-baths-boulder-creek"
   },
   {
    "name": "Herrick Games and Hobbies",
@@ -4825,7 +4843,8 @@
    "verified_at": "2026-08-22",
    "lat": null,
    "lon": null,
-   "tile": null
+   "tile": null,
+   "article": "/around-town/herrick-games-hobbies-boulder-creek"
   },
   {
    "name": "Springygirl",
@@ -4841,7 +4860,8 @@
    "verified_at": "2026-08-22",
    "lat": null,
    "lon": null,
-   "tile": null
+   "tile": null,
+   "article": "/around-town/springygirl-boulder-creek"
   }
  ]
 }

@@ -16,7 +16,8 @@
    "verified_at": "2026-08-06",
    "lat": 37.1245156,
    "lon": -122.1217938,
-   "tile": "bella-s-cafe.png"
+   "tile": "bella-s-cafe.png",
+   "article": "/around-town/bellas-cafe-boulder-creek"
   },
   {
    "name": "Big Basin Vineyards Estate Vineyard & Tasting Room",
@@ -62,7 +63,8 @@
    "verified_at": "2026-08-28",
    "lat": 37.121223,
    "lon": -122.120809,
-   "tile": "el-rey-leon.png"
+   "tile": "el-rey-leon.png",
+   "article": "/around-town/el-rey-leon-boulder-creek"
   },
   {
    "name": "Jenna Sue's Cafe",
@@ -75,7 +77,8 @@
    "website": "https://jennasues.wordpress.com/",
    "hours_text": "Monday to Friday 6:00 AM to 2:30 PM, Saturday and Sunday 7:00 AM to 2:30 PM",
    "verified_at": "2026-07-16",
-   "tile": "jenna-sue-s-cafe.png"
+   "tile": "jenna-sue-s-cafe.png",
+   "article": "/around-town/jenna-sues-cafe-boulder-creek"
   },
   {
    "name": "Joe's Bar",
@@ -88,7 +91,8 @@
    "website": "http://www.drinkatjoes.com/",
    "hours_text": "Daily 10:00 a.m.-2:00 a.m.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-08-06"
+   "verified_at": "2026-08-06",
+   "article": "/around-town/joes-bar-boulder-creek"
   },
   {
    "name": "Johnnie's Super Market & Liquor",
@@ -149,7 +153,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.124132,
    "lon": -122.121676,
-   "tile": "river-dogs-of-boulder-creek.png"
+   "tile": "river-dogs-of-boulder-creek.png",
+   "article": "/around-town/river-dogs-boulder-creek"
   },
   {
    "name": "Scopazzi's Restaurant & Lounge",
@@ -165,7 +170,8 @@
    "verified_at": "2026-07-15",
    "lat": 37.125146,
    "lon": -122.124363,
-   "tile": "scopazzi-s-restaurant-lounge.png"
+   "tile": "scopazzi-s-restaurant-lounge.png",
+   "article": "/around-town/scopazzis-boulder-creek"
   },
   {
    "name": "Tae's Edo Sushi Bar",
@@ -181,7 +187,8 @@
    "verified_at": "2026-08-05",
    "lat": 37.126114,
    "lon": -122.122613,
-   "tile": "tae-s-edo-sushi-bar.jpg"
+   "tile": "tae-s-edo-sushi-bar.jpg",
+   "article": "/around-town/taes-edo-sushi-boulder-creek"
   },
   {
    "name": "Taqueria Los Gallos",
@@ -196,7 +203,8 @@
    "verified_at": "2026-08-06",
    "lat": 37.1236572,
    "lon": -122.1214797,
-   "tile": "taqueria-los-gallos.jpg"
+   "tile": "taqueria-los-gallos.jpg",
+   "article": "/around-town/taqueria-los-gallos-boulder-creek"
   },
   {
    "name": "The Sawmill Restaurant & Alehouse",
@@ -212,7 +220,8 @@
    "verified_at": "2026-08-28",
    "lat": 37.152322,
    "lon": -122.134518,
-   "tile": "the-sawmill-restaurant-alehouse.png"
+   "tile": "the-sawmill-restaurant-alehouse.png",
+   "article": "/around-town/sawmill-boulder-creek"
   },
   {
    "name": "The Tree House Cafe",
@@ -227,7 +236,8 @@
    "verified_at": "2026-08-06",
    "lat": 37.1263137,
    "lon": -122.1221556,
-   "tile": "the-tree-house-cafe.png"
+   "tile": "the-tree-house-cafe.png",
+   "article": "/around-town/tree-house-cafe-boulder-creek"
   },
   {
    "name": "Wild Roots Market - Boulder Creek",

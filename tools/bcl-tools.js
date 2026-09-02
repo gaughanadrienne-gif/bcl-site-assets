@@ -743,6 +743,11 @@
     if (showsServesBoulderCreek(l)) h += '<div class="bcl-dir-serves">Serves Boulder Creek</div>';
     if (l.hours_text) h += '<div class="bcl-dir-meta">' + esc(String(l.hours_text).replace(/\s*\(?confirm with the business\)?\.?/gi, "")) + "</div>";
     var links = [];
+    /* Our own write-up leads the row: it is the reason the directory is more
+       useful than a search result, and the external Website link is nofollow in
+       the server-rendered fallback, so this is the only followed link there.
+       Keep in step with the same link in build_static_listings.py. */
+    if (l.article) links.push('<a href="' + esc(l.article) + '">Read our write-up</a>');
     if (l.phone) links.push('<a href="tel:' + esc(String(l.phone).replace(/[^0-9+]/g, "")) + '">' + esc(l.phone) + "</a>");
     var dir = directionsUrl(l);
     if (dir) links.push('<a href="' + esc(dir) + '" target="_blank" rel="noopener">Directions</a>');
