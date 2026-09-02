@@ -241,18 +241,16 @@ window.addEventListener("message", function (event) {
 </script>
 <!-- End MailerLite Universal -->
 
-<!-- Header treeline decoration (added 2026-07-20) -->
-<!-- Faint layered forest silhouette in the site header; replaces the old bold
-     .bcl-hero .bcl-ridge band. SVG asset lives in this repo (brand/forest-treeline.svg),
-     pinned to an immutable commit SHA so jsDelivr serves it fresh. -->
+<!-- Hero ridge retirement.
+     The 2026-07-20 header treeline decoration (a header.header::after rule
+     loading an SVG silhouette) was REMOVED 2026-09-02 on the owner's call:
+     plain paper header, no artwork. It had already been removed live on
+     2026-07-21 with the watercolor furniture v2, but that removal was never
+     applied to THIS file, so the 2026-08-27 menu-CSS paste put it straight
+     back. Do not reinstate it here unless the owner asks. The restore text is
+     in squarespace/_REMOVED_2026-07-21_restore.md in boulder-creek-local.
+     The rule below is KEPT: it retires the old bold hero ridge band and is
+     independent of the header decoration. -->
 <style>
-header.header::after{
-  content:"";
-  position:absolute; left:0; right:0; bottom:0;
-  height:88px;
-  background:url("https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@dc31cce95d2aa2461faf1a185487f1c0e1fcae61/brand/forest-treeline.svg") center bottom/100% 100% no-repeat;
-  opacity:.22; pointer-events:none; z-index:-1;
-}
-/* Retire the old bold hero ridge band (replaced by header treeline) */
 .bcl-hero .bcl-ridge{ display:none !important; }
 </style>
