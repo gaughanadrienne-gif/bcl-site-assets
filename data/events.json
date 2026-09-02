@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-05",
-  "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category, notice (optional; besides title, date and location it is the only field an event card renders, so anything a reader must know before turning up goes there). Re-curated 2026-08-05 against first-party organizer sources.",
+  "updated": "2026-09-02",
+  "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category, notice (optional; besides title, date and location it is the only field an event card renders, so anything a reader must know before turning up goes there). Re-curated 2026-09-02 against first-party organizer sources.",
   "events": [
     {
       "title": "Exhibit: Retrospect",
@@ -21,450 +21,6 @@
       "description": "Ongoing photography exhibit by Randy Bacon on the lives of people experiencing homelessness, on view through September 20 during gallery hours, Thursday, Saturday and Sunday 1 to 4 pm.",
       "category": "Music & Arts",
       "notice": "Gallery open only when a docent is available. Call Grace Gallery 831-338-8382 or Belardi Gallery 831-704-7066 before you go."
-    },
-    {
-      "title": "Water Park Wednesdays",
-      "start": "2026-08-05T12:00",
-      "end": "2026-08-05T15:00",
-      "location": "Junction Park, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Free weekly outdoor playgroup from the rec district: water play, sand building, river exploration, and rotating activities, Wednesdays 12 to 3 p.m. June through August.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Dave D'oh Neighborhood Night",
-      "start": "2026-08-05T20:00",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Boulder Creek Farmers Market",
-      "start": "2026-08-06T13:30",
-      "end": "2026-08-06T17:30",
-      "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
-      "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
-      "category": "Market"
-    },
-    {
-      "title": "Free Food Fridays",
-      "start": "2026-08-07T15:00",
-      "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
-      "category": "Community"
-    },
-    {
-      "title": "First Friday Boulder Creek: Summer Carnival",
-      "start": "2026-08-07T17:00",
-      "end": "2026-08-07T20:00",
-      "location": "Downtown Boulder Creek",
-      "url": "https://www.bcba.net/events",
-      "description": "Monthly First Friday evening with local shops and specialty vendors along downtown Boulder Creek, 5 to 8 pm, with a summer carnival theme this month.",
-      "category": "Community"
-    },
-    {
-      "title": "Sugar Rooster",
-      "start": "2026-08-07T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Sempervirens Guided Hike at Big Basin",
-      "start": "2026-08-08T09:00",
-      "end": "2026-08-08T14:00",
-      "location": "Big Basin Redwoods State Park, 21600 Big Basin Highway, Boulder Creek",
-      "url": "https://www.eventbrite.com/e/guided-hike-at-big-basin-redwoods-state-park-tickets-1994098712930",
-      "description": "Volunteer-led guided hike with Sempervirens Fund, 6.4 miles across multiple trails with 1,217 feet of elevation gain, 9 a.m. to 2 p.m.",
-      "category": "Outdoors",
-      "notice": "Registration required and rated hard, for experienced hikers only. Big Basin has no potable water, so bring your own water and lunch."
-    },
-    {
-      "title": "Community Crafters",
-      "start": "2026-08-08T10:00",
-      "end": "2026-08-08T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15202665",
-      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
-      "category": "Music & Arts"
-    },
-    {
-      "title": "San Lorenzo Valley Museum 50th Anniversary Dinner & Auction",
-      "start": "2026-08-08T18:00",
-      "end": "2026-08-08T20:30",
-      "location": "Scopazzi's Restaurant & Lounge, 13300 Big Basin Way, Boulder Creek",
-      "url": "https://www.zeffy.com/en-US/ticketing/golden-jubilee-fundraising-dinner-and-auction",
-      "description": "The museum's Golden Jubilee fundraising dinner and auction. No-host bar, live music from Patti Maxine, and the silent auction from 6 p.m., then dinner and the live auction from 7 to 8:30 p.m.",
-      "category": "Fundraiser",
-      "notice": "Ticketed. $80 in advance, $90 at the door, $10 off for members, $25 for children 12 and under."
-    },
-    {
-      "title": "Groovy Judy",
-      "start": "2026-08-08T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Community Potluck",
-      "start": "2026-08-09T16:00",
-      "end": "2026-08-09T19:00",
-      "location": "Garrahan Park, 15555 Hwy 9, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Free community potluck from the BCRPD Foundation on the second Sunday of the month, 4 to 7 p.m. at Garrahan Park. Everyone is welcome. Bring a dish to share, and canned goods for the food drive if you can. October through March it moves indoors.",
-      "category": "Community"
-    },
-    {
-      "title": "Understanding Alzheimer's and Dementia",
-      "start": "2026-08-11T11:00",
-      "end": "2026-08-11T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/16433589",
-      "description": "Educational talk on Alzheimer's and dementia at the library, 11 am to noon.",
-      "category": "Community"
-    },
-    {
-      "title": "Felton Farmers Market",
-      "start": "2026-08-11T13:30",
-      "end": "2026-08-11T17:30",
-      "location": "St. John's Church lot, 120 Russell Ave, Felton",
-      "url": "https://santacruzfarmersmarket.org/markets/",
-      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
-      "category": "Market"
-    },
-    {
-      "title": "Water Park Wednesdays",
-      "start": "2026-08-12T12:00",
-      "end": "2026-08-12T15:00",
-      "location": "Junction Park, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Free weekly outdoor playgroup from the rec district: water play, sand building, river exploration, and rotating activities, Wednesdays 12 to 3 p.m. June through August.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Moonshine Crossroads Neighborhood Night",
-      "start": "2026-08-12T20:00",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Boulder Creek Farmers Market",
-      "start": "2026-08-13T13:30",
-      "end": "2026-08-13T17:30",
-      "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
-      "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
-      "category": "Market"
-    },
-    {
-      "title": "Volunteer Fuel Reduction at Henry Cowell",
-      "start": "2026-08-14T10:00",
-      "end": "2026-08-14T12:00",
-      "location": "Henry Cowell Redwoods State Park Visitor Center, Redwood Grove Loop Trail, Felton",
-      "url": "https://sempervirens.org/visit/events-and-experiences/",
-      "description": "Sempervirens Fund volunteer workday building brush piles in the Redwood Grove to reduce forest fuels, 10 a.m. to noon.",
-      "category": "Outdoors",
-      "notice": "Registration required and limited to 10 volunteers. Moderately strenuous, on sloped or uneven ground. Liability waiver due by 4 p.m. the day before."
-    },
-    {
-      "title": "Free Food Fridays",
-      "start": "2026-08-14T15:00",
-      "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
-      "category": "Community"
-    },
-    {
-      "title": "The Hangout",
-      "start": "2026-08-14T18:00",
-      "end": "2026-08-14T20:00",
-      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "New Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., starting August 14.",
-      "category": "Family & Kids",
-      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
-    },
-    {
-      "title": "Serious Condition",
-      "start": "2026-08-14T20:00",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Heritage Demonstrations at the SLV Museum",
-      "start": "2026-08-15",
-      "end": null,
-      "location": "Grace Gallery, San Lorenzo Valley Museum, 12547 Hwy 9, Boulder Creek",
-      "url": "https://www.slvmuseum.org/",
-      "description": "Third Saturday heritage demonstration series celebrating the San Lorenzo Valley Historical Society's 50th year, running monthly April through August; the gallery is open 1 to 4 pm.",
-      "category": "Community"
-    },
-    {
-      "title": "Community Crafters",
-      "start": "2026-08-15T10:00",
-      "end": "2026-08-15T14:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15451984",
-      "description": "Extended Saturday craft session with the Community Crafters, 10 am to 2 pm.",
-      "category": "Music & Arts"
-    },
-    {
-      "title": "John Michael Band",
-      "start": "2026-08-15T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Pancake Breakfast at Highlands Park",
-      "start": "2026-08-16T08:30",
-      "end": "2026-08-16T12:00",
-      "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
-      "url": "https://www.highlandsparkseniorcenter.org/",
-      "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids under 7; cash, credit, or debit. Everyone welcome.",
-      "category": "Community",
-      "notice": "$12 adults, $5 kids under 7. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
-    },
-    {
-      "title": "Felton Farmers Market",
-      "start": "2026-08-18T13:30",
-      "end": "2026-08-18T17:30",
-      "location": "St. John's Church lot, 120 Russell Ave, Felton",
-      "url": "https://santacruzfarmersmarket.org/markets/",
-      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
-      "category": "Market"
-    },
-    {
-      "title": "Water Park Wednesdays",
-      "start": "2026-08-19T12:00",
-      "end": "2026-08-19T15:00",
-      "location": "Junction Park, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Free weekly outdoor playgroup from the rec district: water play, sand building, river exploration, and rotating activities, Wednesdays 12 to 3 p.m. June through August.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Nick DiSalvo Neighborhood Night",
-      "start": "2026-08-19T20:00",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Boulder Creek Book Group",
-      "start": "2026-08-20T11:00",
-      "end": "2026-08-20T12:00",
-      "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15401184",
-      "description": "Monthly library book group meeting in person and via Zoom, 11 am to noon.",
-      "category": "Community",
-      "notice": "Registration required. Attend in person or by Zoom."
-    },
-    {
-      "title": "Boulder Creek Farmers Market",
-      "start": "2026-08-20T13:30",
-      "end": "2026-08-20T17:30",
-      "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
-      "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
-      "category": "Market"
-    },
-    {
-      "title": "Volunteer Fuel Reduction at Big Basin",
-      "start": "2026-08-21T10:00",
-      "end": "2026-08-21T12:00",
-      "location": "Big Basin Redwoods State Park, Historic Headquarters, 21600 Big Basin Hwy, Boulder Creek",
-      "url": "https://sempervirens.org/visit/events-and-experiences/",
-      "description": "Sempervirens Fund volunteer workday building brush piles in the Redwood Grove to reduce forest fuels, 10 a.m. to noon.",
-      "category": "Outdoors",
-      "notice": "Registration required. Moderately strenuous, on sloped or uneven ground. All volunteers sign a liability waiver."
-    },
-    {
-      "title": "Free Food Fridays",
-      "start": "2026-08-21T15:00",
-      "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
-      "category": "Community"
-    },
-    {
-      "title": "This Close",
-      "start": "2026-08-21T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Community Crafters",
-      "start": "2026-08-22T10:00",
-      "end": "2026-08-22T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15202667",
-      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
-      "category": "Music & Arts"
-    },
-    {
-      "title": "Herbalism 101 at Air & Fire",
-      "start": "2026-08-22T11:00",
-      "end": "2026-08-22T18:00",
-      "location": "Air & Fire: A Mystical Bazaar, 13150 Highway 9, Boulder Creek",
-      "url": "https://www.airandfire.com/home.html",
-      "description": "A full-day herbalism class at Air & Fire, 11 a.m. to 6 p.m. with an hour for lunch, covering the basics including salve and tincture making.",
-      "category": "Community",
-      "notice": "$225. Register and pay in advance through the shop."
-    },
-    {
-      "title": "BCVFD Summer BBQ & Dance",
-      "start": "2026-08-22T17:30",
-      "end": "2026-08-22T23:00",
-      "location": "Boulder Creek Fire Station, 13230 Central Avenue, Boulder Creek",
-      "url": "https://www.bcfd.com/2026-08-22-summer-bbq-dance",
-      "description": "The Boulder Creek Volunteer Fire Department's annual barbecue and dance fundraiser at the fire station. Doors and dinner from 5:30 p.m., tri-tip and chicken cooked by the firefighters in the apparatus bay, three bands on the outdoor stage (Kentucky Mule at 5:50, Barnstormer at 7:30, Bootleg Country Band at 9:15) and the last dance at 11. Bounce house and face painting for kids. Proceeds buy rescue and medical equipment.",
-      "category": "Fundraiser",
-      "notice": "$30 for dinner and dance, free for kids under 5, $100 family four-pack online only. Buy online in advance or pay at the door."
-    },
-    {
-      "title": "Jefferson's Revival",
-      "start": "2026-08-22T20:30",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Mobile Health Clinic",
-      "start": "2026-08-25T10:00",
-      "end": "2026-08-25T15:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15201584",
-      "description": "Mobile health clinic visit at the library, 10 am to 3 pm.",
-      "category": "Community"
-    },
-    {
-      "title": "Felton Farmers Market",
-      "start": "2026-08-25T13:30",
-      "end": "2026-08-25T17:30",
-      "location": "St. John's Church lot, 120 Russell Ave, Felton",
-      "url": "https://santacruzfarmersmarket.org/markets/",
-      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
-      "category": "Market"
-    },
-    {
-      "title": "Water Park Wednesdays",
-      "start": "2026-08-26T12:00",
-      "end": "2026-08-26T15:00",
-      "location": "Junction Park, Boulder Creek",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Free weekly outdoor playgroup from the rec district: water play, sand building, river exploration, and rotating activities, Wednesdays 12 to 3 p.m. June through August.",
-      "category": "Family & Kids"
-    },
-    {
-      "title": "Karin Phoenix Neighborhood Night",
-      "start": "2026-08-26T20:00",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Boulder Creek Farmers Market",
-      "start": "2026-08-27T13:30",
-      "end": "2026-08-27T17:30",
-      "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
-      "url": "https://www.facebook.com/bcrpd.org/events",
-      "description": "Weekly market at Junction Park with local vendors, farms, music, and activities, every Thursday from 1:30 to 5:30 p.m. Only certified service dogs are allowed at Junction Park during the market, per the Santa Cruz County Health Department.",
-      "category": "Market"
-    },
-    {
-      "title": "Free Food Fridays",
-      "start": "2026-08-28T15:00",
-      "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
-      "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
-      "category": "Community"
-    },
-    {
-      "title": "Community Crafters",
-      "start": "2026-08-29T10:00",
-      "end": "2026-08-29T12:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15202668",
-      "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 am to noon.",
-      "category": "Music & Arts"
-    },
-    {
-      "title": "KBCZ Music Fest",
-      "start": "2026-08-29T14:00",
-      "end": "2026-08-29T19:30",
-      "location": "Garrahan Park, 15555 Hwy 9, Boulder Creek",
-      "url": "https://www.eventbrite.com/e/kbcz-music-fest-2026-tickets-1991480050440",
-      "description": "Music festival from Boulder Creek community radio KBCZ 89.3 FM at Garrahan Park, 2 to 7:30 p.m., with live music, food, and vendors. Proceeds support the station.",
-      "category": "Music & Arts",
-      "notice": "Tickets through Eventbrite."
-    },
-    {
-      "title": "Write Now! Writing Group",
-      "start": "2026-08-29T15:00",
-      "end": "2026-08-29T16:00",
-      "location": "Boulder Creek Branch Library, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/16111356",
-      "description": "Monthly writing group at the library, 3 to 4 pm.",
-      "category": "Community"
-    },
-    {
-      "title": "Kevin Hamm Band",
-      "start": "2026-08-29T20:00",
-      "end": null,
-      "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
-      "url": "http://www.drinkatjoes.com/",
-      "description": "Live music at Joe's Bar.",
-      "category": "Music & Arts",
-      "notice": "21 and over"
-    },
-    {
-      "title": "Felton Farmers Market",
-      "start": "2026-09-01T13:30",
-      "end": "2026-09-01T17:30",
-      "location": "St. John's Church lot, 120 Russell Ave, Felton",
-      "url": "https://santacruzfarmersmarket.org/markets/",
-      "description": "Weekly certified farmers market run by Santa Cruz Community Farmers Markets, Tuesdays 1:30 to 5:30 pm through October 27; the closest weekly farmers market to Boulder Creek.",
-      "category": "Market"
     },
     {
       "title": "Diamond & Combs Neighborhood Night",
@@ -489,9 +45,9 @@
       "title": "Free Food Fridays",
       "start": "2026-09-04T15:00",
       "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
       "category": "Community"
     },
     {
@@ -502,6 +58,16 @@
       "url": "https://www.bcba.net/events",
       "description": "Monthly First Friday evening with local shops and specialty vendors along downtown Boulder Creek, 5 to 8 pm, with a shop and swap theme this month.",
       "category": "Community"
+    },
+    {
+      "title": "The Hangout",
+      "start": "2026-09-04T18:00",
+      "end": "2026-09-04T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
     },
     {
       "title": "The Jamissaries",
@@ -602,10 +168,20 @@
       "title": "Free Food Fridays",
       "start": "2026-09-11T15:00",
       "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
       "category": "Community"
+    },
+    {
+      "title": "The Hangout",
+      "start": "2026-09-11T18:00",
+      "end": "2026-09-11T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
     },
     {
       "title": "Fossil Farm",
@@ -695,10 +271,20 @@
       "title": "Free Food Fridays",
       "start": "2026-09-18T15:00",
       "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
       "category": "Community"
+    },
+    {
+      "title": "The Hangout",
+      "start": "2026-09-18T18:00",
+      "end": "2026-09-18T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
     },
     {
       "title": "Robert Hager & The Wolfpack",
@@ -745,9 +331,9 @@
       "end": "2026-09-20T12:00",
       "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
       "url": "https://www.highlandsparkseniorcenter.org/",
-      "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids under 7; cash, credit, or debit. Everyone welcome.",
+      "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley, held every third Sunday from April through October. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids 7 and under; cash, credit, or debit. Everyone welcome.",
       "category": "Community",
-      "notice": "$12 adults, $5 kids under 7. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
+      "notice": "Every third Sunday, April through October. $12 adults, $5 kids 7 and under. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
     },
     {
       "title": "Mobile Health Clinic",
@@ -808,10 +394,20 @@
       "title": "Free Food Fridays",
       "start": "2026-09-25T15:00",
       "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
       "category": "Community"
+    },
+    {
+      "title": "The Hangout",
+      "start": "2026-09-25T18:00",
+      "end": "2026-09-25T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
     },
     {
       "title": "The Shady Rest Band",
@@ -834,12 +430,13 @@
     },
     {
       "title": "Santa Cruz Mountain Harvest Festival",
-      "start": "2026-09-26T13:00",
-      "end": "2026-09-26T18:00",
-      "location": "Junction Park and Downtown Rec Center, Boulder Creek",
+      "start": "2026-09-26T12:30",
+      "end": "2026-09-26T18:30",
+      "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "BCRPD's fall harvest festival at Junction Park and the Downtown Rec Center, 1 to 6 pm, with vendor applications open now.",
-      "category": "Community"
+      "description": "BCRPD's fall harvest festival at Junction Park, 12:30 to 6:30 p.m., with vendor applications open through the district.",
+      "category": "Community",
+      "notice": "Times and venue are BCRPD's own listing. Vendor applications go through the district."
     },
     {
       "title": "Write Now! Writing Group",
@@ -910,9 +507,9 @@
       "title": "Free Food Fridays",
       "start": "2026-10-02T15:00",
       "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
       "category": "Community"
     },
     {
@@ -923,6 +520,16 @@
       "url": "https://www.bcba.net/events",
       "description": "Monthly First Friday evening with local shops and specialty vendors along downtown Boulder Creek, 5 to 8 pm, with a Halloween theme this month.",
       "category": "Community"
+    },
+    {
+      "title": "The Hangout",
+      "start": "2026-10-02T18:00",
+      "end": "2026-10-02T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
     },
     {
       "title": "Medicine Road",
@@ -1013,10 +620,20 @@
       "title": "Free Food Fridays",
       "start": "2026-10-09T15:00",
       "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
       "category": "Community"
+    },
+    {
+      "title": "The Hangout",
+      "start": "2026-10-09T18:00",
+      "end": "2026-10-09T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
     },
     {
       "title": "Cooper Street",
@@ -1107,10 +724,20 @@
       "title": "Free Food Fridays",
       "start": "2026-10-16T15:00",
       "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
       "category": "Community"
+    },
+    {
+      "title": "The Hangout",
+      "start": "2026-10-16T18:00",
+      "end": "2026-10-16T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
     },
     {
       "title": "Haunted Walk of TERROR",
@@ -1167,9 +794,9 @@
       "end": "2026-10-18T12:00",
       "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
       "url": "https://www.highlandsparkseniorcenter.org/",
-      "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids under 7; cash, credit, or debit. Everyone welcome.",
+      "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley, held every third Sunday from April through October. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids 7 and under; cash, credit, or debit. Everyone welcome.",
       "category": "Community",
-      "notice": "$12 adults, $5 kids under 7. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
+      "notice": "Every third Sunday, April through October. $12 adults, $5 kids 7 and under. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
     },
     {
       "title": "Felton Farmers Market",
@@ -1221,10 +848,20 @@
       "title": "Free Food Fridays",
       "start": "2026-10-23T15:00",
       "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
       "category": "Community"
+    },
+    {
+      "title": "The Hangout",
+      "start": "2026-10-23T18:00",
+      "end": "2026-10-23T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
     },
     {
       "title": "Haunted Walk of TERROR",
@@ -1334,10 +971,20 @@
       "title": "Free Food Fridays",
       "start": "2026-10-30T15:00",
       "end": null,
-      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek (Junction Park if raining)",
+      "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
       "url": "https://www.bcrpd.org/events",
-      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, open to everyone with no signup needed.",
+      "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
       "category": "Community"
+    },
+    {
+      "title": "The Hangout",
+      "start": "2026-10-30T18:00",
+      "end": "2026-10-30T20:00",
+      "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+      "url": "https://www.bcrpd.org/events",
+      "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+      "category": "Family & Kids",
+      "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
     },
     {
       "title": "Jeff Gardner & The Tools",
