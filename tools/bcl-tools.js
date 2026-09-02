@@ -1043,6 +1043,22 @@
     return age != null && age < days;
   }
 
+  /* A date on a job card is a promise that the listing is current. Two kinds of row
+     break that promise: continuous recruitments carrying a posting date years old
+     (four Scotts Valley PD roles were showing 2024 dates), and rows whose source
+     publishes no posting date at all. Neither is expired; both are open-ended
+     recruitment, and a stale-looking date makes readers skip a job they could apply
+     for today. Past the cutoff the card says so in words instead.
+     Owner decision 2026-09-02. */
+  var JOB_DATE_MAX_AGE_DAYS = 180;
+
+  function jobPostedLine(job, today) {
+    if (!job) return "Ongoing recruitment";
+    var age = dayAge(job.posted_at, today);
+    if (age != null && age <= JOB_DATE_MAX_AGE_DAYS) return "Posted " + job.posted_at;
+    return "Ongoing recruitment";
+  }
+
   function jobEmployers(rows) {
     var seen = {}, out = [];
     (rows || []).forEach(function (j) {
@@ -1095,7 +1111,7 @@
     return rows2.sort(jobCompare);
   }
 
-  function jobCard(job) {
+  function jobCard(job, today) {
     var h = '<div class="bcl-job-card">';
     h += '<div class="bcl-name"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">' + esc(job.title) + "</a></div>";
     var tier = job.geography_tier === "remote" ? "Remote" : (job.geography_tier === "extended" ? "Extended commute" : "Local");
@@ -1103,8 +1119,7 @@
     if (job.commute_minutes && job.geography_tier !== "remote") h += '<div class="bcl-meta">Commute: ~' + esc(String(job.commute_minutes)) + " min</div>";
     if (job.employment_type) h += '<div class="bcl-meta">' + esc(job.employment_type) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobSalaryText(job)) + "</div>";
-    if (job.posted_at) h += '<div class="bcl-meta">Posted ' + esc(job.posted_at) + "</div>";
-    else if (job.first_seen_at) h += '<div class="bcl-meta">First seen ' + esc(job.first_seen_at) + "</div>";
+    h += '<div class="bcl-meta">' + esc(jobPostedLine(job, today)) + "</div>";
     h += '<div class="bcl-verified">SOURCE: ' + esc(job.source || "") + " · VERIFIED " + esc(job.last_verified_at || "") + "</div>";
     h += '<div class="bcl-actionrow"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">Apply at source</a></div>';
     h += '<div class="bcl-actionrow"><a href="/contact">Report a problem with this listing</a></div>';
@@ -4101,6 +4116,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
