@@ -67,3 +67,10 @@ test("the sticky chip row opts its wrapper out of overflow:hidden, or it cannot 
   // Scoped: the class is added only where chips mount, never site-wide.
   assert.match(SRC, /closest\("\.bcl-tool"\)/);
 });
+
+test("article service cards use the settled surface and accessible action styles", () => {
+  assert.match(SRC, /\.bcl-article-layout>\.bcl-menu[^\n]+background:#fffdf8!important/);
+  assert.match(SRC, /border:1px solid #e3ddcf!important;border-radius:8px!important;box-shadow:none!important/);
+  assert.match(SRC, /\.bcl-menu__cta:focus-visible\{outline:3px solid #d56e47/);
+  assert.match(SRC, /--muted:#626c66/);
+});

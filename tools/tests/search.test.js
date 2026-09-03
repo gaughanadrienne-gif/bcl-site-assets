@@ -1,8 +1,10 @@
 const test = require("node:test");
 const assert = require("node:assert");
 const path = require("node:path");
+const fs = require("node:fs");
 const logic = require(path.join(__dirname, "../bcl-tools.js"));
 const index = require(path.join(__dirname, "../../data/search-index.json"));
+const SRC = fs.readFileSync(path.join(__dirname, "../bcl-tools.js"), "utf8");
 
 const R = index.records;
 
@@ -136,4 +138,11 @@ test("recurring events survive dedup: same title, different dates", () => {
 test("the index stays small enough to fetch on demand", () => {
   const bytes = Buffer.byteLength(JSON.stringify(index), "utf8");
   assert.ok(bytes < 400 * 1024, `index is ${Math.round(bytes / 1024)}KB, too heavy`);
+});
+
+test("mobile article search is in-flow instead of covering the story", () => {
+  assert.match(SRC, /body\.bcl-article-search-page \.bcl-search-btn--fixed\{display:none;\}/);
+  assert.match(SRC, /articleBtn\.className = "bcl-search-btn bcl-article-search"/);
+  assert.match(SRC, /articleHost\.insertBefore\(articleBtn, articleHost\.firstChild\)/);
+  assert.match(SRC, /returnFocus = e\.currentTarget/);
 });

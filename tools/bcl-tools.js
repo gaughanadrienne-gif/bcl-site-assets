@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v12";
+  var CSS_ID = "bcl-tools-css-v13";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -303,10 +303,12 @@
       ".bcl-search-btn{background:none;border:0;padding:6px;margin-left:10px;cursor:pointer;color:#173f36;display:inline-flex;align-items:center;align-self:center;}",
       ".bcl-search-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}",
       ".bcl-search-btn:hover{color:#d56e47;}",
-      ".bcl-search-btn--fixed{position:fixed;bottom:22px;right:22px;z-index:9998;background:#173f36;color:#fffdf8;border:0;border-radius:999px;height:52px;padding:0 20px 0 17px;gap:9px;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.22);font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;}",
-      ".bcl-search-btn--fixed:hover{background:#d56e47;color:#fffdf8;}",
+      ".bcl-search-btn--fixed{position:fixed;bottom:22px;right:22px;z-index:9998;background:#173f36;color:#fffdf8;border:1px solid #173f36;border-radius:0;height:52px;padding:0 20px 0 17px;gap:9px;justify-content:center;box-shadow:none;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;}",
+      ".bcl-search-btn--fixed:hover{background:#2f6754;border-color:#2f6754;color:#fffdf8;}",
+      ".bcl-search-btn--fixed:focus-visible,.bcl-article-search:focus-visible{outline:3px solid #d56e47;outline-offset:3px;}",
       ".bcl-search-btn--fixed svg{width:19px;height:19px;}",
-      "@media (max-width:600px){.bcl-search-btn--fixed{bottom:16px;right:16px;height:48px;width:48px;padding:0;}.bcl-search-btn--fixed .bcl-search-btn-label{display:none;}}",
+      ".bcl-article-search{display:none;}",
+      "@media (max-width:600px){.bcl-search-btn--fixed{bottom:16px;right:16px;height:48px;width:48px;padding:0;}.bcl-search-btn--fixed .bcl-search-btn-label{display:none;}body.bcl-article-search-page .bcl-search-btn--fixed{display:none;}.bcl-article-search{display:flex;width:max-content;min-height:44px;align-items:center;gap:8px;margin:0 auto 24px!important;padding:10px 14px;border:1px solid #173f36;border-radius:0;background:#fffdf8;color:#173f36;font:500 .72rem/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}.bcl-article-search:hover{background:#f5f1e7;color:#173f36;}.bcl-article-search svg{width:18px;height:18px;}}",
       ".bcl-search-overlay{position:fixed;inset:0;z-index:99999;background:rgba(13,44,38,.55);display:flex;justify-content:center;align-items:flex-start;padding:8vh 16px 16px;}",
       ".bcl-search-panel{background:#fffdf8 !important;border:1px solid #e3ddcf;width:100%;max-width:640px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.28);}",
       ".bcl-search-bar{display:flex;gap:8px;padding:12px;border-bottom:1px solid #e3ddcf;}",
@@ -452,13 +454,44 @@
       ".bcl-job-card,.bcl-rental-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
       ".bcl-job-card .bcl-actionrow a,.bcl-rental-card .bcl-actionrow a{color:#d56e47 !important;}",
       ".bcl-sr-only{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0,0,0,0) !important;white-space:nowrap !important;border:0 !important;}",
-      ".bcl-article-body{max-width:760px;margin:0 auto;padding:0 0 42px;font-family:Inter,Arial,sans-serif;color:#1c2a26;line-height:1.72;font-size:1rem;}",
-      ".bcl-article-body h2,.bcl-article-body h3{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36;line-height:1.15;}",
-      ".bcl-article-body h2{font-size:clamp(1.8rem,4vw,2.35rem);margin:1.8em 0 .55em;}",
-      ".bcl-article-body h3{font-size:1.45rem;margin:1.5em 0 .45em;}",
+      ".bcl-article-title{box-sizing:border-box;width:100%;max-width:680px;margin:0 auto 28px!important;color:#173f36!important;font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(2.35rem,5vw,3.75rem)!important;line-height:1.04!important;letter-spacing:-.02em;text-wrap:balance;}",
+      ".bcl-article-layout{font-family:Inter,Arial,sans-serif;color:#1c2a26;line-height:1.72;font-size:1rem;}",
+      ".bcl-article-body{max-width:680px;margin:0 auto;padding:0 20px 56px;box-sizing:border-box;font-family:Inter,Arial,sans-serif;color:#1c2a26;line-height:1.72;font-size:1rem;}",
+      ".bcl-article-layout>p,.bcl-article-layout>ul,.bcl-article-layout>ol,.bcl-article-layout>h2,.bcl-article-layout>h3,.bcl-article-layout>blockquote,.bcl-article-layout>table,.bcl-article-layout>.bcl-menu,.bcl-article-layout>.bcl-article-reviewed{box-sizing:border-box;max-width:680px;margin-left:auto!important;margin-right:auto!important;}",
+      ".bcl-article-layout>h2,.bcl-article-body>h2,.bcl-article-layout>h3,.bcl-article-body>h3{font-family:'Cormorant Garamond',Georgia,serif!important;color:#173f36!important;line-height:1.15!important;}",
+      ".bcl-article-layout>h2,.bcl-article-body>h2{display:flex;align-items:flex-start;gap:12px;font-size:clamp(1.875rem,3vw,2.5rem)!important;line-height:1.1!important;margin-top:48px!important;margin-bottom:16px!important;text-wrap:balance;}",
+      ".bcl-article-layout>h2:before,.bcl-article-body>h2:before{content:'';display:block;width:9px;height:16px;margin-top:.36em;background:#d56e47;flex:0 0 9px;}",
+      ".bcl-article-layout>h3,.bcl-article-body>h3{font-size:clamp(1.35rem,2.25vw,1.6rem)!important;margin-top:32px!important;margin-bottom:12px!important;}",
       ".bcl-article-body p,.bcl-article-body li{font-size:1rem;}",
-      ".bcl-article-body a{color:#2e6b46;text-decoration:underline;text-underline-offset:2px;}",
-      ".bcl-article-body blockquote{border-left:3px solid #d56e47;margin:1.5em 0;padding:.2em 0 .2em 1.25em;color:#4f5e57;}",
+      ".bcl-article-body a,.bcl-article-layout>a,.bcl-article-layout>p a,.bcl-article-layout>ul a,.bcl-article-layout>ol a{color:#2e6b46;text-decoration:underline;text-underline-offset:2px;}",
+      ".bcl-article-layout>blockquote,.bcl-article-body>blockquote{border:0!important;margin-top:28px!important;margin-bottom:28px!important;padding:0!important;color:#40554d!important;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.125rem;line-height:1.5;font-style:italic;}",
+      ".bcl-article-layout>blockquote p,.bcl-article-body>blockquote p{font:inherit!important;color:inherit!important;margin:0!important;}",
+      ".bcl-article-layout>blockquote p+p,.bcl-article-body>blockquote p+p{margin-top:.75em!important;}",
+      ".bcl-article-layout>blockquote.bcl-pullquote,.bcl-article-body>blockquote.bcl-pullquote{max-width:600px;margin-top:40px!important;margin-bottom:40px!important;color:#173f36!important;font-size:clamp(1.3125rem,2.25vw,1.5rem);line-height:1.3;font-style:normal;font-weight:600;}",
+      ".bcl-article-jump{font-family:'IBM Plex Mono',monospace;font-size:.72rem!important;letter-spacing:.05em;text-transform:uppercase;}",
+      ".bcl-article-jump a{color:#2e6b46!important;font-weight:600;}",
+      ".bcl-article-layout>.bcl-menu,.bcl-article-body>.bcl-menu{--forest:#173f36;--deep:#0d2c26;--fern:#2f6754;--moss:#a8bd7f;--clay:#d56e47;--cream:#f5f1e7;--paper:#fffdf8;--ink:#1c2a26;--muted:#626c66;--rule:#e3ddcf;--note:#eef0e2;width:100%;scroll-margin-top:110px;background:#fffdf8!important;color:#1c2a26!important;border:1px solid #e3ddcf!important;border-radius:8px!important;box-shadow:none!important;padding:28px 24px 24px!important;margin-top:32px!important;margin-bottom:40px!important;font-family:Inter,Arial,system-ui,sans-serif;font-size:16px;line-height:1.5;}",
+      ".bcl-menu *{box-shadow:none!important;}",
+      ".bcl-menu__kicker{display:none!important;}",
+      ".bcl-menu__head{border-bottom:1px solid #e3ddcf;padding-bottom:14px;margin-bottom:22px;}",
+      ".bcl-menu__title{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:30px!important;line-height:1.15!important;font-weight:600;color:#173f36!important;margin:0 0 6px!important;}",
+      ".bcl-menu__sub,.bcl-menu__d,.bcl-menu__foot{color:#626c66!important;}",
+      ".bcl-menu__sub{font-size:14px;margin:0;}",
+      ".bcl-menu__sec{margin:26px 0 10px;display:flex;align-items:center;gap:10px;}",
+      ".bcl-menu__blaze{display:inline-block;width:9px;height:16px;background:#d56e47;flex:0 0 9px;}",
+      ".bcl-menu__sech{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:21px!important;line-height:1.15!important;font-weight:600;color:#173f36!important;margin:0!important;letter-spacing:.01em;}",
+      ".bcl-menu__note{background:#eef0e2;padding:10px 12px;font-size:14px;color:#1c2a26;margin:8px 0 14px;}",
+      ".bcl-menu__items{list-style:none;margin:0;padding:0;}",
+      ".bcl-menu__item{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px solid #e3ddcf;}",
+      ".bcl-menu__item:last-child{border-bottom:0;}",
+      ".bcl-menu__name{flex:1 1 auto;}.bcl-menu__n{font-weight:500;color:#1c2a26;}",
+      ".bcl-menu__d{display:block;font-size:14px;margin-top:2px;}",
+      ".bcl-menu__p{font-family:'IBM Plex Mono',monospace;font-size:14px;color:#173f36;white-space:nowrap;flex:0 0 auto;}",
+      ".bcl-menu__foot{margin-top:26px;padding-top:14px;border-top:1px solid #e3ddcf;font-size:13px;}",
+      ".bcl-menu__actions{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0;}",
+      ".bcl-menu__cta{display:inline-flex;box-sizing:border-box;min-height:44px;align-items:center;justify-content:center;padding:10px 16px!important;border:1px solid #173f36;border-radius:0!important;background:#173f36!important;color:#fffdf8!important;font-weight:600;text-decoration:none!important;}",
+      ".bcl-menu__cta:hover{background:#2f6754!important;border-color:#2f6754;}.bcl-menu__cta:focus-visible{outline:3px solid #d56e47;outline-offset:3px;}",
+      "@media (max-width:600px){.bcl-article-title{font-size:clamp(2.25rem,10vw,2.75rem)!important;margin-bottom:22px!important;}.bcl-article-layout>h2,.bcl-article-body>h2{font-size:1.875rem!important;margin-top:40px!important;margin-bottom:14px!important;}.bcl-article-layout>.bcl-menu,.bcl-article-body>.bcl-menu{padding:20px 16px!important;}.bcl-menu__title{font-size:25px!important;}}",
       ".bcl-article-body table{border-collapse:collapse;display:block;max-width:100%;overflow-x:auto;margin:1.5em 0;}",
       ".bcl-article-body th,.bcl-article-body td{border:1px solid #e3ddcf;padding:9px 12px;text-align:left;}",
       ".bcl-article-reviewed{font-family:'IBM Plex Mono',monospace;font-size:.7rem !important;letter-spacing:.06em;text-transform:uppercase;color:#626c66;border-top:1px solid #e3ddcf;padding-top:14px;margin-top:36px;}",
@@ -1534,8 +1567,9 @@
     return h + "</div>";
   }
 
-  /* ---------- article header: inject the featured card at the top of a post
-     (only when the asset filename matches the post slug, same rule as AH) ---------- */
+  /* ---------- article header: inject the featured asset at the top of a post
+     (only when the social asset filename matches the post slug, same rule as AH).
+     articles.json can then supply a text-free headerImage for the reading page. ---------- */
 
   function initArticleHeader() {
     if (!/^\/around-town\/[^\/]+\/?$/.test(location.pathname)) return;
@@ -1551,8 +1585,8 @@
     var img = document.createElement("img");
     img.id = "bcl-article-header";
     img.src = url;
-    // Title card: the headline is baked into the image, so give the header image
-    // the article title as alt text (screen readers can't read text inside an image).
+    // Use the article title as a safe initial fallback. Once articles.json loads,
+    // a record-level imageAlt replaces it when the reading image is descriptive.
     var ogt = document.querySelector('meta[property="og:title"]');
     var title = (ogt ? ogt.getAttribute("content") : "") || document.title || "";
     title = title.replace(/\s*[|–—-]\s*Boulder Creek Local\s*$/i, "").replace(/\s*\(Copy\)\s*$/i, "").trim();
@@ -1643,6 +1677,20 @@
     return heading;
   }
 
+  function ensureArticleHeading(title) {
+    if (!title) return null;
+    var heading = document.querySelector("main h1, h1.entry-title");
+    if (!heading) {
+      heading = document.createElement("h1");
+      var main = document.querySelector("main") || document.body;
+      main.insertBefore(heading, main.firstChild);
+    }
+    if (!heading.textContent.trim()) heading.textContent = title;
+    heading.classList.remove("bcl-sr-only");
+    heading.classList.add("bcl-article-title");
+    return heading;
+  }
+
   function hasNativeArticleBody(target) {
     var clone = target.cloneNode(true);
     var injected = clone.querySelector("#bcl-article-header, #bcl-article-body, .bcl-draft-state");
@@ -1658,16 +1706,21 @@
     if (!slug) return;
     var target = document.querySelector(".blog-item-content");
     if (!target) return;
+    target.classList.add("bcl-article-layout");
+    ensureArticleHeading(articleTitleFromMetadata());
     var nativeBody = hasNativeArticleBody(target);
 
     fetchJSON(REPO + "/data/articles.json").then(function (data) {
       var record = (data.articles || {})[slug];
       if (record) {
-        ensureHiddenHeading(record.title || articleTitleFromMetadata());
+        ensureArticleHeading(record.title || articleTitleFromMetadata());
         var hero = document.getElementById("bcl-article-header");
-        if (hero) {
-          hero.alt = "";
-          hero.setAttribute("aria-hidden", "true");
+        if (hero && record.headerImage) {
+          hero.src = /^https?:\/\//i.test(record.headerImage) ? record.headerImage : REPO + "/" + record.headerImage.replace(/^\/+/, "");
+        }
+        if (hero && record.imageAlt) {
+          hero.alt = record.imageAlt;
+          hero.removeAttribute("aria-hidden");
         }
         /* The reviewed date is owned by articles.json, so the stamp has to appear
            whether the body is injected here or served natively by Squarespace.
@@ -1697,7 +1750,7 @@
 
       if ((data.withheldSlugs || []).indexOf(slug) >= 0) {
         upsertRobots("noindex, nofollow");
-        ensureHiddenHeading(articleTitleFromMetadata());
+        ensureArticleHeading(articleTitleFromMetadata());
         if (!nativeBody && !target.querySelector(".bcl-draft-state")) {
           var note = document.createElement("p");
           note.className = "bcl-draft-state";
@@ -3955,6 +4008,7 @@
     host.appendChild(btn);
 
     var overlay = null, records = null, loading = false, active = -1, rows = [];
+    var returnFocus = btn;
 
     function close() {
       if (!overlay) return;
@@ -3962,7 +4016,7 @@
       overlay = null;
       active = -1;
       document.removeEventListener("keydown", onKey, true);
-      btn.focus();
+      if (returnFocus && returnFocus.focus) returnFocus.focus();
     }
 
     function go() {
@@ -4009,8 +4063,9 @@
       rows = [].slice.call(out.querySelectorAll(".bcl-search-hit"));
     }
 
-    function open() {
+    function open(e) {
       if (overlay) return;
+      if (e && e.currentTarget) returnFocus = e.currentTarget;
       overlay = document.createElement("div");
       overlay.className = "bcl-search-overlay";
       overlay.setAttribute("role", "dialog");
@@ -4061,6 +4116,15 @@
     }
 
     btn.addEventListener("click", open);
+    var articleHost = articleSlugFromPath(location.pathname) && document.querySelector(".blog-item-content");
+    if (articleHost) {
+      document.body.classList.add("bcl-article-search-page");
+      var articleBtn = btn.cloneNode(true);
+      articleBtn.id = "bcl-article-search";
+      articleBtn.className = "bcl-search-btn bcl-article-search";
+      articleBtn.addEventListener("click", open);
+      articleHost.insertBefore(articleBtn, articleHost.firstChild);
+    }
     /* "/" opens search from anywhere, unless the reader is typing in a field. */
     document.addEventListener("keydown", function (e) {
       if (e.key !== "/" || overlay) return;
