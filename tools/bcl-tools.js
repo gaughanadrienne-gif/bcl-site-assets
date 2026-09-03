@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v13";
+  var CSS_ID = "bcl-tools-css-v14";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -286,7 +286,55 @@
       ".bcl-actionrow{font-size:.9rem;margin:6px 0;padding-left:16px;position:relative;}",
       ".bcl-actionrow:before{content:'';position:absolute;left:0;top:.45em;width:7px;height:11px;background:#d56e47;}",
       ".bcl-actionrow a{color:#2e6b46 !important;font-weight:600;}",
-      ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}",
+      /* Mountain Status card system.
+         1. align-items:start. The three live panels carry wildly different
+            amounts of text (six Caltrans closures against one AQI sentence),
+            and stretch gave the short ones 300px of empty cream.
+         2. One surface for every card in the snapshot. The site CSS colours
+            cards with [id^="bcl-"] [class$="-card"], which only matches a
+            class attribute ENDING in "-card": .bcl-card got cream, but
+            "bcl-card bcl-aqi" fell through to the paper default here, so the
+            same grid rendered three white cards and two sage ones. Owner
+            decision 2026-09-03: all five cream. Scoped to #bcl-status so no
+            other tool's cards move. */
+      ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:start;}",
+      "#bcl-status .bcl-card{background:#f5f1e7 !important;}",
+      /* The action pair (Power, Sirens and smoke) is its own row rather than
+         items 4 and 5 of a three-up grid, where they left an empty third
+         column. Wider minimum so it lands as two columns, never three. */
+      ".bcl-status-act{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:12px;}",
+      ".bcl-jsfallback{display:none !important;}",
+      /* Disclosure rows for the evergreen guide: flat paper, one hairline
+         rule, a drawn chevron. No card, no shadow, no nesting. */
+      /* The guide is the explainer under the live snapshot, not a second page
+         opening. At the site H2 scale its heading landed larger than anything
+         in the snapshot above it and read as the more important of the two. */
+      "#bcl-status-guide>h2{font-size:clamp(1.6rem,2.6vw,2rem) !important;}",
+      ".bcl-disc{border-top:1px solid #e3ddcf;}",
+      ".bcl-disc-last{border-bottom:1px solid #e3ddcf;}",
+      ".bcl-disc>summary{cursor:pointer;list-style:none;display:block;position:relative;padding:15px 34px 15px 0;color:#173f36 !important;}",
+      ".bcl-disc>summary::-webkit-details-marker{display:none;}",
+      ".bcl-disc>summary::marker{content:'';}",
+      ".bcl-disc>summary>h3,.bcl-disc>summary>h4{margin:0 !important;line-height:1.25 !important;color:inherit !important;}",
+      ".bcl-disc>summary>h3{font-size:1.2rem !important;}",
+      ".bcl-disc>summary>h4{font-size:1.02rem !important;}",
+      ".bcl-disc>summary:hover{color:#2f6754 !important;}",
+      ".bcl-disc>summary:focus-visible{outline:3px solid #d56e47;outline-offset:2px;}",
+      ".bcl-disc>summary:after{content:'';position:absolute;right:8px;top:calc(50% - 6px);width:9px;height:9px;border-right:2px solid #2f6754;border-bottom:2px solid #2f6754;transform:rotate(45deg);transition:transform .22s cubic-bezier(.16,1,.3,1);}",
+      ".bcl-disc[open]>summary:after{transform:rotate(-135deg);top:calc(50% - 2px);}",
+      ".bcl-disc-body{padding:0 0 18px;}",
+      ".bcl-disc-body>*:first-child{margin-top:0;}",
+      ".bcl-disc-body>*:last-child{margin-bottom:0;}",
+      /* Hero supporting copy holds the lede's measure. Full-bleed notes ran
+         to the wrap's edge, roughly twice the lede's line length, which is
+         what made them read as loose bars rather than as part of the column. */
+      ".bcl-hero .bcl-note{max-width:620px;}",
+      /* The printable-guides pointer is supporting copy under the lede, not a
+         second sage box competing with the 911 note above it. It carries a
+         paper scrim instead: the hero painting is only masked on its left
+         third, and muted ink alone was not reliably legible where the note
+         crosses into the ridge line. */
+      ".bcl-hero .bcl-dl-note{background:rgba(255,253,248,.78) !important;padding:10px 14px;margin:12px 0 0;font-size:.86rem;color:#33423b !important;}",
       ".bcl-event-flow .bcl-event-grid{margin:0 0 6px;}",
       ".bcl-event-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;}",
       ".bcl-event-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:14px 15px;display:flex;flex-direction:column;gap:5px;}",
@@ -2021,7 +2069,13 @@
 
     var status = document.getElementById("bcl-mountain-status");
     if (status && !document.getElementById("bcl-dl-status")) {
-      var hero = status.querySelector(".bcl-hero");
+      /* Append INSIDE .bcl-wrap, never to the hero itself. Interior-page
+         heroes are display:flex (site CSS, keyed on the collection class), so
+         a node appended to the section becomes a flex sibling of .bcl-wrap:
+         it left the sage note stranded in the right margin over the
+         watercolor, and stole half the hero's width from the H1 and lede at
+         every width below about 1400px. Reported by the owner 2026-09-03. */
+      var hero = status.querySelector(".bcl-hero .bcl-wrap");
       if (hero) {
         hero.appendChild(downloadNote("bcl-dl-status",
           "Power and cell service go out here, and this page goes with them. Print the " +
@@ -2935,19 +2989,128 @@
       '<div class="bcl-meta">Evacuation decisions come from <a href="https://www.cruzaware.org/" target="_blank" rel="noopener">CruzAware</a> and official orders only.</div></div>';
   }
 
+  /* The Squarespace block carries a no-JS line ("Live status is available
+     below" plus the sentence naming the feeds) so a reader without
+     JavaScript is not left with an empty page. With the tool running it is
+     two lines of meta copy sitting between the reader and the snapshot they
+     came for. Hide it rather than remove it: crawlers and the no-JS path
+     still get it, and a second boot() cannot double-hide anything. */
+  function hideStatusFallbackCopy(root) {
+    var body = root.parentNode;
+    if (!body) return;
+    var kids = [].slice.call(body.children), i, el;
+    for (i = 0; i < kids.length; i++) {
+      el = kids[i];
+      if (el === root) break;
+      if (/^h[1-6]$/i.test(el.tagName) && /live status is available below/i.test(el.textContent || "")) {
+        el.className += " bcl-jsfallback";
+        if (kids[i + 1] && kids[i + 1].tagName === "P" && kids[i + 1] !== root) {
+          kids[i + 1].className += " bcl-jsfallback";
+        }
+      }
+    }
+  }
+
+  /* Progressive disclosure for the evergreen guide under the snapshot.
+     The guide is ~1,000 words: methodology, limitations, failure guidance and
+     eight FAQs, all expanded, running about three times the height of the
+     live snapshot above it. A resident checking whether Highway 9 is moving
+     should not scroll past a manual to reach the next thing.
+
+     Nothing is deleted and no copy is rewritten. Each H3 section becomes a
+     closed <details>; each FAQ H4 becomes its own. The FAQPage JSON-LD is a
+     separate script block and is untouched, and collapsed content stays in
+     the DOM, so parsers see exactly what they saw before.
+
+     Two things stay open on purpose: "Related pages", which is navigation,
+     and the paragraph of three phone numbers, which is the one piece of the
+     guide somebody in an outage actually needs at a glance. */
+  /* The original H3/H4 element moves INTO the summary rather than having its
+     text copied out. Copying left the heading behind as an orphan above the
+     rows and doubled the guide's word count, and a summary built from bare
+     text would have dropped the heading level that screen readers and the
+     page outline depend on. */
+  function statusDisc(heading, nodes, open) {
+    var d = document.createElement("details");
+    d.className = "bcl-disc";
+    if (open) d.open = true;
+    var s = document.createElement("summary");
+    s.appendChild(heading);
+    var wrap = document.createElement("div");
+    wrap.className = "bcl-disc-body";
+    nodes.forEach(function (n) { wrap.appendChild(n); });
+    d.appendChild(s);
+    d.appendChild(wrap);
+    return d;
+  }
+
+  function collapseStatusGuide() {
+    var guide = document.getElementById("bcl-status-guide");
+    if (!guide || guide.getAttribute("data-bcl-collapsed") === "1") return;
+    guide.setAttribute("data-bcl-collapsed", "1");
+
+    var kids = [].slice.call(guide.children), out = [], i, el, heading, group, keepVisible;
+
+    for (i = 0; i < kids.length; i++) {
+      el = kids[i];
+      if (el.tagName !== "H3" && el.tagName !== "H4") { out.push(el); continue; }
+
+      heading = el;
+      group = [];
+      keepVisible = null;
+      for (i = i + 1; i < kids.length; i++) {
+        if (kids[i].tagName === "H3" || kids[i].tagName === "H4") { i--; break; }
+        /* Pull the emergency phone numbers back out of the collapsed body. */
+        if (!keepVisible && /^three numbers worth keeping/i.test((kids[i].textContent || "").trim())) {
+          keepVisible = kids[i];
+          continue;
+        }
+        group.push(kids[i]);
+      }
+
+      /* "Questions we get" and "Related pages" are signposts, not content:
+         the first labels the eight FAQ rows that follow, the second holds one
+         short paragraph of links. Both stay as plain headings. */
+      if (!group.length || /^(questions we get|related pages)/i.test((heading.textContent || "").trim())) {
+        out.push(heading);
+        group.forEach(function (n) { out.push(n); });
+      } else {
+        out.push(statusDisc(heading, group, false));
+      }
+      if (keepVisible) out.push(keepVisible);
+    }
+
+    out.forEach(function (n) { guide.appendChild(n); });
+    /* Close each run of rows with a bottom rule so a stack reads as a list
+       rather than as rows that trail off. */
+    [].slice.call(guide.querySelectorAll(".bcl-disc")).forEach(function (d) {
+      var next = d.nextElementSibling;
+      if (!next || next.className.indexOf("bcl-disc") < 0) d.className += " bcl-disc-last";
+    });
+  }
+
   function initStatus(root) {
     root.innerHTML =
       '<div class="bcl-alert">If this is an emergency, call 911. This page links to official sources; it never replaces them.</div>' +
       '<h3>Right now</h3>' +
+      /* Two rows, two jobs. Readings that are fetched live sit together in
+         one grid; the two link-only action cards sit in their own pair
+         below. As one five-item auto-fit grid they wrapped to three plus
+         two and left an empty third column beside Power and Sirens. */
       '<div class="bcl-status-grid">' +
       '<div class="bcl-card bcl-aqi"><div class="bcl-count">Checking air quality…</div></div>' +
       '<div class="bcl-card bcl-roads"><div class="bcl-count">Checking Caltrans closures…</div></div>' +
       '<div class="bcl-card bcl-river"><div class="bcl-count">Checking the river gauge…</div></div>' +
+      "</div>" +
+      '<div class="bcl-status-grid bcl-status-act">' +
       rightNowStatic() +
       "</div>" +
       '<div class="bcl-count" style="margin-top:10px;">LIVE ITEMS RETRIEVED WHEN YOU LOADED THIS PAGE · ' + esc(new Date().toLocaleString()) + "</div>" +
       '<div class="bcl-nws" style="margin-top:18px;"><div class="bcl-count">Checking National Weather Service…</div></div>' +
       sirensLinks();
+
+    hideStatusFallbackCopy(root);
+    collapseStatusGuide();
 
     fillAQI(root.querySelector(".bcl-aqi"));
     fillCaltrans(root.querySelector(".bcl-roads"));
