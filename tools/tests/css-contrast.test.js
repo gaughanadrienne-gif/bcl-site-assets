@@ -54,7 +54,7 @@ test("CSS_ID is versioned, and injectCSS clears older stylesheets before writing
   // injectCSS() returns early if an element with this id exists, so the id has
   // to change whenever the stylesheet does. The sweep of style[id^=...] is what
   // stops a cached copy of this script leaving new markup unstyled.
-  assert.match(SRC, /var CSS_ID = "bcl-tools-css-v\d+";/);
+  assert.match(SRC, /var CSS_ID = "bcl-tools-css-v17";/);
   assert.match(SRC, /querySelectorAll\("style\[id\^='bcl-tools-css'\]"\)/);
 });
 
@@ -73,4 +73,9 @@ test("article service cards use the settled surface and accessible action styles
   assert.match(SRC, /border:1px solid #e3ddcf!important;border-radius:8px!important;box-shadow:none!important/);
   assert.match(SRC, /\.bcl-menu__cta:focus-visible\{outline:3px solid #d56e47/);
   assert.match(SRC, /--muted:#626c66/);
+  assert.match(SRC, /\.bcl-menu__summary\{box-sizing:border-box;min-height:44px[^\n]+display:flex;align-items:center;gap:10px/);
+  assert.match(SRC, /\.bcl-menu__summary:focus-visible\{outline:3px solid #d56e47/);
+  assert.match(SRC, /\.bcl-menu__summary>\.bcl-menu__sech[^\n]+flex:1 1 12rem/);
+  assert.match(SRC, /\.bcl-menu__summary-meta\{flex:0 0 auto;margin-left:auto/);
+  assert.match(SRC, /\.bcl-menu__summary\{flex-wrap:wrap;\}/);
 });

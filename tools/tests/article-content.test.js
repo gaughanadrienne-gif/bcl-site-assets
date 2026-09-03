@@ -38,3 +38,11 @@ test("article typography ships the narrower measure and restrained heading rhyth
   assert.match(SRC, /font-size:clamp\(1\.3125rem,2\.25vw,1\.5rem\)/);
   assert.match(SRC, /hero\.src = .*record\.headerImage.*REPO/);
 });
+
+test("interview quotes and article jumps have explicit readable roles", () => {
+  assert.match(SRC, /blockquote\.bcl-interview-quote[^\n]+background:#eef0e2!important/);
+  assert.match(SRC, /blockquote\.bcl-interview-quote[^\n]+font-size:1\.3125rem;line-height:1\.48;font-style:normal;font-weight:500/);
+  assert.match(SRC, /blockquote\.bcl-interview-quote[^\n]+font-size:1\.25rem;padding:16px!important/);
+  assert.match(SRC, /\.bcl-article-jump a\{display:inline-flex;box-sizing:border-box;min-height:44px/);
+  assert.match(SRC, /\.bcl-article-jump a:focus-visible\{outline:3px solid #d56e47/);
+});

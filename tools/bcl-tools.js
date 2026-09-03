@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v16";
+  var CSS_ID = "bcl-tools-css-v17";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -209,6 +209,9 @@
          appended to <head> after that block, same :root specificity, so it
          wins. Do not "fix" this by editing the panel. */
       ":root{--bcl-muted:#626c66;}",
+      ".header-burger-btn:focus-visible{outline:3px solid #d56e47;outline-offset:3px;}",
+      "@media (max-width:799px){.header-burger-btn{box-sizing:border-box;min-width:44px!important;min-height:44px!important;}.header-menu,.header-menu-nav-item,.header-menu-nav-item a,.header-burger-btn .burger-inner,.header-burger-btn .burger-inner>*{animation-duration:.22s!important;animation-delay:0s!important;transition-duration:.22s!important;transition-delay:0s!important;}}",
+      "@media (prefers-reduced-motion:reduce){.header-menu,.header-menu-nav-item,.header-menu-nav-item a,.header-burger-btn .burger-inner,.header-burger-btn .burger-inner>*{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important;}}",
       ".bcl-tool{font-family:Inter,Arial,sans-serif;color:#1c2a26 !important;line-height:1.5;margin:0 auto;}",
       ".bcl-tool *{box-sizing:border-box;}",
       ".bcl-tool h3{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.5rem;margin:1.6em 0 .5em;}",
@@ -546,31 +549,53 @@
       ".bcl-article-layout>blockquote,.bcl-article-body>blockquote{border:0!important;margin-top:28px!important;margin-bottom:28px!important;padding:0!important;color:#40554d!important;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.125rem;line-height:1.5;font-style:italic;}",
       ".bcl-article-layout>blockquote p,.bcl-article-body>blockquote p{font:inherit!important;color:inherit!important;margin:0!important;}",
       ".bcl-article-layout>blockquote p+p,.bcl-article-body>blockquote p+p{margin-top:.75em!important;}",
+      ".bcl-article-layout>blockquote.bcl-interview-quote,.bcl-article-body>blockquote.bcl-interview-quote{background:#eef0e2!important;border:1px solid #e3ddcf!important;border-radius:8px!important;color:#173f36!important;padding:18px 20px!important;font-size:1.3125rem;line-height:1.48;font-style:normal;font-weight:500;}",
       ".bcl-article-layout>blockquote.bcl-pullquote,.bcl-article-body>blockquote.bcl-pullquote{max-width:600px;margin-top:40px!important;margin-bottom:40px!important;color:#173f36!important;font-size:clamp(1.3125rem,2.25vw,1.5rem);line-height:1.3;font-style:normal;font-weight:600;}",
-      ".bcl-article-jump{font-family:'IBM Plex Mono',monospace;font-size:.72rem!important;letter-spacing:.05em;text-transform:uppercase;}",
-      ".bcl-article-jump a{color:#2e6b46!important;font-weight:600;}",
+      ".bcl-article-jump{display:flex;flex-wrap:wrap;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:.72rem!important;letter-spacing:.05em;text-transform:uppercase;}",
+      ".bcl-article-jump a{display:inline-flex;box-sizing:border-box;min-height:44px;align-items:center;justify-content:center;padding:9px 12px;border:1px solid #d9d3c4;color:#2e6b46!important;font-weight:600;text-decoration:none!important;}",
+      ".bcl-article-jump a:hover{border-color:#d56e47;color:#d56e47!important;}.bcl-article-jump a:focus-visible{outline:3px solid #d56e47;outline-offset:3px;}",
       ".bcl-article-layout>.bcl-menu,.bcl-article-body>.bcl-menu{--forest:#173f36;--deep:#0d2c26;--fern:#2f6754;--moss:#a8bd7f;--clay:#d56e47;--cream:#f5f1e7;--paper:#fffdf8;--ink:#1c2a26;--muted:#626c66;--rule:#e3ddcf;--note:#eef0e2;width:100%;scroll-margin-top:110px;background:#fffdf8!important;color:#1c2a26!important;border:1px solid #e3ddcf!important;border-radius:8px!important;box-shadow:none!important;padding:28px 24px 24px!important;margin-top:32px!important;margin-bottom:40px!important;font-family:Inter,Arial,system-ui,sans-serif;font-size:16px;line-height:1.5;}",
       ".bcl-menu *{box-shadow:none!important;}",
       ".bcl-menu__kicker{display:none!important;}",
       ".bcl-menu__head{border-bottom:1px solid #e3ddcf;padding-bottom:14px;margin-bottom:22px;}",
-      ".bcl-menu__title{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:30px!important;line-height:1.15!important;font-weight:600;color:#173f36!important;margin:0 0 6px!important;}",
-      ".bcl-menu__sub,.bcl-menu__d,.bcl-menu__foot{color:#626c66!important;}",
+      ".bcl-menu__title,.bcl-menu-h{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:30px!important;line-height:1.15!important;font-weight:600;color:#173f36!important;margin:0 0 6px!important;}",
+      ".bcl-menu__sub,.bcl-menu-sub,.bcl-menu__d,.bcl-menu-desc,.bcl-menu__foot,.bcl-menu-foot{color:#626c66!important;}",
       ".bcl-menu__sub{font-size:14px;margin:0;}",
+      ".bcl-menu-sub{max-width:none;font-size:14px;margin:0 0 22px!important;padding-bottom:14px;border-bottom:1px solid #e3ddcf;}",
       ".bcl-menu__sec{margin:26px 0 10px;display:flex;align-items:center;gap:10px;}",
       ".bcl-menu__blaze{display:inline-block;width:9px;height:16px;background:#d56e47;flex:0 0 9px;}",
-      ".bcl-menu__sech{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:21px!important;line-height:1.15!important;font-weight:600;color:#173f36!important;margin:0!important;letter-spacing:.01em;}",
-      ".bcl-menu__note{background:#eef0e2;padding:10px 12px;font-size:14px;color:#1c2a26;margin:8px 0 14px;}",
-      ".bcl-menu__items{list-style:none;margin:0;padding:0;}",
-      ".bcl-menu__item{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px solid #e3ddcf;}",
-      ".bcl-menu__item:last-child{border-bottom:0;}",
-      ".bcl-menu__name{flex:1 1 auto;}.bcl-menu__n{font-weight:500;color:#1c2a26;}",
+      ".bcl-menu-sec{display:flex;align-items:center;gap:10px;margin:26px 0 10px;}",
+      ".bcl-menu-sec:before{content:'';display:inline-block;width:9px;height:16px;background:#d56e47;flex:0 0 9px;}",
+      ".bcl-menu__sech,.bcl-menu-sec{font-family:'Cormorant Garamond',Georgia,serif!important;font-size:21px!important;line-height:1.15!important;font-weight:600;color:#173f36!important;letter-spacing:.01em;}",
+      ".bcl-menu__sech{margin:0!important;}.bcl-menu-sec{margin:26px 0 10px!important;}",
+      ".bcl-menu__note,.bcl-menu-note{background:#eef0e2;padding:10px 12px;font-size:14px;color:#1c2a26;margin:8px 0 14px;}",
+      ".bcl-menu__items,.bcl-menu-list{list-style:none!important;margin:0!important;padding:0!important;}",
+      ".bcl-menu__item,.bcl-menu-item{justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid #e3ddcf;}",
+      ".bcl-menu__item{display:flex;gap:14px;}",
+      ".bcl-menu-item{display:flex;flex-wrap:wrap;gap:4px 14px;}",
+      ".bcl-menu__item:last-child,.bcl-menu-item:last-child{border-bottom:0;}",
+      ".bcl-menu__name{flex:1 1 auto;}.bcl-menu__n,.bcl-menu-name{font-weight:500;color:#1c2a26;}.bcl-menu-name{flex:1 1 60%;}",
       ".bcl-menu__d{display:block;font-size:14px;margin-top:2px;}",
-      ".bcl-menu__p{font-family:'IBM Plex Mono',monospace;font-size:14px;color:#173f36;white-space:nowrap;flex:0 0 auto;}",
-      ".bcl-menu__foot{margin-top:26px;padding-top:14px;border-top:1px solid #e3ddcf;font-size:13px;}",
+      ".bcl-menu-desc{flex:1 1 100%;font-size:14px;line-height:1.45;}",
+      ".bcl-menu-item br{display:none;}",
+      ".bcl-menu__p,.bcl-menu-price{font-family:'IBM Plex Mono',monospace;font-size:14px;color:#173f36!important;white-space:nowrap;text-align:right;flex:0 0 auto;}",
+      ".bcl-menu__p--multi{white-space:normal;text-align:right;max-width:15em;line-height:1.6;}",
+      ".bcl-menu__foot,.bcl-menu-foot{margin-top:26px!important;padding-top:14px;border-top:1px solid #e3ddcf;font-size:13px;line-height:1.55;}",
+      ".bcl-menu__foot a,.bcl-menu-foot a{color:#2f6754!important;}",
       ".bcl-menu__actions{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0;}",
       ".bcl-menu__cta{display:inline-flex;box-sizing:border-box;min-height:44px;align-items:center;justify-content:center;padding:10px 16px!important;border:1px solid #173f36;border-radius:0!important;background:#173f36!important;color:#fffdf8!important;font-weight:600;text-decoration:none!important;}",
       ".bcl-menu__cta:hover{background:#2f6754!important;border-color:#2f6754;}.bcl-menu__cta:focus-visible{outline:3px solid #d56e47;outline-offset:3px;}",
-      "@media (max-width:600px){.bcl-article-title{font-size:clamp(2.25rem,10vw,2.75rem)!important;margin-bottom:22px!important;}.bcl-article-layout>h2,.bcl-article-body>h2{font-size:1.875rem!important;margin-top:40px!important;margin-bottom:14px!important;}.bcl-article-layout>.bcl-menu,.bcl-article-body>.bcl-menu{padding:20px 16px!important;}.bcl-menu__title{font-size:25px!important;}}",
+      ".bcl-menu__group{border-top:1px solid #e3ddcf;margin:0;}",
+      ".bcl-menu__group:last-of-type{border-bottom:1px solid #e3ddcf;}",
+      ".bcl-menu__summary{box-sizing:border-box;min-height:44px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;position:relative;padding:14px 34px 14px 0;color:#173f36!important;}",
+      ".bcl-menu__summary::-webkit-details-marker{display:none;}.bcl-menu__summary::marker{content:'';}",
+      ".bcl-menu__summary>.bcl-menu__sech,.bcl-menu__summary>.bcl-menu-sec{flex:1 1 12rem;min-width:0;margin:0!important;line-height:1.25!important;}",
+      ".bcl-menu__summary-meta{flex:0 0 auto;margin-left:auto;color:#626c66!important;font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:400;letter-spacing:0;}",
+      ".bcl-menu__summary:hover{color:#2f6754!important;}.bcl-menu__summary:focus-visible{outline:3px solid #d56e47;outline-offset:2px;}",
+      ".bcl-menu__summary:after{content:'';position:absolute;right:8px;top:calc(50% - 6px);width:9px;height:9px;border-right:2px solid #2f6754;border-bottom:2px solid #2f6754;transform:rotate(45deg);transition:transform .22s cubic-bezier(.16,1,.3,1);}",
+      ".bcl-menu__group[open]>.bcl-menu__summary:after{transform:rotate(-135deg);top:calc(50% - 2px);}",
+      ".bcl-menu__panel{padding:0 0 18px 19px;}.bcl-menu__panel>*:first-child{margin-top:0;}.bcl-menu__panel>*:last-child{margin-bottom:0;}",
+      "@media (max-width:600px){.bcl-article-title{font-size:clamp(2.25rem,10vw,2.75rem)!important;margin-bottom:22px!important;}.bcl-article-layout>h2,.bcl-article-body>h2{font-size:1.875rem!important;margin-top:40px!important;margin-bottom:14px!important;}.bcl-article-layout>blockquote.bcl-interview-quote,.bcl-article-body>blockquote.bcl-interview-quote{font-size:1.25rem;padding:16px!important;}.bcl-article-layout>.bcl-menu,.bcl-article-body>.bcl-menu{padding:20px 16px!important;}.bcl-menu__title,.bcl-menu-h{font-size:25px!important;}.bcl-menu-price{text-align:left;}.bcl-menu__summary{flex-wrap:wrap;}.bcl-menu__summary-meta{flex:1 0 calc(100% - 19px);margin:-4px 0 0 19px;}.bcl-menu__panel{padding-left:19px;}}",
       ".bcl-article-body table{border-collapse:collapse;display:block;max-width:100%;overflow-x:auto;margin:1.5em 0;}",
       ".bcl-article-body th,.bcl-article-body td{border:1px solid #e3ddcf;padding:9px 12px;text-align:left;}",
       ".bcl-article-reviewed{font-family:'IBM Plex Mono',monospace;font-size:.7rem !important;letter-spacing:.06em;text-transform:uppercase;color:#626c66;border-top:1px solid #e3ddcf;padding-top:14px;margin-top:36px;}",
@@ -1646,6 +1671,66 @@
     return h + "</div>";
   }
 
+  /* Squarespace owns the mobile-menu interaction, including Escape and focus
+     return. Mirror its existing state for assistive technology without adding
+     a second toggle implementation that can drift from the platform. */
+  function setHeaderMenuA11y(button, menu, expanded) {
+    if (!button || !menu) return;
+    if (!menu.id) menu.id = "bcl-mobile-menu";
+    button.setAttribute("aria-controls", menu.id);
+    button.setAttribute("aria-expanded", expanded ? "true" : "false");
+  }
+
+  function headerMenuIsOpen(button) {
+    var holder = button && button.closest ? button.closest(".header-burger") : null;
+    return document.body.classList.contains("header--menu-open") ||
+      !!(button && button.classList && button.classList.contains("burger--active")) ||
+      !!(holder && holder.classList.contains("burger--active")) ||
+      !!(button && button.querySelector && button.querySelector(".burger--active"));
+  }
+
+  function initHeaderMenuA11y() {
+    var menu = document.querySelector(".header-menu");
+    var buttons = [].slice.call(document.querySelectorAll(".header-burger-btn"));
+    if (!menu || !buttons.length || menu.getAttribute("data-bcl-menu-a11y") === "1") return;
+
+    if (!menu.id) {
+      var id = "bcl-mobile-menu", n = 2;
+      while (document.getElementById(id) && document.getElementById(id) !== menu) {
+        id = "bcl-mobile-menu-" + n++;
+      }
+      menu.id = id;
+    }
+    menu.setAttribute("data-bcl-menu-a11y", "1");
+
+    function sync() {
+      buttons.forEach(function (button) {
+        setHeaderMenuA11y(button, menu, headerMenuIsOpen(button));
+      });
+    }
+
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (window.requestAnimationFrame) window.requestAnimationFrame(sync);
+        else window.setTimeout(sync, 0);
+      });
+    });
+    sync();
+
+    if (typeof MutationObserver !== "undefined") {
+      var observer = new MutationObserver(sync);
+      observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+      buttons.forEach(function (button) {
+        var holder = button.closest ? button.closest(".header-burger") : null;
+        observer.observe(holder || button, {
+          attributes: true,
+          subtree: true,
+          attributeFilter: ["class"]
+        });
+      });
+    }
+  }
+
   /* ---------- article header: inject the featured asset at the top of a post
      (only when the social asset filename matches the post slug, same rule as AH).
      articles.json can then supply a text-free headerImage for the reading page. ---------- */
@@ -1824,6 +1909,7 @@
         body.innerHTML = record.html || "";
         appendReviewed(body);
         target.appendChild(body);
+        initArticleMenuNavigation(target);
         return;
       }
 
@@ -1840,6 +1926,88 @@
     }).catch(function () {
       /* Leave native Squarespace content untouched when the feed is unavailable. */
     });
+  }
+
+  function articleMenuJumpLabel(menu) {
+    var heading = menu && menu.querySelector ? menu.querySelector(".bcl-menu__title,.bcl-menu-h") : null;
+    var text = heading && heading.textContent ? heading.textContent.toLowerCase() : "";
+    if (/service|treatment|booking/.test(text)) return "Jump to services";
+    if (/class|package|pass|session|offering|rate|price/.test(text)) return "Jump to offerings";
+    return "Jump to menu";
+  }
+
+  function enhanceLargeLegacyMenu(menu) {
+    if (!menu || menu.getAttribute("data-bcl-menu-disclosure") === "1" || menu.querySelector(".bcl-menu__group")) return;
+    var sections = [].slice.call(menu.children).filter(function (child) {
+      return child.classList && child.classList.contains("bcl-menu-sec");
+    });
+    var itemCount = menu.querySelectorAll(".bcl-menu-item").length;
+    if (sections.length < 2 || (sections.length < 6 && itemCount < 30)) return;
+
+    var lastBoundary = null;
+    var sibling = sections[sections.length - 1].nextElementSibling;
+    while (sibling) {
+      if (sibling.classList && (sibling.classList.contains("bcl-menu-foot") || sibling.classList.contains("bcl-menu__foot") || sibling.classList.contains("bcl-menu__actions"))) {
+        lastBoundary = sibling;
+        break;
+      }
+      sibling = sibling.nextElementSibling;
+    }
+
+    sections.forEach(function (heading, index) {
+      var stop = sections[index + 1] || lastBoundary;
+      var details = document.createElement("details");
+      var summary = document.createElement("summary");
+      var panel = document.createElement("div");
+      details.className = "bcl-menu__group";
+      summary.className = "bcl-menu__summary";
+      panel.className = "bcl-menu__panel";
+      if (index === 0) details.open = true;
+      details.appendChild(summary);
+      details.appendChild(panel);
+      menu.insertBefore(details, heading);
+      summary.appendChild(heading);
+      while (details.nextSibling && details.nextSibling !== stop) panel.appendChild(details.nextSibling);
+    });
+    menu.setAttribute("data-bcl-menu-disclosure", "1");
+  }
+
+  function initArticleMenuNavigation(root) {
+    var host = root || document.querySelector(".blog-item-content");
+    if (!host) return;
+    var menus = [].slice.call(host.querySelectorAll(".bcl-menu"));
+    if (!menus.length) return;
+
+    menus.forEach(function (menu, index) {
+      if (!menu.id) {
+        var base = index ? "bcl-menu-" + (index + 1) : "bcl-menu";
+        var id = base, suffix = 2;
+        while (document.getElementById(id) && document.getElementById(id) !== menu) id = base + "-" + suffix++;
+        menu.id = id;
+      }
+      enhanceLargeLegacyMenu(menu);
+    });
+
+    if (host.querySelector(".bcl-article-jump")) return;
+    var paragraphs = host.querySelectorAll("p");
+    var firstParagraph = null;
+    for (var i = 0; i < paragraphs.length; i++) {
+      var paragraph = paragraphs[i];
+      if ((!paragraph.closest || !paragraph.closest(".bcl-menu")) && !paragraph.classList.contains("bcl-article-reviewed") && !paragraph.classList.contains("bcl-draft-state")) {
+        firstParagraph = paragraph;
+        break;
+      }
+    }
+    if (!firstParagraph || !firstParagraph.parentNode) return;
+
+    var jump = document.createElement("p");
+    var link = document.createElement("a");
+    jump.className = "bcl-article-jump";
+    jump.setAttribute("data-bcl-generated-menu-jump", "1");
+    link.setAttribute("href", "#" + menus[0].id);
+    link.textContent = articleMenuJumpLabel(menus[0]);
+    jump.appendChild(link);
+    firstParagraph.parentNode.insertBefore(jump, firstParagraph.nextSibling);
   }
 
   function pageHeadingForPath(pathname) {
@@ -4330,6 +4498,7 @@
   function boot() {
     legacyFullWidthFallback();
     injectCSS();
+    initHeaderMenuA11y();
     repairKnownLinks();
     repairEmbedScaffolding();
     repairStatusPage();
@@ -4340,6 +4509,7 @@
     initArticleHeader();
     initArticleDates();
     initArticleContent();
+    initArticleMenuNavigation();
     initRelatedArticles();
     initThumbAlts();
     var d = document.getElementById("bcl-directory");
@@ -4372,6 +4542,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
