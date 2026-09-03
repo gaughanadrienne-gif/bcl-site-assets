@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v15";
+  var CSS_ID = "bcl-tools-css-v16";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -262,6 +262,19 @@
          told to trust over the page was unclickable-looking. Class-level, so
          this is every .bcl-note on the site, not only Mountain Status. */
       ".bcl-note a{color:#2e6b46 !important;text-decoration:underline;text-underline-offset:2px;}",
+      /* Prose links, everywhere in BCL content. The theme renders an unstyled
+         <a> as body ink with no underline, identical to the sentence around
+         it, so every link this file did not name individually was invisible in
+         production. Measured 2026-09-03: 39 of 73 links on /residents, 40 in
+         the Mountain Status guide (including every link inside the disclosure
+         rows), 4 on /about, 2 on /visit, 1 each on /food, /rain and the home
+         hero lede. p > a and li > a are narrow enough to miss card wrappers
+         and action rows, which carry their own rules already. */
+      '[id^="bcl-"] p > a:not(.bcl-btn),[id^="bcl-"] li > a:not(.bcl-btn),[id^="bcl-"] .bcl-prose > a:not(.bcl-btn){color:#2e6b46 !important;text-decoration:underline;text-underline-offset:2px;}',
+      /* Dark bands keep paper. Fern on #0d2c26 is about 2:1; the /about
+         contact link already sat at 14.7:1 and the rule above would have
+         broken it. */
+      '[id^="bcl-"] .bcl-dark p > a:not(.bcl-btn),[id^="bcl-"] .bcl-dark li > a:not(.bcl-btn){color:#fffdf8 !important;}',
       ".bcl-dl-note a{color:#173f36 !important;text-decoration:underline;text-underline-offset:2px;}",
       ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#626c66 !important;}",
       /* The unavailable state's escape links carry brand link colour like every
@@ -316,11 +329,11 @@
          Forest rather than clay keeps the page's one primary action (Submit an
          update) primary; a solid filled button reads as a control either way.
          min-width aligns seven independently sized rows into one column. */
-      "#bcl-mountain-status .bcl-source{align-items:center;}",
-      "#bcl-mountain-status .bcl-source>a{display:inline-flex;align-items:center;justify-content:center;justify-self:end;min-height:44px;min-width:190px;padding:11px 18px;background:#173f36 !important;color:#fffdf8 !important;font-family:Inter,Arial,sans-serif;font-size:.86rem;font-weight:700;line-height:1.2;text-decoration:none !important;border:1px solid #173f36;border-radius:0 !important;white-space:nowrap;}",
-      "#bcl-mountain-status .bcl-source>a:hover{background:#2f6754 !important;border-color:#2f6754;}",
-      "#bcl-mountain-status .bcl-source>a:focus-visible{outline:3px solid #d56e47;outline-offset:2px;}",
-      "@media (max-width:800px){#bcl-mountain-status .bcl-source>a{justify-self:start;}}",
+      "[id^=\"bcl-\"] .bcl-source{align-items:center;}",
+      "[id^=\"bcl-\"] .bcl-source>a{display:inline-flex;align-items:center;justify-content:center;justify-self:end;min-height:44px;min-width:190px;padding:11px 18px;background:#173f36 !important;color:#fffdf8 !important;font-family:Inter,Arial,sans-serif;font-size:.86rem;font-weight:700;line-height:1.2;text-decoration:none !important;border:1px solid #173f36;border-radius:0 !important;white-space:nowrap;}",
+      "[id^=\"bcl-\"] .bcl-source>a:hover{background:#2f6754 !important;border-color:#2f6754;}",
+      "[id^=\"bcl-\"] .bcl-source>a:focus-visible{outline:3px solid #d56e47;outline-offset:2px;}",
+      "@media (max-width:800px){[id^=\"bcl-\"] .bcl-source>a{justify-self:start;}}",
       ".bcl-jsfallback{display:none !important;}",
       /* Disclosure rows for the evergreen guide: flat paper, one hairline
          rule, a drawn chevron. No card, no shadow, no nesting. */
