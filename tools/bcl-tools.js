@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v14";
+  var CSS_ID = "bcl-tools-css-v15";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -256,6 +256,12 @@
       ".bcl-card a{color:#2e6b46 !important;text-decoration:underline;}",
       ".bcl-verified{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;color:#626c66 !important;margin-top:10px;}",
       ".bcl-note{background:#dde2d8;padding:12px 16px;font-size:.85rem;color:#1c2a26 !important;margin:18px 0 0;}",
+      /* A note's links had no rule at all, so they fell through to the theme's
+         body ink with no underline and were invisible as links. The NWS
+         attribution under the forecast is one of these: the source a reader is
+         told to trust over the page was unclickable-looking. Class-level, so
+         this is every .bcl-note on the site, not only Mountain Status. */
+      ".bcl-note a{color:#2e6b46 !important;text-decoration:underline;text-underline-offset:2px;}",
       ".bcl-dl-note a{color:#173f36 !important;text-decoration:underline;text-underline-offset:2px;}",
       ".bcl-unavailable{background:#f5f1e7 !important;border:1px dashed #cfc9b8;padding:18px;font-size:.92rem;color:#626c66 !important;}",
       /* The unavailable state's escape links carry brand link colour like every
@@ -297,12 +303,24 @@
             same grid rendered three white cards and two sage ones. Owner
             decision 2026-09-03: all five cream. Scoped to #bcl-status so no
             other tool's cards move. */
-      ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:start;}",
+      /* One uniform card size across the whole snapshot (owner, 2026-09-03).
+         1fr columns give equal widths; grid-auto-rows:1fr plus stretch makes
+         every row as tall as the tallest card, so the five cards are one size
+         rather than five sizes cut to their text. A trailing empty cell in the
+         last row is what a uniform grid does and is left alone. */
+      ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:stretch;grid-auto-rows:1fr;}",
       "#bcl-status .bcl-card{background:#f5f1e7 !important;}",
-      /* The action pair (Power, Sirens and smoke) is its own row rather than
-         items 4 and 5 of a three-up grid, where they left an empty third
-         column. Wider minimum so it lands as two columns, never three. */
-      ".bcl-status-act{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:12px;}",
+      /* Official information: the escape routes were plain ink with no
+         underline, indistinguishable from body text, in a 26px hit area. They
+         are the whole point of the section, so they get the button treatment.
+         Forest rather than clay keeps the page's one primary action (Submit an
+         update) primary; a solid filled button reads as a control either way.
+         min-width aligns seven independently sized rows into one column. */
+      "#bcl-mountain-status .bcl-source{align-items:center;}",
+      "#bcl-mountain-status .bcl-source>a{display:inline-flex;align-items:center;justify-content:center;justify-self:end;min-height:44px;min-width:190px;padding:11px 18px;background:#173f36 !important;color:#fffdf8 !important;font-family:Inter,Arial,sans-serif;font-size:.86rem;font-weight:700;line-height:1.2;text-decoration:none !important;border:1px solid #173f36;border-radius:0 !important;white-space:nowrap;}",
+      "#bcl-mountain-status .bcl-source>a:hover{background:#2f6754 !important;border-color:#2f6754;}",
+      "#bcl-mountain-status .bcl-source>a:focus-visible{outline:3px solid #d56e47;outline-offset:2px;}",
+      "@media (max-width:800px){#bcl-mountain-status .bcl-source>a{justify-self:start;}}",
       ".bcl-jsfallback{display:none !important;}",
       /* Disclosure rows for the evergreen guide: flat paper, one hairline
          rule, a drawn chevron. No card, no shadow, no nesting. */
@@ -3093,16 +3111,14 @@
     root.innerHTML =
       '<div class="bcl-alert">If this is an emergency, call 911. This page links to official sources; it never replaces them.</div>' +
       '<h3>Right now</h3>' +
-      /* Two rows, two jobs. Readings that are fetched live sit together in
-         one grid; the two link-only action cards sit in their own pair
-         below. As one five-item auto-fit grid they wrapped to three plus
-         two and left an empty third column beside Power and Sirens. */
+      /* One grid, one card size. Splitting the live readings from the two
+         action cards gave the rows different column counts and so different
+         card widths; the owner asked for a single uniform set instead. Equal
+         heights come from grid-auto-rows:1fr in the CSS above. */
       '<div class="bcl-status-grid">' +
       '<div class="bcl-card bcl-aqi"><div class="bcl-count">Checking air quality…</div></div>' +
       '<div class="bcl-card bcl-roads"><div class="bcl-count">Checking Caltrans closures…</div></div>' +
       '<div class="bcl-card bcl-river"><div class="bcl-count">Checking the river gauge…</div></div>' +
-      "</div>" +
-      '<div class="bcl-status-grid bcl-status-act">' +
       rightNowStatic() +
       "</div>" +
       '<div class="bcl-count" style="margin-top:10px;">LIVE ITEMS RETRIEVED WHEN YOU LOADED THIS PAGE · ' + esc(new Date().toLocaleString()) + "</div>" +
