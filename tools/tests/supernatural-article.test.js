@@ -46,6 +46,5 @@ test("the service module is complete, compact and price-free", () => {
   assert.match(menu, /Wellness technology/);
   assert.match(menu, /https:\/\/supernatural\.beauty\/services\//);
   assert.ok(menu.indexOf("bcl-menu__actions") < menu.indexOf("<details"));
-  assert.equal(record.headerImage, "brand/article-headers/spotlight-supernatural-beauty.webp");
   assert.equal(record.imageAlt, "Watercolor illustration of the SuperNatural Beauty storefront in Boulder Creek");
 });

@@ -1,7 +1,7 @@
 """Build the public article-body feed from the owner-reviewed article register.
 
 The checked-in live-slug manifest mirrors the current Squarespace sitemap.
-All 67 live article drafts are emitted; the two drafts absent from the sitemap
+All approved live article drafts are emitted; drafts absent from the sitemap
 are withheld so the browser layer can add ``noindex`` without exposing them.
 """
 
@@ -22,6 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ARTICLES_DIR = ROOT.parents[1] / "Articles"
 DEFAULT_OUTPUT = ROOT / "data" / "articles.json"
 DEFAULT_LIVE_SLUGS = ROOT / "data" / "live-article-slugs.json"
+DEFAULT_IMAGE_SEO = ROOT.parents[1] / "Media Library" / "Article Images" / "image_seo.csv"
 FRONTMATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 HTML_COMMENT = re.compile(r"<!--.*?-->", re.DOTALL)
 SCHEDULED = re.compile(r"^scheduled\s+(\d{4}-\d{2}-\d{2})$", re.IGNORECASE)
@@ -67,10 +68,60 @@ def render_body(source: str) -> str:
     )
 
 
+def load_image_alts(path: Path) -> dict[str, str]:
+    """Load the reviewed scene descriptions owned by the watercolor library."""
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        rows = list(csv.DictReader(handle))
+
+    alts: dict[str, str] = {}
+    for row in rows:
+        slug = (row.get("slug") or "").strip()
+        alt = (row.get("alt_text") or "").strip()
+        if not slug:
+            continue
+        if slug in alts:
+            raise ValueError(f"duplicate image metadata slug: {slug}")
+        if not alt:
+            raise ValueError(f"image metadata has no alt text: {slug}")
+        alts[slug] = alt
+    return alts
+
+
+def apply_image_alts(
+    feed: dict,
+    image_alts: dict[str, str],
+    clear_header_overrides: set[str] | None = None,
+) -> tuple[int, int]:
+    """Update image metadata without rebuilding article bodies.
+
+    Reading-header URLs follow a site-wide slug convention in ``bcl-tools.js``.
+    Header overrides are preserved unless a migration names them explicitly.
+    """
+    articles = feed.get("articles", {})
+    missing = sorted(set(articles) - set(image_alts))
+    if missing:
+        preview = ", ".join(missing[:10])
+        raise ValueError(f"public articles have no reviewed image alt text: {preview}")
+    requested_clears = clear_header_overrides or set()
+    unknown_clears = sorted(requested_clears - set(articles))
+    if unknown_clears:
+        raise ValueError(
+            "cannot clear header override for unknown public article(s): "
+            + ", ".join(unknown_clears)
+        )
+    cleared_overrides = 0
+    for slug, record in articles.items():
+        record["imageAlt"] = image_alts[slug].strip()
+        if slug in requested_clears and record.pop("headerImage", None) is not None:
+            cleared_overrides += 1
+    return len(articles), cleared_overrides
+
+
 def build_feed(
     articles_dir: Path,
     as_of: date,
     live_slugs: set[str] | None = None,
+    image_alts: dict[str, str] | None = None,
 ) -> dict:
     register_path = articles_dir / "ARTICLE_REGISTER.csv"
     drafts_dir = articles_dir / "Drafts"
@@ -108,13 +159,19 @@ def build_feed(
         if not title:
             raise ValueError(f"approved article has no title: {slug}")
 
-        public[slug] = {
+        record = {
             "slug": slug,
             "title": title,
             "html": render_body(source),
             "reviewedAt": str(metadata.get("reviewed_at") or row.get("reviewed_at") or ""),
             "nextReviewAt": str(metadata.get("next_review_at") or row.get("next_review_at") or ""),
         }
+        if image_alts is not None:
+            image_alt = image_alts.get(slug, "").strip()
+            if not image_alt:
+                raise ValueError(f"public article has no reviewed image alt text: {slug}")
+            record["imageAlt"] = image_alt
+        public[slug] = record
 
     known_slugs = sorted(all_draft_slugs | registered_slugs)
     return {
@@ -155,6 +212,19 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--as-of", type=date.fromisoformat, default=date.today())
     parser.add_argument("--live-slugs", type=Path, default=DEFAULT_LIVE_SLUGS)
+    parser.add_argument("--image-seo", type=Path, default=DEFAULT_IMAGE_SEO)
+    parser.add_argument(
+        "--image-metadata-only",
+        action="store_true",
+        help="update imageAlt fields in the existing feed without rebuilding article bodies",
+    )
+    parser.add_argument(
+        "--clear-header-override",
+        action="append",
+        default=[],
+        metavar="SLUG",
+        help="with --image-metadata-only, remove a named legacy headerImage override (repeatable)",
+    )
     parser.add_argument(
         "--allow-body-changes",
         action="store_true",
@@ -163,8 +233,25 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    image_alts = load_image_alts(args.image_seo.resolve())
+    if args.image_metadata_only:
+        feed = json.loads(args.output.read_text(encoding="utf-8"))
+        count, cleared = apply_image_alts(
+            feed, image_alts, set(args.clear_header_override)
+        )
+        args.output.write_text(
+            # Preserve the feed's established compact indentation. A metadata-only
+            # update should not turn 173 unchanged article bodies into a giant diff.
+            json.dumps(feed, ensure_ascii=False, indent=1) + "\n", encoding="utf-8"
+        )
+        print(
+            f"updated reviewed image alt text for {count} public articles and "
+            f"cleared {cleared} legacy header override(s) in {args.output}"
+        )
+        return
+
     live_slugs = set(json.loads(args.live_slugs.read_text(encoding="utf-8")))
-    feed = build_feed(args.articles_dir.resolve(), args.as_of, live_slugs)
+    feed = build_feed(args.articles_dir.resolve(), args.as_of, live_slugs, image_alts)
 
     changed, dropped, net = diff_against_existing(feed, args.output)
     if (changed or dropped) and not args.allow_body_changes:

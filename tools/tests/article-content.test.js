@@ -14,6 +14,16 @@ test("articleSlugFromPath only accepts an article detail route", () => {
   assert.equal(tools.articleSlugFromPath("/around-town/category/Town+%26+History"), "");
 });
 
+test("article reading headers use clean WebP derivatives without changing social cards", () => {
+  assert.match(SRC, /function articleReadingHeaderUrl\(slug\)/);
+  assert.match(SRC, /brand\/article-reading-headers\//);
+  assert.match(SRC, /img\.width = 1200/);
+  assert.match(SRC, /img\.height = 630/);
+  assert.match(SRC, /img\.src = articleReadingHeaderUrl\(slug\)/);
+  assert.match(SRC, /img\.src = socialUrl/);
+  assert.match(SRC, /fetchpriority/);
+});
+
 test("pageHeadingForPath supplies one meaningful heading for utility pages", () => {
   assert.equal(tools.pageHeadingForPath("/contact"), "Contact and submit");
   assert.equal(tools.pageHeadingForPath("/jobs/"), "Jobs in the San Lorenzo Valley");

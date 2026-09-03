@@ -1731,24 +1731,38 @@
     }
   }
 
-  /* ---------- article header: inject the featured asset at the top of a post
-     (only when the social asset filename matches the post slug, same rule as AH).
-     articles.json can then supply a text-free headerImage for the reading page. ---------- */
+  /* ---------- article header: keep the Squarespace featured asset for cards and
+     social metadata, but show the matching text-free watercolor while reading.
+     The reading derivative uses the same 1200x630 geometry as the social card, so
+     the swap does not change the reserved layout. A missing derivative falls back
+     to the featured asset, which keeps new articles safe during staged uploads. ---------- */
+
+  function articleReadingHeaderUrl(slug) {
+    return REPO + "/brand/article-reading-headers/" + encodeURIComponent(slug) + ".webp";
+  }
 
   function initArticleHeader() {
     if (!/^\/around-town\/[^\/]+\/?$/.test(location.pathname)) return;
     if (document.getElementById("bcl-article-header")) return;
-    var slug = location.pathname.replace(/\/$/, "").split("/").pop();
+    var slug = articleSlugFromPath(location.pathname);
     var og = document.querySelector('meta[property="og:image"]');
     if (!og) return;
-    var url = og.getAttribute("content") || "";
-    var file = url.split("?")[0].split("/").pop();
+    var socialUrl = og.getAttribute("content") || "";
+    var file = socialUrl.split("?")[0].split("/").pop();
     if (file !== slug + ".jpg" && file !== slug + ".png") return;
     var target = document.querySelector(".blog-item-content");
     if (!target) return;
     var img = document.createElement("img");
     img.id = "bcl-article-header";
-    img.src = url;
+    img.width = 1200;
+    img.height = 630;
+    img.decoding = "async";
+    img.setAttribute("fetchpriority", "high");
+    img.src = articleReadingHeaderUrl(slug);
+    img.onerror = function () {
+      img.onerror = null;
+      img.src = socialUrl;
+    };
     // Use the article title as a safe initial fallback. Once articles.json loads,
     // a record-level imageAlt replaces it when the reading image is descriptive.
     var ogt = document.querySelector('meta[property="og:title"]');
@@ -1879,6 +1893,7 @@
       if (record) {
         ensureArticleHeading(record.title || articleTitleFromMetadata());
         var hero = document.getElementById("bcl-article-header");
+        /* Exceptional records may override the conventional reading-image path. */
         if (hero && record.headerImage) {
           hero.src = /^https?:\/\//i.test(record.headerImage) ? record.headerImage : REPO + "/" + record.headerImage.replace(/^\/+/, "");
         }
