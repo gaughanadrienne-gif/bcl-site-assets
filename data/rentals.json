@@ -1,6 +1,6 @@
 {
  "_note": "Boulder Creek Local rentals board. Auto-refreshed; see refresh_rentals.py.",
- "updated": "2026-09-03",
+ "updated": "2026-09-04",
  "count": 2,
  "rentals": [
   {
@@ -34,8 +34,8 @@
    "canonical_url": "https://www.pmisantacruz.com/santa-cruz-homes-for-rent/179/12895-highway-9-boulder-creek-ca-95006",
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
-   "first_seen_at": "2026-09-03",
-   "last_verified_at": "2026-09-03",
+   "first_seen_at": "2026-09-04",
+   "last_verified_at": "2026-09-04",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -70,8 +70,8 @@
    "canonical_url": "https://andersonchristierealestate.appfolio.com/listings/detail/e2fb0ee6-e218-4c7d-bc89-06b81fcdb048",
    "source": "Anderson Christie Real Estate",
    "property_manager": "Anderson Christie Real Estate",
-   "first_seen_at": "2026-09-03",
-   "last_verified_at": "2026-09-03",
+   "first_seen_at": "2026-09-04",
+   "last_verified_at": "2026-09-04",
    "verification_status": "verified",
    "freshness_label": ""
   }
