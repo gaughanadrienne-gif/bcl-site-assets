@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-04",
+  "updated": "2026-09-05",
   "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category, notice (optional; besides title, date and location it is the only field an event card renders, so anything a reader must know before turning up goes there). Re-curated 2026-09-02 against first-party organizer sources.",
   "events": [
     {
@@ -297,14 +297,14 @@
       "notice": "21 and over"
     },
     {
-      "title": "Bluegrass with Crying Uncle at Boulder Creek Golf & Country Club",
-      "start": "2026-09-19",
+      "title": "Crying Uncle Bluegrass Band, Live Under the Redwoods",
+      "start": "2026-09-19T18:00",
       "end": null,
-      "location": "Boulder Creek Golf & Country Club, 16901 Big Basin Highway, Boulder Creek",
-      "url": "https://bouldercreekgolf.com/",
-      "description": "Bluegrass concert at the golf club with Crying Uncle, confirmed by the club on September 4. The start time and the signup page had not been published when this listing went up.",
+      "location": "Creekside and The Great Lawn, Boulder Creek Golf & Country Club, 16901 Big Basin Highway, Boulder Creek",
+      "url": "https://bigbasincountry.club/events/crying-uncle-2026/",
+      "description": "The club's first bluegrass concert on its reimagined Creekside Event Center lawn, with the Crying Uncle Bluegrass Band, IBMA's 2023 Momentum Band of the Year, who made their Grand Ole Opry debut in 2024. Doors at 6 p.m., show at 6:30. General admission on the lawn, first come first served, so come early. Bring a blanket no bigger than 5 by 7 feet or a low lawn chair. Your own picnic and cooler are welcome, and there is food and a bar on site, 21 and over with ID to drink. No tarps, tents, umbrellas, high-backed chairs or pets. Rain or shine, with indoor space if the weather turns. Parking in the main lot and overflow across Big Basin Way.",
       "category": "Music & Arts",
-      "notice": "Start time and tickets not announced yet. Call the club at 831-338-2111 before you go."
+      "notice": "Ticketed. $25 in advance, $35 at the door, no refunds. Only 100 tickets, max 8 per order. All ages. Doors 6 p.m."
     },
     {
       "title": "Community Crafters",
