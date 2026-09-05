@@ -3,7 +3,7 @@
  "@type": "ItemList",
  "name": "Boulder Creek and San Lorenzo Valley restaurants, cafes and markets",
  "url": "https://www.bouldercreeklocal.com/food",
- "numberOfItems": 26,
+ "numberOfItems": 25,
  "itemListOrder": "https://schema.org/ItemListOrderAscending",
  "itemListElement": [
   {
@@ -174,7 +174,7 @@
    "item": {
     "@type": "Restaurant",
     "name": "El Rey Leon",
-    "description": "Mexican food truck at its downtown spot on set days each week, with outdoor seating and counter service.",
+    "description": "Mexican food truck at its downtown spot on set days each week, with outdoor seating and counter service. Pickup only, no delivery (confirmed by the owner...",
     "url": "https://elreyleonca.com/",
     "telephone": "(831) 282-7792",
     "address": {
@@ -445,28 +445,6 @@
    "@type": "ListItem",
    "position": 23,
    "item": {
-    "@type": "Restaurant",
-    "name": "The Sawmill Restaurant & Alehouse",
-    "description": "American restaurant serving burgers, pub fare, and craft beer, with outdoor seating and a music stage.",
-    "url": "https://www.thesawmillbc.com/",
-    "telephone": "(831) 610-8196",
-    "address": {
-     "@type": "PostalAddress",
-     "streetAddress": "15520 Highway 9",
-     "addressLocality": "Boulder Creek",
-     "addressRegion": "CA"
-    },
-    "geo": {
-     "@type": "GeoCoordinates",
-     "latitude": 37.152322,
-     "longitude": -122.134518
-    }
-   }
-  },
-  {
-   "@type": "ListItem",
-   "position": 24,
-   "item": {
     "@type": "CafeOrCoffeeShop",
     "name": "The Tree House Cafe",
     "description": "A cafe and espresso bar at the edge of Boulder Creek with giant redwoods growing through the interior.",
@@ -488,7 +466,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 25,
+   "position": 24,
    "item": {
     "@type": "GroceryStore",
     "name": "Wild Roots Market - Boulder Creek",
@@ -510,7 +488,7 @@
   },
   {
    "@type": "ListItem",
-   "position": 26,
+   "position": 25,
    "item": {
     "@type": "Bakery",
     "name": "Wildstone Bakery",
