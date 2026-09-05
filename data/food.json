@@ -1,7 +1,7 @@
 {
- "updated": "2026-08-06",
+ "updated": "2026-09-04",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
- "count": 26,
+ "count": 25,
  "listings": [
   {
    "name": "Bella's Cafe",
@@ -103,9 +103,9 @@
    "locality": "Boulder Creek",
    "phone": "(831) 338-6464",
    "website": "https://www.johnniesmarket.com/",
-   "hours_text": "Monday-Thursday 8:00 a.m.-9:00 p.m.; Friday-Saturday 8:00 a.m.-10:00 p.m.; Sunday 8:00 a.m.-9:00 p.m.",
+   "hours_text": "Daily 8:00 a.m.-9:00 p.m.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-04",
    "lat": 37.125551,
    "lon": -122.122821,
    "tile": "johnnie-s-super-market-liquor.png"
@@ -207,23 +207,6 @@
    "article": "/around-town/taqueria-los-gallos-boulder-creek"
   },
   {
-   "name": "The Sawmill Restaurant & Alehouse",
-   "category": "Restaurant",
-   "subcategory": "American restaurant and alehouse",
-   "description": "American restaurant serving burgers, pub fare, and craft beer, with outdoor seating and a music stage.",
-   "address": "15520 Highway 9",
-   "locality": "Boulder Creek",
-   "phone": "(831) 610-8196",
-   "website": "https://www.thesawmillbc.com/",
-   "hours_text": "Temporarily closed, no reopening date announced (checked 2026-08-28). Previous hours: Monday-Tuesday 11:00 a.m.-8:00 p.m.; Wednesday 4:00-8:00 p.m.; Thursday-Sunday 11:00 a.m.-8:00 p.m.",
-   "service_area": "Boulder Creek",
-   "verified_at": "2026-08-28",
-   "lat": 37.152322,
-   "lon": -122.134518,
-   "tile": "the-sawmill-restaurant-alehouse.png",
-   "article": "/around-town/sawmill-boulder-creek"
-  },
-  {
    "name": "The Tree House Cafe",
    "category": "Cafe & Coffee",
    "subcategory": "Coffee shop and espresso bar",
@@ -232,8 +215,8 @@
    "locality": "Boulder Creek",
    "phone": "(831) 610-8912",
    "website": "https://www.facebook.com/BC.TreehouseCafe/",
-   "hours_text": "Monday-Friday 6:00 a.m.-2:30 p.m.; Saturday-Sunday 7:00 a.m.-2:30 p.m.",
-   "verified_at": "2026-08-06",
+   "hours_text": null,
+   "verified_at": "2026-09-04",
    "lat": 37.1263137,
    "lon": -122.1221556,
    "tile": "the-tree-house-cafe.png",

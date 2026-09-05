@@ -1,7 +1,7 @@
 {
  "updated": "2026-09-04",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
- "count": 323,
+ "count": 322,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -965,14 +965,14 @@
    "name": "SWAG",
    "category": "Shopping",
    "subcategory": "Vintage, music, and local gifts",
-   "description": "Downtown shop featuring vintage apparel, vinyl records, restored stereo equipment, local art, and jewelry.",
+   "description": "Downtown shop selling vintage apparel, vinyl records, local art, and jewelry. In an August 2026 update, owner Jeff Brough said he planned to reduce his involvement and shift attention toward onsite music events as he semi-retires.",
    "address": "13026 Highway 9",
    "locality": "Boulder Creek",
    "phone": "831-295-9191",
    "website": "https://www.swagbouldercreek.com/",
    "hours_text": null,
    "service_area": "Boulder Creek",
-   "verified_at": "2026-08-05",
+   "verified_at": "2026-09-04",
    "lat": 37.122884,
    "lon": -122.121412,
    "tile": "swag.png"
@@ -4456,22 +4456,6 @@
    "tile": null
   },
   {
-   "name": "Houdesheldt Traditional Team",
-   "category": "Real Estate",
-   "subcategory": "Residential real estate team",
-   "description": "Real estate team led by Sheri Houdesheldt at Century 21 Masters in Boulder Creek, serving buyers and sellers in the San Lorenzo Valley and Santa Cruz Mountains.",
-   "address": "13117 Highway 9",
-   "locality": "Boulder Creek",
-   "phone": "831-281-6354",
-   "website": "https://www.facebook.com/SheriHoudesheldtRealtor/",
-   "hours_text": null,
-   "service_area": "San Lorenzo Valley and Santa Cruz Mountains",
-   "verified_at": "2026-07-22",
-   "lat": null,
-   "lon": null,
-   "tile": "houdesheldt-traditional-team.png"
-  },
-  {
    "name": "Adventure Gift Store",
    "category": "Shopping",
    "subcategory": "Online gift shop",
@@ -4562,10 +4546,10 @@
    "address": "13350 West Park Avenue, Unit A1",
    "locality": "Boulder Creek",
    "phone": "831-419-0202",
-   "website": "https://treetoppilates.wordpress.com/",
+   "website": "https://www.facebook.com/treetoppilates/",
    "hours_text": null,
    "service_area": "San Lorenzo Valley",
-   "verified_at": "2026-07-24",
+   "verified_at": "2026-09-04",
    "lat": null,
    "lon": null,
    "tile": "treetop-pilates-wellness.png"
