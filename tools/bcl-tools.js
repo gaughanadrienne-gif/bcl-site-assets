@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v17";
+  var CSS_ID = "bcl-tools-css-v18";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -242,7 +242,7 @@
       ".bcl-chip[disabled]{opacity:.5;cursor:default;}",
       /* On a phone the row becomes one swipeable line rather than four stacked
          rows, so the sticky bar cannot eat the screen it is meant to serve. */
-      "@media (max-width:640px){.bcl-chips{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;-webkit-overflow-scrolling:touch;}}",
+      "@media (max-width:640px){.bcl-chips{position:static;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;max-height:none;-webkit-overflow-scrolling:touch;}}",
       /* The Around Town category strip. Same chip idiom as the directory so the
          two browse surfaces read as one system, but not sticky: a blog listing
          is a short scroll next to 317 cards, and it is worth no layout fight. */
@@ -251,6 +251,9 @@
       ".bcl-catnav .bcl-chip:hover{border-color:#173f36;}",
       "@media (max-width:640px){.bcl-catnav{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;}}",
       ".bcl-count{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:#626c66 !important;margin:0 0 14px;}",
+      ".bcl-load-more{margin:18px 0 0;text-align:center;}",
+      ".bcl-load-more button{min-height:44px;padding:10px 16px;border:1px solid #173f36;background:#173f36 !important;color:#fffdf8 !important;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;}",
+      ".bcl-load-more button:focus-visible{outline:3px solid #d56e47;outline-offset:3px;}",
       ".bcl-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
       ".bcl-card .bcl-name{font-weight:600;font-size:1.05rem;color:#173f36 !important;}",
       ".bcl-card .bcl-sub{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;margin:2px 0 8px;}",
@@ -909,23 +912,34 @@
     rows.forEach(function (l) { (byCat[l.category] = byCat[l.category] || []).push(l); });
     var cats = orderedCategoryNames(Object.keys(byCat));
     var lastGroup = null, out = "";
+    /* A preview limit applies to the ordered result set, not independently to
+       each category. That keeps every source record reachable through Load
+       more without turning a 24-card preview into nine 24-card category caps. */
+    var remaining = opts.limit > 0 ? opts.limit : Infinity;
     cats.forEach(function (c) {
+      if (!remaining) return;
+      // A preview deliberately has no per-category nearby cap. Legacy callers
+      // without a limit retain the established browse cap.
+      var catCap = opts.limit > 0 ? 0 : (CAP_EXEMPT.indexOf(c) >= 0 ? 0 : (opts.cap || 0));
+      var a = arrangeListings(byCat[c], catCap);
+      var local = a.local.slice(0, remaining);
+      remaining -= local.length;
+      var nearby = a.nearby.slice(0, remaining);
+      remaining -= nearby.length;
+      var shown = local.length + nearby.length;
+      if (!shown) return;
       var g = groupLabelOf(c);
       if (g && g !== lastGroup) { out += '<div class="bcl-group-head">' + esc(g) + "</div>"; lastGroup = g; }
-      // Display cap must stay in sync with the Task 8 curation cap (KEEP=6 in 04-curate-nearby.js).
-      var catCap = CAP_EXEMPT.indexOf(c) >= 0 ? 0 : (opts.cap || 0);
-      var a = arrangeListings(byCat[c], catCap);
-      var shown = a.local.length + a.nearby.length;
       function cards(rows) {
         return rows.map(function (l) { return listingCard(l, opts); }).join("");
       }
       out += '<div class="bcl-cat-head"><h3>' + esc(c) + "</h3><span>" + shown + "</span></div>";
-      if (a.local.length) {
-        out += '<div class="bcl-dir-grid">' + cards(a.local) + "</div>";
+      if (local.length) {
+        out += '<div class="bcl-dir-grid">' + cards(local) + "</div>";
       }
-      if (a.nearby.length) {
-        if (a.local.length) out += '<div class="bcl-tier-divider">Also serving the area</div>';
-        out += '<div class="bcl-dir-grid">' + cards(a.nearby) + "</div>";
+      if (nearby.length) {
+        if (local.length) out += '<div class="bcl-tier-divider">Also serving the area</div>';
+        out += '<div class="bcl-dir-grid">' + cards(nearby) + "</div>";
       }
     });
     return out;
@@ -990,7 +1004,8 @@
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-bc-only"> In Boulder Creek</label>' +
         "</div>" +
         (opts.chips ? '<div class="bcl-chips" role="group" aria-label="Filter by category"></div>' : "") +
-        '<div class="bcl-count"></div><div class="bcl-list"></div>' +
+        '<div class="bcl-count" aria-live="polite"></div><div class="bcl-list" id="bcl-' + esc(label.replace(/[^a-z0-9]+/gi, "-")) + '-list"></div>' +
+        (opts.batchSize ? '<div class="bcl-load-more" hidden><button type="button" aria-controls="bcl-' + esc(label.replace(/[^a-z0-9]+/gi, "-")) + '-list"></button></div>' : "") +
         '<div class="bcl-note">Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
 
       var input = root.querySelector("input");
@@ -1000,7 +1015,17 @@
          the wrapper is opted out here rather than site-wide. See the CSS. */
       if (chips && chips.closest) {
         var toolBox = chips.closest(".bcl-tool");
-        if (toolBox) toolBox.className += " bcl-has-sticky";
+        /* Sticky needs the wrapper opened on desktop, but that same opening
+           lets the mobile swipe rail extend the document. Keep the state in
+           sync with the breakpoint, including after a reader resizes. */
+        function syncStickyContainment() {
+          if (!toolBox) return;
+          var compact = window.matchMedia && window.matchMedia("(max-width:640px)").matches;
+          if (compact) toolBox.classList.remove("bcl-has-sticky");
+          else toolBox.classList.add("bcl-has-sticky");
+        }
+        syncStickyContainment();
+        window.addEventListener("resize", syncStickyContainment);
       }
       var groupNames = [];
       cats.forEach(function (c) {
@@ -1012,6 +1037,10 @@
       var bcBox = root.querySelector(".bcl-bc-only");
       var count = root.querySelector(".bcl-count");
       var list = root.querySelector(".bcl-list");
+      var batchSize = Math.max(0, parseInt(opts.batchSize, 10) || 0);
+      var visibleLimit = batchSize;
+      var moreWrap = root.querySelector(".bcl-load-more");
+      var moreBtn = moreWrap && moreWrap.querySelector("button");
       /* A search-overlay hit links to /directory?q=Name, so honour it. */
       try {
         var pre = new URLSearchParams(location.search).get("q");
@@ -1049,14 +1078,21 @@
           });
           chips.innerHTML = buildGroupChips(groupNames, counts, cat ? groupBucketOf(cat) : activeGroup, base.length);
         }
-        count.textContent = rows.length + " OF " + all.length + " LISTINGS" + updatedSuffix(data.updated);
+        var shown = batchSize ? Math.min(visibleLimit, rows.length) : rows.length;
+        count.textContent = batchSize ? "SHOWING " + shown + " OF " + rows.length + " MATCHING · " + all.length + " LISTINGS" + updatedSuffix(data.updated) :
+          rows.length + " OF " + all.length + " LISTINGS" + updatedSuffix(data.updated);
         reportSearch(q, rows.length);
         if (!rows.length) {
           list.innerHTML = '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/contact">Suggest it</a>.</div>';
+          if (moreWrap) moreWrap.hidden = true;
           return;
         }
-        // Cap the nearby tier only when browsing (no active search), so a search never hides matches.
-        list.innerHTML = buildDirectoryHTML(rows, { cap: q ? 0 : 6, openNow: openNow, now: now });
+        list.innerHTML = buildDirectoryHTML(rows, { cap: q ? 0 : 6, limit: batchSize ? visibleLimit : 0, openNow: openNow, now: now });
+        if (moreWrap) {
+          var left = rows.length - shown;
+          moreWrap.hidden = left <= 0;
+          if (left > 0) moreBtn.textContent = "Load " + Math.min(batchSize, left) + " more";
+        }
         if (openNow) {
           note.textContent = "Open now uses each listing's posted hours. Listings whose hours cannot be read as set times stay in the results and are marked, because unreadable hours are not the same as closed.";
         } else {
@@ -1105,15 +1141,16 @@
          every visible card, and on the directory that is up to 317 of them. */
       var typing = null;
       input.addEventListener("input", function () {
+        if (batchSize) visibleLimit = batchSize;
         if (typing) clearTimeout(typing);
         typing = setTimeout(render, 120);
       });
       /* Picking a category from the dropdown supersedes the broader group
          filter, rather than intersecting with it and silently returning
          nothing when the two disagree. */
-      select.addEventListener("change", function () { activeGroup = ""; render(); });
-      openBox.addEventListener("change", render);
-      bcBox.addEventListener("change", render);
+      select.addEventListener("change", function () { activeGroup = ""; if (batchSize) visibleLimit = batchSize; render(); });
+      openBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(); });
+      bcBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(); });
       if (chips) {
         /* Delegated, because render() replaces the whole chip row. */
         chips.addEventListener("click", function (ev) {
@@ -1121,6 +1158,7 @@
           if (!btn || btn.disabled) return;
           activeGroup = btn.getAttribute("data-group") || "";
           select.value = "";
+          if (batchSize) visibleLimit = batchSize;
           render();
           /* Re-rendering destroyed the button that had focus. */
           var again = chips.querySelector('.bcl-chip[data-group="' + activeGroup + '"]');
@@ -1130,6 +1168,14 @@
           if (root.getBoundingClientRect && root.scrollIntoView && root.getBoundingClientRect().top < 0) {
             root.scrollIntoView();
           }
+        });
+      }
+      if (moreBtn) {
+        moreBtn.addEventListener("click", function () {
+          visibleLimit += batchSize;
+          render();
+          if (!moreWrap.hidden) moreBtn.focus();
+          else { count.setAttribute("tabindex", "-1"); count.focus(); }
         });
       }
       render();
@@ -1264,6 +1310,7 @@
   }
 
   function initJobs(root) {
+    if (!claimToolRoot(root, "jobs")) return;
     root.innerHTML = '<div class="bcl-count">Loading jobs…</div>';
     fetchJSON(REPO + "/data/jobs.json").then(function (data) {
       var all = data.jobs || [];
@@ -1303,7 +1350,13 @@
       var note = root.querySelector(".bcl-filter-note");
       var list = root.querySelector(".bcl-list");
       var tabBtns = [].slice.call(root.querySelectorAll(".bcl-tab"));
-      var tab = "local";
+      var searchState = toolSearchState(location.search);
+      if (searchState.q) input.value = searchState.q;
+      if (searchState.includeExtended) extBox.checked = true;
+      var tab = searchState.tab;
+      tabBtns.forEach(function (btn) {
+        btn.className = "bcl-tab" + (btn.getAttribute("data-tab") === tab ? " bcl-on" : "");
+      });
 
       /* The employer list is built from whatever is on the board today, and
          rebuilt per tab so it never offers an employer with nothing to show.
@@ -1340,7 +1393,8 @@
         }
         note.textContent = notes.join(" ");
         if (!rows.length) {
-          list.innerHTML = '<div class="bcl-unavailable">No jobs match right now. <a href="/contact">Suggest one</a>.</div>';
+          list.innerHTML = input.value ? toolSearchEmptyMessage("jobs", input.value) :
+            '<div class="bcl-unavailable">No jobs match right now. <a href="/contact">Suggest one</a>.</div>';
           return;
         }
         list.innerHTML = rows.map(jobCard).join("");
@@ -1420,6 +1474,7 @@
   }
 
   function initRentals(root) {
+    if (!claimToolRoot(root, "rentals")) return;
     root.innerHTML = '<div class="bcl-count">Loading rentals…</div>';
     fetchJSON(REPO + "/data/rentals.json").then(function (data) {
       var all = data.rentals || [];
@@ -1447,6 +1502,8 @@
       var verifiedBox = root.querySelector(".bcl-verified-only");
       var count = root.querySelector(".bcl-count");
       var list = root.querySelector(".bcl-list");
+      var searchState = toolSearchState(location.search);
+      if (searchState.q) input.value = searchState.q;
 
       function render() {
         var rows = filterRentals(all, {
@@ -1457,7 +1514,8 @@
         });
         count.textContent = rows.length + " OF " + all.length + " SAN LORENZO VALLEY RENTALS" + updatedSuffix(data.updated);
         if (!rows.length) {
-          list.innerHTML = '<div class="bcl-unavailable">No verified San Lorenzo Valley rentals are listed right now. <a href="/contact">Suggest one</a>.</div>';
+          list.innerHTML = input.value ? toolSearchEmptyMessage("rentals", input.value) :
+            '<div class="bcl-unavailable">No verified San Lorenzo Valley rentals are listed right now. <a href="/contact">Suggest one</a>.</div>';
           return;
         }
         list.innerHTML = rows.map(rentalCard).join("");
@@ -1654,6 +1712,12 @@
       return overlaps(lo, sun.getTime());
     }
     return true;
+  }
+
+  function eventMatchesQuery(e, query) {
+    var q = String(query || "").toLowerCase();
+    if (!q) return true;
+    return ((e.title || "") + " " + (e.location || "") + " " + (e.description || "")).toLowerCase().indexOf(q) >= 0;
   }
 
   function eventCard(e) {
@@ -2807,7 +2871,8 @@
         cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") + "</select>" +
         '<select class="bcl-ev-sort" aria-label="Sort events"><option value="date">Soonest first</option><option value="name">Name A to Z</option><option value="type">By type</option></select>' +
         "</div>" +
-        '<div class="bcl-count"></div><div class="bcl-event-grid"></div>' +
+        '<div class="bcl-count" aria-live="polite"></div><div class="bcl-event-grid" id="bcl-events-list"></div>' +
+        '<div class="bcl-load-more" hidden><button type="button" aria-controls="bcl-events-list"></button></div>' +
         '<div class="bcl-note">Details change. Confirm with the organizer before you go. <a href="/contact">Send a correction or add an event</a>.</div>';
 
       var input = root.querySelector(".bcl-ev-q");
@@ -2818,8 +2883,14 @@
       var clearBtn = root.querySelector(".bcl-ev-clear");
       var count = root.querySelector(".bcl-count");
       var grid = root.querySelector(".bcl-event-grid");
+      var moreWrap = root.querySelector(".bcl-load-more");
+      var moreBtn = moreWrap.querySelector("button");
+      var batchSize = 24;
+      var visibleLimit = batchSize;
       var range = "all";
       var rangeBtns = [].slice.call(root.querySelectorAll(".bcl-range button"));
+      var searchState = toolSearchState(location.search);
+      if (searchState.q) input.value = searchState.q;
 
       /* Typing a date is an explicit request, so it takes over from the chips
          and the chips clear themselves rather than silently fighting it. */
@@ -2837,8 +2908,7 @@
         var rows = all.filter(function (e) {
           if (!eventInRange(e, { range: mode2, from: fromInput.value, to: toInput.value })) return false;
           if (cat && (e.category || "Community") !== cat) return false;
-          if (!q) return true;
-          return (e.title + " " + (e.location || "") + " " + (e.description || "")).toLowerCase().indexOf(q) >= 0;
+          return eventMatchesQuery(e, q);
         });
         var mode = sortSel.value;
         rows.sort(function (a, b) {
@@ -2853,16 +2923,21 @@
           if (ao && bo) return String(a.end).localeCompare(String(b.end));
           return String(a.start).localeCompare(String(b.start));
         });
-        count.textContent = rows.length + " OF " + all.length + " UPCOMING" + updatedSuffix(data.updated);
+        var shown = Math.min(visibleLimit, rows.length);
+        var visible = rows.slice(0, shown);
+        count.textContent = "SHOWING " + shown + " OF " + rows.length + " MATCHING · " + all.length + " UPCOMING" + updatedSuffix(data.updated);
+        var left = rows.length - shown;
+        moreWrap.hidden = left <= 0;
+        if (left > 0) moreBtn.textContent = "Load " + Math.min(batchSize, left) + " more";
         var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         function monthKey(e) {
           if (evIsOngoing(e)) return "Happening now";
           var p = evParts(e.start);
           return p ? MONTHS[p.mo - 1] + " " + p.y : "Undated";
         }
-        if (mode === "date" && rows.length) {
+        if (mode === "date" && visible.length) {
           var html = "", lastKey = null;
-          rows.forEach(function (e) {
+          visible.forEach(function (e) {
             var k = monthKey(e);
             if (k !== lastKey) {
               if (lastKey !== null) html += "</div>";
@@ -2877,13 +2952,16 @@
           return;
         }
         grid.className = "bcl-event-grid";
-        grid.innerHTML = rows.length ? rows.map(eventCard).join("") : '<div class="bcl-unavailable">No events match. Try clearing the search or type filter.</div>';
+        grid.innerHTML = visible.length ? visible.map(eventCard).join("") : (input.value ?
+          toolSearchEmptyMessage("events", input.value) :
+          '<div class="bcl-unavailable">No events match. Try clearing the search or type filter.</div>');
       }
       rangeBtns.forEach(function (btn) {
         btn.addEventListener("click", function () {
           range = btn.getAttribute("data-r");
           fromInput.value = "";
           toInput.value = "";
+          visibleLimit = batchSize;
           track("event_filter_use", { filter: "range", value: trackText(range, 40) });
           render();
         });
@@ -2891,6 +2969,7 @@
       clearBtn.addEventListener("click", function () {
         fromInput.value = "";
         toInput.value = "";
+        visibleLimit = batchSize;
         track("event_filter_use", { filter: "clear_dates", value: "" });
         render();
       });
@@ -2922,22 +3001,32 @@
           });
         }
       });
-      input.addEventListener("input", render);
+      input.addEventListener("input", function () { visibleLimit = batchSize; render(); });
       catSel.addEventListener("change", function () {
         track("event_filter_use", { filter: "category", value: trackText(catSel.value || "all", 40) });
+        visibleLimit = batchSize;
         render();
       });
       sortSel.addEventListener("change", function () {
         track("event_filter_use", { filter: "sort", value: trackText(sortSel.value, 40) });
+        visibleLimit = batchSize;
         render();
       });
       fromInput.addEventListener("change", function () {
         track("event_filter_use", { filter: "date_from", value: trackText(fromInput.value, 40) });
+        visibleLimit = batchSize;
         render();
       });
       toInput.addEventListener("change", function () {
         track("event_filter_use", { filter: "date_to", value: trackText(toInput.value, 40) });
+        visibleLimit = batchSize;
         render();
+      });
+      moreBtn.addEventListener("click", function () {
+        visibleLimit += batchSize;
+        render();
+        if (!moreWrap.hidden) moreBtn.focus();
+        else { count.setAttribute("tabindex", "-1"); count.focus(); }
       });
       render();
     }).catch(function () {
@@ -4296,6 +4385,53 @@
   /* Order results by what a resident most often wants, not alphabetically. */
   var SEARCH_ORDER = ["page", "business", "food", "article", "event", "job", "rental"];
 
+  /* Tool records keep stable board routes in the static index. Add a reader's
+     query at render time, then restore it before each board's first render. */
+  function toolSearchHref(record) {
+    var r = record || {};
+    var paths = { event: "/events", job: "/jobs", rental: "/rentals" };
+    var path = paths[r.t];
+    var href = String(r.u || "");
+    var name = String(r.n || "").trim();
+    if (!path || href !== path || !name) return href;
+    /* Search-index job keywords use both spaces and underscores. Remote is a
+       destination state, not merely a display word, while every non-remote
+       job enables the local board's extended tier so a valid indexed commute
+       result is not hidden by the reader-first default. */
+    var isRemote = r.t === "job" && /(^|[\s_-])remote(?=$|[\s_-])/i.test(String(r.k || ""));
+    var extra = r.t === "job" ? (isRemote ? "&tab=remote" : "&extended=1") : "";
+    return path + "?q=" + encodeURIComponent(name) + extra;
+  }
+
+  function toolSearchState(search) {
+    var q = "", tab = "local", includeExtended = false;
+    try {
+      var params = new URLSearchParams(String(search || ""));
+      q = String(params.get("q") || "").trim();
+      if (params.get("tab") === "remote") tab = "remote";
+      includeExtended = params.get("extended") === "1";
+    } catch (e) { /* show the board's normal default in older browsers */ }
+    return { q: q, tab: tab, includeExtended: includeExtended };
+  }
+
+  function toolSearchEmptyMessage(kind, query) {
+    var labels = { events: "events", jobs: "jobs", rentals: "rentals" };
+    var label = labels[kind] || "results";
+    return '<div class="bcl-unavailable">No ' + label + ' match "' + esc(query) +
+      '" right now. It may have closed or changed. Try editing or clearing the search. <a href="/contact">Tell us about it</a>.</div>';
+  }
+
+  /* Jobs and Rentals are loaded by the site-wide immutable footer. This root
+     marker makes an accidental second script tag harmless without replacing
+     the first load's in-flight fetch or its event listeners. */
+  function claimToolRoot(root, name) {
+    if (!root) return false;
+    var attr = "data-bcl-init-" + name;
+    if (root.getAttribute(attr) === "true") return false;
+    root.setAttribute(attr, "true");
+    return true;
+  }
+
   function searchTerms(q) {
     return String(q || "").toLowerCase().split(/[^a-z0-9']+/).filter(function (t) {
       return t.length > 1;
@@ -4430,7 +4566,7 @@
       groupHits(list).forEach(function (g) {
         html += '<p class="bcl-search-group">' + esc(g.label) + "</p>";
         g.items.forEach(function (r) {
-          html += '<a class="bcl-search-hit" href="' + esc(r.u) + '"><strong>' + esc(r.n) + "</strong>" +
+          html += '<a class="bcl-search-hit" href="' + esc(toolSearchHref(r)) + '"><strong>' + esc(r.n) + "</strong>" +
             (r.s ? "<span>" + esc(r.s) + "</span>" : "") + "</a>";
         });
       });
@@ -4530,7 +4666,7 @@
     var d = document.getElementById("bcl-directory");
     /* Chips are directory-only: /food has few enough categories that the
        dropdown already covers it, and a second control there would be noise. */
-    if (d) initListings(d, "directory.json", "directory", { chips: true });
+    if (d) initListings(d, "directory.json", "directory", { chips: true, batchSize: 24 });
     var f = document.getElementById("bcl-food");
     if (f) initListings(f, "food.json", "food and drink");
     var e = document.getElementById("bcl-events");
@@ -4557,6 +4693,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();

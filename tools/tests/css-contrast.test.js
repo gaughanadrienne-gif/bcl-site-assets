@@ -54,7 +54,7 @@ test("CSS_ID is versioned, and injectCSS clears older stylesheets before writing
   // injectCSS() returns early if an element with this id exists, so the id has
   // to change whenever the stylesheet does. The sweep of style[id^=...] is what
   // stops a cached copy of this script leaving new markup unstyled.
-  assert.match(SRC, /var CSS_ID = "bcl-tools-css-v17";/);
+  assert.match(SRC, /var CSS_ID = "bcl-tools-css-v18";/);
   assert.match(SRC, /querySelectorAll\("style\[id\^='bcl-tools-css'\]"\)/);
 });
 
