@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v18";
+  var CSS_ID = "bcl-tools-css-v19";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -216,9 +216,16 @@
       ".bcl-tool *{box-sizing:border-box;}",
       ".bcl-tool h3{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.5rem;margin:1.6em 0 .5em;}",
       ".bcl-controls{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px;}",
-      ".bcl-controls input,.bcl-controls select{font-family:Inter,Arial,sans-serif;font-size:.95rem;padding:10px 14px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;}",
-      ".bcl-controls input{flex:1 1 220px;}",
-      ".bcl-controls select{flex:0 1 auto;max-width:100%;}",
+      /* Scope the text-input rules by input TYPE. The filter checkboxes sit
+         inside their own `.bcl-checklabel` flex container, so a bare
+         `.bcl-controls input` rule reached them too: at <=640px the
+         checkbox took width:100% of its label and pushed the label text
+         out of the visible box, which is why Directory showed two
+         unlabelled boxes on a phone. Document overflow stayed zero. */
+      ".bcl-controls input:not([type=\"checkbox\"]):not([type=\"radio\"]),.bcl-controls select{font-family:Inter,Arial,sans-serif;font-size:.95rem;padding:10px 14px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;}",
+      ".bcl-controls input:not([type=\"checkbox\"]):not([type=\"radio\"]){flex:1 1 220px;min-width:0;max-width:100%;}",
+      ".bcl-controls select{flex:0 1 auto;max-width:100%;min-width:0;}",
+      ".bcl-controls input[type=\"checkbox\"],.bcl-controls input[type=\"radio\"]{flex:0 0 auto;width:auto;min-width:0;max-width:none;margin:0;}",
       /* Category chips. 317 directory listings is a scanning problem, so the
          chip row stays put while the page scrolls. Sticky, not fixed: a fixed
          element inside a Squarespace code block has to be reparented to body,
@@ -461,7 +468,7 @@
       ".bcl-today-ev span{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:#f0a883 !important;margin-right:8px;}",
       ".bcl-today a{color:#f0a883 !important;text-decoration:underline;}",
       ".bcl-today-links{margin-top:12px;font-size:.82rem;}",
-      "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-controls input,.bcl-controls select{flex:0 0 auto;width:100%;}.bcl-today-head span{margin-left:0;}}",
+      "@media (max-width:640px){.bcl-controls{flex-direction:column;}.bcl-controls input:not([type=\"checkbox\"]):not([type=\"radio\"]),.bcl-controls select{flex:0 0 auto;width:100%;}.bcl-controls .bcl-checklabel{width:100%;min-width:0;white-space:normal;}.bcl-today-head span{margin-left:0;}}",
       /* Homepage: Latest from Around Town + consolidated Explore grid */
       ".bcl-sec-viewall{color:#d56e47 !important;font-weight:600;font-size:.92rem;text-decoration:none !important;white-space:nowrap;}",
       ".bcl-recent{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}",
