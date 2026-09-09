@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v18";
+  var CSS_ID = "bcl-tools-css-v19";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -524,6 +524,27 @@
       ".bcl-raincard-note{font-size:.86rem;color:#626c66 !important;line-height:1.4;flex:1 1 240px;}",
       ".bcl-raincard-go{font-size:.85rem;font-weight:600;color:#2e6b46 !important;white-space:nowrap;}",
       "@media (max-width:600px){.bcl-raincard-go{flex:0 0 100%;}}",
+      /* Homepage business spotlight. Two flex children that each hold their own
+         line, so the whole card is one wrap rule rather than a grid that needs a
+         separate mobile template. min-width:0 on both is what stops a long
+         business name from pushing the card past .bcl-wrap and putting a
+         horizontal scrollbar on the homepage, the same failure the rain card
+         padding note describes. Brand tokens only: forest #173f36 for the name,
+         clay #d56e47 for the kicker and the focus ring, link green #2e6b46 for
+         the call to action. No gold; it is retired as a UI colour. */
+      ".bcl-spot{box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:stretch;background:#fffdf8;border:1px solid #e3ddcf;overflow:hidden;text-decoration:none !important;color:inherit !important;transition:box-shadow .15s,transform .15s;}",
+      ".bcl-spot:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(23,63,54,.12);}",
+      ".bcl-spot:focus-visible{outline:3px solid #d56e47;outline-offset:2px;}",
+      ".bcl-spot-img{display:block;flex:1 1 300px;min-width:0;aspect-ratio:1200/630;background:#a8bd7f;overflow:hidden;}",
+      ".bcl-spot-img img{width:100%;height:100%;object-fit:cover;display:block;}",
+      ".bcl-spot-body{display:flex;flex-direction:column;justify-content:center;gap:9px;flex:1 1 300px;min-width:0;padding:24px clamp(20px,3vw,34px);}",
+      ".bcl-spot-kick{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#d56e47 !important;}",
+      ".bcl-spot-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.35rem,3.1vw,1.85rem);line-height:1.15;color:#173f36 !important;}",
+      ".bcl-spot-blurb{font-size:.95rem;line-height:1.5;color:#33413b !important;}",
+      ".bcl-spot-go{font-size:.85rem;font-weight:600;color:#2e6b46 !important;}",
+      /* Same 820px breakpoint the Around Town cards stack at, so the two
+         sections change shape together instead of one at a time. */
+      "@media (max-width:820px){.bcl-spot-img,.bcl-spot-body{flex:1 1 100%;}.bcl-spot-body{padding:20px 20px 24px;}}",
       /* Residents page: compact jump-nav */
       ".bcl-jumpnav-sec{background:#fffdf8;padding:16px 0;border-bottom:1px solid #ece6d8;}",
       ".bcl-jumpnav{display:flex;flex-wrap:wrap;gap:8px;}",
@@ -2671,7 +2692,7 @@
        copy of this script, or a console-injected preview) would stack a duplicate
        of each. Clear our own prior work first. Explore is exempt: it replaces the
        static section it is built from, so it can never double. */
-    ["bcl-home-board", "bcl-home-recent", "bcl-home-rain"].forEach(function (id) {
+    ["bcl-home-board", "bcl-home-recent", "bcl-home-rain", "bcl-home-spotlight"].forEach(function (id) {
       var prior = document.getElementById(id);
       if (prior) prior.remove();
     });
@@ -2726,6 +2747,13 @@
     }
     initRecentArticles(document.getElementById("bcl-recent"));
     if (lastBoardSec) initHomeRainCard(lastBoardSec);
+    /* Spotlight sits directly ABOVE Latest from Around Town, so the order is
+       board, rain, spotlight, articles. Both the rain card and this one arrive
+       after a fetch, so each anchors to a section that already exists in the DOM
+       synchronously (rain after the board, spotlight before the recent strip)
+       rather than to each other. Racing two async inserts on the same anchor
+       would order the page by whichever request happened to win. */
+    initHomeSpotlight(home, recent);
   }
 
   /* Homepage rainfall card (owner, 2026-07-31). The decision behind it: tools get
@@ -2766,6 +2794,163 @@
         '<span class="bcl-raincard-go">See the rain tracker &rarr;</span>' +
         "</a></div>";
       afterSec.parentNode.insertBefore(sec, afterSec.nextSibling);
+    }).catch(function () { /* no card, by design */ });
+  }
+
+  /* ---------- homepage business spotlight (owner, 2026-09-09) ----------
+
+     One business a week on the homepage, from a DATED running order the owner
+     keeps in data/spotlight.json. Deliberately not auto-rotation: the order is
+     an editorial decision, and a rotation would eventually surface an article
+     that is mid-correction.
+
+     THE BOUNDARY IS WEDNESDAY 00:00 AMERICA/LOS_ANGELES, and that is a timing
+     requirement, not a preference. The owner posts the matching spotlight to
+     social on THURSDAY, so the homepage has to already be showing that business
+     when the post lands. Wednesday gives a full day of margin: if a Thursday
+     post goes out early, or a scheduler fires at 6 a.m., the card has been up
+     since the previous midnight. A Thursday boundary would race the post, and
+     Monday would waste two days of the week the owner is promoting.
+
+     TIMEZONE: the boundary is evaluated in PACIFIC time for every reader, not
+     in the reader's own zone. The site is served worldwide and a naive local
+     midnight flips at the wrong moment: a reader in London at 08:00 Thursday is
+     still on Wednesday afternoon in Boulder Creek, and a reader in Honolulu at
+     21:00 Tuesday is already Wednesday here. Anchoring to Pacific means every
+     reader sees the same business the owner is posting about, which is the whole
+     point of the card. rainPacificDay() already does this correctly for the rain
+     tracker, including the DST shift, so it is reused rather than reinvented.
+
+     🚨 It renders NOTHING unless every piece is real: a Pacific date the browser
+     could actually resolve, a schedule row for THIS week, and a live article at
+     that slug carrying its own image. Same house guardrail as the rain card. A
+     200 with an unexpected shape must not become a confident claim, a stale week
+     must not linger past its Tuesday, and an empty or broken card is worse for
+     the reader than no card at all. Running out of scheduled weeks is a normal
+     state, not an error: the card just stops appearing. */
+
+  var SPOTLIGHT_FILE = "spotlight.json";
+  var SPOTLIGHT_WEEK_DOW = 3; // Wednesday, per the note above.
+  /* The slug is owner-typed and goes straight into a URL path, so keep it to the
+     shape Squarespace actually mints. Anything else is a typo or worse. */
+  var SPOTLIGHT_SLUG_RE = /^[a-z0-9][a-z0-9-]{0,120}$/;
+
+  /* The Wednesday that owns the week containing dayKey, as YYYY-MM-DD. Both the
+     reader's Pacific date and each scheduled date go through this, so a row the
+     owner dated mid-week still lands on the right window instead of vanishing.
+     Rounding is always BACKWARD to the Wednesday, so a row can only ever go live
+     earlier in its week, never later, and the Thursday guarantee holds. */
+  function spotlightWeekStart(dayKey) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(dayKey == null ? "" : dayKey));
+    if (!m) return null;
+    var y = +m[1], mo = +m[2], d = +m[3];
+    var t = Date.UTC(y, mo - 1, d);
+    var probe = new Date(t);
+    /* Date.UTC rolls 2026-02-31 forward into March without complaint, so a
+       round-trip is the only way to reject a date that does not exist. */
+    if (probe.getUTCFullYear() !== y || probe.getUTCMonth() !== mo - 1 || probe.getUTCDate() !== d) return null;
+    var back = (probe.getUTCDay() - SPOTLIGHT_WEEK_DOW + 7) % 7;
+    var start = new Date(t - back * 86400000);
+    return start.getUTCFullYear() + "-" + pad2(start.getUTCMonth() + 1) + "-" + pad2(start.getUTCDate());
+  }
+
+  function spotlightRowIsUsable(row) {
+    if (!row || typeof row !== "object") return false;
+    if (typeof row.slug !== "string" || !SPOTLIGHT_SLUG_RE.test(row.slug)) return false;
+    if (typeof row.business !== "string" || !row.business.trim()) return false;
+    if (typeof row.blurb !== "string" || !row.blurb.trim()) return false;
+    return spotlightWeekStart(row.week) != null;
+  }
+
+  /* The row for the week that contains dayKey, or null. Null covers every
+     failure the card must survive silently: no payload, a payload that is not
+     the expected shape, a schedule that has run out, and a row missing any of
+     the four fields the card is built from. */
+  function spotlightPick(payload, dayKey) {
+    var want = spotlightWeekStart(dayKey);
+    if (!want) return null;
+    var rows = payload && payload.schedule;
+    if (Object.prototype.toString.call(rows) !== "[object Array]") return null;
+    for (var i = 0; i < rows.length; i++) {
+      if (!spotlightRowIsUsable(rows[i])) continue;
+      if (spotlightWeekStart(rows[i].week) === want) return rows[i];
+    }
+    return null;
+  }
+
+  /* The blog item has to be the post we asked for and has to carry its own
+     header image. Squarespace serves the collection listing rather than a 404
+     in some misconfigurations, so the urlId is checked, not assumed. */
+  function spotlightItemIsUsable(item, slug) {
+    return !!(item && item.urlId === slug && typeof item.assetUrl === "string" && item.assetUrl);
+  }
+
+  function spotlightCardHTML(entry, item) {
+    var href = item.fullUrl || ("/around-town/" + entry.slug);
+    /* Same assetUrl the Around Town cards use, sized up because this one is
+       roughly half the page wide on a desktop. */
+    var img = item.assetUrl + (item.assetUrl.indexOf("?") < 0 ? "?format=1000w" : "");
+    var alt = (item.seoData && item.seoData.seoTitle) || item.title || entry.business;
+    return '<a class="bcl-spot" href="' + esc(href) + '">' +
+      '<span class="bcl-spot-img"><img src="' + esc(img) + '" alt="' + esc(alt) + '" loading="lazy"></span>' +
+      '<span class="bcl-spot-body">' +
+      '<span class="bcl-spot-kick">This week\'s business spotlight</span>' +
+      '<span class="bcl-spot-name">' + esc(entry.business) + "</span>" +
+      '<span class="bcl-spot-blurb">' + esc(entry.blurb) + "</span>" +
+      '<span class="bcl-spot-go">Read the spotlight &rarr;</span>' +
+      "</span></a>";
+  }
+
+  /* beforeSec is the Around Town strip, which the spotlight sits above. It is
+     passed with the homepage container because initRecentArticles REMOVES that
+     strip when the blog feed is down, and by the time this fetch lands the
+     anchor can already be detached. Measured in the preview harness: with the
+     feed 404ing, anchoring on it alone dropped the spotlight card as well.
+     Losing the whole card because a different section failed is not the
+     fail-closed behaviour this is supposed to have, so fall back to the end of
+     the homepage rather than to nothing. */
+  function initHomeSpotlight(home, beforeSec) {
+    if (!home && !(beforeSec && beforeSec.parentNode)) return;
+    if (document.getElementById("bcl-home-spotlight")) return;
+    /* No resolvable Pacific date means no way to know which week it is, and a
+       guess would flip the card on the wrong day for everyone. */
+    var day = rainPacificDay();
+    if (!day) return;
+
+    /* The promise is returned so a test can await the render. Nothing on the
+       page depends on it; the .catch below is what keeps a failed fetch silent. */
+    return fetchJSON(REPO + "/data/" + SPOTLIGHT_FILE).then(function (payload) {
+      var entry = spotlightPick(payload, day);
+      if (!entry) return; // nothing scheduled for this week, by design
+      /* One request for the exact post instead of walking the paged collection:
+         the spotlight is usually well past page 1, and /around-town/<slug>
+         ?format=json returns the same item record with the same assetUrl. A slug
+         that is not live 404s, which fetchJSON turns into a rejection. */
+      return fetchJSON("/around-town/" + entry.slug + "?format=json").then(function (data) {
+        var item = data && data.item;
+        if (!spotlightItemIsUsable(item, entry.slug)) return;
+        if (document.getElementById("bcl-home-spotlight")) return;
+        var anchor = (beforeSec && beforeSec.parentNode) ? beforeSec : null;
+        if (!anchor && !home) return;
+
+        var sec = document.createElement("section");
+        sec.id = "bcl-home-spotlight";
+        sec.className = "bcl-section";
+        sec.innerHTML = '<div class="bcl-wrap">' + spotlightCardHTML(entry, item) + "</div>";
+        if (anchor) anchor.parentNode.insertBefore(sec, anchor);
+        else home.appendChild(sec);
+
+        var link = sec.querySelector("a.bcl-spot");
+        if (link) {
+          link.addEventListener("click", function () {
+            track("spotlight_click", {
+              business: trackText(entry.business),
+              slug: trackText(entry.slug),
+              week: trackText(entry.week)
+            });
+          });
+        }
+      });
     }).catch(function () { /* no card, by design */ });
   }
 
@@ -4693,6 +4878,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
