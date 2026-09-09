@@ -1,62 +1,86 @@
 {
-  "_readme": "Owner-controlled running order for the homepage business spotlight card. See SPOTLIGHT.md in the repo root for how to add a week. Every 'week' value is the WEDNESDAY the card flips, in America/Los_Angeles. The card is live from Wednesday 00:00 Pacific through Tuesday 23:59 Pacific, so it is already showing the new business before the Thursday social post goes out. If no row matches the current week the card renders nothing at all; the homepage is unchanged and nothing breaks.",
-  "_slug_rule": "slug must be the live Around Town URL slug, exactly as it appears after /around-town/. Cross-check data/live-article-slugs.json. If the slug does not resolve on the live site, the card renders nothing.",
-  "_hold": "Do NOT schedule air-and-fire-boulder-creek, wild-lilith-boulder-creek, good-vibes-boulder-creek or boulder-creek-golf-country-club until their corrections land (held 2026-09-09). Remove a slug from this list once its correction is published.",
-  "_hold_slugs": [
-    "air-and-fire-boulder-creek",
-    "wild-lilith-boulder-creek",
-    "good-vibes-boulder-creek",
-    "boulder-creek-golf-country-club"
-  ],
-  "asOf": "2026-09-09",
-  "schedule": [
-    {
-      "week": "2026-09-09",
-      "slug": "viscosity-art-glass-boulder-creek",
-      "business": "Viscosity Art Glass",
-      "blurb": "Their glass hangs in a Scotts Valley medical office, and the studio that made it is on Boulder Creek's main street. Two artists trained in Brooklyn and Venice, and an hour on the bench if you want to try it yourself."
-    },
-    {
-      "week": "2026-09-16",
-      "slug": "boulder-creek-pharmacy",
-      "business": "Boulder Creek Pharmacy",
-      "blurb": "When Highway 9 is a mess or the car is in the shop, the prescription still gets to you. The independent on Central Avenue delivers anywhere in the valley for free, and has been in town over 40 years."
-    },
-    {
-      "week": "2026-09-23",
-      "slug": "herrick-games-hobbies-boulder-creek",
-      "business": "Herrick Games and Hobbies",
-      "blurb": "Skye Herrick had owned his Boulder Creek house for two days when the CZU fire took him out of it. Gamers he'd never met mailed him models and paint. That's where the program his Pine Street shop runs today came from."
-    },
-    {
-      "week": "2026-09-30",
-      "slug": "boulder-creek-veterinary-clinic",
-      "business": "Boulder Creek Veterinary Clinic",
-      "blurb": "Dr. Kathie Gerrity took over in December 1985 and called it just a transfer of keys. One employee, an avocado-green telephone, and patient records on 4-by-6 index cards. Forty years on, the clinic is still here."
-    },
-    {
-      "week": "2026-10-07",
-      "slug": "springygirl-boulder-creek",
-      "business": "Springygirl",
-      "blurb": "The rule at the door needs explaining: Springygirl doesn't take local donations or consignments. Spring Loftus buys her secondhand stock from nonprofits, so the money has already gone somewhere before a piece reaches the rack."
-    },
-    {
-      "week": "2026-10-14",
-      "slug": "stumptown-supply-boulder-creek",
-      "business": "Stumptown Supply",
-      "blurb": "A special-education teacher picked up bar shifts at the Redwood Keg to help with his daughter's college costs. Customers kept telling him about the flume, old feuds and a drive-in nobody mentions anymore. Now those stories are on shirts."
-    },
-    {
-      "week": "2026-10-21",
-      "slug": "the-mat-laundromat-boulder-creek",
-      "business": "The Mat",
-      "blurb": "He grew up around laundromats. She couldn't stand them. The building's been in his family since 1974, and in 2021 they pulled out the coin slots and put an app in their place."
-    },
-    {
-      "week": "2026-10-28",
-      "slug": "bowzer-baths-boulder-creek",
-      "business": "Bowzer Baths",
-      "blurb": "In April 2020 the shop asked for $1,700 to get through the shutdown. Twenty-five people sent $1,875. Kim Brown has been grooming Boulder Creek's dogs since 1998, and it's the nervous ones people mention."
-    }
-  ]
+ "_readme": "Running order for the homepage business spotlight card. THE SOURCE OF TRUTH IS Social Media/Blotato_2026_H2/MASTER_SCHEDULE.csv: every BCL-SPOT post is a Thursday and this file mirrors it. If the two disagree, the social schedule is right and this file is stale. Each 'week' is the THURSDAY the business takes over, in America/Los_Angeles. A business holds the card until the next scheduled Thursday, so gaps in the order are fine and the previous business simply stays up. See SPOTLIGHT.md for how to add one.",
+ "_slug_rule": "slug must be the live Around Town URL slug, exactly as it appears after /around-town/. Cross-check data/live-article-slugs.json. If it does not resolve live, the card renders nothing rather than a broken link.",
+ "_expiry": "If the newest row is more than 28 days old the card retires itself, because 'This week's business spotlight' stops being stale and becomes false. Add rows before then.",
+ "asOf": "2026-09-09",
+ "schedule": [
+  {
+   "week": "2026-09-03",
+   "slug": "spotlight-supernatural-beauty",
+   "business": "SuperNatural Beauty",
+   "blurb": "A critical care nurse spent ninety minutes floating in warm salt water, said it felt like a week of vacation, and started taking her own care seriously. The Boulder Creek studio came out of that decision."
+  },
+  {
+   "week": "2026-09-10",
+   "slug": "boulder-creek-golf-country-club",
+   "business": "Boulder Creek Golf & Country Club",
+   "blurb": "The redwoods stand close enough that a sliced ball disappears into the shade and you stop looking. Six of the nine holes the CZU fire took are being rebuilt, and there is bluegrass on the Great Lawn on the 19th."
+  },
+  {
+   "week": "2026-09-17",
+   "slug": "wild-lilith-boulder-creek",
+   "business": "Wild Lilith",
+   "blurb": "Someone will put a glass of champagne in your hand before you have looked at a rack. It started at the grand opening on the Fourth of July and the owner decided it should never stop."
+  },
+  {
+   "week": "2026-09-24",
+   "slug": "scopazzis-boulder-creek",
+   "business": "Scopazzi's",
+   "blurb": "The foundation went down in 1915 for a boarding house full of loggers. A hundred years later it is where the valley books the dinners that matter, and the town cannot agree which year it opened."
+  },
+  {
+   "week": "2026-10-01",
+   "slug": "herrick-games-hobbies-boulder-creek",
+   "business": "Herrick Games and Hobbies",
+   "blurb": "Skye Herrick had owned his Boulder Creek house for two days when the CZU fire took him out of it. Gamers he had never met mailed him models and paint. That is where the program his shop runs today came from."
+  },
+  {
+   "week": "2026-10-08",
+   "slug": "bowzer-baths-boulder-creek",
+   "business": "Bowzer Baths",
+   "blurb": "When the pandemic shut the doors, the groomer asked for $1,700 to bridge the gap. Twenty-five people sent $1,875. A small number that told her the shop's survival was not only her problem."
+  },
+  {
+   "week": "2026-10-15",
+   "slug": "lille-aeske-arthouse-boulder-creek",
+   "business": "lille aeske arthouse",
+   "blurb": "Three hundred and fifty square feet with a stage in it. The name is Danish for little box, which is the joke and also the measurement. The lights go down and the room belongs to the music."
+  },
+  {
+   "week": "2026-10-22",
+   "slug": "boulder-creek-veterinary-clinic",
+   "business": "Boulder Creek Veterinary Clinic",
+   "blurb": "One employee, an avocado-green telephone, patient records on index cards and a coin-operated scale. Dr. Kathie Gerrity called it just a transfer of keys in 1985. Forty years on the clinic is still here."
+  },
+  {
+   "week": "2026-11-05",
+   "slug": "tree-house-cafe-boulder-creek",
+   "business": "Tree House Cafe",
+   "blurb": "Living redwoods grow up through the floor and out through the roof, and the seating was built to fit around them. Close enough to the creek that the air changes when you get out of the car."
+  },
+  {
+   "week": "2026-11-19",
+   "slug": "swag-boulder-creek",
+   "business": "SWAG",
+   "blurb": "The console that started it cost $75 and nothing in it worked. He fixed the cabinet, sold it for $750 still broken, and that bothered him enough to spend the money on more of them."
+  },
+  {
+   "week": "2026-12-10",
+   "slug": "boulder-creek-antiques-macs-place",
+   "business": "Boulder Creek Antiques at Mac's Place",
+   "blurb": "June 2020: downtown was dark and nobody knew when shoppers would come back. That is the month three women decided to buy the antique shop. None of them were strangers to it."
+  },
+  {
+   "week": "2026-12-17",
+   "slug": "scarborough-home-garden-boulder-creek",
+   "business": "Scarborough Home & Garden",
+   "blurb": "Seeds, chicken food, cleaning supplies, and whatever the homestead decided to need this week. In a town where most errands mean a drive down the valley, that is the whole argument for a hardware store."
+  },
+  {
+   "week": "2026-12-24",
+   "slug": "kbcz-boulder-creek-radio",
+   "business": "KBCZ 89.3 FM",
+   "blurb": "A goth show, a big band show, a reggae show and a news roundup, every one of them made by somebody who lives here. The studio is a storefront on Highway 9, right on the street with everybody else."
+  }
+ ]
 }

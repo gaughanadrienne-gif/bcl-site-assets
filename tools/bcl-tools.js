@@ -537,11 +537,17 @@
       ".bcl-spot:focus-visible{outline:3px solid #d56e47;outline-offset:2px;}",
       ".bcl-spot-img{display:block;flex:1 1 300px;min-width:0;aspect-ratio:1200/630;background:#a8bd7f;overflow:hidden;}",
       ".bcl-spot-img img{width:100%;height:100%;object-fit:cover;display:block;}",
-      ".bcl-spot-body{display:flex;flex-direction:column;justify-content:center;gap:9px;flex:1 1 300px;min-width:0;padding:24px clamp(20px,3vw,34px);}",
-      ".bcl-spot-kick{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#d56e47 !important;}",
-      ".bcl-spot-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.35rem,3.1vw,1.85rem);line-height:1.15;color:#173f36 !important;}",
-      ".bcl-spot-blurb{font-size:.95rem;line-height:1.5;color:#33413b !important;}",
-      ".bcl-spot-go{font-size:.85rem;font-weight:600;color:#2e6b46 !important;}",
+      ".bcl-spot-body{display:flex;flex-direction:column;justify-content:center;gap:11px;flex:1 1 300px;min-width:0;padding:24px clamp(20px,3vw,34px);}",
+      /* #b35230 is CLAY DARKENED FOR SMALL TEXT ONLY, and it is a deliberate
+         deviation from the brand guide worth knowing about. Clay #d56e47 measures
+         3.36:1 on this card's #fffdf8 ground, which fails WCAG AA for text this
+         size; the owner reported the card hard to read and the kicker was part of
+         it. #b35230 is 4.96:1 and still reads as clay. Full clay stays on the
+         focus ring, where it sits against a 3px outline rather than as prose. */
+      ".bcl-spot-kick{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#b35230 !important;}",
+      ".bcl-spot-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.55rem,3.4vw,2.1rem);line-height:1.14;color:#173f36 !important;}",
+      ".bcl-spot-blurb{font-size:clamp(1.02rem,1.15vw,1.12rem);font-weight:500;line-height:1.62;color:#24312c !important;}",
+      ".bcl-spot-go{font-size:.95rem;font-weight:700;color:#2e6b46 !important;}",
       /* Same 820px breakpoint the Around Town cards stack at, so the two
          sections change shape together instead of one at a time. */
       "@media (max-width:820px){.bcl-spot-img,.bcl-spot-body{flex:1 1 100%;}.bcl-spot-body{padding:20px 20px 24px;}}",
@@ -2746,14 +2752,28 @@
       home.appendChild(recent);
     }
     initRecentArticles(document.getElementById("bcl-recent"));
-    if (lastBoardSec) initHomeRainCard(lastBoardSec);
-    /* Spotlight sits directly ABOVE Latest from Around Town, so the order is
-       board, rain, spotlight, articles. Both the rain card and this one arrive
-       after a fetch, so each anchors to a section that already exists in the DOM
-       synchronously (rain after the board, spotlight before the recent strip)
-       rather than to each other. Racing two async inserts on the same anchor
-       would order the page by whichever request happened to win. */
-    initHomeSpotlight(home, recent);
+
+    /* Order is board, SPOTLIGHT, rain, articles (owner, 2026-09-09: "maybe we
+       move it up higher"). The spotlight is a weekly editorial feature the owner
+       actively promotes, so it outranks the rain strip.
+
+       The shell is created SYNCHRONOUSLY here and filled by the fetch later.
+       Both this and the rain card arrive asynchronously, so anchoring them to
+       each other would order the page by whichever request won the race. An
+       empty placeholder in the right place removes the race entirely: the rain
+       card then anchors after a node that already exists, and the spotlight has
+       nowhere else to land. It carries display:none until it has real content,
+       and deletes itself if it never gets any, so a failed fetch leaves no gap. */
+    var spotSec = null;
+    if (lastBoardSec && lastBoardSec.parentNode) {
+      spotSec = document.createElement("section");
+      spotSec.id = "bcl-home-spotlight";
+      spotSec.className = "bcl-section";
+      spotSec.style.display = "none";
+      lastBoardSec.parentNode.insertBefore(spotSec, lastBoardSec.nextSibling);
+    }
+    if (lastBoardSec) initHomeRainCard(spotSec || lastBoardSec);
+    initHomeSpotlight(home, spotSec);
   }
 
   /* Homepage rainfall card (owner, 2026-07-31). The decision behind it: tools get
@@ -2804,13 +2824,19 @@
      an editorial decision, and a rotation would eventually surface an article
      that is mid-correction.
 
-     THE BOUNDARY IS WEDNESDAY 00:00 AMERICA/LOS_ANGELES, and that is a timing
-     requirement, not a preference. The owner posts the matching spotlight to
-     social on THURSDAY, so the homepage has to already be showing that business
-     when the post lands. Wednesday gives a full day of margin: if a Thursday
-     post goes out early, or a scheduler fires at 6 a.m., the card has been up
-     since the previous midnight. A Thursday boundary would race the post, and
-     Monday would waste two days of the week the owner is promoting.
+     THE BOUNDARY IS THURSDAY 00:00 AMERICA/LOS_ANGELES, and it is set by a
+     schedule that already exists rather than chosen here. Every business
+     spotlight post in Social Media/Blotato_2026_H2/MASTER_SCHEDULE.csv falls on
+     a Thursday (BCL-SPOT-001 SuperNatural Beauty 3 Sep, BCL-SPOT-013 the golf
+     club 10 Sep, and so on), and the owner's own description of the cadence is
+     that a business holds the slot until the next Thursday. The card exists to
+     mirror that, so it flips on the same day the post lands.
+
+     This shipped on Wednesday first, from an assumption, and the owner corrected
+     it within the hour: the running order was invented here when a real one was
+     sitting in the social schedule. Anything about which business is featured,
+     or when, is sourced FROM that file. If the two ever disagree, the schedule
+     is right and data/spotlight.json is stale.
 
      TIMEZONE: the boundary is evaluated in PACIFIC time for every reader, not
      in the reader's own zone. The site is served worldwide and a naive local
@@ -2822,15 +2848,20 @@
      tracker, including the DST shift, so it is reused rather than reinvented.
 
      🚨 It renders NOTHING unless every piece is real: a Pacific date the browser
-     could actually resolve, a schedule row for THIS week, and a live article at
-     that slug carrying its own image. Same house guardrail as the rain card. A
-     200 with an unexpected shape must not become a confident claim, a stale week
-     must not linger past its Tuesday, and an empty or broken card is worse for
-     the reader than no card at all. Running out of scheduled weeks is a normal
-     state, not an error: the card just stops appearing. */
+     could actually resolve, a usable schedule row at or before this week, and a
+     live article at that slug carrying its own image. Same house guardrail as the
+     rain card. A 200 with an unexpected shape must not become a confident claim,
+     and an empty or broken card is worse for the reader than no card at all.
+     Running out of scheduled weeks is a normal state, not an error: after
+     SPOTLIGHT_MAX_AGE_DAYS the card simply stops appearing. */
 
   var SPOTLIGHT_FILE = "spotlight.json";
-  var SPOTLIGHT_WEEK_DOW = 3; // Wednesday, per the note above.
+  var SPOTLIGHT_WEEK_DOW = 4; // Thursday, per the note above.
+  /* If the running order stops being maintained, "This week's business
+     spotlight" becomes a false label rather than a stale one, so the card
+     retires itself. 28 days clears the owner's real gaps (the longest in the
+     2026 schedule is 21 days, 19 Nov to 10 Dec) with a week to spare. */
+  var SPOTLIGHT_MAX_AGE_DAYS = 28;
   /* The slug is owner-typed and goes straight into a URL path, so keep it to the
      shape Squarespace actually mints. Anything else is a typo or worse. */
   var SPOTLIGHT_SLUG_RE = /^[a-z0-9][a-z0-9-]{0,120}$/;
@@ -2862,20 +2893,52 @@
     return spotlightWeekStart(row.week) != null;
   }
 
-  /* The row for the week that contains dayKey, or null. Null covers every
-     failure the card must survive silently: no payload, a payload that is not
-     the expected shape, a schedule that has run out, and a row missing any of
-     the four fields the card is built from. */
+  /* The CURRENT row: the latest scheduled week on or before dayKey's week, not
+     an exact match on this week.
+
+     That is deliberate and it mirrors how the spotlight actually works. A
+     spotlight goes out on a Thursday and STAYS the spotlight until the next one
+     replaces it, and the owner's real 2026 running order has gaps in it (nothing
+     on 29 Oct, 12 Nov, 26 Nov or 3 Dec). Under an exact-match rule the card would
+     blink out for a week at a time in exactly the weeks the previous business is
+     still the one being promoted. Carrying the last row forward is the behaviour
+     that matches the thing on the page.
+
+     It still expires. Past SPOTLIGHT_MAX_AGE_DAYS the kicker "This week's
+     business spotlight" stops being merely stale and becomes false, so the card
+     retires itself rather than lying in a small typeface.
+
+     Null covers every failure the card must survive silently: no payload, a
+     payload of the wrong shape, a running order that has not started yet, one
+     that has been abandoned, and any row missing a field the card is built from. */
   function spotlightPick(payload, dayKey) {
     var want = spotlightWeekStart(dayKey);
     if (!want) return null;
     var rows = payload && payload.schedule;
     if (Object.prototype.toString.call(rows) !== "[object Array]") return null;
+    var best = null, bestWeek = null;
     for (var i = 0; i < rows.length; i++) {
       if (!spotlightRowIsUsable(rows[i])) continue;
-      if (spotlightWeekStart(rows[i].week) === want) return rows[i];
+      var w = spotlightWeekStart(rows[i].week);
+      /* ISO dates sort correctly as strings, so no Date objects needed here. */
+      if (w > want) continue;                       // not started yet
+      if (bestWeek === null || w > bestWeek) { bestWeek = w; best = rows[i]; }
     }
-    return null;
+    if (!best) return null;
+    if (spotlightWeeksApart(bestWeek, want) > SPOTLIGHT_MAX_AGE_DAYS) return null;
+    return best;
+  }
+
+  /* Whole days between two YYYY-MM-DD week starts. Both are already normalised
+     to a Thursday by spotlightWeekStart, so this is exact and DST cannot skew it:
+     Date.UTC is used on both sides. */
+  function spotlightWeeksApart(fromKey, toKey) {
+    var a = /^(\d{4})-(\d{2})-(\d{2})$/.exec(fromKey);
+    var b = /^(\d{4})-(\d{2})-(\d{2})$/.exec(toKey);
+    if (!a || !b) return Infinity;
+    var ta = Date.UTC(+a[1], +a[2] - 1, +a[3]);
+    var tb = Date.UTC(+b[1], +b[2] - 1, +b[3]);
+    return Math.round((tb - ta) / 86400000);
   }
 
   /* The blog item has to be the post we asked for and has to carry its own
@@ -2909,36 +2972,43 @@
      Losing the whole card because a different section failed is not the
      fail-closed behaviour this is supposed to have, so fall back to the end of
      the homepage rather than to nothing. */
-  function initHomeSpotlight(home, beforeSec) {
-    if (!home && !(beforeSec && beforeSec.parentNode)) return;
-    if (document.getElementById("bcl-home-spotlight")) return;
+  function initHomeSpotlight(home, shell) {
+    var sec = shell || null;
+    /* The shell is the only thing that makes the position deterministic, but the
+       card must still be able to render without one (a test harness, or a
+       homepage whose board never built). Falling back to appending is the same
+       fail-soft the recent strip uses. */
+    function drop() {
+      if (sec && sec.parentNode && sec.style.display === "none") sec.parentNode.removeChild(sec);
+    }
+    if (!sec && !home) return;
     /* No resolvable Pacific date means no way to know which week it is, and a
        guess would flip the card on the wrong day for everyone. */
     var day = rainPacificDay();
-    if (!day) return;
+    if (!day) { drop(); return; }
 
     /* The promise is returned so a test can await the render. Nothing on the
        page depends on it; the .catch below is what keeps a failed fetch silent. */
     return fetchJSON(REPO + "/data/" + SPOTLIGHT_FILE).then(function (payload) {
       var entry = spotlightPick(payload, day);
-      if (!entry) return; // nothing scheduled for this week, by design
+      if (!entry) { drop(); return; } // nothing current, by design
       /* One request for the exact post instead of walking the paged collection:
          the spotlight is usually well past page 1, and /around-town/<slug>
          ?format=json returns the same item record with the same assetUrl. A slug
          that is not live 404s, which fetchJSON turns into a rejection. */
       return fetchJSON("/around-town/" + entry.slug + "?format=json").then(function (data) {
         var item = data && data.item;
-        if (!spotlightItemIsUsable(item, entry.slug)) return;
-        if (document.getElementById("bcl-home-spotlight")) return;
-        var anchor = (beforeSec && beforeSec.parentNode) ? beforeSec : null;
-        if (!anchor && !home) return;
+        if (!spotlightItemIsUsable(item, entry.slug)) { drop(); return; }
 
-        var sec = document.createElement("section");
-        sec.id = "bcl-home-spotlight";
-        sec.className = "bcl-section";
+        if (!sec) {
+          if (document.getElementById("bcl-home-spotlight")) return;
+          sec = document.createElement("section");
+          sec.id = "bcl-home-spotlight";
+          sec.className = "bcl-section";
+          home.appendChild(sec);
+        }
         sec.innerHTML = '<div class="bcl-wrap">' + spotlightCardHTML(entry, item) + "</div>";
-        if (anchor) anchor.parentNode.insertBefore(sec, anchor);
-        else home.appendChild(sec);
+        sec.style.display = "";
 
         var link = sec.querySelector("a.bcl-spot");
         if (link) {
@@ -2951,7 +3021,7 @@
           });
         }
       });
-    }).catch(function () { /* no card, by design */ });
+    }).catch(function () { drop(); });
   }
 
   /* Footer link to /rain (owner, 2026-07-31). This does a DIFFERENT job from the
@@ -4878,6 +4948,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
