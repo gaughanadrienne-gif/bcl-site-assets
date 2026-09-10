@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-05",
+  "updated": "2026-09-10",
   "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category, notice (optional; besides title, date and location it is the only field an event card renders, so anything a reader must know before turning up goes there). Re-curated 2026-09-02 against first-party organizer sources.",
   "events": [
     {
@@ -494,6 +494,16 @@
       "url": "https://santacruzpl.libnet.info/event/16958127",
       "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
       "category": "Family & Kids"
+    },
+    {
+      "title": "Oktoberfest at the Golf Club",
+      "start": "2026-09-30T16:00",
+      "end": "2026-09-30T22:00",
+      "location": "Clubhouse, Boulder Creek Golf & Country Club, 16901 Big Basin Highway, Boulder Creek",
+      "url": "https://bigbasincountry.club/events/oktoberfest-2026/",
+      "description": "A seasonal night in the clubhouse with Sam Adams Oktoberfest on tap and a German menu: Bavarian soft pretzels with beer cheese, Jäger schnitzel with German potato salad and cucumber dill salad, and grilled beer bath brats from Silva Sausage Co. on a bun with sautéed onions, sauerkraut and whole grain mustard. It falls on the same Wednesday as the club's Night Golf Championship and Women's Wednesday.",
+      "category": "Community",
+      "notice": "Kitchen 4 to 8 p.m., bar until 10 p.m. The club lists no tickets or registration. Questions to events@bouldercreekgolf.com or 831-338-2111."
     },
     {
       "title": "Billy Reese Neighborhood Night",
