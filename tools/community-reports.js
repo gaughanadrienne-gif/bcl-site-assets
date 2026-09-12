@@ -7,7 +7,7 @@
   const base = origin + '/community-reports';
   const style = document.createElement('style');
   style.textContent = `
-    .bcl-reports{background:#f5f1e7;color:#1c2a26;padding:clamp(28px,5vw,64px) 0;border-block:1px solid #173f3626}
+    .bcl-reports{background:#f5f1e7;color:#1c2a26;font-family:Inter,Arial,sans-serif;padding:clamp(28px,5vw,64px) 0;border-block:1px solid #173f3626}
     .bcl-reports .bcl-reports-wrap{max-width:1200px;margin:auto;padding:0 24px}
     .bcl-reports h2{color:#173f36;font-size:clamp(30px,4vw,44px);margin:0 0 12px}
     .bcl-reports p{max-width:65ch;margin:0 0 18px;line-height:1.6}
@@ -61,7 +61,7 @@
     }
     const residents = document.querySelector('#bcl-residents');
     if (residents && !document.getElementById('bcl-resident-reports')) {
-      const hero = residents.querySelector('.bcl-hero');
+      const hero = residents.querySelector('.residents-hero, .bcl-hero');
       if (hero) hero.after(section(false).el);
     }
     const home = document.querySelector('#bcl-home');
