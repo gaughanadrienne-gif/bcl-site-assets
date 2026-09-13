@@ -215,7 +215,10 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
 
     for raw in load_manual_entries(manual_path, today, MANUAL_TTL_DAYS):
         try:
-            job = normalize_job(raw, _MANUAL_SOURCE, today)
+            manual_source = {"name": raw.get("source_name") or _MANUAL_SOURCE["name"]}
+            job = normalize_job(raw, manual_source, today)
+            # A daily rebuild is not a fresh human review of this posting.
+            job["last_verified_at"] = (raw.get("renewed_at") or raw["submitted_at"])[:10]
             ok, reason = include_job(job)
             if ok:
                 published.append(job)
