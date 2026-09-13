@@ -88,5 +88,17 @@
     "bytes": 97471,
     "sha256": "4ecfb4cbf3f6fce217a2499ed952f7e039150d2f687dea4cb6a6bf7d1cd6b334",
     "preview": "downloads/previews/Boulder_Creek_Smoke_Ready_Home_Plan.png"
+  },
+  "BCL_Houseguest_Welcome_Guide.pdf": {
+    "pages": 2,
+    "bytes": 115267,
+    "sha256": "e493455b14416d12231bd79d17e735bed34eaaeec4cd66738189462ba3ebedee",
+    "preview": "downloads/previews/BCL_Houseguest_Welcome_Guide.png"
+  },
+  "BCL_Redwood_Coloring_Pages.pdf": {
+    "pages": 2,
+    "bytes": 4757447,
+    "sha256": "4b912a2b1dc90a0051a954d1b398b0175294e0b1bf010d3b662efa73916d153a",
+    "preview": "downloads/previews/BCL_Redwood_Coloring_Pages.png"
   }
 }
