@@ -8,6 +8,12 @@ const rows = [1750, 2500, 3500, null, 0, 'unknown'].map((rent, i) => ({
   locality: 'Boulder Creek', verification_status: 'verified'
 }));
 
+test('mobile controls preserve compact checkboxes and 44px date actions', () => {
+  assert.match(source, /input\[type=checkbox\]\{width:18px;height:18px;min-width:18px;flex:0 0 18px/);
+  assert.match(source, /bcl-rent-limit\{flex:0 0 auto;/);
+  assert.match(source, /#bcl-events \.bcl-range button,#bcl-events input\[type=date\],#bcl-events \.bcl-ev-clear\{min-height:44px/);
+});
+
 test('rental maximum includes its boundary and excludes unknown or invalid prices', () => {
   assert.deepEqual(tools.filterRentals(rows, {maxRent: 2500}).map(r => r.monthly_rent).sort(), [1750, 2500]);
 });

@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v22";
+  var CSS_ID = "bcl-tools-css-v23";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -225,6 +225,7 @@
       ".bcl-rent-limit{display:flex;flex-direction:column;gap:6px;flex:1 1 220px;}.bcl-rent-limit input{flex:0 0 auto;min-width:0;width:100%;box-sizing:border-box;}.bcl-job-pagination{margin:20px 0;}",
       ".bcl-controls .bcl-checklabel{display:flex;gap:8px;}.bcl-controls .bcl-checklabel input[type=checkbox]{width:18px;height:18px;min-width:18px;flex:0 0 18px;margin:0;}",
       "@media(max-width:640px){.bcl-controls .bcl-rent-limit{flex:0 0 auto;}}",
+      "#bcl-events .bcl-range button,#bcl-events input[type=date],#bcl-events .bcl-ev-clear{min-height:44px;box-sizing:border-box;}",
       /* Category chips. 317 directory listings is a scanning problem, so the
          chip row stays put while the page scrolls. Sticky, not fixed: a fixed
          element inside a Squarespace code block has to be reparented to body,
