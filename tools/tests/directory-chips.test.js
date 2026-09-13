@@ -24,6 +24,19 @@ test("every category in the live directory data has a real group, none fall to O
   assert.deepEqual(orphans, []);
 });
 
+test("the four formerly orphaned listings resolve to their intended groups", () => {
+  const data = require("../../data/directory.json");
+  const expected = new Map([
+    ["Steel Bonnet Brewing Company", "Food & Drink"],
+    ["Fruition Brewing", "Food & Drink"],
+    ["Joe's Bar", "Food & Drink"],
+    ["Bowzer Baths", "Health & Personal"],
+  ]);
+  const repaired = data.listings.filter((l) => expected.has(l.name));
+  assert.equal(repaired.length, expected.size);
+  repaired.forEach((l) => assert.equal(t.groupBucketOf(l.category), expected.get(l.name), l.name));
+});
+
 test("chip counts partition the listings: every listing lands in exactly one group", () => {
   const data = require("../../data/directory.json");
   const counts = {};

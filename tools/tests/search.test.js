@@ -113,6 +113,14 @@ test("hub pages are indexed, which is what makes utility searches work", () => {
   assert.equal(top.u, "/residents", `"trash" top hit was ${top.n}`);
 });
 
+test("Give Back and Rain are indexed as first-class hub pages", () => {
+  const pages = R.filter((r) => r.t === "page");
+  assert.equal(pages.filter((p) => p.u === "/give-back").length, 1);
+  assert.equal(pages.filter((p) => p.u === "/rain").length, 1);
+  assert.ok(logic.searchRecords(R, "donate local", 5).some((hit) => hit.rec.u === "/give-back"));
+  assert.ok(logic.searchRecords(R, "rainfall", 5).some((hit) => hit.rec.u === "/rain"));
+});
+
 test("directory and food hits deep-link with ?q= so the tool pre-filters", () => {
   const biz = R.find((r) => r.t === "business");
   const food = R.find((r) => r.t === "food");
