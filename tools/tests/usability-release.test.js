@@ -11,14 +11,14 @@ test('optional code modules resolve against immutable executing script, not data
  assert.match(main,/document\.currentScript\.src/);assert.match(main,/new URL\(name, BCL_CODE_URL\)/);
  assert.match(source,/new URL\('\.\.\/', script\.src\)/);
 });
-test('all nine preview metadata rows match actual unmodified PDFs and PNG renders',()=>{
+test('preview metadata matches the complete published PDF library and PNG renders',()=>{
  const manifest=JSON.parse(fs.readFileSync(path.join(root,'downloads/previews/manifest.json')));
- assert.equal(Object.keys(manifest).length,9);
+ assert.deepEqual(Object.keys(manifest).sort(),fs.readdirSync(path.join(root,'downloads')).filter(name=>name.endsWith('.pdf')).sort());
  for(const [name,item] of Object.entries(manifest)){
   const bytes=fs.readFileSync(path.join(root,'downloads',name));
   assert.equal(bytes.length,item.bytes);
   assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'),item.sha256);
-  assert.ok([1,2].includes(item.pages));
+  assert.ok(Number.isInteger(item.pages) && item.pages >= 1);
   assert.equal(fs.readFileSync(path.join(root,item.preview)).subarray(1,4).toString(),'PNG');
  }
 });
