@@ -46,6 +46,63 @@ def test_per_source_exception_does_not_abort_run():
 
     # Break the Remotive fetch only; Second Harvest should still produce jobs.
     fetchers["http_json"] = _boom
-    published, queued, _counts = build_jobs(SUBSET, fetchers, TODAY)
+    published, queued, _counts = build_jobs([dict(REMOTIVE, enabled=True), SECOND_HARVEST], fetchers, TODAY)
     assert published
     assert all(job["source"] == "Second Harvest (RSS)" for job in published)
+
+
+def test_disabled_remote_sources_never_fetch():
+    def forbidden(*args, **kwargs):
+        raise AssertionError("generic remote source must not fetch")
+    published, queued, counts = build_jobs(
+        [s for s in JOB_SOURCES if s.get("geo") == "remote"],
+        {"http_get": forbidden, "http_json": forbidden}, TODAY,
+        manual_path="__no_such_file__.json")
+    assert published == queued == []
+    assert counts == {}
+
+
+def test_forced_generic_remote_feed_is_rejected_by_policy_gate():
+    published, queued, _ = build_jobs([dict(REMOTIVE, enabled=True)], _ok_fetchers(), TODAY,
+                                      manual_path="__no_such_file__.json")
+    assert published == []
+    assert queued
+    assert all(j["_queue_reason"] == "remote-local-evidence-required" for j in queued)
+
+
+def test_jobaps_distinct_query_requisitions_survive():
+    from pathlib import Path
+    from jobs.parsers import jobaps
+    src = next(s for s in JOB_SOURCES if s["name"] == "County of Santa Cruz")
+    fixture = Path("tests/fixtures/jobaps_scruz.md").read_text(encoding="utf-8")
+    raw_rows = jobaps.parse(fixture, src)
+    published, _, _ = build_jobs([src], {"firecrawl_markdown": lambda *a, **k: fixture}, TODAY,
+                                  manual_path="__no_such_file__.json")
+    assert len(raw_rows) == 29
+    assert len(published) == 29
+
+
+def test_job_identity_preserves_ids_but_deduplicates_tracking():
+    from jobs.refresh_jobs import job_identity_url
+    assert job_identity_url("https://example.org/jobs?R1=26&R2=A&utm_source=x") == job_identity_url(
+        "https://example.org/jobs?R2=A&R1=26&fbclid=y")
+    assert job_identity_url("https://example.org/jobs?id=1") != job_identity_url("https://example.org/jobs?id=2")
+    assert job_identity_url("https://example.org/jobs?ref=1") != job_identity_url("https://example.org/jobs?ref=2")
+
+
+def test_first_seen_survives_next_refresh_without_invented_history():
+    from jobs.refresh_jobs import preserve_first_seen
+    rows = [{"canonical_url": "https://example.org/jobs?id=1&utm_source=new", "first_seen_at": "2026-09-13"},
+            {"canonical_url": "https://example.org/jobs?id=2", "first_seen_at": "2026-09-13"}]
+    previous = [{"canonical_url": "https://example.org/jobs?id=1", "first_seen_at": "2026-07-19"}]
+    preserve_first_seen(rows, previous, "2026-09-13")
+    assert [j["first_seen_at"] for j in rows] == ["2026-07-19", "2026-09-13"]
+    preserve_first_seen(rows, [{"canonical_url": rows[1]["canonical_url"], "first_seen_at": "tomorrow"}], "2026-09-13")
+    assert rows[1]["first_seen_at"] == "2026-09-13"
+
+
+def test_build_carries_previous_first_seen_into_published_rows():
+    first, _, _ = build_jobs([SECOND_HARVEST], _ok_fetchers(), TODAY, manual_path="__no_such_file__.json")
+    later, _, _ = build_jobs([SECOND_HARVEST], _ok_fetchers(), "2026-09-13",
+                             manual_path="__no_such_file__.json", previous_jobs=first)
+    assert later and all(j["first_seen_at"] == TODAY for j in later)

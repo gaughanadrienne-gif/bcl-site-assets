@@ -9,12 +9,13 @@ offline against the captured fixtures; only main() touches the network.
 import os
 import sys
 from datetime import date
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from shared.bcl_ingest import (  # noqa: E402
     dedupe_by, firecrawl_markdown, http_get, http_json, http_post_json, load_manual_entries,
-    normalize_url, record_fingerprint, write_json_atomic, write_public_json_guarded,
+    load_json, write_json_atomic, write_public_json_guarded,
 )
 from shared.review_board import render_review_board  # noqa: E402
 from jobs.normalize import include_job, normalize_job  # noqa: E402
@@ -108,7 +109,35 @@ def fetch_raw(source, http_get_fn, http_json_fn, firecrawl_markdown_fn, http_pos
 _MANUAL_SOURCE = {"name": "Community submission"}
 
 
-def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
+def job_identity_url(url):
+    """Retain requisition query IDs; remove only recognized tracking fields."""
+    parts = urlsplit(str(url or "").strip())
+    query = [(key, value) for key, value in parse_qsl(parts.query, keep_blank_values=True)
+             if not key.lower().startswith("utm_")
+             and key.lower() not in {"fbclid", "gclid", "msclkid", "mc_cid", "mc_eid"}]
+    return urlunsplit((parts.scheme.lower(), parts.netloc.lower(), parts.path.rstrip("/"),
+                       urlencode(sorted(query)), parts.fragment))
+
+
+def preserve_first_seen(jobs, previous_jobs, today):
+    """Carry forward valid observed dates without guessing missing history."""
+    previous = {}
+    for job in previous_jobs or []:
+        key = job_identity_url(job.get("canonical_url", ""))
+        value = job.get("first_seen_at", "")
+        try:
+            valid = date.fromisoformat(value).isoformat() == value and value <= today
+        except (ValueError, TypeError):
+            valid = False
+        if key and valid:
+            previous[key] = min(previous.get(key, value), value)
+    for job in jobs:
+        prior = previous.get(job_identity_url(job.get("canonical_url", "")))
+        if prior:
+            job["first_seen_at"] = prior
+
+
+def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_jobs=None):
     """Fetch+parse+normalize every ENABLED source; return (published, queued).
 
     `fetchers` is a dict with http_get/http_json/firecrawl_markdown callables
@@ -180,10 +209,9 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH):
             print("refresh_jobs: manual submission failed: %s" % exc, file=sys.stderr)
             continue
 
-    published = dedupe_by(published, lambda j: normalize_url(j["canonical_url"]) or j["id"])
-    published = dedupe_by(
-        published, lambda j: record_fingerprint([j["title"], j["employer_name"], j["city"]])
-    )
+    # Different requisitions may legitimately share title, employer and city.
+    published = dedupe_by(published, lambda j: job_identity_url(j["canonical_url"]) or j["id"])
+    preserve_first_seen(published, previous_jobs, today)
     return published, queued, counts
 
 
@@ -202,6 +230,7 @@ def main():
         JOB_SOURCES,
         {"http_get": http_get, "http_json": http_json, "firecrawl_markdown": firecrawl_markdown},
         today,
+        previous_jobs=(load_json(JOBS_PATH, default={}) or {}).get("jobs", []),
     )
     write_public_json_guarded(
         JOBS_PATH, key="jobs", records=published, min_total=MIN_SAFE_TOTAL,

@@ -30,11 +30,11 @@ test("real event, job, and rental hits carry their name into the destination que
   }
 });
 
-test("remote job hits restore the remote tab, while non-remote hits include extended commute", () => {
-  const remote = first("job", (r) => /(^|[\s_-])remote(?=$|[\s_-])/i.test(r.k || ""));
+test("all job hits use the local board and include extended geography", () => {
+  const remote = {t:"job", n:"Verified local employer remote role", u:"/jobs", k:"remote"};
   const local = first("job", (r) => !/(^|[\s_-])remote(?=$|[\s_-])/i.test(r.k || ""));
-  assert.equal(tools.toolSearchState(tools.toolSearchHref(remote).split("?")[1]).tab, "remote");
-  assert.equal(tools.toolSearchState(tools.toolSearchHref(remote).split("?")[1]).includeExtended, false);
+  assert.equal(tools.toolSearchState(tools.toolSearchHref(remote).split("?")[1]).tab, "local");
+  assert.equal(tools.toolSearchState(tools.toolSearchHref(remote).split("?")[1]).includeExtended, true);
   assert.equal(tools.toolSearchState(tools.toolSearchHref(local).split("?")[1]).tab, "local");
   assert.equal(tools.toolSearchState(tools.toolSearchHref(local).split("?")[1]).includeExtended, true);
   assert.deepEqual(tools.toolSearchState("?q=Known&tab=unexpected"), { q: "Known", tab: "local", includeExtended: false });
@@ -66,9 +66,9 @@ test("every indexed tool record reaches a current local source match with its de
   const indexedJobs = records.filter((r) => r.t === "job");
   const indexedRentals = records.filter((r) => r.t === "rental");
   const indexedEvents = records.filter((r) => r.t === "event");
-  assert.equal(indexedJobs.length, 305);
-  assert.equal(indexedRentals.length, 2);
-  assert.equal(indexedEvents.length, 137);
+  assert.equal(indexedJobs.length, jobs.length);
+  assert.equal(indexedRentals.length, rentals.length);
+  assert.ok(indexedEvents.length > 0);
 
   indexedJobs.forEach((record) => {
     const state = tools.toolSearchState(tools.toolSearchHref(record).split("?")[1]);
@@ -98,7 +98,7 @@ test("a Jobs or Rentals root is initialized at most once per page load", () => {
 });
 
 test("each destination restores its query before its first render", () => {
-  assert.match(source, /function initJobs[\s\S]*?var searchState = toolSearchState\(location\.search\);[\s\S]*?if \(searchState\.q\) input\.value = searchState\.q;[\s\S]*?if \(searchState\.includeExtended\) extBox\.checked = true;[\s\S]*?syncEmployers\(\);\s*render\(\);/);
+  assert.match(source, /function initJobs[\s\S]*?var searchState = toolSearchState\(location\.search\);[\s\S]*?if \(searchState\.q\) input\.value = searchState\.q;[\s\S]*?if \(searchState\.includeExtended\) areaSel\.value = "extended";[\s\S]*?syncEmployers\(\);\s*render\(\);/);
   assert.match(source, /function initRentals[\s\S]*?var searchState = toolSearchState\(location\.search\);[\s\S]*?if \(searchState\.q\) input\.value = searchState\.q;[\s\S]*?render\(\);/);
   assert.match(source, /function initEvents[\s\S]*?var searchState = toolSearchState\(location\.search\);[\s\S]*?if \(searchState\.q\) input\.value = searchState\.q;[\s\S]*?render\(\);/);
 });

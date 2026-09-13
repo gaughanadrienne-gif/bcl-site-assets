@@ -8,6 +8,9 @@ job is kept. Only geography ambiguity, excluded categories, or missing
 title/url route a job away from the published set.
 """
 
+import re
+from urllib.parse import urlsplit
+
 from shared.bcl_ingest import (
     classify_geo, commute_minutes, make_slug, parse_salary,
     record_fingerprint, sanitize_text, scrub_pii, freshness_label,
@@ -23,13 +26,13 @@ EXCLUDE_KEYWORDS = (
 
 
 def normalize_job(raw, source, today):
-    remote = bool(raw.get("remote"))
+    remote = bool(raw.get("remote")) or str(raw.get("work_mode", "")).lower() == "remote"
     city = sanitize_text(raw.get("city", ""))
     if not remote and not city:
         geo = source.get("geo", "") or ""
         if geo.startswith("employer:"):
             city = geo.split(":", 1)[1].strip()
-    tier = "remote" if remote else classify_geo(city)
+    tier = classify_geo(city)
     minutes = None if remote else commute_minutes(city)
     title = sanitize_text(raw.get("title", ""))
     employer = sanitize_text(raw.get("employer", "")) or sanitize_text(source.get("name", ""))
@@ -54,8 +57,10 @@ def normalize_job(raw, source, today):
         "employer_name": employer,
         "description_summary": description,
         "employment_type": sanitize_text(raw.get("hours_text", "")),
-        "work_mode": raw.get("work_mode") or ("remote" if remote else "on-site"),
+        "work_mode": "remote" if remote else (raw.get("work_mode") or "on-site"),
         "remote_regions": sanitize_text(raw.get("eligibility_text", "")) if remote else "",
+        "local_employer_verified": raw.get("local_employer_verified") is True,
+        "local_employer_evidence_url": sanitize_text(raw.get("local_employer_evidence_url", "")),
         "city": city,
         "state": "CA",
         "postal_code": raw.get("postal_code", "") or "",
@@ -91,6 +96,34 @@ def include_job(job):
     for kw in EXCLUDE_KEYWORDS:
         if kw in haystack:
             return False, "excluded-keyword"
+    if job.get("work_mode") == "remote" or job.get("geography_tier") == "remote":
+        if not local_remote_eligible(job):
+            return False, "remote-local-evidence-required"
     if job.get("geography_tier") == "unknown":
         return False, "ambiguous-location"
     return True, None
+
+
+def local_remote_eligible(job):
+    """Remote work belongs only with reviewed local-employer and CA evidence.
+
+    Broad strings such as USA, worldwide or remote are insufficient. The
+    reviewer records affirmative California eligibility in remote_regions;
+    exclusions and negated wording must not be turned into eligibility.
+    """
+    evidence = job.get("local_employer_evidence_url", "")
+    try:
+        parts = urlsplit(evidence)
+        valid_url = (parts.scheme == "https" and bool(parts.hostname)
+                     and not re.search(r"\s", evidence)
+                     and not parts.username and not parts.password)
+    except ValueError:
+        valid_url = False
+    region = str(job.get("remote_regions", "")).strip().lower()
+    explicit_ca = region in {"california", "ca", "california, usa", "california, united states"}
+    # Accept a structured positive list, never an unstructured sentence.
+    if not explicit_ca and not re.search(r"\b(except|excluding|exclude|not|no|outside|ineligible)\b", region):
+        explicit_ca = any(part.strip() in {"california", "ca"} for part in re.split(r"[;,|]", region))
+    return (job.get("local_employer_verified") is True and valid_url and explicit_ca
+            and classify_geo(job.get("city", "")) in {"core", "extended"}
+            and job.get("geography_tier") in {"core", "extended"})

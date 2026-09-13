@@ -26,12 +26,55 @@ def test_core_city_normalizes_with_commute():
     assert job["commute_minutes"] == 30  # Santa Cruz, per data/commute_table.json
 
 
-def test_remote_job_tier_is_remote():
+def test_generic_remote_is_not_local_and_requires_evidence():
     raw = _raw(city="", remote=True, work_mode="remote", eligibility_text="USA",
                url="https://remotive.com/remote-jobs/x")
     job = normalize_job(raw, REMOTE_SOURCE, TODAY)
-    assert job["geography_tier"] == "remote"
+    assert job["geography_tier"] == "unknown"
     assert job["commute_minutes"] is None
+    assert include_job(job) == (False, "remote-local-evidence-required")
+
+
+def test_reviewed_local_employer_remote_keeps_local_geography():
+    raw = _raw(city="Boulder Creek", remote=True, work_mode="remote",
+               eligibility_text="California", local_employer_verified=True,
+               local_employer_evidence_url="https://employer.example/careers/1")
+    job = normalize_job(raw, CORE_SOURCE, TODAY)
+    assert job["geography_tier"] == "core"
+    assert job["work_mode"] == "remote"
+    assert job["commute_minutes"] is None
+    assert include_job(job) == (True, None)
+
+
+def test_remote_evidence_gate_fails_closed():
+    base = dict(city="Santa Cruz", remote=True, work_mode="remote",
+                eligibility_text="California", local_employer_verified=True,
+                local_employer_evidence_url="https://employer.example/careers/1")
+    for changes in [
+        {"local_employer_verified": "true"},
+        {"local_employer_evidence_url": "http://employer.example/1"},
+        {"local_employer_evidence_url": "https://bad host/1"},
+        {"local_employer_evidence_url": "https://user:pass@example.org/1"},
+        {"eligibility_text": "USA"}, {"eligibility_text": "Worldwide"},
+        {"eligibility_text": "USA excluding California"},
+        {"eligibility_text": "California; not eligible"},
+        {"city": "Fresno"}, {"city": ""},
+    ]:
+        job = normalize_job(_raw(**(base | changes)), CORE_SOURCE, TODAY)
+        assert include_job(job)[0] is False, changes
+
+
+def test_work_mode_alone_cannot_bypass_remote_gate():
+    job = normalize_job(_raw(remote=False, work_mode="Remote"), CORE_SOURCE, TODAY)
+    assert include_job(job) == (False, "remote-local-evidence-required")
+
+
+def test_reviewed_remote_extended_city_keeps_extended_tier():
+    job = normalize_job(_raw(city="Watsonville", remote=True, eligibility_text="California; Oregon",
+                             local_employer_verified=True,
+                             local_employer_evidence_url="https://employer.example/careers"), CORE_SOURCE, TODAY)
+    assert job["geography_tier"] == "extended"
+    assert include_job(job) == (True, None)
 
 
 def test_hourly_salary_parses():

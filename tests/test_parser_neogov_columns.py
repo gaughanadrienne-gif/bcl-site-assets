@@ -67,3 +67,20 @@ def test_junk_and_empty_input_return_nothing_rather_than_raising():
     assert neogov.parse("", SRC) == []
     assert neogov.parse(None, SRC) == []
     assert neogov.parse("| not | a | job | table |", SRC) == []
+
+
+def test_explicit_configured_city_does_not_require_zip():
+    from jobs.sources import JOB_SOURCES
+    sources = {s["name"]: s for s in JOB_SOURCES}
+    city = neogov.parse(TEN.replace("Santa Cruz, CA 95060", "Santa Cruz, CA"), sources["City of Santa Cruz"])[0]
+    college = neogov.parse(SEVEN.replace("Aptos, CA 95003", "Aptos, CA"), sources["Cabrillo College"])[0]
+    assert city["city"] == "Santa Cruz"
+    assert college["city"] == "Aptos"
+
+
+def test_city_context_does_not_guess_blank_or_multicampus_locations():
+    from jobs.sources import JOB_SOURCES
+    source = next(s for s in JOB_SOURCES if s["name"] == "Cabrillo College")
+    for location in ["", "Various campuses", "Aptos and Watsonville, CA", "Remote", "Fresno, CA", "Aptos, CA 99999"]:
+        row = neogov.parse(SEVEN.replace("Aptos, CA 95003", location), source)[0]
+        assert row["city"] == "", location

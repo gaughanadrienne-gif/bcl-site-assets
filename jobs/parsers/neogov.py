@@ -103,13 +103,23 @@ def parse(markdown, source):
         location = col("location")
         zip_match = _ZIP_RE.search(location)
         postal_code = zip_match.group(1) if zip_match else ""
+        city = _ZIP_CITY.get(postal_code, "")
+        if not city and not postal_code:
+            # Only explicit location text from this agency's configured cities.
+            # Never substitute headquarters for a blank or multi-campus label.
+            cities = (source.get("config") or {}).get("location_cities", [])
+            matches = [name for name in cities if re.search(
+                r"(?<!\w)" + re.escape(name) + r"(?!\w)", location, re.I)]
+            if len(matches) == 1 and re.fullmatch(
+                    re.escape(matches[0]) + r"(?:\s*,?\s*(?:CA|California))?", location.strip(), re.I):
+                city = matches[0]
         rows.append({
             "title": sanitize_text(m.group(1)),
             # Cabrillo publishes no Department column; fall back to the agency
             # name rather than emitting a blank employer.
             "employer": sanitize_text(col("department")) or sanitize_text(source.get("name", "")),
             "location_text": location,
-            "city": _ZIP_CITY.get(postal_code, ""),
+            "city": city,
             "url": m.group(2),
             "date_posted": _to_iso_date(col("posted")),
             "salary_text": sanitize_text(col("salary")),

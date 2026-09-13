@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v21";
+  var CSS_ID = "bcl-tools-css-v22";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -219,6 +219,12 @@
       ".bcl-controls input,.bcl-controls select{font-family:Inter,Arial,sans-serif;font-size:.95rem;padding:10px 14px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;}",
       ".bcl-controls input{flex:1 1 220px;}",
       ".bcl-controls select{flex:0 1 auto;max-width:100%;}",
+      "#bcl-directory .bcl-controls input:not([type=checkbox]),#bcl-directory .bcl-controls select,#bcl-food .bcl-controls input:not([type=checkbox]),#bcl-food .bcl-controls select,#bcl-events .bcl-controls input:not([type=checkbox]),#bcl-events .bcl-controls select,#bcl-rentals .bcl-controls input:not([type=checkbox]),#bcl-rentals .bcl-controls select,#bcl-jobs .bcl-controls input:not([type=checkbox]),#bcl-jobs .bcl-controls select{min-height:44px;box-sizing:border-box;border-radius:4px;}",
+      "#bcl-directory .bcl-chip,#bcl-events .bcl-chip,.bcl-controls .bcl-checklabel{min-height:44px;box-sizing:border-box;align-items:center;}",
+      ".bcl-filter-reset,.bcl-job-more{min-height:44px;padding:10px 16px;border:1px solid #173f36;border-radius:0;background:#fffdf8;color:#173f36;font:600 .9rem Inter,Arial,sans-serif;cursor:pointer;}.bcl-filter-reset:hover,.bcl-job-more:hover{background:#173f36;color:#fffdf8;}.bcl-filter-reset:focus-visible,.bcl-job-more:focus-visible{outline:3px solid #d56e47;outline-offset:3px;}",
+      ".bcl-rent-limit{display:flex;flex-direction:column;gap:6px;flex:1 1 220px;}.bcl-rent-limit input{flex:0 0 auto;min-width:0;width:100%;box-sizing:border-box;}.bcl-job-pagination{margin:20px 0;}",
+      ".bcl-controls .bcl-checklabel{display:flex;gap:8px;}.bcl-controls .bcl-checklabel input[type=checkbox]{width:18px;height:18px;min-width:18px;flex:0 0 18px;margin:0;}",
+      "@media(max-width:640px){.bcl-controls .bcl-rent-limit{flex:0 0 auto;}}",
       /* Category chips. 317 directory listings is a scanning problem, so the
          chip row stays put while the page scrolls. Sticky, not fixed: a fixed
          element inside a Squarespace code block has to be reparented to body,
@@ -1067,6 +1073,7 @@
         "</select>" +
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-open-now"> Open now</label>' +
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-bc-only"> In Boulder Creek</label>' +
+        '<button type="button" class="bcl-filter-reset">Reset filters</button>' +
         "</div>" +
         (opts.chips ? '<div class="bcl-chips" role="group" aria-label="Filter by category"></div>' : "") +
         '<div class="bcl-count" aria-live="polite"></div><div class="bcl-list" id="bcl-' + esc(label.replace(/[^a-z0-9]+/gi, "-")) + '-list"></div>' +
@@ -1216,6 +1223,17 @@
       select.addEventListener("change", function () { activeGroup = ""; if (batchSize) visibleLimit = batchSize; render(); });
       openBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(); });
       bcBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(); });
+      root.querySelector(".bcl-filter-reset").addEventListener("click", function () {
+        if (typing) clearTimeout(typing);
+        input.value = "";
+        select.value = "";
+        activeGroup = "";
+        openBox.checked = false;
+        bcBox.checked = false;
+        visibleLimit = batchSize;
+        render();
+        input.focus();
+      });
       if (chips) {
         /* Delegated, because render() replaces the whole chip row. */
         chips.addEventListener("click", function (ev) {
@@ -1342,6 +1360,9 @@
     var rows2 = rows.filter(function (j) {
       if (jobTab(j) !== tab) return false;
       if (tab === "local" && j.geography_tier === "extended" && !opts.includeExtended) return false;
+      if (opts.area === "slv" && ["Boulder Creek", "Brookdale", "Ben Lomond", "Felton", "Lompico", "Zayante", "San Lorenzo Valley"].indexOf(j.city) < 0) return false;
+      var schedule = String(j.employment_type || "").toLowerCase().replace(/-/g, " ").replace(/full\s+(?:and|&)\s+part\s+time/g, "full time, part time");
+      if (opts.employmentType && schedule.indexOf(opts.employmentType) < 0) return false;
       if (opts.category && j.category !== opts.category) return false;
       if (opts.employer && j.employer_name !== opts.employer) return false;
       if (opts.payListedOnly && !j.salary_disclosed) return false;
@@ -1349,7 +1370,7 @@
         var hourly = jobHourlyEquivalent(j);
         if (hourly == null || hourly < opts.minHourly) return false;
       }
-      if (opts.postedWithinDays && !jobPostedWithin(j, opts.postedWithinDays, opts.today)) return false;
+      if (opts.postedWithinDays && !jobPostedWithin(opts.employerDateOnly ? { posted_at: j.posted_at } : j, opts.postedWithinDays, opts.today)) return false;
       if (q) {
         var hay = ((j.title || "") + " " + (j.employer_name || "") + " " + (j.city || "")).toLowerCase();
         if (hay.indexOf(q) < 0) return false;
@@ -1363,8 +1384,8 @@
     var h = '<div class="bcl-job-card">';
     h += '<div class="bcl-name"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">' + esc(job.title) + "</a></div>";
     var tier = job.geography_tier === "remote" ? "Remote" : (job.geography_tier === "extended" ? "Extended commute" : "Local");
-    h += '<div class="bcl-sub">' + esc(job.employer_name) + (job.city ? " · " + esc(job.city) : "") + " · " + esc(tier) + "</div>";
-    if (job.commute_minutes && job.geography_tier !== "remote") h += '<div class="bcl-meta">Commute: ~' + esc(String(job.commute_minutes)) + " min</div>";
+    h += '<div class="bcl-sub">' + esc(job.employer_name) + (job.city ? " · " + esc(job.city) : "") + " · " + esc(tier) + (job.work_mode === "remote" ? " · Remote with local employer" : "") + "</div>";
+    if (job.commute_minutes && job.geography_tier !== "remote" && job.work_mode !== "remote") h += '<div class="bcl-meta">Estimated drive: ~' + esc(String(job.commute_minutes)) + " min; traffic and conditions vary</div>";
     if (job.employment_type) h += '<div class="bcl-meta">' + esc(job.employment_type) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobSalaryText(job)) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobPostedLine(job, today)) + "</div>";
@@ -1378,15 +1399,17 @@
     if (!claimToolRoot(root, "jobs")) return;
     root.innerHTML = '<div class="bcl-count">Loading jobs…</div>';
     fetchJSON(REPO + "/data/jobs.json").then(function (data) {
-      var all = data.jobs || [];
+      /* A stale data edge must not bring the retired generic remote board back. */
+      var all = (data.jobs || []).filter(function (j) { return j.geography_tier !== "remote"; });
       var cats = [];
       all.forEach(function (j) { if (j.category && cats.indexOf(j.category) < 0) cats.push(j.category); });
       cats.sort();
 
       root.innerHTML =
-        '<div class="bcl-tabs"><button class="bcl-tab bcl-on" data-tab="local">Local</button><button class="bcl-tab" data-tab="remote">Remote</button></div>' +
+        '<p class="bcl-note">Jobs in the valley and nearby communities. Remote roles qualify only with a verified local employer and eligibility to work from California.</p>' +
         '<div class="bcl-controls">' +
         '<input type="search" placeholder="Search by title, employer, or city" aria-label="Search jobs">' +
+        '<select class="bcl-job-area" aria-label="Job location"><option value="nearby">Valley and nearby</option><option value="slv">San Lorenzo Valley only</option><option value="extended">Include extended commute</option></select>' +
         '<select aria-label="Filter by category"><option value="">All categories</option>' +
         cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") +
         "</select>" +
@@ -1394,34 +1417,33 @@
         '<select class="bcl-job-pay" aria-label="Minimum pay"><option value="0">Any pay</option>' +
         PAY_BANDS.map(function (b) { return '<option value="' + b + '">$' + b + "+ per hour equivalent</option>"; }).join("") +
         "</select>" +
-        '<label class="bcl-checklabel bcl-ext-wrap"><input type="checkbox" class="bcl-ext"> Include extended commute</label>' +
+        '<select class="bcl-job-type" aria-label="Employment type"><option value="">Any work schedule</option><option value="full time">Full time</option><option value="part time">Part time</option><option value="temporary">Temporary</option></select>' +
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-pay-listed"> Pay listed</label>' +
-        '<label class="bcl-checklabel"><input type="checkbox" class="bcl-fresh"> Posted this week</label>' +
+        '<label class="bcl-checklabel"><input type="checkbox" class="bcl-fresh"> Posted in the last 7 days</label>' +
+        '<button type="button" class="bcl-filter-reset">Reset filters</button>' +
         "</div>" +
-        '<div class="bcl-count"></div><div class="bcl-filter-note"></div>' +
-        '<div class="bcl-list"></div>' +
+        '<div class="bcl-count" role="status" aria-live="polite" aria-atomic="true"></div><div class="bcl-filter-note"></div>' +
+        '<div class="bcl-list"></div><div class="bcl-job-pagination"><button type="button" class="bcl-job-more">Show more jobs</button></div>' +
         '<div class="bcl-note">Boulder Creek Local is not the employer and does not process applications. Verify details and apply directly with the employer. ' +
         'Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
 
       var input = root.querySelector("input");
-      var select = root.querySelector("select");
+      var select = root.querySelector('select[aria-label="Filter by category"]');
       var employerSel = root.querySelector(".bcl-job-employer");
       var paySel = root.querySelector(".bcl-job-pay");
       var payListedBox = root.querySelector(".bcl-pay-listed");
       var freshBox = root.querySelector(".bcl-fresh");
-      var extBox = root.querySelector(".bcl-ext");
-      var extWrap = root.querySelector(".bcl-ext-wrap");
+      var areaSel = root.querySelector(".bcl-job-area");
+      var typeSel = root.querySelector(".bcl-job-type");
       var count = root.querySelector(".bcl-count");
       var note = root.querySelector(".bcl-filter-note");
       var list = root.querySelector(".bcl-list");
-      var tabBtns = [].slice.call(root.querySelectorAll(".bcl-tab"));
+      var more = root.querySelector(".bcl-job-more");
+      var visibleLimit = 20;
       var searchState = toolSearchState(location.search);
       if (searchState.q) input.value = searchState.q;
-      if (searchState.includeExtended) extBox.checked = true;
-      var tab = searchState.tab;
-      tabBtns.forEach(function (btn) {
-        btn.className = "bcl-tab" + (btn.getAttribute("data-tab") === tab ? " bcl-on" : "");
-      });
+      if (searchState.includeExtended) areaSel.value = "extended";
+      var tab = "local";
 
       /* The employer list is built from whatever is on the board today, and
          rebuilt per tab so it never offers an employer with nothing to show.
@@ -1436,7 +1458,6 @@
       }
 
       function render() {
-        extWrap.style.display = tab === "local" ? "" : "none";
         var minHourly = parseFloat(paySel.value) || 0;
         var rows = filterJobs(all, {
           tab: tab,
@@ -1446,15 +1467,20 @@
           minHourly: minHourly,
           payListedOnly: !!payListedBox.checked,
           postedWithinDays: freshBox.checked ? 7 : 0,
-          includeExtended: !!extBox.checked
+          employerDateOnly: true,
+          area: areaSel.value,
+          employmentType: typeSel.value,
+          includeExtended: areaSel.value === "extended"
         });
-        count.textContent = rows.length + " OF " + all.filter(function (j) { return jobTab(j) === tab; }).length + " " + tab.toUpperCase() + " JOBS" + updatedSuffix(data.updated);
+        count.textContent = "SHOWING " + Math.min(visibleLimit, rows.length) + " OF " + rows.length + " MATCHING JOBS" + updatedSuffix(data.updated);
+        more.parentNode.hidden = rows.length <= visibleLimit;
+        more.textContent = "Show " + Math.min(20, Math.max(0, rows.length - visibleLimit)) + " more jobs";
         var notes = [];
         if (minHourly) {
           notes.push("Pay bands use an hourly equivalent from the bottom of each posted range: annual divided by 2,080 hours, monthly by 173.33. Jobs with no posted pay, or pay posted by the day, are not in these bands.");
         }
         if (freshBox.checked) {
-          notes.push("Posted this week uses the employer's posting date where there is one, and the date we first saw the listing where there is not.");
+          notes.push("Uses the employer's posting date. Listings without a posting date are excluded; a daily refresh does not make an old job new.");
         }
         note.textContent = notes.join(" ");
         if (!rows.length) {
@@ -1462,23 +1488,20 @@
             '<div class="bcl-unavailable">No jobs match right now. <a href="/contact">Suggest one</a>.</div>';
           return;
         }
-        list.innerHTML = rows.map(jobCard).join("");
+        list.innerHTML = rows.slice(0, visibleLimit).map(function (job) { return jobCard(job); }).join("");
       }
-      tabBtns.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          tab = btn.getAttribute("data-tab");
-          tabBtns.forEach(function (b) { b.className = "bcl-tab" + (b === btn ? " bcl-on" : ""); });
-          syncEmployers();
-          render();
-        });
+      function resetBatch() { visibleLimit = 20; render(); }
+      input.addEventListener("input", resetBatch);
+      [select, employerSel, paySel, payListedBox, freshBox, areaSel, typeSel].forEach(function (el) { el.addEventListener("change", resetBatch); });
+      more.addEventListener("click", function () {
+        visibleLimit += 20; render();
+        if (more.parentNode.hidden) { count.setAttribute("tabindex", "-1"); count.focus(); }
       });
-      input.addEventListener("input", render);
-      select.addEventListener("change", render);
-      employerSel.addEventListener("change", render);
-      paySel.addEventListener("change", render);
-      payListedBox.addEventListener("change", render);
-      freshBox.addEventListener("change", render);
-      extBox.addEventListener("change", render);
+      root.querySelector(".bcl-filter-reset").addEventListener("click", function () {
+        input.value = ""; select.value = ""; employerSel.value = ""; paySel.value = "0";
+        areaSel.value = "nearby"; typeSel.value = ""; payListedBox.checked = false; freshBox.checked = false;
+        resetBatch(); input.focus();
+      });
       syncEmployers();
       render();
     }).catch(function () {
@@ -1506,6 +1529,8 @@
     var rows2 = rows.filter(function (r) {
       if (opts.minBeds && !(r.bedrooms >= opts.minBeds)) return false;
       if (opts.verifiedOnly && r.verification_status !== "verified") return false;
+      /* A price ceiling cannot certify an undisclosed rent as affordable. */
+      if (opts.maxRent && (!isFinite(Number(r.monthly_rent)) || Number(r.monthly_rent) <= 0 || Number(r.monthly_rent) > opts.maxRent)) return false;
       if (town && town !== "all" && r.locality !== town) return false;
       if (q) {
         var hay = ((r.headline || "") + " " + (r.city || "") + " " + (r.property_type || "")).toLowerCase();
@@ -1550,9 +1575,12 @@
         '<select aria-label="Minimum bedrooms"><option value="0">Any beds</option><option value="1">1+ bd</option><option value="2">2+ bd</option><option value="3">3+ bd</option></select>' +
         '<select aria-label="Town" class="bcl-town-select"><option value="all">All towns</option><option value="Boulder Creek">Boulder Creek</option>' +
         '<option value="Ben Lomond">Ben Lomond</option><option value="Felton">Felton</option><option value="Brookdale">Brookdale</option></select>' +
+        '<label class="bcl-rent-limit">Maximum monthly rent ($)<input type="number" class="bcl-max-rent" min="1" step="1" inputmode="numeric" placeholder="No maximum" aria-describedby="bcl-rent-limit-note"></label>' +
         '<label class="bcl-checklabel"><input type="checkbox" class="bcl-verified-only" checked> Verified only</label>' +
+        '<button type="button" class="bcl-filter-reset">Reset filters</button>' +
         "</div>" +
-        '<div class="bcl-count"></div><div class="bcl-list"></div>' +
+        '<p class="bcl-note" id="bcl-rent-limit-note">A maximum rent hides listings with no published rent. Listed rent may not include utilities or other fees.</p>' +
+        '<div class="bcl-count" role="status" aria-live="polite" aria-atomic="true"></div><div class="bcl-list"></div>' +
         '<div class="bcl-note">Boulder Creek Local is not the landlord or property manager and does not handle applications, deposits, or keys. ' +
         'Never wire money or pay a deposit before viewing a property in person and verifying the lister. Report suspicious listings. ' +
         'This site does not discriminate and does not knowingly list rentals that violate fair housing law in the San Lorenzo Valley ' +
@@ -1565,6 +1593,7 @@
       var bedsSel = root.querySelector("select");
       var townSel = root.querySelector(".bcl-town-select");
       var verifiedBox = root.querySelector(".bcl-verified-only");
+      var maxRentInput = root.querySelector(".bcl-max-rent");
       var count = root.querySelector(".bcl-count");
       var list = root.querySelector(".bcl-list");
       var searchState = toolSearchState(location.search);
@@ -1574,13 +1603,14 @@
         var rows = filterRentals(all, {
           q: input.value || "",
           minBeds: parseInt(bedsSel.value, 10) || 0,
+          maxRent: Math.max(0, Number(maxRentInput.value) || 0),
           verifiedOnly: !!verifiedBox.checked,
           town: townSel.value || "all"
         });
         count.textContent = rows.length + " OF " + all.length + " SAN LORENZO VALLEY RENTALS" + updatedSuffix(data.updated);
         if (!rows.length) {
           list.innerHTML = input.value ? toolSearchEmptyMessage("rentals", input.value) :
-            '<div class="bcl-unavailable">No verified San Lorenzo Valley rentals are listed right now. <a href="/contact">Suggest one</a>.</div>';
+            '<div class="bcl-unavailable">No rentals match these filters. Try Reset filters to see the verified listings, or <a href="/contact">suggest a rental</a>.</div>';
           return;
         }
         list.innerHTML = rows.map(rentalCard).join("");
@@ -1589,6 +1619,16 @@
       bedsSel.addEventListener("change", render);
       townSel.addEventListener("change", render);
       verifiedBox.addEventListener("change", render);
+      maxRentInput.addEventListener("input", render);
+      root.querySelector(".bcl-filter-reset").addEventListener("click", function () {
+        input.value = "";
+        bedsSel.value = "0";
+        townSel.value = "all";
+        maxRentInput.value = "";
+        verifiedBox.checked = true;
+        render();
+        input.focus();
+      });
       render();
     }).catch(function () {
       unavailable(root, "The rentals board", 'You can still <a href="/contact">send an update</a>.');
@@ -3311,6 +3351,7 @@
         '<select class="bcl-ev-cat" aria-label="Filter by type"><option value="">All types</option>' +
         cats.map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("") + "</select>" +
         '<select class="bcl-ev-sort" aria-label="Sort events"><option value="date">Soonest first</option><option value="name">Name A to Z</option><option value="type">By type</option></select>' +
+        '<button type="button" class="bcl-filter-reset">Reset filters</button>' +
         "</div>" +
         '<div class="bcl-count" aria-live="polite"></div><div class="bcl-event-grid" id="bcl-events-list"></div>' +
         '<div class="bcl-load-more" hidden><button type="button" aria-controls="bcl-events-list"></button></div>' +
@@ -3345,6 +3386,7 @@
         var mode2 = activeRange();
         rangeBtns.forEach(function (b) {
           b.className = (mode2 !== "custom" && b.getAttribute("data-r") === range) ? "bcl-on" : "";
+          b.setAttribute("aria-pressed", b.className === "bcl-on" ? "true" : "false");
         });
         var rows = all.filter(function (e) {
           if (!eventInRange(e, { range: mode2, from: fromInput.value, to: toInput.value })) return false;
@@ -3413,6 +3455,17 @@
         visibleLimit = batchSize;
         track("event_filter_use", { filter: "clear_dates", value: "" });
         render();
+      });
+      root.querySelector(".bcl-filter-reset").addEventListener("click", function () {
+        input.value = "";
+        catSel.value = "";
+        sortSel.value = "date";
+        fromInput.value = "";
+        toInput.value = "";
+        range = "all";
+        visibleLimit = batchSize;
+        render();
+        input.focus();
       });
       /* One delegated handler: the grid is rebuilt on every keystroke, so
          per-button listeners would be re-bound constantly and leak. */
@@ -4850,12 +4903,9 @@
     var href = String(r.u || "");
     var name = String(r.n || "").trim();
     if (!path || href !== path || !name) return href;
-    /* Search-index job keywords use both spaces and underscores. Remote is a
-       destination state, not merely a display word, while every non-remote
-       job enables the local board's extended tier so a valid indexed commute
-       result is not hidden by the reader-first default. */
-    var isRemote = r.t === "job" && /(^|[\s_-])remote(?=$|[\s_-])/i.test(String(r.k || ""));
-    var extra = r.t === "job" ? (isRemote ? "&tab=remote" : "&extended=1") : "";
+    /* All qualifying jobs share one local board, including local-employer
+       remote roles. A search hit can include the extended geography tier. */
+    var extra = r.t === "job" ? "&extended=1" : "";
     return path + "?q=" + encodeURIComponent(name) + extra;
   }
 

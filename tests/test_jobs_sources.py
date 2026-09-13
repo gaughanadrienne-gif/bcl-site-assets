@@ -11,7 +11,7 @@ def test_all_jobs_tool():
 def test_core_structured_sources_enabled():
     by_name = {s["name"]: s for s in JOB_SOURCES}
     for name in ("County of Santa Cruz", "City of Scotts Valley", "Santa Cruz County schools (EDJOIN)",
-                 "Second Harvest (RSS)", "Remotive (remote)"):
+                 "Second Harvest (RSS)"):
         assert by_name[name]["enabled"] is True, name
 
 def test_discovery_sources_are_link_out_only():
@@ -23,6 +23,7 @@ def test_remote_sources_have_remote_geo():
     for s in JOB_SOURCES:
         if s["platform"] == "remote_json" or s["name"].endswith("(remote)"):
             assert s["geo"] == "remote"
+            assert s["enabled"] is False
 
 def test_safeway_oracle_rest_url_is_verified_finder_call():
     by_name = {s["name"]: s for s in JOB_SOURCES}
