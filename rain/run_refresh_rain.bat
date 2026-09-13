@@ -44,10 +44,17 @@ if errorlevel 1 (
 REM Explicit pathspecs only. data/articles.json and other data files are edited by
 REM hand and by other sessions; a bare "git add ." here would commit someone else's
 REM work in progress. See agent-memory a-shared-json-file-commits-another-sessions-work.
-git add data/rain.json
-if "%RIVER_OK%"=="1" git add data/river.json
-git commit -m "Daily water refresh: rain and river"
-git push
+set PUBLISH_FILES=data/rain.json
+if "%RIVER_OK%"=="1" set PUBLISH_FILES=data/rain.json data/river.json
+REM Publish (2026-09-13). The old add/commit/push failed non-fast-forward whenever
+REM another session pushed first, still exited 0, and left the live feed stuck for
+REM two days. publish_data_file.py builds the commit on top of origin in a private
+REM index and never touches this checkout's working tree or other sessions' edits.
+python scripts\publish_data_file.py -m "Daily water refresh: rain and river" %PUBLISH_FILES% >> rain\refresh.log 2>&1
+if errorlevel 1 (
+    echo %date% %time% publish failed - live rain/river feeds NOT updated >> rain\refresh.log
+    exit /b 1
+)
 curl -s "https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/rain.json" >> rain\refresh.log 2>&1
 if "%RIVER_OK%"=="1" curl -s "https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/river.json" >> rain\refresh.log 2>&1
 

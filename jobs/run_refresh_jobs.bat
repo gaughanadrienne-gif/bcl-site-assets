@@ -17,9 +17,15 @@ if errorlevel 1 (
     exit /b 1
 )
 
-git add data/jobs.json
-git commit -m "Daily jobs refresh"
-git push
+REM Publish (2026-09-13). The old add/commit/push failed non-fast-forward whenever
+REM another session pushed first, still exited 0, and left the live feed stuck for
+REM two days. publish_data_file.py builds the commit on top of origin in a private
+REM index and never touches this checkout's working tree or other sessions' edits.
+python scripts\publish_data_file.py -m "Daily jobs refresh" data/jobs.json >> jobs\refresh.log 2>&1
+if errorlevel 1 (
+    echo %date% %time% publish failed - live jobs feed NOT updated >> jobs\refresh.log
+    exit /b 1
+)
 curl -s "https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/jobs.json" >> jobs\refresh.log 2>&1
 
 endlocal
