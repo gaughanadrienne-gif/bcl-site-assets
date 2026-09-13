@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v19";
+  var CSS_ID = "bcl-tools-css-v20";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -675,7 +675,34 @@
       ".bcl-rain-details{margin:8px 0 0;}",
       ".bcl-rain-details summary{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#2e6b46 !important;cursor:pointer;}",
       ".bcl-rain-details[open] summary{margin-bottom:6px;}",
-      "@media (max-width:600px){.bcl-rain-field,.bcl-rain-field select{flex:1 1 100%;width:100%;}}"
+      /* 2026-09-13 layout pass (owner: "messy and cramped"). The tool replaces the
+         crawlable shell, hero included, so the live page had no H1 and every
+         section heading sat flush against the block above it. Title block and
+         section rhythm now live in the tool itself; wording and figures are
+         unchanged. Later rules deliberately override the base rules above. */
+      "#bcl-rain .bcl-rain-hero{padding:clamp(36px,5vw,64px) 0 clamp(22px,3vw,30px);border-bottom:1px solid #e3ddcf;margin:0 0 18px;}",
+      "#bcl-rain .bcl-rain-hero h1{margin:.25em 0 .3em;}",
+      "#bcl-rain .bcl-rain-hero .bcl-hero-lede{margin:0;max-width:640px;color:#33423b !important;}",
+      "#bcl-rain .bcl-rain-sec{border-top:1px solid #e3ddcf;margin-top:clamp(40px,6vw,64px);padding-top:clamp(26px,4vw,38px);}",
+      "#bcl-rain h2{font-size:clamp(1.7rem,3.2vw,2.3rem);line-height:1.08;margin:0 0 14px;}",
+      "#bcl-rain .bcl-rain-gap{margin:18px 0 0;}",
+      ".bcl-rain-chart{margin:14px 0 0;}",
+      /* Both charts carry an inline max-width:860px;margin:0 auto, which left them
+         narrower than the tiles and tables and centered against left-aligned
+         content. Fill the content measure instead; the viewBox scales cleanly. */
+      ".bcl-rain-chart svg{display:block;width:100%;height:auto;max-width:none !important;margin:0 !important;}",
+      ".bcl-rain-key{margin:12px 0 0;}",
+      ".bcl-rain-details{margin:18px 0 0;}",
+      ".bcl-rain-two{gap:20px 32px;margin:26px 0 0;}",
+      ".bcl-rain-table th,.bcl-rain-table td{border:0;border-bottom:1px solid #e8e3d6;padding:9px 10px;}",
+      ".bcl-rain-table thead th{border-bottom:1px solid #cfc9b8;}",
+      ".bcl-rain-table tbody th{font-weight:500;}",
+      ".bcl-rain-table caption{padding:0 0 8px;}",
+      "#bcl-rain > .bcl-note:last-child{margin:clamp(40px,6vw,64px) 0 clamp(44px,6vw,72px);}",
+      "@media (max-width:600px){.bcl-rain-field,.bcl-rain-field select{flex:1 1 100%;width:100%;}" +
+        ".bcl-rain-tiles{grid-template-columns:1fr 1fr;gap:10px;}.bcl-rain-tile{padding:12px;}" +
+        ".bcl-rain-tile-value{font-size:1.25rem;}.bcl-rain-tile-note{font-size:.72rem;}" +
+        ".bcl-rain-table{font-size:.8rem;}.bcl-rain-table th,.bcl-rain-table td{padding:8px 6px;}}"
     ].join("");
     var el = document.createElement("style");
     el.id = CSS_ID;
@@ -3993,7 +4020,7 @@
     var p25 = band.p25 || [], p75 = band.p75 || [];
     if (p50.length !== RAIN_WY_DAYS) return "";
 
-    var W = 860, H = 350, L = 46, R = 18, T = 26, B = 44;
+    var W = 860, H = 362, L = 46, R = 18, T = 26, B = 56;
     var PW = W - L - R, PH = H - T - B;
     var ymax = rainNiceMax(Math.max(p90[p90.length - 1] || 0,
                                     series.length ? series[series.length - 1] : 0));
@@ -4082,10 +4109,13 @@
       p.push('<rect x="' + X(m.start).toFixed(1) + '" y="' + T + '" width="' + (X(m.end) - X(m.start) || 1).toFixed(1) +
         '" height="' + PH + '" fill="transparent"><title>' + esc(tip) + "</title></rect>");
     });
-    p.push('<text x="' + L + '" y="' + (H - 8) + '" font-size="10.5" fill="' + RAIN.muted + '">' +
+    /* Two lines: as one line the caption ran past the 860-unit viewBox and was
+       clipped at the right edge on desktop (2026-09-13). */
+    p.push('<text x="' + L + '" y="' + (H - 20) + '" font-size="10.5" fill="' + RAIN.muted + '">' +
       esc("Water year runs October 1 to September 30. Bands and median from the " +
-        ((payload.record || {}).reportable_years || 0) + " water years complete enough to report. " +
-        "This year's line stops at the last reading, marked by the dotted line.") + "</text>");
+        ((payload.record || {}).reportable_years || 0) + " water years complete enough to report.") +
+      '<tspan x="' + L + '" dy="13">' +
+      esc("This year's line stops at the last reading, marked by the dotted line.") + "</tspan></text>");
     p.push("</svg>");
     return p.join("");
   }
@@ -4359,7 +4389,7 @@
     var excluded = (payload || {}).excluded || [];
     var named = excluded.filter(function (r) { return !r.partial; })
       .map(function (r) { return r.wy; });
-    return "<h3>How this is measured, and where it is silent</h3>" +
+    return "<h2>How this is measured, and where it is silent</h2>" +
       "<p>Rain here is counted by <strong>water year</strong>, October 1 through September 30, named for the " +
       "calendar year it ends in. A water year holds exactly one winter, which is how storms actually arrive. " +
       "Splitting rainfall by calendar year cuts every wet season in half.</p>" +
@@ -4385,6 +4415,16 @@
       "tracks it.</p>";
   }
 
+  /* The page title. initRain replaces the crawlable shell, and the shell's hero
+     went with it, so the tool renders its own. Copy is the shell's, minus the
+     hard-coded year count, which would go stale. */
+  function rainHeroHTML() {
+    return '<header class="bcl-rain-hero"><p class="bcl-kicker">San Lorenzo Valley rain tracker</p>' +
+      "<h1>How much rain has the valley actually had?</h1>" +
+      '<p class="bcl-hero-lede">Season-to-date rainfall at the valley&rsquo;s longest gauge, drawn against the ' +
+      "record behind it. Water year totals, storm totals, and the wettest and driest years on record.</p></header>";
+  }
+
   function initRain(root) {
     root.innerHTML = '<div class="bcl-count">Loading the rainfall record…</div>';
     fetchJSON(REPO + "/data/" + RAIN.file).then(function (payload) {
@@ -4395,20 +4435,21 @@
       var scope = "all", selected = null;
 
       root.innerHTML =
+        rainHeroHTML() +
         rainFreshnessHTML(payload, today) +
         rainStatsHTML(payload) +
         '<div class="bcl-note bcl-rain-gap">' + esc(rainGapNote(payload.current)) + "</div>" +
-        "<h3>This water year against the record</h3>" +
+        '<section class="bcl-rain-sec"><h2>This water year against the record</h2>' +
         '<div class="bcl-rain-chart" id="bcl-rain-season"></div>' +
         rainSeasonLegendHTML(payload) +
-        rainMonthTable(payload) +
-        "<h3>Every water year on record</h3>" +
+        rainMonthTable(payload) + "</section>" +
+        '<section class="bcl-rain-sec"><h2>Every water year on record</h2>' +
         rainControlsHTML(payload, "") +
         '<div class="bcl-rain-chart" id="bcl-rain-totals"></div>' +
-        rainExtremesHTML(payload) +
-        "<h3>Storms this water year</h3>" +
-        '<div id="bcl-rain-storms">' + rainStormsHTML(payload) + "</div>" +
-        rainMethodHTML(payload) +
+        rainExtremesHTML(payload) + "</section>" +
+        '<section class="bcl-rain-sec"><h2>Storms this water year</h2>' +
+        '<div id="bcl-rain-storms">' + rainStormsHTML(payload) + "</div></section>" +
+        '<section class="bcl-rain-sec">' + rainMethodHTML(payload) + "</section>" +
         '<div class="bcl-note">This page is a record, not a warning. For road conditions, air quality, the ' +
         'river gauge and official alerts, use <a href="' + RAIN.status + '">Mountain Status</a>. In an ' +
         "emergency, call 911.</div>";
@@ -4948,6 +4989,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER };
   }
 })();
