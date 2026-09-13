@@ -2707,9 +2707,11 @@
     }
     if (SHARE_SKIP_PATHS.indexOf(location.pathname.replace(/\/$/, "")) >= 0) return;
     var lede = document.querySelector(".bcl-rain-hero .bcl-hero-lede, .bcl-hero .bcl-hero-lede, .bcl-hub-v2 .hero-copy > p");
-    if (!lede) return;
-    if (lede.closest("#bcl-rain") && !lede.closest(".bcl-rain-hero")) return;
-    mountShareBar("bcl-share-page", lede.parentNode, null, "", "page");
+    /* Jobs and Rentals ship a kicker-and-title hero with no lede paragraph. */
+    var host = lede ? lede.parentNode : document.querySelector(".bcl-hero > .bcl-wrap:not(.bcl-hero-grid)");
+    if (!host) return;
+    if (host.closest("#bcl-rain") && !host.closest(".bcl-rain-hero")) return;
+    mountShareBar("bcl-share-page", host, null, "", "page");
   }
 
   /* ---------- homepage live board: next events, newest jobs, current rentals ---------- */
