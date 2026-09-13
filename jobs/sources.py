@@ -12,6 +12,22 @@ def _s(name, cclass, platform, parser, url, geo, priority, enabled, terms_ok, no
 
 
 JOB_SOURCES = [
+    # Local-first onboarding. Disabled until source/terms and publication review.
+    # Index parsers always queue discoveries, even if temporarily enabled for QA.
+    _s("Roaring Camp Railroads", "manual_review", "custom_html", "custom_html",
+       "https://roaringcamp.com/employment", "area", 1, False, False,
+       "One employer recruitment, not five requisitions. No role-specific pay/dates. Weekly review.",
+       {"local_index": "roaring_camp"}),
+    _s("Mount Hermon", "manual_review", "custom_html", "custom_html",
+       "https://www.mounthermon.org/jobs/", "area", 1, False, False,
+       "Index discovery only. Verify each Paycom worksite and eligibility; exclude Etna/Kidder Creek. No blanket religious eligibility rule.",
+       {"local_index": "mount_hermon"}),
+    _s("YMCA Camp Campbell", "manual_review", "adp", "adp",
+       "https://myjobs.adp.com/ymcasvcareers", "area", 2, False, False,
+       "Employer-linked portal. Restrict to confirmed Camp Campbell/Boulder Creek roles; onboarding pending."),
+    _s("Scarborough Lumber careers", "discovery_only", "discovery", "discovery",
+       "https://www.scarboroughlumber.com/pages/careers", "area", 3, False, False,
+       "General application pool, not a confirmed vacancy. No vacancy ingestion."),
     # --- Government (structured, public) ---
     _s("County of Santa Cruz", "direct_page_reviewed", "jobaps", "jobaps",
        "https://jobapscloud.com/SCRUZ/", "area", 5, True, True, "11 open at check"),

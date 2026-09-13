@@ -10,6 +10,10 @@ const rows = [
   {title:'Farther',city:'Watsonville',geography_tier:'extended',employment_type:'Temporary'}
 ];
 test('valley-only area excludes nearby and extended jobs',()=>assert.deepEqual(t.filterJobs(rows,{area:'slv',includeExtended:true}).map(j=>j.title),['Valley']));
+test('Mount Hermon worksite remains in the valley-only filter',()=>{
+  const local={title:'Linen Driver',city:'Mount Hermon',geography_tier:'core'};
+  assert.deepEqual(t.filterJobs([...rows,local],{area:'slv'}).map(j=>j.title),['Valley','Linen Driver']);
+});
 test('work schedule handles hyphenated labels',()=>assert.deepEqual(t.filterJobs(rows,{employmentType:'part time'}).map(j=>j.title),['Valley']));
 test('full and part time qualifies under either schedule',()=>{
   const mixed=[{...rows[0],employment_type:'Full and Part Time'}];

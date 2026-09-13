@@ -21,7 +21,7 @@ from shared.review_board import render_review_board  # noqa: E402
 from jobs.normalize import include_job, normalize_job  # noqa: E402
 from jobs.parsers import (  # noqa: E402
     calopps, dayforce, edjoin, jobaps, neogov, oracle, paycom, paylocity,
-    remote_json, rss, workday,
+    remote_json, rss, workday, local_employers,
 )
 from jobs.sources import JOB_SOURCES  # noqa: E402
 from shared.source_yield import record_yields, format_alarms  # noqa: E402
@@ -37,6 +37,7 @@ PUBLIC_SCHEMA_KEYS = (
 )
 
 PARSERS = {
+    "custom_html": local_employers.parse,
     "neogov": neogov.parse,
     "jobaps": jobaps.parse,
     "edjoin": edjoin.parse,
@@ -77,6 +78,8 @@ def fetch_raw(source, http_get_fn, http_json_fn, firecrawl_markdown_fn, http_pos
     """Dispatch a source's fetch by platform. Fetchers are injected for tests."""
     platform = source.get("platform", "")
     config = source.get("config") or {}
+    if config.get("local_index"):
+        return http_get_fn(source["url"])
     if platform == "remote_json":
         return http_json_fn(source["url"])
     if platform == "http_json":
@@ -137,7 +140,7 @@ def preserve_first_seen(jobs, previous_jobs, today):
             job["first_seen_at"] = prior
 
 
-def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_jobs=None):
+def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_jobs=None, diagnostics=None):
     """Fetch+parse+normalize every ENABLED source; return (published, queued).
 
     `fetchers` is a dict with http_get/http_json/firecrawl_markdown callables
@@ -159,11 +162,17 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
     # Rows produced per ENABLED source, so a source that quietly stops
     # returning anything can be alarmed on. See shared/source_yield.py.
     counts = {}
+    outcomes = diagnostics if diagnostics is not None else {}
     for source in sources:
         if not source.get("enabled"):
             continue
+        outcome = outcomes[source["name"]] = {
+            "status": "pending", "parsed": 0, "eligible": 0,
+            "rejected": {}, "row_errors": 0, "publication_candidates": 0, "deduplicated": 0,
+        }
         parser_fn = PARSERS.get(source.get("parser"))
         if parser_fn is None:
+            outcome["status"] = "parser-unavailable"
             continue  # not yet onboarded (registry-ready, parser pending)
         # A per-parse context copy carries `_today` (Workday's relative-date
         # parsing needs it) without mutating the shared registry entry.
@@ -173,22 +182,31 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
             raw_data = fetch_raw(source, http_get_fn, http_json_fn, firecrawl_fn, http_post_json_fn)
             raw_rows = parser_fn(raw_data, source_ctx)
         except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
+            outcome["status"] = "fetch-or-parse-failed"
             print("refresh_jobs: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
             counts[source.get("name")] = 0
             continue
         counts[source.get("name")] = len(raw_rows)
+        outcome["parsed"] = len(raw_rows)
+        outcome["status"] = "parsed" if raw_rows else "empty-response"
 
         for raw in raw_rows:
             try:
                 job = normalize_job(raw, source, today)
                 ok, reason = include_job(job)
+                if raw.get("review_required"):
+                    ok, reason = False, "employer-detail-review-required"
+                    job["verification_status"] = "pending-review"
                 if ok:
+                    outcome["eligible"] += 1
                     published.append(job)
                 else:
+                    outcome["rejected"][reason] = outcome["rejected"].get(reason, 0) + 1
                     job = dict(job)
                     job["_queue_reason"] = reason
                     queued.append(job)
             except Exception as exc:  # noqa: BLE001 -- one bad row must not drop the source
+                outcome["row_errors"] += 1
                 print(
                     "refresh_jobs: row from source %r failed: %s" % (source.get("name"), exc),
                     file=sys.stderr,
@@ -211,6 +229,11 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
 
     # Different requisitions may legitimately share title, employer and city.
     published = dedupe_by(published, lambda j: job_identity_url(j["canonical_url"]) or j["id"])
+    for job in published:
+        if job.get("source") in outcomes:
+            outcomes[job["source"]]["publication_candidates"] += 1
+    for outcome in outcomes.values():
+        outcome["deduplicated"] = outcome["eligible"] - outcome["publication_candidates"]
     preserve_first_seen(published, previous_jobs, today)
     return published, queued, counts
 
@@ -226,17 +249,28 @@ def _pacific_today():
 
 def main():
     today = _pacific_today()
+    diagnostics = {}
     published, queued, counts = build_jobs(
         JOB_SOURCES,
         {"http_get": http_get, "http_json": http_json, "firecrawl_markdown": firecrawl_markdown},
         today,
         previous_jobs=(load_json(JOBS_PATH, default={}) or {}).get("jobs", []),
+        diagnostics=diagnostics,
     )
+    # Save diagnostic evidence even when the total-count publication guard fails.
+    # Empty parse is not certified as zero vacancies: a changed page can also be empty.
+    write_json_atomic(os.path.join(_REVIEW_DIR, "jobs-source-outcomes.json"), {
+        "updated": today, "public_feed_write": "not-completed", "sources": diagnostics,
+    })
     write_public_json_guarded(
         JOBS_PATH, key="jobs", records=published, min_total=MIN_SAFE_TOTAL,
         note="Boulder Creek Local jobs board. Auto-refreshed; see refresh_jobs.py.",
         today=today,
     )
+    write_json_atomic(os.path.join(_REVIEW_DIR, "jobs-source-outcomes.json"), {
+        "updated": today, "public_feed_write": "local-file-written",
+        "local_feed_count": len(published), "sources": diagnostics,
+    })
     write_json_atomic(QUEUE_PATH, {
         "_note": "Jobs awaiting owner review (ambiguous location, excluded keyword, or missing fields).",
         "updated": today, "count": len(queued), "jobs": queued,

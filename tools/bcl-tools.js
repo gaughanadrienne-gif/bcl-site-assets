@@ -1365,7 +1365,7 @@
     var rows2 = rows.filter(function (j) {
       if (jobTab(j) !== tab) return false;
       if (tab === "local" && j.geography_tier === "extended" && !opts.includeExtended) return false;
-      if (opts.area === "slv" && ["Boulder Creek", "Brookdale", "Ben Lomond", "Felton", "Lompico", "Zayante", "San Lorenzo Valley"].indexOf(j.city) < 0) return false;
+      if (opts.area === "slv" && ["Boulder Creek", "Brookdale", "Ben Lomond", "Felton", "Mount Hermon", "Lompico", "Zayante", "San Lorenzo Valley"].indexOf(j.city) < 0) return false;
       var schedule = String(j.employment_type || "").toLowerCase().replace(/-/g, " ").replace(/full\s+(?:and|&)\s+part\s+time/g, "full time, part time");
       if (opts.employmentType && schedule.indexOf(opts.employmentType) < 0) return false;
       if (opts.category && j.category !== opts.category) return false;
