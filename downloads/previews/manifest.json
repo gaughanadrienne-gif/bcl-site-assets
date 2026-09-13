@@ -7,14 +7,14 @@
   },
   "Boulder_Creek_Defensible_Space_Checklist.pdf": {
     "pages": 2,
-    "bytes": 99645,
-    "sha256": "bf83db9c250d05477d5fa4eea489c1b299cadb917858d0089ca4614bdfa31292",
+    "bytes": 88008,
+    "sha256": "949576a49fa20be7c47e6716976c83aabbbdb3f25090c58e1b1b97d37c6393ad",
     "preview": "downloads/previews/Boulder_Creek_Defensible_Space_Checklist.png"
   },
   "Boulder_Creek_Emergency_Contacts.pdf": {
     "pages": 1,
-    "bytes": 100182,
-    "sha256": "a6cd56307ce4ebdd75cfc70c278d1ace9233c0dfb3e8755e1dfee6708a84f317",
+    "bytes": 87217,
+    "sha256": "6be3dde6dbda40d8b70ae810b74dcbe7d4a0e9490fdaf74eb64312486a647d18",
     "preview": "downloads/previews/Boulder_Creek_Emergency_Contacts.png"
   },
   "Boulder_Creek_Hiring_A_Contractor_Checklist.pdf": {
@@ -37,14 +37,14 @@
   },
   "Boulder_Creek_Wildfire_Go_Bag_Checklist.pdf": {
     "pages": 2,
-    "bytes": 95855,
-    "sha256": "3644f95747911cdd3a1d115a9800b9c7c644219f0b472c37e347732afeb64365",
+    "bytes": 88155,
+    "sha256": "973988caa1a17f608618141a65c4a2d56082f9be304c46cb1673147c6bb12a77",
     "preview": "downloads/previews/Boulder_Creek_Wildfire_Go_Bag_Checklist.png"
   },
   "Boulder_Creek_Winter_Storm_and_Outage_Checklist.pdf": {
     "pages": 2,
-    "bytes": 78682,
-    "sha256": "5baba5d33fa75bd7f946d8875bcaef46a84b3c17f3c1d9d84e002706f63988d2",
+    "bytes": 89832,
+    "sha256": "bd5b83f2419ff88f423fab7540bae29f792e62c2dd4af51eefd708e03894b3a2",
     "preview": "downloads/previews/Boulder_Creek_Winter_Storm_and_Outage_Checklist.png"
   },
   "New_Resident_Quick_Start.pdf": {
@@ -52,5 +52,41 @@
     "bytes": 93729,
     "sha256": "3e6b466973caed3a1d26ad769d63d667bd912ba57340494f34b7331c3c48f038",
     "preview": "downloads/previews/New_Resident_Quick_Start.png"
+  },
+  "BCL_Discovery_Passport.pdf": {
+    "pages": 2,
+    "bytes": 43369,
+    "sha256": "ed357b67f86dd417f981d997419af3365bd96d3555ff41e08d59fd649cd288ad",
+    "preview": "downloads/previews/BCL_Discovery_Passport.png"
+  },
+  "BCL_Local_Job_Search_Planner.pdf": {
+    "pages": 3,
+    "bytes": 56078,
+    "sha256": "384b595188f26709ba9b728b2957824f8e7934dd88e113c1211939e3d5aa99b6",
+    "preview": "downloads/previews/BCL_Local_Job_Search_Planner.png"
+  },
+  "Boulder_Creek_Household_Communication_Plan.pdf": {
+    "pages": 2,
+    "bytes": 114863,
+    "sha256": "5a5e38e8a4770c1245e49de0995a701ba219f0af9fc15512f394e9a3ad86c892",
+    "preview": "downloads/previews/Boulder_Creek_Household_Communication_Plan.png"
+  },
+  "Boulder_Creek_Household_Records_Checklist.pdf": {
+    "pages": 2,
+    "bytes": 120796,
+    "sha256": "c9e32a656a54d650067d3b36879633a43a4313a69e1e097d75f84db8d59d1a65",
+    "preview": "downloads/previews/Boulder_Creek_Household_Records_Checklist.png"
+  },
+  "Boulder_Creek_Pet_Evacuation_Plan.pdf": {
+    "pages": 2,
+    "bytes": 113618,
+    "sha256": "152e08ad80d885edeacecc2503851d5f8d5e442d0efaece3f3806d3c7b8011da",
+    "preview": "downloads/previews/Boulder_Creek_Pet_Evacuation_Plan.png"
+  },
+  "Boulder_Creek_Smoke_Ready_Home_Plan.pdf": {
+    "pages": 2,
+    "bytes": 97471,
+    "sha256": "4ecfb4cbf3f6fce217a2499ed952f7e039150d2f687dea4cb6a6bf7d1cd6b334",
+    "preview": "downloads/previews/Boulder_Creek_Smoke_Ready_Home_Plan.png"
   }
 }
