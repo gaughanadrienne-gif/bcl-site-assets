@@ -44,12 +44,12 @@
      (weddings, celebrations) close the page. */
   var CAT_GROUPS = [
     ["Home & Property", ["General Contractors & Construction", "Plumbing & HVAC", "Electrical & Solar", "Landscaping & Gardening", "Tree Care & Defensible Space", "Excavation, Grading & Paving", "Handyman & Property Maintenance", "House Cleaning", "Well & Pump / Water", "Home Services & Repair"]],
-    ["Health & Personal", ["Health & Wellness", "Sports & Fitness", "Beauty", "Pets & Animals", "Florists"]],
+    ["Health & Personal", ["Health & Wellness", "Sports & Fitness", "Beauty", "Pets & Animals", "Pets", "Florists"]],
     ["Shops & Essentials", ["Shopping", "Errands & Essentials", "Automotive", "Transportation", "Utilities & Essential Services"]],
     ["Money & Property", ["Money & Professional Services", "Real Estate"]],
     ["Family & Learning", ["Education & Childcare"]],
     ["Community & Civic", ["Community & Nonprofit", "Government & Public Services", "Emergency & Public Safety", "Parks & Recreation", "Arts & Culture"]],
-    ["Food & Drink", ["Vineyards & Wine Tasting"]],
+    ["Food & Drink", ["Food and Drink", "Vineyards & Wine Tasting"]],
     ["Stay", ["Lodging"]],
     ["Weddings & Celebrations", ["Event Venues", "Catering & Bar", "Cakes & Desserts", "Wedding Services", "Party Rentals & Decor", "Kids Parties"]]
   ];
