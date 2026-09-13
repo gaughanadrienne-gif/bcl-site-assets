@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v23";
+  var CSS_ID = "bcl-tools-css-v24";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -523,6 +523,9 @@
       ".bcl-share .bcl-share-btn.is-primary{background:#173f36 !important;border-color:#173f36;color:#fffdf8 !important;}",
       ".bcl-share .bcl-share-btn svg{width:15px;height:15px;flex:none;}",
       ".bcl-share-status{font-size:.82rem;color:#2e6b46 !important;}",
+      ".bcl-share-mail{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:.88rem;color:#33423b !important;margin:2px 0 0;}",
+      ".bcl-share-mail[hidden]{display:none !important;}",
+      ".bcl-share-mail a{color:#2e6b46 !important;text-decoration:underline;text-underline-offset:2px;font-weight:600;}",
       ".bcl-share-top{max-width:860px;margin:0 auto 26px;}",
       ".bcl-share-end{max-width:900px;margin:0 auto;padding:22px 20px 4px;box-sizing:border-box;border-top:1px solid #e3ddcf;}",
       "@media (max-width:960px){.bcl-board{grid-template-columns:1fr;}}",
@@ -2642,12 +2645,19 @@
     return origin + loc.pathname;
   }
 
+  /* A mailto does nothing on a computer with no mail program registered, which
+     is most people who read mail in a browser (reported 2026-09-13 on Windows
+     Chrome). So computers also get webmail compose pages to choose from. */
   function shareLinks(url, title) {
     var t = title || "Boulder Creek Local";
+    var subject = encodeURIComponent(t);
+    var body = encodeURIComponent("Thought you might like this from Boulder Creek Local.\n\n" + t + "\n" + url);
     return {
       facebook: "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url),
-      email: "mailto:?subject=" + encodeURIComponent(t) + "&body=" +
-        encodeURIComponent("Thought you might like this from Boulder Creek Local.\n\n" + t + "\n" + url)
+      email: "mailto:?subject=" + subject + "&body=" + body,
+      gmail: "https://mail.google.com/mail/?view=cm&fs=1&su=" + subject + "&body=" + body,
+      outlook: "https://outlook.live.com/mail/0/deeplink/compose?subject=" + subject + "&body=" + body,
+      yahoo: "https://compose.mail.yahoo.com/?subject=" + subject + "&body=" + body
     };
   }
 
@@ -2661,10 +2671,18 @@
         : '<span class="bcl-share-label">Share</span>') +
       '<a class="bcl-share-btn" data-share="facebook" href="' + esc(links.facebook) + '" target="_blank" rel="noopener">' +
       SHARE_ICONS.facebook + "Facebook</a>" +
-      '<a class="bcl-share-btn" data-share="email" href="' + esc(links.email) + '">' + SHARE_ICONS.email + "Email</a>" +
+      '<a class="bcl-share-btn" data-share="email" href="' + esc(links.email) + '"' +
+      (opts.native ? "" : ' aria-expanded="false" aria-controls="' + esc(id) + '-mail"') + ">" + SHARE_ICONS.email + "Email</a>" +
       /* The system sheet already offers Copy, so phones get one row of three. */
       (opts.native ? "" : '<button type="button" class="bcl-share-btn" data-share="copy">' + SHARE_ICONS.copy + "Copy link</button>") +
-      '<span class="bcl-share-status" role="status" aria-live="polite"></span></div>';
+      '<span class="bcl-share-status" role="status" aria-live="polite"></span>' +
+      (opts.native ? "" :
+        '<div class="bcl-share-mail" id="' + esc(id) + '-mail" hidden><span>Send with</span>' +
+        '<a data-share="gmail" href="' + esc(links.gmail) + '" target="_blank" rel="noopener">Gmail</a>' +
+        '<a data-share="outlook" href="' + esc(links.outlook) + '" target="_blank" rel="noopener">Outlook</a>' +
+        '<a data-share="yahoo" href="' + esc(links.yahoo) + '" target="_blank" rel="noopener">Yahoo Mail</a>' +
+        '<a data-share="mail_app" href="' + esc(links.email) + '">Email app</a></div>') +
+      "</div>";
   }
 
   /* The system sheet only on touch screens: desktop browsers expose
@@ -2708,6 +2726,14 @@
       var btn = ev.target && ev.target.closest ? ev.target.closest("[data-share]") : null;
       if (!btn || !bar.contains(btn)) return;
       var method = btn.getAttribute("data-share");
+      var mail = bar.querySelector(".bcl-share-mail");
+      /* On a computer, Email opens the choice row instead of a bare mailto. */
+      if (method === "email" && mail) {
+        ev.preventDefault();
+        mail.hidden = !mail.hidden;
+        btn.setAttribute("aria-expanded", mail.hidden ? "false" : "true");
+        if (mail.hidden) return;
+      }
       track("share", { method: method, content_type: surface, item_id: trackText(location.pathname) });
       if (method === "native") {
         navigator.share({ title: title, url: url }).catch(function () { /* dismissed */ });

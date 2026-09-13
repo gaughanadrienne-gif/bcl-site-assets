@@ -49,3 +49,18 @@ test("share copy carries no em dashes or emoji (brand rules)", () => {
   assert.ok(!/—/.test(decodeURIComponent(html.replace(/%(?![0-9A-F]{2})/g, ""))));
   assert.ok(!/\p{Extended_Pictographic}/u.test(html));
 });
+
+test("computers get webmail choices because a bare mailto can do nothing there", () => {
+  const url = "https://www.bouldercreeklocal.com/events";
+  const l = t.shareLinks(url, "Events & more");
+  assert.ok(l.gmail.startsWith("https://mail.google.com/mail/?view=cm&fs=1&su=Events%20%26%20more&body="));
+  assert.ok(l.outlook.startsWith("https://outlook.live.com/mail/0/deeplink/compose?subject=Events%20%26%20more&body="));
+  assert.ok(l.yahoo.startsWith("https://compose.mail.yahoo.com/?subject=Events%20%26%20more&body="));
+  for (const k of ["gmail", "outlook", "yahoo"]) assert.ok(decodeURIComponent(l[k].split("body=")[1]).includes(url));
+  const desk = t.shareBarHTML("bcl-share-page", url, "Events", {});
+  assert.ok(desk.includes('aria-controls="bcl-share-page-mail"'));
+  assert.ok(/id="bcl-share-page-mail" hidden/.test(desk));
+  for (const m of ["gmail", "outlook", "yahoo", "mail_app"]) assert.ok(desk.includes('data-share="' + m + '"'));
+  const phone = t.shareBarHTML("bcl-share-page", url, "Events", { native: true });
+  assert.ok(!phone.includes("bcl-share-mail"), "phones keep the plain mailto, which opens the mail app");
+});
