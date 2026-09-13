@@ -154,7 +154,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v20";
+  var CSS_ID = "bcl-tools-css-v21";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -507,6 +507,17 @@
       ".bcl-related{max-width:900px;margin:0 auto;padding:34px 20px 48px;border-top:1px solid #e3ddcf;}",
       ".bcl-related h2{font-family:'Cormorant Garamond',Georgia,serif;color:#173f36 !important;font-size:1.6rem;margin:0 0 14px !important;line-height:1.1;}",
       ".bcl-related-kicker{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#d56e47 !important;margin:0 0 4px !important;}",
+      /* Share bar: articles (top and end) and the tool and hub pages (in the hero).
+         Pill idiom matches the directory chips; 40px min height for thumbs. */
+      ".bcl-share{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0 0;}",
+      ".bcl-share-label{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#626c66 !important;margin:0 2px 0 0;}",
+      ".bcl-share .bcl-share-btn{display:inline-flex;align-items:center;gap:7px;min-height:40px;box-sizing:border-box;font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;line-height:1;padding:8px 14px;margin:0;border:1px solid #cfc9b8;border-radius:999px;background:#fffdf8 !important;color:#173f36 !important;text-decoration:none !important;cursor:pointer;}",
+      ".bcl-share .bcl-share-btn:hover,.bcl-share .bcl-share-btn:focus-visible{background:#173f36 !important;border-color:#173f36;color:#fffdf8 !important;}",
+      ".bcl-share .bcl-share-btn.is-primary{background:#173f36 !important;border-color:#173f36;color:#fffdf8 !important;}",
+      ".bcl-share .bcl-share-btn svg{width:15px;height:15px;flex:none;}",
+      ".bcl-share-status{font-size:.82rem;color:#2e6b46 !important;}",
+      ".bcl-share-top{max-width:860px;margin:0 auto 26px;}",
+      ".bcl-share-end{max-width:900px;margin:0 auto;padding:22px 20px 4px;box-sizing:border-box;border-top:1px solid #e3ddcf;}",
       "@media (max-width:960px){.bcl-board{grid-template-columns:1fr;}}",
       "@media (max-width:820px){.bcl-recent,.bcl-explore{grid-template-columns:1fr;}}",
       /* Homepage rainfall card. Deliberately a LINK, so the whole band is one
@@ -2548,11 +2559,157 @@
       sec.innerHTML = '<p class="bcl-related-kicker">Keep reading</p><h2>More from Around Town</h2>' +
         '<div class="bcl-recent">' + picks.map(articleCardHTML).join("") + "</div>";
       var host = target.parentNode || target;
+      var shareEnd = document.getElementById("bcl-share-end");
       if (host === target) target.appendChild(sec);
+      else if (shareEnd && shareEnd.parentNode === host) host.insertBefore(sec, shareEnd.nextSibling);
       else host.insertBefore(sec, target.nextSibling);
     }).catch(function () {
       /* No feed, no recommendations. Leave the post as it is. */
     });
+  }
+
+  /* ---------- share bar ----------
+     One row of plain links, no third-party script and no tracking pixel:
+     Facebook's sharer URL, a mailto, and copy link. On a phone the first button
+     opens the system share sheet, which is where Text, Nextdoor and WhatsApp
+     live, so none of them needs its own button. The shared URL is the page's
+     canonical address, so a filter or search state never leaks into a share. */
+
+  var SHARE_ICONS = {
+    share: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.5 21v-7.5H16l.4-3H13.5V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4a20 20 0 0 0-2.2-.1c-2.2 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z"/></svg>',
+    email: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>',
+    copy: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>'
+  };
+
+  function shareCleanTitle(raw) {
+    return String(raw == null ? "" : raw).replace(/\s+/g, " ")
+      .replace(/\s*[|\u2013\u2014-]\s*Boulder Creek Local\s*$/i, "")
+      .replace(/\s*\(Copy\)\s*$/i, "").trim();
+  }
+
+  /* Canonical when it names this site, otherwise the address being read.
+     Query string and hash are always dropped. */
+  function shareCanonicalUrl(canonicalHref, loc) {
+    var origin = loc.origin || (loc.protocol + "//" + loc.host);
+    if (canonicalHref) {
+      try {
+        var u = new URL(canonicalHref, origin);
+        if (/(^|\.)bouldercreeklocal\.com$/i.test(u.hostname)) return u.origin + u.pathname;
+      } catch (err) { /* fall through to the page address */ }
+    }
+    return origin + loc.pathname;
+  }
+
+  function shareLinks(url, title) {
+    var t = title || "Boulder Creek Local";
+    return {
+      facebook: "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url),
+      email: "mailto:?subject=" + encodeURIComponent(t) + "&body=" +
+        encodeURIComponent("Thought you might like this from Boulder Creek Local.\n\n" + t + "\n" + url)
+    };
+  }
+
+  function shareBarHTML(id, url, title, opts) {
+    opts = opts || {};
+    var links = shareLinks(url, title);
+    return '<div class="bcl-share' + (opts.cls ? " " + esc(opts.cls) : "") + '" id="' + esc(id) +
+      '" role="group" aria-label="Share this page">' +
+      (opts.native
+        ? '<button type="button" class="bcl-share-btn is-primary" data-share="native">' + SHARE_ICONS.share + "Share</button>"
+        : '<span class="bcl-share-label">Share</span>') +
+      '<a class="bcl-share-btn" data-share="facebook" href="' + esc(links.facebook) + '" target="_blank" rel="noopener">' +
+      SHARE_ICONS.facebook + "Facebook</a>" +
+      '<a class="bcl-share-btn" data-share="email" href="' + esc(links.email) + '">' + SHARE_ICONS.email + "Email</a>" +
+      /* The system sheet already offers Copy, so phones get one row of three. */
+      (opts.native ? "" : '<button type="button" class="bcl-share-btn" data-share="copy">' + SHARE_ICONS.copy + "Copy link</button>") +
+      '<span class="bcl-share-status" role="status" aria-live="polite"></span></div>';
+  }
+
+  /* The system sheet only on touch screens: desktop browsers expose
+     navigator.share too, but their sheet offers little beyond the row itself. */
+  function shareHasNative() {
+    try {
+      return typeof navigator.share === "function" && !!window.matchMedia &&
+        window.matchMedia("(pointer: coarse)").matches;
+    } catch (err) { return false; }
+  }
+
+  function shareCopy(text) {
+    function fallback() {
+      return new Promise(function (resolve, reject) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.cssText = "position:absolute;left:-9999px;top:0;";
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+        ta.remove();
+        if (ok) resolve(); else reject(new Error("copy failed"));
+      });
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(fallback);
+    }
+    return fallback();
+  }
+
+  function wireShareBar(bar, url, title, surface) {
+    var status = bar.querySelector(".bcl-share-status");
+    function say(msg) {
+      if (!status) return;
+      status.textContent = msg;
+      setTimeout(function () { if (status.textContent === msg) status.textContent = ""; }, 5000);
+    }
+    bar.addEventListener("click", function (ev) {
+      var btn = ev.target && ev.target.closest ? ev.target.closest("[data-share]") : null;
+      if (!btn || !bar.contains(btn)) return;
+      var method = btn.getAttribute("data-share");
+      track("share", { method: method, content_type: surface, item_id: trackText(location.pathname) });
+      if (method === "native") {
+        navigator.share({ title: title, url: url }).catch(function () { /* dismissed */ });
+      } else if (method === "copy") {
+        shareCopy(url).then(function () { say("Link copied"); }, function () { say(url); });
+      }
+      /* Facebook and Email are ordinary links and navigate on their own. */
+    });
+  }
+
+  function mountShareBar(id, parent, before, cls, surface) {
+    if (!parent || document.getElementById(id)) return null;
+    var canon = document.querySelector('link[rel="canonical"]');
+    var og = document.querySelector('meta[property="og:title"]');
+    var url = shareCanonicalUrl(canon ? canon.getAttribute("href") : "", location);
+    var title = shareCleanTitle((og && og.getAttribute("content")) || document.title);
+    var holder = document.createElement("div");
+    holder.innerHTML = shareBarHTML(id, url, title, { native: shareHasNative(), cls: cls });
+    var bar = holder.firstChild;
+    parent.insertBefore(bar, before || null);
+    wireShareBar(bar, url, title, surface);
+    return bar;
+  }
+
+  var SHARE_SKIP_PATHS = ["", "/contact", "/search"];
+
+  /* Idempotent. Called from boot and again once the rain tracker has drawn,
+     because initRain replaces its page shell, hero included. */
+  function initShare() {
+    if (typeof document === "undefined" || document.getElementById("bcl-home")) return;
+    if (articleSlugFromPath(location.pathname)) {
+      var target = document.querySelector(".blog-item-content");
+      if (!target) return;
+      var hero = document.getElementById("bcl-article-header");
+      mountShareBar("bcl-share-top", target, hero ? hero.nextSibling : target.firstChild, "bcl-share-top", "article");
+      if (target.parentNode) mountShareBar("bcl-share-end", target.parentNode, target.nextSibling, "bcl-share-end", "article");
+      return;
+    }
+    if (SHARE_SKIP_PATHS.indexOf(location.pathname.replace(/\/$/, "")) >= 0) return;
+    var lede = document.querySelector(".bcl-rain-hero .bcl-hero-lede, .bcl-hero .bcl-hero-lede, .bcl-hub-v2 .hero-copy > p");
+    if (!lede) return;
+    if (lede.closest("#bcl-rain") && !lede.closest(".bcl-rain-hero")) return;
+    mountShareBar("bcl-share-page", lede.parentNode, null, "", "page");
   }
 
   /* ---------- homepage live board: next events, newest jobs, current rentals ---------- */
@@ -4455,6 +4612,7 @@
         "emergency, call 911.</div>";
 
       root.querySelector("#bcl-rain-season").innerHTML = rainSeasonChart(payload);
+      initShare();
 
       var totalsEl = root.querySelector("#bcl-rain-totals");
       var msgEl = root.querySelector("#bcl-rain-msg");
@@ -4982,6 +5140,7 @@
     if (rn) initRentals(rn);
     var rain = document.getElementById("bcl-rain");
     if (rain) initRain(rain);
+    initShare();
   }
 
   if (typeof document !== "undefined") {
@@ -4989,6 +5148,6 @@
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
   }
 })();
