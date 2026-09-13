@@ -7,6 +7,7 @@
  */
 (function () {
   "use strict";
+  var BCL_CODE_URL = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : '';
 
   var REPO = (typeof window !== "undefined" && window.BCL_REPO) || "https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main";
   var NWS_POINT = { lat: 37.1261, lon: -122.1222 }; // downtown Boulder Creek
@@ -154,7 +155,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v24";
+  var CSS_ID = "bcl-tools-css-v25";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -727,7 +728,7 @@
     ].join("");
     var el = document.createElement("style");
     el.id = CSS_ID;
-    el.textContent = css;
+    el.textContent = css + "/* Inherits BCL typography. Square controls and flat paper, no new imagery. */\n.bcl-section-jumps{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}\n.bcl-section-jumps a{box-sizing:border-box;display:inline-flex;align-items:center;min-height:44px;max-width:100%;padding:9px 12px;border:1px solid #173f36;border-radius:0;background:#fffdf8;color:#173f36!important;font:inherit;font-size:.875rem;line-height:1.4;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}\n.bcl-section-jumps a:hover{background:#eef0e2;text-decoration-thickness:2px}\n.bcl-section-jumps a:focus-visible{outline:3px solid #173f36;outline-offset:3px}\n.bcl-section-jump-target{scroll-margin-top:120px}\n@media print{.bcl-section-jumps{display:none}}";
     document.head.appendChild(el);
   }
 
@@ -2238,6 +2239,78 @@
     });
     return out;
   }
+
+/* Local preparation. Call after native DOM readiness and again after initRain's
+   successful root.innerHTML assignment. Does not alter existing page copy. */
+function bclSectionJumpSpecs(rootId) {
+  var specs = {
+    'bcl-mountain-status': [
+      ['Current mountain snapshot', 'Current snapshot', 'bcl-jump-snapshot'],
+      ['How to read this page', 'Reading the panels', 'bcl-jump-status-guide'],
+      ['When a panel says unavailable', 'Unavailable data', 'bcl-jump-unavailable'],
+      ['Questions we get', 'Questions', 'bcl-jump-status-questions'],
+      ['Official information', 'Official sources', 'bcl-jump-official']
+    ],
+    'bcl-rain': [
+      ['This water year against the record', 'This water year', 'bcl-jump-rain-season'],
+      ['Every water year on record', 'Compare years', 'bcl-jump-rain-years'],
+      ['Storms this water year', 'Storm totals', 'bcl-jump-rain-storms'],
+      ['How this is measured, and where it is silent', 'Sources & gaps', 'bcl-jump-rain-method']
+    ],
+    'bcl-legal': [
+      ['Terms of Use', 'Terms of Use', 'bcl-jump-terms'],
+      ['Privacy Policy', 'Privacy Policy', 'bcl-jump-privacy'],
+      ['Publishing submissions', 'Your submissions', 'bcl-jump-submission-privacy'],
+      ['Cookies and choices', 'Cookie choices', 'bcl-jump-cookies'],
+      ['Your questions and requests', 'Privacy requests', 'bcl-jump-privacy-requests']
+    ]
+  };
+  return specs[rootId] || [];
+}
+
+function initBclSectionJumps(doc) {
+  doc = doc || document;
+  ['bcl-mountain-status', 'bcl-rain', 'bcl-legal'].forEach(function (rootId) {
+    var root = doc.getElementById(rootId);
+    if (!root) return;
+    var host = root.querySelector('.bcl-hero .bcl-wrap') || root.querySelector('.bcl-rain-hero');
+    if (!host) return;
+    var headings = Array.prototype.slice.call(root.querySelectorAll('h2,h3'));
+    var items = bclSectionJumpSpecs(rootId).map(function (spec) {
+      var heading = headings.find(function (el) {
+        return el.textContent.replace(/\s+/g, ' ').trim() === spec[0];
+      });
+      if (!heading) return null;
+      // Respect incumbent IDs and never create a duplicate elsewhere in the page.
+      if (!heading.id) {
+        var id = spec[2], suffix = 2;
+        while (doc.getElementById(id)) id = spec[2] + '-' + suffix++;
+        heading.id = id;
+      }
+      heading.classList.add('bcl-section-jump-target');
+      return { id: heading.id, label: spec[1] };
+    }).filter(Boolean);
+    var previous = root.querySelector('nav[data-bcl-section-jumps]');
+    // Rain's crawlable fallback has different headings. It keeps its full
+    // content, without dead links or a misleading partial chart navigation.
+    if (items.length < 2) { if (previous) previous.remove(); return; }
+    var signature = JSON.stringify(items);
+    if (previous && previous.getAttribute('data-bcl-jump-signature') === signature) return;
+    if (previous) previous.remove();
+    var nav = doc.createElement('nav');
+    nav.className = 'bcl-section-jumps';
+    nav.setAttribute('data-bcl-section-jumps', '');
+    nav.setAttribute('data-bcl-jump-signature', signature);
+    nav.setAttribute('aria-label', 'On this page');
+    items.forEach(function (item) {
+      var a = doc.createElement('a');
+      a.href = '#' + item.id;
+      a.textContent = item.label;
+      nav.appendChild(a);
+    });
+    host.appendChild(nav);
+  });
+}
 
   function initCategoryNav() {
     var path = location.pathname.replace(/\/$/, "");
@@ -4695,6 +4768,7 @@
 
       root.querySelector("#bcl-rain-season").innerHTML = rainSeasonChart(payload);
       initShare();
+      initBclSectionJumps();
 
       var totalsEl = root.querySelector("#bcl-rain-totals");
       var msgEl = root.querySelector("#bcl-rain-msg");
@@ -5190,6 +5264,19 @@
     repairPageHeadings();
     initDownloadPointers();
     initCategoryNav();
+    initBclSectionJumps();
+    if (BCL_CODE_URL) {
+      var extraModules = [];
+      if (/^\/around-town(?:\/category\/[^/]+)?\/?$/.test(location.pathname)) extraModules.push('bcl-archive.js');
+      if (document.querySelector('#bcl-downloads,#bcl-give-back,#bcl-jobs')) extraModules.push('bcl-usability.js');
+      extraModules.forEach(function (name) {
+        if (document.querySelector('script[data-bcl-module="' + name + '"]')) return;
+        var moduleScript = document.createElement('script');
+        moduleScript.src = new URL(name, BCL_CODE_URL).href;
+        moduleScript.setAttribute('data-bcl-module', name);
+        document.head.appendChild(moduleScript);
+      });
+    }
     initArticleHeader();
     initArticleDates();
     initArticleContent();
