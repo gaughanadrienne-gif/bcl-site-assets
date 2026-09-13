@@ -1394,6 +1394,9 @@
     if (job.employment_type) h += '<div class="bcl-meta">' + esc(job.employment_type) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobSalaryText(job)) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobPostedLine(job, today)) + "</div>";
+    if (/\(reviewed (?:employer posting|recruitment)\)$/.test(job.source || "") && job.description_summary) {
+      h += '<p class="bcl-job-notes">' + esc(job.description_summary) + "</p>";
+    }
     h += '<div class="bcl-verified">SOURCE: ' + esc(job.source || "") + " · VERIFIED " + esc(job.last_verified_at || "") + "</div>";
     h += '<div class="bcl-actionrow"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">Apply at source</a></div>';
     h += '<div class="bcl-actionrow"><a href="/contact">Report a problem with this listing</a></div>';

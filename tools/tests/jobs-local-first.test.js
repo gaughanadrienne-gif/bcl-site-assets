@@ -14,6 +14,13 @@ test('Mount Hermon worksite remains in the valley-only filter',()=>{
   const local={title:'Linen Driver',city:'Mount Hermon',geography_tier:'core'};
   assert.deepEqual(t.filterJobs([...rows,local],{area:'slv'}).map(j=>j.title),['Valley','Linen Driver']);
 });
+test('reviewed employer requirements appear escaped on the job card',()=>{
+  const card=t.jobCard({title:'Reviewed job',source:'Mount Hermon (reviewed employer posting)',description_summary:'Christian affirmation not required; gatherings expected. <script>bad</script>'});
+  assert.match(card,/Christian affirmation not required; gatherings expected/);
+  assert.match(card,/&lt;script&gt;/);
+  assert.doesNotMatch(card,/<script>/);
+  assert.match(t.jobCard({source:'Roaring Camp (reviewed recruitment)',description_summary:'One recruitment, not five vacancies.'}),/One recruitment, not five vacancies/);
+});
 test('work schedule handles hyphenated labels',()=>assert.deepEqual(t.filterJobs(rows,{employmentType:'part time'}).map(j=>j.title),['Valley']));
 test('full and part time qualifies under either schedule',()=>{
   const mixed=[{...rows[0],employment_type:'Full and Part Time'}];
