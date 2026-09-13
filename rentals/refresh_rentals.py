@@ -8,6 +8,7 @@ enabled rentals sources are scraped as firecrawl markdown.
 """
 
 import os
+import re
 import sys
 from datetime import date
 
@@ -20,7 +21,9 @@ from shared.bcl_ingest import (  # noqa: E402
 from shared.review_board import render_review_board  # noqa: E402
 from shared.source_yield import format_alarms, record_yields  # noqa: E402
 from rentals.normalize import include_rental, normalize_rental  # noqa: E402
-from rentals.parsers import appfolio, custom_html, rentvine  # noqa: E402
+from rentals.parsers import (  # noqa: E402
+    appfolio, buildium, coldfusion_cards, custom_html, markdown_table, rentvine,
+)
 from rentals.safety import safety_status  # noqa: E402
 from rentals.sources import RENTAL_SOURCES  # noqa: E402
 
@@ -38,6 +41,9 @@ PARSERS = {
     "rentvine": rentvine.parse,
     "appfolio": appfolio.parse,
     "custom_html": custom_html.parse,
+    "markdown_table": markdown_table.parse,
+    "coldfusion_cards": coldfusion_cards.parse,
+    "buildium": buildium.parse,
 }
 
 # All rentals sources are scraped via firecrawl markdown (see plan self-review
@@ -55,10 +61,38 @@ MANUAL_RENTALS_PATH = os.path.join(_PARTIALS_DIR, "manual-rentals.json")
 MANUAL_TTL_DAYS = 14
 
 
+_DETAIL_URL_RE = re.compile(r"/listings/detail/[0-9A-Za-z-]+")
+
+
 def fetch_raw(source, fetchers):
-    """All rentals sources are scraped as firecrawl markdown."""
+    """All rentals sources are scraped as firecrawl markdown.
+
+    A paginated portal opts in with source config
+    {"page_url_template": ".../listings?page={n}", "max_pages": N}: page 1 is
+    the source url, then pages 2..N are fetched and concatenated, stopping at
+    the first page that adds no new /listings/detail/ URL (an empty page, or a
+    portal that ignores the page parameter and repeats page 1). A failed page
+    fetch raises, so the whole source counts as an error rather than silently
+    publishing a partial inventory.
+    """
     firecrawl_fn = fetchers.get("firecrawl_markdown", firecrawl_markdown)
-    return firecrawl_fn(source["url"])
+    first = firecrawl_fn(source["url"])
+    config = source.get("config") or {}
+    template = config.get("page_url_template")
+    max_pages = int(config.get("max_pages") or 1)
+    if not template or max_pages < 2:
+        return first
+
+    pages = [first or ""]
+    seen = set(_DETAIL_URL_RE.findall(first or ""))
+    for n in range(2, max_pages + 1):
+        page = firecrawl_fn(template.format(n=n)) or ""
+        new_urls = set(_DETAIL_URL_RE.findall(page)) - seen
+        if not new_urls:
+            break
+        seen |= new_urls
+        pages.append(page)
+    return "\n\n".join(pages)
 
 
 _MANUAL_SOURCE = {"name": "Community submission"}

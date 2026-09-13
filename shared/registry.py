@@ -9,7 +9,7 @@ KNOWN_PARSERS = frozenset({
     "neogov", "edjoin", "jobaps", "calopps", "workday", "icims", "dayforce",
     "paycom", "paylocity", "adp", "oracle", "avature", "saashr", "talentreef",
     "phenom", "peoplesoft", "taleo", "rss", "remote_json", "appfolio", "rentvine",
-    "custom_html", "discovery", "submission",
+    "custom_html", "markdown_table", "coldfusion_cards", "buildium", "discovery", "submission",
 })
 
 REQUIRED_FIELDS = (

@@ -155,7 +155,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v25";
+  var CSS_ID = "bcl-tools-css-v26";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -226,6 +226,26 @@
       ".bcl-rent-limit{display:flex;flex-direction:column;gap:6px;flex:1 1 220px;}.bcl-rent-limit input{flex:0 0 auto;min-width:0;width:100%;box-sizing:border-box;}.bcl-job-pagination{margin:20px 0;}",
       ".bcl-controls .bcl-checklabel{display:flex;gap:8px;}.bcl-controls .bcl-checklabel input[type=checkbox]{width:18px;height:18px;min-width:18px;flex:0 0 18px;margin:0;}",
       "@media(max-width:640px){.bcl-controls .bcl-rent-limit{flex:0 0 auto;}}",
+      /* Rentals layout (owner, 2026-09-13): listings first, warning above them,
+         resources and the original explanatory copy after them. */
+      ".bcl-rent-warning:empty{display:none;}#bcl-rentals .bcl-rent-warning{margin:0 0 18px;}.bcl-rent-warning p{margin:0;}",
+      ".bcl-moved-intro{display:none !important;}",
+      ".bcl-rent-more{margin:28px 0 0;padding:22px 0 0;border-top:1px solid #e3ddcf;}",
+      "#bcl-rentals .bcl-rent-more h2{font-size:clamp(1.5rem,3vw,2rem);line-height:1.1;margin:0 0 12px;color:#173f36 !important;}",
+      ".bcl-rent-more ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px 24px;}",
+      ".bcl-rent-more li{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid #eee8da;}",
+      ".bcl-rent-more li a{color:#2e6b46 !important;font-weight:600;}",
+      ".bcl-rent-more li span{font-size:.86rem;color:#626c66 !important;line-height:1.45;}",
+      ".bcl-rent-about{margin:22px 0 0;border-top:1px solid #e3ddcf;padding:14px 0 0;}",
+      ".bcl-rent-about summary{cursor:pointer;font-weight:600;color:#173f36 !important;min-height:44px;display:flex;align-items:center;}",
+      ".bcl-rent-about-body{max-width:72ch;padding:4px 0 8px;}.bcl-rent-about-body p{margin:0 0 12px;}",
+      /* Watercolor heroes on tool pages (not the homepage). The per-page cream
+         fade in Custom CSS is nearly transparent past ~48% of the width, while
+         long titles ran to 57-62% on desktop and 60-85% on phones, over the
+         artwork (measured 2026-09-13). Cap the text measure on wide screens and
+         strengthen the fade on narrow ones. Runtime CSS loads after Custom CSS. */
+      "@media(min-width:901px){body:not(.homepage) .bcl-hero .bcl-wrap>h1,body:not(.homepage) .bcl-hero .bcl-wrap>.bcl-hero-lede{max-width:min(100%,640px);}}",
+      "@media(max-width:900px){body:not(.homepage) .bcl-hero::before{background:linear-gradient(180deg,rgba(245,241,231,.9) 0%,rgba(245,241,231,.84) 58%,rgba(245,241,231,.6) 100%) !important;}}",
       "#bcl-events .bcl-range button,#bcl-events input[type=date],#bcl-events .bcl-ev-clear{min-height:44px;box-sizing:border-box;}",
       /* Category chips. 317 directory listings is a scanning problem, so the
          chip row stays put while the page scrolls. Sticky, not fixed: a fixed
@@ -1557,9 +1577,14 @@
   function rentalCard(rental) {
     var h = '<div class="bcl-rental-card">';
     h += '<div class="bcl-name">' + esc(rental.headline) + "</div>";
-    h += '<div class="bcl-sub"><span class="bcl-badge">' + esc(rental.locality || rental.postal_code || "") + "</span> · " + esc(rental.city || "") + "</div>";
+    /* One town label. The badge already carries the SLV town, so repeating a
+       matching city read as "Boulder Creek · Boulder Creek" (2026-09-13). */
+    var townLabel = rental.locality || rental.postal_code || "";
+    var cityLabel = rental.city && rental.city !== townLabel ? " · " + esc(rental.city) : "";
+    h += '<div class="bcl-sub"><span class="bcl-badge">' + esc(townLabel) + "</span>" + cityLabel + "</div>";
     h += '<div class="bcl-meta">' + (rental.monthly_rent ? esc(rentalMoneyText(rental.monthly_rent)) : "Contact for rent") + "</div>";
-    var beds = rental.bedrooms != null ? rental.bedrooms + " bd" : "";
+    /* A studio arrives as 0 bedrooms; "0 bd" reads like missing data (2026-09-13). */
+    var beds = rental.bedrooms == null || rental.bedrooms === "" ? "" : (Number(rental.bedrooms) === 0 ? "Studio" : rental.bedrooms + " bd");
     var baths = rental.bathrooms != null ? rental.bathrooms + " ba" : "";
     if (beds || baths) h += '<div class="bcl-meta">' + esc([beds, baths].filter(Boolean).join(" · ")) + "</div>";
     if (rental.property_type) h += '<div class="bcl-meta">' + esc(rental.property_type) + "</div>";
@@ -1571,6 +1596,61 @@
     return h + "</div>";
   }
 
+  /* Other ways to find a place. Link-outs only: these sites' terms do not
+     allow copying their listings, and the housing programs publish waitlists
+     and intake, not vacancies. URLs verified 2026-09-13. */
+  var RENTAL_RESOURCES = [
+    ["https://sfbay.craigslist.org/search/scz/apa", "Craigslist, Santa Cruz housing for rent",
+      "Many valley owners list here themselves. Never pay before viewing."],
+    ["https://www.zillow.com/boulder-creek-ca/rentals/", "Zillow rentals around Boulder Creek",
+      "Includes owner listings this board cannot collect."],
+    ["https://hacosantacruz.org/find-rental-housing/", "Housing Authority of the County of Santa Cruz",
+      "Affordable housing lists, waiting lists and help finding rental housing."],
+    ["https://seniornetworkservices.org/what-we-do/#shared-housing", "Senior Network Services shared housing",
+      "Home-sharing matches for older adults in Santa Cruz County."]
+  ];
+
+  function rentalResourcesHTML() {
+    return '<section class="bcl-rent-more" aria-labelledby="bcl-rent-more-h"><h2 id="bcl-rent-more-h">Other ways to find a place</h2><ul>' +
+      RENTAL_RESOURCES.map(function (r) {
+        return '<li><a href="' + esc(r[0]) + '" target="_blank" rel="noopener">' + esc(r[1]) + "</a><span>" + esc(r[2]) + "</span></li>";
+      }).join("") + "</ul></section>";
+  }
+
+  /* Listings first (owner, 2026-09-13). The page's explanatory copy is a native
+     Squarespace text block above the tool, which put the listings below ~1,100px
+     of prose on desktop. Move that block's paragraphs, unchanged, into an
+     "About this board" disclosure after the listings; the never-wire-money
+     paragraph stays visible above the results. Nothing is rewritten or deleted,
+     crawlers and no-JS readers still get the native order, and if the block is
+     missing the tool renders as before. */
+  function rentalsIntroBlock(root) {
+    var own = root.closest(".fe-block") || root.closest(".sqs-block");
+    var section = root.closest(".page-section") || root.closest("section");
+    if (!own || !section) return null;
+    var blocks = [].slice.call(section.querySelectorAll(".sqs-block-html"));
+    for (var i = blocks.length - 1; i >= 0; i--) {
+      if (own.compareDocumentPosition(blocks[i]) & 2) return blocks[i];
+    }
+    return null;
+  }
+
+  function arrangeRentalsIntro(root) {
+    var block = rentalsIntroBlock(root);
+    var aboutSlot = root.querySelector(".bcl-rent-about-body");
+    var warnSlot = root.querySelector(".bcl-rent-warning");
+    if (!block || !aboutSlot || !warnSlot) return false;
+    var content = block.querySelector(".sqs-html-content") || block;
+    [].slice.call(content.children).forEach(function (n) {
+      var text = (n.textContent || "").trim();
+      if (!text) return;
+      if (!warnSlot.childNodes.length && /never wire money/i.test(text)) warnSlot.appendChild(n);
+      else aboutSlot.appendChild(n);
+    });
+    (block.closest(".fe-block") || block).classList.add("bcl-moved-intro");
+    return true;
+  }
+
   function initRentals(root) {
     if (!claimToolRoot(root, "rentals")) return;
     root.innerHTML = '<div class="bcl-count">Loading rentals…</div>';
@@ -1578,6 +1658,7 @@
       var all = data.rentals || [];
 
       root.innerHTML =
+        '<div class="bcl-note bcl-rent-warning" role="note"></div>' +
         '<div class="bcl-controls">' +
         '<input type="search" placeholder="Search by address, city, or property type" aria-label="Search rentals">' +
         '<select aria-label="Minimum bedrooms"><option value="0">Any beds</option><option value="1">1+ bd</option><option value="2">2+ bd</option><option value="3">3+ bd</option></select>' +
@@ -1589,13 +1670,14 @@
         "</div>" +
         '<p class="bcl-note" id="bcl-rent-limit-note">A maximum rent hides listings with no published rent. Listed rent may not include utilities or other fees.</p>' +
         '<div class="bcl-count" role="status" aria-live="polite" aria-atomic="true"></div><div class="bcl-list"></div>' +
+        rentalResourcesHTML() +
+        '<details class="bcl-rent-about"><summary>About this board</summary><div class="bcl-rent-about-body"></div></details>' +
         '<div class="bcl-note">Boulder Creek Local is not the landlord or property manager and does not handle applications, deposits, or keys. ' +
         'Never wire money or pay a deposit before viewing a property in person and verifying the lister. Report suspicious listings. ' +
         'This site does not discriminate and does not knowingly list rentals that violate fair housing law in the San Lorenzo Valley ' +
         '(Boulder Creek, Ben Lomond, Felton, Brookdale). ' +
-        '<a href="/contact">Send an update</a>.</div>' +
-        '<div class="bcl-actionrow">Looking further? See more valley rentals on ' +
-        '<a href="https://www.zillow.com/boulder-creek-ca/rentals/" target="_blank" rel="noopener">Zillow</a>.</div>';
+        '<a href="/contact">Send an update</a>.</div>';
+      arrangeRentalsIntro(root);
 
       var input = root.querySelector("input");
       var bedsSel = root.querySelector("select");
@@ -2922,7 +3004,8 @@ function initBclSectionJumps(doc) {
   }
 
   function homeRentalRow(rental) {
-    var beds = rental.bedrooms != null ? rental.bedrooms + " bd" : "";
+    /* A studio arrives as 0 bedrooms; "0 bd" reads like missing data (2026-09-13). */
+    var beds = rental.bedrooms == null || rental.bedrooms === "" ? "" : (Number(rental.bedrooms) === 0 ? "Studio" : rental.bedrooms + " bd");
     var baths = rental.bathrooms != null ? rental.bathrooms + " ba" : "";
     var meta = [
       rental.monthly_rent ? rentalMoneyText(rental.monthly_rent) : "Contact for rent",
@@ -5317,6 +5400,6 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
   }
 })();

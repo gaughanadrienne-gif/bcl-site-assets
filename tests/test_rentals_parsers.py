@@ -162,3 +162,128 @@ def test_no_pii_in_normalized_output_across_all_fixtures():
         blob = " ".join(str(v) for k, v in rental.items() if k != "id")
         assert not _EMAIL_RE.search(blob), blob
         assert not _PHONE_RE.search(blob), blob
+
+
+# --- Sources onboarded 2026-09-13 (fixtures captured with firecrawl that day) ---
+
+from rentals.parsers import buildium, coldfusion_cards, markdown_table
+
+SVPM_OWN_MD = open("tests/fixtures/svpm_own.md", encoding="utf-8").read()
+SCPM_MD = open("tests/fixtures/scpm_coldfusion.md", encoding="utf-8").read()
+BUILDIUM_SOL_MD = open("tests/fixtures/buildium_sol.md", encoding="utf-8").read()
+APPFOLIO_CCPMGMT_MD = open("tests/fixtures/appfolio_ccpmgmt.md", encoding="utf-8").read()
+APPFOLIO_UTOPIA_MD = open("tests/fixtures/appfolio_utopia.md", encoding="utf-8").read()
+
+_SLV_ZIPS = {"95005", "95006", "95007", "95018"}
+
+
+def test_svpm_own_site_table_parses_all_seven_rows():
+    rows = markdown_table.parse(SVPM_OWN_MD, SOURCE)
+    assert len(rows) == 7
+    got = [(r["city"], r["address_public"], r["bedrooms"], r["monthly_rent"]) for r in rows]
+    assert got == [
+        ("Santa Cruz", "41 Grandview #1504", "2", "3600"),
+        ("Santa Cruz", "1406 Glen Canyon", "2", "3200"),
+        ("Boulder Creek", "1024 Rambling Road", "2", "2850"),
+        ("Scotts Valley", "311 Bean Creek Road #402", "2", "2650"),
+        ("Felton", "208 Farmer Street", "1", "2300"),
+        ("Ben Lomond", "9600 Highway 9 Unit G", "", "1695"),
+        ("Felton", "9534 East Zayante Road", "0", "1500"),  # "Cozy Studio Cottage"
+    ]
+    for row in rows:
+        assert row["url"].startswith("https://www.scottsvalleyproperty.com/node/")
+        assert row["undisclosed"] is False
+
+
+def test_svpm_own_site_maps_only_exact_slv_towns_to_zips():
+    rows = markdown_table.parse(SVPM_OWN_MD, SOURCE)
+    slv = {r["address_public"]: r["postal_code"] for r in rows if is_slv(r)}
+    assert slv == {
+        "1024 Rambling Road": "95006",
+        "208 Farmer Street": "95018",
+        "9600 Highway 9 Unit G": "95005",
+        "9534 East Zayante Road": "95018",
+    }
+    for row in rows:
+        if row["city"] in ("Santa Cruz", "Scotts Valley"):
+            assert row["postal_code"] == ""
+            assert not is_slv(row)
+
+
+def test_svpm_row_with_rent_but_no_bedrooms_still_publishes():
+    from rentals.normalize import include_rental
+    rows = markdown_table.parse(SVPM_OWN_MD, SOURCE)
+    cottage = next(r for r in rows if r["address_public"] == "9600 Highway 9 Unit G")
+    rental = normalize_rental(cottage, SOURCE, "2026-09-13")
+    assert rental["bedrooms"] is None
+    assert include_rental(rental) == ("publish", None)
+
+
+def test_appfolio_ccpmgmt_parses_the_one_felton_row():
+    rows = appfolio.parse(APPFOLIO_CCPMGMT_MD, SOURCE)
+    assert len({(r["address_public"], r["city"]) for r in rows}) >= 70
+    slv = [r for r in rows if is_slv(r)]
+    assert len(slv) == 1
+    row = slv[0]
+    assert row["address_public"] == "155 West Drive"
+    assert row["city"] == "Felton"
+    assert row["postal_code"] == "95018"
+    assert row["monthly_rent"] == "3395"
+    assert row["bedrooms"] == "2"
+
+
+def test_appfolio_utopia_national_portal_parses_every_card_and_the_felton_row():
+    rows = appfolio.parse(APPFOLIO_UTOPIA_MD, SOURCE)
+    detail_urls = set(_re.findall(r"## \[[^\]]*\]\((https://[^)]*/listings/detail/[^)]+)\)", APPFOLIO_UTOPIA_MD))
+    assert {r["url"] for r in rows} == detail_urls  # out-of-state and $0 cards included
+    assert all(r["city"] and r["postal_code"] for r in rows)
+    slv = [r for r in rows if is_slv(r)]
+    assert len(slv) == 1
+    row = slv[0]
+    assert row["address_public"] == "10585 Redwood Dr."
+    assert row["city"] == "Felton"
+    assert row["postal_code"] == "95018"
+    assert row["bedrooms"] == "2"
+    assert row["monthly_rent"] == ""  # card says $0: rent not posted, kept as unknown
+
+
+def test_scpm_coldfusion_parses_nine_listings_none_slv():
+    rows = coldfusion_cards.parse(SCPM_MD, SOURCE)
+    assert len(rows) == 9
+    assert not any(is_slv(r) for r in rows)
+    sv = [r for r in rows if r["city"] == "Scotts Valley"]
+    assert len(sv) == 1
+    row = sv[0]
+    assert row["address_public"] == "23 Quien Sabe Rd."
+    assert row["postal_code"] == "95066"
+    assert row["monthly_rent"] == "2750"
+    assert row["bedrooms"] == "2"
+    assert row["bathrooms"] == "1"
+    assert row["url"] == "https://santacruzproperty.com/rental.cfm?id=5258"
+    campbell = next(r for r in rows if r["postal_code"] == "95008")
+    assert campbell["address_public"] == "264 N. San Tomas Aquino Rd. #1"
+    assert campbell["city"] == "Campbell"
+    for r in rows:
+        assert not _EMAIL_RE.search(r["description"])
+        assert not _PHONE_RE.search(r["description"])
+
+
+def test_buildium_sol_parses_both_slv_rows():
+    rows = buildium.parse(BUILDIUM_SOL_MD, SOURCE)
+    assert len(rows) == 5
+    by_addr = {r["address_public"]: r for r in rows if is_slv(r)}
+    assert set(by_addr) == {"14255 Highway 9", "9456 East Zayante Road"}
+
+    bc = by_addr["14255 Highway 9"]
+    assert (bc["city"], bc["postal_code"], bc["monthly_rent"], bc["bedrooms"], bc["bathrooms"],
+            bc["square_feet"]) == ("Boulder Creek", "95006", "2000", "1", "1", "650")
+    assert bc["url"] == "https://solpropertymanagement.managebuilding.com/Resident/public/rentals/84337"
+
+    felton = by_addr["9456 East Zayante Road"]
+    assert (felton["city"], felton["postal_code"], felton["monthly_rent"], felton["bedrooms"],
+            felton["bathrooms"], felton["square_feet"], felton["available_date"]) == (
+        "Felton", "95018", "2750", "2", "2", "616", "September 1")
+
+    others = {(r["address_public"], r["postal_code"]) for r in rows if not is_slv(r)}
+    assert others == {("58 Del Rio Court - 1", "95076"), ("140 Spaten Way", "95060"),
+                      ("426 Swift Street", "95060")}

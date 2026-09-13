@@ -1,10 +1,13 @@
-from rentals.refresh_rentals import PUBLIC_SCHEMA_KEYS, build_rentals
+from rentals.refresh_rentals import PUBLIC_SCHEMA_KEYS, build_rentals, fetch_raw
 from rentals.sources import RENTAL_SOURCES
 
 TODAY = "2026-07-19"
 
 RENTVINE_SOURCE = next(s for s in RENTAL_SOURCES if s["name"] == "PMI Santa Cruz")
-STREAMLINE_SOURCE = next(s for s in RENTAL_SOURCES if s["name"] == "Streamline 831")
+# Streamline 831 is disabled in the production registry (no listings, 2026-09-13);
+# these tests pin its captured fixture, so force-enable a copy rather than
+# depending on production registry state.
+STREAMLINE_SOURCE = dict(next(s for s in RENTAL_SOURCES if s["name"] == "Streamline 831"), enabled=True)
 SUBSET = [RENTVINE_SOURCE, STREAMLINE_SOURCE]
 
 RENTVINE_MD = open("tests/fixtures/rentvine_pmi.md", encoding="utf-8").read()
@@ -111,3 +114,82 @@ def test_a_source_that_fails_to_fetch_is_counted_as_zero_not_omitted():
     _p, _q, _e, counts = build_rentals(SUBSET, {"firecrawl_markdown": _fetch}, TODAY)
     assert counts["PMI Santa Cruz"] == 0
     assert counts["Streamline 831"] > 0
+
+
+# --- Pagination (per-source config: page_url_template + max_pages) ---
+
+_PAGED_SOURCE = {
+    "name": "paged", "url": "https://p.test/listings", "enabled": True, "parser": "appfolio",
+    "config": {"page_url_template": "https://p.test/listings/listings?page={n}", "max_pages": 5},
+}
+
+
+def _page(*ids):
+    return "\n".join("[x](https://p.test/listings/detail/%s)" % i for i in ids)
+
+
+def test_fetch_raw_concatenates_pages_until_one_adds_no_new_detail_urls():
+    served = {
+        "https://p.test/listings": _page("a1", "a2"),
+        "https://p.test/listings/listings?page=2": _page("b1"),
+        "https://p.test/listings/listings?page=3": "",
+        "https://p.test/listings/listings?page=4": _page("never"),
+    }
+    calls = []
+
+    def fake(url, **kw):
+        calls.append(url)
+        return served[url]
+
+    md = fetch_raw(_PAGED_SOURCE, {"firecrawl_markdown": fake})
+    assert calls == ["https://p.test/listings", "https://p.test/listings/listings?page=2",
+                     "https://p.test/listings/listings?page=3"]
+    assert "detail/a1" in md and "detail/b1" in md and "never" not in md
+
+
+def test_fetch_raw_stops_when_a_portal_repeats_page_one():
+    calls = []
+
+    def fake(url, **kw):
+        calls.append(url)
+        return _page("a1", "a2")
+
+    md = fetch_raw(_PAGED_SOURCE, {"firecrawl_markdown": fake})
+    assert len(calls) == 2
+    assert md == _page("a1", "a2")
+
+
+def test_fetch_raw_honors_max_pages():
+    calls = []
+
+    def fake(url, **kw):
+        calls.append(url)
+        return _page("u%d" % len(calls))
+
+    fetch_raw(_PAGED_SOURCE, {"firecrawl_markdown": fake})
+    assert len(calls) == 5
+
+
+def test_fetch_raw_without_pagination_config_fetches_once():
+    calls = []
+
+    def fake(url, **kw):
+        calls.append(url)
+        return _page("a1")
+
+    fetch_raw({"url": "https://p.test/listings"}, {"firecrawl_markdown": fake})
+    assert calls == ["https://p.test/listings"]
+
+
+def test_build_rentals_publishes_utopia_felton_row_from_paginated_fixture():
+    utopia = next(s for s in RENTAL_SOURCES if s["name"] == "Utopia Management")
+    page1 = open("tests/fixtures/appfolio_utopia.md", encoding="utf-8").read()
+
+    def fake(url, **kw):
+        return page1 if url == utopia["url"] else ""
+
+    published, _queued, had_errors, counts = build_rentals([utopia], {"firecrawl_markdown": fake}, TODAY)
+    assert had_errors is False
+    assert counts["Utopia Management"] == 300
+    assert [(r["address_public"], r["postal_code"], r["monthly_rent"]) for r in published] == [
+        ("10585 Redwood Dr.", "95018", None)]
