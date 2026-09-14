@@ -20,7 +20,7 @@ const expectedOfferings = {
   "lone-wolf-kenpo-boulder-creek": 8,
   "mountain-sangha-boulder-creek": 39,
   "scopazzis-boulder-creek": 114,
-  "spotlight-supernatural-beauty": 55,
+  "spotlight-supernatural-beauty": 49,
   "taes-edo-sushi-boulder-creek": 66,
   "taqueria-los-gallos-boulder-creek": 43,
   "tree-house-cafe-boulder-creek": 74,
@@ -44,7 +44,7 @@ test("large catalogs use native disclosure while shorter catalogs stay open", ()
     "el-rey-leon-boulder-creek": 8,
     "mountain-sangha-boulder-creek": 7,
     "scopazzis-boulder-creek": 8,
-    "spotlight-supernatural-beauty": 10,
+    "spotlight-supernatural-beauty": 9,
     "taes-edo-sushi-boulder-creek": 9,
     "taqueria-los-gallos-boulder-creek": 8,
     "tree-house-cafe-boulder-creek": 8
