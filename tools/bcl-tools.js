@@ -155,7 +155,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v26";
+  var CSS_ID = "bcl-tools-css-v27";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -210,6 +210,10 @@
          appended to <head> after that block, same :root specificity, so it
          wins. Do not "fix" this by editing the panel. */
       ":root{--bcl-muted:#626c66;}",
+      /* The global newsletter button is normal-sized text, so white needs a
+         darker action surface than the original clay. Keep every interactive
+         state on the approved dark clay rather than dropping back below AA. */
+      ".bcl-letter-form button.primary,.bcl-letter-form button.primary:hover,.bcl-letter-form button.primary:focus-visible{background:#b04a2c !important;border-color:#b04a2c !important;color:#fff !important;}",
       ".header-burger-btn:focus-visible{outline:3px solid #d56e47;outline-offset:3px;}",
       "@media (max-width:799px){.header-burger-btn{box-sizing:border-box;min-width:44px!important;min-height:44px!important;}.header-menu,.header-menu-nav-item,.header-menu-nav-item a,.header-burger-btn .burger-inner,.header-burger-btn .burger-inner>*{animation-duration:.22s!important;animation-delay:0s!important;transition-duration:.22s!important;transition-delay:0s!important;}}",
       "@media (prefers-reduced-motion:reduce){.header-menu,.header-menu-nav-item,.header-menu-nav-item a,.header-burger-btn .burger-inner,.header-burger-btn .burger-inner>*{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important;}}",
@@ -239,6 +243,9 @@
       ".bcl-rent-about{margin:22px 0 0;border-top:1px solid #e3ddcf;padding:14px 0 0;}",
       ".bcl-rent-about summary{cursor:pointer;font-weight:600;color:#173f36 !important;min-height:44px;display:flex;align-items:center;}",
       ".bcl-rent-about-body{max-width:72ch;padding:4px 0 8px;}.bcl-rent-about-body p{margin:0 0 12px;}",
+      ".bcl-job-about{margin:22px 0 0;border-top:1px solid #e3ddcf;padding:14px 0 0;}",
+      ".bcl-job-about summary{cursor:pointer;font-weight:600;color:#173f36 !important;min-height:44px;display:flex;align-items:center;}",
+      ".bcl-job-about-body{max-width:72ch;padding:4px 0 8px;}.bcl-job-about-body p{margin:0 0 12px;}",
       /* Watercolor heroes on tool pages (not the homepage). The per-page cream
          fade in Custom CSS is nearly transparent past ~48% of the width, while
          long titles ran to 57-62% on desktop and 60-85% on phones, over the
@@ -420,8 +427,11 @@
       ".bcl-search-btn--fixed:hover{background:#2f6754;border-color:#2f6754;color:#fffdf8;}",
       ".bcl-search-btn--fixed:focus-visible,.bcl-article-search:focus-visible{outline:3px solid #d56e47;outline-offset:3px;}",
       ".bcl-search-btn--fixed svg{width:19px;height:19px;}",
+      ".bcl-search-btn--mobile{display:none;}",
+      ".bcl-search-btn--inflow{margin:12px auto;}",
       ".bcl-article-search{display:none;}",
-      "@media (max-width:600px){.bcl-search-btn--fixed{bottom:16px;right:16px;height:48px;width:48px;padding:0;}.bcl-search-btn--fixed .bcl-search-btn-label{display:none;}body.bcl-article-search-page .bcl-search-btn--fixed{display:none;}.bcl-article-search{display:flex;width:max-content;min-height:44px;align-items:center;gap:8px;margin:0 auto 24px!important;padding:10px 14px;border:1px solid #173f36;border-radius:0;background:#fffdf8;color:#173f36;font:500 .72rem/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}.bcl-article-search:hover{background:#f5f1e7;color:#173f36;}.bcl-article-search svg{width:18px;height:18px;}}",
+      "@media (max-width:799px){.bcl-search-btn--desktop{display:none;}.bcl-search-btn--mobile{display:inline-flex;position:static;z-index:auto;flex:0 0 44px;width:44px;height:44px;padding:0;justify-content:center;background:transparent;color:#173f36;border:1px solid transparent;}.header-display-mobile>.bcl-search-btn--mobile{margin-left:auto;margin-right:4px;}.bcl-search-btn--mobile:hover{background:#f5f1e7;border-color:#cfc9b8;color:#173f36;}.bcl-search-btn--mobile .bcl-search-btn-label{display:none;}.header-display-mobile .header-title-nav-wrapper{flex:1 1 auto;min-width:0;max-width:calc(100% - 98px);}.header-display-mobile .header-title-logo,.header-display-mobile .header-title-logo a{min-width:0;max-width:100%;}.header-display-mobile .header-title-logo img{max-width:100%;height:auto !important;}}",
+      "@media (max-width:600px){body.bcl-article-search-page .bcl-search-btn--fixed{display:none;}.bcl-article-search{display:flex;width:max-content;min-height:44px;align-items:center;gap:8px;margin:0 auto 24px!important;padding:10px 14px;border:1px solid #173f36;border-radius:0;background:#fffdf8;color:#173f36;font:500 .72rem/1 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}.bcl-article-search:hover{background:#f5f1e7;color:#173f36;}.bcl-article-search svg{width:18px;height:18px;}}",
       ".bcl-search-overlay{position:fixed;inset:0;z-index:99999;background:rgba(13,44,38,.55);display:flex;justify-content:center;align-items:flex-start;padding:8vh 16px 16px;}",
       ".bcl-search-panel{background:#fffdf8 !important;border:1px solid #e3ddcf;width:100%;max-width:640px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 18px 50px rgba(0,0,0,.28);}",
       ".bcl-search-bar{display:flex;gap:8px;padding:12px;border-bottom:1px solid #e3ddcf;}",
@@ -1405,10 +1415,18 @@
     return rows2.sort(jobCompare);
   }
 
+  var JOB_VALLEY_TOWNS = ["Boulder Creek", "Brookdale", "Ben Lomond", "Felton", "Mount Hermon"];
+
+  function jobAreaLabel(job) {
+    if (job && job.geography_tier === "remote") return "Remote";
+    if (job && job.geography_tier === "extended") return "Extended commute";
+    return job && JOB_VALLEY_TOWNS.indexOf(job.city) >= 0 ? "Valley" : "Nearby";
+  }
+
   function jobCard(job, today) {
     var h = '<div class="bcl-job-card">';
     h += '<div class="bcl-name"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">' + esc(job.title) + "</a></div>";
-    var tier = job.geography_tier === "remote" ? "Remote" : (job.geography_tier === "extended" ? "Extended commute" : "Local");
+    var tier = jobAreaLabel(job);
     h += '<div class="bcl-sub">' + esc(job.employer_name) + (job.city ? " · " + esc(job.city) : "") + " · " + esc(tier) + (job.work_mode === "remote" ? " · Remote with local employer" : "") + "</div>";
     if (job.commute_minutes && job.geography_tier !== "remote" && job.work_mode !== "remote") h += '<div class="bcl-meta">Estimated drive: ~' + esc(String(job.commute_minutes)) + " min; traffic and conditions vary</div>";
     if (job.employment_type) h += '<div class="bcl-meta">' + esc(job.employment_type) + "</div>";
@@ -1421,6 +1439,18 @@
     h += '<div class="bcl-actionrow"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">Apply at source</a></div>';
     h += '<div class="bcl-actionrow"><a href="/contact">Report a problem with this listing</a></div>';
     return h + "</div>";
+  }
+
+  function arrangeJobsIntro(root) {
+    var block = nativeIntroBlock(root);
+    var aboutSlot = root.querySelector(".bcl-job-about-body");
+    if (!block || !aboutSlot) return false;
+    var content = block.querySelector(".sqs-html-content") || block;
+    [].slice.call(content.children).forEach(function (n) {
+      if ((n.textContent || "").trim()) aboutSlot.appendChild(n);
+    });
+    (block.closest(".fe-block") || block).classList.add("bcl-moved-intro");
+    return true;
   }
 
   function initJobs(root) {
@@ -1452,8 +1482,10 @@
         "</div>" +
         '<div class="bcl-count" role="status" aria-live="polite" aria-atomic="true"></div><div class="bcl-filter-note"></div>' +
         '<div class="bcl-list"></div><div class="bcl-job-pagination"><button type="button" class="bcl-job-more">Show more jobs</button></div>' +
+        '<details class="bcl-job-about"><summary>About this board</summary><div class="bcl-job-about-body"></div></details>' +
         '<div class="bcl-note">Boulder Creek Local is not the employer and does not process applications. Verify details and apply directly with the employer. ' +
         'Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
+      arrangeJobsIntro(root);
 
       var input = root.querySelector("input");
       var select = root.querySelector('select[aria-label="Filter by category"]');
@@ -1624,7 +1656,7 @@
      paragraph stays visible above the results. Nothing is rewritten or deleted,
      crawlers and no-JS readers still get the native order, and if the block is
      missing the tool renders as before. */
-  function rentalsIntroBlock(root) {
+  function nativeIntroBlock(root) {
     var own = root.closest(".fe-block") || root.closest(".sqs-block");
     var section = root.closest(".page-section") || root.closest("section");
     if (!own || !section) return null;
@@ -1636,7 +1668,7 @@
   }
 
   function arrangeRentalsIntro(root) {
-    var block = rentalsIntroBlock(root);
+    var block = nativeIntroBlock(root);
     var aboutSlot = root.querySelector(".bcl-rent-about-body");
     var warnSlot = root.querySelector(".bcl-rent-warning");
     if (!block || !aboutSlot || !warnSlot) return false;
@@ -5179,37 +5211,42 @@ function initBclSectionJumps(doc) {
 
   function initSiteSearch() {
     if (document.getElementById("bcl-search-btn")) return;
-    /* A comma selector returns the first match in DOCUMENT ORDER, not the
-       first selector that matches - so ".header-actions, .header-nav, header"
-       returned <header> itself and the button was appended as its last child,
-       outside the visible nav row. Ask for each candidate separately, in
-       priority order, and only accept one that is actually rendered. */
-    /* DELIBERATE FLOATING BUTTON, not a header mount.
-       Two attempts to thread this into Squarespace's header both failed, for
-       two different reasons, and the second one is why this approach is now
-       the right one rather than a retreat:
-         1. ".header-actions, .header-nav, header" resolved to <header> itself,
-            because a comma selector matches in DOCUMENT ORDER. Button landed
-            at x0 y1064.
-         2. This theme renders TWO header instances (in-flow plus a sticky
-            clone). ".header-nav-list" matched the in-flow one, so the button
-            sat at y=-3682 while the visible nav reported y=0.
-       A fixed-position control owns its own placement, cannot be orphaned by a
-       sticky clone, needs no knowledge of Squarespace internals, and behaves
-       identically on mobile. Bottom-right keeps it clear of the announcement
-       bar and the sticky header. */
-    var host = document.body;
+    /* The mobile trigger lives beside the burger so it never covers content.
+       Desktop keeps the existing floating control: the live Squarespace header
+       scrolls away, so a header-only desktop control would disappear mid-page. */
+    function searchButton(id) {
+      var button = document.createElement("button");
+      button.id = id;
+      button.className = "bcl-search-btn bcl-search-btn--fixed";
+      button.type = "button";
+      button.setAttribute("aria-label", "Search Boulder Creek Local");
+      button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+        '<circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>' +
+        '<span class="bcl-search-btn-label">Search</span>';
+      return button;
+    }
 
-    var btn = document.createElement("button");
-    btn.id = "bcl-search-btn";
-    btn.className = "bcl-search-btn";
-    btn.type = "button";
-    btn.setAttribute("aria-label", "Search Boulder Creek Local");
-    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
-      '<circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>' +
-      '<span class="bcl-search-btn-label">Search</span>';
-    btn.classList.add("bcl-search-btn--fixed");
-    host.appendChild(btn);
+    var triggers = [];
+    var desktopButton = searchButton("bcl-search-btn");
+    desktopButton.classList.add("bcl-search-btn--desktop");
+    document.body.appendChild(desktopButton);
+    triggers.push(desktopButton);
+    var mobileHost = document.querySelector(".header-display-mobile");
+    if (mobileHost) {
+      var mobileButton = searchButton("bcl-search-btn-mobile");
+      mobileButton.classList.add("bcl-search-btn--mobile");
+      mobileHost.insertBefore(mobileButton, mobileHost.querySelector(".header-burger"));
+      triggers.push(mobileButton);
+    }
+    if (!mobileHost) {
+      var fallbackHost = document.querySelector("main") || document.body;
+      var fallbackButton = searchButton("bcl-search-btn-mobile");
+      fallbackButton.classList.add("bcl-search-btn--mobile");
+      fallbackButton.classList.add("bcl-search-btn--inflow");
+      fallbackHost.insertBefore(fallbackButton, fallbackHost.firstChild);
+      triggers.push(fallbackButton);
+    }
+    var btn = triggers[0];
 
     var overlay = null, records = null, loading = false, active = -1, rows = [];
     var returnFocus = btn;
@@ -5319,7 +5356,7 @@ function initBclSectionJumps(doc) {
       }
     }
 
-    btn.addEventListener("click", open);
+    triggers.forEach(function (trigger) { trigger.addEventListener("click", open); });
     var articleHost = articleSlugFromPath(location.pathname) && document.querySelector(".blog-item-content");
     if (articleHost) {
       document.body.classList.add("bcl-article-search-page");
@@ -5400,6 +5437,6 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
   }
 })();
