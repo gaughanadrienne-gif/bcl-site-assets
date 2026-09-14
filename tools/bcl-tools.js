@@ -61,8 +61,15 @@
   });
   // Categories whose nearby (non-local) listings have inherent value regardless
   // of distance - essential/civic/safety services (e.g. county 9-1-1, alerts,
-  // hotlines). Never capped in display and never archived by curation.
-  var CAP_EXEMPT = ["Emergency & Public Safety", "Health & Wellness", "Government & Public Services", "Utilities & Essential Services", "Community & Nonprofit", "Transportation"];
+  // hotlines). Never capped in display and never archived by curation. These
+  // are also the categories badged "Countywide service".
+  var COUNTYWIDE_CATEGORIES = ["Emergency & Public Safety", "Health & Wellness", "Government & Public Services", "Utilities & Essential Services", "Community & Nonprofit", "Transportation"];
+  // CAP_EXEMPT = countywide categories plus categories exempt from the nearby
+  // cap for market reasons only. Home Services & Repair (owner decision
+  // 2026-09-14, q0925): home trades work valley-wide, so no 6-listing cap, but
+  // a Santa Cruz locksmith is not a "Countywide service" and keeps its
+  // location badge.
+  var CAP_EXEMPT = COUNTYWIDE_CATEGORIES.concat(["Home Services & Repair"]);
   function orderedCategoryNames(present) {
     var known = CAT_ORDER.filter(function (c) { return present.indexOf(c) >= 0; });
     var unknown = present.filter(function (c) { return CAT_ORDER.indexOf(c) < 0; }).sort();
@@ -99,9 +106,10 @@
     if (SLV_LOCALITIES.indexOf(loc) >= 0) return "In the San Lorenzo Valley";
     if (loc === "Scotts Valley") return "In Scotts Valley";
     /* Essential and civic services are useful regardless of distance, and the
-       category list that already encodes that is CAP_EXEMPT. Badging a county
-       crisis line "Outside the valley" would be true and useless. */
-    if (CAP_EXEMPT.indexOf(l.category) >= 0) return "Countywide service";
+       category list that encodes that is COUNTYWIDE_CATEGORIES (not the wider
+       CAP_EXEMPT). Badging a county crisis line "Outside the valley" would be
+       true and useless. */
+    if (COUNTYWIDE_CATEGORIES.indexOf(l.category) >= 0) return "Countywide service";
     /* The ridge wineries carry a Los Gatos mailing address but are local. */
     if (isLocal(l)) return "In the Santa Cruz Mountains";
     return "Outside the valley";

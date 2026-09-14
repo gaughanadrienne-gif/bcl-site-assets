@@ -36,6 +36,18 @@ test("listingBadge: an essential service is countywide, never 'outside the valle
   );
 });
 
+test("Home Services & Repair is cap-exempt but never badged countywide (owner 2026-09-14)", () => {
+  assert.ok(t.CAP_EXEMPT.indexOf("Home Services & Repair") >= 0);
+  assert.equal(
+    t.listingBadge({ locality: "Santa Cruz", category: "Home Services & Repair" }),
+    "Outside the valley"
+  );
+  const mislabelled = listings.filter(
+    (l) => l.category === "Home Services & Repair" && t.listingBadge(l) === "Countywide service"
+  );
+  assert.deepEqual(mislabelled.map((l) => l.name), []);
+});
+
 test("listingBadge: a ridge winery with a Los Gatos address stays local", () => {
   assert.equal(
     t.listingBadge({ locality: "Los Gatos", name: "Byington Vineyard & Winery", category: "Vineyards & Wine Tasting" }),
