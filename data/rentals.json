@@ -1,6 +1,6 @@
 {
  "_note": "Boulder Creek Local rentals board. Auto-refreshed; see refresh_rentals.py.",
- "updated": "2026-09-13",
+ "updated": "2026-09-14",
  "count": 10,
  "rentals": [
   {
@@ -34,8 +34,8 @@
    "canonical_url": "https://www.scottsvalleyproperty.com/node/127",
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -70,8 +70,8 @@
    "canonical_url": "https://www.scottsvalleyproperty.com/node/143",
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -106,8 +106,8 @@
    "canonical_url": "https://www.scottsvalleyproperty.com/node/142",
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -142,8 +142,8 @@
    "canonical_url": "https://www.scottsvalleyproperty.com/node/137",
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -178,8 +178,8 @@
    "canonical_url": "https://www.pmisantacruz.com/santa-cruz-homes-for-rent/179/12895-highway-9-boulder-creek-ca-95006",
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -214,8 +214,8 @@
    "canonical_url": "https://ccpmgmt.appfolio.com/listings/detail/098b13e9-a469-41a3-a70c-54dc72c1bb4f",
    "source": "C&C Property Management",
    "property_manager": "C&C Property Management",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -250,8 +250,8 @@
    "canonical_url": "https://utopiamanagement.appfolio.com/listings/detail/f710bf0b-be41-495a-9488-714bd9b56fa1",
    "source": "Utopia Management",
    "property_manager": "Utopia Management",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -286,8 +286,8 @@
    "canonical_url": "https://solpropertymanagement.managebuilding.com/Resident/public/rentals/74085",
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -322,8 +322,8 @@
    "canonical_url": "https://solpropertymanagement.managebuilding.com/Resident/public/rentals/84337",
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -358,8 +358,8 @@
    "canonical_url": "https://andersonchristierealestate.appfolio.com/listings/detail/e2fb0ee6-e218-4c7d-bc89-06b81fcdb048",
    "source": "Anderson Christie Real Estate",
    "property_manager": "Anderson Christie Real Estate",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-09-13",
+   "first_seen_at": "2026-09-14",
+   "last_verified_at": "2026-09-14",
    "verification_status": "verified",
    "freshness_label": ""
   }
