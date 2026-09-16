@@ -2,7 +2,7 @@
  "_readme": "Running order for the homepage business spotlight card. THE SOURCE OF TRUTH IS Social Media/Blotato_2026_H2/MASTER_SCHEDULE.csv: every BCL-SPOT post is a Thursday and this file mirrors it. If the two disagree, the social schedule is right and this file is stale. Each 'week' is the THURSDAY the business takes over, in America/Los_Angeles. A business holds the card until the next scheduled Thursday, so gaps in the order are fine and the previous business simply stays up. See SPOTLIGHT.md for how to add one.",
  "_slug_rule": "slug must be the live Around Town URL slug, exactly as it appears after /around-town/. Cross-check data/live-article-slugs.json. If it does not resolve live, the card renders nothing rather than a broken link.",
  "_expiry": "If the newest row is more than 28 days old the card retires itself, because 'This week's business spotlight' stops being stale and becomes false. Add rows before then.",
- "asOf": "2026-09-09",
+ "asOf": "2026-09-16",
  "schedule": [
   {
    "week": "2026-09-03",
@@ -18,9 +18,9 @@
   },
   {
    "week": "2026-09-17",
-   "slug": "wild-lilith-boulder-creek",
-   "business": "Wild Lilith",
-   "blurb": "Someone will put a glass of champagne in your hand before you have looked at a rack. It started at the grand opening on the Fourth of July and the owner decided it should never stop."
+   "slug": "good-vibes-boulder-creek",
+   "business": "Good Vibes",
+   "blurb": "Roshni sketched a banana slug on paper, and Tyler turned it into a digital design. Their First Friday table grew into a Central Avenue shop with locally themed clothing, houseplants and home goods."
   },
   {
    "week": "2026-09-24",
