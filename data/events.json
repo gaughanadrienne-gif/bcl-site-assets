@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10",
+  "updated": "2026-09-16",
   "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category, notice (optional; besides title, date and location it is the only field an event card renders, so anything a reader must know before turning up goes there). Re-curated 2026-09-02 against first-party organizer sources.",
   "events": [
     {
@@ -316,14 +316,14 @@
       "category": "Music & Arts"
     },
     {
-      "title": "Let's Go Firewise, Let's Get Wildfire-Ready",
+      "title": "Cancelled: Let's Go Firewise, Let's Get Wildfire-Ready",
       "start": "2026-09-19T13:00",
       "end": "2026-09-19T14:00",
       "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
       "url": "https://santacruzpl.libnet.info/event/16394292",
       "description": "Community talk on the Firewise neighborhood program and the Home Ignition Zone approach to hardening a house, presented at the library, 1 to 2 p.m.",
       "category": "Community",
-      "notice": "Adults 18 and over."
+      "notice": "Cancelled by the organizer."
     },
     {
       "title": "Vintage Point",
@@ -444,7 +444,8 @@
       "start": "2026-09-26T10:00",
       "end": "2026-09-26T12:00",
       "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15202673",
+      "url": "https://santacruzpl.libnet.info/events",
+      "notice": "The library listing for this date is no longer available. Confirm with the branch before going.",
       "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
       "category": "Music & Arts"
     },
@@ -794,7 +795,8 @@
       "start": "2026-10-17T10:00",
       "end": "2026-10-17T12:00",
       "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
-      "url": "https://santacruzpl.libnet.info/event/15202676",
+      "url": "https://santacruzpl.libnet.info/events",
+      "notice": "The library listing for this date is no longer available. Confirm with the branch before going.",
       "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
       "category": "Music & Arts"
     },
