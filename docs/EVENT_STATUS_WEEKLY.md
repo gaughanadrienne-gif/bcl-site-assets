@@ -5,6 +5,8 @@
 - `review/events-status-review.json` is the stable human review queue. Repeated identical runs do not rewrite it, and the checker preserves `decision`, `review_note`, and `reviewed_at` when a reviewer edits those fields.
 - `review/events-status-latest.json` is timestamped diagnostic evidence from the latest run.
 
+The weekly wrapper loads the event list from the public jsDelivr `@main/data/events.json` feed with `--published`. The fetch uses verified TLS, a 30-second timeout, and a 5 MB response limit. A fetch, certificate, HTTP, or JSON failure exits with status 2 before either review artifact is written. It never falls back to the local checkout's `data/events.json`, which may contain unpublished work.
+
 The check is read-only. It never edits or publishes `data/events.json`. A reviewer must confirm each organizer signal and then accept or reject the corresponding feed correction. A `BLOCKED` finding means the organizer refused or interrupted automated access. It is never evidence that an event was cancelled. A `DEAD` finding requires the same 404 or 410 result twice in one run.
 
 ## Staged Task Scheduler recipe

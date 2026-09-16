@@ -12,6 +12,7 @@ if errorlevel 1 exit /b 2
 if not exist review mkdir review
 
 python scripts\check_event_status.py ^
+  --published ^
   --review review\events-status-review.json ^
   --json review\events-status-latest.json ^
   >> review\events-status.log 2>&1

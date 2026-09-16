@@ -25,6 +25,7 @@ facebook.com are expected to land in BLOCKED and mean nothing.
 Usage::
 
     python scripts/check_event_status.py                # upcoming events only
+    python scripts/check_event_status.py --published    # canonical public feed
     python scripts/check_event_status.py --json out.json
     python scripts/check_event_status.py --all          # ignore the date filter
 
@@ -38,6 +39,7 @@ import argparse
 import hashlib
 import json
 import re
+import ssl
 import sys
 import time
 import urllib.error
@@ -50,6 +52,12 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_EVENTS = ROOT / "data" / "events.json"
 DEFAULT_REVIEW = ROOT / "review" / "events-status-review.json"
+PUBLISHED_EVENTS_URL = (
+    "https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/"
+    "bcl-site-assets@main/data/events.json"
+)
+PUBLISHED_TIMEOUT = 30
+PUBLISHED_MAX_BYTES = 5_000_000
 
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -60,6 +68,40 @@ RETRY_AFTER = 60
 
 STATUS_RE = re.compile(r'"eventStatus"\s*:\s*"([^"]+)"')
 LIVE_STATUSES = {"", "EventScheduled"}
+
+
+def load_published_events(
+    url: str = PUBLISHED_EVENTS_URL,
+    timeout: int = PUBLISHED_TIMEOUT,
+    opener=urllib.request.urlopen,
+) -> object:
+    """Fetch and parse the public event feed with verified TLS and hard bounds."""
+    request = urllib.request.Request(url, headers={"User-Agent": UA})
+    context = ssl.create_default_context()
+    with opener(request, timeout=timeout, context=context) as response:
+        status = getattr(response, "status", None) or response.getcode()
+        if status != 200:
+            raise RuntimeError("published events feed returned HTTP %s" % status)
+        raw = response.read(PUBLISHED_MAX_BYTES + 1)
+    if len(raw) > PUBLISHED_MAX_BYTES:
+        raise RuntimeError("published events feed exceeds %d bytes" % PUBLISHED_MAX_BYTES)
+    return json.loads(raw.decode("utf-8"))
+
+
+def load_events(
+    events_path: Path,
+    published: bool = False,
+    published_loader=None,
+) -> list[dict]:
+    """Load one explicit source; published mode never falls back to local data."""
+    if published:
+        payload = (published_loader or load_published_events)()
+    else:
+        payload = json.loads(events_path.read_text(encoding="utf-8"))
+    events = payload.get("events") if isinstance(payload, dict) else payload
+    if not isinstance(events, list):
+        raise ValueError("events payload must be a list or contain an events list")
+    return events
 
 
 def extract_event_status(html: str) -> str:
@@ -231,7 +273,12 @@ def write_review_report(path: Path, results: list[dict]) -> bool:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--events", type=Path, default=DEFAULT_EVENTS)
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--events", type=Path, default=DEFAULT_EVENTS)
+    source.add_argument(
+        "--published", action="store_true",
+        help="load the canonical public CDN feed; fail without using local data",
+    )
     parser.add_argument("--json", type=Path, help="write the full result set here")
     parser.add_argument(
         "--review", type=Path,
@@ -241,8 +288,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--today", default=date.today().isoformat())
     args = parser.parse_args(argv)
 
-    payload = json.loads(args.events.read_text(encoding="utf-8"))
-    events = payload["events"] if isinstance(payload, dict) else payload
+    try:
+        events = load_events(args.events, published=args.published)
+    except Exception as exc:  # noqa: BLE001 - source failure must produce a clean nonzero exit
+        source_name = PUBLISHED_EVENTS_URL if args.published else str(args.events)
+        print("check_event_status: could not load %s: %s" % (source_name, exc), file=sys.stderr)
+        return 2
     targets = upcoming(events, args.today, args.all)
     print("%d events in feed, %d checked" % (len(events), len(targets)))
 

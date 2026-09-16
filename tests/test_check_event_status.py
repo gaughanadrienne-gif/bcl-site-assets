@@ -7,7 +7,11 @@ all, so defaulting to CANCELLED would empty the calendar.
 
 from __future__ import annotations
 
+import io
+import json
+import ssl
 import sys
+import urllib.error
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -17,6 +21,9 @@ from scripts.check_event_status import (
     check,
     classify,
     extract_event_status,
+    load_events,
+    load_published_events,
+    main,
     upcoming,
     write_review_report,
 )
@@ -25,6 +32,68 @@ from scripts.check_event_status import (
 CANCELLED_PAGE = '{"@type":"Event","eventStatus":"https:\\/\\/schema.org\\/EventCancelled"}'
 SCHEDULED_PAGE = '{"@type":"Event","eventStatus":"https://schema.org/EventScheduled"}'
 PLAIN_PAGE = "<html><body><h1>Community Crafters</h1></body></html>"
+
+
+class _PublishedResponse:
+    def __init__(self, payload, status=200):
+        self.status = status
+        self._body = io.BytesIO(json.dumps(payload).encode("utf-8"))
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *_args):
+        return False
+
+    def read(self, limit=-1):
+        return self._body.read(limit)
+
+    def getcode(self):
+        return self.status
+
+
+def test_published_loader_uses_https_verified_tls_and_bounded_timeout():
+    calls = []
+
+    def opener(request, timeout, context):
+        calls.append((request.full_url, timeout, context))
+        return _PublishedResponse({"events": [{"title": "public"}]})
+
+    payload = load_published_events(opener=opener)
+
+    assert payload["events"][0]["title"] == "public"
+    assert calls[0][0].startswith("https://cdn.jsdelivr.net/")
+    assert calls[0][1] == 30
+    assert isinstance(calls[0][2], ssl.SSLContext)
+    assert calls[0][2].verify_mode == ssl.CERT_REQUIRED
+
+
+def test_published_failure_does_not_fall_back_to_local_file(tmp_path):
+    local = tmp_path / "events.json"
+    local.write_text(json.dumps({"events": [{"title": "stale local"}]}), encoding="utf-8")
+
+    def fail():
+        raise urllib.error.URLError("network down")
+
+    try:
+        load_events(local, published=True, published_loader=fail)
+    except urllib.error.URLError as exc:
+        assert "network down" in str(exc)
+    else:
+        raise AssertionError("published failure unexpectedly used the local file")
+
+
+def test_published_main_failure_exits_before_writing_reports(monkeypatch, tmp_path):
+    def fail():
+        raise urllib.error.URLError("certificate verify failed")
+
+    monkeypatch.setattr("scripts.check_event_status.load_published_events", fail)
+    report = tmp_path / "review.json"
+    evidence = tmp_path / "latest.json"
+
+    assert main(["--published", "--review", str(report), "--json", str(evidence)]) == 2
+    assert not report.exists()
+    assert not evidence.exists()
 
 
 def test_extracts_escaped_and_plain_status():
