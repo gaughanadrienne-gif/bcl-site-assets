@@ -78,8 +78,31 @@ def test_manual_rental_with_95006_publishes(tmp_path):
         [], _empty_rental_fetchers(), TODAY, manual_path=manual_path,
     )
     assert had_errors is False
-    assert any(r["headline"] == "Cozy Cabin" for r in published)
+    hit = next(r for r in published if r["headline"] == "Cozy Cabin")
+    assert hit["first_seen_at"] == TODAY
+    assert hit["last_verified_at"] == TODAY
     assert all(r.get("source") == "Community submission" for r in published)
+
+
+def test_cached_manual_rental_does_not_get_the_rerun_date(tmp_path):
+    manual_path = _write_manual(tmp_path, "manual-rentals.json", [
+        {
+            "headline": "Cozy Cabin", "address_public": "123 Pine St", "city": "Boulder Creek",
+            "postal_code": "95006", "monthly_rent": 2200, "bedrooms": 2,
+            "url": "https://example.com/rentals/cozy-cabin",
+            "submitted_at": TODAY, "renewed_at": None,
+        },
+    ])
+    first, _queued, _errors, _counts = build_rentals(
+        [], _empty_rental_fetchers(), TODAY, manual_path=manual_path,
+    )
+    later, _queued, _errors, _counts = build_rentals(
+        [], _empty_rental_fetchers(), "2026-07-25", manual_path=manual_path,
+        previous_rentals=first,
+    )
+
+    assert later[0]["first_seen_at"] == TODAY
+    assert later[0]["last_verified_at"] == TODAY
 
 
 def test_manual_rental_without_95006_confirmation_queues(tmp_path):

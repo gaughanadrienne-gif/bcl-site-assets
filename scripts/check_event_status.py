@@ -35,6 +35,7 @@ wired to raise it. Blocks alone never fail the run.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -48,6 +49,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_EVENTS = ROOT / "data" / "events.json"
+DEFAULT_REVIEW = ROOT / "review" / "events-status-review.json"
 
 UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -115,11 +117,15 @@ def upcoming(events: list[dict], today: str, include_all: bool) -> list[dict]:
 
 
 def check(events: list[dict], fetcher: Fetcher | None = None) -> list[dict]:
-    """Check each event once, then re-check the blocked ones after a pause."""
+    """Check each unique URL once, then re-check blocked/dead URLs after a pause."""
     fetcher = fetcher or Fetcher()
     results = []
+    first_responses = {}
     for event in events:
-        status, html, error = fetcher.get(event["url"])
+        url = event["url"]
+        if url not in first_responses:
+            first_responses[url] = fetcher.get(url)
+        status, html, error = first_responses[url]
         verdict, detail = classify(status, html, error)
         results.append({
             "title": event.get("title"),
@@ -134,8 +140,11 @@ def check(events: list[dict], fetcher: Fetcher | None = None) -> list[dict]:
     retry = [r for r in results if r["verdict"] in ("BLOCKED", "DEAD")]
     if retry:
         time.sleep(RETRY_AFTER)
+        retry_responses = {}
         for record in retry:
-            status, html, error = fetcher.get(record["url"])
+            if record["url"] not in retry_responses:
+                retry_responses[record["url"]] = fetcher.get(record["url"])
+            status, html, error = retry_responses[record["url"]]
             verdict, detail = classify(status, html, error)
             record["second_attempt"] = {"http": status, "verdict": verdict, "detail": detail}
             if verdict == "OK":
@@ -146,10 +155,88 @@ def check(events: list[dict], fetcher: Fetcher | None = None) -> list[dict]:
     return results
 
 
+def _finding_key(record: dict) -> str:
+    """Stable identity for one event/status finding across weekly runs."""
+    identity = [record.get("url"), record.get("start"), record.get("verdict")]
+    encoded = json.dumps(identity, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()[:16]
+
+
+def _review_action(verdict: str) -> str:
+    if verdict == "CANCELLED":
+        return "confirm organizer status, then accept or reject a feed correction"
+    if verdict == "DEAD":
+        return "confirm the occurrence with the organizer, then accept or reject a feed correction"
+    return "retry in a browser or contact the organizer; do not treat this as cancellation"
+
+
+def build_review_report(results: list[dict], previous: dict | None = None) -> dict:
+    """Build a deterministic, human-editable report of non-OK checks.
+
+    The transport timestamp is deliberately excluded. Re-running the same
+    checks therefore produces no file churn, and an owner's decision/note is
+    preserved while the same finding remains present.
+    """
+    prior = {
+        item.get("key"): item
+        for item in (previous or {}).get("findings", [])
+        if isinstance(item, dict) and item.get("key")
+    }
+    findings = []
+    for record in results:
+        verdict = record.get("verdict")
+        if verdict == "OK":
+            continue
+        key = _finding_key(record)
+        old = prior.get(key, {})
+        findings.append({
+            "key": key,
+            "title": record.get("title"),
+            "start": record.get("start"),
+            "url": record.get("url"),
+            "verdict": verdict,
+            "detail": record.get("detail"),
+            "second_attempt": record.get("second_attempt"),
+            "recommended_action": _review_action(verdict),
+            "decision": old.get("decision", "pending"),
+            "review_note": old.get("review_note", ""),
+            "reviewed_at": old.get("reviewed_at", ""),
+        })
+    findings.sort(key=lambda item: (str(item.get("start") or ""), str(item.get("title") or ""), item["key"]))
+    return {
+        "_note": (
+            "Human review queue only. This checker never edits events.json. "
+            "Set decision to accept or reject after checking the organizer. "
+            "BLOCKED is an access failure, never evidence of cancellation."
+        ),
+        "count": len(findings),
+        "findings": findings,
+    }
+
+
+def write_review_report(path: Path, results: list[dict]) -> bool:
+    """Write only when the deterministic review report changed."""
+    try:
+        previous = json.loads(path.read_text(encoding="utf-8")) if path.exists() else None
+    except (OSError, json.JSONDecodeError):
+        previous = None
+    payload = build_review_report(results, previous)
+    rendered = json.dumps(payload, ensure_ascii=False, indent=1) + "\n"
+    if path.exists() and path.read_text(encoding="utf-8") == rendered:
+        return False
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(rendered, encoding="utf-8")
+    return True
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--events", type=Path, default=DEFAULT_EVENTS)
     parser.add_argument("--json", type=Path, help="write the full result set here")
+    parser.add_argument(
+        "--review", type=Path,
+        help="write an idempotent human-review queue (weekly default: %s)" % DEFAULT_REVIEW,
+    )
     parser.add_argument("--all", action="store_true", help="check past events too")
     parser.add_argument("--today", default=date.today().isoformat())
     args = parser.parse_args(argv)
@@ -161,7 +248,11 @@ def main(argv: list[str] | None = None) -> int:
 
     results = check(targets)
     if args.json:
+        args.json.parent.mkdir(parents=True, exist_ok=True)
         args.json.write_text(json.dumps(results, indent=1), encoding="utf-8")
+    if args.review:
+        changed = write_review_report(args.review, results)
+        print("review report %s: %s" % ("updated" if changed else "unchanged", args.review))
 
     counts = Counter(r["verdict"] for r in results)
     for verdict in ("CANCELLED", "DEAD", "BLOCKED"):

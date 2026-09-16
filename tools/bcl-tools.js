@@ -139,6 +139,14 @@
     });
   }
 
+  /* Keep the listing identity through the trip to /contact. The contact page
+     owns the form fields; this bundle only supplies one escaped reference
+     containing the card's visible name and the source URL a reviewer needs. */
+  function correctionHref(name, url) {
+    var bits = [String(name || "").trim(), String(url || "").trim()].filter(Boolean);
+    return "/contact?topic=correction&reference=" + encodeURIComponent(bits.join("\n"));
+  }
+
   /* ---------- analytics ----------
      GA4 (G-6367285354) is loaded by Squarespace, so all this does is name the
      handful of actions that mean somebody got what they came for. Pageviews
@@ -163,7 +171,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v27";
+  var CSS_ID = "bcl-tools-css-v28";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -370,6 +378,7 @@
          every row as tall as the tallest card, so the five cards are one size
          rather than five sizes cut to their text. A trailing empty cell in the
          last row is what a uniform grid does and is left alone. */
+      ".bcl-status-shortcuts{display:flex;flex-wrap:wrap;gap:8px 20px;margin:20px 0;}.bcl-status-shortcuts a{display:inline-flex;align-items:center;min-height:44px;color:#2e6b46!important;text-decoration:underline;text-underline-offset:4px;}.bcl-status-shortcuts a:focus-visible,.bcl-rain-chart:focus-visible{outline:3px solid #173f36;outline-offset:3px;}",
       ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:stretch;grid-auto-rows:1fr;}",
       "#bcl-status .bcl-card{background:#f5f1e7 !important;}",
       /* Official information: the escape routes were plain ink with no
@@ -418,12 +427,13 @@
       ".bcl-event-flow .bcl-event-grid{margin:0 0 6px;}",
       ".bcl-event-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;}",
       ".bcl-event-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:14px 15px;display:flex;flex-direction:column;gap:5px;}",
-      ".bcl-event-date{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:#d56e47 !important;text-transform:uppercase;}",
+      ".bcl-event-date{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:#b04a2c !important;text-transform:uppercase;}",
       ".bcl-event-title{font-weight:600;color:#173f36 !important;font-size:.96rem;line-height:1.3;}",
       ".bcl-event-meta{font-size:.8rem;color:#626c66 !important;line-height:1.4;}",
       ".bcl-event-cat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;margin-top:auto;padding-top:6px;}",
       ".bcl-event-notice{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;color:#8f4f45 !important;text-transform:uppercase;font-weight:700;}",
       ".bcl-event-card a{color:#2e6b46 !important;font-size:.82rem;}",
+      ".bcl-event-correction{margin-top:3px;}",
       ".bcl-cat-head{display:flex;align-items:center;gap:10px;margin:28px 0 12px;}",
       ".bcl-cat-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
       ".bcl-cat-head h3{margin:0 !important;font-size:1.3rem !important;}",
@@ -461,7 +471,7 @@
       ".bcl-dir-mono{width:42px;height:42px;flex:0 0 42px;border:1px solid #e3ddcf;background:#f5f1e7;color:#173f36;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.25rem;font-weight:600;}",
       ".bcl-dir-name{font-weight:600;color:#173f36 !important;font-size:.94rem;line-height:1.3;}",
       ".bcl-dir-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;}",
-      ".bcl-dir-desc{font-size:.8rem;color:#1c2a26 !important;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}",
+      ".bcl-dir-desc{font-size:.8rem;color:#1c2a26 !important;line-height:1.4;display:block;overflow:visible;max-height:none;overflow-wrap:anywhere;}",
       ".bcl-dir-meta{font-size:.78rem;color:#626c66 !important;line-height:1.35;}",
       ".bcl-dir-links{font-size:.8rem;margin-top:2px;}",
       ".bcl-dir-links a{color:#2e6b46 !important;text-decoration:underline;}",
@@ -624,7 +634,7 @@
       ".bcl-checklabel{display:flex;align-items:center;gap:6px;font-size:.85rem;color:#1c2a26 !important;flex:0 0 auto;white-space:nowrap;}",
       ".bcl-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.06em;background:#dde2d8;color:#173f36 !important;padding:2px 7px;}",
       ".bcl-job-card,.bcl-rental-card{background:#fffdf8 !important;border:1px solid #e3ddcf;padding:16px 18px;margin:0 0 12px;}",
-      ".bcl-job-card .bcl-actionrow a,.bcl-rental-card .bcl-actionrow a{color:#d56e47 !important;}",
+      ".bcl-job-card .bcl-actionrow a,.bcl-rental-card .bcl-actionrow a{color:#b04a2c !important;}",
       ".bcl-sr-only{position:absolute !important;width:1px !important;height:1px !important;padding:0 !important;margin:-1px !important;overflow:hidden !important;clip:rect(0,0,0,0) !important;white-space:nowrap !important;border:0 !important;}",
       ".bcl-article-title{box-sizing:border-box;width:100%;max-width:680px;margin:0 auto 28px!important;color:#173f36!important;font-family:'Cormorant Garamond',Georgia,serif!important;font-size:clamp(2.35rem,5vw,3.75rem)!important;line-height:1.04!important;letter-spacing:-.02em;text-wrap:balance;}",
       ".bcl-article-layout{font-family:Inter,Arial,sans-serif;color:#1c2a26;line-height:1.72;font-size:1rem;}",
@@ -808,6 +818,60 @@
     var a = dayKeyToUTC(dateKey), b = dayKeyToUTC(today || todayKey());
     if (a == null || b == null) return null;
     return Math.round((b - a) / 86400000);
+  }
+
+  function validLocalDate(y, mo, d) {
+    var dt = new Date(y, mo - 1, d);
+    return dt.getFullYear() === y && dt.getMonth() === mo - 1 && dt.getDate() === d ? dt : null;
+  }
+
+  /* Source feeds use ISO, US numeric and written-month dates. Parse them as
+     local calendar dates so a midnight UTC conversion cannot move a deadline
+     or availability date back one day in California. */
+  function flexibleLocalDate(value, todayOpt) {
+    var raw = String(value || "").trim();
+    var m, now = isDateLike(todayOpt) ? todayOpt : new Date();
+    if (!raw) return null;
+    m = /^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(raw);
+    if (m) return validLocalDate(+m[1], +m[2], +m[3]);
+    m = /^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})/.exec(raw);
+    if (m) return validLocalDate(+m[3], +m[1], +m[2]);
+    m = /^(?:[A-Za-z]+,\s+)?([A-Za-z]+)\s+(\d{1,2})(?:,\s*(\d{4}))?/.exec(raw);
+    if (m) {
+      var mons = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+      var month = mons.indexOf(m[1].toLowerCase());
+      if (month >= 0) return validLocalDate(m[3] ? +m[3] : now.getFullYear(), month + 1, +m[2]);
+    }
+    return null;
+  }
+
+  function readableLocalDate(dt, withWeekday, todayOpt) {
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var mons = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var now = isDateLike(todayOpt) ? todayOpt : new Date();
+    return (withWeekday ? days[dt.getDay()] + ", " : "") + mons[dt.getMonth()] + " " + dt.getDate() +
+      (dt.getFullYear() !== now.getFullYear() ? ", " + dt.getFullYear() : "");
+  }
+
+  function jobDeadlineText(value, todayOpt) {
+    var raw = String(value || "").trim();
+    if (!raw || /^(?:continuous|until filled|by date)$/i.test(raw)) return "";
+    var dt = flexibleLocalDate(raw, todayOpt);
+    if (!dt) return "";
+    var now = isDateLike(todayOpt) ? new Date(todayOpt.getTime()) : new Date();
+    now.setHours(0, 0, 0, 0);
+    return (dt < now ? "Applications closed " : "Applications close ") + readableLocalDate(dt, true, now);
+  }
+
+  function rentalAvailableText(value, todayOpt) {
+    var raw = String(value || "").trim();
+    if (!raw) return "";
+    if (/^(?:now|immediately|available now)$/i.test(raw)) return "Available now";
+    var dt = flexibleLocalDate(raw, todayOpt);
+    if (!dt) return "Available: " + raw;
+    var now = isDateLike(todayOpt) ? new Date(todayOpt.getTime()) : new Date();
+    now.setHours(0, 0, 0, 0);
+    return dt <= now ? "Available now" : "Available " + readableLocalDate(dt, false, now);
   }
 
   /* Month-year granularity: a listing verified on the 15th is not more
@@ -1001,11 +1065,11 @@
        useful than a search result, and the external Website link is nofollow in
        the server-rendered fallback, so this is the only followed link there.
        Keep in step with the same link in build_static_listings.py. */
-    if (l.article) links.push('<a href="' + esc(l.article) + '">Read our write-up</a>');
-    if (l.phone) links.push('<a href="tel:' + esc(String(l.phone).replace(/[^0-9+]/g, "")) + '">' + esc(l.phone) + "</a>");
+    if (l.article) links.push('<a href="' + esc(l.article) + '" aria-label="Read our write-up about ' + esc(l.name) + '">Read our write-up</a>');
+    if (l.phone) links.push('<a href="tel:' + esc(String(l.phone).replace(/[^0-9+]/g, "")) + '" aria-label="Call ' + esc(l.name) + ' at ' + esc(l.phone) + '">' + esc(l.phone) + "</a>");
     var dir = directionsUrl(l);
-    if (dir) links.push('<a href="' + esc(dir) + '" target="_blank" rel="noopener">Directions</a>');
-    if (l.website) links.push('<a href="' + esc(l.website) + '" target="_blank" rel="noopener">Website</a>');
+    if (dir) links.push('<a href="' + esc(dir) + '" target="_blank" rel="noopener" aria-label="Directions to ' + esc(l.name) + '">Directions</a>');
+    if (l.website) links.push('<a href="' + esc(l.website) + '" target="_blank" rel="noopener" aria-label="Website for ' + esc(l.name) + '">Website</a>');
     if (links.length) h += '<div class="bcl-dir-links">' + links.join(" · ") + "</div>";
     /* Collected on 51 listings and checked weekly against CSLB, but never
        shown until now. It is the strongest trust signal the directory holds. */
@@ -1017,6 +1081,8 @@
     }
     var verified = monthYear(l.verified_at);
     if (verified) h += '<div class="bcl-dir-verified">Last verified ' + esc(verified) + "</div>";
+    var listingUrl = l.article || ("/directory?q=" + encodeURIComponent(l.name || ""));
+    h += '<div class="bcl-actionrow"><a href="' + esc(correctionHref(l.name, listingUrl)) + '" aria-label="Report a correction for ' + esc(l.name) + '">Something wrong here?</a></div>';
     return h + "</div>";
   }
 
@@ -1365,16 +1431,30 @@
     if (!job) return "Ongoing recruitment";
     var age = dayAge(job.posted_at, today);
     if (age != null && age <= JOB_DATE_MAX_AGE_DAYS) return "Posted " + job.posted_at;
+    if (jobDeadlineText(job.application_deadline, today)) return "Posting date not provided";
     return "Ongoing recruitment";
   }
 
   function jobEmployers(rows) {
     var seen = {}, out = [];
     (rows || []).forEach(function (j) {
-      var name = j && j.employer_name;
+      var name = jobEmployerName(j);
       if (name && !seen[name]) { seen[name] = 1; out.push(name); }
     });
     return out.sort(function (a, b) { return String(a).localeCompare(String(b)); });
+  }
+
+  /* County postings arrive under department names, which produced ten filter
+     options for one employer. The exact source value is reliable enough to
+     normalize the employer while retaining the department on the card. */
+  function jobEmployerName(job) {
+    return job && job.source === "County of Santa Cruz" ? "County of Santa Cruz" : String((job && job.employer_name) || "");
+  }
+
+  function jobDepartmentName(job) {
+    if (!job || job.source !== "County of Santa Cruz") return "";
+    var name = String(job.employer_name || "");
+    return /^(?:County-wide|County of Santa Cruz)$/i.test(name) ? "" : name;
   }
 
   function jobSortKey(job) {
@@ -1407,7 +1487,7 @@
       var schedule = String(j.employment_type || "").toLowerCase().replace(/-/g, " ").replace(/full\s+(?:and|&)\s+part\s+time/g, "full time, part time");
       if (opts.employmentType && schedule.indexOf(opts.employmentType) < 0) return false;
       if (opts.category && j.category !== opts.category) return false;
-      if (opts.employer && j.employer_name !== opts.employer) return false;
+      if (opts.employer && jobEmployerName(j) !== opts.employer) return false;
       if (opts.payListedOnly && !j.salary_disclosed) return false;
       if (opts.minHourly) {
         var hourly = jobHourlyEquivalent(j);
@@ -1415,7 +1495,7 @@
       }
       if (opts.postedWithinDays && !jobPostedWithin(opts.employerDateOnly ? { posted_at: j.posted_at } : j, opts.postedWithinDays, opts.today)) return false;
       if (q) {
-        var hay = ((j.title || "") + " " + (j.employer_name || "") + " " + (j.city || "")).toLowerCase();
+        var hay = ((j.title || "") + " " + jobEmployerName(j) + " " + (j.employer_name || "") + " " + (j.city || "")).toLowerCase();
         if (hay.indexOf(q) < 0) return false;
       }
       return true;
@@ -1433,19 +1513,22 @@
 
   function jobCard(job, today) {
     var h = '<div class="bcl-job-card">';
-    h += '<div class="bcl-name"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">' + esc(job.title) + "</a></div>";
+    var employer = jobEmployerName(job), department = jobDepartmentName(job);
+    h += '<div class="bcl-name"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener" aria-label="Open the source posting for ' + esc(job.title) + ' at ' + esc(employer) + '">' + esc(job.title) + "</a></div>";
     var tier = jobAreaLabel(job);
-    h += '<div class="bcl-sub">' + esc(job.employer_name) + (job.city ? " · " + esc(job.city) : "") + " · " + esc(tier) + (job.work_mode === "remote" ? " · Remote with local employer" : "") + "</div>";
+    h += '<div class="bcl-sub">' + esc(employer) + (department ? " · " + esc(department) : "") + (job.city ? " · " + esc(job.city) : "") + " · " + esc(tier) + (job.work_mode === "remote" ? " · Remote with local employer" : "") + "</div>";
     if (job.commute_minutes && job.geography_tier !== "remote" && job.work_mode !== "remote") h += '<div class="bcl-meta">Estimated drive: ~' + esc(String(job.commute_minutes)) + " min; traffic and conditions vary</div>";
     if (job.employment_type) h += '<div class="bcl-meta">' + esc(job.employment_type) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobSalaryText(job)) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobPostedLine(job, today)) + "</div>";
+    var deadline = jobDeadlineText(job.application_deadline, today);
+    if (deadline) h += '<div class="bcl-meta">' + esc(deadline) + "</div>";
     if (/\(reviewed (?:employer posting|recruitment)\)$/.test(job.source || "") && job.description_summary) {
       h += '<p class="bcl-job-notes">' + esc(job.description_summary) + "</p>";
     }
     h += '<div class="bcl-verified">SOURCE: ' + esc(job.source || "") + " · VERIFIED " + esc(job.last_verified_at || "") + "</div>";
-    h += '<div class="bcl-actionrow"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener">Apply at source</a></div>';
-    h += '<div class="bcl-actionrow"><a href="/contact">Report a problem with this listing</a></div>';
+    h += '<div class="bcl-actionrow"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener" aria-label="Apply for ' + esc(job.title) + ' at ' + esc(employer) + '">Apply at source</a></div>';
+    h += '<div class="bcl-actionrow"><a href="' + esc(correctionHref(job.title + (employer ? " at " + employer : ""), job.canonical_url)) + '" aria-label="Report a correction for ' + esc(job.title) + '">Report a problem with this listing</a></div>';
     return h + "</div>";
   }
 
@@ -1614,7 +1697,7 @@
     return "$" + s.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "/mo";
   }
 
-  function rentalCard(rental) {
+  function rentalCard(rental, todayOpt) {
     var h = '<div class="bcl-rental-card">';
     h += '<div class="bcl-name">' + esc(rental.headline) + "</div>";
     /* One town label. The badge already carries the SLV town, so repeating a
@@ -1626,13 +1709,18 @@
     /* A studio arrives as 0 bedrooms; "0 bd" reads like missing data (2026-09-13). */
     var beds = rental.bedrooms == null || rental.bedrooms === "" ? "" : (Number(rental.bedrooms) === 0 ? "Studio" : rental.bedrooms + " bd");
     var baths = rental.bathrooms != null ? rental.bathrooms + " ba" : "";
-    if (beds || baths) h += '<div class="bcl-meta">' + esc([beds, baths].filter(Boolean).join(" · ")) + "</div>";
+    var squareFeet = Number(rental.square_feet) > 0 ? Math.round(Number(rental.square_feet)).toLocaleString("en-US") + " sq ft" : "";
+    if (beds || baths || squareFeet) h += '<div class="bcl-meta">' + esc([beds, baths, squareFeet].filter(Boolean).join(" · ")) + "</div>";
     if (rental.property_type) h += '<div class="bcl-meta">' + esc(rental.property_type) + "</div>";
-    if (rental.available_date) h += '<div class="bcl-meta">Available: ' + esc(rental.available_date) + "</div>";
+    if (rental.rental_scope && rental.rental_scope !== "entire") {
+      h += '<div class="bcl-meta">' + esc(rental.rental_scope === "private-room" ? "Room in a shared home" : rental.rental_scope) + "</div>";
+    }
+    var available = rentalAvailableText(rental.available_date, todayOpt);
+    if (available) h += '<div class="bcl-meta">' + esc(available) + "</div>";
     if (rental.furnished) h += '<div class="bcl-meta">Furnished</div>';
     h += '<div class="bcl-verified">SOURCE: ' + esc(rental.property_manager || rental.source || "") + " · VERIFIED " + esc(rental.last_verified_at || "") + "</div>";
-    h += '<div class="bcl-actionrow"><a href="' + esc(rental.canonical_url) + '" target="_blank" rel="noopener">View original listing</a></div>';
-    h += '<div class="bcl-actionrow"><a href="/contact">Report a problem with this listing</a></div>';
+    h += '<div class="bcl-actionrow"><a href="' + esc(rental.canonical_url) + '" target="_blank" rel="noopener" aria-label="View the original listing for ' + esc(rental.headline) + '">View original listing</a></div>';
+    h += '<div class="bcl-actionrow"><a href="' + esc(correctionHref(rental.headline, rental.canonical_url)) + '" aria-label="Report a correction for ' + esc(rental.headline) + '">Report a problem with this listing</a></div>';
     return h + "</div>";
   }
 
@@ -1786,6 +1874,15 @@
       out += " · " + h12 + (p.mi ? ":" + (p.mi < 10 ? "0" : "") + p.mi : "") + (p.h < 12 ? " AM" : " PM");
     }
     return out;
+  }
+
+  function evEndSuffix(e) {
+    var start = evParts(e && e.start), end = evParts(e && e.end);
+    if (!start || !end || start.h == null || end.h == null) return "";
+    if (start.y !== end.y || start.mo !== end.mo || start.d !== end.d) return "";
+    if (start.h === end.h && (start.mi || 0) === (end.mi || 0)) return "";
+    var h12 = end.h % 12 === 0 ? 12 : end.h % 12;
+    return " to " + h12 + (end.mi ? ":" + pad2(end.mi) : "") + (end.h < 12 ? " AM" : " PM");
   }
 
   /* A run of dates that has already opened. Museum exhibits are the usual case:
@@ -1958,14 +2055,16 @@
   function eventCard(e) {
     var h = '<div class="bcl-event-card">';
     h += '<div class="bcl-event-date">' +
-         (evIsOngoing(e) ? evThroughChip(e.end) : evDateChip(e.start)) + "</div>";
+         (evIsOngoing(e) ? evThroughChip(e.end) : evDateChip(e.start) + evEndSuffix(e)) + "</div>";
     h += '<div class="bcl-event-title">' + esc(e.title) + "</div>";
     if (e.location) h += '<div class="bcl-event-meta">' + esc(e.location) + "</div>";
     /* Event cards deliberately don't render descriptions, so anything a reader must
        know BEFORE turning up (age limits, ticket-only) goes here or it is invisible. */
     if (e.notice) h += '<div class="bcl-event-notice">' + esc(e.notice) + "</div>";
-    if (e.url) h += '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">Details</a>';
-    if (e.id) h += '<button type="button" class="bcl-ics" data-ics="' + esc(e.id) + '">Add to calendar</button>';
+    if (e.url) h += '<a href="' + esc(e.url) + '" target="_blank" rel="noopener" aria-label="Details for ' + esc(e.title) + '">Details</a>';
+    if (e.id) h += '<button type="button" class="bcl-ics" data-ics="' + esc(e.id) + '" aria-label="Add ' + esc(e.title) + ' to your calendar">Add to calendar</button>';
+    var eventUrl = e.url || ("/events?q=" + encodeURIComponent(e.title || ""));
+    h += '<a class="bcl-event-correction" href="' + esc(correctionHref((e.title || "Event") + (e.start ? " on " + e.start : ""), eventUrl)) + '" aria-label="Report a correction for ' + esc(e.title || "this event") + '">Report a correction</a>';
     h += '<div class="bcl-event-cat">' + esc(e.category || "Community") + "</div>";
     return h + "</div>";
   }
@@ -3787,7 +3886,7 @@ function initBclSectionJumps(doc) {
         el.innerHTML =
           '<div class="bcl-name">Air quality: ' + esc(cat) + "</div>" +
           '<div class="bcl-sub">US AQI ' + Math.round(c.us_aqi) + (c.pm2_5 != null ? " · PM2.5 " + Math.round(c.pm2_5) + ' <span style="text-transform:none">µg/m³</span>' : "") + "</div>" +
-          '<p>Modeled estimate for Boulder Creek from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. During smoke events, confirm with the <a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a>, which uses ground monitors.</p>';
+          '<p>Modeled estimate for Boulder Creek from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. During smoke events, confirm with the <a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a>, which uses ground monitors.</p>' + statusRetrievedHTML();
       })
       .catch(function () {
         el.innerHTML = '<div class="bcl-name">Air quality: unavailable</div><p>The estimate didn\'t load; that is not an all-clear. Check the <a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a>.</p>';
@@ -3808,7 +3907,9 @@ function initBclSectionJumps(doc) {
       b.beginRoute || "",
       b.beginNearbyPlace || b.beginLocationName || "",
       String(c.typeOfClosure || "closure").toLowerCase(),
-      mins > 0 ? mins : ""
+      mins > 0 ? mins : "",
+      (c.closureTimestamp || {}).closureStartDate || "",
+      (c.closureTimestamp || {}).closureEndDate || ""
     ].join("|");
   }
 
@@ -3821,6 +3922,47 @@ function initBclSectionJumps(doc) {
       out.push(l);
     });
     return out;
+  }
+
+  function statusRetrievedHTML(now) {
+    return '<div class="bcl-meta bcl-retrieved">Retrieved ' + esc((now || new Date()).toLocaleString('en-US', { timeZone: 'America/Los_Angeles', timeZoneName: 'short' })) + '. Source observations may be older.</div>';
+  }
+
+  function caltransSchedule(l, now) {
+    var c = (l || {}).closure || {}, t = c.closureTimestamp || {};
+    var indefinite = t.isClosureEndIndefinite === 'true';
+    var end = Number(t.closureEndEpoch), expired = !indefinite && end > 0 && end * 1000 < +(now || new Date());
+    var startText = /^\d{4}-\d{2}-\d{2}$/.test(t.closureStartDate || '') ? t.closureStartDate : '';
+    var endText = /^\d{4}-\d{2}-\d{2}$/.test(t.closureEndDate || '') ? t.closureEndDate : '';
+    function scheduledTime(value) {
+      var match = /^(\d{2}):(\d{2})(?::\d{2})?$/.exec(value || '');
+      if (!match || +match[1] > 23 || +match[2] > 59) return '';
+      var hour = +match[1];
+      return ' at ' + (hour % 12 || 12) + ':' + match[2] + (hour < 12 ? ' AM' : ' PM') + ' Pacific';
+    }
+    if (startText) startText += scheduledTime(t.closureStartTime);
+    if (endText) endText += scheduledTime(t.closureEndTime);
+    var label = c.durationOfClosure === 'Long Term' ? 'Long-term work' : 'Scheduled work';
+    if (startText) label += ' from ' + startText;
+    if (indefinite) label += '; no scheduled end';
+    else if (endText) label += ' through ' + endText;
+    else if (!startText) return '';
+    if (expired) label += '. Scheduled end has passed; Caltrans still marks this closure in effect. Check QuickMap.';
+    return label;
+  }
+
+  function sortCaltrans(rows) {
+    var rank = { 'SR-9': 0, 'SR-236': 0, 'SR-35': 1, 'SR-17': 1, 'SR-1': 2 };
+    return rows.slice().sort(function (a, b) {
+      var aa = (a.location || {}).begin || {}, bb = (b.location || {}).begin || {};
+      var ar = rank[aa.beginRoute], br = rank[bb.beginRoute];
+      if (ar == null) ar = 3;
+      if (br == null) br = 3;
+      var ap = LOCAL_ALLOWLIST.indexOf(aa.beginNearbyPlace), bp = LOCAL_ALLOWLIST.indexOf(bb.beginNearbyPlace);
+      if (ap < 0) ap = LOCAL_ALLOWLIST.length;
+      if (bp < 0) bp = LOCAL_ALLOWLIST.length;
+      return ar - br || ap - bp || caltransCardKey(a).localeCompare(caltransCardKey(b));
+    });
   }
 
   function fillCaltrans(el) {
@@ -3839,7 +3981,7 @@ function initBclSectionJumps(doc) {
           var active = (c.code1097 || {}).isCode1097 === "true" && (c.code1098 || {}).isCode1098 !== "true";
           return active && b.beginCounty === "Santa Cruz" && ROUTES[b.beginRoute];
         });
-        rows = dedupeCaltrans(rows);
+        rows = dedupeCaltrans(sortCaltrans(rows));
         var total = rows.length;
         rows = rows.slice(0, 6);
         var h = "";
@@ -3853,6 +3995,8 @@ function initBclSectionJumps(doc) {
             var delay = mins > 0 ? ", est. delay " + mins + " min" : "";
             h += '<div class="bcl-meta">' + esc(b.beginRoute) + " near " + esc(b.beginNearbyPlace || b.beginLocationName || "?") + ": " +
               esc((c.typeOfClosure || "closure").toLowerCase()) + delay + "</div>";
+            var schedule = caltransSchedule(l);
+            if (schedule) h += '<div class="bcl-meta">' + esc(schedule) + '</div>';
           });
           if (total > rows.length) {
             h += '<div class="bcl-meta">Showing ' + rows.length + " of " + total + ". See QuickMap for the rest.</div>";
@@ -3860,8 +4004,8 @@ function initBclSectionJumps(doc) {
         } else {
           h = '<div class="bcl-name">No active Caltrans closures reported</div><div class="bcl-meta">Highways 1, 9, 17, 35, and 236 in Santa Cruz County, per the Caltrans lane closure feed.</div>';
         }
-        h += '<p>State highways only; county roads like Bear Creek and Jamison Creek are not in this feed. Check <a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">QuickMap</a> and the <a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/" target="_blank" rel="noopener">county road dashboard</a> before you drive.</p>';
-        el.innerHTML = h;
+        h += '<p>Highways 1, 9, 17, 35, and 236 in Santa Cruz County. Highway 9 and 236 closures appear first. County roads like Bear Creek and Jamison Creek are not in this feed. Check <a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">QuickMap</a> and the <a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/" target="_blank" rel="noopener">county road dashboard</a> before you drive.</p>';
+        el.innerHTML = h + statusRetrievedHTML();
       })
       .catch(function () {
         el.innerHTML = '<div class="bcl-name">Road closures: feed unavailable</div><p>That is not an all-clear. Check <a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">Caltrans QuickMap</a> and the <a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/" target="_blank" rel="noopener">county road dashboard</a>.</p>';
@@ -3887,7 +4031,7 @@ function initBclSectionJumps(doc) {
   var RIVER = {
     site: "11160500",
     name: "San Lorenzo River at Big Trees",
-    place: "Felton, upstream gauge for the valley",
+    place: "Felton, downstream of Boulder Creek",
     usgs: "https://waterdata.usgs.gov/monitoring-location/USGS-11160500/",
     lid: "BTEC1",
     nws: "https://water.noaa.gov/gauges/BTEC1"
@@ -3987,7 +4131,7 @@ function initBclSectionJumps(doc) {
     ]).then(function (res) {
       var reading = riverReading(res[0]);
       if (!reading) throw new Error("no reading");
-      el.innerHTML = riverCardHTML(reading, riverFloodCategories(res[1]));
+      el.innerHTML = riverCardHTML(reading, riverFloodCategories(res[1])) + statusRetrievedHTML();
     }).catch(function () {
       el.innerHTML = '<div class="bcl-name">River gauge: unavailable</div>' +
         "<p>The San Lorenzo River reading didn't load. That means there is no reading here, not that the river is low. " +
@@ -4112,6 +4256,25 @@ function initBclSectionJumps(doc) {
     });
   }
 
+  function initStatusShortcuts(root) {
+    if (document.getElementById('bcl-status-shortcuts')) return;
+    var host = document.querySelector('.bcl-hero .bcl-wrap');
+    if (!host) host = root;
+    var nav = document.createElement('nav');
+    nav.id = 'bcl-status-shortcuts';
+    nav.className = 'bcl-status-shortcuts';
+    nav.setAttribute('aria-label', 'Official roads, power and alerts');
+    nav.innerHTML = '<a href="https://quickmap.dot.ca.gov/">State roads</a>' +
+      '<a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/">County roads</a>' +
+      '<a href="https://pgealerts.alerts.pge.com/outage-tools/outage-map/">Power outages</a>' +
+      '<a href="https://www.cruzaware.org/">Official alerts</a>';
+    if (host === root) host.insertBefore(nav, host.firstChild);
+    else {
+      var heading = host.querySelector('h1'), intro = heading && heading.nextElementSibling;
+      host.insertBefore(nav, intro ? intro.nextSibling : host.firstChild);
+    }
+  }
+
   function initStatus(root) {
     root.innerHTML =
       '<div class="bcl-alert">If this is an emergency, call 911. This page links to official sources; it never replaces them.</div>' +
@@ -4126,12 +4289,13 @@ function initBclSectionJumps(doc) {
       '<div class="bcl-card bcl-river"><div class="bcl-count">Checking the river gauge…</div></div>' +
       rightNowStatic() +
       "</div>" +
-      '<div class="bcl-count" style="margin-top:10px;">LIVE ITEMS RETRIEVED WHEN YOU LOADED THIS PAGE · ' + esc(new Date().toLocaleString()) + "</div>" +
+      '<p class="bcl-note">Each available panel shows when it was retrieved. An unavailable panel is not an all-clear.</p>' +
       '<div class="bcl-nws" style="margin-top:18px;"><div class="bcl-count">Checking National Weather Service…</div></div>' +
       sirensLinks();
 
     hideStatusFallbackCopy(root);
     collapseStatusGuide();
+    initStatusShortcuts(root);
 
     fillAQI(root.querySelector(".bcl-aqi"));
     fillCaltrans(root.querySelector(".bcl-roads"));
@@ -4144,8 +4308,9 @@ function initBclSectionJumps(doc) {
       fetchJSON("https://api.weather.gov/alerts/active?point=" + NWS_POINT.lat + "," + NWS_POINT.lon),
       fetchJSON(pt).then(function (p) { return fetchJSON(p.properties.forecast); })
     ]).then(function (res) {
-      var alerts = (res[0].features || []);
-      var periods = ((res[1].properties || {}).periods || []).slice(0, 4);
+      if (!res[0] || !Array.isArray(res[0].features) || !res[1] || !res[1].properties || !Array.isArray(res[1].properties.periods) || !res[1].properties.periods.length) throw new Error('Incomplete NWS response');
+      var alerts = res[0].features;
+      var periods = res[1].properties.periods.slice(0, 4);
       var h = "";
       if (alerts.length) {
         h += alerts.map(function (a) {
@@ -4162,7 +4327,7 @@ function initBclSectionJumps(doc) {
         }).join("");
       }
       h += '<div class="bcl-note">Source: <a href="https://www.weather.gov/mtr/" target="_blank" rel="noopener">National Weather Service</a>, retrieved when you loaded this page. If anything here looks stale, trust the official page.</div>';
-      nwsRoot.innerHTML = h;
+      nwsRoot.innerHTML = h + statusRetrievedHTML();
     }).catch(function () {
       unavailable(nwsRoot, "Live weather data", "Use the official sources below.");
     });
@@ -4878,12 +5043,12 @@ function initBclSectionJumps(doc) {
         rainStatsHTML(payload) +
         '<div class="bcl-note bcl-rain-gap">' + esc(rainGapNote(payload.current)) + "</div>" +
         '<section class="bcl-rain-sec"><h2>This water year against the record</h2>' +
-        '<div class="bcl-rain-chart" id="bcl-rain-season"></div>' +
+        '<div class="bcl-rain-chart" id="bcl-rain-season" tabindex="0" role="region" aria-label="Season rainfall chart, scroll horizontally to explore"></div>' +
         rainSeasonLegendHTML(payload) +
         rainMonthTable(payload) + "</section>" +
         '<section class="bcl-rain-sec"><h2>Every water year on record</h2>' +
         rainControlsHTML(payload, "") +
-        '<div class="bcl-rain-chart" id="bcl-rain-totals"></div>' +
+        '<div class="bcl-rain-chart" id="bcl-rain-totals" tabindex="0" role="region" aria-label="Annual rainfall totals chart, scroll horizontally to explore"></div>' +
         rainExtremesHTML(payload) + "</section>" +
         '<section class="bcl-rain-sec"><h2>Storms this water year</h2>' +
         '<div id="bcl-rain-storms">' + rainStormsHTML(payload) + "</div></section>" +
@@ -5151,7 +5316,7 @@ function initBclSectionJumps(doc) {
     var labels = { events: "events", jobs: "jobs", rentals: "rentals" };
     var label = labels[kind] || "results";
     return '<div class="bcl-unavailable">No ' + label + ' match "' + esc(query) +
-      '" right now. It may have closed or changed. Try editing or clearing the search. <a href="/contact">Tell us about it</a>.</div>';
+      '" right now. Try editing or clearing the search. <a href="/contact">Tell us what you were looking for</a>.</div>';
   }
 
   /* Jobs and Rentals are loaded by the site-wide immutable footer. This root
@@ -5168,6 +5333,46 @@ function initBclSectionJumps(doc) {
   function searchTerms(q) {
     return String(q || "").toLowerCase().split(/[^a-z0-9']+/).filter(function (t) {
       return t.length > 1;
+    });
+  }
+
+  function eventIsCurrentForSearch(event, todayOpt) {
+    var end = evParts((event && event.end) || (event && event.start));
+    if (!end) return false;
+    var today = isDateLike(todayOpt) ? new Date(todayOpt.getTime()) : new Date();
+    today.setHours(0, 0, 0, 0);
+    return new Date(end.y, end.mo - 1, end.d, 23, 59) >= today;
+  }
+
+  /* The search index intentionally contains the full feed, including past
+     events. Filter it against events.json at read time so recurring events and
+     exhibits use their real end dates instead of a brittle title/date guess. */
+  function filterCurrentSearchRecords(records, events, todayOpt) {
+    var active = null;
+    if (Array.isArray(events)) {
+      active = {};
+      events.forEach(function (event) {
+        var start = evParts(event && event.start);
+        if (start && eventIsCurrentForSearch(event, todayOpt)) {
+          var eventKey = String(event.title || "").trim().toLowerCase() + "\n" +
+            start.y + "-" + pad2(start.mo) + "-" + pad2(start.d);
+          active[eventKey] = true;
+        }
+      });
+    }
+    return (records || []).filter(function (rec) {
+      if (!rec || rec.t !== "event") return true;
+      if (active) {
+        var indexedStart = /^(\d{4}-\d{2}-\d{2})\b/.exec(String(rec.s || ""));
+        var recordKey = String(rec.n || "").trim().toLowerCase() + "\n" +
+          (indexedStart ? indexedStart[1] : "");
+        return !!active[recordKey];
+      }
+      /* Graceful fallback if events.json is temporarily unavailable. Ongoing
+         records say so in the indexed snippet; other rows begin with ISO day. */
+      if (/\bongoing\b/i.test(rec.s || "")) return true;
+      var m = /\b(\d{4}-\d{2}-\d{2})\b/.exec(rec.s || "");
+      return !m || dayAge(m[1], todayKey(todayOpt)) <= 0;
     });
   }
 
@@ -5212,9 +5417,21 @@ function initBclSectionJumps(doc) {
 
   function groupHits(hits) {
     var by = {};
-    hits.forEach(function (h) { (by[h.rec.t] = by[h.rec.t] || []).push(h.rec); });
-    return SEARCH_ORDER.filter(function (t) { return by[t] && by[t].length; })
-      .map(function (t) { return { type: t, label: SEARCH_TYPES[t] || t, items: by[t] }; });
+    hits.forEach(function (h, i) {
+      var type = h.rec.t;
+      if (!by[type]) by[type] = { type: type, score: h.score || 0, first: i, items: [] };
+      by[type].score = Math.max(by[type].score, h.score || 0);
+      by[type].items.push(h.rec);
+    });
+    return Object.keys(by).map(function (type) { return by[type]; }).sort(function (a, b) {
+      if (b.score !== a.score) return b.score - a.score;
+      var ai = SEARCH_ORDER.indexOf(a.type), bi = SEARCH_ORDER.indexOf(b.type);
+      if (ai < 0) ai = SEARCH_ORDER.length;
+      if (bi < 0) bi = SEARCH_ORDER.length;
+      return ai !== bi ? ai - bi : a.first - b.first;
+    }).map(function (g) {
+      return { type: g.type, label: SEARCH_TYPES[g.type] || g.type, items: g.items };
+    });
   }
 
   function initSiteSearch() {
@@ -5276,6 +5493,17 @@ function initBclSectionJumps(doc) {
     function onKey(e) {
       if (!overlay) return;
       if (e.key === "Escape") { e.preventDefault(); close(); return; }
+      if (e.key === "Tab") {
+        var focusable = [].slice.call(overlay.querySelectorAll('input:not([disabled]),button:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])'));
+        if (!focusable.length) { e.preventDefault(); return; }
+        var first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && (document.activeElement === first || !overlay.contains(document.activeElement))) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+        return;
+      }
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         if (!rows.length) return;
         e.preventDefault();
@@ -5352,7 +5580,11 @@ function initBclSectionJumps(doc) {
       if (!records && !loading) {
         loading = true;
         fetchJSON(REPO + "/data/search-index.json").then(function (d) {
-          records = (d && d.records) || [];
+          return fetchJSON(REPO + "/data/events.json").then(function (eventData) {
+            return { index: d, events: (eventData && eventData.events) || [] };
+          }).catch(function () { return { index: d, events: null }; });
+        }).then(function (bundle) {
+          records = filterCurrentSearchRecords((bundle.index && bundle.index.records) || [], bundle.events, new Date());
           loading = false;
           run();
         }).catch(function () {
@@ -5398,6 +5630,7 @@ function initBclSectionJumps(doc) {
     initBclSectionJumps();
     if (BCL_CODE_URL) {
       var extraModules = [];
+      if (/^\/contact\/?$/.test(location.pathname)) extraModules.push('bcl-contact.js');
       if (/^\/around-town(?:\/category\/[^/]+)?\/?$/.test(location.pathname)) extraModules.push('bcl-archive.js');
       if (document.querySelector('#bcl-downloads,#bcl-give-back,#bcl-jobs')) extraModules.push('bcl-usability.js');
       extraModules.forEach(function (name) {
@@ -5445,6 +5678,15 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports.flexibleLocalDate = flexibleLocalDate;
+    module.exports.jobDeadlineText = jobDeadlineText;
+    module.exports.rentalAvailableText = rentalAvailableText;
+    module.exports.correctionHref = correctionHref;
+    module.exports.jobEmployerName = jobEmployerName;
+    module.exports.jobDepartmentName = jobDepartmentName;
+    module.exports.evEndSuffix = evEndSuffix;
+    module.exports.eventIsCurrentForSearch = eventIsCurrentForSearch;
+    module.exports.filterCurrentSearchRecords = filterCurrentSearchRecords;
   }
 })();

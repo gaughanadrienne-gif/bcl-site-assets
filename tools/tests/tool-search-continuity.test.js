@@ -57,7 +57,7 @@ test("same-name records preserve a shared query instead of inventing an unstable
 test("a missing or stale query remains visible in a useful escaped empty state", () => {
   const html = tools.toolSearchEmptyMessage("jobs", 'Closed <role>');
   assert.match(html, /No jobs match "Closed &lt;role&gt;" right now/);
-  assert.match(html, /may have closed or changed/);
+  assert.doesNotMatch(html, /may have closed or changed/);
   assert.match(html, /editing or clearing the search/);
   assert.match(html, /href="\/contact"/);
 });

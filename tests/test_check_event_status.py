@@ -12,7 +12,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from scripts.check_event_status import check, classify, extract_event_status, upcoming
+from scripts.check_event_status import (
+    build_review_report,
+    check,
+    classify,
+    extract_event_status,
+    upcoming,
+    write_review_report,
+)
 
 
 CANCELLED_PAGE = '{"@type":"Event","eventStatus":"https:\\/\\/schema.org\\/EventCancelled"}'
@@ -91,9 +98,60 @@ def test_cancellation_survives_and_is_not_retried_away(monkeypatch):
     assert fetcher.calls == ["https://example.com/x"]
 
 
+def test_recurring_events_share_one_organizer_fetch():
+    fetcher = _StubFetcher([(200, PLAIN_PAGE, "")])
+    events = [
+        {"title": "weekly one", "start": "2026-10-01", "url": "https://example.com/calendar"},
+        {"title": "weekly two", "start": "2026-10-08", "url": "https://example.com/calendar"},
+    ]
+    result = check(events, fetcher)
+    assert [row["verdict"] for row in result] == ["OK", "OK"]
+    assert fetcher.calls == ["https://example.com/calendar"]
+
+
 def test_dead_link_confirmed_twice_stays_dead(monkeypatch):
     monkeypatch.setattr("scripts.check_event_status.RETRY_AFTER", 0)
     monkeypatch.setattr("scripts.check_event_status.time.sleep", lambda _s: None)
     fetcher = _StubFetcher([(404, None, "HTTP 404"), (404, None, "HTTP 404")])
     result = check([{"title": "t", "start": "2026-10-01", "url": "https://example.com/x"}], fetcher)
     assert result[0]["verdict"] == "DEAD"
+
+
+def test_block_then_cancelled_stays_blocked_for_human_review(monkeypatch):
+    monkeypatch.setattr("scripts.check_event_status.RETRY_AFTER", 0)
+    monkeypatch.setattr("scripts.check_event_status.time.sleep", lambda _s: None)
+    fetcher = _StubFetcher([(429, None, "HTTP 429"), (200, CANCELLED_PAGE, "")])
+    result = check([{"title": "t", "start": "2026-10-01", "url": "https://example.com/x"}], fetcher)
+    assert result[0]["verdict"] == "BLOCKED"
+    assert result[0]["second_attempt"]["verdict"] == "CANCELLED"
+
+
+def test_review_report_preserves_decision_and_drops_run_timestamp():
+    results = [{
+        "title": "Community Crafters", "start": "2026-10-17T10:00",
+        "url": "https://example.com/event/1", "verdict": "DEAD",
+        "detail": "organizer returned 404", "checked_utc": "2026-09-16T20:00:00+00:00",
+        "second_attempt": {"http": 404, "verdict": "DEAD", "detail": "organizer returned 404"},
+    }]
+    first = build_review_report(results)
+    first["findings"][0].update(decision="accept", review_note="Organizer confirmed", reviewed_at="2026-09-16")
+    results[0]["checked_utc"] = "2026-09-23T20:00:00+00:00"
+    second = build_review_report(results, first)
+
+    assert second == first
+    assert "checked_utc" not in str(second)
+
+
+def test_review_report_write_is_idempotent(tmp_path):
+    path = tmp_path / "events-review.json"
+    results = [{
+        "title": "Facebook event", "start": "2026-10-01", "url": "https://facebook.com/x",
+        "verdict": "BLOCKED", "detail": "HTTP 400", "second_attempt": None,
+    }]
+    assert write_review_report(path, results) is True
+    before = path.read_bytes()
+    assert write_review_report(path, results) is False
+    assert path.read_bytes() == before
+    payload = __import__("json").loads(before)
+    assert payload["findings"][0]["verdict"] == "BLOCKED"
+    assert "do not treat this as cancellation" in payload["findings"][0]["recommended_action"]

@@ -1,4 +1,9 @@
-from rentals.refresh_rentals import PUBLIC_SCHEMA_KEYS, build_rentals, fetch_raw
+from rentals.refresh_rentals import (
+    PUBLIC_SCHEMA_KEYS,
+    build_rentals,
+    fetch_raw,
+    preserve_first_seen,
+)
 from rentals.sources import RENTAL_SOURCES
 
 TODAY = "2026-07-19"
@@ -58,6 +63,26 @@ def test_build_rentals_is_idempotent():
     assert len(queued1) == len(queued2)
 
 
+def test_second_refresh_preserves_discovery_date_and_advances_verified_date():
+    first, _queued, _errors, _counts = build_rentals(
+        SUBSET, _ok_fetchers(), TODAY, manual_path="__no_such_file__.json",
+    )
+    later, _queued, _errors, _counts = build_rentals(
+        SUBSET, _ok_fetchers(), "2026-09-16", manual_path="__no_such_file__.json",
+        previous_rentals=first,
+    )
+
+    assert later
+    assert all(r["first_seen_at"] == TODAY for r in later)
+    assert all(r["last_verified_at"] == "2026-09-16" for r in later)
+
+
+def test_preserve_first_seen_ignores_invalid_and_future_history():
+    rows = [{"id": "same", "first_seen_at": "2026-09-16"}]
+    preserve_first_seen(rows, [{"id": "same", "first_seen_at": "tomorrow"}], "2026-09-16")
+    assert rows[0]["first_seen_at"] == "2026-09-16"
+
+
 def test_bad_row_is_skipped_without_setting_had_errors(monkeypatch):
     import rentals.refresh_rentals as refresh_rentals_mod
 
@@ -89,6 +114,26 @@ def test_per_source_exception_sets_had_errors_but_other_source_still_yields():
     assert had_errors is True
     assert published or queued
     assert all(r["source"] == "Streamline 831" for r in published)
+
+
+def test_failed_fetch_retains_cached_rows_without_claiming_fresh_verification():
+    prior, _queued, _errors, _counts = build_rentals(
+        [RENTVINE_SOURCE], _ok_fetchers(), TODAY, manual_path="__no_such_file__.json",
+    )
+    assert prior
+
+    def fail(_url, **_kw):
+        raise RuntimeError("network down")
+
+    published, _queued, had_errors, counts = build_rentals(
+        [RENTVINE_SOURCE], {"firecrawl_markdown": fail}, "2026-09-16",
+        manual_path="__no_such_file__.json", previous_rentals=prior,
+    )
+
+    assert had_errors is True
+    assert counts["PMI Santa Cruz"] == 0
+    assert published == prior
+    assert all(r["last_verified_at"] == TODAY for r in published)
 
 
 def test_build_rentals_reports_rows_parsed_per_source_for_the_alarm():

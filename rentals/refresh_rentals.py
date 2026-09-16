@@ -15,7 +15,7 @@ from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from shared.bcl_ingest import (  # noqa: E402
-    dedupe_by, firecrawl_markdown, load_manual_entries, normalize_url,
+    dedupe_by, firecrawl_markdown, load_json, load_manual_entries, normalize_url,
     record_fingerprint, write_json_atomic, write_rentals_guarded,
 )
 from shared.review_board import render_review_board  # noqa: E402
@@ -98,7 +98,47 @@ def fetch_raw(source, fetchers):
 _MANUAL_SOURCE = {"name": "Community submission"}
 
 
-def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
+def _valid_observed_date(value, today):
+    """Return a trustworthy ISO date no later than this run, else ``None``."""
+    try:
+        value = str(value)[:10]
+        return value if date.fromisoformat(value).isoformat() == value and value <= today else None
+    except (TypeError, ValueError):
+        return None
+
+
+def preserve_first_seen(rentals, previous_rentals, today):
+    """Carry discovery dates forward by stable listing id.
+
+    A refresh is another observation of an existing listing, not a new
+    discovery. Invalid and future dates are ignored rather than copied into
+    the public feed.
+    """
+    previous = {}
+    for rental in previous_rentals or []:
+        listing_id = rental.get("id")
+        value = _valid_observed_date(rental.get("first_seen_at"), today)
+        if listing_id and value:
+            previous[listing_id] = min(previous.get(listing_id, value), value)
+    for rental in rentals:
+        prior = previous.get(rental.get("id"))
+        if prior:
+            current = _valid_observed_date(rental.get("first_seen_at"), today)
+            rental["first_seen_at"] = min(prior, current) if current else prior
+
+
+def _cached_source_rows(previous_rentals, source_name):
+    """Return last published rows when a source could not be checked.
+
+    Retaining these rows avoids manufacturing a delisting from a transport
+    failure. Their existing ``last_verified_at`` is intentionally untouched.
+    """
+    return [dict(row) for row in (previous_rentals or []) if row.get("source") == source_name]
+
+
+def build_rentals(
+    sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH, previous_rentals=None,
+):
     """Fetch+parse+normalize every ENABLED source; return (published, queued, had_errors, counts).
 
     `fetchers` is a dict with a firecrawl_markdown callable (injected so this
@@ -112,7 +152,9 @@ def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
     are merged in and run through the exact same `normalize_rental` /
     `include_rental` / `safety_status` gates as a scraped listing, so an
     owner mistake still can't publish a non-SLV or scam/fair-housing-flagged
-    rental.
+    rental. Previously published rows from a source that fails to fetch are
+    retained with their old verification date; a failed request is not a fresh
+    source check.
     """
     published = []
     queued = []
@@ -132,6 +174,7 @@ def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
             had_errors = True
             print("refresh_rentals: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
             counts[source.get("name")] = 0
+            published.extend(_cached_source_rows(previous_rentals, source.get("name")))
             continue
         counts[source.get("name")] = len(raw_rows)
 
@@ -162,6 +205,13 @@ def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
     for raw in load_manual_entries(manual_path, today, MANUAL_TTL_DAYS):
         try:
             rental = normalize_rental(raw, _MANUAL_SOURCE, today)
+            # Loading a cached approved row is not a new source check. The
+            # submission/renewal date is the human observation we can support.
+            observed = _valid_observed_date(raw.get("renewed_at") or raw.get("submitted_at"), today)
+            if not observed:
+                continue
+            rental["first_seen_at"] = observed
+            rental["last_verified_at"] = observed
             status, reason = include_rental(rental)
             if status == "publish":
                 ok, safety_reasons = safety_status(rental)
@@ -184,6 +234,7 @@ def build_rentals(sources, fetchers, today, manual_path=MANUAL_RENTALS_PATH):
     published = dedupe_by(
         published, lambda r: record_fingerprint([r["address_public"], r["city"]])
     )
+    preserve_first_seen(published, previous_rentals, today)
     return published, queued, had_errors, counts
 
 
@@ -200,6 +251,7 @@ def main():
     today = _pacific_today()
     published, queued, had_errors, counts = build_rentals(
         RENTAL_SOURCES, {"firecrawl_markdown": firecrawl_markdown}, today,
+        previous_rentals=(load_json(RENTALS_PATH, default={}) or {}).get("rentals", []),
     )
     write_rentals_guarded(
         RENTALS_PATH, published,
