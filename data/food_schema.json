@@ -320,7 +320,7 @@
     "@type": "FoodEstablishment",
     "name": "Redwood Keg Liquor & Deli",
     "description": "A Boulder Creek bottle shop and deli known for wood-smoked tri-tip sandwiches, Korean barbecue, and a selection of beer, wine, and liquor.",
-    "url": "https://www.facebook.com/RedwoodKeg/",
+    "url": null,
     "telephone": "(831) 338-2727",
     "address": {
      "@type": "PostalAddress",
