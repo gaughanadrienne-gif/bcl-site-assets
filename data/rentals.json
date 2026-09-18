@@ -1,7 +1,7 @@
 {
  "_note": "Boulder Creek Local rentals board. Auto-refreshed; see refresh_rentals.py.",
- "updated": "2026-09-17",
- "count": 10,
+ "updated": "2026-09-18",
+ "count": 9,
  "rentals": [
   {
    "id": "4ff904124ac1a6bb55610a2a1aa22735891cf3b5",
@@ -35,7 +35,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
+   "last_verified_at": "2026-09-18",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -71,7 +71,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
+   "last_verified_at": "2026-09-18",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -107,7 +107,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
+   "last_verified_at": "2026-09-18",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -143,7 +143,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
+   "last_verified_at": "2026-09-18",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -179,7 +179,7 @@
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
+   "last_verified_at": "2026-09-18",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -215,7 +215,7 @@
    "source": "C&C Property Management",
    "property_manager": "C&C Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
+   "last_verified_at": "2026-09-18",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -251,7 +251,7 @@
    "source": "Utopia Management",
    "property_manager": "Utopia Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
+   "last_verified_at": "2026-09-18",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -287,7 +287,7 @@
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
+   "last_verified_at": "2026-09-18",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -323,43 +323,7 @@
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
-   "verification_status": "verified",
-   "freshness_label": ""
-  },
-  {
-   "id": "2c934dfa063617c7a5a665c78ac07591c93ecbe3",
-   "slug": "boulder-creek-13129-hazel-ave",
-   "headline": "13129 Hazel Ave, Boulder Creek",
-   "property_type": "",
-   "rental_scope": "private-room",
-   "address_public": "13129 Hazel Ave",
-   "city": "Boulder Creek",
-   "state": "CA",
-   "postal_code": "95006",
-   "locality": "Boulder Creek",
-   "location_precision": "exact",
-   "monthly_rent": 1750,
-   "total_monthly_price": 1750,
-   "deposit": null,
-   "application_fee": null,
-   "bedrooms": 1,
-   "bathrooms": 1,
-   "square_feet": 350,
-   "available_date": "NOW",
-   "lease_term": "",
-   "minimum_stay_days": null,
-   "furnished": false,
-   "pets_policy": "",
-   "utilities_text": "",
-   "parking_text": "",
-   "laundry_text": "",
-   "description_summary": "RENT$1,750 Square Feet350 Bed / Bath1 bd / 1 ba AvailableNOW ## [1 Bedroom / Close to town](https://andersonchristierealestate.appfolio.com/listings/detail/e2fb0ee6-e218-4c7d-bc89-06b81fcdb048) 13129 Hazel Ave, Boulder Creek, CA 95006-9245 [Map](https://andersonchristierealestate.appfolio.com/listin",
-   "canonical_url": "https://andersonchristierealestate.appfolio.com/listings/detail/e2fb0ee6-e218-4c7d-bc89-06b81fcdb048",
-   "source": "Anderson Christie Real Estate",
-   "property_manager": "Anderson Christie Real Estate",
-   "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-17",
+   "last_verified_at": "2026-09-18",
    "verification_status": "verified",
    "freshness_label": ""
   }
