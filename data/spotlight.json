@@ -2,7 +2,7 @@
  "_readme": "Running order for the homepage business spotlight card. THE SOURCE OF TRUTH IS Social Media/Blotato_2026_H2/MASTER_SCHEDULE.csv: every BCL-SPOT post is a Thursday and this file mirrors it. If the two disagree, the social schedule is right and this file is stale. Each 'week' is the THURSDAY the business takes over, in America/Los_Angeles. A business holds the card until the next scheduled Thursday, so gaps in the order are fine and the previous business simply stays up. See SPOTLIGHT.md for how to add one.",
  "_slug_rule": "slug must be the live Around Town URL slug, exactly as it appears after /around-town/. Cross-check data/live-article-slugs.json. If it does not resolve live, the card renders nothing rather than a broken link.",
  "_expiry": "If the newest row is more than 28 days old the card retires itself, because 'This week's business spotlight' stops being stale and becomes false. Add rows before then.",
- "asOf": "2026-09-16",
+ "asOf": "2026-09-19",
  "schedule": [
   {
    "week": "2026-09-03",
@@ -24,9 +24,9 @@
   },
   {
    "week": "2026-09-24",
-   "slug": "air-and-fire-boulder-creek",
-   "business": "Air & Fire",
-   "blurb": "Emelia's shop sells statuary, crystals and incense out of a building on Highway 9, and she donated to the fire department raffle twice before anyone asked her to."
+   "slug": "viscosity-art-glass-boulder-creek",
+   "business": "Viscosity Art Glass",
+   "blurb": "Scott Graham and Cristy Aloysi blow every Viscosity piece themselves. In one-hour classes, visitors work one-on-one with a glassblower to make a piece of their own."
   },
   {
    "week": "2026-10-01",
@@ -54,9 +54,9 @@
   },
   {
    "week": "2026-10-29",
-   "slug": "herrick-games-hobbies-boulder-creek",
-   "business": "Herrick Games and Hobbies",
-   "blurb": "Skye Herrick had owned his Boulder Creek house for two days when the CZU fire took him out of it. Gamers he had never met mailed him models and paint. That is where the program his shop runs today came from."
+   "slug": "air-and-fire-boulder-creek",
+   "business": "Air & Fire",
+   "blurb": "Emelia's shop sells statuary, crystals and incense out of a building on Highway 9, and she donated to the fire department raffle twice before anyone asked her to."
   },
   {
    "week": "2026-11-05",
@@ -75,6 +75,12 @@
    "slug": "swag-boulder-creek",
    "business": "SWAG",
    "blurb": "The console that started it cost $75 and nothing in it worked. He fixed the cabinet, sold it for $750 still broken, and that bothered him enough to spend the money on more of them."
+  },
+  {
+   "week": "2026-12-03",
+   "slug": "herrick-games-hobbies-boulder-creek",
+   "business": "Herrick Games and Hobbies",
+   "blurb": "Skye Herrick had owned his Boulder Creek house for two days when the CZU fire took him out of it. Gamers he had never met mailed him models and paint. That is where the program his shop runs today came from."
   },
   {
    "week": "2026-12-10",
