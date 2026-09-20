@@ -1,6 +1,6 @@
 {
  "_note": "Boulder Creek Local rentals board. Auto-refreshed; see refresh_rentals.py.",
- "updated": "2026-09-19",
+ "updated": "2026-09-20",
  "count": 8,
  "rentals": [
   {
@@ -35,7 +35,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-19",
+   "last_verified_at": "2026-09-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -71,7 +71,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-19",
+   "last_verified_at": "2026-09-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -107,7 +107,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-19",
+   "last_verified_at": "2026-09-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -143,7 +143,7 @@
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-19",
+   "last_verified_at": "2026-09-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -179,7 +179,7 @@
    "source": "C&C Property Management",
    "property_manager": "C&C Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-19",
+   "last_verified_at": "2026-09-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -215,7 +215,7 @@
    "source": "Utopia Management",
    "property_manager": "Utopia Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-19",
+   "last_verified_at": "2026-09-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -251,7 +251,7 @@
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-19",
+   "last_verified_at": "2026-09-20",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -287,7 +287,7 @@
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-19",
+   "last_verified_at": "2026-09-20",
    "verification_status": "verified",
    "freshness_label": ""
   }
