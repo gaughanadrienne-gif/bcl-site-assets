@@ -1,6 +1,6 @@
 {
  "_note": "Boulder Creek Local rentals board. Auto-refreshed; see refresh_rentals.py.",
- "updated": "2026-09-20",
+ "updated": "2026-09-21",
  "count": 8,
  "rentals": [
   {
@@ -35,7 +35,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-20",
+   "last_verified_at": "2026-09-21",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -71,7 +71,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-20",
+   "last_verified_at": "2026-09-21",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -107,7 +107,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-20",
+   "last_verified_at": "2026-09-21",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -123,8 +123,8 @@
    "postal_code": "95006",
    "locality": "Boulder Creek",
    "location_precision": "exact",
-   "monthly_rent": 3500,
-   "total_monthly_price": 3500,
+   "monthly_rent": 3000,
+   "total_monthly_price": 3000,
    "deposit": null,
    "application_fee": null,
    "bedrooms": 2,
@@ -138,12 +138,12 @@
    "utilities_text": "",
    "parking_text": "",
    "laundry_text": "",
-   "description_summary": "\\\\ \\\\ $3,500/mo.\\\\ \\\\ \\\\ - \\\\ Beds: 2\\\\ \\\\ \\\\ - Full Baths: 1\\\\ \\\\ - Half Baths: 1\\\\ \\\\ - sqft: 800\\\\ \\\\ \\\\ 12895 Highway 9, Boulder Creek, 95006\\\\ \\\\ \\\\ Single Family Home\\\\ \\\\ \\\\ Available: 09-29-2026",
+   "description_summary": "\\\\ \\\\ $3,000/mo.\\\\ \\\\ \\\\ - \\\\ Beds: 2\\\\ \\\\ \\\\ - Full Baths: 1\\\\ \\\\ - Half Baths: 1\\\\ \\\\ - sqft: 800\\\\ \\\\ \\\\ 12895 Highway 9, Boulder Creek, 95006\\\\ \\\\ \\\\ Single Family Home\\\\ \\\\ \\\\ Available: 09-29-2026",
    "canonical_url": "https://www.pmisantacruz.com/santa-cruz-homes-for-rent/179/12895-highway-9-boulder-creek-ca-95006",
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-20",
+   "last_verified_at": "2026-09-21",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -179,7 +179,7 @@
    "source": "C&C Property Management",
    "property_manager": "C&C Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-20",
+   "last_verified_at": "2026-09-21",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -215,7 +215,7 @@
    "source": "Utopia Management",
    "property_manager": "Utopia Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-20",
+   "last_verified_at": "2026-09-21",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -251,7 +251,7 @@
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-20",
+   "last_verified_at": "2026-09-21",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -287,7 +287,7 @@
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-20",
+   "last_verified_at": "2026-09-21",
    "verification_status": "verified",
    "freshness_label": ""
   }
