@@ -354,13 +354,19 @@ def write_public_json_guarded(path, key, records, min_total, note, today):
     A broken scrape must never blank or shrink the live board: if fewer than
     min_total records were produced, raise GuardError WITHOUT touching the file,
     so the .bat wrapper sees a nonzero exit and skips the commit/push.
+
+    `note` is accepted for callers that still describe the feed, but it is NOT
+    written into the payload. These files are served publicly through jsDelivr,
+    and the note pointed readers at an internal refresh script. Removed from the
+    live feeds on 2026-09-21; re-emitting it here would undo that on the next
+    scheduled refresh. Operational guidance belongs in the review/ sidecars.
     """
     if len(records) < min_total:
         raise GuardError(
             "refusing to write %s: %d records < MIN_SAFE_TOTAL %d"
             % (path, len(records), min_total)
         )
-    payload = {"_note": note, "updated": today, "count": len(records), key: records}
+    payload = {"updated": today, "count": len(records), key: records}
     write_json_atomic(path, payload)
     return payload
 
@@ -375,6 +381,9 @@ def write_rentals_guarded(path, records, note, today, had_errors):
     that combination is the signature of a broken scrape, not a genuinely
     empty board. On refusal the prior file is left untouched and GuardError
     is raised so the .bat wrapper skips the commit/push.
+
+    `note` is accepted but deliberately not written into the payload, for the
+    same reason as write_public_json_guarded above.
     """
     prior = load_json(path, default=None) or {}
     prior_count = prior.get("count", 0) if isinstance(prior, dict) else 0
@@ -383,7 +392,7 @@ def write_rentals_guarded(path, records, note, today, had_errors):
             "refusing to write %s: %d records < prior count %d after a source fetch error"
             % (path, len(records), prior_count)
         )
-    payload = {"_note": note, "updated": today, "count": len(records), "rentals": records}
+    payload = {"updated": today, "count": len(records), "rentals": records}
     write_json_atomic(path, payload)
     return payload
 

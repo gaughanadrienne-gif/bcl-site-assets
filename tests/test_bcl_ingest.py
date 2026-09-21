@@ -133,7 +133,9 @@ def test_guarded_write_publishes_when_enough(tmp_path):
     payload = write_public_json_guarded(p, "jobs", recs, min_total=2, note="n", today="2026-07-19")
     assert payload["count"] == 3 and payload["updated"] == "2026-07-19"
     on_disk = _json.loads(open(p, encoding="utf-8").read())
-    assert on_disk["jobs"][0]["id"] == 1 and on_disk["_note"] == "n"
+    assert on_disk["jobs"][0]["id"] == 1
+    # The public feeds must not carry the internal maintenance note (2026-09-21).
+    assert "_note" not in on_disk and "_note" not in payload
 
 def test_guard_refuses_when_too_few(tmp_path):
     p = str(tmp_path / "jobs.json")
