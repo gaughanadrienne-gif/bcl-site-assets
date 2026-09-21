@@ -1,6 +1,6 @@
 {
   "updated": "2026-09-16",
-  "note": "Owner-verified events only. Schema: title, start (YYYY-MM-DD or ISO datetime), end (optional), location, url, description, category, notice (optional; besides title, date and location it is the only field an event card renders, so anything a reader must know before turning up goes there). Re-curated 2026-09-02 against first-party organizer sources.",
+  "note": "Owner-verified events only.",
   "events": [
     {
       "title": "Exhibit: Retrospect",
