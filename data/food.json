@@ -1,7 +1,7 @@
 {
- "updated": "2026-09-04",
+ "updated": "2026-09-21",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
- "count": 25,
+ "count": 26,
  "listings": [
   {
    "name": "Bella's Cafe",
@@ -383,6 +383,23 @@
    "lat": 37.107853,
    "lon": -122.109227,
    "tile": null
+  },
+  {
+   "name": "Round Table Pizza",
+   "category": "Restaurant",
+   "subcategory": "Pizza restaurant",
+   "description": "Round Table Pizza franchise in the former Boulder Creek Pizza and Pub building, open since September 21, 2026. Pizzas, wings, salads, sandwiches, and desserts, with the same menu as the Felton store.",
+   "address": "13200 Central Avenue",
+   "locality": "Boulder Creek",
+   "phone": "831-338-2141",
+   "website": null,
+   "hours_text": "Monday-Thursday 10:30am-9:45pm; Friday-Saturday 10:30am-10:15pm; Sunday 10:30am-9:45pm",
+   "service_area": "Boulder Creek and the San Lorenzo Valley",
+   "verified_at": "2026-09-21",
+   "lat": null,
+   "lon": null,
+   "tile": null,
+   "article": "/around-town/pizza-in-boulder-creek"
   }
  ]
 }
