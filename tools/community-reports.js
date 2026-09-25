@@ -95,7 +95,10 @@
         const response = await fetch(base + '/api/homepage-pets', {credentials:'omit',cache:'no-store',signal:controller.signal});
         if (!response.ok) throw new Error('Unavailable');
         const data = await response.json(); const age = Date.now() - Date.parse(data.generated_at);
-        if (!Array.isArray(data.reports) || !Number.isFinite(age) || age > 300000 || age < -60000) throw new Error('Stale');
+        /* The endpoint is no-store and built per request, so the age check only has to catch a badly
+           cached copy. The old 5-minute / -60-second window measured the visitor's clock, not the data:
+           any device running a minute slow saw "temporarily unavailable" (third review, 2026-09-25). */
+        if (!Array.isArray(data.reports) || !Number.isFinite(age) || age > 21600000) throw new Error('Stale');
         current = data.reports.filter(r => r.category === 'pets' && r.report_type === 'missing' && r.status === 'active'); render();
       } catch { current = []; message('Recent reports are temporarily unavailable here. Open all pet reports to check the latest information.'); }
       finally { clearTimeout(timeout); pending = false; }

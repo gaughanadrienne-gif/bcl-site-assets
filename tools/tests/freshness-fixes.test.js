@@ -129,6 +129,13 @@ test("the JSON-LD reader finds the BlogPosting date and ignores the WebSite node
   assert.deepEqual(T.articleDateFromLD(fake), { y: 2026, mo: 2, d: 19, iso: "2026-02-19" });
 });
 
+test("the article date line says when the facts were checked, from articles.json", () => {
+  assert.equal(T.articleCheckedText("2026-09-25"), "Checked September 25, 2026");
+  assert.equal(T.articleCheckedText("2026-01-05T10:00:00Z"), "Checked January 5, 2026");
+  assert.equal(T.articleCheckedText(""), "");
+  assert.equal(T.articleCheckedText(null), "");
+});
+
 test("a page with no article JSON-LD is left alone", () => {
   const fake = { querySelectorAll: () => [{ textContent: "not json at all" }] };
   assert.equal(T.articleDateFromLD(fake), null);
