@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-22",
+ "updated": "2026-09-25",
  "note": "Owner-verified events only.",
  "events": [
   {
@@ -1087,15 +1087,6 @@
    "notice": "21 and over"
   },
   {
-   "title": "Toddler & Preschool Storytime",
-   "start": "2026-11-11T11:00",
-   "end": "2026-11-11T12:00",
-   "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
-   "url": "https://santacruzpl.libnet.info/event/16958133",
-   "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
-   "category": "Family & Kids"
-  },
-  {
    "title": "Jim Lewin & Diana Z Neighborhood Night",
    "start": "2026-11-11T20:00",
    "end": null,
@@ -1196,15 +1187,6 @@
    "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
    "url": "https://santacruzpl.libnet.info/event/16958135",
    "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
-   "category": "Family & Kids"
-  },
-  {
-   "title": "Discovery Zone Playgroup",
-   "start": "2026-11-27T11:00",
-   "end": "2026-11-27T12:00",
-   "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
-   "url": "https://santacruzpl.libnet.info/event/15607430",
-   "description": "Drop-in free play for young children with a participating adult, 11 a.m. to noon. Toys for building gross motor skills and time to practice early social skills. Arrival and departure times are flexible.",
    "category": "Family & Kids"
   },
   {

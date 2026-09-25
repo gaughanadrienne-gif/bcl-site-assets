@@ -30,7 +30,7 @@
    "website": "https://www.bigbasinvineyards.com/visit-2/",
    "hours_text": "Saturday-Sunday 12:00-5:00 p.m.",
    "service_area": "Boulder Creek and Santa Cruz Mountains visitors",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "lat": 37.181908,
    "lon": -122.159846,
    "tile": "big-basin-vineyards-estate-vineyard-tasting-room.png"
@@ -46,7 +46,7 @@
    "website": "https://www.butterlatethannever.com/",
    "hours_text": null,
    "service_area": "Local delivery and California distribution",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "tile": "butter-late-than-never-baking-co.png"
   },
   {
@@ -76,7 +76,7 @@
    "phone": "(831) 338-7008",
    "website": "https://jennasues.wordpress.com/",
    "hours_text": "Monday to Friday 6:00 AM to 2:30 PM, Saturday and Sunday 7:00 AM to 2:30 PM",
-   "verified_at": "2026-07-16",
+   "verified_at": "2026-09-25",
    "tile": "jenna-sue-s-cafe.png",
    "article": "/around-town/jenna-sues-cafe-boulder-creek"
   },
@@ -91,7 +91,7 @@
    "website": "http://www.drinkatjoes.com/",
    "hours_text": "Daily 10:00 a.m.-2:00 a.m.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-08-06",
+   "verified_at": "2026-09-25",
    "article": "/around-town/joes-bar-boulder-creek"
   },
   {
@@ -121,7 +121,7 @@
    "website": "https://www.redpearlonline.com/",
    "hours_text": "Wednesday-Sunday 11:00 a.m.-9:00 p.m.; Monday-Tuesday closed.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "lat": 37.124614,
    "lon": -122.122248,
    "tile": "red-pearl-chinese-cuisine.png"
@@ -167,7 +167,7 @@
    "website": "https://www.scopazzisbc.com/",
    "hours_text": "Breakfast Wednesday-Sunday 10:30 a.m.-2:00 p.m.; lunch Wednesday-Saturday 11:30 a.m.-3:00 p.m.; dinner Wednesday-Sunday 4:00 p.m.-closing; Monday-Tuesday closed.",
    "service_area": "Boulder Creek and private-event customers",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "lat": 37.125146,
    "lon": -122.124363,
    "tile": "scopazzi-s-restaurant-lounge.png",
@@ -184,7 +184,7 @@
    "website": "https://edosushibc.com/",
    "hours_text": "Tuesday-Thursday and Sunday 4:00-8:00 p.m.; Friday-Saturday 12:00-3:00 p.m. and 4:00-8:00 p.m.; Monday closed.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-08-05",
+   "verified_at": "2026-09-25",
    "lat": 37.126114,
    "lon": -122.122613,
    "tile": "tae-s-edo-sushi-bar.jpg",
@@ -233,7 +233,7 @@
    "website": "https://wildrootsmarket.com/",
    "hours_text": "Daily 9:00 a.m.-9:00 p.m.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "lat": 37.124756,
    "lon": -122.122518,
    "tile": "wild-roots-market-boulder-creek.png"
@@ -262,8 +262,8 @@
    "phone": "831-289-3014",
    "website": "https://www.facebook.com/p/Corazon-De-Leon-Mexican-Restaurant-61587780960114/",
    "service_area": "Ben Lomond and the San Lorenzo Valley",
-   "verified_at": "2026-07-17",
-   "hours_text": null,
+   "verified_at": "2026-09-25",
+   "hours_text": "Tuesday-Sunday 11:00 a.m.-9:00 p.m.; Monday closed.",
    "lat": 37.0873503,
    "lon": -122.0890233
   },
@@ -278,7 +278,7 @@
    "website": "https://www.henflingsslv.com/",
    "hours_text": "Daily 12pm-1:30am",
    "service_area": "Ben Lomond and the San Lorenzo Valley",
-   "verified_at": "2026-07-17",
+   "verified_at": "2026-09-25",
    "lat": 37.0897298,
    "lon": -122.0889545
   },
@@ -306,7 +306,7 @@
    "locality": "Ben Lomond",
    "website": "https://www.instagram.com/doughandahlias/",
    "service_area": "Ben Lomond and the San Lorenzo Valley, local pickup",
-   "verified_at": "2026-07-17",
+   "verified_at": "2026-09-25",
    "no_storefront": true,
    "address": null,
    "hours_text": null
@@ -315,13 +315,13 @@
    "name": "Doughlicious Farmstand",
    "category": "Grocery & Market",
    "subcategory": "Farm stand",
-   "description": "Home-based farm stand known for sourdough, cookies, cakes, and sweet breads, typically on weekends by preorder or pickup. Address withheld because it operates from a home; stand days and details are posted on its social pages.",
+   "description": "Home-based honor-system farm stand selling sourdough bread, baked goods and fresh eggs, open the second and fourth Saturday of each month. Address withheld because it operates from a home; open days are posted on its Facebook page.",
    "address": null,
    "locality": "Boulder Creek",
    "phone": null,
-   "website": null,
-   "hours_text": null,
-   "verified_at": "2026-07-17",
+   "website": "https://www.facebook.com/profile.php?id=61578081962868",
+   "hours_text": "Second and fourth Saturday of each month; check its Facebook page for the next open day.",
+   "verified_at": "2026-09-25",
    "no_storefront": true
   },
   {
@@ -347,9 +347,9 @@
    "locality": "San Lorenzo Valley",
    "phone": null,
    "website": "https://www.creativeheartkitchen.com/",
-   "hours_text": null,
+   "hours_text": "Weekly menu for Sunday afternoon pickup in Boulder Creek, Brookdale or Ben Lomond; order by the prior Wednesday at 9:00 p.m. ($30 minimum).",
    "service_area": "San Lorenzo Valley and Santa Cruz County",
-   "verified_at": "2026-07-17",
+   "verified_at": "2026-09-25",
    "no_storefront": true
   },
   {
@@ -363,7 +363,7 @@
    "website": "https://www.brookdalediner.net/",
    "hours_text": "Monday-Tuesday 2:00-10:00 p.m.; Wednesday-Sunday 7:00 a.m.-10:00 p.m.",
    "service_area": "Brookdale and the San Lorenzo Valley",
-   "verified_at": "2026-08-06",
+   "verified_at": "2026-09-25",
    "lat": 37.107853,
    "lon": -122.109227,
    "tile": null
@@ -379,7 +379,7 @@
    "website": "https://www.theriverrunbrookdale.com/",
    "hours_text": "Monday 5:00-10:00 p.m.; Tuesday-Thursday 2:00-11:00 p.m.; Friday-Saturday 2:00 p.m.-1:00 a.m.; Sunday 11:00 a.m.-10:00 p.m.",
    "service_area": "Brookdale and the San Lorenzo Valley",
-   "verified_at": "2026-08-06",
+   "verified_at": "2026-09-25",
    "lat": 37.107853,
    "lon": -122.109227,
    "tile": null
