@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-21",
+ "updated": "2026-09-25",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
  "count": 26,
  "listings": [
@@ -148,9 +148,9 @@
    "locality": "Boulder Creek",
    "phone": "(831) 400-7025",
    "website": "https://riverdogsofbc.com/",
-   "hours_text": "Winter: Tuesday-Thursday 11:30 a.m.-3:00 p.m.; Friday-Sunday 11:30 a.m.-5:00 p.m.; weather and event closures possible.",
+   "hours_text": "Tuesday-Sunday 11:30 a.m.-about 5:00 p.m.; posted winter hours close at 3:00 p.m. Tuesday-Thursday; closed Mondays, in bad weather and for special events.",
    "service_area": "Boulder Creek",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "lat": 37.124132,
    "lon": -122.121676,
    "tile": "river-dogs-of-boulder-creek.png",
@@ -247,9 +247,9 @@
    "locality": "Boulder Creek",
    "phone": "(831) 252-0706",
    "website": "https://www.wildstonebakery.com/",
-   "hours_text": "Downtown Santa Cruz Farmers Market Wednesdays 12:30-5:00 p.m.; Ben Lomond Village Market first Saturdays June-October 2026, 10:00 a.m.-2:00 p.m.",
+   "hours_text": "Downtown Santa Cruz Farmers Market Wednesdays 12:30-5:00 p.m.; the Ben Lomond Village Market season ends with the Saturday, October 3, 2026 market, 10:00 a.m.-2:00 p.m.",
    "service_area": "Boulder Creek base; Santa Cruz and Ben Lomond farmers markets",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "tile": "wildstone-bakery.png"
   },
   {
@@ -335,7 +335,7 @@
    "website": "https://www.facebook.com/Dessertfirstbskery/",
    "hours_text": null,
    "service_area": "Boulder Creek and the San Lorenzo Valley",
-   "verified_at": "2026-07-17",
+   "verified_at": "2026-09-25",
    "no_storefront": true
   },
   {
