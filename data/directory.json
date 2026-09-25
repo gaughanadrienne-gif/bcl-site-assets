@@ -125,7 +125,7 @@
    "website": "https://bce.slvusd.org/",
    "hours_text": "See school calendar",
    "service_area": "Assigned SLVUSD attendance area",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "lat": 37.123033,
    "lon": -122.123622,
    "tile": "boulder-creek-elementary-school.png"
@@ -158,7 +158,7 @@
    "website": "https://www.slvusd.org/",
    "hours_text": null,
    "service_area": "San Lorenzo Valley, including Boulder Creek",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "lat": 37.082077,
    "lon": -122.073289,
    "tile": "san-lorenzo-valley-unified-school-district.png"
@@ -174,7 +174,7 @@
    "website": "https://childcare.santacruzcoe.org/",
    "hours_text": "Monday-Friday 8:00 AM-5:00 PM",
    "service_area": "County families, including Boulder Creek",
-   "verified_at": "2026-07-15",
+   "verified_at": "2026-09-25",
    "lat": 36.987194,
    "lon": -122.036725,
    "tile": "santa-cruz-county-child-development-resource-center.png"
@@ -4250,7 +4250,7 @@
    "website": "https://www.fruitionbrewing.com/",
    "hours_text": "Wednesday-Thursday 11:30am-9pm; Friday 11:30am-10pm; Saturday 12-10pm; Sunday 12-8pm",
    "service_area": "Santa Cruz County",
-   "verified_at": "2026-08-16"
+   "verified_at": "2026-09-25"
   },
   {
    "name": "Joe's Bar",
