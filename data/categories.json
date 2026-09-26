@@ -1,5 +1,5 @@
 {
- "built": "2026-08-13T12:13:16-07:00",
+ "built": "2026-09-26T09:44:52-07:00",
  "base": "/around-town/category/",
  "categories": [
   {
@@ -9,6 +9,10 @@
   {
    "name": "Community Life",
    "url": "/around-town/category/Community+Life"
+  },
+  {
+   "name": "Events",
+   "url": "/around-town/category/Events"
   },
   {
    "name": "Business Spotlights",
@@ -21,6 +25,10 @@
   {
    "name": "Local Guides",
    "url": "/around-town/category/Local+Guides"
+  },
+  {
+   "name": "Outdoors",
+   "url": "/around-town/category/Outdoors"
   },
   {
    "name": "Mountain Living",
