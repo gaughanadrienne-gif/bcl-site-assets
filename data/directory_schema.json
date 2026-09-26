@@ -3,7 +3,7 @@
  "@type": "ItemList",
  "name": "Boulder Creek and San Lorenzo Valley business directory",
  "url": "https://www.bouldercreeklocal.com/directory",
- "numberOfItems": 339,
+ "numberOfItems": 308,
  "itemListOrder": "https://schema.org/ItemListOrderAscending",
  "itemListElement": [
   {
@@ -33,1954 +33,1770 @@
   {
    "@type": "ListItem",
    "position": 5,
-   "name": "A Paper Flower Wedding",
-   "url": "https://apaperflowerwedding.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 6,
-   "name": "A to Z Party Rental",
-   "url": "https://a2zpartyrental.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 7,
    "name": "Aaron Chase Construction"
   },
   {
    "@type": "ListItem",
-   "position": 8,
+   "position": 6,
    "name": "Adina's Daycare"
   },
   {
    "@type": "ListItem",
-   "position": 9,
+   "position": 7,
    "name": "Adriane White Photography",
    "url": "https://www.adrianewhitephotography.com/"
   },
   {
    "@type": "ListItem",
-   "position": 10,
+   "position": 8,
    "name": "Adventure Gift Store",
    "url": "https://adventuregift.store/"
   },
   {
    "@type": "ListItem",
-   "position": 11,
-   "name": "Aesthetic Events & Co.",
-   "url": "https://aestheticeventsofsc.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 12,
+   "position": 9,
    "name": "Affordable Septic & Excavating Services",
    "url": "https://www.affordablesepticandexcavatingservices.com/"
   },
   {
    "@type": "ListItem",
-   "position": 13,
+   "position": 10,
    "name": "Air & Fire: A Mystical Bazaar",
    "url": "https://www.airandfire.com/home.html"
   },
   {
    "@type": "ListItem",
-   "position": 14,
-   "name": "Alexis Party Rental",
-   "url": "https://alexispartyrental.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 15,
-   "name": "Amphitheater of the Redwoods at Pema Osel Ling",
-   "url": "https://www.amphitheateroftheredwoods.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 16,
+   "position": 11,
    "name": "Angus Hill Landscapes"
   },
   {
    "@type": "ListItem",
-   "position": 17,
+   "position": 12,
    "name": "AP Accounting & Consulting",
    "url": "https://www.apaccountingconsulting.com/"
   },
   {
    "@type": "ListItem",
-   "position": 18,
+   "position": 13,
    "name": "Apollo Plumbing",
    "url": "https://apolloplumbing831.com/"
   },
   {
    "@type": "ListItem",
-   "position": 19,
+   "position": 14,
    "name": "Arch Electric",
    "url": "https://archelectric831.com/"
   },
   {
    "@type": "ListItem",
-   "position": 20,
-   "name": "aSantaCruzDJ",
-   "url": "http://www.asantacruzdj.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 21,
-   "name": "Astro Jump of Santa Cruz",
-   "url": "https://astrojump.com/santacruz"
-  },
-  {
-   "@type": "ListItem",
-   "position": 22,
+   "position": 15,
    "name": "AT&T Internet",
    "url": "https://www.att.com/internet/"
   },
   {
    "@type": "ListItem",
-   "position": 23,
+   "position": 16,
    "name": "Barbara Day Park (Dam Park)",
    "url": "https://www.bcrpd.org/parks"
   },
   {
    "@type": "ListItem",
-   "position": 24,
-   "name": "Bash Works",
-   "url": "https://www.thebashworks.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 25,
+   "position": 17,
    "name": "Baxter Landscaping, Inc.",
    "url": "https://www.baxterlandscapinginc.com/"
   },
   {
    "@type": "ListItem",
-   "position": 26,
+   "position": 18,
    "name": "BC Computer Repair",
    "url": "https://www.santacruzpc.com/"
   },
   {
    "@type": "ListItem",
-   "position": 27,
+   "position": 19,
    "name": "Beck's Shoes - Boulder Creek",
    "url": "https://www.beckshoes.com/stores/boulder-creek-ca-boulder-creek"
   },
   {
    "@type": "ListItem",
-   "position": 28,
+   "position": 20,
    "name": "Bella Nails"
   },
   {
    "@type": "ListItem",
-   "position": 29,
+   "position": 21,
    "name": "Ben Lomond Fire Protection District",
    "url": "https://benlomondfd.com/"
   },
   {
    "@type": "ListItem",
-   "position": 30,
+   "position": 22,
    "name": "Beneath the Redwoods Mobile Veterinary Service",
    "url": "https://beneaththeredwoods.com/contact-us"
   },
   {
    "@type": "ListItem",
-   "position": 31,
+   "position": 23,
    "name": "Big Basin Electric"
   },
   {
    "@type": "ListItem",
-   "position": 32,
+   "position": 24,
    "name": "Big Basin Redwoods State Park",
    "url": "https://www.parks.ca.gov/?page_id=540"
   },
   {
    "@type": "ListItem",
-   "position": 33,
+   "position": 25,
    "name": "Big Basin Vineyards",
    "url": "https://www.bigbasinvineyards.com/"
   },
   {
    "@type": "ListItem",
-   "position": 34,
+   "position": 26,
    "name": "Boulder Creek American",
    "url": "https://www.facebook.com/p/Boulder-Creek-American-Gas-100066299868247/"
   },
   {
    "@type": "ListItem",
-   "position": 35,
+   "position": 27,
    "name": "Boulder Creek Antiques at Mac's Place",
    "url": "https://www.facebook.com/bouldercreekantiquesatmacsplace/"
   },
   {
    "@type": "ListItem",
-   "position": 36,
+   "position": 28,
    "name": "Boulder Creek Business Association",
    "url": "https://www.bcba.net/"
   },
   {
    "@type": "ListItem",
-   "position": 37,
+   "position": 29,
    "name": "Boulder Creek Concrete"
   },
   {
    "@type": "ListItem",
-   "position": 38,
+   "position": 30,
    "name": "Boulder Creek Dental",
    "url": "https://www.bouldercreekdental.com/"
   },
   {
    "@type": "ListItem",
-   "position": 39,
+   "position": 31,
    "name": "Boulder Creek Elementary School",
    "url": "https://bce.slvusd.org/"
   },
   {
    "@type": "ListItem",
-   "position": 40,
+   "position": 32,
    "name": "Boulder Creek Fire Protection District",
    "url": "https://www.bcfd.com/"
   },
   {
    "@type": "ListItem",
-   "position": 41,
+   "position": 33,
    "name": "Boulder Creek Golf & Country Club",
    "url": "https://www.bouldercreekgolf.com/"
   },
   {
    "@type": "ListItem",
-   "position": 42,
+   "position": 34,
+   "name": "Boulder Creek I.O.O.F. Hall",
+   "url": "https://lochdog.com/IOOF/hallrental.shtml"
+  },
+  {
+   "@type": "ListItem",
+   "position": 35,
    "name": "Boulder Creek Pharmacy",
    "url": "https://www.bouldercreekrx.com/"
   },
   {
    "@type": "ListItem",
-   "position": 43,
+   "position": 36,
    "name": "Boulder Creek Recreation & Park District",
    "url": "https://www.bcrpd.org/"
   },
   {
    "@type": "ListItem",
-   "position": 44,
+   "position": 37,
    "name": "Boulder Creek Sheriff's Service Center",
    "url": "https://shf.santacruzcountyca.gov/SheriffHome/MyCommunity/BoulderCreek.aspx"
   },
   {
    "@type": "ListItem",
-   "position": 45,
+   "position": 38,
    "name": "Boulder Creek Veterinary Clinic",
    "url": "https://bouldercreekveterinaryclinic.com/"
   },
   {
    "@type": "ListItem",
-   "position": 46,
-   "name": "Bowzer Baths"
+   "position": 39,
+   "name": "Bowzer Baths",
+   "url": "https://bowzerbaths.com/"
   },
   {
    "@type": "ListItem",
-   "position": 47,
-   "name": "Brenda's Face Painting",
-   "url": "https://www.brendasfacepainting.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 48,
+   "position": 40,
    "name": "Brookdale Lodge",
    "url": "https://www.brookdalelodge.com/"
   },
   {
    "@type": "ListItem",
-   "position": 49,
+   "position": 41,
    "name": "Burrell School Vineyards & Winery",
    "url": "https://burrellschool.com/"
   },
   {
    "@type": "ListItem",
-   "position": 50,
+   "position": 42,
    "name": "Busy Bees Playschool"
   },
   {
    "@type": "ListItem",
-   "position": 51,
+   "position": 43,
    "name": "Busy Bees Playschool Two"
   },
   {
    "@type": "ListItem",
-   "position": 52,
+   "position": 44,
    "name": "Byington Vineyard & Winery",
    "url": "https://byington.com/"
   },
   {
    "@type": "ListItem",
-   "position": 53,
+   "position": 45,
    "name": "CAL FIRE CZU / Santa Cruz County Fire",
    "url": "https://www.fire.ca.gov/"
   },
   {
    "@type": "ListItem",
-   "position": 54,
+   "position": 46,
    "name": "California Custom Painting and Design"
   },
   {
    "@type": "ListItem",
-   "position": 55,
+   "position": 47,
    "name": "Camp Happy Tails",
    "url": "https://happytailspetsit.com/"
   },
   {
    "@type": "ListItem",
-   "position": 56,
+   "position": 48,
    "name": "Camp Harmon",
    "url": "https://www.campharmon.org/"
   },
   {
    "@type": "ListItem",
-   "position": 57,
+   "position": 49,
    "name": "Camp Joy Gardens",
    "url": "https://campjoygardens.org/"
   },
   {
    "@type": "ListItem",
-   "position": 58,
+   "position": 50,
    "name": "Carpe Diem Financial Life Planning",
    "url": "https://www.carpediem.financial/"
   },
   {
    "@type": "ListItem",
-   "position": 59,
+   "position": 51,
    "name": "Cassidy Insurance Agency",
    "url": "https://www.trustthecia.com/"
   },
   {
    "@type": "ListItem",
-   "position": 60,
+   "position": 52,
    "name": "Central Avenue Salon",
    "url": "https://www.facebook.com/centralavenuesalonbc/"
   },
   {
    "@type": "ListItem",
-   "position": 61,
+   "position": 53,
    "name": "CENTURY 21 Masters - Boulder Creek",
    "url": "https://c21masters.com/offices/"
   },
   {
    "@type": "ListItem",
-   "position": 62,
-   "name": "Chic Event Rentals",
-   "url": "https://chiceventrentals.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 63,
+   "position": 54,
    "name": "Christianson Tree Experts",
    "url": "https://christiansontreeexperts.com/"
   },
   {
    "@type": "ListItem",
-   "position": 64,
+   "position": 55,
    "name": "Christina Wise Mobile Notary",
    "url": "https://www.christinawisemobilenotary.com/"
   },
   {
    "@type": "ListItem",
-   "position": 65,
+   "position": 56,
    "name": "Christopher A New Roofing"
   },
   {
    "@type": "ListItem",
-   "position": 66,
+   "position": 57,
    "name": "Clean Mountain House Cleaning",
    "url": "https://www.facebook.com/cleanmountainhc/"
   },
   {
    "@type": "ListItem",
-   "position": 67,
+   "position": 58,
    "name": "Coastal Mountain Candle Co.",
    "url": "https://www.coastalmountaincandleco.com/"
   },
   {
    "@type": "ListItem",
-   "position": 68,
+   "position": 59,
    "name": "Coastal Mountain Handyman Services"
   },
   {
    "@type": "ListItem",
-   "position": 69,
+   "position": 60,
    "name": "Colin Giles - State Farm Insurance",
    "url": "https://www.statefarm.com/agent/us/ca/felton/colin-giles-9sgb31ys000"
   },
   {
    "@type": "ListItem",
-   "position": 70,
-   "name": "Collins Coastal Plumbing, Inc.",
-   "url": "https://www.collinscoastal.com/"
+   "position": 61,
+   "name": "Collins Coastal Plumbing, Inc."
   },
   {
    "@type": "ListItem",
-   "position": 71,
+   "position": 62,
    "name": "Community Bridges Lift Line",
    "url": "https://communitybridges.org/liftline/"
   },
   {
    "@type": "ListItem",
-   "position": 72,
+   "position": 63,
    "name": "Community Mountain Gymnastics",
    "url": "https://www.communitymountaingym.com/"
   },
   {
    "@type": "ListItem",
-   "position": 73,
-   "name": "Companion Bakeshop",
-   "url": "https://www.companionbakeshop.com/weddings"
-  },
-  {
-   "@type": "ListItem",
-   "position": 74,
+   "position": 64,
    "name": "Core Connections Physical Therapy",
    "url": "https://www.coreconnectionspt.com/"
   },
   {
    "@type": "ListItem",
-   "position": 75,
+   "position": 65,
    "name": "Cozy Firewood",
    "url": "https://www.instagram.com/cozyfirewood/"
   },
   {
    "@type": "ListItem",
-   "position": 76,
-   "name": "Creekside Mini Storage"
+   "position": 66,
+   "name": "Creekside Mini Storage",
+   "url": "https://www.creeksideministorage.com/"
   },
   {
    "@type": "ListItem",
-   "position": 77,
+   "position": 67,
    "name": "Creekside Wellness",
    "url": "https://creeksidewellness.co/"
   },
   {
    "@type": "ListItem",
-   "position": 78,
-   "name": "Cristal Stephani Makeup Artist",
-   "url": "https://www.cristalstephani.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 79,
+   "position": 68,
    "name": "CruzAware Emergency Alerts",
    "url": "https://www.cruzaware.org/"
   },
   {
    "@type": "ListItem",
-   "position": 80,
-   "name": "Dahlias & Details",
-   "url": "https://www.dahliasanddetails.com/"
+   "position": 69,
+   "name": "Cruzio Internet",
+   "url": "https://www.cruzio.com/services/internet"
   },
   {
    "@type": "ListItem",
-   "position": 81,
+   "position": 70,
    "name": "Dapper Dogs & Divas",
    "url": "https://www.facebook.com/DapperDogsandDivas/"
   },
   {
    "@type": "ListItem",
-   "position": 82,
+   "position": 71,
    "name": "David Bruce Winery",
    "url": "https://www.davidbrucewinery.com/"
   },
   {
    "@type": "ListItem",
-   "position": 83,
+   "position": 72,
    "name": "De Joy Photography",
    "url": "https://dejoyphotography.com/"
   },
   {
    "@type": "ListItem",
-   "position": 84,
+   "position": 73,
    "name": "Deer Horn Ranch",
    "url": "https://www.deerhornranchfelton.com/"
   },
   {
    "@type": "ListItem",
-   "position": 85,
+   "position": 74,
    "name": "Dessert First Bakery",
-   "url": "https://www.santacruz.org/listings/dessert-first-bakery/"
+   "url": "https://www.facebook.com/Dessertfirstbskery/"
   },
   {
    "@type": "ListItem",
-   "position": 86,
+   "position": 75,
    "name": "Dixon Construction",
    "url": "https://dixonconstruct.com/"
   },
   {
    "@type": "ListItem",
-   "position": 87,
+   "position": 76,
    "name": "DJ Warwick",
    "url": "https://djwarwick.com/"
   },
   {
    "@type": "ListItem",
-   "position": 88,
-   "name": "Doughlicious Farmstand"
+   "position": 77,
+   "name": "Doughlicious Farmstand",
+   "url": "https://www.facebook.com/profile.php?id=61578081962868"
   },
   {
    "@type": "ListItem",
-   "position": 89,
+   "position": 78,
    "name": "Dr Spa"
   },
   {
    "@type": "ListItem",
-   "position": 90,
+   "position": 79,
    "name": "Dragonfly Landscape Services"
   },
   {
    "@type": "ListItem",
-   "position": 91,
-   "name": "Edith Meyer Wedding Cakes",
-   "url": "https://www.edithmeyer.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 92,
+   "position": 80,
    "name": "Edward Jones - Zach Brown, CFP",
    "url": "https://www.edwardjones.com/us-en/financial-advisor/zach-brown"
   },
   {
    "@type": "ListItem",
-   "position": 93,
+   "position": 81,
    "name": "Elevated Wellness Massage & Bodywork",
    "url": "https://www.elevatedwellnessmassage.com/"
   },
   {
    "@type": "ListItem",
-   "position": 94,
-   "name": "Elope Santa Cruz and Monterey Bay",
-   "url": "https://elopesantacruz.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 95,
+   "position": 82,
    "name": "Enterprise Sports Club",
    "url": "https://www.enterprisesportsclub.com/"
   },
   {
    "@type": "ListItem",
-   "position": 96,
+   "position": 83,
    "name": "Eric Martin Construction, Inc."
   },
   {
    "@type": "ListItem",
-   "position": 97,
+   "position": 84,
    "name": "Ernie's Service Center",
    "url": "https://www.erniesservicecenter.com/"
   },
   {
    "@type": "ListItem",
-   "position": 98,
+   "position": 85,
    "name": "Farinsky Energy Solutions"
   },
   {
    "@type": "ListItem",
-   "position": 99,
-   "name": "Feel Good Foods Catering",
-   "url": "https://www.feelgoodfoodscatering.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 100,
+   "position": 86,
    "name": "Felton Community Hall",
    "url": "https://www.feltonhall.org/"
   },
   {
    "@type": "ListItem",
-   "position": 101,
+   "position": 87,
    "name": "Felton Fire Protection District",
    "url": "https://feltonfire.com/"
   },
   {
    "@type": "ListItem",
-   "position": 102,
+   "position": 88,
    "name": "Felton Guild",
    "url": "https://www.feltonguildweddings.com/"
   },
   {
    "@type": "ListItem",
-   "position": 103,
+   "position": 89,
    "name": "Felton Nails"
   },
   {
    "@type": "ListItem",
-   "position": 104,
+   "position": 90,
    "name": "Felton Veterinary Hospital",
    "url": "https://www.feltonveterinaryhospital.com/"
   },
   {
    "@type": "ListItem",
-   "position": 105,
+   "position": 91,
    "name": "Fern River Resort",
    "url": "https://www.fernriverresort.com/"
   },
   {
    "@type": "ListItem",
-   "position": 106,
-   "name": "Ferrari Florist & Gardens",
-   "url": "https://www.ferrariflorist.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 107,
+   "position": 92,
    "name": "Fine Edge Painting"
   },
   {
    "@type": "ListItem",
-   "position": 108,
+   "position": 93,
    "name": "Fintastic Fish",
    "url": "https://www.fintasticfishstore.com/"
   },
   {
    "@type": "ListItem",
-   "position": 109,
+   "position": 94,
    "name": "Fluffed Petcare",
    "url": "https://www.fluffed.pet/"
   },
   {
    "@type": "ListItem",
-   "position": 110,
-   "name": "Freedom Bakery & Confections",
-   "url": "https://www.freedombakery.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 111,
+   "position": 95,
    "name": "Fruition Brewing",
    "url": "https://www.fruitionbrewing.com/"
   },
   {
    "@type": "ListItem",
-   "position": 112,
+   "position": 96,
    "name": "Garrahan Park",
    "url": "https://www.bcrpd.org/parks"
   },
   {
    "@type": "ListItem",
-   "position": 113,
+   "position": 97,
    "name": "Gary Fox Cabinets"
   },
   {
    "@type": "ListItem",
-   "position": 114,
-   "name": "Gayle's Bakery & Rosticceria",
-   "url": "https://www.gaylesbakery.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 115,
+   "position": 98,
    "name": "Geist Builders Group",
    "url": "https://geistbuildersgroup.com/"
   },
   {
    "@type": "ListItem",
-   "position": 116,
+   "position": 99,
    "name": "Ginia's Gems",
    "url": "https://www.giniasgems.com/"
   },
   {
    "@type": "ListItem",
-   "position": 117,
+   "position": 100,
    "name": "GNN Construction"
   },
   {
    "@type": "ListItem",
-   "position": 118,
+   "position": 101,
    "name": "Good Earth Landscape & Design"
   },
   {
    "@type": "ListItem",
-   "position": 119,
+   "position": 102,
    "name": "Good Sense Termite",
    "url": "https://www.goodsensetermite.com/"
   },
   {
    "@type": "ListItem",
-   "position": 120,
+   "position": 103,
    "name": "Good Vibes Boulder Creek",
    "url": "https://goodvibesbc.com/"
   },
   {
    "@type": "ListItem",
-   "position": 121,
+   "position": 104,
    "name": "Gott Computers",
    "url": "https://gottcomputers.com/"
   },
   {
    "@type": "ListItem",
-   "position": 122,
+   "position": 105,
    "name": "Greenman Gardening"
   },
   {
    "@type": "ListItem",
-   "position": 123,
+   "position": 106,
    "name": "GreenWaste Recovery - Santa Cruz County",
    "url": "https://www.greenwaste.com/service-areas/santa-cruz-county/"
   },
   {
    "@type": "ListItem",
-   "position": 124,
+   "position": 107,
    "name": "Griffin Hill Vineyards",
    "url": "https://www.griffinhillvineyards.com/"
   },
   {
    "@type": "ListItem",
-   "position": 125,
+   "position": 108,
    "name": "GutterPatrol & WindowShine",
    "url": "https://www.gutterpatrol.com/"
   },
   {
    "@type": "ListItem",
-   "position": 126,
+   "position": 109,
    "name": "Hair Hut",
    "url": "https://www.facebook.com/bouldercreekhairhut/"
   },
   {
    "@type": "ListItem",
-   "position": 127,
+   "position": 110,
    "name": "Hallcrest Vineyards",
    "url": "https://www.hallcrestvineyards.com/"
   },
   {
    "@type": "ListItem",
-   "position": 128,
+   "position": 111,
    "name": "Handyman Dan"
   },
   {
    "@type": "ListItem",
-   "position": 129,
+   "position": 112,
    "name": "Hannah Soriano Gardens",
    "url": "https://www.instagram.com/hannahsorianogardens/"
   },
   {
    "@type": "ListItem",
-   "position": 130,
-   "name": "Happily Ever Laughter",
-   "url": "https://happilyeverlaughter.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 131,
+   "position": 113,
    "name": "Haven Play Lounge and Cafe",
    "url": "https://havenplayloungeandevents.com/"
   },
   {
    "@type": "ListItem",
-   "position": 132,
+   "position": 114,
    "name": "Hennig Studios",
    "url": "https://www.hennigstudios.com/"
   },
   {
    "@type": "ListItem",
-   "position": 133,
+   "position": 115,
    "name": "Henry Cowell Redwoods State Park Campground",
    "url": "https://www.parks.ca.gov/?page_id=546"
   },
   {
    "@type": "ListItem",
-   "position": 134,
+   "position": 116,
    "name": "Herranen Heating & Air"
   },
   {
    "@type": "ListItem",
-   "position": 135,
-   "name": "Herrick Games and Hobbies"
+   "position": 117,
+   "name": "Herrick Games and Hobbies",
+   "url": "https://herrickgames.com/"
   },
   {
    "@type": "ListItem",
-   "position": 136,
+   "position": 118,
    "name": "Highlands House",
    "url": "https://parks.santacruzcountyca.gov/Home/ExploreOurParksBeaches/AllCountyParks/HighlandsCountyPark.aspx"
   },
   {
    "@type": "ListItem",
-   "position": 137,
+   "position": 119,
    "name": "Highlands Park Early Education Center",
    "url": "https://communitybridges.org/eed/"
   },
   {
    "@type": "ListItem",
-   "position": 138,
+   "position": 120,
    "name": "Highlands Park Senior & Community Center",
    "url": "https://highlandsparkseniorcenter.org/"
   },
   {
    "@type": "ListItem",
-   "position": 139,
+   "position": 121,
    "name": "Hilton Santa Cruz / Scotts Valley",
    "url": "https://www.hilton.com/en/hotels/sjcsvhf-hilton-santa-cruz-scotts-valley/"
   },
   {
    "@type": "ListItem",
-   "position": 140,
-   "name": "Humble Bumble Catering",
-   "url": "https://www.humblebumblecatering.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 141,
+   "position": 122,
    "name": "Hunt & Shaw, OD's",
    "url": "https://www.huntandshaw.com/"
   },
   {
    "@type": "ListItem",
-   "position": 142,
+   "position": 123,
    "name": "Hwy 9 Plumbing"
   },
   {
    "@type": "ListItem",
-   "position": 143,
-   "name": "ICON DJ",
-   "url": "https://icondj.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 144,
+   "position": 124,
    "name": "Integrity Automotive Service",
    "url": "https://www.smogcheckscottsvalley.com/"
   },
   {
    "@type": "ListItem",
-   "position": 145,
+   "position": 125,
    "name": "J Fisher Plumbing"
   },
   {
    "@type": "ListItem",
-   "position": 146,
+   "position": 126,
    "name": "Jeff Hill & Sons Excavation and Grading, Inc.",
    "url": "https://jeffhillandsons.com/"
   },
   {
    "@type": "ListItem",
-   "position": 147,
+   "position": 127,
    "name": "Jeff Vedder Painting",
    "url": "https://vedderpainting.com/"
   },
   {
    "@type": "ListItem",
-   "position": 148,
+   "position": 128,
    "name": "Jessi Phillips Electric"
   },
   {
    "@type": "ListItem",
-   "position": 149,
+   "position": 129,
    "name": "Jim Flynn - State Farm Insurance",
    "url": "https://jimflynn.org/"
   },
   {
    "@type": "ListItem",
-   "position": 150,
-   "name": "Joe's Bar"
+   "position": 130,
+   "name": "Joe's Bar",
+   "url": "http://www.drinkatjoes.com/"
   },
   {
    "@type": "ListItem",
-   "position": 151,
+   "position": 131,
    "name": "Jordan Booth Welding"
   },
   {
    "@type": "ListItem",
-   "position": 152,
+   "position": 132,
    "name": "Josh Sladwick Engineering"
   },
   {
    "@type": "ListItem",
-   "position": 153,
+   "position": 133,
    "name": "JRG Construction"
   },
   {
    "@type": "ListItem",
-   "position": 154,
+   "position": 134,
    "name": "Junction Park",
    "url": "https://www.bcrpd.org/parks"
   },
   {
    "@type": "ListItem",
-   "position": 155,
-   "name": "JuneBugs Gym",
-   "url": "https://junebugsgym.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 156,
+   "position": 135,
    "name": "K-Salon",
    "url": "https://www.ksalon.us/"
   },
   {
    "@type": "ListItem",
-   "position": 157,
-   "name": "Kala Ketchum Makeup & Hair",
-   "url": "https://www.kalaketchum.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 158,
+   "position": 136,
    "name": "Kalani Day Spa",
    "url": "https://kalanidayspa.com/"
   },
   {
    "@type": "ListItem",
-   "position": 159,
+   "position": 137,
    "name": "Kaplan Chiropractic",
    "url": "https://kaplanchiro.com/"
   },
   {
    "@type": "ListItem",
-   "position": 160,
+   "position": 138,
    "name": "Kassandra Thomsen Photography",
    "url": "https://www.kassandrathomsen.com/"
   },
   {
    "@type": "ListItem",
-   "position": 161,
+   "position": 139,
    "name": "Kathy Nails"
   },
   {
    "@type": "ListItem",
-   "position": 162,
+   "position": 140,
    "name": "KBCZ 89.3 FM",
    "url": "https://kbcz.org/"
   },
   {
    "@type": "ListItem",
-   "position": 163,
+   "position": 141,
    "name": "Kelly Griffiths Photography",
    "url": "https://www.kellygriffithsphotography.com/"
   },
   {
    "@type": "ListItem",
-   "position": 164,
-   "name": "Kennolyn Events",
-   "url": "https://www.kennolyn.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 165,
+   "position": 142,
    "name": "Kevin Foster Construction"
   },
   {
    "@type": "ListItem",
-   "position": 166,
-   "name": "Kianti's Pizza & Pasta Bar",
-   "url": "https://kiantis.com/pizza-parties"
+   "position": 143,
+   "name": "Kitten Kornher Rescue",
+   "url": "https://www.facebook.com/KittenKornher/"
   },
   {
    "@type": "ListItem",
-   "position": 167,
+   "position": 144,
    "name": "Klus Services",
    "url": "https://www.facebook.com/KlusServices"
   },
   {
    "@type": "ListItem",
-   "position": 168,
+   "position": 145,
    "name": "Kreative Kids Preschool",
    "url": "https://parks.santacruzcountyca.gov/Home/FindaProgram/Recreation/KreativeKidsPreschool.aspx"
   },
   {
    "@type": "ListItem",
-   "position": 169,
+   "position": 146,
    "name": "Kyer Wiltshire",
    "url": "https://kyerwiltshire.com/"
   },
   {
    "@type": "ListItem",
-   "position": 170,
+   "position": 147,
    "name": "Ladd's Towing",
-   "url": "https://laddstowingservice.com/"
+   "url": "https://www.laddsautobodytowing.com/"
   },
   {
    "@type": "ListItem",
-   "position": 171,
+   "position": 148,
    "name": "Lago Lomita Vineyards",
    "url": "https://www.lagolomita.com/"
   },
   {
    "@type": "ListItem",
-   "position": 172,
+   "position": 149,
    "name": "Lambert & Son Moving",
    "url": "https://lambertmoving.com/"
   },
   {
    "@type": "ListItem",
-   "position": 173,
+   "position": 150,
    "name": "Laureen Yungmeyer - State Farm Insurance",
    "url": "https://laureenyungmeyer.com/insurance"
   },
   {
    "@type": "ListItem",
-   "position": 174,
+   "position": 151,
    "name": "Law Office of Michelle D. Smith",
    "url": "https://lawofficemdsmith.com/about/"
   },
   {
    "@type": "ListItem",
-   "position": 175,
+   "position": 152,
    "name": "Liberty Bank - Boulder Creek",
    "url": "https://www.libertybk.com/"
   },
   {
    "@type": "ListItem",
-   "position": 176,
+   "position": 153,
    "name": "Lilia Skin",
    "url": "https://www.instagram.com/lilia_skin/"
   },
   {
    "@type": "ListItem",
-   "position": 177,
+   "position": 154,
    "name": "lille aeske arthouse",
    "url": "https://www.lilleaeske.com/"
   },
   {
    "@type": "ListItem",
-   "position": 178,
+   "position": 155,
    "name": "Little Explorers (BCRPD)",
    "url": "https://www.bcrpd.org/"
   },
   {
    "@type": "ListItem",
-   "position": 179,
+   "position": 156,
    "name": "Little People's School"
   },
   {
    "@type": "ListItem",
-   "position": 180,
+   "position": 157,
    "name": "LK Construction and Management, Inc.",
    "url": "https://lkcm-inc.com/"
   },
   {
    "@type": "ListItem",
-   "position": 181,
+   "position": 158,
    "name": "Lloyd's Tire & Auto Care - Scotts Valley",
    "url": "https://locations.lloydstire.com/ca/scotts-valley/5310-unit-d-scotts-valley-drive"
   },
   {
    "@type": "ListItem",
-   "position": 182,
+   "position": 159,
    "name": "Loma Prieta Winery",
    "url": "https://lomaprietawinery.com/"
   },
   {
    "@type": "ListItem",
-   "position": 183,
+   "position": 160,
    "name": "Lone Wolf Kenpo Academy",
    "url": "https://www.karatebouldercreek.com/"
   },
   {
    "@type": "ListItem",
-   "position": 184,
+   "position": 161,
    "name": "Lotz Construction"
   },
   {
    "@type": "ListItem",
-   "position": 185,
+   "position": 162,
    "name": "Luzovich Celebrations",
    "url": "https://www.instagram.com/luzovichcelebrations/"
   },
   {
    "@type": "ListItem",
-   "position": 186,
+   "position": 163,
    "name": "Machado Bros. Painting",
    "url": "https://www.machadobrospainting.com/"
   },
   {
    "@type": "ListItem",
-   "position": 187,
+   "position": 164,
    "name": "MADabolic Scotts Valley",
-   "url": "https://madabolic.com/ca/scotts-valley/"
+   "url": "https://madabolic.com/locations/scotts-valley"
   },
   {
    "@type": "ListItem",
-   "position": 188,
+   "position": 165,
    "name": "Maggiora Bros. Drilling",
    "url": "http://maggiorabros.com/"
   },
   {
    "@type": "ListItem",
-   "position": 189,
+   "position": 166,
    "name": "Markey Construction",
    "url": "https://www.markeyconstructioninc.com/"
   },
   {
    "@type": "ListItem",
-   "position": 190,
+   "position": 167,
    "name": "Masood's Lodge",
    "url": "https://www.masoodslodge.com/"
   },
   {
    "@type": "ListItem",
-   "position": 191,
+   "position": 168,
    "name": "Mathnasium of Scotts Valley",
    "url": "https://www.mathnasium.com/math-centers/scottsvalley"
   },
   {
    "@type": "ListItem",
-   "position": 192,
+   "position": 169,
    "name": "Meadows Custom Builders",
    "url": "https://meadowscustombuilders.com/"
   },
   {
    "@type": "ListItem",
-   "position": 193,
+   "position": 170,
    "name": "Messy Play Kits",
    "url": "https://messyplaykits.com/"
   },
   {
    "@type": "ListItem",
-   "position": 194,
+   "position": 171,
    "name": "METRO ParaCruz",
    "url": "https://scmetro.org/rider-info/paracruz/"
   },
   {
    "@type": "ListItem",
-   "position": 195,
+   "position": 172,
    "name": "Michelle's Nails"
   },
   {
    "@type": "ListItem",
-   "position": 196,
+   "position": 173,
    "name": "Miller Paving",
    "url": "https://www.miller-paving.com/"
   },
   {
    "@type": "ListItem",
-   "position": 197,
+   "position": 174,
    "name": "Millie's Nail & Spa"
   },
   {
    "@type": "ListItem",
-   "position": 198,
+   "position": 175,
    "name": "Miss Brooke's Class",
    "url": "https://www.instagram.com/missbrookesclass/"
   },
   {
    "@type": "ListItem",
-   "position": 199,
+   "position": 176,
    "name": "Mount Hermon Christian Camps & Conference Center",
    "url": "https://www.mounthermon.org/"
   },
   {
    "@type": "ListItem",
-   "position": 200,
+   "position": 177,
    "name": "Mountain Community Resources",
    "url": "https://communitybridges.org/mcr/"
   },
   {
    "@type": "ListItem",
-   "position": 201,
+   "position": 178,
    "name": "Mountain Mechanics",
    "url": "https://www.mountainmechanics.net/"
   },
   {
    "@type": "ListItem",
-   "position": 202,
+   "position": 179,
    "name": "Mountain Music School SV",
    "url": "https://mountainmusicschoolsv.com/"
   },
   {
    "@type": "ListItem",
-   "position": 203,
+   "position": 180,
    "name": "Mountain Paw Spa",
    "url": "https://mountain-paw-spa.square.site/"
   },
   {
    "@type": "ListItem",
-   "position": 204,
+   "position": 181,
    "name": "Mountain Propane Service",
    "url": "http://www.mountainpropaneservice.com/"
   },
   {
    "@type": "ListItem",
-   "position": 205,
+   "position": 182,
    "name": "Mountain Sage Studios",
    "url": "https://mountainsagestudios.com/"
   },
   {
    "@type": "ListItem",
-   "position": 206,
+   "position": 183,
    "name": "Mountain Sangha",
    "url": "https://www.mountainsangha.com/"
   },
   {
    "@type": "ListItem",
-   "position": 207,
+   "position": 184,
    "name": "MTM Truck & Tractor, Inc."
   },
   {
    "@type": "ListItem",
-   "position": 208,
+   "position": 185,
    "name": "Muccigrosso Vineyards",
    "url": "https://www.muccigrosso.com/"
   },
   {
    "@type": "ListItem",
-   "position": 209,
+   "position": 186,
    "name": "Muns Vineyard",
    "url": "https://www.munsvineyard.com/"
   },
   {
    "@type": "ListItem",
-   "position": 210,
+   "position": 187,
    "name": "New Dimensions Acupuncture & Herbology",
    "url": "http://www.ahutif.com/"
   },
   {
    "@type": "ListItem",
-   "position": 211,
+   "position": 188,
    "name": "New Solutions Construction"
   },
   {
    "@type": "ListItem",
-   "position": 212,
+   "position": 189,
    "name": "Nolf Electric Services",
    "url": "https://nextdoor.com/pages/nolf-electric-services"
   },
   {
    "@type": "ListItem",
-   "position": 213,
+   "position": 190,
    "name": "NorCal HVAC"
   },
   {
    "@type": "ListItem",
-   "position": 214,
-   "name": "O'Brien & Company",
-   "url": "https://www.obandcompany.com/"
+   "position": 191,
+   "name": "O'Brien & Company"
   },
   {
    "@type": "ListItem",
-   "position": 215,
+   "position": 192,
    "name": "Oakstrong Martial Arts",
    "url": "https://www.oakstrong.net/oakstrong-martial-arts-tang-soo-do-karate-classes-in-santa-cruz/"
   },
   {
    "@type": "ListItem",
-   "position": 216,
+   "position": 193,
    "name": "Oh Suzannah Hair Designers",
    "url": "https://www.facebook.com/OhSuzannas/"
   },
   {
    "@type": "ListItem",
-   "position": 217,
+   "position": 194,
    "name": "Oli Nails",
    "url": "https://www.instagram.com/olive__oli_nails/"
   },
   {
    "@type": "ListItem",
-   "position": 218,
+   "position": 195,
    "name": "Oliveira & Sons"
   },
   {
    "@type": "ListItem",
-   "position": 219,
+   "position": 196,
    "name": "Osito's Day Care"
   },
   {
    "@type": "ListItem",
-   "position": 220,
+   "position": 197,
    "name": "Pacific Gas and Electric Company",
    "url": "https://www.pge.com/"
   },
   {
    "@type": "ListItem",
-   "position": 221,
+   "position": 198,
    "name": "Paper Moon Skincare Studio",
    "url": "https://www.papermoonbeauty.co/"
   },
   {
    "@type": "ListItem",
-   "position": 222,
+   "position": 199,
    "name": "PCIS",
    "url": "https://pcisnet.com/"
   },
   {
    "@type": "ListItem",
-   "position": 223,
+   "position": 200,
    "name": "Pet Shop Santa Cruz",
    "url": "https://petshopsantacruz.com/"
   },
   {
    "@type": "ListItem",
-   "position": 224,
+   "position": 201,
    "name": "Platinum Contracting Services"
   },
   {
    "@type": "ListItem",
-   "position": 225,
-   "name": "Primal Henna Arts",
-   "url": "https://primalhennaarts.wixsite.com/primalhenna"
-  },
-  {
-   "@type": "ListItem",
-   "position": 226,
+   "position": 202,
    "name": "Quail Hollow Ranch County Park",
-   "url": "https://parks.santacruzcountyca.gov/"
+   "url": "https://parks.santacruzcountyca.gov/Home/ExploreOurParksBeaches/AllCountyParks/QuailHollowRanchCountyPark.aspx"
   },
   {
    "@type": "ListItem",
-   "position": 227,
+   "position": 203,
    "name": "Quality Inn & Suites Santa Cruz Mountains",
    "url": "https://www.choicehotels.com/california/ben-lomond/quality-inn-hotels/ca498"
   },
   {
    "@type": "ListItem",
-   "position": 228,
+   "position": 204,
    "name": "Queen Nails",
    "url": "https://www.facebook.com/QueenNails95066/"
   },
   {
    "@type": "ListItem",
-   "position": 229,
+   "position": 205,
    "name": "Rational Moving"
   },
   {
    "@type": "ListItem",
-   "position": 230,
+   "position": 206,
    "name": "Redwood & Ranunculus",
    "url": "https://makesommart.com/"
   },
   {
    "@type": "ListItem",
-   "position": 231,
+   "position": 207,
    "name": "Redwood Canopy Tour (Mount Hermon Adventures)",
    "url": "https://mounthermonadventures.com/rct"
   },
   {
    "@type": "ListItem",
-   "position": 232,
+   "position": 208,
    "name": "Redwood Christian Park",
    "url": "https://rcp.camp/"
   },
   {
    "@type": "ListItem",
-   "position": 233,
+   "position": 209,
    "name": "Redwood Dental",
    "url": "https://www.redwooddental.org/contact"
   },
   {
    "@type": "ListItem",
-   "position": 234,
+   "position": 210,
    "name": "Redwood Mountain Spa",
    "url": "https://redwoodmountainspa.com/"
   },
   {
    "@type": "ListItem",
-   "position": 235,
+   "position": 211,
    "name": "Redwood Resort RV Park and Campground",
    "url": "https://www.redwoodresort.net/"
   },
   {
    "@type": "ListItem",
-   "position": 236,
+   "position": 212,
    "name": "Ridge Wireless",
    "url": "https://ridgewireless.net/wireless-internet/"
   },
   {
    "@type": "ListItem",
-   "position": 237,
+   "position": 213,
    "name": "Rivendell Music Academy",
    "url": "https://rivendellmusicacademy.com/"
   },
   {
    "@type": "ListItem",
-   "position": 238,
+   "position": 214,
    "name": "Roaring Camp Railroads",
    "url": "https://www.roaringcamp.com/"
   },
   {
    "@type": "ListItem",
-   "position": 239,
+   "position": 215,
    "name": "Robert Bimbi Construction",
    "url": "https://robertbimbiconstruction.com/"
   },
   {
    "@type": "ListItem",
-   "position": 240,
+   "position": 216,
+   "name": "Round Table Pizza"
+  },
+  {
+   "@type": "ListItem",
+   "position": 217,
    "name": "Safeguard Chimney Sweep Company",
    "url": "https://www.safeguardchimneysweepco.com/"
   },
   {
    "@type": "ListItem",
-   "position": 241,
+   "position": 218,
    "name": "San Lorenzo Lumber & Home",
    "url": "https://sanlorenzolumber.com/"
   },
   {
    "@type": "ListItem",
-   "position": 242,
+   "position": 219,
    "name": "San Lorenzo Valley Chamber of Commerce",
    "url": "https://slvchamber.org/"
   },
   {
    "@type": "ListItem",
-   "position": 243,
+   "position": 220,
    "name": "San Lorenzo Valley Housekeeping",
    "url": "http://www.lochdog.com/SLVHousekeeping/"
   },
   {
    "@type": "ListItem",
-   "position": 244,
+   "position": 221,
    "name": "San Lorenzo Valley Martial Arts",
    "url": "https://www.facebook.com/slvmartialarts"
   },
   {
    "@type": "ListItem",
-   "position": 245,
+   "position": 222,
    "name": "San Lorenzo Valley Museum - Grace Episcopal Gallery",
    "url": "https://www.slvmuseum.org/"
   },
   {
    "@type": "ListItem",
-   "position": 246,
+   "position": 223,
    "name": "San Lorenzo Valley Post",
    "url": "https://slvpost.com/"
   },
   {
    "@type": "ListItem",
-   "position": 247,
+   "position": 224,
    "name": "San Lorenzo Valley Unified School District",
    "url": "https://www.slvusd.org/"
   },
   {
    "@type": "ListItem",
-   "position": 248,
+   "position": 225,
    "name": "San Lorenzo Valley Water District",
    "url": "https://www.slvwd.com/"
   },
   {
    "@type": "ListItem",
-   "position": 249,
+   "position": 226,
    "name": "Santa Cruz Appliance Repair",
    "url": "https://www.santacruzappliancerepair.com/"
   },
   {
    "@type": "ListItem",
-   "position": 250,
-   "name": "Santa Cruz Beach Boardwalk",
-   "url": "https://beachboardwalk.com/attractions/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 251,
-   "name": "Santa Cruz Catering Company",
-   "url": "https://santacruzcateringcompany.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 252,
+   "position": 227,
    "name": "Santa Cruz County Adult Protective Services",
    "url": "https://www.santacruzhumanservices.org/AdultLongTermCare/AdultProtectiveServices/Whoshouldreportabuse"
   },
   {
    "@type": "ListItem",
-   "position": 253,
+   "position": 228,
    "name": "Santa Cruz County Behavioral Health Access & Crisis Line",
    "url": "https://www.santacruzhealth.org/BehavioralHealth/Programs/CrisisServices.aspx"
   },
   {
    "@type": "ListItem",
-   "position": 254,
+   "position": 229,
    "name": "Santa Cruz County Benefits Customer Service",
    "url": "https://santacruzhumanservices.org/EmploymentBenefits/PhoneCustomerServiceCenter/CustomerServices"
   },
   {
    "@type": "ListItem",
-   "position": 255,
+   "position": 230,
    "name": "Santa Cruz County Child Abuse and Neglect Reporting Line",
    "url": "https://www.santacruzhumanservices.org/FamilyChildren/ChildWelfareServices/Investigations"
   },
   {
    "@type": "ListItem",
-   "position": 256,
+   "position": 231,
    "name": "Santa Cruz County Child Development Resource Center",
    "url": "https://childcare.santacruzcoe.org/"
   },
   {
    "@type": "ListItem",
-   "position": 257,
+   "position": 232,
    "name": "Santa Cruz County Planning & Unified Permit Center",
    "url": "https://cdi.santacruzcountyca.gov/UPC.aspx"
   },
   {
    "@type": "ListItem",
-   "position": 258,
+   "position": 233,
    "name": "Santa Cruz County Road Operations Dispatch",
    "url": "https://cdi.santacruzcountyca.gov/PublicWorks/ContactUs.aspx"
   },
   {
    "@type": "ListItem",
-   "position": 259,
+   "position": 234,
    "name": "Santa Cruz County Sheriff Non-Emergency Dispatch",
    "url": "https://www.scr911.org/general/page/contact-us"
   },
   {
    "@type": "ListItem",
-   "position": 260,
+   "position": 235,
    "name": "Santa Cruz County Supervisor, District 5",
    "url": "https://www.santacruzcountyca.gov/government/boardofsupervisors/district5.aspx"
   },
   {
    "@type": "ListItem",
-   "position": 261,
+   "position": 236,
    "name": "Santa Cruz County Veterans Services Office",
    "url": "https://www.santacruzhumanservices.org/AdultLongTermCare/VeteransServices/VeteransServicesOffice"
   },
   {
    "@type": "ListItem",
-   "position": 262,
+   "position": 237,
    "name": "Santa Cruz DJ Company",
    "url": "https://www.santacruzdj.com/"
   },
   {
    "@type": "ListItem",
-   "position": 263,
+   "position": 238,
    "name": "Santa Cruz Junk Removal",
    "url": "https://www.santacruzjunkremoval.com/ben-lomond"
   },
   {
    "@type": "ListItem",
-   "position": 264,
+   "position": 239,
    "name": "Santa Cruz Locksmith",
    "url": "https://santacruzlocksmith.com/contact-us/"
   },
   {
    "@type": "ListItem",
-   "position": 265,
+   "position": 240,
    "name": "Santa Cruz Maids",
    "url": "https://www.scruzmaids.com/"
   },
   {
    "@type": "ListItem",
-   "position": 266,
+   "position": 241,
    "name": "Santa Cruz METRO",
    "url": "https://scmetro.org/"
   },
   {
    "@type": "ListItem",
-   "position": 267,
+   "position": 242,
    "name": "Santa Cruz Mountain Health Center",
    "url": "https://www.schealthcenters.org/clinics/slv-health-center/"
   },
   {
    "@type": "ListItem",
-   "position": 268,
+   "position": 243,
    "name": "Santa Cruz Mountains Art Center",
    "url": "https://www.mountainartcenter.org/"
   },
   {
    "@type": "ListItem",
-   "position": 269,
+   "position": 244,
    "name": "Scarborough Building Supply",
    "url": "https://www.scarboroughlumber.com/pages/scarborough-building-supply"
   },
   {
    "@type": "ListItem",
-   "position": 270,
+   "position": 245,
    "name": "Scarborough Home & Garden",
    "url": "https://www.scarboroughlumber.com/pages/scarborough-home-garden"
   },
   {
    "@type": "ListItem",
-   "position": 271,
+   "position": 246,
    "name": "Schwarzbach Associates",
    "url": "https://www.schwarzbachassociatesinc.com/"
   },
   {
    "@type": "ListItem",
-   "position": 272,
+   "position": 247,
    "name": "SCM Community Fitness",
    "url": "https://www.scmcf831.com/"
   },
   {
    "@type": "ListItem",
-   "position": 273,
+   "position": 248,
    "name": "SCM Custom Cleaning",
    "url": "https://scmcustomcleaning.wordpress.com/"
   },
   {
    "@type": "ListItem",
-   "position": 274,
+   "position": 249,
    "name": "Scotts Valley Fire District",
    "url": "https://scottsvalleyfire.com/"
   },
   {
    "@type": "ListItem",
-   "position": 275,
+   "position": 250,
    "name": "Scotts Valley Gym",
    "url": "https://scottsvalleygym.com/"
   },
   {
    "@type": "ListItem",
-   "position": 276,
+   "position": 251,
    "name": "SE Electric",
    "url": "https://seelectric.net/"
   },
   {
    "@type": "ListItem",
-   "position": 277,
-   "name": "Seascape Flowers",
-   "url": "https://seascapeflowers.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 278,
+   "position": 252,
    "name": "Seeds of Knowledge Preschool",
    "url": "https://seedsofknowledgeprek.com/"
   },
   {
    "@type": "ListItem",
-   "position": 279,
+   "position": 253,
    "name": "Shandra Hunt Mobile Notary",
    "url": "https://santacruzmobilenotary.biz/"
   },
   {
    "@type": "ListItem",
-   "position": 280,
+   "position": 254,
    "name": "Silverfern Gardens"
   },
   {
    "@type": "ListItem",
-   "position": 281,
+   "position": 255,
    "name": "Simple Wonders Landscape and Design"
   },
   {
    "@type": "ListItem",
-   "position": 282,
-   "name": "Sirius K9 Training",
-   "url": "https://www.siriusk9-training.com/"
+   "position": 256,
+   "name": "Sirius K9 Training"
   },
   {
    "@type": "ListItem",
-   "position": 283,
+   "position": 257,
    "name": "Six Star Roofing",
    "url": "https://www.sixstarroofing.com/services.html"
   },
   {
    "@type": "ListItem",
-   "position": 284,
+   "position": 258,
    "name": "Skip's Tire & Auto Repair - Scotts Valley",
    "url": "https://locations.skipstire.com/ca/scotts-valley/231-mount-hermon-road"
   },
   {
    "@type": "ListItem",
-   "position": 285,
+   "position": 259,
    "name": "SLV Bookkeeping",
    "url": "https://www.instagram.com/slvbookkeeping/"
   },
   {
    "@type": "ListItem",
-   "position": 286,
+   "position": 260,
    "name": "SLV Tax (Virginia Justus, EA)",
    "url": "https://www.slvtax.com"
   },
   {
    "@type": "ListItem",
-   "position": 287,
+   "position": 261,
    "name": "Smiling Grille Auto Repair",
    "url": "https://www.facebook.com/sgarmobile/"
   },
   {
    "@type": "ListItem",
-   "position": 288,
+   "position": 262,
    "name": "Soap Bubble Cleaning Service",
    "url": "https://www.facebook.com/profile.php?id=100066753095564"
   },
   {
    "@type": "ListItem",
-   "position": 289,
+   "position": 263,
    "name": "Society Barbershop",
    "url": "https://www.societybarbershop.com/"
   },
   {
    "@type": "ListItem",
-   "position": 290,
+   "position": 264,
    "name": "Spa Santangelo",
    "url": "https://spasantangelo.com/"
   },
   {
    "@type": "ListItem",
-   "position": 291,
-   "name": "Springygirl"
+   "position": 265,
+   "name": "Springygirl",
+   "url": "https://springygirl.com/"
   },
   {
    "@type": "ListItem",
-   "position": 292,
+   "position": 266,
    "name": "Squatch Valley Property Services"
   },
   {
    "@type": "ListItem",
-   "position": 293,
+   "position": 267,
    "name": "Starlink",
    "url": "https://starlink.com/us/map"
   },
   {
    "@type": "ListItem",
-   "position": 294,
+   "position": 268,
    "name": "Steel Bonnet Brewing Company",
    "url": "https://www.steelbon.net/"
   },
   {
    "@type": "ListItem",
-   "position": 295,
+   "position": 269,
    "name": "Stellar Tree Care",
    "url": "https://www.stellartreecare.com/"
   },
   {
    "@type": "ListItem",
-   "position": 296,
+   "position": 270,
    "name": "Stumptown Supply",
    "url": "https://www.stumptownsupply.com/"
   },
   {
    "@type": "ListItem",
-   "position": 297,
-   "name": "Sugar Bakery Co.",
-   "url": "https://www.sugarbakeryco.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 298,
+   "position": 271,
    "name": "Sunderland Tree Service",
    "url": "https://sunderlandtree.com/"
   },
   {
    "@type": "ListItem",
-   "position": 299,
-   "name": "Sunny's Catering",
-   "url": "https://sunnyscatering.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 300,
+   "position": 272,
    "name": "SuperNatural Beauty & Aesthetics",
    "url": "https://supernatural.beauty/"
   },
   {
    "@type": "ListItem",
-   "position": 301,
+   "position": 273,
    "name": "SWAG",
    "url": "https://www.swagbouldercreek.com/"
   },
   {
    "@type": "ListItem",
-   "position": 302,
+   "position": 274,
    "name": "Sydalyn Hill",
    "url": "https://sydalynhill.com/"
   },
   {
    "@type": "ListItem",
-   "position": 303,
+   "position": 275,
    "name": "Tails of Redwood Trails LLC",
    "url": "https://www.tailsofredwoodtrails.com/"
   },
   {
    "@type": "ListItem",
-   "position": 304,
+   "position": 276,
    "name": "Tavares Plumbing and Pumps",
    "url": "https://tavareswellpumps.com/"
   },
   {
    "@type": "ListItem",
-   "position": 305,
+   "position": 277,
    "name": "Terry Miller Concrete"
   },
   {
    "@type": "ListItem",
-   "position": 306,
+   "position": 278,
    "name": "The Abbot's Thrift",
    "url": "https://www.theabbotsthrift.com/"
   },
   {
    "@type": "ListItem",
-   "position": 307,
+   "position": 279,
    "name": "The Barn at River House",
    "url": "https://www.facebook.com/TheRiverHouseBenLomond/"
   },
   {
    "@type": "ListItem",
-   "position": 308,
-   "name": "The Buttery",
-   "url": "https://www.butterybakery.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 309,
+   "position": 280,
    "name": "The Honey Bucket Man",
    "url": "https://thehoneybucketman.com/septic-system-cleaning/"
   },
   {
    "@type": "ListItem",
-   "position": 310,
+   "position": 281,
    "name": "The Mat - Boulder Creek Laundry",
    "url": "https://www.bouldercreeklaundry.com/"
   },
   {
    "@type": "ListItem",
-   "position": 311,
+   "position": 282,
    "name": "The Sequoia Retreat Center",
    "url": "https://www.sequoiaretreatcenter.com/"
   },
   {
    "@type": "ListItem",
-   "position": 312,
-   "name": "The Wild Bite",
-   "url": "https://www.instagram.com/thewildbite/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 313,
+   "position": 283,
    "name": "Timothy Imbrie, CPA MBA",
    "url": "https://imbriecpa.com/"
   },
   {
    "@type": "ListItem",
-   "position": 314,
-   "name": "Tip Top Taps",
-   "url": "https://www.sctiptoptaps.com/"
-  },
-  {
-   "@type": "ListItem",
-   "position": 315,
+   "position": 284,
    "name": "Toadal Fitness Scotts Valley",
    "url": "https://www.toadalfitness.com/scotts-valley"
   },
   {
    "@type": "ListItem",
-   "position": 316,
+   "position": 285,
    "name": "Travis Martin Plumbing, Inc.",
    "url": "https://www.santacruzcaplumber.com/"
   },
   {
    "@type": "ListItem",
-   "position": 317,
+   "position": 286,
    "name": "Travis Tree Professionals",
    "url": "https://www.travistreeprofessionals.com/"
   },
   {
    "@type": "ListItem",
-   "position": 318,
+   "position": 287,
    "name": "Treetop Pilates & Wellness",
    "url": "https://www.facebook.com/treetoppilates/"
   },
   {
    "@type": "ListItem",
-   "position": 319,
+   "position": 288,
    "name": "Valley Churches United Missions",
    "url": "https://vcum.org/"
   },
   {
    "@type": "ListItem",
-   "position": 320,
+   "position": 289,
    "name": "Valley Mini Storage",
    "url": "https://www.valleyministorageca.com/"
   },
   {
    "@type": "ListItem",
-   "position": 321,
+   "position": 290,
    "name": "Vargas Academy",
    "url": "https://vargasacademy.com/"
   },
   {
    "@type": "ListItem",
-   "position": 322,
+   "position": 291,
    "name": "VIP Hair Studio",
    "url": "https://vip-hair-studio.com/"
   },
   {
    "@type": "ListItem",
-   "position": 323,
+   "position": 292,
    "name": "Viscosity Glass",
    "url": "https://www.viscositystudio.com/gallery/"
   },
   {
    "@type": "ListItem",
-   "position": 324,
+   "position": 293,
    "name": "Visiting Angels Central Coast",
    "url": "https://www.visitingangels.com/centralcoast/home"
   },
   {
    "@type": "ListItem",
-   "position": 325,
+   "position": 294,
    "name": "VSG Builder"
   },
   {
    "@type": "ListItem",
-   "position": 326,
+   "position": 295,
    "name": "Wade's, Inc."
   },
   {
    "@type": "ListItem",
-   "position": 327,
+   "position": 296,
    "name": "Walnut Avenue Domestic Violence Helpline",
    "url": "https://www.wafwc.org/domestic-violence"
   },
   {
    "@type": "ListItem",
-   "position": 328,
+   "position": 297,
    "name": "Waterfall Lodge and Retreat",
    "url": "https://waterfallsantacruz.com/"
   },
   {
    "@type": "ListItem",
-   "position": 329,
+   "position": 298,
    "name": "Wes White Handyman & General Maintenance"
   },
   {
    "@type": "ListItem",
-   "position": 330,
+   "position": 299,
    "name": "Wild Iris Floral and Botanical",
    "url": "https://www.wildirisfloral.com/"
   },
   {
    "@type": "ListItem",
-   "position": 331,
+   "position": 300,
    "name": "Wild Lilith",
    "url": "https://www.instagram.com/wildlilithbc/"
   },
   {
    "@type": "ListItem",
-   "position": 332,
+   "position": 301,
    "name": "Wilson Electric"
   },
   {
    "@type": "ListItem",
-   "position": 333,
+   "position": 302,
    "name": "Woodland Floral & Creations",
    "url": "https://www.facebook.com/Wfcbouldercreek/"
   },
   {
    "@type": "ListItem",
-   "position": 334,
+   "position": 303,
    "name": "Wylder Space",
    "url": "https://www.wylderspace.com/"
   },
   {
    "@type": "ListItem",
-   "position": 335,
+   "position": 304,
    "name": "Xfinity (Comcast)",
    "url": "https://www.xfinity.com/local/ca/boulder-creek"
   },
   {
    "@type": "ListItem",
-   "position": 336,
+   "position": 305,
    "name": "XterminatriX Holistic Pest Control",
    "url": "https://xterminatrix.com/"
   },
   {
    "@type": "ListItem",
-   "position": 337,
+   "position": 306,
    "name": "YMCA Camp Campbell",
    "url": "https://www.ymcasv.org/camp-campbell"
   },
   {
    "@type": "ListItem",
-   "position": 338,
+   "position": 307,
    "name": "Zayante Fire Protection District",
    "url": "https://zayantefire.com/"
   },
   {
    "@type": "ListItem",
-   "position": 339,
+   "position": 308,
    "name": "Zephyr Climate Solutions",
    "url": "https://zephyrclimatesolutions.com/"
   }
