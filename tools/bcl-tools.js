@@ -171,7 +171,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v28";
+  var CSS_ID = "bcl-tools-css-v29";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -488,7 +488,7 @@
       ".bcl-daterange input{font-family:Inter,Arial,sans-serif;font-size:.85rem;padding:7px 10px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#1c2a26 !important;}",
       ".bcl-daterange button{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 12px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#626c66 !important;cursor:pointer;}",
       ".bcl-daterange button:hover{border-color:#173f36;color:#173f36 !important;}",
-      ".bcl-ics{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#2e6b46 !important;cursor:pointer;align-self:flex-start;}",
+      ".bcl-ics{box-sizing:border-box;display:inline-flex;align-items:center;min-height:44px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border:1px solid #cfc9b8;background:#fffdf8 !important;color:#2e6b46 !important;cursor:pointer;align-self:flex-start;}",
       ".bcl-ics:hover{border-color:#2e6b46;}",
       ".bcl-river-rows{display:flex;flex-wrap:wrap;gap:6px 20px;margin:6px 0;}",
       ".bcl-river-rows div b{display:block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:#626c66 !important;font-weight:500;}",
@@ -792,6 +792,32 @@
       if (!r.ok) throw new Error("HTTP " + r.status);
       return r.json();
     });
+  }
+
+  var LISTING_FILTER_KEYS = ["q", "category", "open", "local"];
+
+  function listingFilterState(search) {
+    var params;
+    try { params = new URLSearchParams(String(search || "")); }
+    catch (err) { return { q: "", category: "", open: false, local: false }; }
+    return {
+      q: params.get("q") || "",
+      category: params.get("category") || "",
+      open: params.get("open") === "1",
+      local: params.get("local") === "1"
+    };
+  }
+
+  function listingFilterUrl(state, loc) {
+    state = state || {};
+    var base = loc && loc.href ? loc.href : String(loc || "");
+    var url = new URL(base, "https://www.bouldercreeklocal.com/");
+    LISTING_FILTER_KEYS.forEach(function (key) { url.searchParams.delete(key); });
+    if (state.q) url.searchParams.set("q", String(state.q));
+    if (state.category) url.searchParams.set("category", String(state.category));
+    if (state.open) url.searchParams.set("open", "1");
+    if (state.local) url.searchParams.set("local", "1");
+    return url.pathname + (url.searchParams.toString() ? "?" + url.searchParams.toString() : "") + url.hash;
   }
 
   /* ---------- dates shared by every tool ---------- */
@@ -1222,18 +1248,43 @@
       var visibleLimit = batchSize;
       var moreWrap = root.querySelector(".bcl-load-more");
       var moreBtn = moreWrap && moreWrap.querySelector("button");
-      /* A search-overlay hit links to /directory?q=Name, so honour it. */
-      try {
-        var pre = new URLSearchParams(location.search).get("q");
-        if (pre) input.value = pre;
-      } catch (e) { /* older browser: just show the full list */ }
+      /* Search hits and shared filtered views use the same small URL state.
+         Unknown categories safely fall back to All categories. */
+      function applyUrlState() {
+        var state = listingFilterState(location.search);
+        input.value = state.q;
+        select.value = state.category;
+        activeGroup = "";
+        if (select.value !== state.category) {
+          select.value = "";
+          if (groupNames.indexOf(state.category) >= 0) activeGroup = state.category;
+        }
+        openBox.checked = state.open;
+        bcBox.checked = state.local;
+        syncMountedShareLinks();
+      }
 
-      function render() {
+      function syncUrlState() {
+        if (!window.history || !window.history.replaceState) return;
+        var next = listingFilterUrl({
+          q: (input.value || "").trim(),
+          category: select.value || activeGroup || "",
+          open: !!openBox.checked,
+          local: !!bcBox.checked
+        }, location);
+        window.history.replaceState(window.history.state, "", next);
+        syncMountedShareLinks();
+      }
+
+      applyUrlState();
+
+      function render(updateUrl) {
         var q = (input.value || "").toLowerCase();
         var cat = select.value;
         var openNow = !!openBox.checked;
         var bcOnly = !!bcBox.checked;
         var now = new Date();
+        if (updateUrl) syncUrlState();
         /* Everything except the category, so the chip counts and the list are
            filtered by one predicate and cannot drift apart. */
         var base = all.filter(function (l) {
@@ -1324,14 +1375,14 @@
       input.addEventListener("input", function () {
         if (batchSize) visibleLimit = batchSize;
         if (typing) clearTimeout(typing);
-        typing = setTimeout(render, 120);
+        typing = setTimeout(function () { render(true); }, 120);
       });
       /* Picking a category from the dropdown supersedes the broader group
          filter, rather than intersecting with it and silently returning
          nothing when the two disagree. */
-      select.addEventListener("change", function () { activeGroup = ""; if (batchSize) visibleLimit = batchSize; render(); });
-      openBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(); });
-      bcBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(); });
+      select.addEventListener("change", function () { activeGroup = ""; if (batchSize) visibleLimit = batchSize; render(true); });
+      openBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(true); });
+      bcBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(true); });
       root.querySelector(".bcl-filter-reset").addEventListener("click", function () {
         if (typing) clearTimeout(typing);
         input.value = "";
@@ -1340,7 +1391,7 @@
         openBox.checked = false;
         bcBox.checked = false;
         visibleLimit = batchSize;
-        render();
+        render(true);
         input.focus();
       });
       if (chips) {
@@ -1351,7 +1402,7 @@
           activeGroup = btn.getAttribute("data-group") || "";
           select.value = "";
           if (batchSize) visibleLimit = batchSize;
-          render();
+          render(true);
           /* Re-rendering destroyed the button that had focus. */
           var again = chips.querySelector('.bcl-chip[data-group="' + activeGroup + '"]');
           if (again && again.focus) again.focus();
@@ -1370,7 +1421,12 @@
           else { count.setAttribute("tabindex", "-1"); count.focus(); }
         });
       }
-      render();
+      window.addEventListener("popstate", function () {
+        applyUrlState();
+        visibleLimit = batchSize;
+        render(false);
+      });
+      render(false);
     }).catch(function () {
       unavailable(root, "The " + label + " list", 'You can still <a href="/contact">send an update</a>.');
     });
@@ -2081,10 +2137,61 @@
 
   function headerMenuIsOpen(button) {
     var holder = button && button.closest ? button.closest(".header-burger") : null;
-    return document.body.classList.contains("header--menu-open") ||
+    var doc = (button && button.ownerDocument) || (typeof document !== "undefined" ? document : null);
+    return !!(doc && doc.body && doc.body.classList.contains("header--menu-open")) ||
       !!(button && button.classList && button.classList.contains("burger--active")) ||
       !!(holder && holder.classList.contains("burger--active")) ||
       !!(button && button.querySelector && button.querySelector(".burger--active"));
+  }
+
+  /* Squarespace keeps sibling folder panels in the menu DOM while sliding them
+     sideways. They remain natively focusable even though a keyboard reader
+     cannot see them. Use horizontal intersection to keep only the current
+     panel, but do not reject links below the viewport: the menu scrolls
+     vertically and focusing those links should scroll them into view. */
+  function headerMenuFocusables(buttons, menu) {
+    if (!menu) return [];
+    var doc = menu.ownerDocument || document;
+    var win = doc.defaultView || window;
+    var menuRect = menu.getBoundingClientRect ? menu.getBoundingClientRect() : null;
+    var selector = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+    var nodes = (buttons || []).concat([].slice.call(menu.querySelectorAll(selector)));
+    return nodes.filter(function (el, index) {
+      if (!el || nodes.indexOf(el) !== index || el.disabled) return false;
+      if (el.getAttribute && el.getAttribute("tabindex") === "-1") return false;
+      var style = win.getComputedStyle ? win.getComputedStyle(el) : null;
+      if (style && (style.display === "none" || style.visibility === "hidden")) return false;
+      if (!el.getBoundingClientRect) return false;
+      var rect = el.getBoundingClientRect();
+      if (!rect || rect.width <= 0 || rect.height <= 0) return false;
+      if (menu.contains && menu.contains(el) && menuRect && menuRect.width > 0) {
+        if (rect.right <= menuRect.left || rect.left >= menuRect.right) return false;
+      } else if (typeof win.innerWidth === "number") {
+        if (rect.right <= 0 || rect.left >= win.innerWidth) return false;
+      }
+      return true;
+    });
+  }
+
+  /* The platform still owns opening, closing and Escape. This handler only
+     contains Tab while that native menu is open. The site-search dialog has
+     its own modal focus loop and must take precedence if it is present. */
+  function containHeaderMenuTab(event, buttons, menu) {
+    if (!event || event.key !== "Tab" || !menu) return false;
+    var doc = menu.ownerDocument || document;
+    if (doc.querySelector && doc.querySelector(".bcl-search-overlay")) return false;
+    var open = (buttons || []).some(headerMenuIsOpen);
+    if (!open) return false;
+    var focusable = headerMenuFocusables(buttons, menu);
+    if (!focusable.length) return false;
+    var current = focusable.indexOf(doc.activeElement);
+    var next = event.shiftKey ? current - 1 : current + 1;
+    if (current < 0) next = event.shiftKey ? focusable.length - 1 : 0;
+    if (next < 0) next = focusable.length - 1;
+    if (next >= focusable.length) next = 0;
+    event.preventDefault();
+    focusable[next].focus();
+    return true;
   }
 
   function initHeaderMenuA11y() {
@@ -2112,6 +2219,9 @@
         if (window.requestAnimationFrame) window.requestAnimationFrame(sync);
         else window.setTimeout(sync, 0);
       });
+    });
+    document.addEventListener("keydown", function (event) {
+      containHeaderMenuTab(event, buttons, menu);
     });
     sync();
 
@@ -2967,6 +3077,31 @@ function initBclSectionJumps(doc) {
     return origin + loc.pathname;
   }
 
+  function shareUrlAtAction(baseUrl, loc) {
+    var path = String((loc && loc.pathname) || "");
+    if (!/^\/(?:directory|food)\/?$/.test(path)) return baseUrl;
+    var origin = loc.origin || (loc.protocol + "//" + loc.host);
+    return origin + path + (loc.search || "") + (loc.hash || "");
+  }
+
+  function updateShareBarLinks(bar, url, title) {
+    if (!bar || !bar.querySelectorAll) return;
+    var links = shareLinks(url, title);
+    [].slice.call(bar.querySelectorAll('[data-share="facebook"],[data-share="email"],[data-share="gmail"],[data-share="outlook"],[data-share="yahoo"],[data-share="mail_app"]')).forEach(function (node) {
+      var method = node.getAttribute("data-share");
+      node.setAttribute("href", method === "mail_app" ? links.email : links[method]);
+    });
+  }
+
+  function syncMountedShareLinks() {
+    if (typeof document === "undefined" || typeof location === "undefined") return;
+    [].slice.call(document.querySelectorAll(".bcl-share[data-share-base-url]")).forEach(function (bar) {
+      var baseUrl = bar.getAttribute("data-share-base-url") || "";
+      var title = bar.getAttribute("data-share-title") || "Boulder Creek Local";
+      updateShareBarLinks(bar, shareUrlAtAction(baseUrl, location), title);
+    });
+  }
+
   /* A mailto does nothing on a computer with no mail program registered, which
      is most people who read mail in a browser (reported 2026-09-13 on Windows
      Chrome). So computers also get webmail compose pages to choose from. */
@@ -3048,6 +3183,8 @@ function initBclSectionJumps(doc) {
       var btn = ev.target && ev.target.closest ? ev.target.closest("[data-share]") : null;
       if (!btn || !bar.contains(btn)) return;
       var method = btn.getAttribute("data-share");
+      var actionUrl = shareUrlAtAction(url, location);
+      updateShareBarLinks(bar, actionUrl, title);
       var mail = bar.querySelector(".bcl-share-mail");
       /* On a computer, Email opens the choice row instead of a bare mailto. */
       if (method === "email" && mail) {
@@ -3058,9 +3195,9 @@ function initBclSectionJumps(doc) {
       }
       track("share", { method: method, content_type: surface, item_id: trackText(location.pathname) });
       if (method === "native") {
-        navigator.share({ title: title, url: url }).catch(function () { /* dismissed */ });
+        navigator.share({ title: title, url: actionUrl }).catch(function () { /* dismissed */ });
       } else if (method === "copy") {
-        shareCopy(url).then(function () { say("Link copied"); }, function () { say(url); });
+        shareCopy(actionUrl).then(function () { say("Link copied"); }, function () { say(actionUrl); });
       }
       /* Facebook and Email are ordinary links and navigate on their own. */
     });
@@ -3075,8 +3212,11 @@ function initBclSectionJumps(doc) {
     var holder = document.createElement("div");
     holder.innerHTML = shareBarHTML(id, url, title, { native: shareHasNative(), cls: cls });
     var bar = holder.firstChild;
+    bar.setAttribute("data-share-base-url", url);
+    bar.setAttribute("data-share-title", title);
     parent.insertBefore(bar, before || null);
     wireShareBar(bar, url, title, surface);
+    syncMountedShareLinks();
     return bar;
   }
 
@@ -5703,11 +5843,15 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
     module.exports.flexibleLocalDate = flexibleLocalDate;
     module.exports.jobDeadlineText = jobDeadlineText;
     module.exports.rentalAvailableText = rentalAvailableText;
     module.exports.correctionHref = correctionHref;
+    module.exports.listingFilterState = listingFilterState;
+    module.exports.listingFilterUrl = listingFilterUrl;
+    module.exports.shareUrlAtAction = shareUrlAtAction;
+    module.exports.updateShareBarLinks = updateShareBarLinks;
     module.exports.jobEmployerName = jobEmployerName;
     module.exports.jobDepartmentName = jobDepartmentName;
     module.exports.evEndSuffix = evEndSuffix;

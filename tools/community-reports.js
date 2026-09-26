@@ -24,6 +24,14 @@
     .bcl-reports-card p{font-size:15px;margin:4px 0}
     .bcl-reports-card:hover h3{text-decoration:underline}
     .bcl-reports-status{font-size:16px}
+    /* Keep the route to lost and found visible without giving an empty board
+       the same space as active missing-pet reports. */
+    .bcl-reports.is-empty{padding:24px 0}
+    .bcl-reports.is-empty h2{font-size:clamp(24px,2.6vw,30px);margin-bottom:8px}
+    .bcl-reports.is-empty .bcl-reports-intro{display:none}
+    .bcl-reports.is-empty .bcl-reports-status{margin:0}
+    .bcl-reports.is-empty .bcl-reports-actions{margin-top:12px;gap:4px 20px}
+    .bcl-reports.is-empty .bcl-reports-primary{display:inline-flex;background:transparent;color:#173f36;padding:10px 0;text-decoration:underline}
     @media(max-width:700px){.bcl-reports-grid{grid-template-columns:1fr}.bcl-reports-card img{height:240px}}
   `;
   document.head.append(style);
@@ -43,7 +51,7 @@
     const wrap = document.createElement('div'); wrap.className = 'bcl-reports-wrap';
     const h = document.createElement('h2'); h.id = el.id + '-title';
     h.textContent = home ? 'Missing pets in Boulder Creek' : 'Lost something? Found something?';
-    const p = document.createElement('p');
+    const p = document.createElement('p'); p.className = 'bcl-reports-intro';
     p.textContent = home ? 'Help a neighbor bring their pet home. Browse recent missing-pet reports or post your own.' : 'Report a missing pet, a misdelivered package, or a lost or found item in Boulder Creek. Replies reach the person who posted without displaying their email address.';
     wrap.append(h, p);
     const content = document.createElement('div'); content.className = 'bcl-reports-content';
@@ -70,10 +78,11 @@
     const {el, content} = section(true); hero.after(el);
     let pending = false;
     let current = [];
-    const message = text => { const p = document.createElement('p'); p.className = 'bcl-reports-status'; p.textContent = text; content.replaceChildren(p); };
+    const message = (text, empty = false) => { el.classList.toggle('is-empty', empty); const p = document.createElement('p'); p.className = 'bcl-reports-status'; p.textContent = text; content.replaceChildren(p); };
     const render = () => {
       const reports = current.filter(r => Date.parse(r.expires_at) > Date.now()).slice(0,3);
-      if (!reports.length) { message('No active missing-pet reports are posted here right now. You can still browse found pets or post a report.'); return; }
+      if (!reports.length) { message('No active missing-pet reports are posted here right now.', true); return; }
+      el.classList.remove('is-empty');
       const grid = document.createElement('div'); grid.className = 'bcl-reports-grid';
       reports.forEach(r => {
         const url = safeUrl(r.report_url, '/community-reports/pets/'); if (!url) return;
