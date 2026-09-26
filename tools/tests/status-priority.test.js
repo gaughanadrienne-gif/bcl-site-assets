@@ -27,6 +27,14 @@ test('indefinite closures ignore a stale planned end and unknown dates are not i
 test('different work windows remain distinguishable in deduplication',()=>{
  assert.equal(t.dedupeCaltrans([closure('SR-9','Boulder Creek'),closure('SR-9','Boulder Creek','2026-09-21')]).length,2);
 });
+test('worksite labels distinguish nearby closures without merging them',()=>{
+ const pool=closure('SR-9','Boulder Creek');pool.location.begin.beginLocationName='Pool Drive';
+ const river=closure('SR-9','Boulder Creek');river.location.begin.beginLocationName='Riverdale Park';
+ assert.equal(t.caltransPlaceLabel(pool.location.begin),'Boulder Creek (Pool Drive)');
+ assert.equal(t.caltransPlaceLabel(river.location.begin),'Boulder Creek (Riverdale Park)');
+ assert.equal(t.dedupeCaltrans([pool,river]).length,2);
+ assert.equal(t.dedupeCaltrans([pool,pool]).length,1);
+});
 test('successful retrieval timestamp identifies Pacific time and does not claim observation freshness',()=>{
  assert.match(t.statusRetrievedHTML(new Date('2026-09-16T20:00:00Z')),/PDT/);
  assert.match(t.statusRetrievedHTML(new Date('2026-09-16T20:00:00Z')),/Source observations may be older/);
