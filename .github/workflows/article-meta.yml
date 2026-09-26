@@ -1,0 +1,43 @@
+# Keeps data/articles-meta.json in step with data/articles.json.
+# Article pages read the small metadata file; any push that edits the full feed
+# (scripts, browser uploads, other agents) regenerates it here, commits it only
+# if it changed, and purges the jsDelivr @main copy once.
+name: article-meta
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/articles.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: article-meta
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regenerate metadata
+        run: python -m scripts.build_article_meta
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data/articles-meta.json; then
+            echo "metadata already current"
+            exit 0
+          fi
+          git config user.name "bcl-article-meta"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/articles-meta.json
+          git commit -m "data: regenerate articles-meta.json from articles.json"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          curl -fsS "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/articles-meta.json" || true

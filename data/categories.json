@@ -1,42 +1,51 @@
 {
- "built": "2026-09-26T09:44:52-07:00",
+ "built": "2026-09-26T10:27:01-07:00",
  "base": "/around-town/category/",
  "categories": [
   {
    "name": "Local News",
-   "url": "/around-town/category/Local+News"
+   "url": "/around-town/category/Local+News",
+   "description": "What is changing in Boulder Creek: Highway 9 work, Big Basin's rebuild, fire recovery, the weather outlook and dated looks at local jobs and businesses."
   },
   {
    "name": "Community Life",
-   "url": "/around-town/category/Community+Life"
+   "url": "/around-town/category/Community+Life",
+   "description": "Daily life in Boulder Creek: the library, KBCZ, First Friday, the farmers market, local shops and where to spend an afternoon downtown."
   },
   {
    "name": "Events",
-   "url": "/around-town/category/Events"
+   "url": "/around-town/category/Events",
+   "description": "Guides to Boulder Creek's recurring events, from the 4th of July parade and BCVFD fundraisers to the Harvest Festival, trick-or-treat and holiday gatherings."
   },
   {
    "name": "Business Spotlights",
-   "url": "/around-town/category/Business+Spotlights"
+   "url": "/around-town/category/Business+Spotlights",
+   "description": "Profiles of Boulder Creek businesses: who runs them, what they do and how to visit, from studios and shops to salons, trades and the vet."
   },
   {
    "name": "Food",
-   "url": "/around-town/category/Food"
+   "url": "/around-town/category/Food",
+   "description": "Where and what to eat in Boulder Creek: restaurant and cafe profiles, breakfast and pizza guides, coffee, delivery and the food truck on Highway 9."
   },
   {
    "name": "Local Guides",
-   "url": "/around-town/category/Local+Guides"
+   "url": "/around-town/category/Local+Guides",
+   "description": "Practical guides for getting things done in and around Boulder Creek: childcare, schools, health care, pets, fitness, services, events and more."
   },
   {
    "name": "Outdoors",
-   "url": "/around-town/category/Outdoors"
+   "url": "/around-town/category/Outdoors",
+   "description": "Parks, trails, swimming holes and wildlife around Boulder Creek, with what to know about Big Basin, poison oak and the seasons in the redwoods."
   },
   {
    "name": "Mountain Living",
-   "url": "/around-town/category/Mountain+Living"
+   "url": "/around-town/category/Mountain+Living",
+   "description": "Living in the mountains: wildfire and storm preparation, septic and home upkeep, utilities, emergency alerts, costs, transit and moving here."
   },
   {
    "name": "Town & History",
-   "url": "/around-town/category/Town+%26+History"
+   "url": "/around-town/category/Town+%26+History",
+   "description": "Boulder Creek's past: the logging boom, the flume and railroads, the 1891 fire, the fire department, Lorenzo and the valley museum."
   }
  ]
 }

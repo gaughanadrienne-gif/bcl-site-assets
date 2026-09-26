@@ -1,0 +1,1055 @@
+{
+ "asOf": "2026-09-25",
+ "withheldSlugs": [
+  "boulder-creek-facts",
+  "boulder-creek-murals",
+  "historic-downtown-boulder-creek-walk",
+  "lost-boulder-creek"
+ ],
+ "articles": {
+  "after-major-storm-boulder-creek": {
+   "title": "What to Do After a Major Storm",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/after-major-storm-boulder-creek-20260910.webp",
+   "imageAlt": "A fallen limb across a wet mountain road in the redwoods, grey skies breaking to light after a storm."
+  },
+  "after-school-care-boulder-creek": {
+   "title": "After-School Care in Boulder Creek: Covering the Edges of the School Day",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/after-school-care-boulder-creek-20260910.webp",
+   "imageAlt": "Small backpacks on wooden hooks and rubber boots by a community-hall door in afternoon light."
+  },
+  "air-and-fire-boulder-creek": {
+   "title": "Air & Fire: The Mystical Bazaar on Highway 9",
+   "reviewedAt": "2026-09-19",
+   "headerImage": "brand/article-reading-headers/air-and-fire-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a blue stepped storefront with a grey awning, red doorway and broad display windows."
+  },
+  "annual-events-boulder-creek": {
+   "title": "Boulder Creek's Year: The Big Annual Events",
+   "reviewedAt": "2026-09-22",
+   "headerImage": "brand/article-reading-headers/annual-events-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of a covered Boulder Creek sidewalk with shop windows, red porch posts, a blank easel and distant anonymous pedestrians."
+  },
+  "atmospheric-rivers-santa-cruz-mountains": {
+   "title": "Atmospheric Rivers Explained for Santa Cruz Mountain Residents",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/atmospheric-rivers-santa-cruz-mountains-20260910.webp",
+   "imageAlt": "A long band of rain clouds streaming over the forested ridges of the Santa Cruz Mountains."
+  },
+  "auto-services-boulder-creek": {
+   "title": "Keeping a Car Alive in Boulder Creek: Gas, Mechanics, and Parts",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/auto-services-boulder-creek-20260910.webp",
+   "imageAlt": "A gas station and open garage bay on a two-lane highway through the redwoods in morning light."
+  },
+  "back-to-school-boulder-creek": {
+   "title": "Back-to-School Dates and Resources for Boulder Creek Families",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/back-to-school-boulder-creek-20260910.webp",
+   "imageAlt": "Children with backpacks outside a low school building in a redwood schoolyard on a bright morning."
+  },
+  "bakeries-boulder-creek": {
+   "title": "Bakeries in Boulder Creek: Four Bakers, Four Ways to Buy",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/bakeries-boulder-creek-20260910.webp",
+   "imageAlt": "A farmers market stall piled with rustic sourdough loaves under a canvas canopy, redwoods behind."
+  },
+  "bcvfd-crab-feed": {
+   "title": "The BCVFD Crab Feed",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/bcvfd-crab-feed-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of community tables in a fire station apparatus bay, with overhead heaters, turnout gear racks, a yellow floor stripe and distant diners."
+  },
+  "bcvfd-summer-bbq-dance": {
+   "title": "The BCVFD Summer BBQ & Dance",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/bcvfd-summer-bbq-dance-20260919.webp",
+   "imageAlt": "Watercolor illustration of the rear courtyard of the Boulder Creek fire station, with its actual surrounding station buildings and paved gathering area. Tables and small anonymous figures suggest a summer community barbecue at twilight, not a specific event year."
+  },
+  "beatriz-michelena-boulder-creek": {
+   "title": "Beatriz Michelena: The Silent-Film Pioneer Who Brought Movie Production to Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/beatriz-michelena-boulder-creek-20260910.webp",
+   "imageAlt": "A 1915 film company at work in a redwood clearing beside rough log cabin sets, camera on a tripod."
+  },
+  "becks-shoes-boulder-creek": {
+   "title": "Beck's Shoes: The Weekends Only Store at the South End of Town",
+   "reviewedAt": "2026-09-20",
+   "headerImage": "brand/article-reading-headers/becks-shoes-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a low wooden storefront with a raised signboard, wide glass windows and trees behind."
+  },
+  "before-first-major-rain-boulder-creek": {
+   "title": "What to Do Before the First Major Rain",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/before-first-major-rain-boulder-creek-20260910.webp",
+   "imageAlt": "The season's first rain falling on a redwood forest and a mountain home, dark clouds overhead."
+  },
+  "bellas-cafe-boulder-creek": {
+   "title": "Bella's Cafe: Boulder Creek's Sit-Down Breakfast",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/bellas-cafe-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a small pale cafe with a gabled entrance canopy beside a taller gabled shop."
+  },
+  "big-basin-day-trip-boulder-creek": {
+   "title": "A Responsible Big Basin Day Trip From Boulder Creek",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/big-basin-day-trip-boulder-creek-20260910.webp",
+   "imageAlt": "A sunlit trail through giant old-growth redwoods, ferns and redwood sorrel across the forest floor."
+  },
+  "big-basin-evacuation-czu-fire": {
+   "title": "The Big Basin Evacuation: Three Days in August 2020",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/big-basin-evacuation-czu-fire-20260910.webp",
+   "imageAlt": "An empty redwood campground at dawn, picnic table and fire ring unused, amber haze in the distance."
+  },
+  "big-basin-first-state-park-history": {
+   "title": "How Big Basin Became California's First State Park",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/big-basin-first-state-park-history-20260910.webp",
+   "imageAlt": "Watercolor illustration of a rustic log cabin with a small porch among towering redwoods and light mist."
+  },
+  "big-basin-rebuilding-plan-approved": {
+   "title": "Big Basin's Rebuilding Plan Is Approved: What's Coming and When",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/big-basin-rebuilding-plan-approved-20260910.webp",
+   "imageAlt": "Fire-scarred redwood trunks pushing bright new green regrowth, light filtering through the canopy."
+  },
+  "boulder-creek-4th-of-july-parade": {
+   "title": "The Boulder Creek 4th of July Parade",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/boulder-creek-4th-of-july-parade-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of a Boulder Creek street with patriotic bunting and anonymous parade visitors, based on a photographed streetscape; an illustrative scene rather than a record of a specific parade year."
+  },
+  "boulder-creek-antiques-macs-place": {
+   "title": "Boulder Creek Antiques at Mac's Place: The Booths on Highway 9",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-antiques-macs-place-20260911.webp",
+   "imageAlt": "Watercolor of a weathered wooden commercial facade with a long covered sidewalk and glazed storefront."
+  },
+  "boulder-creek-emergency-contacts": {
+   "title": "Boulder Creek Emergency Contacts: The One-Page List",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-emergency-contacts-20260910.webp",
+   "imageAlt": "A landline phone, a flashlight and a notepad on a mountain-home kitchen counter in lamplight."
+  },
+  "boulder-creek-farmers-market": {
+   "title": "The Boulder Creek Farmers Market at Junction Park",
+   "reviewedAt": "2026-09-22",
+   "headerImage": "brand/article-reading-headers/boulder-creek-farmers-market-20260919.webp",
+   "imageAlt": "Watercolor illustration of the actual Junction Park entrance in Boulder Creek, with its low shingle roof, stone columns and metal gates. A small illustrative market canopy and produce table stand outside the entrance, leaving the approach clear. This is not a depiction of a particular market date."
+  },
+  "boulder-creek-fire-1891": {
+   "title": "The Night Boulder Creek Burned: July 16, 1891",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-fire-1891-20260919.webp",
+   "imageAlt": "1891 Boulder Creek in watercolor, fire taking the false-front buildings along a dirt street at night."
+  },
+  "boulder-creek-fire-department-history": {
+   "title": "How Boulder Creek Got Its Fire Department, and Why Nobody Agrees How Old It Is",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-fire-department-history-20260910.webp",
+   "imageAlt": "An early hand-pulled fire hose cart with coiled canvas hose and leather buckets outside a wooden shed."
+  },
+  "boulder-creek-fire-house-1940": {
+   "title": "The 1940 Fire House: The Building the Whole Valley Turned Out For",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-fire-house-1940-20260919.webp",
+   "imageAlt": "A 1940 fire house with its bay doors open and bunting along the eaves for dedication day."
+  },
+  "boulder-creek-golf-country-club": {
+   "title": "Boulder Creek Golf & Country Club: What to Know Before You Play",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/boulder-creek-golf-country-club-20260919.webp",
+   "imageAlt": "A golf course fairway edged by tall redwoods, low mist lying over the grass in morning light."
+  },
+  "boulder-creek-history-timeline": {
+   "title": "Boulder Creek History Timeline: From Ancient Redwoods to Today",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-history-timeline-20260910.webp",
+   "imageAlt": "An abandoned narrow-gauge railway grade curving through redwoods, trestle timbers reclaimed by ferns."
+  },
+  "boulder-creek-holiday-events": {
+   "title": "Boulder Creek Holiday Events Guide",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/boulder-creek-holiday-events-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of a lit holiday tree beside downtown Boulder Creek storefronts beneath a pink and purple sunset."
+  },
+  "boulder-creek-ioof-hall": {
+   "title": "The I.O.O.F. Hall on Forest Street: Boulder Creek's Odd Fellows",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-ioof-hall-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of Boulder Creek IOOF Hall's pale two-story facade, with a shingled triangular gable, three pairs of upstairs windows, burgundy trim, interlinked rings and a muted blue storefront awning."
+  },
+  "boulder-creek-library": {
+   "title": "The Boulder Creek Branch Library on West Park Avenue",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-library-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of the Boulder Creek library reading room with high rectangular windows, dark ceiling beams, a round clock, computer tables and green chairs."
+  },
+  "boulder-creek-logging-history": {
+   "title": "The Logging Boom: When Boulder Creek Ran on Timber",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-logging-history-20260910.webp",
+   "imageAlt": "Two 1890s loggers working a crosscut saw on a felled redwood, oxen hauling logs along a skid road."
+  },
+  "boulder-creek-main-street-1891": {
+   "title": "Boulder Creek's Main Street in 1891, Building by Building",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-main-street-1891-20260919.webp",
+   "imageAlt": "An 1890s false-front business street in watercolor, board sidewalks, a hitching rail and wagon ruts."
+  },
+  "boulder-creek-notable-disasters-history": {
+   "title": "Fires, Floods, and Storms: The Events That Shaped Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-notable-disasters-history-20260910.webp",
+   "imageAlt": "The San Lorenzo River swollen with runoff, rising toward a small redwood-town bridge in grey rain."
+  },
+  "boulder-creek-pharmacy": {
+   "title": "Boulder Creek Pharmacy: The Independent That Delivers",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-pharmacy-20260911.webp",
+   "imageAlt": "Watercolor of a pale storefront with a long inset fascia, broad windows and red, white and blue bunting."
+  },
+  "boulder-creek-power-outage-plan": {
+   "title": "Power Outage Plan for Mountain Households",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-power-outage-plan-20260910.webp",
+   "imageAlt": "A mountain-home interior lit by lanterns and candles during an outage, dark windows beyond the glow."
+  },
+  "boulder-creek-public-transportation": {
+   "title": "Getting Around Without a Car: Transit Options From Boulder Creek",
+   "reviewedAt": "2026-07-21",
+   "headerImage": "brand/article-reading-headers/boulder-creek-public-transportation-20260910.webp",
+   "imageAlt": "A bus-stop bench beside a redwood-lined mountain road, one person waiting for the next bus."
+  },
+  "boulder-creek-roads-parking-notes": {
+   "title": "Mountain Roads, Parking, and When Highway 9 Gets Complicated",
+   "reviewedAt": "2026-07-28",
+   "headerImage": "brand/article-reading-headers/boulder-creek-roads-parking-notes-20260910.webp",
+   "imageAlt": "A two-lane mountain road curving through redwoods, a few cars parked along the gravel shoulder."
+  },
+  "boulder-creek-tree-work-questions": {
+   "title": "Tree Work in Boulder Creek: Questions to Ask Before Anyone Touches a Redwood",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-tree-work-questions-20260910.webp",
+   "imageAlt": "Tall redwoods seen from below, climbing ropes and a hard hat suggested in the dappled light."
+  },
+  "boulder-creek-utilities-guide": {
+   "title": "Utilities, Water, and Waste in Boulder Creek: Who Serves What",
+   "reviewedAt": "2026-06-25",
+   "headerImage": "brand/article-reading-headers/boulder-creek-utilities-guide-20260910.webp",
+   "imageAlt": "An electric and gas meter on the wood-sided wall of a redwood mountain home, ferns growing nearby."
+  },
+  "boulder-creek-veterinary-clinic": {
+   "title": "Boulder Creek Veterinary Clinic: Forty Years of Caring for the Town's Animals",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-veterinary-clinic-20260911.webp",
+   "imageAlt": "Watercolor illustration of a low red veterinary clinic building with continuous wooden siding, a grey shingle roof, a pale entrance door and two blank signboards beside trees."
+  },
+  "boulder-creek-weekend-itinerary": {
+   "title": "A Boulder Creek Weekend: The Locally Supportive Itinerary",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/boulder-creek-weekend-itinerary-20260910.webp",
+   "imageAlt": "A forest trail winding beside the San Lorenzo River in Boulder Creek, two hikers in dappled light."
+  },
+  "boulder-creek-winter-storm-checklist": {
+   "title": "Winter Storm Checklist for Boulder Creek Homes",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/boulder-creek-winter-storm-checklist-20260910.webp",
+   "imageAlt": "Steady winter rain and drifting fog in a redwood forest, wet sword ferns on a needle-strewn floor."
+  },
+  "bowzer-baths-boulder-creek": {
+   "title": "Bowzer Baths: Dog Grooming on Highway 9 Since 1998",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/bowzer-baths-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a narrow turquoise storefront with a dark doorway and broad window beside a coral-red shop."
+  },
+  "buying-local-boulder-creek": {
+   "title": "Why Buying Local Hits Different in a Mountain Town",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/buying-local-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration looking along downtown Boulder Creek, with covered storefronts, the pale gabled IOOF building and wooded hills."
+  },
+  "childcare-boulder-creek": {
+   "title": "Childcare in Boulder Creek: Start Here",
+   "reviewedAt": "2026-08-07",
+   "headerImage": "brand/article-reading-headers/childcare-boulder-creek-20260910.webp",
+   "imageAlt": "A small wooden playhouse and scattered garden toys in a sunlit clearing under redwoods."
+  },
+  "churches-boulder-creek": {
+   "title": "Churches and Congregations in Boulder Creek, Plus the Buildings That Came First",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/churches-boulder-creek-20260910.webp",
+   "imageAlt": "A small white church with a modest steeple among tall redwoods in morning fog."
+  },
+  "coffee-boulder-creek": {
+   "title": "Coffee in Boulder Creek: Where to Get a Cup",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/coffee-boulder-creek-20260910.webp",
+   "imageAlt": "A steaming ceramic mug on a cafe windowsill above a misty mountain main street at sunrise."
+  },
+  "cost-of-living-boulder-creek": {
+   "title": "What It Costs to Live in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/cost-of-living-boulder-creek-20260910.webp",
+   "imageAlt": "A cluster of rural mailboxes on weathered posts by a gravel driveway, propane tank and meter nearby."
+  },
+  "creekside-wellness-boulder-creek": {
+   "title": "Creekside Wellness: Boulder Creek's Licensed Dispensary",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/creekside-wellness-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a small connected storefront row with striped awning, teal trim and a blue shopfront."
+  },
+  "cruzaware-setup-guide": {
+   "title": "How to Set Up CruzAware Alerts (and What They Cover)",
+   "reviewedAt": "2026-07-03",
+   "headerImage": "brand/article-reading-headers/cruzaware-setup-guide-20260910.webp",
+   "imageAlt": "A smartphone on a wooden table showing a map-alert app, redwoods blurred beyond the window."
+  },
+  "culverts-drainage-boulder-creek": {
+   "title": "How to Prepare Your Culverts and Drainage Before Winter",
+   "reviewedAt": "2026-07-20",
+   "headerImage": "brand/article-reading-headers/culverts-drainage-boulder-creek-20260910.webp",
+   "imageAlt": "Water running freely through a culvert and cleared roadside ditch beside a gravel mountain driveway."
+  },
+  "day-with-kids-boulder-creek": {
+   "title": "A Day in Boulder Creek with Kids",
+   "reviewedAt": "2026-09-20",
+   "headerImage": "brand/article-reading-headers/day-with-kids-boulder-creek-20260910.webp",
+   "imageAlt": "A wooden playground and picnic tables in a redwood park, families out in the dappled light."
+  },
+  "does-it-snow-boulder-creek": {
+   "title": "Does It Snow in Boulder Creek? Mountain Weather Through the Year",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/does-it-snow-boulder-creek-20260910.webp",
+   "imageAlt": "A rare light dusting of snow on redwood boughs and a quiet mountain road under grey winter light."
+  },
+  "downtown-boulder-creek-guide": {
+   "title": "Downtown Boulder Creek in an Afternoon",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/downtown-boulder-creek-guide-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration looking along downtown Boulder Creek, with covered storefronts, the pale gabled IOOF building and wooded hills."
+  },
+  "driving-mountain-roads": {
+   "title": "How to Drive Mountain Roads: Deer, Fog, Downed Lines, and the Turnout Habit",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/driving-mountain-roads-20260910.webp",
+   "imageAlt": "A winding two-lane road curving through tall redwoods, a yellow center line in filtered light."
+  },
+  "earthquakes-santa-cruz-mountains": {
+   "title": "Earthquakes in the Santa Cruz Mountains: A Boulder Creek Preparedness Guide",
+   "reviewedAt": "2026-08-20",
+   "headerImage": "brand/article-reading-headers/earthquakes-santa-cruz-mountains-20260910.webp",
+   "imageAlt": "A simple wooden cabin among tall redwoods with ferns growing around its foundation."
+  },
+  "el-nino-winter-boulder-creek": {
+   "title": "El Niño Is Here: What a Strengthening 2026-27 Winter Could Mean for Boulder Creek",
+   "reviewedAt": "2026-09-22",
+   "headerImage": "brand/article-reading-headers/el-nino-winter-boulder-creek-20260910.webp",
+   "imageAlt": "Dark rain clouds gathering over the forested ridges of the Santa Cruz Mountains before a storm."
+  },
+  "el-rey-leon-boulder-creek": {
+   "title": "El Rey Leon: The Mexican Food Truck Parked on Central Avenue",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/el-rey-leon-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor illustration of an outdoor food stand with pale canopies, picnic tables and a red fence in front of a low brown gabled building and tall trees."
+  },
+  "elevated-wellness-massage-boulder-creek": {
+   "title": "Elevated Wellness Massage: Therapeutic Bodywork on Forest Street",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/elevated-wellness-massage-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a red shared building with a white door under a red awning and a white balcony railing."
+  },
+  "essential-shops-boulder-creek": {
+   "title": "The Essential Shops: What You Can Buy in Town",
+   "reviewedAt": "2026-09-20",
+   "headerImage": "brand/article-reading-headers/essential-shops-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration looking along downtown Boulder Creek, with covered storefronts, the pale gabled IOOF building and wooded hills."
+  },
+  "event-planning-san-lorenzo-valley": {
+   "title": "Planning an Event in the San Lorenzo Valley: Halls, Caterers and Where to Start",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/event-planning-san-lorenzo-valley.webp",
+   "imageAlt": "A soft trail winding through towering redwoods with ferns, two small distant walkers."
+  },
+  "every-home-service-boulder-creek": {
+   "title": "Every Home Service You Need in the Mountains",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/every-home-service-boulder-creek-20260910.webp",
+   "imageAlt": "Home-service tools by the porch of a redwood mountain home, a ladder, a toolbox and a coiled hose."
+  },
+  "family-day-trips-boulder-creek": {
+   "title": "Family Day Trips From Boulder Creek",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/family-day-trips-boulder-creek-20260910.webp",
+   "imageAlt": "A picnic table in a redwood clearing with a creek running nearby, sunlight through the branches."
+  },
+  "famous-people-boulder-creek": {
+   "title": "Famous People Who Lived in, Grew Up in or Visited Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/famous-people-boulder-creek-20260910.webp",
+   "imageAlt": "A redwood-lined small-town street in afternoon light, a few figures walking away from the viewer."
+  },
+  "fire-insurance-santa-cruz-mountains": {
+   "title": "Fire Insurance in the Santa Cruz Mountains: How It Works and Where to Get Help",
+   "reviewedAt": "2026-07-28",
+   "headerImage": "brand/article-reading-headers/fire-insurance-santa-cruz-mountains-20260910.webp",
+   "imageAlt": "A well-kept redwood mountain home ringed by cleared defensible space under a clear morning sky."
+  },
+  "first-friday-boulder-creek": {
+   "title": "First Friday in Boulder Creek: The Monthly Art Walk Downtown",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/first-friday-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of a covered Boulder Creek sidewalk with shop windows, red porch posts, a blank easel and distant anonymous pedestrians."
+  },
+  "fitness-boulder-creek": {
+   "title": "Fitness and Movement in Boulder Creek: Where to Work Out in Town",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/fitness-boulder-creek-20260910.webp",
+   "imageAlt": "Warm light in a yoga studio window at dusk on a mountain-town street, mats and plants inside."
+  },
+  "food-delivery-boulder-creek": {
+   "title": "What Food Delivery Works in Boulder Creek",
+   "reviewedAt": "2026-09-21",
+   "headerImage": "brand/article-reading-headers/food-delivery-boulder-creek-20260910.webp",
+   "imageAlt": "A paper takeout bag left on the front steps of a redwood cabin at dusk under a glowing porch light."
+  },
+  "free-green-waste-vegetation-clearing-boulder-creek": {
+   "title": "Free Green-Waste Disposal and Vegetation-Clearing in Boulder Creek",
+   "reviewedAt": "2026-07-20",
+   "headerImage": "brand/article-reading-headers/free-green-waste-vegetation-clearing-boulder-creek-20260910.webp",
+   "imageAlt": "Stacked piles of cut branches and yard trimmings along a gravel driveway, ready for chipping."
+  },
+  "free-resources-boulder-creek": {
+   "title": "Free Resources in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/free-resources-boulder-creek-20260910.webp",
+   "imageAlt": "A little free library box on a wooden post at the edge of a front yard on a quiet mountain street."
+  },
+  "fun-things-boulder-creek": {
+   "title": "Fun Things to Do in and Around Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/fun-things-boulder-creek-20260910.webp",
+   "imageAlt": "A sunny day at a redwood park in Boulder Creek, families picnicking and children playing."
+  },
+  "gardeners-yard-help-boulder-creek": {
+   "title": "Finding a Gardener or Yard Help in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/gardeners-yard-help-boulder-creek-20260910.webp",
+   "imageAlt": "A tidy mountain-home garden among redwoods, a wheelbarrow parked beside ferns and native plants."
+  },
+  "general-contractors-boulder-creek": {
+   "title": "General Contractors Based in the Valley",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/general-contractors-boulder-creek-20260910.webp",
+   "imageAlt": "A wooden ladder leaning against the eaves of a redwood mountain home under tall trees."
+  },
+  "ginias-gems-boulder-creek": {
+   "title": "Ginia's Gems: Handmade Jewelry on Highway 9",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/ginias-gems-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a tall pale gabled shop with two upper windows and a covered ground-floor porch."
+  },
+  "good-vibes-boulder-creek": {
+   "title": "Good Vibes: The Boutique on Central Avenue",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/good-vibes-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor illustration of the green gabled Good Vibes boutique in Boulder Creek, with a red door and green-and-cream striped awning."
+  },
+  "gyms-near-boulder-creek": {
+   "title": "The Closest Gyms to Boulder Creek, Compared",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/gyms-near-boulder-creek-20260910.webp",
+   "imageAlt": "A bright, uncluttered gym interior with a redwood view through the window."
+  },
+  "halloween-downtown-boulder-creek": {
+   "title": "Downtown Boulder Creek Trick-or-Treat",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/halloween-downtown-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of anonymous Halloween visitors beside a downtown Boulder Creek crosswalk and gas station canopy, with wooded hills behind."
+  },
+  "health-services-boulder-creek": {
+   "title": "Health Services in Boulder Creek: The Providers Who Practice in Town",
+   "reviewedAt": "2026-08-19",
+   "headerImage": "brand/article-reading-headers/health-services-boulder-creek-20260910.webp",
+   "imageAlt": "A small-town clinic porch with potted ferns beside a quiet main street, a redwood ridge behind."
+  },
+  "healthcare-near-boulder-creek": {
+   "title": "Healthcare Near Boulder Creek: Pharmacy, Urgent Care, and the Nearest ER",
+   "reviewedAt": "2026-07-21",
+   "headerImage": "brand/article-reading-headers/healthcare-near-boulder-creek-20260910.webp",
+   "imageAlt": "A small-town medical clinic set among redwoods, a care symbol suggested above the entrance."
+  },
+  "herrick-games-hobbies-boulder-creek": {
+   "title": "Herrick Games and Hobbies: The Painting Masterclasses on Pine Street",
+   "reviewedAt": "2026-08-17",
+   "headerImage": "brand/article-reading-headers/herrick-games-hobbies-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a low tan building with a narrow entrance, broad divided window and shrubs along the facade."
+  },
+  "highway-9-construction-boulder-creek": {
+   "title": "What Is All the Construction on Highway 9?",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/highway-9-construction-boulder-creek-20260919.webp",
+   "imageAlt": "Watercolor illustration of a paved road curving through coast redwoods, with ferns and dry forest floor beside the road."
+  },
+  "highway-9-winter-storms-boulder-creek": {
+   "title": "What to Know About Highway 9 During Winter Storms",
+   "reviewedAt": "2026-07-20",
+   "headerImage": "brand/article-reading-headers/highway-9-winter-storms-boulder-creek-20260910.webp",
+   "imageAlt": "A rainy two-lane mountain road through redwoods, wet pavement, drifting fog and a fallen branch."
+  },
+  "hiking-boulder-creek": {
+   "title": "Hiking in and Around Boulder Creek: Where the Trails Are",
+   "reviewedAt": "2026-08-07",
+   "headerImage": "brand/article-reading-headers/hiking-boulder-creek-20260910.webp",
+   "imageAlt": "Shafts of light on a trail winding through towering old-growth redwoods and ferns."
+  },
+  "hiring-contractor-santa-cruz-mountains": {
+   "title": "Hiring a Contractor in the Santa Cruz Mountains: What's Different Up Here",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/hiring-contractor-santa-cruz-mountains-20260910.webp",
+   "imageAlt": "A carpenter building a mountain-home deck among redwoods, a few tools and some lumber at hand."
+  },
+  "history-of-boulder-creek": {
+   "title": "A Short History of Boulder Creek, California",
+   "reviewedAt": "2026-08-17",
+   "headerImage": "brand/article-reading-headers/history-of-boulder-creek-20260919.webp",
+   "imageAlt": "An 1890s lumber-boom main street in Boulder Creek, horse-drawn wagons on a wide dirt road."
+  },
+  "house-cleaners-boulder-creek": {
+   "title": "House Cleaners Who Serve Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/house-cleaners-boulder-creek-20260910.webp",
+   "imageAlt": "Sunlight through a redwood-view window in a bright, tidy mountain-home interior."
+  },
+  "how-boulder-creek-got-its-name": {
+   "title": "How Boulder Creek Got Its Name and Who Was Here First",
+   "reviewedAt": "2026-08-16",
+   "headerImage": "brand/article-reading-headers/how-boulder-creek-got-its-name-20260910.webp",
+   "imageAlt": "A clear mountain creek tumbling over large granite boulders and mossy rocks in a redwood forest."
+  },
+  "how-directory-verification-works": {
+   "title": "How Directory Verification Works (and How to Fix a Listing)",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/how-directory-verification-works-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration looking along downtown Boulder Creek, with covered storefronts, the pale gabled IOOF building and wooded hills."
+  },
+  "huckleberries-santa-cruz-mountains": {
+   "title": "Huckleberries in the Santa Cruz Mountains: What They Are and Where Picking Is Legal",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/huckleberries-santa-cruz-mountains-20260910.webp",
+   "imageAlt": "Wild huckleberry shrubs carrying small dark blue berries in a redwood forest understory."
+  },
+  "infant-care-boulder-creek": {
+   "title": "Infant Care in and Around Boulder Creek: Who Takes Babies",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/infant-care-boulder-creek-20260910.webp",
+   "imageAlt": "A rocking chair and bassinet beside a cottage window, forest light coming through."
+  },
+  "is-big-basin-open": {
+   "title": "Is Big Basin Open? What's Accessible in 2026",
+   "reviewedAt": "2026-07-18",
+   "headerImage": "brand/article-reading-headers/is-big-basin-open-20260910.webp",
+   "imageAlt": "A trail winding among enormous old-growth redwoods, fire-scarred trunks putting out fresh growth."
+  },
+  "is-boulder-creek-a-good-place-to-live": {
+   "title": "Is Boulder Creek a Good Place to Live? The Real Trade-offs",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/is-boulder-creek-a-good-place-to-live-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration looking along downtown Boulder Creek, with covered storefronts, the pale gabled IOOF building and wooded hills."
+  },
+  "jenna-sues-cafe-boulder-creek": {
+   "title": "Jenna Sue's Cafe: Where the Morning Crowd Goes in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/jenna-sues-cafe-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a grey two-story building with twin outside staircases, an upper balcony and brick cafe terrace."
+  },
+  "joes-bar-boulder-creek": {
+   "title": "Joe's Bar: Live Music, Karaoke, and Pool on Highway 9",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/joes-bar-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a weathered wooden bar frontage with red porch posts, a shallow shingle roof and a sidewalk bench."
+  },
+  "kbcz-boulder-creek-radio": {
+   "title": "KBCZ 89.3 FM: The Radio Station in Downtown Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/kbcz-boulder-creek-radio-20260910.webp",
+   "imageAlt": "A community radio desk with a studio microphone on a boom arm, headphones and a mixing board."
+  },
+  "kbcz-music-fest-boulder-creek": {
+   "title": "KBCZ Music Fest 2026: What to Know Before You Go",
+   "reviewedAt": "2026-09-02",
+   "headerImage": "brand/article-reading-headers/kbcz-music-fest-boulder-creek-20260919.webp",
+   "imageAlt": "Watercolor illustration of Garrahan Park in Boulder Creek, with its open lawn, curving walking path, timber picnic pergola and perimeter trees. Small music props suggest an illustrative community event; this is not a depiction of a specific festival year."
+  },
+  "kids-activities-boulder-creek": {
+   "title": "Kids' Activities in and Around Boulder Creek, Season by Season",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/kids-activities-boulder-creek-20260910.webp",
+   "imageAlt": "Children playing in a redwood-shaded community park with a swing set and a grassy field."
+  },
+  "kids-birthday-party-boulder-creek": {
+   "title": "Planning a Kids Birthday Party in Boulder Creek",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/kids-birthday-party-boulder-creek-20260910.webp",
+   "imageAlt": "An outdoor kids birthday party among redwoods, balloons and decorations around a picnic table."
+  },
+  "kitten-kornher-rescue-boulder-creek": {
+   "title": "Kitten Kornher Rescue: The Kittens in the Corner Window",
+   "reviewedAt": "2026-08-17",
+   "headerImage": "brand/article-reading-headers/kitten-kornher-rescue-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of the pale IOOF corner building with a blue pediment, red window trim and blue storefront awning."
+  },
+  "last-train-boulder-creek": {
+   "title": "The Day the Last Train Left Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/last-train-boulder-creek-20260910.webp",
+   "imageAlt": "A narrow-gauge steam locomotive pulling weathered boxcars away from an emptying mountain freight yard."
+  },
+  "late-summer-wildfire-checklist-boulder-creek": {
+   "title": "Late-Summer Wildfire Checklist for Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/late-summer-wildfire-checklist-boulder-creek-20260910.webp",
+   "imageAlt": "Cleared defensible space and stacked cut brush around a mountain home in hazy late-summer light."
+  },
+  "lille-aeske-arthouse-boulder-creek": {
+   "title": "Lille Aeske Arthouse: The Gallery and Listening Room on Highway 9",
+   "reviewedAt": "2026-09-13",
+   "headerImage": "brand/article-reading-headers/lille-aeske-arthouse-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor illustration of the cream Lille Aeske gallery frontage with golden window curtains, beside coral-red and teal storefronts in Boulder Creek."
+  },
+  "lone-wolf-kenpo-boulder-creek": {
+   "title": "Lone Wolf Kenpo Academy: Karate, Kickboxing, and Tai Chi on Highway 9",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/lone-wolf-kenpo-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor illustration of the red Lone Wolf Kenpo hall with three upper windows, a white balcony and curved entrance canopy in Boulder Creek."
+  },
+  "mary-pickford-boulder-creek": {
+   "title": "Mary Pickford in Boulder Creek: A Romance of the Redwoods",
+   "reviewedAt": "2026-08-17",
+   "headerImage": "brand/article-reading-headers/mary-pickford-boulder-creek-20260910.webp",
+   "imageAlt": "A 1917 silent film shoot in a redwood grove, a woman in period dress seen from behind by the camera."
+  },
+  "miller-property-boulder-creek": {
+   "title": "Miller Property County Park: Boulder Creek's Newest Place to Hike",
+   "reviewedAt": "2026-08-07",
+   "headerImage": "brand/article-reading-headers/miller-property-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of a dry woodland trail at the Miller Property, winding through mixed trees and grasses, based on a 2010 reference photograph."
+  },
+  "money-taxes-boulder-creek": {
+   "title": "Taxes, Banking, and Money Help in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/money-taxes-boulder-creek-20260910.webp",
+   "imageAlt": "A corner bank building with a green awning on a quiet mountain-town main street."
+  },
+  "mountain-home-maintenance-calendar": {
+   "title": "The Mountain Home Maintenance Calendar",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/mountain-home-maintenance-calendar-20260910.webp",
+   "imageAlt": "Garden tools leaning by the porch of a mountain home with a cleared roof edge and defensible space."
+  },
+  "mountain-sangha-boulder-creek": {
+   "title": "Mountain Sangha: Hot Yoga, Pilates, and Breathwork on Highway 9",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/mountain-sangha-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a long red shared building with two roof dormers, white windows and an outside staircase."
+  },
+  "movies-filmed-in-boulder-creek": {
+   "title": "Every Movie, Short Film and Music Video Filmed in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/movies-filmed-in-boulder-creek-20260910.webp",
+   "imageAlt": "A hand-cranked movie camera on a wooden tripod in a misty redwood grove, an early film crew behind it."
+  },
+  "moving-to-boulder-creek": {
+   "title": "Moving to Boulder Creek: What to Know Before You Commit",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/moving-to-boulder-creek-20260910.webp",
+   "imageAlt": "Cardboard moving boxes on the tailgate of a pickup in a gravel driveway beneath tall redwoods."
+  },
+  "new-resident-quick-start-boulder-creek": {
+   "title": "New to Boulder Creek? The Quick-Start Guide",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/new-resident-quick-start-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration looking along downtown Boulder Creek, with covered storefronts, the pale gabled IOOF building and wooded hills."
+  },
+  "night-out-boulder-creek": {
+   "title": "A Night Out in and Around Boulder Creek",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/night-out-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of downtown Boulder Creek at blue dusk, with warm shop windows and tree-covered hills."
+  },
+  "notary-shipping-post-office-boulder-creek": {
+   "title": "Notary, Shipping, and the Post Office in Boulder Creek",
+   "reviewedAt": "2026-08-07",
+   "headerImage": "brand/article-reading-headers/notary-shipping-post-office-boulder-creek-20260919.webp",
+   "imageAlt": "Watercolor illustration of the Boulder Creek post office, with its covered walkway, pale columns, white ramp railings and surrounding redwoods."
+  },
+  "parks-playgrounds-boulder-creek": {
+   "title": "Every Park a Kid Can Play At in the Valley",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/parks-playgrounds-boulder-creek-20260910.webp",
+   "imageAlt": "A neighborhood playground with a wooden play structure and swings under redwoods, children at play."
+  },
+  "pet-boarding-sitting-boulder-creek": {
+   "title": "Pet Boarding and Sitting Near Boulder Creek: Where the Dog Stays",
+   "reviewedAt": "2026-08-07",
+   "headerImage": "brand/article-reading-headers/pet-boarding-sitting-boulder-creek-20260910.webp",
+   "imageAlt": "A dog bed and a leash hanging by a cabin door, forest light coming through the doorway."
+  },
+  "pizza-in-boulder-creek": {
+   "title": "Pizza in Boulder Creek: Round Table Is Open on Central Avenue",
+   "reviewedAt": "2026-09-22",
+   "headerImage": "brand/article-reading-headers/pizza-in-boulder-creek-20260910.webp",
+   "imageAlt": "A whole thin-crust pizza on a round wooden board beside a folded box and two glasses of water."
+  },
+  "poison-oak-and-plants-to-avoid": {
+   "title": "Poison Oak and the Plants to Avoid on Santa Cruz Mountains Trails",
+   "reviewedAt": "2026-08-20",
+   "headerImage": "brand/article-reading-headers/poison-oak-and-plants-to-avoid-20260910.webp",
+   "imageAlt": "Poison oak in three-leaflet clusters turning red among green forest undergrowth."
+  },
+  "poverty-flat-boulder-creek": {
+   "title": "Poverty Flat: Boulder Creek's Forgotten Silent-Film Town",
+   "reviewedAt": "2026-09-21",
+   "headerImage": "brand/article-reading-headers/poverty-flat-boulder-creek-20260910.webp",
+   "imageAlt": "One weathered cabin roof half lost in morning fog at the edge of a redwood clearing."
+  },
+  "preschools-boulder-creek": {
+   "title": "Preschools in and Around Boulder Creek",
+   "reviewedAt": "2026-08-07",
+   "headerImage": "brand/article-reading-headers/preschools-boulder-creek-20260910.webp",
+   "imageAlt": "Tiny chairs and a painting easel on a sunny cottage porch, paper lanterns and redwood shade beyond."
+  },
+  "realtors-boulder-creek": {
+   "title": "Realtors in Boulder Creek: How to Choose a Mountain Agent",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/realtors-boulder-creek-20260910.webp",
+   "imageAlt": "A craftsman cottage with a porch among towering redwoods, a small blank yard sign out front."
+  },
+  "red-pearl-boulder-creek": {
+   "title": "The Red Pearl: Boulder Creek's Chinese Restaurant",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/red-pearl-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a restaurant storefront with cream lower walls, red entrance trim and a weathered wooden upper facade."
+  },
+  "riding-the-flume-boulder-creek": {
+   "title": "Riding the Flume: The Most Dangerous Fun Boulder Creek Ever Invented",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/riding-the-flume-boulder-creek-20260910.webp",
+   "imageAlt": "Water rushing down a V-shaped lumber flume on tall trestles, a small makeshift boat riding the trough."
+  },
+  "river-dogs-boulder-creek": {
+   "title": "River Dogs of Boulder Creek: The Hot Dog Stand Behind Joe's Bar",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/river-dogs-boulder-creek-food-20260911.webp",
+   "imageAlt": "Watercolor illustration of a Chicago-style hot dog in a paper tray, with tomato wedges, a pickle spear, green peppers and mustard on a poppy-seed bun."
+  },
+  "san-lorenzo-valley-flume-history": {
+   "title": "The Flume: How Boulder Creek Floated Its Lumber to Felton",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/san-lorenzo-valley-flume-history-20260910.webp",
+   "imageAlt": "A wooden V-flume on timber trestles carrying water and cut lumber downhill through the redwoods."
+  },
+  "san-lorenzo-valley-museum-guide": {
+   "title": "The San Lorenzo Valley Museum: What to See and How to Support It",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/san-lorenzo-valley-museum-guide-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of the San Lorenzo Valley Museum with grey-green shingle walls, a steep gabled roof, a pointed window and wooden entrance steps among trees."
+  },
+  "san-lorenzo-valley-railroad-history": {
+   "title": "Railroads of the San Lorenzo Valley: The Line That Built Boulder Creek",
+   "reviewedAt": "2026-07-27",
+   "headerImage": "brand/article-reading-headers/san-lorenzo-valley-railroad-history-20260910.webp",
+   "imageAlt": "An 1890s narrow-gauge steam locomotive and wooden passenger cars crossing a timber trestle."
+  },
+  "san-lorenzo-valley-schools-guide": {
+   "title": "San Lorenzo Valley Schools: How the District Works",
+   "reviewedAt": "2026-08-05",
+   "headerImage": "brand/article-reading-headers/san-lorenzo-valley-schools-guide-20260910.webp",
+   "imageAlt": "A yellow school bus waiting on a two-lane road under redwoods, two kids with backpacks walking up."
+  },
+  "sandbags-road-closures-boulder-creek": {
+   "title": "Where to Find Sandbags, Road Closures and Emergency Updates",
+   "reviewedAt": "2026-07-20",
+   "headerImage": "brand/article-reading-headers/sandbags-road-closures-boulder-creek-20260910.webp",
+   "imageAlt": "A stack of sandbags against the doorway of a redwood mountain home in steady rain."
+  },
+  "santa-cruz-mountains-harvest-festival-boulder-creek": {
+   "title": "Santa Cruz Mountains Harvest Festival: What to Know",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/santa-cruz-mountains-harvest-festival-boulder-creek-20260919.webp",
+   "imageAlt": "Watercolor illustration of Junction Park in Boulder Creek, with its stone-pillared pavilion on the left, a green lawn, curved path and rear railing, with illustrative festival canopies. This depicts an illustrative event setting, not a specific festival year."
+  },
+  "sawmill-boulder-creek": {
+   "title": "The Sawmill Restaurant & Alehouse: Boulder Creek's Yard Under the Redwoods",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/sawmill-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a low blue restaurant with a white-trimmed porch and shrubs beneath tall trees."
+  },
+  "scarborough-building-supply-boulder-creek": {
+   "title": "Scarborough Building Supply: The Lumber Yard in Town",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/scarborough-building-supply-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a stone-faced lumber store with orange wood fascia beside an open lumber yard."
+  },
+  "scarborough-home-garden-boulder-creek": {
+   "title": "Scarborough Home & Garden: The Hardware Store Open Seven Days",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/scarborough-home-garden-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor illustration of Scarborough Home & Garden with a tile roof, porch and three red diamond accents in Boulder Creek."
+  },
+  "schools-daycare-preschool-slv": {
+   "title": "Schools, Preschools, and Daycare in the San Lorenzo Valley",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/schools-daycare-preschool-slv-20260910.webp",
+   "imageAlt": "A small-town schoolyard among redwoods with a simple wooden play structure in morning light."
+  },
+  "scopazzis-boulder-creek": {
+   "title": "Scopazzi's Restaurant & Lounge: Boulder Creek's Hundred-Year Dining Room",
+   "reviewedAt": "2026-09-20",
+   "headerImage": "brand/article-reading-headers/scopazzis-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a tan restaurant with entrance steps, a vine-covered timber patio and a mature palm."
+  },
+  "self-care-day-boulder-creek": {
+   "title": "A Self-Care Day in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/self-care-day-boulder-creek-20260910.webp",
+   "imageAlt": "A spa treatment room where someone lies on a massage table, folded towels and low warm lighting."
+  },
+  "septic-basics-boulder-creek": {
+   "title": "Septic Systems 101 for New Mountain Homeowners",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/septic-basics-boulder-creek-20260910.webp",
+   "imageAlt": "A grassy backyard among redwoods with a septic access lid and vent pipe just visible in the lawn."
+  },
+  "shop-local-holiday-gift-guide-boulder-creek": {
+   "title": "Shop Local: A Boulder Creek Holiday Gift Guide",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/shop-local-holiday-gift-guide-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of a lit holiday tree beside downtown Boulder Creek storefronts beneath a pink and purple sunset."
+  },
+  "six-years-after-czu-fire-boulder-creek": {
+   "title": "Six Years After the CZU Fire",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/six-years-after-czu-fire-boulder-creek-20260910.webp",
+   "imageAlt": "Fire-scarred redwoods with fresh green regrowth around a rebuilt wooden home in morning light."
+  },
+  "slv-family-resources": {
+   "title": "Family Resources in the San Lorenzo Valley",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/slv-family-resources-20260910.webp",
+   "imageAlt": "The entrance to a small-town family resource center among redwoods, families coming and going."
+  },
+  "spa-services-boulder-creek": {
+   "title": "Spa Services in Boulder Creek: Massage, Facials, and Nails",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/spa-services-boulder-creek-20260910.webp",
+   "imageAlt": "Steam rising from a wooden soaking tub on a deck surrounded by redwoods and ferns."
+  },
+  "splashfest-boulder-creek": {
+   "title": "Splashfest 2026 in Boulder Creek: A Family Guide",
+   "reviewedAt": "2026-07-20",
+   "headerImage": "brand/article-reading-headers/splashfest-boulder-creek-20260910.webp",
+   "imageAlt": "Young children playing in water and sprinklers at a sunny redwood park, splashing and laughing."
+  },
+  "spotlight-supernatural-beauty": {
+   "title": "SuperNatural Beauty: Boulder Creek's Med Spa",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/spotlight-supernatural-beauty-20260911.webp",
+   "imageAlt": "Watercolor of a low red-brick salon frontage with curtained windows, a dark door and brick planters."
+  },
+  "springygirl-boulder-creek": {
+   "title": "Springygirl: The Secondhand Boutique on Central Avenue",
+   "reviewedAt": "2026-08-17",
+   "headerImage": "brand/article-reading-headers/springygirl-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a grey gabled boutique with a white scalloped awning, display windows and a sidewalk bench."
+  },
+  "stumptown-supply-boulder-creek": {
+   "title": "Stumptown Supply: Boulder Creek History on a Shirt",
+   "reviewedAt": "2026-08-05",
+   "headerImage": "brand/article-reading-headers/stumptown-supply-boulder-creek-20260910.webp",
+   "imageAlt": "Folded cotton t-shirts and a fleece hoodie in forest green and cream on a weathered wooden table."
+  },
+  "summer-camps-san-lorenzo-valley": {
+   "title": "Summer Camps and Kids Classes in the San Lorenzo Valley: The 2026 Guide",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/summer-camps-san-lorenzo-valley-20260910.webp",
+   "imageAlt": "Rustic cabins and a lodge among tall redwoods, kids at camp activities around a central fire ring."
+  },
+  "swag-boulder-creek": {
+   "title": "SWAG: The Eclectic Collective on Highway 9",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/swag-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a narrow pale two-story shop with green window trim and a central ground-floor doorway."
+  },
+  "swimming-boulder-creek-san-lorenzo-river": {
+   "title": "Where to Swim Near Boulder Creek",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/swimming-boulder-creek-san-lorenzo-river-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of a shaded river pool at Junction Park, with a large boulder on the left and exposed roots along the right bank beneath trees."
+  },
+  "taes-edo-sushi-boulder-creek": {
+   "title": "Tae's Edo Sushi Bar: The Sushi Restaurant in Boulder Creek",
+   "reviewedAt": "2026-08-12",
+   "headerImage": "brand/article-reading-headers/taes-edo-sushi-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a low red roadside building with a pitched shingle roof and fenced side patio."
+  },
+  "taqueria-los-gallos-boulder-creek": {
+   "title": "Taqueria Los Gallos: The Sit-Down Taqueria on Central Avenue",
+   "reviewedAt": "2026-08-05",
+   "headerImage": "brand/article-reading-headers/taqueria-los-gallos-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a blue corner restaurant with yellow window trim beside a pale adjoining facade."
+  },
+  "the-mat-laundromat-boulder-creek": {
+   "title": "The Mat: Boulder Creek's Laundromat, Renovated and App-Run",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/the-mat-laundromat-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a low grey commercial building with a glass entrance, broad windows and an empty parking area."
+  },
+  "town-of-lorenzo-boulder-creek": {
+   "title": "Lorenzo: The Town Boulder Creek Swallowed",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/town-of-lorenzo-boulder-creek-20260919.webp",
+   "imageAlt": "An 1870s village of wooden false-front buildings on a rutted dirt street beside a river flat."
+  },
+  "tree-house-cafe-boulder-creek": {
+   "title": "The Tree House Cafe: The Boulder Creek Coffee Shop With Redwoods Inside It",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/tree-house-cafe-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a pale cafe with a green metal roof, wooden doorway and outdoor picnic tables."
+  },
+  "tree-services-boulder-creek": {
+   "title": "Tree Services in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/tree-services-boulder-creek-20260910.webp",
+   "imageAlt": "Climbing ropes and neatly stacked log rounds in a redwood grove during a day of tree work."
+  },
+  "treetop-pilates-boulder-creek": {
+   "title": "Treetop Pilates: The Classical Studio in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/treetop-pilates-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a timber-sided building with a central dormer, covered porch and planted stone-edged garden."
+  },
+  "twenty-years-of-rain-san-lorenzo-valley": {
+   "title": "What Twenty Years of Rain Looks Like in the San Lorenzo Valley",
+   "reviewedAt": "2026-08-17",
+   "headerImage": "brand/article-reading-headers/twenty-years-of-rain-san-lorenzo-valley-20260910.webp",
+   "imageAlt": "Rain falling through redwoods onto a creek running high and brown, ridgelines fading into grey fog."
+  },
+  "vets-pet-services-boulder-creek": {
+   "title": "Vets and Pet Services In and Around Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/vets-pet-services-boulder-creek-20260910.webp",
+   "imageAlt": "A friendly dog and cat together in a small-town veterinary setting."
+  },
+  "viscosity-art-glass-boulder-creek": {
+   "title": "Viscosity Art Glass: Blown Glass, and an Hour to Make Your Own",
+   "reviewedAt": "2026-09-20",
+   "headerImage": "brand/article-reading-headers/viscosity-art-glass-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor illustration of the red Viscosity Art Glass storefront with a broad display window and recessed doorway, beside neighboring storefronts in Boulder Creek."
+  },
+  "wedding-venues-san-lorenzo-valley": {
+   "title": "Getting Married in the San Lorenzo Valley: Venues and Local Vendors",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/wedding-venues-san-lorenzo-valley-20260910.webp",
+   "imageAlt": "An outdoor wedding set up among tall redwoods, string lights over simple wooden chairs."
+  },
+  "what-are-the-sirens-for-boulder-creek": {
+   "title": "What Are the Sirens For? How to Look Up Boulder Creek Emergency Calls",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/what-are-the-sirens-for-boulder-creek-20260910.webp",
+   "imageAlt": "A red fire engine on a winding mountain road with tall redwoods rising on both sides."
+  },
+  "what-is-boulder-creek-known-for": {
+   "title": "What Is Boulder Creek Known For?",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/what-is-boulder-creek-known-for-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration looking along downtown Boulder Creek, with covered storefronts, the pale gabled IOOF building and wooded hills."
+  },
+  "what-jobs-near-boulder-creek-pay": {
+   "title": "We Counted 327 Jobs Within Reach of Boulder Creek. Here's What They Actually Pay.",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/what-jobs-near-boulder-creek-pay-20260910.webp",
+   "imageAlt": "Watercolor illustration of low small-town storefronts and a parked pickup beside a road, with a forested hillside behind."
+  },
+  "what-the-directory-says-about-boulder-creek": {
+   "title": "The Businesses You Don't See From Highway 9",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/what-the-directory-says-about-boulder-creek-20260910.webp",
+   "imageAlt": "An aerial view of a forested valley, a river through the redwoods and clay-red map pins above the trees."
+  },
+  "where-to-eat-boulder-creek": {
+   "title": "Where to Eat in Boulder Creek Right Now",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/where-to-eat-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of Taqueria Los Gallos in Boulder Creek, showing its blue exterior with yellow window trim beside a pale storefront and sidewalk trees."
+  },
+  "where-to-eat-breakfast-boulder-creek": {
+   "title": "Where to Eat Breakfast in Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/where-to-eat-breakfast-boulder-creek-20260910.webp",
+   "imageAlt": "Pancakes and coffee on a table in a small mountain-town cafe in morning light."
+  },
+  "where-to-eat-dinner-boulder-creek": {
+   "title": "Dinner in Boulder Creek: Every Sit-Down Option in Town",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/where-to-eat-dinner-boulder-creek-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration of Scopazzi's restaurant exterior in Boulder Creek, with pale walls, a timber patio pergola, climbing greenery and a palm tree."
+  },
+  "where-to-find-sourdough-boulder-creek": {
+   "title": "Where to Find Real Sourdough Around Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/where-to-find-sourdough-boulder-creek-20260910.webp",
+   "imageAlt": "Rustic sourdough loaves on a wooden bakery counter dusted with flour in morning light."
+  },
+  "where-to-get-haircut-boulder-creek": {
+   "title": "Where to Get a Haircut in and Around Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/where-to-get-haircut-boulder-creek-20260910.webp",
+   "imageAlt": "A small-town barbershop and salon interior with a single chair facing a mirror in warm light."
+  },
+  "where-to-stay-boulder-creek": {
+   "title": "Where to Stay in and Around Boulder Creek",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/where-to-stay-boulder-creek-20260910.webp",
+   "imageAlt": "The Brookdale Lodge, a historic Tudor-and-stone mountain lodge with gabled roofs and half-timbering."
+  },
+  "why-isnt-boulder-creek-a-city": {
+   "title": "Why Isn't Boulder Creek a City?",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/why-isnt-boulder-creek-a-city-gemini-20260911.webp",
+   "imageAlt": "Watercolor illustration looking along downtown Boulder Creek, with covered storefronts, the pale gabled IOOF building and wooded hills."
+  },
+  "why-so-many-orange-butterflies-boulder-creek": {
+   "title": "Why Were There So Many Orange Butterflies in Boulder Creek?",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/why-so-many-orange-butterflies-boulder-creek-20260910.webp",
+   "imageAlt": "Orange painted lady butterflies streaming through a sunlit redwood clearing dotted with wildflowers."
+  },
+  "wild-lilith-boulder-creek": {
+   "title": "Wild Lilith: The Boutique at 13120 Highway 9",
+   "reviewedAt": "2026-09-25",
+   "headerImage": "brand/article-reading-headers/wild-lilith-boulder-creek-20260911.webp",
+   "imageAlt": "Watercolor of a rust-colored shop entrance with a large display window and a small wooden sidewalk cabinet."
+  },
+  "wildfire-evacuation-boulder-creek": {
+   "title": "How Boulder Creek Prepares for a Wildfire Evacuation",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/wildfire-evacuation-boulder-creek-20260910.webp",
+   "imageAlt": "A car driving away along a winding two-lane mountain road, tail lights glowing under a hazy sky."
+  },
+  "wildlife-around-boulder-creek": {
+   "title": "Wildlife Around Boulder Creek: Who You'll Meet and How to Be a Good Neighbor",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/wildlife-around-boulder-creek-20260910.webp",
+   "imageAlt": "A deer and small birds among ferns at the edge of a redwood forest at dawn, mist still in the air."
+  },
+  "winter-landslide-warning-signs-boulder-creek": {
+   "title": "Winter Landslide Warning Signs Around Your Property",
+   "reviewedAt": "2026-09-04",
+   "headerImage": "brand/article-reading-headers/winter-landslide-warning-signs-boulder-creek-20260910.webp",
+   "imageAlt": "A forested hillside above a wooden home showing slumping soil and a leaning tree after heavy rain."
+  }
+ }
+}
