@@ -2441,6 +2441,8 @@
     return clone.textContent.replace(/\s+/g, " ").trim().length > 120;
   }
 
+  var ARTICLE_META_FILE = "articles-meta.json";
+
   function initArticleContent() {
     var slug = articleSlugFromPath(location.pathname);
     if (!slug) return;
@@ -2450,7 +2452,17 @@
     ensureArticleHeading(articleTitleFromMetadata());
     var nativeBody = hasNativeArticleBody(target);
 
-    fetchJSON(REPO + "/data/articles.json").then(function (data) {
+    /* Every published article is served natively by Squarespace, so a normal
+       article view only needs its metadata (title, checked date, reading image).
+       articles-meta.json is a small fraction of the full feed. The full feed is
+       fetched only when the body must be injected, or when the slug is not in the
+       metadata file yet (published before the metadata was regenerated). */
+    var feedFile = nativeBody ? ARTICLE_META_FILE : "articles.json";
+    fetchJSON(REPO + "/data/" + feedFile).then(function (data) {
+      var known = !!(data.articles || {})[slug] || (data.withheldSlugs || []).indexOf(slug) >= 0;
+      if (feedFile !== "articles.json" && !known) return fetchJSON(REPO + "/data/articles.json");
+      return data;
+    }).then(function (data) {
       var record = (data.articles || {})[slug];
       if (record) {
         ensureArticleHeading(record.title || articleTitleFromMetadata());
@@ -2629,6 +2641,25 @@
     return out;
   }
 
+  /* The archive's one-line description, from categories.json. Squarespace has no
+     per-category description field, so category pages otherwise ship an empty
+     meta description. Matched on the same encoded tail as the strip. */
+  function categoryDescriptionFor(cats, activeSlug) {
+    if (!activeSlug) return "";
+    var hit = (cats || []).filter(function (c) {
+      return c && c.url && String(c.url).replace(/^.*\/category\//, "").toLowerCase() === activeSlug.toLowerCase();
+    })[0];
+    return hit && hit.description ? String(hit.description) : "";
+  }
+  function setDescriptionMeta(text) {
+    if (!text) return;
+    [["name", "description"], ["property", "og:description"]].forEach(function (pair) {
+      var meta = document.querySelector("meta[" + pair[0] + '="' + pair[1] + '"]');
+      if (!meta) { meta = document.createElement("meta"); meta.setAttribute(pair[0], pair[1]); document.head.appendChild(meta); }
+      if (!meta.getAttribute("content")) meta.setAttribute("content", text);
+    });
+  }
+
 /* Local preparation. Call after native DOM readiness and again after initRain's
    successful root.innerHTML assignment. Does not alter existing page copy. */
 function bclSectionJumpSpecs(rootId) {
@@ -2724,6 +2755,14 @@ function initBclSectionJumps(doc) {
       nav.setAttribute("aria-label", "Browse Around Town by category");
       nav.innerHTML = buildCategoryStrip(cats, activeSlug);
       host.parentNode.insertBefore(nav, host);
+      var desc = categoryDescriptionFor(cats, activeSlug);
+      if (desc) {
+        var intro = document.createElement("p");
+        intro.className = "bcl-catnav-intro";
+        intro.textContent = desc;
+        host.parentNode.insertBefore(intro, host);
+        setDescriptionMeta(desc);
+      }
     }).catch(function () {
       /* A missing feed leaves the page exactly as Squarespace served it. */
     });
@@ -5864,7 +5903,7 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
     module.exports.flexibleLocalDate = flexibleLocalDate;
     module.exports.jobDeadlineText = jobDeadlineText;
     module.exports.rentalAvailableText = rentalAvailableText;
