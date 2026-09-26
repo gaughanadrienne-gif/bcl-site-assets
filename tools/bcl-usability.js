@@ -4,14 +4,55 @@
   var script = document.currentScript;
   var base = script && script.src ? new URL('../', script.src).href : '';
   function init() {
-    if (document.getElementById('bcl-usability-v1')) return;
+    if (document.getElementById('bcl-usability-v2')) return;
     var style = document.createElement('style');
-    style.id = 'bcl-usability-v1';
+    style.id = 'bcl-usability-v2';
     style.textContent = '#bcl-give-back .bcl-batch-hidden{display:none!important}#bcl-give-back .gb-hero{padding-top:32px;padding-bottom:16px}#bcl-give-back .gb-browse{padding-top:16px}#bcl-give-back .bcl-batch-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin:24px 0}#bcl-give-back .bcl-batch-actions a{min-height:44px;display:inline-flex;align-items:center}#bcl-jobs .bcl-return-filters{display:inline-flex;align-items:center;min-height:44px;margin:16px 0;color:#2e6b46}';
     style.textContent += '.page-section:has(#bcl-give-back){padding-top:0!important;min-height:0!important}.page-section:has(#bcl-give-back) .content-wrapper{padding-top:24px!important;padding-bottom:24px!important}.fluid-engine.bcl-give-back-fluid{display:block!important}';
     style.textContent += '#bcl-downloads .bcl-section-head{display:block;margin-bottom:24px}#bcl-downloads .bcl-grid{display:grid;grid-template-columns:1fr;gap:0}#bcl-downloads .bcl-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,280px);column-gap:48px;align-content:center;padding:32px 0;background:transparent!important;border:0;border-bottom:1px solid #c9cec5;border-radius:0;box-shadow:none}#bcl-downloads .bcl-download-copy{grid-column:1;align-self:center;max-width:60ch}#bcl-downloads .bcl-download-copy h3{margin:0 0 12px}#bcl-downloads .bcl-download-copy p{margin:0 0 16px}#bcl-downloads .bcl-card>.bcl-download-preview{grid-column:2;grid-row:1;align-self:center;width:100%;height:auto;max-height:364px;object-fit:contain;background:transparent;margin:0;padding:0;box-shadow:0 8px 24px rgba(23,43,32,.12)}#bcl-downloads .bcl-download-meta{display:block;font-size:14px;color:#505d55;margin:0 0 12px}#bcl-downloads .bcl-download-nav{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:24px}#bcl-downloads .bcl-download-nav a{display:inline-flex;align-items:center;min-height:44px;color:#2e6b46;text-decoration:underline;text-underline-offset:4px}#bcl-downloads .bcl-section[id]{scroll-margin-top:120px}@media(max-width:700px){#bcl-downloads .bcl-card{grid-template-columns:1fr;gap:0;padding:24px 0}#bcl-downloads .bcl-card>.bcl-download-preview{grid-column:1;grid-row:2;width:min(100%,280px);justify-self:start;margin-top:8px}#bcl-downloads .bcl-download-nav{gap:4px 20px}}';
+    style.textContent += '.bcl-guide-links{margin:0 0 24px;padding:0 0 16px;border-bottom:1px solid #c9cec5;color:#173f36;font-family:Inter,sans-serif;font-size:14px;line-height:1.5}.bcl-guide-links p{margin:0 0 4px;font-weight:600}.bcl-guide-links ul{display:flex;flex-wrap:wrap;gap:0 24px;margin:0;padding:0;list-style:none}.bcl-guide-links a,.bcl-companion-guide{display:inline-flex;align-items:center;min-height:44px;color:#173f36;text-decoration:underline;text-underline-offset:4px}.bcl-guide-links a:focus-visible,.bcl-companion-guide:focus-visible{outline:2px solid #173f36;outline-offset:4px}.bcl-companion-guide{margin-top:8px;font-size:14px;line-height:1.5}';
     document.head.appendChild(style);
-    downloads(); giveBack(); jobs();
+    downloads(); giveBack(); jobs(); guideLinks();
+  }
+  function guideLinks() {
+    var groups = [
+      { id:'bcl-jobs', label:'Plan your job search', links:[
+        ['/around-town/what-jobs-near-boulder-creek-pay','What local jobs paid: August 2026 snapshot'],
+        ['/downloads#everyday','Free job search planner']
+      ]},
+      { id:'bcl-rentals', label:'Before you choose a place', links:[
+        ['/around-town/moving-to-boulder-creek','Moving to Boulder Creek'],
+        ['/around-town/cost-of-living-boulder-creek','What to budget for mountain living'],
+        ['/around-town/new-resident-quick-start-boulder-creek','Your first week here']
+      ]},
+      { id:'bcl-directory', label:'Get to know the local businesses', links:[
+        ['/around-town/what-the-directory-says-about-boulder-creek','The directory: July 2026 snapshot'],
+        ['/around-town/how-directory-verification-works','How listings are checked']
+      ]}
+    ];
+    groups.forEach(function(group){
+      var root=document.getElementById(group.id), id=group.id+'-guides';
+      if(!root || document.getElementById(id))return;
+      var nav=document.createElement('nav');nav.id=id;nav.className='bcl-guide-links';nav.setAttribute('aria-label',group.label);
+      var intro=document.createElement('p');intro.textContent=group.label;nav.appendChild(intro);
+      var list=document.createElement('ul');
+      group.links.forEach(function(item){var li=document.createElement('li'),link=document.createElement('a');link.href=item[0];link.textContent=item[1];li.appendChild(link);list.appendChild(li);});
+      nav.appendChild(list);root.before(nav);
+    });
+    var downloadsRoot=document.getElementById('bcl-downloads');
+    if(!downloadsRoot)return;
+    var companions={
+      'BCL_Local_Job_Search_Planner.pdf':['/jobs','Browse current local jobs'],
+      'New_Resident_Quick_Start.pdf':['/around-town/new-resident-quick-start-boulder-creek','Read the new resident guide'],
+      'Boulder_Creek_Hiring_A_Contractor_Checklist.pdf':['/directory','Find local trades and services'],
+      'Boulder_Creek_Big_Basin_Day_Trip_Planner.pdf':['/visit','Plan more time in the valley']
+    };
+    downloadsRoot.querySelectorAll('a[href*="/downloads/"]').forEach(function(pdf){
+      var item=companions[decodeURIComponent(new URL(pdf.href).pathname.split('/').pop())],card=pdf.closest('.bcl-card');
+      if(!item || !card || card.querySelector('.bcl-companion-guide'))return;
+      var link=document.createElement('a');link.className='bcl-companion-guide';link.href=item[0];link.textContent=item[1];
+      (card.querySelector('.bcl-download-copy')||card).appendChild(link);
+    });
   }
   function downloads() {
     var root = document.getElementById('bcl-downloads');

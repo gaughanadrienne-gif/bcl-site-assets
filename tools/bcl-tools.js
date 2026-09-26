@@ -820,6 +820,20 @@
     return url.pathname + (url.searchParams.toString() ? "?" + url.searchParams.toString() : "") + url.hash;
   }
 
+  function toolResetUrl(kind, loc) {
+    var owned = kind === "jobs" ? ["q", "extended", "tab"] : ["q"];
+    var base = loc && loc.href ? loc.href : String(loc || "");
+    var url = new URL(base, "https://www.bouldercreeklocal.com/");
+    owned.forEach(function (key) { url.searchParams.delete(key); });
+    return url.pathname + (url.searchParams.toString() ? "?" + url.searchParams.toString() : "") + url.hash;
+  }
+
+  function replaceToolResetUrl(kind, loc, historyObj) {
+    var next = toolResetUrl(kind, loc);
+    if (historyObj && typeof historyObj.replaceState === "function") historyObj.replaceState(null, "", next);
+    return next;
+  }
+
   /* ---------- dates shared by every tool ---------- */
 
   var MON_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -831,6 +845,28 @@
   function todayKey(now) {
     var t = now || new Date();
     return t.getFullYear() + "-" + pad2(t.getMonth() + 1) + "-" + pad2(t.getDate());
+  }
+
+  /* Event days belong to Boulder Creek, even when the reader's browser is in
+     another time zone. Intl applies the correct daylight-saving offset for the
+     instant, so this covers both PST and PDT without a fixed-offset guess. */
+  function pacificDayKey(now) {
+    var t = isDateLike(now) ? now : new Date();
+    try {
+      var parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit"
+      }).formatToParts(t);
+      var got = {};
+      parts.forEach(function (p) { got[p.type] = p.value; });
+      return got.year && got.month && got.day ? got.year + "-" + got.month + "-" + got.day : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function eventTodayKey(value) {
+    var key = /^(\d{4}-\d{2}-\d{2})/.exec(String(value == null ? "" : value));
+    return key ? key[1] : (pacificDayKey(value) || todayKey(isDateLike(value) ? value : new Date()));
   }
 
   function dayKeyToUTC(key) {
@@ -1707,6 +1743,7 @@
       root.querySelector(".bcl-filter-reset").addEventListener("click", function () {
         input.value = ""; select.value = ""; employerSel.value = ""; paySel.value = "0";
         areaSel.value = "nearby"; typeSel.value = ""; payListedBox.checked = false; freshBox.checked = false;
+        replaceToolResetUrl("jobs", location, history);
         resetBatch(); input.focus();
       });
       syncEmployers();
@@ -1900,6 +1937,7 @@
         townSel.value = "all";
         maxRentInput.value = "";
         verifiedBox.checked = true;
+        replaceToolResetUrl("rentals", location, history);
         render();
         input.focus();
       });
@@ -1950,12 +1988,10 @@
     if (!e || !e.end) return false;
     var s = evParts(e.start), n = evParts(e.end);
     if (!s || !n) return false;
-    /* Anything that is not a usable Date means "now". Callers reach this
-       through Array.map often enough that a stray index must not throw. */
-    var today = isDateLike(todayOpt) ? new Date(todayOpt.getTime()) : new Date();
-    today.setHours(0, 0, 0, 0);
-    return new Date(s.y, s.mo - 1, s.d) < today &&
-           new Date(n.y, n.mo - 1, n.d, 23, 59) >= today;
+    var today = eventTodayKey(todayOpt);
+    var start = s.y + "-" + pad2(s.mo) + "-" + pad2(s.d);
+    var end = n.y + "-" + pad2(n.mo) + "-" + pad2(n.d);
+    return start < today && end >= today;
   }
 
   function evThroughChip(s) {
@@ -2065,11 +2101,11 @@
     var p = evParts(e && e.start);
     if (!p) return range === "all";
     var q = evParts((e && e.end) || (e && e.start)) || p;
-    var day = new Date(p.y, p.mo - 1, p.d).getTime();
-    var dayEnd = new Date(q.y, q.mo - 1, q.d).getTime();
+    var day = Date.UTC(p.y, p.mo - 1, p.d);
+    var dayEnd = Date.UTC(q.y, q.mo - 1, q.d);
     if (dayEnd < day) dayEnd = day;   // a malformed end must never shrink the span
-    var today = opts.today ? new Date(opts.today.getTime()) : new Date();
-    today.setHours(0, 0, 0, 0);
+    var todayKey2 = eventTodayKey(opts.today);
+    var today = dayKeyToUTC(todayKey2);
     function overlaps(lo, hi) { return dayEnd >= lo && day <= hi; }
     if (range === "custom") {
       var from = dayKeyToUTC(opts.from), to = dayKeyToUTC(opts.to);
@@ -2081,23 +2117,17 @@
       return true;
     }
     if (range === "all") return true;
-    if (range === "today") return overlaps(today.getTime(), today.getTime());
+    if (range === "today") return overlaps(today, today);
     if (range === "7" || range === "30") {
-      var span = new Date(today);
-      span.setDate(today.getDate() + parseInt(range, 10));
-      return overlaps(today.getTime(), span.getTime());
+      var span = today + parseInt(range, 10) * 86400000;
+      return overlaps(today, span);
     }
     if (range === "weekend") {
       /* the coming (or current) Friday through Sunday, never earlier than today */
-      var dow = today.getDay();
-      var fri = new Date(today);
-      if (dow === 6) fri.setDate(today.getDate() - 1);
-      else if (dow === 0) fri.setDate(today.getDate() - 2);
-      else fri.setDate(today.getDate() + (5 - dow));
-      var sun = new Date(fri);
-      sun.setDate(fri.getDate() + 2);
-      var lo = Math.max(fri.getTime(), today.getTime());
-      return overlaps(lo, sun.getTime());
+      var dow = new Date(today).getUTCDay();
+      var fri = today + (dow === 6 ? -1 : dow === 0 ? -2 : 5 - dow) * 86400000;
+      var sun = fri + 2 * 86400000;
+      return overlaps(Math.max(fri, today), sun);
     }
     return true;
   }
@@ -3266,11 +3296,11 @@ function initBclSectionJumps(doc) {
      exhibit that opened in July at the top of "Happening next" under a
      three-week-old date. See evIsOngoing / evThroughChip. */
   function nextEvents(rows, todayKey, n, todayOpt) {
-    var today = isDateLike(todayOpt) ? todayOpt : (todayKey ? new Date(todayKey + "T00:00:00") : null);
+    todayKey = todayKey || eventTodayKey(todayOpt);
     return (rows || [])
       .filter(function (e) { return e && String(e.end || e.start || "").slice(0, 10) >= todayKey; })
       .sort(function (a, b) {
-        var ao = evIsOngoing(a, today), bo = evIsOngoing(b, today);
+        var ao = evIsOngoing(a, todayKey), bo = evIsOngoing(b, todayKey);
         if (ao !== bo) return ao ? -1 : 1;
         if (ao && bo) return String(a.end).localeCompare(String(b.end));
         return String(a.start).localeCompare(String(b.start));
@@ -3343,7 +3373,7 @@ function initBclSectionJumps(doc) {
   }
 
   function initHomeBoard(home, after) {
-    var today = todayKey();
+    var today = eventTodayKey();
 
     var sec = document.createElement("section");
     sec.id = "bcl-home-board";
@@ -3809,11 +3839,10 @@ function initBclSectionJumps(doc) {
   function initEvents(root) {
     root.innerHTML = '<div class="bcl-count">Loading events…</div>';
     fetchJSON(REPO + "/data/events.json").then(function (data) {
-      var now = new Date();
-      now.setHours(0, 0, 0, 0);
+      var now = eventTodayKey();
       var all = (data.events || []).filter(function (e) {
         var p = evParts(e.end || e.start);
-        return p && new Date(p.y, p.mo - 1, p.d, 23, 59) >= now;
+        return p && p.y + "-" + pad2(p.mo) + "-" + pad2(p.d) >= now;
       });
       /* Stable handle for the calendar button: the feed has no ids, and a
          position in the rendered list changes every time a filter does. */
@@ -3879,7 +3908,7 @@ function initBclSectionJumps(doc) {
           b.setAttribute("aria-pressed", b.className === "bcl-on" ? "true" : "false");
         });
         var rows = all.filter(function (e) {
-          if (!eventInRange(e, { range: mode2, from: fromInput.value, to: toInput.value })) return false;
+          if (!eventInRange(e, { range: mode2, from: fromInput.value, to: toInput.value, today: now })) return false;
           if (cat && (e.category || "Community") !== cat) return false;
           return eventMatchesQuery(e, q);
         });
@@ -3891,7 +3920,7 @@ function initBclSectionJumps(doc) {
              past so they sort first anyway, but the month grouping below emits a
              fresh heading every time the key changes, so a stray ongoing event in
              the middle would print "Happening now" twice. */
-          var ao = evIsOngoing(a), bo = evIsOngoing(b);
+          var ao = evIsOngoing(a, now), bo = evIsOngoing(b, now);
           if (ao !== bo) return ao ? -1 : 1;
           if (ao && bo) return String(a.end).localeCompare(String(b.end));
           return String(a.start).localeCompare(String(b.start));
@@ -3904,7 +3933,7 @@ function initBclSectionJumps(doc) {
         if (left > 0) moreBtn.textContent = "Load " + Math.min(batchSize, left) + " more";
         var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         function monthKey(e) {
-          if (evIsOngoing(e)) return "Happening now";
+          if (evIsOngoing(e, now)) return "Happening now";
           var p = evParts(e.start);
           return p ? MONTHS[p.mo - 1] + " " + p.y : "Undated";
         }
@@ -3954,6 +3983,7 @@ function initBclSectionJumps(doc) {
         toInput.value = "";
         range = "all";
         visibleLimit = batchSize;
+        replaceToolResetUrl("events", location, history);
         render();
         input.focus();
       });
@@ -4058,6 +4088,14 @@ function initBclSectionJumps(doc) {
       });
   }
 
+  function caltransPlaceLabel(begin) {
+    begin = begin || {};
+    var nearby = String(begin.beginNearbyPlace || "").trim();
+    var worksite = String(begin.beginLocationName || "").trim();
+    if (nearby && worksite && nearby.toLowerCase() !== worksite.toLowerCase()) return nearby + " (" + worksite + ")";
+    return nearby || worksite || "?";
+  }
+
   /* The card a reader sees is route + place + type + delay, and Caltrans files
      one record per log entry, so a single project can arrive as several rows
      that render as the same sentence. Two identical "SR-9 near Boulder Creek:
@@ -4070,7 +4108,7 @@ function initBclSectionJumps(doc) {
     var mins = parseInt(c.estimatedDelay, 10);
     return [
       b.beginRoute || "",
-      b.beginNearbyPlace || b.beginLocationName || "",
+      caltransPlaceLabel(b),
       String(c.typeOfClosure || "closure").toLowerCase(),
       mins > 0 ? mins : "",
       (c.closureTimestamp || {}).closureStartDate || "",
@@ -4158,7 +4196,7 @@ function initBclSectionJumps(doc) {
                "Not Reported" or "0", neither of which is worth saying out loud. */
             var mins = parseInt(c.estimatedDelay, 10);
             var delay = mins > 0 ? ", est. delay " + mins + " min" : "";
-            h += '<div class="bcl-meta">' + esc(b.beginRoute) + " near " + esc(b.beginNearbyPlace || b.beginLocationName || "?") + ": " +
+            h += '<div class="bcl-meta">' + esc(b.beginRoute) + " near " + esc(caltransPlaceLabel(b)) + ": " +
               esc((c.typeOfClosure || "closure").toLowerCase()) + delay + "</div>";
             var schedule = caltransSchedule(l);
             if (schedule) h += '<div class="bcl-meta">' + esc(schedule) + '</div>';
@@ -4582,18 +4620,7 @@ function initBclSectionJumps(doc) {
      boundary. If the browser cannot resolve the zone we return null and the
      page omits the age lines rather than printing a guess. */
   function rainPacificDay(now) {
-    var t = now || new Date();
-    try {
-      var parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit"
-      }).formatToParts(t);
-      var got = {};
-      parts.forEach(function (p) { got[p.type] = p.value; });
-      if (!got.year || !got.month || !got.day) return null;
-      return got.year + "-" + got.month + "-" + got.day;
-    } catch (e) {
-      return null;
-    }
+    return pacificDayKey(now);
   }
 
   function rainInches(n) {
@@ -5256,10 +5283,12 @@ function initBclSectionJumps(doc) {
   /* ---------- today module (home page) ---------- */
 
   function initToday(root) {
-    var now = new Date();
+    var today = eventTodayKey();
+    var todayParts = evParts(today);
+    var now = new Date(Date.UTC(todayParts.y, todayParts.mo - 1, todayParts.d));
     var days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     var mons = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-    var stamp = days[now.getDay()] + " " + mons[now.getMonth()] + " " + now.getDate();
+    var stamp = days[now.getUTCDay()] + " " + mons[now.getUTCMonth()] + " " + now.getUTCDate();
     root.innerHTML =
       '<div class="bcl-today">' +
       '<div class="bcl-today-head"><h2>Today in Boulder Creek</h2><span>' + stamp + "</span></div>" +
@@ -5328,27 +5357,20 @@ function initBclSectionJumps(doc) {
       }).catch(function () { air.innerHTML = '<b>Air</b><a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow map</a>'; });
 
     fetchJSON(REPO + "/data/events.json").then(function (data) {
-      var t = new Date(); t.setHours(0, 0, 0, 0);
-      var todayKey = t.getFullYear() + "-" + (t.getMonth() < 9 ? "0" : "") + (t.getMonth() + 1) + "-" + (t.getDate() < 10 ? "0" : "") + t.getDate();
-      var upcoming = (data.events || []).filter(function (e) {
-        var p = evParts(e.end || e.start);
-        return p && new Date(p.y, p.mo - 1, p.d, 23, 59) >= t;
-      }).sort(function (a, b) {
-        /* Already-open runs first, keyed off when they close. Sorting the lot
-           by start hands the "NEXT" slot to an exhibit that opened in July. */
-        var ao = evIsOngoing(a, t), bo = evIsOngoing(b, t);
-        if (ao !== bo) return ao ? -1 : 1;
-        if (ao && bo) return String(a.end).localeCompare(String(b.end));
-        return String(a.start).localeCompare(String(b.start));
-      });
-      var todays = upcoming.filter(function (e) { return String(e.start).slice(0, 10) === todayKey; }).slice(0, 3);
+      var upcoming = nextEvents(data.events || [], today, (data.events || []).length);
+      var todays = upcoming.filter(function (e) {
+        return eventInRange(e, { range: "today", today: today });
+      }).slice(0, 3);
       if (todays.length) {
         ev.innerHTML = todays.map(function (e) {
-          return "<div><span>" + evDateChip(e.start).replace(/^[A-Z]{3} [A-Z]{3} \d+( · )?/, "") + (evParts(e.start).h == null ? "TODAY" : "") + "</span>" + esc(e.title) + (e.location ? " · " + esc(String(e.location).split(",")[0]) : "") + "</div>";
+          var kick = evIsOngoing(e, today)
+            ? "ON NOW · " + evThroughChip(e.end)
+            : evDateChip(e.start).replace(/^[A-Z]{3} [A-Z]{3} \d+( · )?/, "") + (evParts(e.start).h == null ? "TODAY" : "");
+          return "<div><span>" + kick + "</span>" + esc(e.title) + (e.location ? " · " + esc(String(e.location).split(",")[0]) : "") + "</div>";
         }).join("");
       } else if (upcoming.length) {
         var n = upcoming[0];
-        var kick = evIsOngoing(n, t) ? "ON NOW · " + evThroughChip(n.end) : "NEXT · " + evDateChip(n.start);
+        var kick = evIsOngoing(n, today) ? "ON NOW · " + evThroughChip(n.end) : "NEXT · " + evDateChip(n.start);
         ev.innerHTML = "<div><span>" + kick + "</span>" + esc(n.title) + (n.location ? " · " + esc(String(n.location).split(",")[0]) : "") + "</div>";
       } else {
         ev.innerHTML = "<div>No verified upcoming events on the calendar.</div>";
@@ -5504,9 +5526,8 @@ function initBclSectionJumps(doc) {
   function eventIsCurrentForSearch(event, todayOpt) {
     var end = evParts((event && event.end) || (event && event.start));
     if (!end) return false;
-    var today = isDateLike(todayOpt) ? new Date(todayOpt.getTime()) : new Date();
-    today.setHours(0, 0, 0, 0);
-    return new Date(end.y, end.mo - 1, end.d, 23, 59) >= today;
+    var endKey = end.y + "-" + pad2(end.mo) + "-" + pad2(end.d);
+    return endKey >= eventTodayKey(todayOpt);
   }
 
   /* The search index intentionally contains the full feed, including past
@@ -5537,7 +5558,7 @@ function initBclSectionJumps(doc) {
          records say so in the indexed snippet; other rows begin with ISO day. */
       if (/\bongoing\b/i.test(rec.s || "")) return true;
       var m = /\b(\d{4}-\d{2}-\d{2})\b/.exec(rec.s || "");
-      return !m || dayAge(m[1], todayKey(todayOpt)) <= 0;
+      return !m || dayAge(m[1], eventTodayKey(todayOpt)) <= 0;
     });
   }
 
@@ -5797,7 +5818,7 @@ function initBclSectionJumps(doc) {
       var extraModules = [];
       if (/^\/contact\/?$/.test(location.pathname)) extraModules.push('bcl-contact.js');
       if (/^\/around-town(?:\/category\/[^/]+)?\/?$/.test(location.pathname)) extraModules.push('bcl-archive.js');
-      if (document.querySelector('#bcl-downloads,#bcl-give-back,#bcl-jobs')) extraModules.push('bcl-usability.js');
+      if (document.querySelector('#bcl-downloads,#bcl-give-back,#bcl-jobs,#bcl-directory,#bcl-rentals')) extraModules.push('bcl-usability.js');
       extraModules.forEach(function (name) {
         if (document.querySelector('script[data-bcl-module="' + name + '"]')) return;
         var moduleScript = document.createElement('script');
@@ -5850,6 +5871,10 @@ function initBclSectionJumps(doc) {
     module.exports.correctionHref = correctionHref;
     module.exports.listingFilterState = listingFilterState;
     module.exports.listingFilterUrl = listingFilterUrl;
+    module.exports.toolResetUrl = toolResetUrl;
+    module.exports.replaceToolResetUrl = replaceToolResetUrl;
+    module.exports.pacificDayKey = pacificDayKey;
+    module.exports.eventTodayKey = eventTodayKey;
     module.exports.shareUrlAtAction = shareUrlAtAction;
     module.exports.updateShareBarLinks = updateShareBarLinks;
     module.exports.jobEmployerName = jobEmployerName;
@@ -5857,5 +5882,6 @@ function initBclSectionJumps(doc) {
     module.exports.evEndSuffix = evEndSuffix;
     module.exports.eventIsCurrentForSearch = eventIsCurrentForSearch;
     module.exports.filterCurrentSearchRecords = filterCurrentSearchRecords;
+    module.exports.caltransPlaceLabel = caltransPlaceLabel;
   }
 })();
