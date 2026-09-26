@@ -18,13 +18,13 @@ const expectedOfferings = {
   "el-rey-leon-boulder-creek": 32,
   "elevated-wellness-massage-boulder-creek": 11,
   "lone-wolf-kenpo-boulder-creek": 8,
-  "mountain-sangha-boulder-creek": 39,
+  "mountain-sangha-boulder-creek": 40,
   "scopazzis-boulder-creek": 114,
   "spotlight-supernatural-beauty": 49,
   "taes-edo-sushi-boulder-creek": 66,
   "taqueria-los-gallos-boulder-creek": 43,
   "tree-house-cafe-boulder-creek": 74,
-  "treetop-pilates-boulder-creek": 17
+  "treetop-pilates-boulder-creek": 16
 };
 
 test("updated article catalogs retain every source-backed offering", () => {
@@ -79,8 +79,13 @@ test("newly recovered offering families are present", () => {
   assert.match(menuOf("lone-wolf-kenpo-boulder-creek"), /Cardio kickboxing/);
   assert.match(menuOf("elevated-wellness-massage-boulder-creek"), /Wellness gifts/);
   assert.match(menuOf("mountain-sangha-boulder-creek"), /Private sessions and rentals/);
+  // The published catalog distinguishes prepaid passes from auto-billed plans.
+  assert.match(menuOf("mountain-sangha-boulder-creek"), /Semi-annual unlimited pass/);
+  assert.match(menuOf("mountain-sangha-boulder-creek"), /Senior 6-month unlimited, auto-bill/);
   assert.match(menuOf("scopazzis-boulder-creek"), /Harris Ranch Ribeye/);
   assert.match(menuOf("tree-house-cafe-boulder-creek"), /Build Your Own Sandwich/);
   assert.match(menuOf("taes-edo-sushi-boulder-creek"), /Spicy Scallop Roll/);
   assert.match(menuOf("treetop-pilates-boulder-creek"), /Duet, ten-pack/);
+  // Removed by the published full-audit correction in 75fef3f.
+  assert.doesNotMatch(menuOf("treetop-pilates-boulder-creek"), /Introductory assessment/);
 });

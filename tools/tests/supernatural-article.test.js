@@ -46,5 +46,5 @@ test("the service module is complete, compact and price-free", () => {
   assert.doesNotMatch(menu, /Wellness technology/);
   assert.match(menu, /https:\/\/supernatural\.beauty\/services\//);
   assert.ok(menu.indexOf("bcl-menu__actions") < menu.indexOf("<details"));
-  assert.equal(record.imageAlt, "Watercolor illustration of the SuperNatural Beauty storefront in Boulder Creek");
+  assert.match(record.imageAlt, /red-brick salon frontage.*curtained windows.*dark door.*brick planters/i);
 });
