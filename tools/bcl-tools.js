@@ -380,6 +380,7 @@
          last row is what a uniform grid does and is left alone. */
       ".bcl-status-shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:22px 0;}.bcl-status-shortcuts a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:6px 12px;box-sizing:border-box;border:1.5px solid #173f36;border-radius:8px;color:#173f36!important;background:#fffdf8;font-weight:600;text-decoration:none!important;}.bcl-status-shortcuts a:first-child{background:#173f36!important;color:#fffdf8!important;}.bcl-status-shortcuts a.bcl-sc-911{border-color:#8f4f45;color:#8f4f45!important;}.bcl-status-shortcuts a:focus-visible,.bcl-rain-chart:focus-visible{outline:3px solid #173f36;outline-offset:3px;}",
       ".bcl-verdict{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;margin:0 0 16px;border-radius:10px;border:1px solid #b9d1bf;background:#eef4ee;color:#173f36;}.bcl-verdict-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin:0 0 4px;}.bcl-verdict p{margin:2px 0 0;color:#1c2a26!important;}.bcl-verdict-mark{flex:0 0 40px;height:40px;border-radius:50%;background:#2e6b46;color:#fffdf8;display:flex;align-items:center;justify-content:center;font-weight:700;}.bcl-verdict.is-alert{background:#8f4f45!important;border-color:#8f4f45;color:#fffdf8;}.bcl-verdict.is-alert p,.bcl-verdict.is-alert .bcl-verdict-title{color:#fffdf8!important;}.bcl-verdict.is-alert a{color:#fffdf8!important;font-weight:600;}.bcl-verdict.is-alert .bcl-verdict-mark{background:#fffdf8;color:#8f4f45;}.bcl-verdict.is-unknown{background:#f5f1e7;border-color:#ddd5c3;color:#1c2a26;}.bcl-verdict.is-unknown .bcl-verdict-mark{background:#626c66;}#bcl-status .bcl-card[data-kind]::before{content:attr(data-kind);display:block;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#626c66;margin:0 0 6px;}.bcl-forecast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}",
+      ".bcl-active-filters{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 14px;}.bcl-active-filters:empty{display:none;}.bcl-active-tag,.bcl-active-clear{min-height:36px;padding:4px 12px;border-radius:999px;font:inherit;font-size:.85rem;cursor:pointer;}.bcl-active-tag{border:1px solid #b9d1bf;background:#eef4ee;color:#173f36;}.bcl-active-clear{border:0;background:transparent;color:#2e6b46;text-decoration:underline;font-weight:600;}.bcl-active-tag:focus-visible,.bcl-active-clear:focus-visible{outline:3px solid #173f36;outline-offset:2px;}",
       ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:stretch;grid-auto-rows:1fr;}@media (max-width:640px){.bcl-status-grid{grid-auto-rows:auto;}.bcl-verdict{gap:12px;padding:16px;}.bcl-verdict-mark{flex-basis:30px;height:30px;font-size:.9rem;}.bcl-verdict-title{font-size:1.4rem;}}",
       "#bcl-status .bcl-card{background:#f5f1e7 !important;}",
       /* Official information: the escape routes were plain ink with no
@@ -796,6 +797,25 @@
   }
 
   var LISTING_FILTER_KEYS = ["q", "category", "open", "local"];
+
+  /* Removable tags for every filter in effect (redesign, owner-approved
+     2026-09-27). Each tag clears exactly one filter; "Clear all" appears when
+     two or more are on. Empty when nothing is filtered. */
+  function activeFilterTagsHTML(state) {
+    state = state || {};
+    var tags = [];
+    if (state.q) tags.push(["q", "Search: " + state.q]);
+    if (state.category) tags.push(["category", state.category]);
+    else if (state.group) tags.push(["group", state.group]);
+    if (state.open) tags.push(["open", "Open now"]);
+    if (state.local) tags.push(["local", "In Boulder Creek"]);
+    if (!tags.length) return "";
+    var h = tags.map(function (t) {
+      return '<button type="button" class="bcl-active-tag" data-clear="' + t[0] + '" aria-label="Remove filter: ' + esc(t[1]) + '">' + esc(t[1]) + ' <span aria-hidden="true">&times;</span></button>';
+    }).join("");
+    if (tags.length > 1) h += '<button type="button" class="bcl-active-clear" data-clear="all">Clear all</button>';
+    return h;
+  }
 
   function listingFilterState(search) {
     var params;
@@ -1248,7 +1268,7 @@
         '<button type="button" class="bcl-filter-reset">Reset filters</button>' +
         "</div>" +
         (opts.chips ? '<div class="bcl-chips" role="group" aria-label="Filter by category"></div>' : "") +
-        '<div class="bcl-count" aria-live="polite"></div><div class="bcl-list" id="bcl-' + esc(label.replace(/[^a-z0-9]+/gi, "-")) + '-list"></div>' +
+        '<div class="bcl-count" aria-live="polite"></div><div class="bcl-active-filters" role="group" aria-label="Filters in effect"></div><div class="bcl-list" id="bcl-' + esc(label.replace(/[^a-z0-9]+/gi, "-")) + '-list"></div>' +
         (opts.batchSize ? '<div class="bcl-load-more" hidden><button type="button" aria-controls="bcl-' + esc(label.replace(/[^a-z0-9]+/gi, "-")) + '-list"></button></div>' : "") +
         '<div class="bcl-note">Something wrong or missing? <a href="/contact">Send an update</a>.</div>';
 
@@ -1351,6 +1371,8 @@
         count.textContent = batchSize ? "SHOWING " + shown + " OF " + rows.length + " MATCHING · " + all.length + " LISTINGS" + updatedSuffix(data.updated) :
           rows.length + " OF " + all.length + " LISTINGS" + updatedSuffix(data.updated);
         reportSearch(q, rows.length);
+        var activeBox = root.querySelector(".bcl-active-filters");
+        if (activeBox) activeBox.innerHTML = activeFilterTagsHTML({ q: (input.value || "").trim(), category: cat, group: cat ? "" : activeGroup, open: openNow, local: bcOnly });
         if (!rows.length) {
           list.innerHTML = '<div class="bcl-unavailable">No listings match that search. A missing business isn’t a judgment, it may just not be verified yet. <a href="/contact">Suggest it</a>.</div>';
           if (moreWrap) moreWrap.hidden = true;
@@ -1418,6 +1440,20 @@
          filter, rather than intersecting with it and silently returning
          nothing when the two disagree. */
       select.addEventListener("change", function () { activeGroup = ""; if (batchSize) visibleLimit = batchSize; render(true); });
+      var activeBoxEl = root.querySelector(".bcl-active-filters");
+      if (activeBoxEl) activeBoxEl.addEventListener("click", function (ev) {
+        var btn = ev.target && ev.target.closest ? ev.target.closest("[data-clear]") : null;
+        if (!btn) return;
+        var k = btn.getAttribute("data-clear");
+        if (k === "q" || k === "all") input.value = "";
+        if (k === "category" || k === "all") select.value = "";
+        if (k === "group" || k === "category" || k === "all") activeGroup = "";
+        if (k === "open" || k === "all") openBox.checked = false;
+        if (k === "local" || k === "all") bcBox.checked = false;
+        if (batchSize) visibleLimit = batchSize;
+        render(true);
+        input.focus();
+      });
       openBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(true); });
       bcBox.addEventListener("change", function () { if (batchSize) visibleLimit = batchSize; render(true); });
       root.querySelector(".bcl-filter-reset").addEventListener("click", function () {
@@ -3551,15 +3587,65 @@ function initBclSectionJumps(doc) {
        nowhere else to land. It carries display:none until it has real content,
        and deletes itself if it never gets any, so a failed fetch leaves no gap. */
     var spotSec = null;
+    var pets = document.getElementById("bcl-missing-pets");
     if (lastBoardSec && lastBoardSec.parentNode) {
       spotSec = document.createElement("section");
       spotSec.id = "bcl-home-spotlight";
       spotSec.className = "bcl-section";
       spotSec.style.display = "none";
-      lastBoardSec.parentNode.insertBefore(spotSec, lastBoardSec.nextSibling);
+      /* Redesign (owner-approved 2026-09-27): daily utility first, then the
+         weekly spotlight, then the board. The spotlight sits after whichever of
+         Today and the pets panel comes second. */
+      var afterDaily = (pets && pets.parentNode === home) ? pets : todaySec;
+      if (afterDaily && afterDaily.parentNode === lastBoardSec.parentNode) {
+        afterDaily.parentNode.insertBefore(spotSec, afterDaily.nextSibling);
+      } else {
+        lastBoardSec.parentNode.insertBefore(spotSec, lastBoardSec.nextSibling);
+      }
     }
-    if (lastBoardSec) initHomeRainCard(spotSec || lastBoardSec);
+    if (lastBoardSec) initHomeRainCard(lastBoardSec);
     initHomeSpotlight(home, spotSec);
+    orderHomeDaily(home, todaySec, pets, spotSec);
+  }
+
+  /* Today leads the homepage; the missing-pets panel follows it as a one-line
+     strip while it is empty (community-reports.js marks it .is-empty). The
+     moment a pet is actually reported, the panel moves back above Today, so a
+     live alert is never pushed down the page. Today-first is the default so an
+     ordinary visit does not shift the layout after the reports load. */
+  function homeDailyOrder(petsEmpty) {
+    return petsEmpty === false ? ["pets", "today"] : ["today", "pets"];
+  }
+
+  function orderHomeDaily(home, todaySec, pets, spotSec) {
+    if (!home || !todaySec || todaySec.parentNode !== home) return;
+    /* community-reports.js inserts the panel right after the hero, often after
+       this code has run, so wait for it rather than giving up. */
+    if (!pets || pets.parentNode !== home) {
+      if (typeof MutationObserver !== "function") return;
+      var waiter = new MutationObserver(function () {
+        var el = document.getElementById("bcl-missing-pets");
+        if (el && el.parentNode === home) { waiter.disconnect(); orderHomeDaily(home, todaySec, el, spotSec); }
+      });
+      waiter.observe(home, { childList: true });
+      setTimeout(function () { waiter.disconnect(); }, 30000);
+      return;
+    }
+    function apply() {
+      /* Only an explicit, rendered state counts as "not empty": a panel still
+         loading has neither is-empty nor any report cards yet. */
+      var hasReports = !pets.classList.contains("is-empty") && !!pets.querySelector(".bcl-reports-card");
+      var order = homeDailyOrder(hasReports ? false : true);
+      var first = order[0] === "today" ? todaySec : pets;
+      var second = first === todaySec ? pets : todaySec;
+      if (first.nextElementSibling !== second) home.insertBefore(second, first.nextSibling);
+      if (first.previousElementSibling === second) home.insertBefore(first, second);
+      if (spotSec && spotSec.parentNode === home && second.nextElementSibling !== spotSec) home.insertBefore(spotSec, second.nextSibling);
+    }
+    apply();
+    if (typeof MutationObserver === "function") {
+      new MutationObserver(apply).observe(pets, { attributes: true, attributeFilter: ["class"], childList: true, subtree: true });
+    }
   }
 
   /* Homepage rainfall card (owner, 2026-07-31). The decision behind it: tools get
@@ -5941,12 +6027,13 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, homeDailyOrder: homeDailyOrder, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
     module.exports.flexibleLocalDate = flexibleLocalDate;
     module.exports.jobDeadlineText = jobDeadlineText;
     module.exports.rentalAvailableText = rentalAvailableText;
     module.exports.correctionHref = correctionHref;
     module.exports.listingFilterState = listingFilterState;
+    module.exports.activeFilterTagsHTML = activeFilterTagsHTML;
     module.exports.listingFilterUrl = listingFilterUrl;
     module.exports.toolResetUrl = toolResetUrl;
     module.exports.replaceToolResetUrl = replaceToolResetUrl;

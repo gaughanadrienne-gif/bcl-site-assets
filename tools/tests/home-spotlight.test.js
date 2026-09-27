@@ -324,8 +324,10 @@ test("initHome builds the shell above the rain card and clears its own prior one
   assert.match(SRC, /spotSec\.id = "bcl-home-spotlight";/);
   assert.match(SRC, /spotSec\.style\.display = "none";/);
   assert.match(SRC, /insertBefore\(spotSec, lastBoardSec\.nextSibling\)/);
-  // ...and the rain card anchors AFTER it, which is what puts spotlight above rain.
-  assert.match(SRC, /initHomeRainCard\(spotSec \|\| lastBoardSec\)/);
+  // Redesign 2026-09-27: the spotlight moves up beside the daily block (after
+  // Today and the pets strip), and rain anchors after the board instead.
+  assert.match(SRC, /afterDaily\.parentNode\.insertBefore\(spotSec, afterDaily\.nextSibling\)/);
+  assert.match(SRC, /initHomeRainCard\(lastBoardSec\)/);
   assert.match(SRC, /initHomeSpotlight\(home, spotSec\)/);
 });
 
@@ -485,4 +487,11 @@ test("the blurb is big enough to read, which is why it changed", () => {
   assert.match(blurb, /font-size:clamp\(1\.02rem/);
   assert.match(blurb, /font-weight:500/);
   assert.doesNotMatch(blurb, /font-size:\.9/);
+});
+
+test("homeDailyOrder: Today leads unless a pet is actually reported", () => {
+  const t = require("../bcl-tools.js");
+  assert.deepEqual(t.homeDailyOrder(true), ["today", "pets"]);
+  assert.deepEqual(t.homeDailyOrder(undefined), ["today", "pets"]);
+  assert.deepEqual(t.homeDailyOrder(false), ["pets", "today"]);
 });
