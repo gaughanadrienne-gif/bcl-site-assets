@@ -381,6 +381,7 @@
       ".bcl-status-shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:22px 0;}.bcl-status-shortcuts a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:6px 12px;box-sizing:border-box;border:1.5px solid #173f36;border-radius:8px;color:#173f36!important;background:#fffdf8;font-weight:600;text-decoration:none!important;}.bcl-status-shortcuts a:first-child{background:#173f36!important;color:#fffdf8!important;}.bcl-status-shortcuts a.bcl-sc-911{border-color:#8f4f45;color:#8f4f45!important;}.bcl-status-shortcuts a:focus-visible,.bcl-rain-chart:focus-visible{outline:3px solid #173f36;outline-offset:3px;}",
       ".bcl-verdict{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;margin:0 0 16px;border-radius:10px;border:1px solid #b9d1bf;background:#eef4ee;color:#173f36;}.bcl-verdict-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin:0 0 4px;}.bcl-verdict p{margin:2px 0 0;color:#1c2a26!important;}.bcl-verdict-mark{flex:0 0 40px;height:40px;border-radius:50%;background:#2e6b46;color:#fffdf8;display:flex;align-items:center;justify-content:center;font-weight:700;}.bcl-verdict.is-alert{background:#8f4f45!important;border-color:#8f4f45;color:#fffdf8;}.bcl-verdict.is-alert p,.bcl-verdict.is-alert .bcl-verdict-title{color:#fffdf8!important;}.bcl-verdict.is-alert a{color:#fffdf8!important;font-weight:600;}.bcl-verdict.is-alert .bcl-verdict-mark{background:#fffdf8;color:#8f4f45;}.bcl-verdict.is-unknown{background:#f5f1e7;border-color:#ddd5c3;color:#1c2a26;}.bcl-verdict.is-unknown .bcl-verdict-mark{background:#626c66;}#bcl-status .bcl-card[data-kind]::before{content:attr(data-kind);display:block;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#626c66;margin:0 0 6px;}.bcl-forecast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}",
       ".bcl-active-filters{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 14px;}.bcl-active-filters:empty{display:none;}.bcl-active-tag,.bcl-active-clear{min-height:36px;padding:4px 12px;border-radius:999px;font:inherit;font-size:.85rem;cursor:pointer;}.bcl-active-tag{border:1px solid #b9d1bf;background:#eef4ee;color:#173f36;}.bcl-active-clear{border:0;background:transparent;color:#2e6b46;text-decoration:underline;font-weight:600;}.bcl-active-tag:focus-visible,.bcl-active-clear:focus-visible{outline:3px solid #173f36;outline-offset:2px;}",
+      ".bcl-res-superseded{display:none!important;}.bcl-res-redesign{padding:18px 0 0;}.bcl-res-help{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;padding:16px 20px;background:#fbeee9;border:1px solid #e3b7a9;border-radius:10px;}.bcl-res-help-k{margin:0;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#8f4f45!important;}.bcl-res-help-row{display:flex;flex-wrap:wrap;gap:10px;flex:1 1 auto;}.bcl-res-help-row a{display:inline-flex;align-items:center;min-height:46px;padding:0 16px;border:1.5px solid #8f4f45;border-radius:6px;color:#8f4f45!important;font-weight:600;text-decoration:none!important;background:#fffdf8;}.bcl-res-help-row a.is-911{background:#8f4f45!important;color:#fffdf8!important;}.bcl-res-help-status{font-weight:600;color:#2e6b46!important;}.bcl-res-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin:10px 0 8px;}.bcl-res-group{padding:20px;border:1px solid #ddd5c3;border-radius:12px;background:#fffdf8;}.bcl-res-group-k{margin:0 0 4px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:#8f4f45!important;}.bcl-res-group h2{font-size:1.55rem!important;line-height:1.1!important;margin:0 0 10px!important;}.bcl-res-group ul{list-style:none;margin:0;padding:0;}.bcl-res-group li{margin:0;padding:7px 0;border-top:1px solid #ede7da;}.bcl-res-group a{color:#2e6b46!important;}@media (max-width:640px){.bcl-res-help-row a{flex:1 1 44%;justify-content:center;}}",
       ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:stretch;grid-auto-rows:1fr;}@media (max-width:640px){.bcl-status-grid{grid-auto-rows:auto;}.bcl-verdict{gap:12px;padding:16px;}.bcl-verdict-mark{flex-basis:30px;height:30px;font-size:.9rem;}.bcl-verdict-title{font-size:1.4rem;}}",
       "#bcl-status .bcl-card{background:#f5f1e7 !important;}",
       /* Official information: the escape routes were plain ink with no
@@ -2907,6 +2908,102 @@ function initBclSectionJumps(doc) {
     "internet and cell": "Internet & cell",
     "everyday places": "Everyday places"
   };
+  /* Residents redesign (owner-approved 2026-09-27): a "Need help now" row and
+     five situation groups replace the top card grids. Everything below
+     (reports, help gateways, the collapsible details) is unchanged. The old
+     grids are hidden, not deleted, so crawlers and no-JS readers keep them. */
+  var RES_GROUPS = [
+    ["I just moved here", "Getting settled", [
+      ["Six things for your first month", "#new-resident-checklist"],
+      ["New resident quick-start", "/around-town/new-resident-quick-start-boulder-creek"],
+      ["Moving to Boulder Creek", "/around-town/moving-to-boulder-creek"],
+      ["What it costs to live here", "/around-town/cost-of-living-boulder-creek"]]],
+    ["Running the house", "Household services", [
+      ["Trash, recycling and the transfer station", "#res-trash-recycling-and-green-waste"],
+      ["Water and power", "#res-water-and-power"],
+      ["Internet and cell, canyon by canyon", "#res-internet-and-cell"],
+      ["Septic basics", "/around-town/septic-basics-boulder-creek"],
+      ["Find a local service", "/directory"]]],
+    ["Kids and family", "Family life", [
+      ["Schools and families", "#res-schools-and-families"],
+      ["Childcare, start here", "/around-town/childcare-boulder-creek"],
+      ["Library, post office and rec", "#res-everyday-places"],
+      ["Kids' activities", "/around-town/kids-activities-boulder-creek"]]],
+    ["Before the season turns", "Roads and preparedness", [
+      ["Who maintains which road", "#res-roads"],
+      ["Storm and fire season prep", "#res-emergency-readiness"],
+      ["Set up CruzAware alerts", "/around-town/cruzaware-setup-guide"],
+      ["Check before you build or cut", "#res-permits-and-building"]]],
+    ["Being part of it", "Getting involved", [
+      ["Events this week", "/events"],
+      ["Give Back", "/give-back"],
+      ["Jobs and rentals", "/jobs"],
+      ["Tell us what would help", "/contact"]]]
+  ];
+
+  function residentsHelpHTML() {
+    return '<div class="bcl-wrap"><div class="bcl-res-help"><p class="bcl-res-help-k">Need help now</p>' +
+      '<div class="bcl-res-help-row">' +
+      '<a class="is-911" href="tel:911">Emergency: 911</a>' +
+      '<a href="https://pgealerts.alerts.pge.com/outagecenter/">Power out</a>' +
+      '<a href="https://protect.genasys.com/">Know your evacuation zone</a>' +
+      '<a href="https://reports.bouldercreeklocal.com/community-reports">Lost or found pet</a>' +
+      '</div><a class="bcl-res-help-status" href="/mountain-status">Mountain Status &rarr;</a></div></div>';
+  }
+
+  function residentsGroupsHTML(groups) {
+    return '<div class="bcl-wrap"><div class="bcl-res-groups">' + (groups || RES_GROUPS).map(function (g) {
+      return '<div class="bcl-res-group"><p class="bcl-res-group-k">' + esc(g[0]) + '</p><h2>' + esc(g[1]) + '</h2><ul>' +
+        g[2].map(function (l) { return '<li><a href="' + esc(l[1]) + '">' + esc(l[0]) + '</a></li>'; }).join("") + '</ul></div>';
+    }).join("") + '</div></div>';
+  }
+
+  function openResidentsTarget(hash) {
+    if (!hash || hash.charAt(0) !== "#") return;
+    var el = document.getElementById(hash.slice(1));
+    if (!el) return;
+    var d = el.tagName === "DETAILS" ? el : (el.closest ? el.closest("details") : null);
+    if (d) d.open = true;
+    if (el.scrollIntoView) el.scrollIntoView({ block: "start" });
+  }
+
+  function redesignResidentsPage(page) {
+    if (!page || document.getElementById("bcl-res-help")) return;
+    var hero = page.querySelector("section.hero, .bcl-hero");
+    if (!hero || hero.parentNode !== page) return;
+    var help = document.createElement("section");
+    help.id = "bcl-res-help";
+    help.className = "bcl-res-redesign";
+    help.innerHTML = residentsHelpHTML();
+    var groups = document.createElement("section");
+    groups.id = "bcl-res-groups";
+    groups.className = "bcl-res-redesign";
+    groups.setAttribute("aria-label", "Resident resources by situation");
+    groups.innerHTML = residentsGroupsHTML();
+    page.insertBefore(help, hero.nextSibling);
+    page.insertBefore(groups, help.nextSibling);
+    [].slice.call(page.querySelectorAll("section.quick-paths, #newcomer, #before-you-go, section.newsletter.utility-strip")).forEach(function (el) {
+      el.classList.add("bcl-res-superseded");
+    });
+    page.addEventListener("click", function (ev) {
+      var a = ev.target && ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
+      if (a) openResidentsTarget(a.getAttribute("href"));
+    });
+    if (location.hash) openResidentsTarget(location.hash);
+    /* community-reports.js inserts its panel right after the hero, often after
+       this runs; keep Need help and the groups directly under the hero. */
+    function keepOrder() {
+      if (hero.nextSibling !== help) page.insertBefore(help, hero.nextSibling);
+      if (help.nextSibling !== groups) page.insertBefore(groups, help.nextSibling);
+    }
+    keepOrder();
+    if (typeof MutationObserver === "function") {
+      var mo = new MutationObserver(keepOrder);
+      mo.observe(page, { childList: true });
+      setTimeout(function () { mo.disconnect(); }, 30000);
+    }
+  }
+
   function repairResidentsPage() {
     var page = document.getElementById("bcl-residents");
     if (!page) return;
@@ -2946,6 +3043,7 @@ function initBclSectionJumps(doc) {
         hero.parentNode.insertBefore(nav, hero.nextSibling);
       }
     }
+    redesignResidentsPage(page);
   }
 
   /* ---------- pointers to the printable guides ----------
@@ -6027,7 +6125,7 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, homeDailyOrder: homeDailyOrder, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, residentsGroupsHTML: residentsGroupsHTML, residentsHelpHTML: residentsHelpHTML, RES_GROUPS: RES_GROUPS, homeDailyOrder: homeDailyOrder, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
     module.exports.flexibleLocalDate = flexibleLocalDate;
     module.exports.jobDeadlineText = jobDeadlineText;
     module.exports.rentalAvailableText = rentalAvailableText;
