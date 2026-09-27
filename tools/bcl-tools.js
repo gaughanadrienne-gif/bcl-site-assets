@@ -171,7 +171,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v29";
+  var CSS_ID = "bcl-tools-css-v30";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -378,8 +378,9 @@
          every row as tall as the tallest card, so the five cards are one size
          rather than five sizes cut to their text. A trailing empty cell in the
          last row is what a uniform grid does and is left alone. */
-      ".bcl-status-shortcuts{display:flex;flex-wrap:wrap;gap:8px 20px;margin:20px 0;}.bcl-status-shortcuts a{display:inline-flex;align-items:center;min-height:44px;color:#2e6b46!important;text-decoration:underline;text-underline-offset:4px;}.bcl-status-shortcuts a:focus-visible,.bcl-rain-chart:focus-visible{outline:3px solid #173f36;outline-offset:3px;}",
-      ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:stretch;grid-auto-rows:1fr;}",
+      ".bcl-status-shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:22px 0;}.bcl-status-shortcuts a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:6px 12px;box-sizing:border-box;border:1.5px solid #173f36;border-radius:8px;color:#173f36!important;background:#fffdf8;font-weight:600;text-decoration:none!important;}.bcl-status-shortcuts a:first-child{background:#173f36!important;color:#fffdf8!important;}.bcl-status-shortcuts a.bcl-sc-911{border-color:#8f4f45;color:#8f4f45!important;}.bcl-status-shortcuts a:focus-visible,.bcl-rain-chart:focus-visible{outline:3px solid #173f36;outline-offset:3px;}",
+      ".bcl-verdict{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;margin:0 0 16px;border-radius:10px;border:1px solid #b9d1bf;background:#eef4ee;color:#173f36;}.bcl-verdict-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin:0 0 4px;}.bcl-verdict p{margin:2px 0 0;color:#1c2a26!important;}.bcl-verdict-mark{flex:0 0 40px;height:40px;border-radius:50%;background:#2e6b46;color:#fffdf8;display:flex;align-items:center;justify-content:center;font-weight:700;}.bcl-verdict.is-alert{background:#8f4f45!important;border-color:#8f4f45;color:#fffdf8;}.bcl-verdict.is-alert p,.bcl-verdict.is-alert .bcl-verdict-title{color:#fffdf8!important;}.bcl-verdict.is-alert a{color:#fffdf8!important;font-weight:600;}.bcl-verdict.is-alert .bcl-verdict-mark{background:#fffdf8;color:#8f4f45;}.bcl-verdict.is-unknown{background:#f5f1e7;border-color:#ddd5c3;color:#1c2a26;}.bcl-verdict.is-unknown .bcl-verdict-mark{background:#626c66;}#bcl-status .bcl-card[data-kind]::before{content:attr(data-kind);display:block;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#626c66;margin:0 0 6px;}.bcl-forecast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}",
+      ".bcl-status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;align-items:stretch;grid-auto-rows:1fr;}@media (max-width:640px){.bcl-status-grid{grid-auto-rows:auto;}.bcl-verdict{gap:12px;padding:16px;}.bcl-verdict-mark{flex-basis:30px;height:30px;font-size:.9rem;}.bcl-verdict-title{font-size:1.4rem;}}",
       "#bcl-status .bcl-card{background:#f5f1e7 !important;}",
       /* Official information: the escape routes were plain ink with no
          underline, indistinguishable from body text, in a 26px hit area. They
@@ -4209,7 +4210,7 @@ function initBclSectionJumps(doc) {
 
   function fillCaltrans(el) {
     var ROUTES = { "SR-9": 1, "SR-236": 1, "SR-35": 1, "SR-17": 1, "SR-1": 1 };
-    fetchJSON("https://cwwp2.dot.ca.gov/data/d5/lcs/lcsStatusD05.json")
+    return fetchJSON("https://cwwp2.dot.ca.gov/data/d5/lcs/lcsStatusD05.json")
       .then(function (d) {
         /* Only "no rows in a feed we actually parsed" may render an all-clear.
            Any other shape has to fall through to the unavailable message. */
@@ -4248,9 +4249,11 @@ function initBclSectionJumps(doc) {
         }
         h += '<p>Highways 1, 9, 17, 35, and 236 in Santa Cruz County. Highway 9 and 236 closures appear first. County roads like Bear Creek and Jamison Creek are not in this feed. Check <a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">QuickMap</a> and the <a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/" target="_blank" rel="noopener">county road dashboard</a> before you drive.</p>';
         el.innerHTML = h + statusRetrievedHTML();
+        return total;
       })
       .catch(function () {
         el.innerHTML = '<div class="bcl-name">Road closures: feed unavailable</div><p>That is not an all-clear. Check <a href="https://quickmap.dot.ca.gov/" target="_blank" rel="noopener">Caltrans QuickMap</a> and the <a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/" target="_blank" rel="noopener">county road dashboard</a>.</p>';
+        return null;
       });
   }
 
@@ -4383,13 +4386,13 @@ function initBclSectionJumps(doc) {
   }
 
   function rightNowStatic() {
-    return '<div class="bcl-card">' +
+    return '<div class="bcl-card" data-kind="Power · official links">' +
       '<div class="bcl-name">Power</div>' +
       '<div class="bcl-actionrow"><a href="https://pgealerts.alerts.pge.com/outage-tools/outage-map/" target="_blank" rel="noopener">See the 95006 outage map</a></div>' +
       '<div class="bcl-actionrow"><a href="https://www.pge.com/en/account/manage-my-account/online-account-preferences/outage-alerts.html" target="_blank" rel="noopener">Get outage alerts for your address</a></div>' +
       '<div class="bcl-actionrow">Report an outage: <a href="tel:18007435002">1-800-743-5002</a></div>' +
       '<div class="bcl-meta">Downed line? Call 911 first, then PG&amp;E at 1-800-743-5000.</div></div>' +
-      '<div class="bcl-card">' +
+      '<div class="bcl-card" data-kind="Fire and sirens · official links">' +
       '<div class="bcl-name">Sirens and smoke</div>' +
       '<div class="bcl-actionrow"><a href="https://web.pulsepoint.org/?agencies=44020" target="_blank" rel="noopener">See what the fire trucks are on: live BCFD calls</a></div>' +
       '<div class="bcl-actionrow"><a href="https://www.watchduty.org/" target="_blank" rel="noopener">Check for wildfire near you: Watch Duty</a></div>' +
@@ -4506,10 +4509,12 @@ function initBclSectionJumps(doc) {
     nav.id = 'bcl-status-shortcuts';
     nav.className = 'bcl-status-shortcuts';
     nav.setAttribute('aria-label', 'Official roads, power and alerts');
-    nav.innerHTML = '<a href="https://quickmap.dot.ca.gov/">State roads</a>' +
+    nav.innerHTML = '<a href="https://www.cruzaware.org/">CruzAware alerts</a>' + '<a href="https://quickmap.dot.ca.gov/">State roads</a>' +
       '<a href="https://experience.arcgis.com/experience/09f637a4d84946edbb5aab283766c9de/">County roads</a>' +
       '<a href="https://pgealerts.alerts.pge.com/outage-tools/outage-map/">Power outages</a>' +
-      '<a href="https://www.cruzaware.org/">Official alerts</a>';
+      '<a href="https://www.watchduty.org/">Watch Duty</a>' +
+      '<a href="https://web.pulsepoint.org/?agencies=44020">PulsePoint</a>' +
+      '<a class="bcl-sc-911" href="tel:911">Call 911</a>';
     if (host === root) host.insertBefore(nav, host.firstChild);
     else {
       var heading = host.querySelector('h1'), intro = heading && heading.nextElementSibling;
@@ -4517,18 +4522,44 @@ function initBclSectionJumps(doc) {
     }
   }
 
+  /* The banner states only what official sources reported, never a verdict on
+     conditions this page cannot see (power, county roads, what a river reading
+     means). alerts: NWS event names, or null when NWS could not be checked.
+     roads: count of active Caltrans closures, or null when the feed failed. */
+  function statusVerdictHTML(alerts, roads) {
+    var roadLine = roads == null ? "Caltrans closures could not be checked; see QuickMap."
+      : roads === 0 ? "No active Caltrans closures on nearby state highways."
+      : roads + " active Caltrans closure" + (roads === 1 ? "" : "s") + " on nearby state highways, listed below.";
+    if (alerts == null) {
+      return '<div class="bcl-verdict is-unknown" role="status"><div class="bcl-verdict-mark" aria-hidden="true">?</div><div>' +
+        '<div class="bcl-verdict-title">Weather alerts could not be checked.</div>' +
+        '<p>That is not an all-clear. Check <a href="https://www.cruzaware.org/">CruzAware</a> and <a href="https://www.weather.gov/mtr/">weather.gov</a>. ' + esc(roadLine) + '</p>' +
+        '<p>If this is an emergency, call 911.</p></div></div>';
+    }
+    if (alerts.length) {
+      return '<div class="bcl-verdict is-alert" role="alert"><div class="bcl-verdict-mark" aria-hidden="true">!</div><div>' +
+        '<div class="bcl-verdict-title">' + (alerts.length === 1 ? "Weather alert in effect: " : alerts.length + " weather alerts in effect: ") + esc(alerts.join(", ")) + '</div>' +
+        '<p>Details are below and at <a href="https://www.weather.gov/mtr/">weather.gov</a>. Evacuation orders come from <a href="https://www.cruzaware.org/">CruzAware</a>. ' + esc(roadLine) + '</p>' +
+        '<p>If this is an emergency, call 911.</p></div></div>';
+    }
+    return '<div class="bcl-verdict" role="status"><div class="bcl-verdict-mark" aria-hidden="true">&#10003;</div><div>' +
+      '<div class="bcl-verdict-title">No weather alerts for Boulder Creek right now.</div>' +
+      '<p>' + esc(roadLine) + ' Power and county roads are not tracked here; use the buttons below.</p>' +
+      '<p>If this is an emergency, call 911.</p></div></div>';
+  }
+
   function initStatus(root) {
     root.innerHTML =
-      '<div class="bcl-alert">If this is an emergency, call 911. This page links to official sources; it never replaces them.</div>' +
+      '<div class="bcl-verdict is-unknown" role="status"><div class="bcl-verdict-mark" aria-hidden="true">&#8230;</div><div><div class="bcl-verdict-title">Checking official alerts&#8230;</div><p>If this is an emergency, call 911. This page links to official sources; it never replaces them.</p></div></div>' +
       '<h3>Right now</h3>' +
       /* One grid, one card size. Splitting the live readings from the two
          action cards gave the rows different column counts and so different
          card widths; the owner asked for a single uniform set instead. Equal
          heights come from grid-auto-rows:1fr in the CSS above. */
       '<div class="bcl-status-grid">' +
-      '<div class="bcl-card bcl-aqi"><div class="bcl-count">Checking air quality…</div></div>' +
-      '<div class="bcl-card bcl-roads"><div class="bcl-count">Checking Caltrans closures…</div></div>' +
-      '<div class="bcl-card bcl-river"><div class="bcl-count">Checking the river gauge…</div></div>' +
+      '<div class="bcl-card bcl-aqi" data-kind="Air · modeled estimate"><div class="bcl-count">Checking air quality…</div></div>' +
+      '<div class="bcl-card bcl-roads" data-kind="Roads · Caltrans closures"><div class="bcl-count">Checking Caltrans closures…</div></div>' +
+      '<div class="bcl-card bcl-river" data-kind="River · current reading"><div class="bcl-count">Checking the river gauge…</div></div>' +
       rightNowStatic() +
       "</div>" +
       '<p class="bcl-note">Each available panel shows when it was retrieved. An unavailable panel is not an all-clear.</p>' +
@@ -4540,18 +4571,21 @@ function initBclSectionJumps(doc) {
     initStatusShortcuts(root);
 
     fillAQI(root.querySelector(".bcl-aqi"));
-    fillCaltrans(root.querySelector(".bcl-roads"));
+    var roadsDone = fillCaltrans(root.querySelector(".bcl-roads"));
     fillRiver(root.querySelector(".bcl-river"));
 
     var nwsRoot = root.querySelector(".bcl-nws");
     var pt = "https://api.weather.gov/points/" + NWS_POINT.lat + "," + NWS_POINT.lon;
 
+    var verdictEl = root.querySelector(".bcl-verdict");
+    var alertNames = null;
     Promise.all([
       fetchJSON("https://api.weather.gov/alerts/active?point=" + NWS_POINT.lat + "," + NWS_POINT.lon),
       fetchJSON(pt).then(function (p) { return fetchJSON(p.properties.forecast); })
     ]).then(function (res) {
       if (!res[0] || !Array.isArray(res[0].features) || !res[1] || !res[1].properties || !Array.isArray(res[1].properties.periods) || !res[1].properties.periods.length) throw new Error('Incomplete NWS response');
       var alerts = res[0].features;
+      alertNames = alerts.map(function (a) { return String((a.properties || {}).event || "Weather alert"); });
       var periods = res[1].properties.periods.slice(0, 4);
       var h = "";
       if (alerts.length) {
@@ -4564,14 +4598,18 @@ function initBclSectionJumps(doc) {
         h += '<div class="bcl-count">NO ACTIVE NWS ALERTS FOR THIS POINT · CHECKED ' + esc(new Date().toLocaleString()) + "</div>";
       }
       if (periods.length) {
-        h += "<h3>Forecast (NWS)</h3>" + periods.map(function (p) {
+        h += '<h3>Forecast (NWS)</h3><div class="bcl-forecast-grid">' + periods.map(function (p) {
           return '<div class="bcl-card"><div class="bcl-name">' + esc(p.name) + "</div><p>" + esc(p.detailedForecast || p.shortForecast || "") + "</p></div>";
-        }).join("");
+        }).join("") + "</div>";
       }
       h += '<div class="bcl-note">Source: <a href="https://www.weather.gov/mtr/" target="_blank" rel="noopener">National Weather Service</a>, retrieved when you loaded this page. If anything here looks stale, trust the official page.</div>';
       nwsRoot.innerHTML = h + statusRetrievedHTML();
     }).catch(function () {
       unavailable(nwsRoot, "Live weather data", "Use the official sources below.");
+    }).then(function () {
+      return Promise.resolve(roadsDone).catch(function () { return null; });
+    }).then(function (roads) {
+      if (verdictEl && verdictEl.parentNode) verdictEl.outerHTML = statusVerdictHTML(alertNames, roads == null ? null : roads);
     });
   }
 
@@ -5903,7 +5941,7 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
     module.exports.flexibleLocalDate = flexibleLocalDate;
     module.exports.jobDeadlineText = jobDeadlineText;
     module.exports.rentalAvailableText = rentalAvailableText;
