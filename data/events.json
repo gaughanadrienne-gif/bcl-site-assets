@@ -1,6 +1,6 @@
 {
- "updated": "2026-09-25",
- "note": "Owner-verified events only.",
+ "updated": "2026-09-29",
+ "note": "Events checked against each organizer's own page or flyer; owner-verified where noted.",
  "events": [
   {
    "title": "Exhibit: Retrospect",
@@ -532,26 +532,27 @@
    "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
    "url": "https://www.bcrpd.org/events",
    "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
-   "category": "Community"
+   "category": "Community",
+   "notice": "If it rains, food is given out at Junction Park."
   },
   {
    "title": "First Friday Boulder Creek: Spooktacular",
    "start": "2026-10-02T17:00",
    "end": "2026-10-02T20:00",
    "location": "Downtown Boulder Creek",
-   "url": "https://www.bcba.net/events",
+   "url": "https://www.bcba.net/events-1/first-friday-boulder-spooktacular-2026-10-02-17-00",
    "description": "Spooktacular First Friday along downtown Boulder Creek, 5 to 8 pm: a treat walk, a Kids' Zone, vendors and artists, and a costume contest.",
    "category": "Community"
   },
   {
    "title": "The Hangout",
-   "start": "2026-10-02T18:00",
+   "start": "2026-10-02T17:30",
    "end": "2026-10-02T20:00",
-   "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+   "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
    "url": "https://www.bcrpd.org/events",
-   "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+   "description": "Friday night drop-in for middle schoolers at the Downtown Rec Center, 5:30 to 8 p.m.",
    "category": "Family & Kids",
-   "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+   "notice": "Middle school. $10, pizza and popcorn included."
   },
   {
    "title": "Medicine Road",
@@ -636,17 +637,18 @@
    "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
    "url": "https://www.bcrpd.org/events",
    "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
-   "category": "Community"
+   "category": "Community",
+   "notice": "If it rains, food is given out at Junction Park."
   },
   {
    "title": "The Hangout",
-   "start": "2026-10-09T18:00",
+   "start": "2026-10-09T17:30",
    "end": "2026-10-09T20:00",
-   "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+   "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
    "url": "https://www.bcrpd.org/events",
-   "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+   "description": "Friday night drop-in for middle schoolers at the Downtown Rec Center, 5:30 to 8 p.m.",
    "category": "Family & Kids",
-   "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+   "notice": "Middle school. $10, pizza and popcorn included."
   },
   {
    "title": "Cooper Street",
@@ -659,13 +661,14 @@
    "notice": "21 and over"
   },
   {
-   "title": "Community Crafters",
+   "title": "Community Crafters: Rock Painting Workshop",
    "start": "2026-10-10T10:00",
-   "end": "2026-10-10T12:00",
+   "end": "2026-10-10T13:00",
    "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
-   "url": "https://santacruzpl.libnet.info/event/15202675",
-   "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
-   "category": "Music & Arts"
+   "url": "https://santacruzpl.libnet.info/event/17505373",
+   "description": "The Saturday crafters' monthly workshop: rock painting led by Merry Nails, 10 a.m. to 1 p.m. Rocks, paint and supplies provided; take home a rock for your garden or add one to the library's rock sharing garden.",
+   "category": "Music & Arts",
+   "notice": "Adults. Registration required."
   },
   {
    "title": "Arcane Lullaby",
@@ -731,17 +734,18 @@
    "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
    "url": "https://www.bcrpd.org/events",
    "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
-   "category": "Community"
+   "category": "Community",
+   "notice": "If it rains, food is given out at Junction Park."
   },
   {
    "title": "The Hangout",
-   "start": "2026-10-16T18:00",
+   "start": "2026-10-16T17:30",
    "end": "2026-10-16T20:00",
-   "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+   "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
    "url": "https://www.bcrpd.org/events",
-   "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+   "description": "Friday night drop-in for middle schoolers at the Downtown Rec Center, 5:30 to 8 p.m.",
    "category": "Family & Kids",
-   "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+   "notice": "Middle school. $10, pizza and popcorn included."
   },
   {
    "title": "Haunted Walk of TERROR",
@@ -768,8 +772,7 @@
    "start": "2026-10-17T10:00",
    "end": "2026-10-17T12:00",
    "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
-   "url": "https://santacruzpl.libnet.info/events",
-   "notice": "The library listing for this date is no longer available. Confirm with the branch before going.",
+   "url": "https://santacruzpl.libnet.info/event/17505378",
    "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
    "category": "Music & Arts"
   },
@@ -784,7 +787,7 @@
    "notice": "Ages 8 and up."
   },
   {
-   "title": "El Brick",
+   "title": "Fossil Farm",
    "start": "2026-10-17T20:30",
    "end": null,
    "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
@@ -847,17 +850,18 @@
    "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
    "url": "https://www.bcrpd.org/events",
    "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
-   "category": "Community"
+   "category": "Community",
+   "notice": "If it rains, food is given out at Junction Park."
   },
   {
    "title": "The Hangout",
-   "start": "2026-10-23T18:00",
+   "start": "2026-10-23T17:30",
    "end": "2026-10-23T20:00",
-   "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+   "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
    "url": "https://www.bcrpd.org/events",
-   "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+   "description": "Friday night drop-in for middle schoolers at the Downtown Rec Center, 5:30 to 8 p.m.",
    "category": "Family & Kids",
-   "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+   "notice": "Middle school. $10, pizza and popcorn included."
   },
   {
    "title": "Haunted Walk of TERROR",
@@ -961,17 +965,18 @@
    "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
    "url": "https://www.bcrpd.org/events",
    "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
-   "category": "Community"
+   "category": "Community",
+   "notice": "If it rains, food is given out at Junction Park."
   },
   {
    "title": "The Hangout",
-   "start": "2026-10-30T18:00",
+   "start": "2026-10-30T17:30",
    "end": "2026-10-30T20:00",
-   "location": "Boulder Creek Recreation & Park District, Boulder Creek",
+   "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
    "url": "https://www.bcrpd.org/events",
-   "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
+   "description": "Friday night drop-in for middle schoolers at the Downtown Rec Center, 5:30 to 8 p.m.",
    "category": "Family & Kids",
-   "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+   "notice": "Middle school. $10, pizza and popcorn included."
   },
   {
    "title": "Jeff Gardner & The Tools",
@@ -1011,7 +1016,7 @@
    "category": "Family & Kids"
   },
   {
-   "title": "High Wire Halloween Dance Party",
+   "title": "Highwire Halloween Dance Party",
    "start": "2026-10-31T20:30",
    "end": null,
    "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
@@ -1053,7 +1058,7 @@
    "start": "2026-11-06T17:00",
    "end": "2026-11-06T20:00",
    "location": "Downtown Boulder Creek",
-   "url": "https://www.bcba.net/events",
+   "url": "https://www.bcba.net/events-1/first-friday-boulder-creek-giving-thanks-2026-11-06-17-00",
    "description": "Monthly First Friday evening with local shops and specialty vendors along downtown Boulder Creek, 5 to 8 pm, with a giving thanks theme this month.",
    "category": "Community"
   },
@@ -1253,6 +1258,620 @@
    "description": "The 10th annual Christmas Eve 5k run and walk, starting at Junction Park and running through town, rain or shine. Heats start at 9 a.m. for runners, then 9:15, 9:30 and 9:45 for everyone, 10 a.m. for animals and their humans, and a Slay Bell Sprint at 10:30. Costumes encouraged, with prizes in each heat. A food drive for the Valley Churches United food pantry runs at the event. A fundraiser for the Boulder Creek Recreation and Park District.",
    "category": "Community",
    "notice": "Registration is $25 in September, $30 in October, $35 in November, $40 December 1 to 22 and $45 on December 23; on race day it is $45, in person only. Children 12 and under are free (no swag). Capped at 1,000 tickets, no refunds. Sign in 15 minutes before your heat."
+  },
+  {
+   "title": "Exhibit: Moments That Made US",
+   "start": "2026-09-26",
+   "end": "2027-01-24",
+   "location": "Faye G. Belardi Memorial Gallery, San Lorenzo Valley Museum, 6299 Gushee St., Felton",
+   "url": "https://www.slvmuseum.org/",
+   "description": "Poster exhibition exploring the ideals of the Declaration of Independence through moments in American history, on view through January 24, 2027 during gallery hours, Thursday, Saturday and Sunday 1 to 4 pm.",
+   "category": "Music & Arts",
+   "notice": "Gallery open only when a docent is available. Call Belardi Gallery 831-704-7066 before you go."
+  },
+  {
+   "title": "Benefits of Fall Planting",
+   "start": "2026-09-30T10:30",
+   "end": "2026-09-30T12:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/17150859",
+   "description": "Talk on planting in the fall, covering cool-season vegetables, ornamental and fruit trees, perennials and California natives, followed by Q&A. Presented by Jean \"Jet\" Van Ausdall of Scarborough Gardens.",
+   "category": "Community"
+  },
+  {
+   "title": "Rumors at Mountain Community Theater",
+   "start": "2026-10-02T20:00",
+   "end": null,
+   "location": "Park Hall, 9400 Mill Street, Ben Lomond",
+   "url": "https://mctshows.org/current-show/",
+   "description": "Mountain Community Theater's production of Neil Simon's comedy Rumors, directed by MarNae Taylor. Runs through October 11, Fridays and Saturdays at 8 p.m. and Sundays at 2 p.m.",
+   "category": "Music & Arts",
+   "notice": "Ticketed, $20 to $30."
+  },
+  {
+   "title": "Ben Lomond Village Market",
+   "start": "2026-10-03T10:00",
+   "end": "2026-10-03T14:00",
+   "location": "Ben Lomond County Park, 9525 Mill Street, Ben Lomond",
+   "url": "https://benlomondvillage.org/event/village-market-october/",
+   "description": "Last Ben Lomond Village Market of the 2026 season, on Mill Street and in the county park: local produce, food and artisan goods. The SLV Native Habitat Restoration Program has a booth selling California native plants.",
+   "category": "Market"
+  },
+  {
+   "title": "Soul Collage",
+   "start": "2026-10-03T12:00",
+   "end": "2026-10-03T15:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15425091",
+   "description": "First-Saturday collage workshop in the library Community Room, 12 to 3 p.m.: make a collage of images that express your goals.",
+   "category": "Music & Arts",
+   "notice": "Registration required. Adults 18 and over."
+  },
+  {
+   "title": "Rumors at Mountain Community Theater",
+   "start": "2026-10-03T20:00",
+   "end": null,
+   "location": "Park Hall, 9400 Mill Street, Ben Lomond",
+   "url": "https://mctshows.org/current-show/",
+   "description": "Mountain Community Theater's production of Neil Simon's comedy Rumors, directed by MarNae Taylor. Runs through October 11, Fridays and Saturdays at 8 p.m. and Sundays at 2 p.m.",
+   "category": "Music & Arts",
+   "notice": "Ticketed, $20 to $30."
+  },
+  {
+   "title": "Rumors at Mountain Community Theater",
+   "start": "2026-10-04T14:00",
+   "end": null,
+   "location": "Park Hall, 9400 Mill Street, Ben Lomond",
+   "url": "https://mctshows.org/current-show/",
+   "description": "Mountain Community Theater's production of Neil Simon's comedy Rumors, directed by MarNae Taylor. Runs through October 11, Fridays and Saturdays at 8 p.m. and Sundays at 2 p.m.",
+   "category": "Music & Arts",
+   "notice": "Ticketed, $20 to $30."
+  },
+  {
+   "title": "First Wednesday Ping Pong Popup",
+   "start": "2026-10-07T15:00",
+   "end": "2026-10-07T17:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15917885",
+   "description": "Drop-in adult ping pong in the Felton Library Community Room any time from 3 to 5 p.m. on the first Wednesday of the month. All levels welcome.",
+   "category": "Community",
+   "notice": "Adults. A waiver must be signed to play."
+  },
+  {
+   "title": "Volunteer Fuel Reduction at Henry Cowell",
+   "start": "2026-10-09T10:00",
+   "end": "2026-10-09T12:00",
+   "location": "Henry Cowell Redwoods State Park Visitor Center, Redwood Grove Loop Trail, Felton",
+   "url": "https://sempervirens.org/visit/events-and-experiences/",
+   "description": "Sempervirens Fund volunteer workday building brush piles in the Redwood Grove to reduce forest fuels.",
+   "category": "Community",
+   "notice": "Free. Registration required; 10 volunteer slots."
+  },
+  {
+   "title": "Supper Club: Stars & Snacks",
+   "start": "2026-10-09T18:30",
+   "end": "2026-10-09T23:00",
+   "location": "Quail Hollow Ranch, 800 Quail Hollow Rd, Felton",
+   "url": "https://benlomondvillage.org/event/supper-club-stars-snacks/",
+   "description": "Ben Lomond Village Alliance evening of snacks and stargazing with the Santa Cruz Astronomy Club. Arrive at 6:30 p.m.; telescope viewing starts around 7:30 to 8 p.m.",
+   "category": "Community",
+   "notice": "RSVP required through the Village Alliance."
+  },
+  {
+   "title": "Rumors at Mountain Community Theater",
+   "start": "2026-10-09T20:00",
+   "end": null,
+   "location": "Park Hall, 9400 Mill Street, Ben Lomond",
+   "url": "https://mctshows.org/current-show/",
+   "description": "Mountain Community Theater's production of Neil Simon's comedy Rumors, directed by MarNae Taylor. Runs through October 11, Fridays and Saturdays at 8 p.m. and Sundays at 2 p.m.",
+   "category": "Music & Arts",
+   "notice": "Ticketed, $20 to $30."
+  },
+  {
+   "title": "Olympia Watershed French Broom Removal",
+   "start": "2026-10-10T09:00",
+   "end": "2026-10-10T12:00",
+   "location": "Zayante Fire Department parking lot, 7700 East Zayante Road, Felton",
+   "url": "https://sempervirens.org/events/olympia-watershed-french-broom-removal-4/",
+   "description": "Volunteer morning pulling invasive French broom in the Olympia watershed with Sempervirens Fund and the San Lorenzo Valley Water District. Meet at the Zayante Fire Department lot; arrive by 8:45 a.m.",
+   "category": "Community",
+   "notice": "Free. Registration required. Ages 12 and up with a guardian."
+  },
+  {
+   "title": "Are You Game? Adult Game Day",
+   "start": "2026-10-10T12:00",
+   "end": "2026-10-10T17:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15425165",
+   "description": "Tabletop games for adults on the second Saturday, 12 to 5 p.m. in the Community Room. Bring a favorite game or play the library's. No experience needed.",
+   "category": "Community",
+   "notice": "Adults 18 and over."
+  },
+  {
+   "title": "Playing with Verse: Teen Poetry Workshop",
+   "start": "2026-10-10T14:00",
+   "end": "2026-10-10T16:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/17417868",
+   "description": "Low-pressure teen poetry workshop with Mason Leopold, with free pizza. The second hour covers the library's Advisory Council of Teens and volunteer service hours.",
+   "category": "Family & Kids",
+   "notice": "Teens 12 to 18."
+  },
+  {
+   "title": "Rumors at Mountain Community Theater",
+   "start": "2026-10-10T20:00",
+   "end": null,
+   "location": "Park Hall, 9400 Mill Street, Ben Lomond",
+   "url": "https://mctshows.org/current-show/",
+   "description": "Mountain Community Theater's production of Neil Simon's comedy Rumors, directed by MarNae Taylor. Runs through October 11, Fridays and Saturdays at 8 p.m. and Sundays at 2 p.m.",
+   "category": "Music & Arts",
+   "notice": "Ticketed, $20 to $30."
+  },
+  {
+   "title": "Kirking of the Tartans",
+   "start": "2026-10-11T10:00",
+   "end": "2026-10-11T13:00",
+   "location": "St. Andrew's Episcopal Church, 101 Riverside Ave, Ben Lomond",
+   "url": "https://saintandrewsbenlomond.org/calendar-of-events/",
+   "description": "Bring your tartan for a family blessing at the 10 a.m. service with bagpipes, followed by a shepherd's pie luncheon with Celtic music.",
+   "category": "Community",
+   "notice": "Luncheon sign-up sheet is in the Parish Hall."
+  },
+  {
+   "title": "Rumors at Mountain Community Theater",
+   "start": "2026-10-11T14:00",
+   "end": null,
+   "location": "Park Hall, 9400 Mill Street, Ben Lomond",
+   "url": "https://mctshows.org/current-show/",
+   "description": "Mountain Community Theater's production of Neil Simon's comedy Rumors, directed by MarNae Taylor. Runs through October 11, Fridays and Saturdays at 8 p.m. and Sundays at 2 p.m.",
+   "category": "Music & Arts",
+   "notice": "Ticketed, $20 to $30."
+  },
+  {
+   "title": "Community Potluck at Bear Creek",
+   "start": "2026-10-11T16:00",
+   "end": "2026-10-11T19:00",
+   "location": "Bear Creek Community Center, 15685 Forest Hill Drive, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Sunday community potluck at Bear Creek with pool and hot tub access, 4 to 7 p.m. Bring a dish to share and a food item to donate to Valley Churches United. A BCRPD Foundation info session on how to get involved runs 4:30 to 5 p.m.",
+   "category": "Community",
+   "notice": "All ages welcome."
+  },
+  {
+   "title": "Senior Legal Services: Planning for the Future",
+   "start": "2026-10-13T10:00",
+   "end": "2026-10-13T11:30",
+   "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/17302554",
+   "description": "Free legal clinic for seniors 60 and up from Senior Legal Services: a short talk and Q&A on powers of attorney, statutory wills and advance health care directives, then one-on-one time with an attorney and free notary service.",
+   "category": "Community",
+   "notice": "For seniors aged 60 and over."
+  },
+  {
+   "title": "A Day in My Life Parenting Class",
+   "start": "2026-10-16T18:00",
+   "end": "2026-10-16T19:30",
+   "location": "Bear Creek Community Center, 15685 Forest Hill Drive, Boulder Creek",
+   "url": "https://www.bcrpd.org/adultclasses",
+   "description": "Monthly evening class for parents of young children on the third Friday, 6 to 7:30 p.m., covering bedtime routines, feeding, separation anxiety and more, with time to meet other parents.",
+   "category": "Family & Kids",
+   "notice": "$20 donation per class. Childcare available onsite."
+  },
+  {
+   "title": "Author Talk: Nature Spirits Want to Talk with Us",
+   "start": "2026-10-17T10:30",
+   "end": "2026-10-17T12:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/17354553",
+   "description": "Author Coleen Douglas reads from her book and leads a discussion, then a short walk on paved paths outside the library to practice communicating with trees.",
+   "category": "Community"
+  },
+  {
+   "title": "Family Democracy Day",
+   "start": "2026-10-17T12:00",
+   "end": "2026-10-17T15:30",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/17524827",
+   "description": "Free, family-friendly event from the Santa Cruz County Clerk/Elections Office on how elections work, ahead of the November 3 General Election.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Community Poetry Circle",
+   "start": "2026-10-17T13:00",
+   "end": "2026-10-17T15:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15399420",
+   "description": "Monthly poetry circle facilitated by poet-teacher Magdalena Montagne. Write a poem in a supportive group; no experience needed. Meets on the back patio, or the Community Room in bad weather.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Tales to Tails",
+   "start": "2026-10-20T15:00",
+   "end": "2026-10-20T16:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15595362",
+   "description": "Children practice reading aloud to a certified therapy dog.",
+   "category": "Family & Kids",
+   "notice": "Ages 6 to 17 who already read. Appointment required: call 831-427-7708."
+  },
+  {
+   "title": "Medicare and You",
+   "start": "2026-10-21T10:30",
+   "end": "2026-10-21T12:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/17129834",
+   "description": "HICAP's free annual enrollment forum on 2027 Medicare options: how to compare plans and what changes next year.",
+   "category": "Community",
+   "notice": "Space is limited. Call 831-462-5510 to reserve a spot."
+  },
+  {
+   "title": "Family Movie Matinee",
+   "start": "2026-10-21T15:00",
+   "end": "2026-10-21T18:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/14899956",
+   "description": "Free family movie on the third Wednesday with the California Film and Cultural Center, in the Community Room. Popcorn provided, or bring your own snacks. October's film is Casper.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "France vs. Oregon: A Drouhin Wine and Food Pairing",
+   "start": "2026-10-21T18:00",
+   "end": "2026-10-21T21:00",
+   "location": "Redwood Room, Clubhouse, Boulder Creek Golf & Country Club, 16901 Big Basin Highway, Boulder Creek",
+   "url": "https://bigbasincountry.club/events/drouhin-france-oregon-2026/",
+   "description": "Guided pairing of a Cremant and six Chardonnays and Pinot Noirs from France and Oregon, with food. Doors at 6 p.m., pairing 6:15 to 9 p.m.",
+   "category": "Community",
+   "notice": "Pairing $90 advance, $100 at the door; tasting only $45 advance, $50 at the door."
+  },
+  {
+   "title": "Guided Hike at Henry Cowell Redwoods",
+   "start": "2026-10-22T10:00",
+   "end": "2026-10-22T14:00",
+   "location": "Henry Cowell Redwoods State Park Visitor Center, Redwood Grove Loop Trail, Felton",
+   "url": "https://sempervirens.org/visit/events-and-experiences/",
+   "description": "Sempervirens Fund guided four-mile hike of moderate difficulty through Henry Cowell Redwoods State Park.",
+   "category": "Community",
+   "notice": "Free ticket through Eventbrite. Park parking $10, free with a State Parks pass."
+  },
+  {
+   "title": "Supervisor Martinez Office Hours in Boulder Creek",
+   "start": "2026-10-22T11:00",
+   "end": "2026-10-22T12:30",
+   "location": "Boulder Creek Sheriff's Service Center, 13210 Central Avenue (Highway 9), Boulder Creek",
+   "url": "https://www.santacruzcountyca.gov/government/boardofsupervisors/district5.aspx",
+   "description": "In-district open office hours with Fifth District Supervisor Monica Martinez, a drop-in chance to raise a local concern in person, 11 a.m. to 12:30 p.m.",
+   "category": "Community",
+   "notice": "Drop-in visits are about 15 minutes; for longer issues the office will schedule another time."
+  },
+  {
+   "title": "CreateAbility Hour",
+   "start": "2026-10-23T11:00",
+   "end": "2026-10-23T12:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15426113",
+   "description": "An hour of inclusive, creative activities and social time for adults with developmental differences and their caregivers, in the Community Room.",
+   "category": "Community",
+   "notice": "No registration required."
+  },
+  {
+   "title": "Lompico Pond Volunteer Workday",
+   "start": "2026-10-24T10:00",
+   "end": "2026-10-24T12:00",
+   "location": "Lompico Pond, 11603 Lakeshore Dr., Felton",
+   "url": "https://slvhabitatrestoration.org/event/lompico-pond-volunteer-workday-2-2/2026-10-24/",
+   "description": "Monthly fourth-Saturday workday restoring native habitat at Lompico Pond with the SLV Native Habitat Restoration Program, the last of its January to October season. Tools provided; drop in and sign the volunteer sheet.",
+   "category": "Community"
+  },
+  {
+   "title": "Halloween Party at the Boulder Creek Library",
+   "start": "2026-10-24T13:00",
+   "end": "2026-10-24T15:00",
+   "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/event/17522507",
+   "description": "The Boulder Creek Library Friends' annual Halloween party with treats, crafts, games and a photo booth, 1 to 3 p.m. All ages, in costume or not.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Supper Club: Art in the Park",
+   "start": "2026-10-25T14:00",
+   "end": "2026-10-25T17:00",
+   "location": "Ben Lomond County Park, 9525 Mill Street, Ben Lomond",
+   "url": "https://benlomondvillage.org/event/supper-club-art-in-the-park/",
+   "description": "Ben Lomond Village Alliance afternoon of mandala drawing in the county park, 2 to 5 p.m.",
+   "category": "Music & Arts",
+   "notice": "Free, but advance registration is required."
+  },
+  {
+   "title": "Felton Community Crafters",
+   "start": "2026-10-28T10:30",
+   "end": "2026-10-28T14:30",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/14899763",
+   "description": "Fourth-Wednesday craft circle. Bring your project; the group weaves, spins, makes baskets, felts and more.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Reading in the Redwoods Book Group",
+   "start": "2026-10-28T18:00",
+   "end": "2026-10-28T19:30",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/14900076",
+   "description": "Monthly book group in the Felton Teen Room. October's book is The Lion Women of Tehran by Marjan Kamali.",
+   "category": "Community"
+  },
+  {
+   "title": "Creepin' It Real Preschool Storytime",
+   "start": "2026-10-29T11:00",
+   "end": "2026-10-29T12:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/17504878",
+   "description": "Halloween-themed storytime with seasonal books, songs and a craft for preschoolers and their families. Costumes encouraged. Replaces the regular Thursday storytime this week.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Booooo-k Bash",
+   "start": "2026-10-29T15:00",
+   "end": "2026-10-29T17:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/17524922",
+   "description": "After-school Halloween party at the Felton library with free crafts, mini pumpkin decorating, refreshments and games. Costumes encouraged.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-11-06T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
+   "category": "Community",
+   "notice": "If it rains, food is given out at Junction Park."
+  },
+  {
+   "title": "The Hangout",
+   "start": "2026-11-06T17:30",
+   "end": "2026-11-06T20:00",
+   "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Friday night drop-in for middle schoolers at the Downtown Rec Center, 5:30 to 8 p.m.",
+   "category": "Family & Kids",
+   "notice": "Middle school. $10, pizza and popcorn included."
+  },
+  {
+   "title": "Soul Collage",
+   "start": "2026-11-07T12:00",
+   "end": "2026-11-07T15:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15425092",
+   "description": "First-Saturday collage workshop in the library Community Room, 12 to 3 p.m.: make a collage of images that express your goals.",
+   "category": "Music & Arts",
+   "notice": "Registration required. Adults 18 and over."
+  },
+  {
+   "title": "Navigating Your Child's IEP",
+   "start": "2026-11-07T16:00",
+   "end": "2026-11-07T17:30",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/17418532",
+   "description": "75-minute workshop and Q&A for parents on the IEP process, California special education timelines and working with school teams, led by a non-attorney special education advocate.",
+   "category": "Family & Kids",
+   "notice": "Registration required."
+  },
+  {
+   "title": "Community Potluck at Bear Creek",
+   "start": "2026-11-08T16:00",
+   "end": "2026-11-08T19:00",
+   "location": "Bear Creek Community Center, 15685 Forest Hill Drive, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Sunday community potluck at Bear Creek with pool and hot tub access, 4 to 7 p.m. Bring a dish to share and a food item to donate to Valley Churches United. A BCRPD Foundation info session on how to get involved runs 4:30 to 5 p.m.",
+   "category": "Community",
+   "notice": "All ages welcome."
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-11-13T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
+   "category": "Community",
+   "notice": "If it rains, food is given out at Junction Park."
+  },
+  {
+   "title": "The Hangout",
+   "start": "2026-11-13T17:30",
+   "end": "2026-11-13T20:00",
+   "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Friday night drop-in for middle schoolers at the Downtown Rec Center, 5:30 to 8 p.m.",
+   "category": "Family & Kids",
+   "notice": "Middle school. $10, pizza and popcorn included."
+  },
+  {
+   "title": "Fall Contra Dance",
+   "start": "2026-11-13T18:30",
+   "end": "2026-11-13T21:30",
+   "location": "Park Hall, 9400 Mill Street, Ben Lomond",
+   "url": "https://benlomondvillage.org/event/fall-contra-dance/",
+   "description": "Contra dance with live music by Against the Grain and caller Cheryl Graubart. Doors 6:30 p.m., beginner instruction 7 to 7:30, dancing 7:30 to 9:30. No partner or experience needed.",
+   "category": "Music & Arts",
+   "notice": "$10. Tickets through the Village Alliance."
+  },
+  {
+   "title": "Are You Game? Adult Game Day",
+   "start": "2026-11-14T12:00",
+   "end": "2026-11-14T17:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15425166",
+   "description": "Tabletop games for adults on the second Saturday, 12 to 5 p.m. in the Community Room. Bring a favorite game or play the library's. No experience needed.",
+   "category": "Community",
+   "notice": "Adults 18 and over."
+  },
+  {
+   "title": "Tales to Tails",
+   "start": "2026-11-17T15:00",
+   "end": "2026-11-17T16:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15595363",
+   "description": "Children practice reading aloud to a certified therapy dog.",
+   "category": "Family & Kids",
+   "notice": "Ages 6 to 17 who already read. Appointment required: call 831-427-7708."
+  },
+  {
+   "title": "Family Movie Matinee",
+   "start": "2026-11-18T15:00",
+   "end": "2026-11-18T18:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/14899957",
+   "description": "Free family movie on the third Wednesday with the California Film and Cultural Center, in the Community Room. Popcorn provided, or bring your own snacks.",
+   "category": "Family & Kids"
+  },
+  {
+   "title": "Arcane Lullaby Unplugged Neighborhood Night",
+   "start": "2026-11-18T20:00",
+   "end": null,
+   "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+   "url": "http://www.drinkatjoes.com/",
+   "description": "Live music at Joe's Bar.",
+   "category": "Music & Arts",
+   "notice": "21 and over"
+  },
+  {
+   "title": "CreateAbility Hour",
+   "start": "2026-11-20T11:00",
+   "end": "2026-11-20T12:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/17467831",
+   "description": "An hour of inclusive, creative activities and social time for adults with developmental differences and their caregivers, in the Community Room.",
+   "category": "Community",
+   "notice": "No registration required."
+  },
+  {
+   "title": "Free Food Fridays",
+   "start": "2026-11-20T15:00",
+   "end": null,
+   "location": "Open lot next to Jenna Sue's Cafe, downtown Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Weekly free food distribution run by BCRPD volunteers with the Grey Bears Healthy Food program, every Friday at 3 pm until items are gone, rain or shine, open to everyone with no signup needed.",
+   "category": "Community",
+   "notice": "If it rains, food is given out at Junction Park."
+  },
+  {
+   "title": "The Hangout",
+   "start": "2026-11-20T17:30",
+   "end": "2026-11-20T20:00",
+   "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
+   "url": "https://www.bcrpd.org/events",
+   "description": "Friday night drop-in for middle schoolers at the Downtown Rec Center, 5:30 to 8 p.m.",
+   "category": "Family & Kids",
+   "notice": "Middle school. $10, pizza and popcorn included."
+  },
+  {
+   "title": "A Day in My Life Parenting Class",
+   "start": "2026-11-20T18:00",
+   "end": "2026-11-20T19:30",
+   "location": "Bear Creek Community Center, 15685 Forest Hill Drive, Boulder Creek",
+   "url": "https://www.bcrpd.org/adultclasses",
+   "description": "Monthly evening class for parents of young children on the third Friday, 6 to 7:30 p.m., covering bedtime routines, feeding, separation anxiety and more, with time to meet other parents.",
+   "category": "Family & Kids",
+   "notice": "$20 donation per class. Childcare available onsite."
+  },
+  {
+   "title": "This Close",
+   "start": "2026-11-20T20:30",
+   "end": null,
+   "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+   "url": "http://www.drinkatjoes.com/",
+   "description": "Live music at Joe's Bar.",
+   "category": "Music & Arts",
+   "notice": "21 and over"
+  },
+  {
+   "title": "Santa's Shelves Craft Faire",
+   "start": "2026-11-21T10:00",
+   "end": "2026-11-21T16:00",
+   "location": "Felton Fire Station, 131 Kirby Street, Felton",
+   "url": "https://feltonfire.com/santasshelves/",
+   "description": "The Felton Fire Auxiliary's holiday craft faire at the fire station. Santa visits 1 to 3 p.m. both afternoons.",
+   "category": "Community",
+   "notice": "Free admission. Street parking fills by late morning Saturday."
+  },
+  {
+   "title": "Community Poetry Circle",
+   "start": "2026-11-21T13:00",
+   "end": "2026-11-21T15:00",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/15399421",
+   "description": "Monthly poetry circle facilitated by poet-teacher Magdalena Montagne. Write a poem in a supportive group; no experience needed. Meets on the back patio, or the Community Room in bad weather.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Sugar Rooster",
+   "start": "2026-11-21T20:30",
+   "end": null,
+   "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+   "url": "http://www.drinkatjoes.com/",
+   "description": "Live music at Joe's Bar.",
+   "category": "Music & Arts",
+   "notice": "21 and over"
+  },
+  {
+   "title": "Santa's Shelves Craft Faire",
+   "start": "2026-11-22T10:00",
+   "end": "2026-11-22T16:00",
+   "location": "Felton Fire Station, 131 Kirby Street, Felton",
+   "url": "https://feltonfire.com/santasshelves/",
+   "description": "The Felton Fire Auxiliary's holiday craft faire at the fire station. Santa visits 1 to 3 p.m. both afternoons.",
+   "category": "Community",
+   "notice": "Free admission. Street parking fills by late morning Saturday."
+  },
+  {
+   "title": "Felton Community Crafters",
+   "start": "2026-11-25T10:30",
+   "end": "2026-11-25T14:30",
+   "location": "Felton Branch Library, 6121 Gushee Street, Felton",
+   "url": "https://santacruzpl.libnet.info/event/14899764",
+   "description": "Fourth-Wednesday craft circle. Bring your project; the group weaves, spins, makes baskets, felts and more.",
+   "category": "Music & Arts"
+  },
+  {
+   "title": "Billy Reese Neighborhood Night",
+   "start": "2026-11-25T20:00",
+   "end": null,
+   "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+   "url": "http://www.drinkatjoes.com/",
+   "description": "Live music at Joe's Bar.",
+   "category": "Music & Arts",
+   "notice": "21 and over"
+  },
+  {
+   "title": "Kevin Hamm Band",
+   "start": "2026-11-27T20:30",
+   "end": null,
+   "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+   "url": "http://www.drinkatjoes.com/",
+   "description": "Live music at Joe's Bar.",
+   "category": "Music & Arts",
+   "notice": "21 and over"
+  },
+  {
+   "title": "The Jefferson Hancock Band",
+   "start": "2026-11-28T20:30",
+   "end": null,
+   "location": "Joe's Bar, 13118 Highway 9, Boulder Creek",
+   "url": "http://www.drinkatjoes.com/",
+   "description": "Live music at Joe's Bar.",
+   "category": "Music & Arts",
+   "notice": "21 and over"
+  },
+  {
+   "title": "Ben Lomond Tree Lighting",
+   "start": "2026-11-29T16:30",
+   "end": "2026-11-29T19:00",
+   "location": "Ben Lomond County Park, 9525 Mill Street, Ben Lomond",
+   "url": "https://benlomondvillage.org/event/ben-lomond-tree-lighting-2026/",
+   "description": "Ben Lomond's holiday tree lighting in the county park, with live music, festive activities, hot cocoa with a toppings bar, hot cider and mulled wine.",
+   "category": "Community"
   }
  ]
 }
