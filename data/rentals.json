@@ -1,6 +1,6 @@
 {
- "updated": "2026-09-30",
- "count": 8,
+ "updated": "2026-10-01",
+ "count": 7,
  "rentals": [
   {
    "id": "4ff904124ac1a6bb55610a2a1aa22735891cf3b5",
@@ -34,7 +34,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-30",
+   "last_verified_at": "2026-10-01",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -70,7 +70,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-30",
+   "last_verified_at": "2026-10-01",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -106,7 +106,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-30",
+   "last_verified_at": "2026-10-01",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -142,7 +142,7 @@
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-30",
+   "last_verified_at": "2026-10-01",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -178,7 +178,7 @@
    "source": "C&C Property Management",
    "property_manager": "C&C Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-30",
+   "last_verified_at": "2026-10-01",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -214,43 +214,7 @@
    "source": "Utopia Management",
    "property_manager": "Utopia Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-30",
-   "verification_status": "verified",
-   "freshness_label": ""
-  },
-  {
-   "id": "4b10fd423722db636ee4aaec14ff032d15d33ab8",
-   "slug": "felton-9456-east-zayante-road",
-   "headline": "9456 East Zayante Road, Felton",
-   "property_type": "",
-   "rental_scope": "entire",
-   "address_public": "9456 East Zayante Road",
-   "city": "Felton",
-   "state": "CA",
-   "postal_code": "95018",
-   "locality": "Felton",
-   "location_precision": "exact",
-   "monthly_rent": 2750,
-   "total_monthly_price": 2750,
-   "deposit": null,
-   "application_fee": null,
-   "bedrooms": 2,
-   "bathrooms": 2,
-   "square_feet": 616,
-   "available_date": "September 1",
-   "lease_term": "",
-   "minimum_stay_days": null,
-   "furnished": false,
-   "pets_policy": "",
-   "utilities_text": "",
-   "parking_text": "",
-   "laundry_text": "",
-   "description_summary": "Escape to the mountains in this unique two-level home in Felton/Zayante area with incredible natural light and plenty of privacy. Perched among the trees, the h...",
-   "canonical_url": "https://solpropertymanagement.managebuilding.com/Resident/public/rentals/74085",
-   "source": "Sol Property Management",
-   "property_manager": "Sol Property Management",
-   "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-30",
+   "last_verified_at": "2026-10-01",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -286,7 +250,7 @@
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-09-30",
+   "last_verified_at": "2026-10-01",
    "verification_status": "verified",
    "freshness_label": ""
   }
