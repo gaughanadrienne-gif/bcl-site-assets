@@ -40,9 +40,7 @@
     return { local: local, nearby: nearby };
   }
 
-  /* Resident-first ordering (owner, 2026-07-22): everyday needs lead
-     (home trades, health, salons, shops, money); search-once categories
-     (weddings, celebrations) close the page. */
+  /* Resident-first ordering: everyday needs lead; search-once categories close the page. */
   var CAT_GROUPS = [
     ["Home & Property", ["General Contractors & Construction", "Plumbing & HVAC", "Electrical & Solar", "Landscaping & Gardening", "Tree Care & Defensible Space", "Excavation, Grading & Paving", "Handyman & Property Maintenance", "House Cleaning", "Well & Pump / Water", "Home Services & Repair"]],
     ["Health & Personal", ["Health & Wellness", "Sports & Fitness", "Beauty", "Pets & Animals", "Pets", "Florists"]],
@@ -65,8 +63,8 @@
   // are also the categories badged "Countywide service".
   var COUNTYWIDE_CATEGORIES = ["Emergency & Public Safety", "Health & Wellness", "Government & Public Services", "Utilities & Essential Services", "Community & Nonprofit", "Transportation"];
   // CAP_EXEMPT = countywide categories plus categories exempt from the nearby
-  // cap for market reasons only. Home Services & Repair (owner decision
-  // 2026-09-14, q0925): home trades work valley-wide, so no 6-listing cap, but
+  // cap for market reasons only. Home Services & Repair
+  // Home trades operate valley-wide without a six-listing cap, but
   // a Santa Cruz locksmith is not a "Countywide service" and keeps its
   // location badge.
   var CAP_EXEMPT = COUNTYWIDE_CATEGORIES.concat(["Home Services & Repair"]);
@@ -99,8 +97,7 @@
     if (!l) return "";
     var loc = l.locality || "";
     if (loc === "Boulder Creek") {
-      /* Owner policy: these trades work from home and publish no address, so
-         say they are based here rather than implying a storefront to visit. */
+      /* Home-based trades use a service-area label rather than a storefront address. */
       return l.no_storefront ? "Boulder Creek based, mobile" : "In Boulder Creek";
     }
     if (SLV_LOCALITIES.indexOf(loc) >= 0) return "In the San Lorenzo Valley";
@@ -147,15 +144,7 @@
     return "/contact?topic=correction&reference=" + encodeURIComponent(bits.join("\n"));
   }
 
-  /* ---------- analytics ----------
-     GA4 (G-6367285354) is loaded by Squarespace, so all this does is name the
-     handful of actions that mean somebody got what they came for. Pageviews
-     reward inventory; these reward usefulness. The event dictionary lives at
-     Admin & Brand/analytics-event-dictionary.md and the names there and here
-     must stay in step. No personal data is sent: search terms are typed by the
-     user into a public search box and are trimmed and lowercased, nothing else
-     is collected, and the call is a no-op wherever gtag is absent (local test
-     pages, consent blockers, the node test runner). */
+  /* Analytics events complement Squarespace GA4 pageviews. Search terms are trimmed and lowercased; no additional personal data is collected. Calls are no-ops when gtag is unavailable. */
 
   function track(name, params) {
     try {
@@ -246,8 +235,7 @@
       ".bcl-rent-limit{display:flex;flex-direction:column;gap:6px;flex:1 1 220px;}.bcl-rent-limit input{flex:0 0 auto;min-width:0;width:100%;box-sizing:border-box;}.bcl-job-pagination{margin:20px 0;}",
       ".bcl-controls .bcl-checklabel{display:flex;gap:8px;}.bcl-controls .bcl-checklabel input[type=checkbox]{width:18px;height:18px;min-width:18px;flex:0 0 18px;margin:0;}",
       "@media(max-width:640px){.bcl-controls .bcl-rent-limit{flex:0 0 auto;}}",
-      /* Rentals layout (owner, 2026-09-13): listings first, warning above them,
-         resources and the original explanatory copy after them. */
+      /* Rentals layout: listings first, warning above them, resources and explanatory copy after them. */
       ".bcl-rent-warning:empty{display:none;}#bcl-rentals .bcl-rent-warning{margin:0 0 18px;}.bcl-rent-warning p{margin:0;}",
       ".bcl-moved-intro{display:none !important;}",
       ".bcl-rent-more{margin:28px 0 0;padding:22px 0 0;border-top:1px solid #e3ddcf;}",
@@ -362,22 +350,8 @@
       ".bcl-actionrow{font-size:.9rem;margin:6px 0;padding-left:16px;position:relative;}",
       ".bcl-actionrow:before{content:'';position:absolute;left:0;top:.45em;width:7px;height:11px;background:#d56e47;}",
       ".bcl-actionrow a{color:#2e6b46 !important;font-weight:600;}",
-      /* Mountain Status card system.
-         1. align-items:start. The three live panels carry wildly different
-            amounts of text (six Caltrans closures against one AQI sentence),
-            and stretch gave the short ones 300px of empty cream.
-         2. One surface for every card in the snapshot. The site CSS colours
-            cards with [id^="bcl-"] [class$="-card"], which only matches a
-            class attribute ENDING in "-card": .bcl-card got cream, but
-            "bcl-card bcl-aqi" fell through to the paper default here, so the
-            same grid rendered three white cards and two sage ones. Owner
-            decision 2026-09-03: all five cream. Scoped to #bcl-status so no
-            other tool's cards move. */
-      /* One uniform card size across the whole snapshot (owner, 2026-09-03).
-         1fr columns give equal widths; grid-auto-rows:1fr plus stretch makes
-         every row as tall as the tallest card, so the five cards are one size
-         rather than five sizes cut to their text. A trailing empty cell in the
-         last row is what a uniform grid does and is left alone. */
+      /* Mountain Status cards use align-items:start and a uniform cream surface scoped to #bcl-status. Class suffix selectors otherwise produce inconsistent surfaces. */
+      /* Equal-width columns and grid-auto-rows:1fr keep snapshot cards uniform. A trailing empty grid cell is intentional. */
       ".bcl-status-shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:22px 0;}.bcl-status-shortcuts a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:6px 12px;box-sizing:border-box;border:1.5px solid #173f36;border-radius:8px;color:#173f36!important;background:#fffdf8;font-weight:600;text-decoration:none!important;}.bcl-status-shortcuts a:first-child{background:#173f36!important;color:#fffdf8!important;}.bcl-status-shortcuts a.bcl-sc-911{border-color:#8f4f45;color:#8f4f45!important;}.bcl-status-shortcuts a:focus-visible,.bcl-rain-chart:focus-visible{outline:3px solid #173f36;outline-offset:3px;}",
       ".bcl-verdict{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;margin:0 0 16px;border-radius:10px;border:1px solid #b9d1bf;background:#eef4ee;color:#173f36;}.bcl-verdict-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem;font-weight:600;line-height:1.1;margin:0 0 4px;}.bcl-verdict p{margin:2px 0 0;color:#1c2a26!important;}.bcl-verdict-mark{flex:0 0 40px;height:40px;border-radius:50%;background:#2e6b46;color:#fffdf8;display:flex;align-items:center;justify-content:center;font-weight:700;}.bcl-verdict.is-alert{background:#8f4f45!important;border-color:#8f4f45;color:#fffdf8;}.bcl-verdict.is-alert p,.bcl-verdict.is-alert .bcl-verdict-title{color:#fffdf8!important;}.bcl-verdict.is-alert a{color:#fffdf8!important;font-weight:600;}.bcl-verdict.is-alert .bcl-verdict-mark{background:#fffdf8;color:#8f4f45;}.bcl-verdict.is-unknown{background:#f5f1e7;border-color:#ddd5c3;color:#1c2a26;}.bcl-verdict.is-unknown .bcl-verdict-mark{background:#626c66;}#bcl-status .bcl-card[data-kind]::before{content:attr(data-kind);display:block;font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#626c66;margin:0 0 6px;}.bcl-forecast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;}",
       ".bcl-active-filters{display:flex;flex-wrap:wrap;gap:8px;margin:-6px 0 14px;}.bcl-active-filters:empty{display:none;}.bcl-active-tag,.bcl-active-clear{min-height:36px;padding:4px 12px;border-radius:999px;font:inherit;font-size:.85rem;cursor:pointer;}.bcl-active-tag{border:1px solid #b9d1bf;background:#eef4ee;color:#173f36;}.bcl-active-clear{border:0;background:transparent;color:#2e6b46;text-decoration:underline;font-weight:600;}.bcl-active-tag:focus-visible,.bcl-active-clear:focus-visible{outline:3px solid #173f36;outline-offset:2px;}",
@@ -611,12 +585,7 @@
       ".bcl-spot-img{display:block;flex:1 1 300px;min-width:0;aspect-ratio:1200/630;background:#a8bd7f;overflow:hidden;}",
       ".bcl-spot-img img{width:100%;height:100%;object-fit:cover;display:block;}",
       ".bcl-spot-body{display:flex;flex-direction:column;justify-content:center;gap:11px;flex:1 1 300px;min-width:0;padding:24px clamp(20px,3vw,34px);}",
-      /* #b35230 is CLAY DARKENED FOR SMALL TEXT ONLY, and it is a deliberate
-         deviation from the brand guide worth knowing about. Clay #d56e47 measures
-         3.36:1 on this card's #fffdf8 ground, which fails WCAG AA for text this
-         size; the owner reported the card hard to read and the kicker was part of
-         it. #b35230 is 4.96:1 and still reads as clay. Full clay stays on the
-         focus ring, where it sits against a 3px outline rather than as prose. */
+      /* Darkened clay #b35230 provides 4.96:1 contrast for small text on #fffdf8. Standard clay #d56e47 remains on the focus ring. */
       ".bcl-spot-kick{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:#b35230 !important;}",
       ".bcl-spot-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.55rem,3.4vw,2.1rem);line-height:1.14;color:#173f36 !important;}",
       ".bcl-spot-blurb{font-size:clamp(1.02rem,1.15vw,1.12rem);font-weight:500;line-height:1.62;color:#24312c !important;}",
@@ -748,11 +717,7 @@
       ".bcl-rain-details{margin:8px 0 0;}",
       ".bcl-rain-details summary{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#2e6b46 !important;cursor:pointer;}",
       ".bcl-rain-details[open] summary{margin-bottom:6px;}",
-      /* 2026-09-13 layout pass (owner: "messy and cramped"). The tool replaces the
-         crawlable shell, hero included, so the live page had no H1 and every
-         section heading sat flush against the block above it. Title block and
-         section rhythm now live in the tool itself; wording and figures are
-         unchanged. Later rules deliberately override the base rules above. */
+      /* The tool replaces the native shell, including the hero. It supplies the H1 and section spacing; later rules override base styles. */
       "#bcl-rain .bcl-rain-hero{padding:clamp(36px,5vw,64px) 0 clamp(22px,3vw,30px);border-bottom:1px solid #e3ddcf;margin:0 0 18px;}",
       "#bcl-rain .bcl-rain-hero h1{margin:.25em 0 .3em;}",
       "#bcl-rain .bcl-rain-hero .bcl-hero-lede{margin:0;max-width:640px;color:#33423b !important;}",
@@ -799,9 +764,7 @@
 
   var LISTING_FILTER_KEYS = ["q", "category", "open", "local"];
 
-  /* Removable tags for every filter in effect (redesign, owner-approved
-     2026-09-27). Each tag clears exactly one filter; "Clear all" appears when
-     two or more are on. Empty when nothing is filtered. */
+  /* Each active filter has a removable tag. Clear all appears for two or more filters; no tags render when unfiltered. */
   function activeFilterTagsHTML(state) {
     state = state || {};
     var tags = [];
@@ -1138,8 +1101,7 @@
     if (l.description) h += '<div class="bcl-dir-desc">' + esc(l.description) + "</div>";
     if (l.address) h += '<div class="bcl-dir-meta">' + esc(l.address) + "</div>";
     else if (l.service_area) h += '<div class="bcl-dir-meta">Serves: ' + esc(l.service_area) + "</div>";
-    /* Owner policy: these trades work out of their homes. We never publish a
-       home address, so say why the address is missing instead of leaving a gap. */
+    /* Home-based trades do not publish residential addresses; the label explains the missing address. */
     if (l.no_storefront) h += '<div class="bcl-dir-meta">Service based, no public storefront. Contact them directly.</div>';
     /* The badge says where they are; this says they will come to you. */
     if (showsServesBoulderCreek(l)) h += '<div class="bcl-dir-serves">Serves Boulder Creek</div>';
@@ -1214,9 +1176,7 @@
     });
     return out;
   }
-  /* The dropdown is a flat jump-to list, so it reads best alphabetically
-     (owner, 2026-07-23). The on-page sections keep the resident-first
-     grouped order via orderedCategoryNames in buildDirectoryHTML. */
+  /* The flat dropdown is alphabetical; on-page sections retain resident-first grouping via orderedCategoryNames. */
   function buildCategoryOptions(present) {
     return present.slice().sort(function (a, b) { return String(a).localeCompare(String(b)); })
       .map(function (c) { return "<option>" + esc(c) + "</option>"; }).join("");
@@ -1554,13 +1514,7 @@
     return age != null && age < days;
   }
 
-  /* A date on a job card is a promise that the listing is current. Two kinds of row
-     break that promise: continuous recruitments carrying a posting date years old
-     (four Scotts Valley PD roles were showing 2024 dates), and rows whose source
-     publishes no posting date at all. Neither is expired; both are open-ended
-     recruitment, and a stale-looking date makes readers skip a job they could apply
-     for today. Past the cutoff the card says so in words instead.
-     Owner decision 2026-09-02. */
+  /* Job rows with old or missing posting dates may be continuous recruitments. Past the cutoff, show an open-ended label instead of a misleading date. */
   var JOB_DATE_MAX_AGE_DAYS = 180;
 
   function jobPostedLine(job, today) {
@@ -1882,13 +1836,7 @@
       }).join("") + "</ul></section>";
   }
 
-  /* Listings first (owner, 2026-09-13). The page's explanatory copy is a native
-     Squarespace text block above the tool, which put the listings below ~1,100px
-     of prose on desktop. Move that block's paragraphs, unchanged, into an
-     "About this board" disclosure after the listings; the never-wire-money
-     paragraph stays visible above the results. Nothing is rewritten or deleted,
-     crawlers and no-JS readers still get the native order, and if the block is
-     missing the tool renders as before. */
+  /* Move native explanatory paragraphs unchanged into About this board after listings. Keep the payment warning above results. Native content remains available without JavaScript; missing blocks are a no-op. */
   function nativeIntroBlock(root) {
     var own = root.closest(".fe-block") || root.closest(".sqs-block");
     var section = root.closest(".page-section") || root.closest("section");
@@ -2883,11 +2831,7 @@ function initBclSectionJumps(doc) {
       });
     }
   }
-  /* Mountain Status shipped with the same "we are not an emergency service"
-     caveat in three places. This is a blog/directory, not an alert service,
-     so trim it to one calm 911 pointer (owner request) while still routing
-     emergencies to 911 and the official sources. Position/regex based so it
-     works regardless of the exact live copy and no-ops on a clean re-paste. */
+  /* Consolidate duplicate emergency-service caveats while preserving the 911 pointer and official-source routing. Position and regex checks no-op on clean content. */
   function repairStatusPage() {
     var page = document.getElementById("bcl-mountain-status");
     if (!page) return;
@@ -2899,10 +2843,7 @@ function initBclSectionJumps(doc) {
     });
   }
 
-  /* Residents page: drop the hero verification box + the redundant "Essential
-     links" summary grid (its agencies reappear in detail below), soften the
-     Emergency-readiness defensive line, and add a compact jump-nav so the long
-     page is scannable. Owner request. */
+  /* Residents page: consolidate redundant summaries and add a compact jump navigation. */
   var RES_JUMP_LABELS = {
     "new resident quick start": "Quick start",
     "trash, recycling, and green waste": "Trash & recycling",
@@ -2914,10 +2855,7 @@ function initBclSectionJumps(doc) {
     "internet and cell": "Internet & cell",
     "everyday places": "Everyday places"
   };
-  /* Residents redesign (owner-approved 2026-09-27): a "Need help now" row and
-     five situation groups replace the top card grids. Everything below
-     (reports, help gateways, the collapsible details) is unchanged. The old
-     grids are hidden, not deleted, so crawlers and no-JS readers keep them. */
+  /* The help row and situation groups replace top grids visually. Original grids remain available to crawlers and no-JavaScript readers. */
   var RES_GROUPS = [
     ["I just moved here", "Getting settled", [
       ["Six things for your first month", "#new-resident-checklist"],
@@ -3098,12 +3036,7 @@ function initBclSectionJumps(doc) {
 
     var status = document.getElementById("bcl-mountain-status");
     if (status && !document.getElementById("bcl-dl-status")) {
-      /* Append INSIDE .bcl-wrap, never to the hero itself. Interior-page
-         heroes are display:flex (site CSS, keyed on the collection class), so
-         a node appended to the section becomes a flex sibling of .bcl-wrap:
-         it left the sage note stranded in the right margin over the
-         watercolor, and stole half the hero's width from the H1 and lede at
-         every width below about 1400px. Reported by the owner 2026-09-03. */
+      /* Append inside .bcl-wrap: interior heroes use flex layout, so appending to the section would create an unintended sibling and reduce heading width. */
       var hero = status.querySelector(".bcl-hero .bcl-wrap");
       if (hero) {
         hero.appendChild(downloadNote("bcl-dl-status",
@@ -3570,8 +3503,7 @@ function initBclSectionJumps(doc) {
     if (after && after.parentNode) after.parentNode.insertBefore(sec, after.nextSibling);
     else home.appendChild(sec);
 
-    /* BCFD Summer BBQ & Dance promo band: flush against the top edge of this
-       white section (owner, 2026-07-22). Self-expires after Aug 22, 2026. */
+    /* BCFD event band sits against the section edge and self-expires after its configured date. */
     if (Date.now() < Date.parse("2026-08-23T07:00:00Z") && !document.getElementById("bcl-promo-bbq") && sec.parentNode) {
       var promo = document.createElement("div");
       promo.id = "bcl-promo-bbq";
@@ -3679,17 +3611,7 @@ function initBclSectionJumps(doc) {
     }
     initRecentArticles(document.getElementById("bcl-recent"));
 
-    /* Order is board, SPOTLIGHT, rain, articles (owner, 2026-09-09: "maybe we
-       move it up higher"). The spotlight is a weekly editorial feature the owner
-       actively promotes, so it outranks the rain strip.
-
-       The shell is created SYNCHRONOUSLY here and filled by the fetch later.
-       Both this and the rain card arrive asynchronously, so anchoring them to
-       each other would order the page by whichever request won the race. An
-       empty placeholder in the right place removes the race entirely: the rain
-       card then anchors after a node that already exists, and the spotlight has
-       nowhere else to land. It carries display:none until it has real content,
-       and deletes itself if it never gets any, so a failed fetch leaves no gap. */
+    /* Create the spotlight shell synchronously before asynchronous content arrives. This fixes ordering independently of fetch timing. Hide it until content is available and remove it on failure. */
     var spotSec = null;
     var pets = document.getElementById("bcl-missing-pets");
     if (lastBoardSec && lastBoardSec.parentNode) {
@@ -3697,9 +3619,7 @@ function initBclSectionJumps(doc) {
       spotSec.id = "bcl-home-spotlight";
       spotSec.className = "bcl-section";
       spotSec.style.display = "none";
-      /* Redesign (owner-approved 2026-09-27): daily utility first, then the
-         weekly spotlight, then the board. The spotlight sits after whichever of
-         Today and the pets panel comes second. */
+      /* Daily utility precedes the spotlight and board. Place the spotlight after whichever daily panel comes second. */
       var afterDaily = (pets && pets.parentNode === home) ? pets : todaySec;
       if (afterDaily && afterDaily.parentNode === lastBoardSec.parentNode) {
         afterDaily.parentNode.insertBefore(spotSec, afterDaily.nextSibling);
@@ -3752,15 +3672,7 @@ function initBclSectionJumps(doc) {
     }
   }
 
-  /* Homepage rainfall card (owner, 2026-07-31). The decision behind it: tools get
-     surfaced CONTEXTUALLY, never by widening a 10-item nav, so /rain reaches the
-     homepage as a live NUMBER rather than a menu entry. The number is the draw.
-
-     🚨 It renders NOTHING unless the feed parses into a usable season summary.
-     That is the house emergency-content guardrail applied to a record page: a 200
-     with an unexpected shape must not become a confident figure on the homepage.
-     Rain is history rather than a warning, but a wrong total is still wrong, and
-     an absent card costs a reader nothing. */
+  /* Homepage rainfall card renders only with a usable season summary. Invalid or missing data produces no card. */
   function initHomeRainCard(afterSec) {
     if (!afterSec || !afterSec.parentNode) return;
     if (document.getElementById("bcl-home-rain")) return;
@@ -3793,60 +3705,16 @@ function initBclSectionJumps(doc) {
     }).catch(function () { /* no card, by design */ });
   }
 
-  /* ---------- homepage business spotlight (owner, 2026-09-09) ----------
-
-     One business a week on the homepage, from a DATED running order the owner
-     keeps in data/spotlight.json. Deliberately not auto-rotation: the order is
-     an editorial decision, and a rotation would eventually surface an article
-     that is mid-correction.
-
-     THE BOUNDARY IS THURSDAY 00:00 AMERICA/LOS_ANGELES, and it is set by a
-     schedule that already exists rather than chosen here. Every business
-     spotlight post in Social Media/Blotato_2026_H2/MASTER_SCHEDULE.csv falls on
-     a Thursday (BCL-SPOT-001 SuperNatural Beauty 3 Sep, BCL-SPOT-013 the golf
-     club 10 Sep, and so on), and the owner's own description of the cadence is
-     that a business holds the slot until the next Thursday. The card exists to
-     mirror that, so it flips on the same day the post lands.
-
-     This shipped on Wednesday first, from an assumption, and the owner corrected
-     it within the hour: the running order was invented here when a real one was
-     sitting in the social schedule. Anything about which business is featured,
-     or when, is sourced FROM that file. If the two ever disagree, the schedule
-     is right and data/spotlight.json is stale.
-
-     TIMEZONE: the boundary is evaluated in PACIFIC time for every reader, not
-     in the reader's own zone. The site is served worldwide and a naive local
-     midnight flips at the wrong moment: a reader in London at 08:00 Thursday is
-     still on Wednesday afternoon in Boulder Creek, and a reader in Honolulu at
-     21:00 Tuesday is already Wednesday here. Anchoring to Pacific means every
-     reader sees the same business the owner is posting about, which is the whole
-     point of the card. rainPacificDay() already does this correctly for the rain
-     tracker, including the DST shift, so it is reused rather than reinvented.
-
-     🚨 It renders NOTHING unless every piece is real: a Pacific date the browser
-     could actually resolve, a usable schedule row at or before this week, and a
-     live article at that slug carrying its own image. Same house guardrail as the
-     rain card. A 200 with an unexpected shape must not become a confident claim,
-     and an empty or broken card is worse for the reader than no card at all.
-     Running out of scheduled weeks is a normal state, not an error: after
-     SPOTLIGHT_MAX_AGE_DAYS the card simply stops appearing. */
+  /* Homepage spotlight uses the dated data/spotlight.json schedule. Weeks start Thursday at 00:00 America/Los_Angeles for all readers, using rainPacificDay for DST-aware dates. Render only usable rows with a live article and image. Expire abandoned schedules after SPOTLIGHT_MAX_AGE_DAYS. */
 
   var SPOTLIGHT_FILE = "spotlight.json";
   var SPOTLIGHT_WEEK_DOW = 4; // Thursday, per the note above.
-  /* If the running order stops being maintained, "This week's business
-     spotlight" becomes a false label rather than a stale one, so the card
-     retires itself. 28 days clears the owner's real gaps (the longest in the
-     2026 schedule is 21 days, 19 Nov to 10 Dec) with a week to spare. */
+  /* Expire stale spotlight rows after SPOTLIGHT_MAX_AGE_DAYS, allowing gaps between scheduled rows. */
   var SPOTLIGHT_MAX_AGE_DAYS = 28;
-  /* The slug is owner-typed and goes straight into a URL path, so keep it to the
-     shape Squarespace actually mints. Anything else is a typo or worse. */
+  /* Validate slugs before including them in URL paths. */
   var SPOTLIGHT_SLUG_RE = /^[a-z0-9][a-z0-9-]{0,120}$/;
 
-  /* The Wednesday that owns the week containing dayKey, as YYYY-MM-DD. Both the
-     reader's Pacific date and each scheduled date go through this, so a row the
-     owner dated mid-week still lands on the right window instead of vanishing.
-     Rounding is always BACKWARD to the Wednesday, so a row can only ever go live
-     earlier in its week, never later, and the Thursday guarantee holds. */
+  /* Return the Thursday starting the week containing dayKey. Normalize reader and schedule dates backward to the same week boundary. */
   function spotlightWeekStart(dayKey) {
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(dayKey == null ? "" : dayKey));
     if (!m) return null;
@@ -3869,24 +3737,7 @@ function initBclSectionJumps(doc) {
     return spotlightWeekStart(row.week) != null;
   }
 
-  /* The CURRENT row: the latest scheduled week on or before dayKey's week, not
-     an exact match on this week.
-
-     That is deliberate and it mirrors how the spotlight actually works. A
-     spotlight goes out on a Thursday and STAYS the spotlight until the next one
-     replaces it, and the owner's real 2026 running order has gaps in it (nothing
-     on 29 Oct, 12 Nov, 26 Nov or 3 Dec). Under an exact-match rule the card would
-     blink out for a week at a time in exactly the weeks the previous business is
-     still the one being promoted. Carrying the last row forward is the behaviour
-     that matches the thing on the page.
-
-     It still expires. Past SPOTLIGHT_MAX_AGE_DAYS the kicker "This week's
-     business spotlight" stops being merely stale and becomes false, so the card
-     retires itself rather than lying in a small typeface.
-
-     Null covers every failure the card must survive silently: no payload, a
-     payload of the wrong shape, a running order that has not started yet, one
-     that has been abandoned, and any row missing a field the card is built from. */
+  /* Select the latest usable scheduled week at or before the current week, carrying it across gaps until expiry. Return null for malformed, future-only or expired schedules. */
   function spotlightPick(payload, dayKey) {
     var want = spotlightWeekStart(dayKey);
     if (!want) return null;
@@ -4000,14 +3851,7 @@ function initBclSectionJumps(doc) {
     }).catch(function () { drop(); });
   }
 
-  /* Footer link to /rain (owner, 2026-07-31). This does a DIFFERENT job from the
-     23 contextual article links: those buy crawl and topical relevance, this is
-     the only route a RETURNING reader has in November without using search.
-
-     Injected here rather than pasted into the footer Code Injection on purpose.
-     That panel cannot be read back, cannot be driven by script, and has caused
-     permanent loss, so a JS release (push + purge) is the safe carrier. Google
-     renders JS, and discovery is already covered by the in-body article links. */
+  /* Add a footer route to /rain for returning readers; contextual article links provide additional discovery. */
   function initFooterToolLinks() {
     var nav = document.querySelector("nav.bcl-footer-links:not(.bcl-footer-social)");
     if (!nav) return;
@@ -4742,10 +4586,7 @@ function initBclSectionJumps(doc) {
     root.innerHTML =
       '<div class="bcl-verdict is-unknown" role="status"><div class="bcl-verdict-mark" aria-hidden="true">&#8230;</div><div><div class="bcl-verdict-title">Checking official alerts&#8230;</div><p>If this is an emergency, call 911. This page links to official sources; it never replaces them.</p></div></div>' +
       '<h3>Right now</h3>' +
-      /* One grid, one card size. Splitting the live readings from the two
-         action cards gave the rows different column counts and so different
-         card widths; the owner asked for a single uniform set instead. Equal
-         heights come from grid-auto-rows:1fr in the CSS above. */
+      /* Use one grid with uniform column counts and card widths. grid-auto-rows:1fr supplies equal heights. */
       '<div class="bcl-status-grid">' +
       '<div class="bcl-card bcl-aqi" data-kind="Air · modeled estimate"><div class="bcl-count">Checking air quality…</div></div>' +
       '<div class="bcl-card bcl-roads" data-kind="Roads · Caltrans closures"><div class="bcl-count">Checking Caltrans closures…</div></div>' +
@@ -5018,11 +4859,7 @@ function initBclSectionJumps(doc) {
     return "wetter than " + drier + " of " + years + " years by this date";
   }
 
-  /* Why the median and the mean disagree, in one sentence, counted from the
-     record rather than written down. A hardcoded "a fifth of years" was wrong
-     on the first draft (it is nearer a third), which is the argument for
-     deriving it: prose about data goes stale, a count cannot. Returns "" if the
-     shape is not there, so the tile degrades to the plain median. */
+  /* Derive the median/mean explanation from record counts. Missing data returns an empty string and leaves the plain median tile. */
   function rainSkewNote(payload) {
     var rec = (payload || {}).record || {};
     var totals = (payload || {}).totals || {};
@@ -5042,13 +4879,7 @@ function initBclSectionJumps(doc) {
     tiles.push(["Season to date, water year " + (s.wy || ""),
                 s.floor ? rainInches(s.toDate) + " or more" : rainInches(s.toDate),
                 s.through ? "through " + rainLongDate(s.through) : ""]);
-    /* 🚨 These say MEDIAN, not "typical", and the last one prints the mean beside
-       it (owner, 2026-07-31). She challenged "typical full water year 42.69 in"
-       as impossible and was right to: the figure is arithmetically correct, but
-       this record is strongly right-skewed, so the mean is 49.09 and the
-       1991-2020 normal is 46.62. Calling the lowest defensible number "typical"
-       reads as an error to anyone who remembers a figure near 50. Name the
-       statistic and show the spread instead of picking one and hiding it. */
+    /* Label statistics explicitly as median or mean: the rainfall record is right-skewed, so these summaries are not interchangeable. */
     tiles.push(["Median by this date", rainInches(s.normal),
                 "median of " + (s.years || 0) + " reportable years"]);
     tiles.push(["Against that median",
@@ -5700,9 +5531,7 @@ function initBclSectionJumps(doc) {
     document.head.appendChild(fl);
   }
 
-  /* Site-wide one-line ticker above the header for the BBQ (owner, 2026-07-22).
-     Never on /mountain-status (no event promos above safety info), never in
-     addition to itself, self-expires after Aug 22, 2026. */
+  /* Event ticker stays off /mountain-status, avoids duplicates and expires after its configured date. */
   function initPromoTicker() {
     if (Date.now() >= Date.parse("2026-08-23T07:00:00Z")) return;
     if (location.pathname.indexOf("/mountain-status") === 0) return;
