@@ -24,6 +24,7 @@ from pathlib import Path
 
 import markdown
 
+from .build_articles import HTML_COMMENT
 from .html_to_markdown import html_to_markdown
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -51,7 +52,15 @@ def _sync_field(front: str, key: str, value: str) -> str:
 
 
 def render(md_text: str) -> str:
-    """Exactly build_articles.render_body's markdown call."""
+    """Exactly what build_articles.render_body would produce from this body.
+
+    It has to be *exactly* that, not merely the markdown call, or the guard tests a
+    property the builder does not have. It previously skipped the comment strip and
+    the /submit rewrite, so it passed 12 articles whose rebuild would have dropped
+    their bcl-menu delimiters. (2026-09-10)
+    """
+    md_text = HTML_COMMENT.sub("", md_text)
+    md_text = md_text.replace("](/submit)", "](/contact)")
     return markdown.markdown(
         md_text.strip(), extensions=["extra", "sane_lists"], output_format="html5"
     )
@@ -68,7 +77,10 @@ def main() -> int:
     for slug in sorted(articles):
         live = articles[slug]["html"]
         body = html_to_markdown(live)
-        if render(body) != live:
+        # build_articles.render_body() does markdown(body.strip()), so it can never
+        # emit a trailing newline. 24 feed entries have one, and comparing against
+        # `live` froze their mirrors for weeks over a character the builder strips.
+        if render(body) != live.rstrip("\n"):
             failed.append(slug)
             continue
         good.append(slug)

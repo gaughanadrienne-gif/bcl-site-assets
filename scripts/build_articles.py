@@ -24,7 +24,12 @@ DEFAULT_OUTPUT = ROOT / "data" / "articles.json"
 DEFAULT_LIVE_SLUGS = ROOT / "data" / "live-article-slugs.json"
 DEFAULT_IMAGE_SEO = ROOT.parents[1] / "Media Library" / "Article Images" / "image_seo.csv"
 FRONTMATTER = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
-HTML_COMMENT = re.compile(r"<!--.*?-->", re.DOTALL)
+# Editor-only notes are stripped, but `<!-- bcl-menu:start -->` / `<!-- bcl-menu:end -->`
+# are NOT notes: tools/tests/menu-catalogs.test.js and the catalog tooling locate the
+# menu block by those delimiters. Stripping them orphaned ~195KB of menu and price
+# copy across 15 articles from everything that finds it, while leaving the page
+# looking correct. Keep the pair; strip everything else. (2026-09-10)
+HTML_COMMENT = re.compile(r"<!--(?!\s*bcl-menu:(?:start|end)\s*-->).*?-->", re.DOTALL)
 SCHEDULED = re.compile(r"^scheduled\s+(\d{4}-\d{2}-\d{2})$", re.IGNORECASE)
 
 

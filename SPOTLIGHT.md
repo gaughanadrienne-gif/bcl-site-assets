@@ -8,14 +8,15 @@ Which business shows, and when, comes from one file: **`data/spotlight.json`**.
 
 ## Where the running order actually comes from
 
-**The source of truth is the social schedule**, not this file:
+**The owner-approved editorial order is recorded in the spotlight cadence file**, with dated planning rows in:
 
     Social Media/Blotato_2026_H2/MASTER_SCHEDULE.csv
 
-Every `BCL-SPOT` post in there is a Thursday, and `data/spotlight.json` mirrors
-it so the homepage always matches whatever you just posted. **If the two ever
-disagree, the social schedule is right and this file is stale.** There is a test
-that fails if they drift apart, so you will hear about it.
+Every `BCL-SPOT` row is a Thursday, and `data/spotlight.json` mirrors the dated
+order. If they disagree, reconcile both against the owner-approved
+`SPOTLIGHT_CADENCE_2026.md`; do not guess from a stale planning row. The mirror
+test detects drift. The live Blotato queue and individual receipts establish
+whether a post is scheduled or published; a CSV row is only a plan.
 
 If you add a spotlight post to the social schedule, add the matching row here at
 the same time.
@@ -31,9 +32,10 @@ posting about.
 
 **Gaps are fine.** If there is no spotlight on a given Thursday, the current
 business simply stays up until the next one. That is the real behaviour you
-wanted: the spotlight on social is still that business, so the homepage should
-still say so. Your 2026 order has four such gaps (29 Oct, 12 Nov, 26 Nov, 3 Dec)
-and they need nothing done to them.
+wanted: the current homepage business holds until the next dated row.
+The approved order has deliberate pauses on November 26, December 24 and
+December 31; the next feature after December 17 is January 7, 2027. These gaps
+need no placeholder entry. October 29, November 12 and December 3 have features.
 
 ## Adding the next business
 
