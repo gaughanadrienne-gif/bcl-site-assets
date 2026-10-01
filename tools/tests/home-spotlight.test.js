@@ -8,7 +8,14 @@ const t = require("../bcl-tools.js");
 
 const SRC = fs.readFileSync(path.join(__dirname, "..", "bcl-tools.js"), "utf8");
 const DATA = path.join(__dirname, "..", "..", "data");
-const SPOTLIGHT = JSON.parse(fs.readFileSync(path.join(DATA, "spotlight.json"), "utf8"));
+/* The full running order is private (owner decision 2026-10-01) and lives beside the
+   social schedule; data/spotlight.json is only the weeks that have started, written
+   by scripts/publish_spotlight.py. The order checks run on the private file when this
+   checkout can see it, and on the public feed otherwise. */
+const PUBLIC_FEED = JSON.parse(fs.readFileSync(path.join(DATA, "spotlight.json"), "utf8"));
+const MASTER_FILE = process.env.BCL_SPOTLIGHT_MASTER || path.join(__dirname, "..", "..", "..", "..",
+  "Social Media", "Blotato_2026_H2", "spotlight-schedule.json");
+const SPOTLIGHT = fs.existsSync(MASTER_FILE) ? JSON.parse(fs.readFileSync(MASTER_FILE, "utf8")) : PUBLIC_FEED;
 const LIVE_SLUGS = new Set(JSON.parse(fs.readFileSync(path.join(DATA, "live-article-slugs.json"), "utf8")));
 const SCHEDULE_CSV = path.join(__dirname, "..", "..", "..", "..",
   "Social Media", "Blotato_2026_H2", "MASTER_SCHEDULE.csv");
@@ -419,6 +426,13 @@ test("spotlight.json: it MIRRORS the social schedule, which is the source of tru
   const have = new Map(SPOTLIGHT.schedule.map((r) => [r.week, r.slug]));
   wanted.forEach((slug, date) => {
     assert.equal(have.get(date), slug, date + " should feature " + slug + " to match the social post");
+  });
+});
+
+test("public spotlight.json holds no week that has not started yet", () => {
+  const current = t.spotlightWeekStart(t.rainPacificDay());
+  PUBLIC_FEED.schedule.forEach((row) => {
+    assert.ok(row.week <= current, row.week + " is a future week and must stay in the private schedule");
   });
 });
 

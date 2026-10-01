@@ -27,3 +27,7 @@ tools/tests/manual/_render/
 # the second line of defence, not the first.
 *.bak-*
 *.bak
+
+# Private planning and handoff material, moved to Website/bcl-repo-private-docs 2026-10-01.
+SPOTLIGHT.md
+docs/JOBS_RENTALS_HANDOFF.md
