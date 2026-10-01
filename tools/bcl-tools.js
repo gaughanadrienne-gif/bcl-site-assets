@@ -1154,6 +1154,12 @@
     var dir = directionsUrl(l);
     if (dir) links.push('<a href="' + esc(dir) + '" target="_blank" rel="noopener" aria-label="Directions to ' + esc(l.name) + '">Directions</a>');
     if (l.website) links.push('<a href="' + esc(l.website) + '" target="_blank" rel="noopener" aria-label="Website for ' + esc(l.name) + '">Website</a>');
+    /* Optional verified official records; keep the business website link. */
+    if (Array.isArray(l.license_links)) l.license_links.forEach(function (record) {
+      if (!record || typeof record.url !== "string" ||
+          !/^https:\/\/www\.cslb\.ca\.gov\/OnlineServices\/CheckLicenseII\/LicenseDetail\.aspx\?LicNum=\d{5,8}$/.test(record.url)) return;
+      links.push('<a href="' + esc(record.url) + '" target="_blank" rel="noopener" aria-label="Official ' + esc(record.label || "CSLB record") + ' for ' + esc(l.name) + '">' + esc(record.label || "CSLB record") + "</a>");
+    });
     if (links.length) h += '<div class="bcl-dir-links">' + links.join(" · ") + "</div>";
     /* Collected on 51 listings and checked weekly against CSLB, but never
        shown until now. It is the strongest trust signal the directory holds. */

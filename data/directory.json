@@ -4447,7 +4447,9 @@
    "website": "https://www.gutterpatrol.com/",
    "hours_text": null,
    "service_area": "Boulder Creek and Santa Cruz County",
-   "verified_at": "2026-09-07",
+   "verified_at": "2026-10-01",
+   "license": "CSLB #1055861 (active, C-43); CSLB #1145742 (active, C-61/D-38)",
+   "license_links": [{"label": "CSLB #1055861", "url": "https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=1055861"}, {"label": "CSLB #1145742", "url": "https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=1145742"}],
    "lat": null,
    "lon": null,
    "tile": null
@@ -4527,7 +4529,9 @@
    "website": "https://www.sixstarroofing.com/services.html",
    "hours_text": "Monday-Friday 8:00 a.m.-4:30 p.m.; closed Saturday-Sunday.",
    "service_area": "Boulder Creek and Santa Cruz County",
-   "verified_at": "2026-09-07",
+   "verified_at": "2026-10-01",
+   "license": "CSLB #1063710 (active, C-39)",
+   "license_links": [{"label": "CSLB #1063710", "url": "https://www.cslb.ca.gov/OnlineServices/CheckLicenseII/LicenseDetail.aspx?LicNum=1063710"}],
    "lat": null,
    "lon": null,
    "tile": null
