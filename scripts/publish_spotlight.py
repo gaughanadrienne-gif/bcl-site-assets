@@ -14,7 +14,8 @@ Pacific) into data/spotlight.json and publishes that one file with
 publish_data_file.py, then purges the jsDelivr @main copy. The card logic in
 bcl-tools.js is unchanged: it already shows the latest row that has started.
 
-Run it on Thursday just after midnight Pacific and once a day as a catch-up. If the
+Task Scheduler runs it through Automation & Operations\sync\run_publish_spotlight.bat
+(BCL-SpotlightPublish) on Thursday just after midnight Pacific and daily as a catch-up. If the
 PC is off on a Thursday, the previous business holds the card until the next run,
 which is the same thing the card does for any gap in the schedule.
 
