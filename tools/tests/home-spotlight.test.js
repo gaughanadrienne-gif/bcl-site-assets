@@ -8,10 +8,10 @@ const t = require("../bcl-tools.js");
 
 const SRC = fs.readFileSync(path.join(__dirname, "..", "bcl-tools.js"), "utf8");
 const DATA = path.join(__dirname, "..", "..", "data");
-/* The full running order is private (owner decision 2026-10-01) and lives beside the
-   social schedule; data/spotlight.json is only the weeks that have started, written
-   by scripts/publish_spotlight.py. The order checks run on the private file when this
-   checkout can see it, and on the public feed otherwise. */
+
+
+
+
 const PUBLIC_FEED = JSON.parse(fs.readFileSync(path.join(DATA, "spotlight.json"), "utf8"));
 const MASTER_FILE = process.env.BCL_SPOTLIGHT_MASTER || path.join(__dirname, "..", "..", "..", "..",
   "Social Media", "Blotato_2026_H2", "spotlight-schedule.json");
@@ -20,10 +20,10 @@ const LIVE_SLUGS = new Set(JSON.parse(fs.readFileSync(path.join(DATA, "live-arti
 const SCHEDULE_CSV = path.join(__dirname, "..", "..", "..", "..",
   "Social Media", "Blotato_2026_H2", "MASTER_SCHEDULE.csv");
 
-/* ---------- the week boundary ----------
-   THURSDAY, because every BCL-SPOT post in the social schedule is a Thursday and
-   a business holds the card until the next one replaces it. This shipped on
-   Wednesday first, from an assumption, and the owner corrected it. */
+
+
+
+
 
 test("spotlightWeekStart: a Thursday owns its own week", () => {
   assert.equal(t.spotlightWeekStart("2026-09-10"), "2026-09-10");
@@ -411,8 +411,8 @@ test("spotlight.json: every slug is a published article", () => {
 });
 
 test("spotlight.json: it MIRRORS the social schedule, which is the source of truth", () => {
-  // The running order was once invented here while a real one already existed in
-  // the Blotato schedule. This test is what stops that happening twice.
+
+
   if (!fs.existsSync(SCHEDULE_CSV)) return; // path not present in every checkout
   const csv = fs.readFileSync(SCHEDULE_CSV, "utf8");
   const wanted = new Map();
@@ -472,8 +472,8 @@ test("the spotlight card uses brand tokens and never gold", () => {
 });
 
 test("card text passes WCAG AA against the card's own background", () => {
-  // The owner reported the card hard to read. Clay #d56e47 measures 3.36:1 on
-  // #fffdf8 and fails for text this size, so the kicker uses a darkened clay.
+
+
   const lum = (hex) => {
     const v = [1, 3, 5].map((i) => parseInt(hex.substr(i, 2), 16) / 255)
       .map((c) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)));
@@ -495,8 +495,8 @@ test("card text passes WCAG AA against the card's own background", () => {
 });
 
 test("the blurb is big enough to read, which is why it changed", () => {
-  // Owner, 2026-09-09: "make this weeks business spotlight text larger or bold,
-  // it's hard to read". It was .95rem at weight 400.
+
+
   const blurb = (SRC.match(/\.bcl-spot-blurb\{[^"]*/) || [""])[0];
   assert.match(blurb, /font-size:clamp\(1\.02rem/);
   assert.match(blurb, /font-weight:500/);
