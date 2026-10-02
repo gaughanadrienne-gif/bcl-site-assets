@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-01",
- "generated_at": "2026-10-01T06:50:06-07:00",
+ "updated": "2026-10-02",
+ "generated_at": "2026-10-02T06:50:10-07:00",
  "gauge": {
   "id": "11160500",
   "name": "San Lorenzo River at Big Trees",
@@ -32,7 +32,7 @@
   "first_reportable": 1937,
   "last_reportable": 2026,
   "first_water_year": 1937,
-  "last_water_year": 2026,
+  "last_water_year": 2027,
   "excluded_years": 0,
   "mean_daily_cfs": 129.9,
   "median_daily_cfs": 32.0,
@@ -1999,17 +1999,17 @@
  },
  "current": {
   "wy": 2027,
-  "through": "2026-09-30",
-  "day_index": 365,
+  "through": "2026-10-01",
+  "day_index": 1,
   "latest_daily_mean_cfs": 17.5,
   "missing_days": 0,
   "median_for_this_day": 16.0,
-  "years_lower_on_this_day": 48,
+  "years_lower_on_this_day": 55,
   "years_compared": 90,
   "live": {
    "discharge_cfs": 17.6,
    "gage_height_ft": 3.16,
-   "observed": "2026-10-01T06:30:00.000-07:00"
+   "observed": "2026-10-02T06:30:00.000-07:00"
   }
  }
 }
