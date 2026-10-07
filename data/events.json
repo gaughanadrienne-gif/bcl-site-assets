@@ -1,5 +1,5 @@
 {
- "updated": "2026-09-29",
+ "updated": "2026-10-07",
  "note": "Events checked against each organizer's own page or flyer; owner-verified where noted.",
  "events": [
   {
@@ -833,6 +833,16 @@
    "description": "Live music at Joe's Bar.",
    "category": "Music & Arts",
    "notice": "21 and over"
+  },
+  {
+   "title": "A Safer Felton: Pedestrian Improvements Town Hall with Caltrans",
+   "start": "2026-10-22T18:30",
+   "end": null,
+   "location": "San Lorenzo Valley High School Performing Arts Center, 7105 Highway 9, Felton",
+   "url": "https://www.sccrtc.org/a-safer-felton-pedestrian-improvements-town-hall-with-caltrans/",
+   "description": "Supervisor Martinez hosts Caltrans updates on the Highway 9 sidewalk project in Felton and other San Lorenzo Valley projects, with representatives from SLVUSD and the RTC. Free admission and light refreshments. Bring questions and feedback for the in-person Q&A.",
+   "category": "Community",
+   "notice": "Facebook livestream on Supervisor Martinez's page; recording available afterward. Q&A is for in-person attendees only."
   },
   {
    "title": "Discovery Zone Playgroup",
