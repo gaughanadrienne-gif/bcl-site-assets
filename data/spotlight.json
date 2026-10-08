@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-01",
+  "asOf": "2026-10-08",
   "schedule": [
     {
       "week": "2026-09-03",
@@ -30,6 +30,12 @@
       "slug": "wild-lilith-boulder-creek",
       "business": "Wild Lilith",
       "blurb": "Someone will put a glass of champagne in your hand before you have looked at a rack. It started at the grand opening on the Fourth of July and the owner decided it should never stop."
+    },
+    {
+      "week": "2026-10-08",
+      "slug": "becks-shoes-boulder-creek",
+      "business": "Beck's Shoes",
+      "blurb": "When Beck's Shoes opened in Boulder Creek on February 3, 2023, the company was already more than a century old. Ole P. Beck founded the business in Salinas in 1919."
     }
   ]
 }
