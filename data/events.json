@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-07",
+ "updated": "2026-10-09",
  "note": "Events checked against each organizer's own page or flyer; owner-verified where noted.",
  "events": [
   {
@@ -671,6 +671,26 @@
    "notice": "Adults. Registration required."
   },
   {
+   "title": "Central Coast Good Fire Fair",
+   "start": "2026-10-10T10:00",
+   "end": "2026-10-10T15:00",
+   "location": "Henry Cowell Redwoods State Park, Felton",
+   "url": "https://ucanr.edu/county/santa-cruz-county/event/central-coast-good-fire-fair-2026",
+   "description": "Learn how prescribed fire is used to manage local landscapes, with educational activities for children and adults, demonstrations, information booths, and food trucks. Presented by UC Agriculture and Natural Resources and California State Parks.",
+   "category": "Community",
+   "notice": "Free admission; $10 park parking. No registration required. Demonstration burn only if weather and safe conditions permit."
+  },
+  {
+   "title": "Open Studios Art Tour: North County",
+   "start": "2026-10-10T11:00",
+   "end": "2026-10-10T17:00",
+   "location": "Participating artist studios throughout North County, including the San Lorenzo Valley",
+   "url": "https://santacruzopenstudios.com/",
+   "description": "Visit working artist studios during the North County weekend of the free, self-guided Open Studios Art Tour. Meet artists, see their creative process, and purchase artwork directly. Use the official artist guide or mobile app for studio locations.",
+   "category": "Music & Arts",
+   "notice": "Free. Check the official artist guide for participating studios and accessibility."
+  },
+  {
    "title": "Arcane Lullaby",
    "start": "2026-10-10T20:30",
    "end": null,
@@ -679,6 +699,16 @@
    "description": "Live music at Joe's Bar.",
    "category": "Music & Arts",
    "notice": "21 and over"
+  },
+  {
+   "title": "Open Studios Art Tour: North County",
+   "start": "2026-10-11T11:00",
+   "end": "2026-10-11T17:00",
+   "location": "Participating artist studios throughout North County, including the San Lorenzo Valley",
+   "url": "https://santacruzopenstudios.com/",
+   "description": "Visit working artist studios during the North County weekend of the free, self-guided Open Studios Art Tour. Meet artists, see their creative process, and purchase artwork directly. Use the official artist guide or mobile app for studio locations.",
+   "category": "Music & Arts",
+   "notice": "Free. Check the official artist guide for participating studios and accessibility."
   },
   {
    "title": "Felton Farmers Market",
@@ -1375,7 +1405,7 @@
    "url": "https://mctshows.org/current-show/",
    "description": "Mountain Community Theater's production of Neil Simon's comedy Rumors, directed by MarNae Taylor. Runs through October 11, Fridays and Saturdays at 8 p.m. and Sundays at 2 p.m.",
    "category": "Music & Arts",
-   "notice": "Ticketed, $20 to $30."
+   "notice": "Ticketed, $20 to $30. Rated PG-13 for adult language and themes; includes a gunshot sound and references to suicide."
   },
   {
    "title": "Olympia Watershed French Broom Removal",
@@ -1415,7 +1445,7 @@
    "url": "https://mctshows.org/current-show/",
    "description": "Mountain Community Theater's production of Neil Simon's comedy Rumors, directed by MarNae Taylor. Runs through October 11, Fridays and Saturdays at 8 p.m. and Sundays at 2 p.m.",
    "category": "Music & Arts",
-   "notice": "Ticketed, $20 to $30."
+   "notice": "Ticketed, $20 to $30. Rated PG-13 for adult language and themes; includes a gunshot sound and references to suicide."
   },
   {
    "title": "Kirking of the Tartans",
@@ -1435,7 +1465,7 @@
    "url": "https://mctshows.org/current-show/",
    "description": "Mountain Community Theater's production of Neil Simon's comedy Rumors, directed by MarNae Taylor. Runs through October 11, Fridays and Saturdays at 8 p.m. and Sundays at 2 p.m.",
    "category": "Music & Arts",
-   "notice": "Ticketed, $20 to $30."
+   "notice": "Ticketed, $20 to $30. Rated PG-13 for adult language and themes; includes a gunshot sound and references to suicide."
   },
   {
    "title": "Community Potluck at Bear Creek",
