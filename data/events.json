@@ -749,6 +749,16 @@
    "notice": "Registration required. Attend in person or by Zoom."
   },
   {
+   "title": "Bingo at Highlands Park",
+   "start": "2026-10-15T13:00",
+   "end": "2026-10-15T15:30",
+   "location": "Highlands Park Senior & Community Center, 8500 Highway 9, Ben Lomond",
+   "url": "https://www.highlandsparkseniorcenter.org/bingo",
+   "description": "Bingo at the senior and community center, open to all adults. Doors open at 1 p.m.; games run from 1:30 to 3:30 p.m.",
+   "category": "Community",
+   "notice": "10-game packet $15; three packets $30; additional packet $10. Doors 1 p.m., games 1:30 p.m."
+  },
+  {
    "title": "Discovery Zone Playgroup",
    "start": "2026-10-16T11:00",
    "end": "2026-10-16T12:00",
@@ -807,6 +817,16 @@
    "category": "Music & Arts"
   },
   {
+   "title": "Earth Energy Walk at San Vicente Redwoods",
+   "start": "2026-10-17T11:00",
+   "end": null,
+   "location": "San Vicente Redwoods, 12001 Empire Grade, Santa Cruz",
+   "url": "https://communityseed.org/2026/09/2026-10-17-earth-energy-walk/",
+   "description": "Community Seed Earth Energy Walk led by Sharon Barbour. Walk in silence on the way in, stop to rest and share food, then return in conversation. Bring water and a snack to share.",
+   "category": "Community",
+   "notice": "Gather at 10:45 a.m.; depart at 11 a.m. Visitors over 18 must preregister for a free trail pass. Check with the organizer for bad-weather changes and attendance instructions."
+  },
+  {
    "title": "Haunted Walk of TERROR",
    "start": "2026-10-17T20:00",
    "end": "2026-10-17T21:30",
@@ -830,11 +850,11 @@
    "title": "Pancake Breakfast at Highlands Park",
    "start": "2026-10-18T08:30",
    "end": "2026-10-18T12:00",
-   "location": "Highlands Park Senior & Community Center, 8500 Hwy 9, Ben Lomond",
-   "url": "https://www.highlandsparkseniorcenter.org/",
-   "description": "Community pancake breakfast (Pancakes in the Park) hosted by the Senior Citizens Organization of the San Lorenzo Valley, held every third Sunday from April through October. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea, plus a bake sale. $12 adults, $5 kids 7 and under; cash, credit, or debit. Everyone welcome.",
+   "location": "Highlands Park Senior & Community Center, 8500 Highway 9, Ben Lomond",
+   "url": "https://www.highlandsparkseniorcenter.org/pancakebreakfast",
+   "description": "Pancakes in the Park, the final community pancake breakfast of the year, hosted by the Senior Citizens Organization of the San Lorenzo Valley. Table service with eggs to order, unlimited pancakes, breakfast meats, fruit, coffee, and tea. Includes a bake sale, a children's Halloween gift, and an indoor scavenger hunt. Everyone welcome.",
    "category": "Community",
-   "notice": "Every third Sunday, April through October. $12 adults, $5 kids 7 and under. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
+   "notice": "$12 adults; $5 children under 7. Cash, credit, or debit. Drop in, no reservations. Green building behind the soccer field."
   },
   {
    "title": "Felton Farmers Market",
@@ -853,6 +873,16 @@
    "url": "https://santacruzpl.libnet.info/event/16958130",
    "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
    "category": "Family & Kids"
+  },
+  {
+   "title": "Movie Afternoon: Harry Potter and the Sorcerer's Stone",
+   "start": "2026-10-21T13:00",
+   "end": "2026-10-21T15:00",
+   "location": "Highlands Park Senior & Community Center, 8500 Highway 9, Ben Lomond",
+   "url": "https://mailchi.mp/303aa2f6645c/october-newsletter-10347327",
+   "description": "Wednesday movie afternoon at Highlands Park featuring Harry Potter and the Sorcerer's Stone. Part of the center's Harry Potter movie series ahead of its holiday fundraiser.",
+   "category": "Music & Arts",
+   "notice": "$5 includes the movie, popcorn, and a small soda or water."
   },
   {
    "title": "Moonshine Crossroads Neighborhood Night",
@@ -978,6 +1008,16 @@
    "url": "https://santacruzpl.libnet.info/event/16958131",
    "description": "Stories, songs, and a simple craft for toddlers, preschoolers, and their caregivers, Wednesdays at 11 a.m. Outdoors or indoors depending on the weather.",
    "category": "Family & Kids"
+  },
+  {
+   "title": "Movie Afternoon: Harry Potter and the Chamber of Secrets",
+   "start": "2026-10-28T13:00",
+   "end": "2026-10-28T15:00",
+   "location": "Highlands Park Senior & Community Center, 8500 Highway 9, Ben Lomond",
+   "url": "https://mailchi.mp/303aa2f6645c/october-newsletter-10347327",
+   "description": "Wednesday movie afternoon at Highlands Park featuring Harry Potter and the Chamber of Secrets. Part of the center's Harry Potter movie series ahead of its holiday fundraiser.",
+   "category": "Music & Arts",
+   "notice": "$5 includes the movie, popcorn, and a small soda or water."
   },
   {
    "title": "Nick DiSalvo Neighborhood Night",
