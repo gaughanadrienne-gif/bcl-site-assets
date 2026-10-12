@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-08",
+ "updated": "2026-10-12",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
  "count": 308,
  "listings": [
@@ -369,7 +369,7 @@
    "locality": "Santa Cruz",
    "phone": "831-454-2580",
    "website": "https://cdi.santacruzcountyca.gov/UPC.aspx",
-   "hours_text": "Monday-Friday 8:00 AM-noon and 1:00-5:00 PM",
+   "hours_text": "Visitor appointments: Monday-Thursday 8:00 AM-noon, booking required (last start 11:30 AM). Phone switchboard: Monday-Friday 8:00 AM-noon and 1:00-5:00 PM. See official cashier and EZ permit schedules.",
    "service_area": "Unincorporated County, including Boulder Creek",
    "verified_at": "2026-07-15",
    "tile": "santa-cruz-county-planning-unified-permit-center.png"
@@ -1719,7 +1719,7 @@
    "subcategory": "Pest control",
    "description": "Felton-based, woman-owned integrated pest management service using targeted low-toxicity methods with no anticoagulant rodent baits, serving Boulder Creek, Felton, and the San Lorenzo Valley.",
    "locality": "Felton",
-   "phone": "855-284-5233",
+   "phone": "855-284-5239",
    "website": "https://xterminatrix.com/",
    "service_area": "San Lorenzo Valley, including Boulder Creek, Felton, and Ben Lomond",
    "verified_at": "2026-07-16",
@@ -2621,7 +2621,7 @@
    "website": "https://locations.skipstire.com/ca/scotts-valley/231-mount-hermon-road",
    "service_area": "Scotts Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
-   "hours_text": "Monday-Saturday 7:30am-6pm; Sunday 9am-5pm",
+   "hours_text": "Monday-Saturday 7:30am-7pm; Sunday 9am-5pm",
    "lat": 37.0451426,
    "lon": -122.0282727,
    "tile": "skip-s-tire-auto-repair-scotts-valley.png"
@@ -2635,7 +2635,7 @@
    "locality": "Scotts Valley",
    "phone": "831-439-9631",
    "website": "https://www.smogcheckscottsvalley.com/",
-   "hours_text": "Monday-Friday 8am-5pm; Saturday 8am-4pm; Sunday closed",
+   "hours_text": "Monday-Saturday 8am-5pm; confirm Sunday hours with the shop",
    "service_area": "Scotts Valley and Santa Cruz County",
    "verified_at": "2026-07-17",
    "lat": 37.2139767,
@@ -3820,7 +3820,7 @@
    "locality": "Los Gatos",
    "phone": "(408) 353-6290",
    "website": "https://burrellschool.com/",
-   "hours_text": "Friday-Sunday 1:00-6:00 p.m.",
+   "hours_text": "Friday–Sunday noon–5:30 p.m.; check the winery calendar for event-specific hours.",
    "local": true,
    "verified_at": "2026-07-17",
    "tile": "burrell-school-vineyards-and-winery.png"

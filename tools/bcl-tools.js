@@ -1492,7 +1492,17 @@
   }
 
   function jobSalaryText(job) {
-    return job.salary_disclosed ? job.salary_text : "Pay not listed";
+    if (!job.salary_disclosed) return "Pay not listed";
+    var text = job.salary_text || "";
+    // Explicit reviewed units stay visible without annualizing or discarding qualifiers.
+    if (job.salary_period === "teaching_unit_semester" &&
+        (!/teaching unit/i.test(text) || !/semester/i.test(text))) {
+      return text + " (per teaching unit per semester)";
+    }
+    if (job.salary_period === "season" && !/season/i.test(text)) {
+      return text + " (per season)";
+    }
+    return text;
   }
 
   /* Pay bands compare an hourly equivalent, because the feed mixes hourly,
@@ -1621,9 +1631,9 @@
     var employer = jobEmployerName(job), department = jobDepartmentName(job);
     h += '<div class="bcl-name"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener" aria-label="Open the source posting for ' + esc(job.title) + ' at ' + esc(employer) + '">' + esc(job.title) + "</a></div>";
     var tier = jobAreaLabel(job);
-    h += '<div class="bcl-sub">' + esc(employer) + (department ? " · " + esc(department) : "") + (job.city && job.work_mode !== "remote" ? " · " + esc(job.city) : "") + " · " + esc(tier) + (job.work_mode === "remote" ? " · Remote with local employer" : "") + "</div>";
+    h += '<div class="bcl-sub">' + esc(employer) + (department ? " · " + esc(department) : "") + (job.city && job.work_mode !== "remote" ? " · " + esc(job.city) : "") + " · " + esc(tier) + (job.work_mode === "remote" ? " · Remote with local employer" : job.work_mode === "hybrid" ? " · Hybrid" : "") + "</div>";
     if (job.commute_minutes && job.geography_tier !== "remote" && job.work_mode !== "remote") h += '<div class="bcl-meta">Estimated drive: ~' + esc(String(job.commute_minutes)) + " min; traffic and conditions vary</div>";
-    if (job.field_reviewed_at) h += '<div class="bcl-meta">Location/schedule checked ' + esc(job.field_reviewed_at) + "</div>";
+    if (job.field_reviewed_at) h += '<div class="bcl-meta">Job details checked ' + esc(job.field_reviewed_at) + "</div>";
     if (job.employment_type) h += '<div class="bcl-meta">' + esc(job.employment_type) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobSalaryText(job)) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobPostedLine(job, today)) + "</div>";
@@ -3486,7 +3496,7 @@ function initBclSectionJumps(doc) {
   }
 
   function homeJobRow(job) {
-    var meta = [job.work_mode === "remote" ? "Remote within California" : job.city, job.employment_type, jobSalaryText(job)].filter(Boolean).join(" · ");
+    var meta = [job.work_mode === "remote" ? "Remote within California" : job.city, job.work_mode === "hybrid" ? "Hybrid" : "", job.employment_type, jobSalaryText(job)].filter(Boolean).join(" · ");
     return boardRow(job.canonical_url, true, job.employer_name || "", job.title || "", meta);
   }
 

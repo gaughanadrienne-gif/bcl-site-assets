@@ -19,7 +19,7 @@ from shared.bcl_ingest import (  # noqa: E402
 )
 from shared.review_board import render_review_board  # noqa: E402
 from jobs.normalize import include_job, normalize_job
-from jobs.approved_corrections import apply_reviewed_fields
+from jobs.approved_corrections import apply_reviewed_fields, load_reviewed_register
 from jobs.identity import job_identity_url  # noqa: E402
 from jobs.parsers import (  # noqa: E402
     calopps, dayforce, edjoin, jobaps, neogov, oracle, paycom, paylocity,
@@ -147,6 +147,7 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
     same `normalize_job`/`include_job` gates, so a submission can never
     bypass the geography/exclusion checks that scraped rows go through.
     """
+    reviewed_register = load_reviewed_register()  # Fail closed before fetching/processing rows.
     http_get_fn = fetchers.get("http_get", http_get)
     http_json_fn = fetchers.get("http_json", http_json)
     firecrawl_fn = fetchers.get("firecrawl_markdown", firecrawl_markdown)
@@ -188,7 +189,7 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
         for raw in raw_rows:
             try:
                 job = normalize_job(raw, source, today)
-                job, field_reason = apply_reviewed_fields(job, today)
+                job, field_reason = apply_reviewed_fields(job, today, register=reviewed_register)
                 ok, reason = include_job(job)
                 if field_reason:
                     ok, reason = False, field_reason
