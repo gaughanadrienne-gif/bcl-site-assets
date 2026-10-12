@@ -18,7 +18,9 @@ from shared.bcl_ingest import (  # noqa: E402
     load_json, write_json_atomic, write_public_json_guarded,
 )
 from shared.review_board import render_review_board  # noqa: E402
-from jobs.normalize import include_job, normalize_job  # noqa: E402
+from jobs.normalize import include_job, normalize_job
+from jobs.approved_corrections import apply_reviewed_fields
+from jobs.identity import job_identity_url  # noqa: E402
 from jobs.parsers import (  # noqa: E402
     calopps, dayforce, edjoin, jobaps, neogov, oracle, paycom, paylocity,
     remote_json, rss, workday, local_employers,
@@ -34,6 +36,7 @@ PUBLIC_SCHEMA_KEYS = (
     "benefits_text", "hours_text", "schedule", "category", "posted_at",
     "application_deadline", "canonical_url", "source", "first_seen_at",
     "last_verified_at", "verification_status", "freshness_label",
+    "local_employer_verified", "local_employer_evidence_url", "field_reviewed_at",
 )
 
 PARSERS = {
@@ -112,14 +115,6 @@ def fetch_raw(source, http_get_fn, http_json_fn, firecrawl_markdown_fn, http_pos
 _MANUAL_SOURCE = {"name": "Community submission"}
 
 
-def job_identity_url(url):
-    """Retain requisition query IDs; remove only recognized tracking fields."""
-    parts = urlsplit(str(url or "").strip())
-    query = [(key, value) for key, value in parse_qsl(parts.query, keep_blank_values=True)
-             if not key.lower().startswith("utm_")
-             and key.lower() not in {"fbclid", "gclid", "msclkid", "mc_cid", "mc_eid"}]
-    return urlunsplit((parts.scheme.lower(), parts.netloc.lower(), parts.path.rstrip("/"),
-                       urlencode(sorted(query)), parts.fragment))
 
 
 def preserve_first_seen(jobs, previous_jobs, today):
@@ -193,7 +188,11 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
         for raw in raw_rows:
             try:
                 job = normalize_job(raw, source, today)
+                job, field_reason = apply_reviewed_fields(job, today)
                 ok, reason = include_job(job)
+                if field_reason:
+                    ok, reason = False, field_reason
+                    job["verification_status"] = "pending-review"
                 if raw.get("review_required"):
                     ok, reason = False, "employer-detail-review-required"
                     job["verification_status"] = "pending-review"

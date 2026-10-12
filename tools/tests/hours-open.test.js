@@ -3,10 +3,10 @@ const assert = require("node:assert");
 const t = require("../bcl-tools.js");
 
 /* Wed 2026-07-29 is the reference day for these tests. */
-const WED_10AM = new Date(2026, 6, 29, 10, 0);
-const WED_7PM = new Date(2026, 6, 29, 19, 0);
-const SAT_10AM = new Date(2026, 7, 1, 10, 0);
-const MON_NOON = new Date(2026, 6, 27, 12, 0);
+const WED_10AM = new Date("2026-07-29T17:00:00Z");
+const WED_7PM = new Date("2026-07-30T02:00:00Z");
+const SAT_10AM = new Date("2026-08-01T17:00:00Z");
+const MON_NOON = new Date("2026-07-27T19:00:00Z");
 
 test("weekday hours parse into per-day intervals", () => {
   const parsed = t.parseHours("Monday-Friday 8am-5pm; Saturday-Sunday closed");
@@ -27,9 +27,9 @@ test("periods and a.m./p.m. spacing parse the same as bare am/pm", () => {
 });
 test("a split shift closes between services", () => {
   const hours = "Monday-Saturday 11:00 a.m.-3:00 p.m. and 4:00-7:00 p.m.";
-  assert.equal(t.listingOpenState({ hours_text: hours }, new Date(2026, 6, 29, 12, 0)), "open");
-  assert.equal(t.listingOpenState({ hours_text: hours }, new Date(2026, 6, 29, 15, 30)), "closed");
-  assert.equal(t.listingOpenState({ hours_text: hours }, new Date(2026, 6, 29, 18, 0)), "open");
+  assert.equal(t.listingOpenState({ hours_text: hours }, new Date("2026-07-29T19:00:00Z")), "open");
+  assert.equal(t.listingOpenState({ hours_text: hours }, new Date("2026-07-29T22:30:00Z")), "closed");
+  assert.equal(t.listingOpenState({ hours_text: hours }, new Date("2026-07-30T01:00:00Z")), "open");
 });
 test("an unmarked start borrows the meridiem that makes the range possible", () => {
   const parsed = t.parseHours("Daily 11:30-3:00 p.m.");
@@ -37,17 +37,17 @@ test("an unmarked start borrows the meridiem that makes the range possible", () 
   assert.equal(parsed.intervals[0].e, 15 * 60);
 });
 test("a closing time after midnight still counts as open in the small hours", () => {
-  assert.equal(t.listingOpenState({ hours_text: "Daily 12pm-1:30am" }, new Date(2026, 6, 30, 0, 45)), "open");
-  assert.equal(t.listingOpenState({ hours_text: "Daily 12pm-1:30am" }, new Date(2026, 6, 30, 2, 0)), "closed");
+  assert.equal(t.listingOpenState({ hours_text: "Daily 12pm-1:30am" }, new Date("2026-07-30T07:45:00Z")), "open");
+  assert.equal(t.listingOpenState({ hours_text: "Daily 12pm-1:30am" }, new Date("2026-07-30T09:00:00Z")), "closed");
 });
 test("a stated closed day is honoured, not ignored", () => {
   const hours = "Wednesday-Sunday 11:00 a.m.-9:00 p.m.; Monday-Tuesday closed.";
   assert.equal(t.listingOpenState({ hours_text: hours }, MON_NOON), "closed");
-  assert.equal(t.listingOpenState({ hours_text: hours }, new Date(2026, 6, 29, 12, 0)), "open");
+  assert.equal(t.listingOpenState({ hours_text: hours }, new Date("2026-07-29T19:00:00Z")), "open");
 });
 test("round-the-clock services are always open", () => {
   ["24/7", "24/7/365", "Phone and text 24/7", "Dispatch 24/7/365"].forEach(h => {
-    assert.equal(t.listingOpenState({ hours_text: h }, new Date(2026, 6, 30, 3, 0)), "open", h);
+    assert.equal(t.listingOpenState({ hours_text: h }, new Date("2026-07-30T10:00:00Z")), "open", h);
   });
 });
 /* This is the safety property of the whole feature. */

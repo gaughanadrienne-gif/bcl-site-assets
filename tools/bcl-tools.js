@@ -160,7 +160,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v30";
+  var CSS_ID = "bcl-tools-css-v31";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -347,8 +347,7 @@
       ".bcl-promo-btn:hover{background:#a52015 !important;}",
       ".bcl-promo-more{font-family:'Oswald','IBM Plex Mono',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.14em;color:#FCF8EF !important;text-transform:uppercase;text-decoration:underline;}",
       ".bcl-alert a{color:#fffdf8 !important;font-weight:600;}",
-      ".bcl-actionrow{font-size:.9rem;margin:6px 0;padding-left:16px;position:relative;}",
-      ".bcl-actionrow:before{content:'';position:absolute;left:0;top:.45em;width:7px;height:11px;background:#d56e47;}",
+      ".bcl-actionrow{font-size:.9rem;margin:6px 0;position:relative;}",
       ".bcl-actionrow a{color:#2e6b46 !important;font-weight:600;}",
       /* Mountain Status cards use align-items:start and a uniform cream surface scoped to #bcl-status. Class suffix selectors otherwise produce inconsistent surfaces. */
       /* Equal-width columns and grid-auto-rows:1fr keep snapshot cards uniform. A trailing empty grid cell is intentional. */
@@ -412,7 +411,6 @@
       ".bcl-event-card a{color:#2e6b46 !important;font-size:.82rem;}",
       ".bcl-event-correction{margin-top:3px;}",
       ".bcl-cat-head{display:flex;align-items:center;gap:10px;margin:28px 0 12px;}",
-      ".bcl-cat-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
       ".bcl-cat-head h3{margin:0 !important;font-size:1.3rem !important;}",
       ".bcl-cat-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:#626c66 !important;}",
       ".bcl-search-btn{background:none;border:0;padding:6px;margin-left:10px;cursor:pointer;color:#173f36;display:inline-flex;align-items:center;align-self:center;}",
@@ -484,7 +482,6 @@
          read first. Every child colour is re-stated for the dark ground. */
       ".bcl-today{background:#173f36 !important;color:#f5f1e7 !important;border:1px solid #0d2c26;border-radius:16px;overflow:hidden;padding:26px 28px;font-family:Inter,Arial,sans-serif;box-shadow:0 14px 34px rgba(13,44,38,.16);}",
       ".bcl-today-head{display:flex;align-items:center;gap:10px;margin:0 0 12px;}",
-      ".bcl-today-head:before{content:'';display:block;width:9px;height:16px;background:#d56e47;flex:0 0 auto;}",
       ".bcl-today-head h2{font-family:'Cormorant Garamond',Georgia,serif;color:#fffdf8 !important;font-size:1.7rem;margin:0 !important;line-height:1;}",
       ".bcl-today-head span{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.12em;color:#9fb8a9 !important;margin-left:auto;text-transform:uppercase;}",
       ".bcl-today-row{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.9rem;color:#f5f1e7 !important;margin:0 0 4px;}",
@@ -614,7 +611,6 @@
       ".bcl-article-layout>p,.bcl-article-layout>ul,.bcl-article-layout>ol,.bcl-article-layout>h2,.bcl-article-layout>h3,.bcl-article-layout>blockquote,.bcl-article-layout>table,.bcl-article-layout>.bcl-menu,.bcl-article-layout>.bcl-article-reviewed{box-sizing:border-box;max-width:680px;margin-left:auto!important;margin-right:auto!important;}",
       ".bcl-article-layout>h2,.bcl-article-body>h2,.bcl-article-layout>h3,.bcl-article-body>h3{font-family:'Cormorant Garamond',Georgia,serif!important;color:#173f36!important;line-height:1.15!important;}",
       ".bcl-article-layout>h2,.bcl-article-body>h2{display:flex;align-items:flex-start;gap:12px;font-size:clamp(1.875rem,3vw,2.5rem)!important;line-height:1.1!important;margin-top:48px!important;margin-bottom:16px!important;text-wrap:balance;}",
-      ".bcl-article-layout>h2:before,.bcl-article-body>h2:before{content:'';display:block;width:9px;height:16px;margin-top:.36em;background:#d56e47;flex:0 0 9px;}",
       ".bcl-article-layout>h3,.bcl-article-body>h3{font-size:clamp(1.35rem,2.25vw,1.6rem)!important;margin-top:32px!important;margin-bottom:12px!important;}",
       ".bcl-article-body p,.bcl-article-body li{font-size:1rem;}",
       ".bcl-article-body a,.bcl-article-layout>a,.bcl-article-layout>p a,.bcl-article-layout>ul a,.bcl-article-layout>ol a{color:#2e6b46;text-decoration:underline;text-underline-offset:2px;}",
@@ -849,6 +845,22 @@
     }
   }
 
+  /* Opening hours are posted in Boulder Creek wall time, not the reader's. */
+  function pacificClock(now) {
+    try {
+      var parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", hourCycle: "h23"
+      }).formatToParts(now || new Date());
+      var got = {};
+      parts.forEach(function (p) { got[p.type] = p.value; });
+      if (!got.year || !got.month || !got.day || !got.hour || !got.minute) return null;
+      return { year: +got.year, month: +got.month, date: +got.day,
+        day: new Date(Date.UTC(+got.year, +got.month - 1, +got.day)).getUTCDay(),
+        hour: +got.hour, minute: +got.minute };
+    } catch (e) { return null; }
+  }
+
   function eventTodayKey(value) {
     var key = /^(\d{4}-\d{2}-\d{2})/.exec(String(value == null ? "" : value));
     return key ? key[1] : (pacificDayKey(value) || todayKey(isDateLike(value) ? value : new Date()));
@@ -939,7 +951,7 @@
   function updatedSuffix(stamp, today) {
     var age = dayAge(stamp, today);
     if (age == null || age > STAMP_MAX_AGE_DAYS) return "";
-    return " · UPDATED " + stamp;
+    return " · DATA UPDATED " + stamp;
   }
 
   /* ---------- listings (directory + food) ---------- */
@@ -947,11 +959,9 @@
   /* Opening-hours parsing, deliberately strict.
      hours_text is written for people, so plenty of it is honest but not
      machine-readable: "by appointment", "See school calendar", "Winter:
-     Tuesday-Thursday ...". The parser accepts only the shapes it can be sure
-     of and returns null for everything else. null never removes a listing from
-     the results; it only means we cannot say whether the door is open, and the
-     card says so. Hiding a business that is in fact open is a worse failure
-     than showing one that is closed. */
+     Tuesday-Thursday ...". The parser accepts only known shapes and returns
+     null for everything else. All listings remain available with Open now off;
+     turning it on includes only readable posted hours showing open. */
 
   var DAY_INDEX = {
     sunday: 0, sun: 0, monday: 1, mon: 1, tuesday: 2, tue: 2, tues: 2,
@@ -1067,8 +1077,10 @@
     if (!parsed) return false;
     if (parsed.always) return true;
     var now = when || new Date();
-    var day = now.getDay();
-    var minutes = now.getHours() * 60 + now.getMinutes();
+    var clock = pacificClock(now);
+    if (!clock) return null;
+    var day = clock.day;
+    var minutes = clock.hour * 60 + clock.minute;
     for (var i = 0; i < parsed.intervals.length; i++) {
       var iv = parsed.intervals[i];
       if (iv.d === day && minutes >= iv.s && minutes < iv.e) return true;
@@ -1079,11 +1091,12 @@
     return false;
   }
 
-  /* "open", "closed", or "unknown". Only "closed" may be filtered out. */
+  /* "open", "closed", or "unknown". Unknown is never confirmation of open. */
   function listingOpenState(listing, when) {
     var parsed = parseHours(listing && listing.hours_text);
     if (!parsed) return "unknown";
-    return isOpenAt(parsed, when) ? "open" : "closed";
+    var open = isOpenAt(parsed, when);
+    return open == null ? "unknown" : (open ? "open" : "closed");
   }
 
   function listingCard(l, opts) {
@@ -1317,7 +1330,7 @@
           if (bcOnly && !badgeIsBoulderCreek(l)) return false;
           /* "unknown" survives on purpose: an unparseable hours line is not
              evidence that the place is shut. */
-          if (openNow && listingOpenState(l, now) === "closed") return false;
+          if (openNow && listingOpenState(l, now) !== "open") return false;
           if (!q) return true;
           return (l.name + " " + (l.subcategory || "") + " " + (l.description || "")).toLowerCase().indexOf(q) >= 0;
         });
@@ -1352,7 +1365,7 @@
           if (left > 0) moreBtn.textContent = "Load " + Math.min(batchSize, left) + " more";
         }
         if (openNow) {
-          note.textContent = "Open now uses each listing's posted hours. Listings whose hours cannot be read as set times stay in the results and are marked, because unreadable hours are not the same as closed.";
+          note.textContent = "Open now uses posted hours in Pacific time. Only listings with readable hours showing open are included. Turn it off to see places with unknown or conditional hours, and confirm with the business before visiting.";
         } else {
           note.textContent = "";
         }
@@ -1475,7 +1488,7 @@
   /* ---------- jobs ---------- */
 
   function jobTab(job) {
-    return job && job.geography_tier === "remote" ? "remote" : "local";
+    return job && job.geography_tier === "remote" && job.local_employer_verified !== true ? "remote" : "local";
   }
 
   function jobSalaryText(job) {
@@ -1575,6 +1588,7 @@
       if (tab === "local" && j.geography_tier === "extended" && !opts.includeExtended) return false;
       if (opts.area === "slv" && ["Boulder Creek", "Brookdale", "Ben Lomond", "Felton", "Mount Hermon", "Lompico", "Zayante", "San Lorenzo Valley"].indexOf(j.city) < 0) return false;
       var schedule = String(j.employment_type || "").toLowerCase().replace(/-/g, " ").replace(/full\s+(?:and|&)\s+part\s+time/g, "full time, part time");
+      if (/\bextra[ -]help\b/i.test(j.title || "")) schedule += ", temporary";
       if (opts.employmentType && schedule.indexOf(opts.employmentType) < 0) return false;
       if (opts.category && j.category !== opts.category) return false;
       if (opts.employer && jobEmployerName(j) !== opts.employer) return false;
@@ -1596,6 +1610,7 @@
   var JOB_VALLEY_TOWNS = ["Boulder Creek", "Brookdale", "Ben Lomond", "Felton", "Mount Hermon"];
 
   function jobAreaLabel(job) {
+    if (job && job.work_mode === "remote") return "Remote within California";
     if (job && job.geography_tier === "remote") return "Remote";
     if (job && job.geography_tier === "extended") return "Extended commute";
     return job && JOB_VALLEY_TOWNS.indexOf(job.city) >= 0 ? "Valley" : "Nearby";
@@ -1606,8 +1621,9 @@
     var employer = jobEmployerName(job), department = jobDepartmentName(job);
     h += '<div class="bcl-name"><a href="' + esc(job.canonical_url) + '" target="_blank" rel="noopener" aria-label="Open the source posting for ' + esc(job.title) + ' at ' + esc(employer) + '">' + esc(job.title) + "</a></div>";
     var tier = jobAreaLabel(job);
-    h += '<div class="bcl-sub">' + esc(employer) + (department ? " · " + esc(department) : "") + (job.city ? " · " + esc(job.city) : "") + " · " + esc(tier) + (job.work_mode === "remote" ? " · Remote with local employer" : "") + "</div>";
+    h += '<div class="bcl-sub">' + esc(employer) + (department ? " · " + esc(department) : "") + (job.city && job.work_mode !== "remote" ? " · " + esc(job.city) : "") + " · " + esc(tier) + (job.work_mode === "remote" ? " · Remote with local employer" : "") + "</div>";
     if (job.commute_minutes && job.geography_tier !== "remote" && job.work_mode !== "remote") h += '<div class="bcl-meta">Estimated drive: ~' + esc(String(job.commute_minutes)) + " min; traffic and conditions vary</div>";
+    if (job.field_reviewed_at) h += '<div class="bcl-meta">Location/schedule checked ' + esc(job.field_reviewed_at) + "</div>";
     if (job.employment_type) h += '<div class="bcl-meta">' + esc(job.employment_type) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobSalaryText(job)) + "</div>";
     h += '<div class="bcl-meta">' + esc(jobPostedLine(job, today)) + "</div>";
@@ -1639,7 +1655,10 @@
     root.innerHTML = '<div class="bcl-count">Loading jobs…</div>';
     fetchJSON(REPO + "/data/jobs.json").then(function (data) {
       /* A stale data edge must not bring the retired generic remote board back. */
-      var all = (data.jobs || []).filter(function (j) { return j.geography_tier !== "remote"; });
+      var all = (data.jobs || []).filter(function (j) {
+        return j.geography_tier !== "remote" || (j.local_employer_verified === true &&
+          j.work_mode === "remote" && j.remote_regions === "California" && !!j.local_employer_evidence_url);
+      });
       var cats = [];
       all.forEach(function (j) { if (j.category && cats.indexOf(j.category) < 0) cats.push(j.category); });
       cats.sort();
@@ -1998,8 +2017,9 @@
      plus a VCALENDAR built in the browser and handed over as a Blob, so no
      server is involved). Two deliberate changes for this feed: BCL events are
      either a bare "YYYY-MM-DD" or a local "YYYY-MM-DDTHH:MM", so all-day
-     events are written as DTSTART;VALUE=DATE and timed ones as floating local
-     times. Running these through toISOString the way the garden embed does
+     events are written as DTSTART;VALUE=DATE and timed ones as UTC instants
+     converted from Pacific wall time on the event date. Running date-only events
+     through toISOString the way the garden embed does
      would drag a date-only event back into the previous day for anyone reading
      it west of UTC, which is everyone here. */
 
@@ -2016,12 +2036,29 @@
   }
 
   function icsDate(parts, addDay) {
-    var d = new Date(parts.y, parts.mo - 1, parts.d + (addDay ? 1 : 0));
-    return d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate());
+    var d = new Date(Date.UTC(parts.y, parts.mo - 1, parts.d + (addDay ? 1 : 0)));
+    return d.getUTCFullYear() + pad2(d.getUTCMonth() + 1) + pad2(d.getUTCDate());
   }
 
   function icsDateTime(parts) {
     return icsDate(parts, false) + "T" + pad2(parts.h) + pad2(parts.mi || 0) + "00";
+  }
+
+  /* Match Pacific wall time against both modern offsets. The earlier match
+     is the first occurrence during the fall repeat. A nonexistent spring time
+     produces no file, so we never silently export a different hour. */
+  function pacificEventInstant(parts) {
+    var wall = Date.UTC(parts.y, parts.mo - 1, parts.d, parts.h, parts.mi || 0);
+    var date = new Date(wall);
+    if (date.getUTCFullYear() !== parts.y || date.getUTCMonth() + 1 !== parts.mo ||
+        date.getUTCDate() !== parts.d || parts.h < 0 || parts.h > 23 ||
+        (parts.mi || 0) < 0 || (parts.mi || 0) > 59) return null;
+    for (var offset = 7; offset <= 8; offset++) {
+      var instant = new Date(wall + offset * 3600000), clock = pacificClock(instant);
+      if (clock && clock.year === parts.y && clock.month === parts.mo && clock.date === parts.d &&
+          clock.hour === parts.h && clock.minute === (parts.mi || 0)) return instant;
+    }
+    return null;
   }
 
   function icsUID(e) {
@@ -2052,8 +2089,11 @@
       lines.push("DTSTART;VALUE=DATE:" + icsDate(start, false));
       lines.push("DTEND;VALUE=DATE:" + icsDate(end && end.h == null ? end : start, true));
     } else {
-      lines.push("DTSTART:" + icsDateTime(start));
-      lines.push("DTEND:" + icsDateTime(end && end.h != null ? end : start));
+      var startInstant = pacificEventInstant(start);
+      var endInstant = pacificEventInstant(end && end.h != null ? end : start);
+      if (!startInstant || !endInstant || endInstant < startInstant) return "";
+      lines.push("DTSTART:" + icsStamp(startInstant));
+      lines.push("DTEND:" + icsStamp(endInstant));
     }
     lines.push("SUMMARY:" + icsEscape(e.title));
     if (e.location) lines.push("LOCATION:" + icsEscape(e.location));
@@ -3446,7 +3486,7 @@ function initBclSectionJumps(doc) {
   }
 
   function homeJobRow(job) {
-    var meta = [job.city, job.employment_type, jobSalaryText(job)].filter(Boolean).join(" · ");
+    var meta = [job.work_mode === "remote" ? "Remote within California" : job.city, job.employment_type, jobSalaryText(job)].filter(Boolean).join(" · ");
     return boardRow(job.canonical_url, true, job.employer_name || "", job.title || "", meta);
   }
 
@@ -3684,7 +3724,7 @@ function initBclSectionJumps(doc) {
       if (!s || s.toDate == null || s.pctOfNormal == null) return;
       if (document.getElementById("bcl-home-rain")) return;
 
-      var note = rainRankText(s.drier, s.years);
+      var note = rainRankText(s.drier, s.years, s.floor);
       var sec = document.createElement("section");
       sec.id = "bcl-home-rain";
       sec.className = "bcl-section";
@@ -4852,9 +4892,10 @@ function initBclSectionJumps(doc) {
     };
   }
 
-  function rainRankText(drier, years) {
+  function rainRankText(drier, years, incomplete) {
+    if (incomplete) return "Incomplete observations; rank not available";
     if (drier == null || !years) return "";
-    if (drier === 0) return "the driest start to a year in the record";
+    if (drier === 0) return "no compared year has a lower recorded total by this date";
     if (drier === years) return "the wettest start to a year in the record";
     return "wetter than " + drier + " of " + years + " years by this date";
   }
@@ -4884,7 +4925,7 @@ function initBclSectionJumps(doc) {
                 "median of " + (s.years || 0) + " reportable years"]);
     tiles.push(["Against that median",
                 s.pctOfNormal != null ? s.pctOfNormal + "%" : "not available",
-                rainRankText(s.drier, s.years)]);
+                s.floor ? "Incomplete observations; rank not available" : rainRankText(s.drier, s.years, s.floor)]);
     tiles.push(["Median full water year", rainInches(s.median),
                 "median, October to September. " + rainSkewNote(payload)]);
     return '<div class="bcl-rain-tiles">' + tiles.map(function (t) {
@@ -5297,7 +5338,9 @@ function initBclSectionJumps(doc) {
       "<p>The median water year here is <strong>" + esc(rainInches(record.median)) +
       "</strong> and the average is <strong>" + esc(rainInches(record.mean)) +
       "</strong>. The gap between them is the point: a handful of enormous years pull the average above the " +
-      "year you are actually likely to get, so the median is the better number for sizing a culvert or a tank. " +
+      "middle of the record. The seasonal median describes the middle of this water-year record; it does not size a culvert, " +
+      "ditch or storage tank. Drainage design needs site-specific peak design flow and design-storm analysis. " +
+      "Ask a qualified local engineer and the permitting agency about your site. " +
       (record.wettest_day ? "The wettest single day in the whole record is " +
         esc(rainLongDate(record.wettest_day.date)) + ", at " + esc(rainInches(record.wettest_day.inches)) + ". " : "") +
       "</p>" +
@@ -5960,7 +6003,7 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, residentsGroupsHTML: residentsGroupsHTML, residentsHelpHTML: residentsHelpHTML, RES_GROUPS: RES_GROUPS, homeDailyOrder: homeDailyOrder, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, pacificClock: pacificClock, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, residentsGroupsHTML: residentsGroupsHTML, residentsHelpHTML: residentsHelpHTML, RES_GROUPS: RES_GROUPS, homeDailyOrder: homeDailyOrder, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
     module.exports.flexibleLocalDate = flexibleLocalDate;
     module.exports.jobDeadlineText = jobDeadlineText;
     module.exports.rentalAvailableText = rentalAvailableText;
