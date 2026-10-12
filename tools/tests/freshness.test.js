@@ -22,8 +22,8 @@ test("a listing card shows Last verified only when the feed supplies a date", ()
   assert.equal(without.indexOf("undefined"), -1);
 });
 test("updatedSuffix prints a stamp the reader can trust", () => {
-  assert.equal(t.updatedSuffix("2026-07-28", "2026-07-29"), " · UPDATED 2026-07-28");
-  assert.equal(t.updatedSuffix("2026-07-29", "2026-07-29"), " · UPDATED 2026-07-29");
+  assert.equal(t.updatedSuffix("2026-07-28", "2026-07-29"), " · DATA UPDATED 2026-07-28");
+  assert.equal(t.updatedSuffix("2026-07-29", "2026-07-29"), " · DATA UPDATED 2026-07-29");
 });
 test("updatedSuffix says nothing when the stamp is missing or stale", () => {
   assert.equal(t.updatedSuffix("", "2026-07-29"), "");

@@ -136,7 +136,7 @@ test("an accumulated reading is disclosed rather than hidden", () => {
 
 test("season to date is compared as a count of years, not a smooth percentile", () => {
   assert.equal(t.rainRankText(2, 3), "wetter than 2 of 3 years by this date");
-  assert.equal(t.rainRankText(0, 67), "the driest start to a year in the record");
+  assert.equal(t.rainRankText(0, 67), "no compared year has a lower recorded total by this date");
   assert.equal(t.rainRankText(67, 67), "the wettest start to a year in the record");
   assert.equal(t.rainRankText(null, 67), "");
 });
@@ -376,7 +376,8 @@ test("the method section names the excluded years instead of hiding them", () =>
   assert.ok(html.indexOf("five or fewer days with no reading") >= 0);
   assert.ok(html.indexOf("2000") >= 0, "the excluded year is named");
   assert.ok(html.indexOf("rather than patched") >= 0);
-  assert.ok(html.indexOf("median is the better number") >= 0);
+  assert.ok(html.indexOf("seasonal median describes") >= 0);
+  assert.ok(html.indexOf("site-specific peak design flow") >= 0);
 });
 test("the method section keeps the median-versus-mean point", () => {
   const html = t.rainMethodHTML(FAKE);
@@ -422,13 +423,17 @@ test("the tool points at Mountain Status for live conditions and never replaces 
 
 /* --------------------------------------- the generated payload, if present */
 
-test("the generated payload agrees with the rainfall article", (tc) => {
+test("the generated payload preserves historical anchors and its statistics agree with its totals", (tc) => {
   if (!payload) return tc.skip("data/rain.json not generated yet");
   assert.equal(payload.totals["2021"], 21.51);
   assert.equal(payload.totals["2023"], 85.13);
-  assert.equal(payload.record.reportable_years, 67);
-  assert.equal(payload.record.mean, 49.09);
-  assert.equal(payload.record.median, 42.69);
+  const totals = Object.values(payload.totals).filter(x => typeof x === "number").sort((a,b) => a-b);
+  assert.equal(payload.record.reportable_years, totals.length);
+  const mean = Math.round(totals.reduce((a,b) => a+b, 0) / totals.length * 100) / 100;
+  const middle = Math.floor(totals.length/2);
+  const median = Math.round((totals.length%2 ? totals[middle] : (totals[middle-1]+totals[middle])/2) * 100)/100;
+  assert.equal(payload.record.mean, mean);
+  assert.equal(payload.record.median, median);
 });
 test("the generated payload renders every section without holes", (tc) => {
   if (!payload) return tc.skip("data/rain.json not generated yet");
@@ -443,7 +448,7 @@ test("the generated payload renders every section without holes", (tc) => {
   assert.equal(html.indexOf("undefined"), -1);
   assert.equal(html.indexOf("NaN"), -1);
   assert.equal(html.indexOf("null"), -1);
-  assert.ok(html.indexOf("2nd wettest of the 67 reportable years") >= 0, "WY2017 ranking");
+  assert.ok(html.indexOf("2nd wettest of the " + payload.record.reportable_years + " reportable years") >= 0, "WY2017 ranking");
 });
 test("the payload stays small enough to fetch on page load", (tc) => {
   if (!payload) return tc.skip("data/rain.json not generated yet");

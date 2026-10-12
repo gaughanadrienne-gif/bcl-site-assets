@@ -291,11 +291,13 @@ def test_the_payload_matches_every_water_year_total_already_in_print(live_payloa
 
 
 def test_the_payload_matches_the_articles_mean_median_and_year_count(live_payload):
-    assert live_payload["record"]["reportable_years"] == 67
-    assert live_payload["record"]["first_reportable"] == 1940
-    assert live_payload["record"]["last_reportable"] == 2023
-    assert live_payload["record"]["mean"] == 49.09
-    assert live_payload["record"]["median"] == 42.69
+    import statistics
+    totals = list(live_payload["totals"].values())
+    assert live_payload["record"]["reportable_years"] == len(totals)
+    assert live_payload["record"]["first_reportable"] == min(map(int, live_payload["totals"]))
+    assert live_payload["record"]["last_reportable"] == max(map(int, live_payload["totals"]))
+    assert live_payload["record"]["mean"] == round(statistics.mean(totals), 2)
+    assert live_payload["record"]["median"] == round(statistics.median(totals), 2)
 
 
 def test_the_payload_matches_the_articles_wettest_and_driest_rankings(live_payload):

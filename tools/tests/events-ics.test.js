@@ -20,10 +20,10 @@ const MULTIDAY = { id: "bclev3", title: "Exhibit: The Road I Call Home", start: 
 const lines = e => t.icsForEvent(e, STAMP).split("\r\n");
 const field = (e, key) => lines(e).filter(l => l.indexOf(key) === 0)[0];
 
-test("a timed event exports a floating local start and end", () => {
-  assert.equal(field(TIMED, "DTSTART"), "DTSTART:20260820T110000");
-  assert.equal(field(TIMED, "DTEND"), "DTEND:20260820T120000");
-  assert.equal(field(TIMED, "DTSTART").indexOf("Z"), -1, "no UTC conversion, the time is the local one");
+test("a timed event exports the Pacific event instant in UTC", () => {
+  assert.equal(field(TIMED, "DTSTART"), "DTSTART:20260820T180000Z");
+  assert.equal(field(TIMED, "DTEND"), "DTEND:20260820T190000Z");
+  assert.ok(field(TIMED, "DTSTART").endsWith("Z"));
 });
 test("an all-day event is a DATE, and does not slide into the day before", () => {
   assert.equal(field(ALLDAY, "DTSTART"), "DTSTART;VALUE=DATE:20260816");

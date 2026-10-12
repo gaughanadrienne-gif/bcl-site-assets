@@ -1,0 +1,470 @@
+{
+  "note": "Owner-approved October 12 priority fields only. Review expiry moves affected recruitments to the review queue; it does not certify source availability.",
+  "corrections": [
+    {
+      "canonical_url": "https://www.jobapscloud.com/SCRUZ/sup/bulpreview.asp?b=&R1=26&R2=GK4&R3=02",
+      "id": "02f892f6dd8ff31cd936b76ca4e2f1f58705801f",
+      "title": "AQUATICS PROGRAM SPECIALIST",
+      "source": "County of Santa Cruz",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "employment_type": "Full Time",
+        "id": "02f892f6dd8ff31cd936b76ca4e2f1f58705801f"
+      },
+      "accepted": {
+        "employment_type": [
+          "",
+          "Full Time"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.jobapscloud.com/SCRUZ/sup/bulpreview.asp?b=&R1=26&R2=FG5&R3=01",
+      "id": "e750499776f0f2e34bc505afa7c0d05b0598d88a",
+      "title": "COOK (Extra Help)",
+      "source": "County of Santa Cruz",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "employment_type": "Temporary",
+        "city": "Felton",
+        "geography_tier": "core",
+        "location_precision": "city",
+        "commute_minutes": 12,
+        "commute_type": "drive",
+        "id": "e750499776f0f2e34bc505afa7c0d05b0598d88a"
+      },
+      "accepted": {
+        "employment_type": [
+          "",
+          "Temporary"
+        ],
+        "city": [
+          "Santa Cruz",
+          "Felton"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "location_precision": [
+          "city"
+        ],
+        "commute_minutes": [
+          30,
+          12
+        ],
+        "commute_type": [
+          "drive"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.jobapscloud.com/SCRUZ/sup/bulpreview.asp?b=&R1=26&R2=GK3&R3=GG",
+      "id": "afa0227654b02382e47861ba256196135e01fd57",
+      "title": "HEAD LIFEGUARD (Extra Help)",
+      "source": "County of Santa Cruz",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "employment_type": "Temporary",
+        "id": "afa0227654b02382e47861ba256196135e01fd57"
+      },
+      "accepted": {
+        "employment_type": [
+          "",
+          "Temporary"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.jobapscloud.com/SCRUZ/sup/bulpreview.asp?b=&R1=26&R2=GK1&R3=GG",
+      "id": "b111a81476d9c133639dac58ef20e9284d66ccd4",
+      "title": "LIFEGUARD (Extra Help)",
+      "source": "County of Santa Cruz",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "employment_type": "Temporary",
+        "id": "b111a81476d9c133639dac58ef20e9284d66ccd4"
+      },
+      "accepted": {
+        "employment_type": [
+          "",
+          "Temporary"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.jobapscloud.com/SCRUZ/sup/bulpreview.asp?b=&R1=26&R2=NP5&R3=AA",
+      "id": "833b4ef8e7358f17b6a462bd9548aa31d8fe3442",
+      "title": "MENTAL HEALTH CLIENT SPECIALIST I (Bilingual (English/Spanish) Candidates Encouraged to Apply)",
+      "source": "County of Santa Cruz",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "employment_type": "Temporary",
+        "id": "833b4ef8e7358f17b6a462bd9548aa31d8fe3442"
+      },
+      "accepted": {
+        "employment_type": [
+          "",
+          "Temporary"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.jobapscloud.com/SCRUZ/sup/bulpreview.asp?b=&R1=26&R2=SK5&R3=AA",
+      "id": "36411a1ebe01c0dd0f1b53da80c7c05d208e3377",
+      "title": "SENIOR MENTAL HEALTH CLIENT SPECIALIST I (Bilingual (English/Spanish) Encouraged to Apply)",
+      "source": "County of Santa Cruz",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Watsonville",
+        "geography_tier": "extended",
+        "location_precision": "city",
+        "commute_minutes": 50,
+        "commute_type": "drive",
+        "id": "36411a1ebe01c0dd0f1b53da80c7c05d208e3377"
+      },
+      "accepted": {
+        "city": [
+          "Santa Cruz",
+          "Watsonville"
+        ],
+        "geography_tier": [
+          "core",
+          "extended"
+        ],
+        "location_precision": [
+          "city"
+        ],
+        "commute_minutes": [
+          30,
+          50
+        ],
+        "commute_type": [
+          "drive"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2284022",
+      "id": "3caa6289c97d912b71b9b7b3e1f8dae2177489b3",
+      "title": "Regional Director, Information & Communication Technology (ICT), BACCC",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "work_mode": "remote",
+        "location_precision": "remote",
+        "geography_tier": "remote",
+        "remote_regions": "California",
+        "local_employer_verified": true,
+        "local_employer_evidence_url": "https://www.edjoin.org/Home/JobPosting/2284022",
+        "commute_minutes": null,
+        "commute_type": null,
+        "id": "3caa6289c97d912b71b9b7b3e1f8dae2177489b3"
+      },
+      "accepted": {
+        "work_mode": [
+          "on-site",
+          "remote"
+        ],
+        "location_precision": [
+          "city",
+          "remote"
+        ],
+        "geography_tier": [
+          "core",
+          "remote"
+        ],
+        "remote_regions": [
+          "",
+          "California"
+        ],
+        "local_employer_verified": [
+          false,
+          true
+        ],
+        "local_employer_evidence_url": [
+          "",
+          "https://www.edjoin.org/Home/JobPosting/2284022"
+        ],
+        "commute_minutes": [
+          40,
+          null
+        ],
+        "commute_type": [
+          "drive",
+          null
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2284023",
+      "id": "9162000ee31aabdcea3b38c47783ba03da2276f6",
+      "title": "Regional Director, Advanced Transportation, BACCC",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "work_mode": "remote",
+        "location_precision": "remote",
+        "geography_tier": "remote",
+        "remote_regions": "California",
+        "local_employer_verified": true,
+        "local_employer_evidence_url": "https://www.edjoin.org/Home/JobPosting/2284023",
+        "commute_minutes": null,
+        "commute_type": null,
+        "id": "9162000ee31aabdcea3b38c47783ba03da2276f6"
+      },
+      "accepted": {
+        "work_mode": [
+          "on-site",
+          "remote"
+        ],
+        "location_precision": [
+          "city",
+          "remote"
+        ],
+        "geography_tier": [
+          "core",
+          "remote"
+        ],
+        "remote_regions": [
+          "",
+          "California"
+        ],
+        "local_employer_verified": [
+          false,
+          true
+        ],
+        "local_employer_evidence_url": [
+          "",
+          "https://www.edjoin.org/Home/JobPosting/2284023"
+        ],
+        "commute_minutes": [
+          40,
+          null
+        ],
+        "commute_type": [
+          "drive",
+          null
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2282535",
+      "id": "b3b01669a3fc96611d6528f343b00d80e60c9726",
+      "title": "Academic School Counselor - Elementary, Temporary (Jan-Mar)",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Felton",
+        "geography_tier": "core",
+        "location_precision": "city",
+        "commute_minutes": 12,
+        "commute_type": "drive",
+        "id": "b3b01669a3fc96611d6528f343b00d80e60c9726"
+      },
+      "accepted": {
+        "city": [
+          "Ben Lomond",
+          "Felton"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "location_precision": [
+          "city"
+        ],
+        "commute_minutes": [
+          9,
+          12
+        ],
+        "commute_type": [
+          "drive"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2282174",
+      "id": "6e56e1120f6cbd68d69cd777371ad828e387bbdb",
+      "title": "Health Aide: 29 hours/week (26-27 School Year, Extensive Support Program + 5% Specialized Health Stipend)",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Santa Cruz",
+        "geography_tier": "core",
+        "location_precision": "city",
+        "commute_minutes": 30,
+        "commute_type": "drive",
+        "id": "6e56e1120f6cbd68d69cd777371ad828e387bbdb"
+      },
+      "accepted": {
+        "city": [
+          "Capitola",
+          "Santa Cruz"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "location_precision": [
+          "city"
+        ],
+        "commute_minutes": [
+          35,
+          30
+        ],
+        "commute_type": [
+          "drive"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2279992",
+      "id": "67fe96c5ab3284e267ca11265a47aabf1c603cbf",
+      "title": "Soccer Coach (JV Boys Head Coach - High School Position)",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Felton",
+        "geography_tier": "core",
+        "location_precision": "city",
+        "commute_minutes": 12,
+        "commute_type": "drive",
+        "id": "67fe96c5ab3284e267ca11265a47aabf1c603cbf"
+      },
+      "accepted": {
+        "city": [
+          "Ben Lomond",
+          "Felton"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "location_precision": [
+          "city"
+        ],
+        "commute_minutes": [
+          9,
+          12
+        ],
+        "commute_type": [
+          "drive"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2280133",
+      "id": "44329a842139b11f6343f63b0a4ce957235060a7",
+      "title": "Lacrosse Head Coach (Varsity Boys & Girls Head Coach Positions)",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Felton",
+        "geography_tier": "core",
+        "location_precision": "city",
+        "commute_minutes": 12,
+        "commute_type": "drive",
+        "id": "44329a842139b11f6343f63b0a4ce957235060a7"
+      },
+      "accepted": {
+        "city": [
+          "Ben Lomond",
+          "Felton"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "location_precision": [
+          "city"
+        ],
+        "commute_minutes": [
+          9,
+          12
+        ],
+        "commute_type": [
+          "drive"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2280015",
+      "id": "e2fd5405917a0908a5d41139b3d60699c351bb0e",
+      "title": "Baseball (JV Boys Head Coach - High School Position)",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Felton",
+        "geography_tier": "core",
+        "location_precision": "city",
+        "commute_minutes": 12,
+        "commute_type": "drive",
+        "id": "e2fd5405917a0908a5d41139b3d60699c351bb0e"
+      },
+      "accepted": {
+        "city": [
+          "Ben Lomond",
+          "Felton"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "location_precision": [
+          "city"
+        ],
+        "commute_minutes": [
+          9,
+          12
+        ],
+        "commute_type": [
+          "drive"
+        ]
+      }
+    },
+    {
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2275621",
+      "id": "37e977f884ddff3fd417f8c40a928970d7f054d3",
+      "title": "Head Coach Varsity Boys Soccer-Aptos High",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Aptos",
+        "geography_tier": "core",
+        "location_precision": "city",
+        "commute_minutes": 40,
+        "commute_type": "drive",
+        "id": "37e977f884ddff3fd417f8c40a928970d7f054d3"
+      },
+      "accepted": {
+        "city": [
+          "Watsonville",
+          "Aptos"
+        ],
+        "geography_tier": [
+          "extended",
+          "core"
+        ],
+        "location_precision": [
+          "city"
+        ],
+        "commute_minutes": [
+          50,
+          40
+        ],
+        "commute_type": [
+          "drive"
+        ]
+      }
+    }
+  ]
+}
