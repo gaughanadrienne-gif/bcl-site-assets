@@ -90,3 +90,40 @@ test('service qualifiers stay conservative while regular hours parse', () => {
   const skip = find("Skip's Tire");
   assert.equal(t.listingOpenState(skip,new Date('2026-10-14T01:30:00Z')), 'open');
 });
+
+test('recoverably routed jobs are absent from public jobs and every search mirror', () => {
+  const ids = new Set(fixture.approved_review_routing_ids);
+  assert.equal(ids.size, 3);
+  assert.equal(read('data/jobs.json').count, jobs.length);
+  assert.equal(new Set(jobs.map(j => j.id)).size, jobs.length);
+  assert.ok(jobs.every(job => !ids.has(job.id)));
+  const search = read('data/search-index.json').records;
+  for (const title of fixture.approved_review_routing_titles) {
+    assert.equal(search.filter(row => row.t === 'job' && row.n === title).length, 0, title);
+  }
+  assert.equal(search.filter(row => row.t === 'job').length, jobs.length);
+});
+
+test('rain method distinguishes uncovered years and older coverage metadata', () => {
+  const base = {record:{first_water_year:2000,last_water_year:2001},excluded:[]};
+  assert.match(t.rainMethodHTML({...base,method:{monthly_unchecked_years:[2000]}}), /No monthly comparison.*2000/);
+  assert.match(t.rainMethodHTML({...base,method:{monthly_unchecked_years:[]}}), /Every water year.*has a monthly comparison/);
+  assert.match(t.rainMethodHTML(base), /coverage was not supplied/);
+  assert.match(t.rainMethodHTML(base), /where both series exist/);
+});
+
+test('AQI output credits both providers and retains model and ground-monitor caveats', async () => {
+  const saved = global.fetch;
+  try {
+    global.fetch = async () => ({ok:true,json:async () => ({current:{us_aqi:21,pm2_5:4}})});
+    const el = {innerHTML:''};
+    t.fillAQI(el);
+    await new Promise(resolve => setImmediate(resolve));
+    assert.match(el.innerHTML, /Open-Meteo/);
+    assert.match(el.innerHTML, /Copernicus Atmosphere Monitoring Service \(CAMS\)/);
+    assert.match(el.innerHTML, /https:\/\/confluence\.ecmwf\.int/);
+    assert.match(el.innerHTML, /Modeled estimate/);
+    assert.match(el.innerHTML, /fire\.airnow\.gov/);
+    assert.match(el.innerHTML, /ground monitors/);
+  } finally { global.fetch = saved; }
+});

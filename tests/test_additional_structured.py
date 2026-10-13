@@ -13,11 +13,16 @@ ROOT=Path(__file__).parents[1]
 SPECS=json.loads((ROOT/'jobs/additional-reviewed-corrections.json').read_text(encoding='utf-8'))['corrections']
 FIXTURE=json.loads((ROOT/'tests/fixtures/additional-structured-contract.json').read_text(encoding='utf-8'))
 JOBS=json.loads((ROOT/'data/jobs.json').read_text(encoding='utf-8'))['jobs']
+NON_PUBLIC={c['id']:c for c in FIXTURE['non_public_job_contracts']}
+
+def contract_job(spec):
+    live=next((j for j in JOBS if j['id']==spec['id']),None)
+    return deepcopy(live if live is not None else NON_PUBLIC[spec['id']]['after'])
 
 def original(spec):
     # Reconstruct a parser input from the reviewed presence/value guard, without
     # publishing a full pre-correction data backup as a test fixture.
-    row=deepcopy(next(j for j in JOBS if j['id']==spec['id']))
+    row=contract_job(spec)
     for field, alternatives in spec['accepted_presence'].items():
         old=alternatives[0]
         if old['present']:row[field]=old['value']
@@ -28,13 +33,15 @@ def original(spec):
 
 def test_exact_register_scope_and_cross_register_identity():
     old=json.loads((ROOT/'jobs/approved-corrections.json').read_text(encoding='utf-8'))['corrections']
-    assert len(old)==14 and len(SPECS)==52
-    assert sum(len(s['review_ids']) for s in SPECS)==58
+    assert len(old)==14 and len(SPECS)==55
+    assert sum(len(s['review_ids']) for s in SPECS)==63
     all_specs=old+SPECS
-    assert len({s['id'] for s in all_specs})==66
-    assert len({job_identity_url(s['canonical_url']) for s in all_specs})==66
+    assert len({s['id'] for s in all_specs})==69
+    assert len({job_identity_url(s['canonical_url']) for s in all_specs})==69
     held=json.loads((ROOT/'jobs/additional-reviewed-corrections.json').read_text(encoding='utf-8'))['held_record_groups']
-    assert sum(len(h['review_ids']) for h in held)==5
+    assert held==[]
+    routed=json.loads((ROOT/'jobs/additional-reviewed-corrections.json').read_text(encoding='utf-8'))['recoverable_review_groups']
+    assert len(routed)==3 and sum(len(r['review_ids']) for r in routed)==5
     assert not ({h['record_id'] for h in held}&{s['id'] for s in SPECS})
 
 @pytest.mark.parametrize('spec',SPECS,ids=lambda s:s['id'])
@@ -45,11 +52,13 @@ def test_guarded_candidate_round_trip_and_public_schema(spec):
     assert reason is None and before==untouched
     assert all(candidate[k]==v for k,v in spec['fields'].items())
     assert candidate['field_reviewed_at']=='2026-10-12'
-    assert include_job(candidate)==(True,None)
+    assert include_job(candidate)==((False,'ambiguous-location') if spec.get('routing') else (True,None))
     after,reason=apply_reviewed_fields(candidate,'2026-10-13')
     assert reason is None and after==candidate
-    staged=next(j for j in JOBS if j['id']==spec['id'])
-    assert staged==candidate
+    staged=contract_job(spec)
+    if spec['id'] in NON_PUBLIC:
+        for key,value in spec['fields'].items():assert staged[key]==candidate[key]==value
+    else:assert staged==candidate
 
 def test_null_presence_is_distinct_from_missing_and_source_conflicts_queue():
     spec=next(s for s in SPECS if 'salary_max' in s['fields'] and s['accepted_presence']['salary_max'][0]['value'] is None)
@@ -71,11 +80,12 @@ def test_duplicate_registers_refuse_first_match_override():
 def test_changed_cities_derive_only_from_existing_table():
     for spec in SPECS:
         if 'city' not in spec['fields']:continue
-        row=next(j for j in JOBS if j['id']==spec['id'])
+        row=contract_job(spec)
         assert row['location_precision']=='city'
-        assert row['geography_tier']==classify_geo(row['city'])!='unknown'
+        assert row['geography_tier']==classify_geo(row['city'])
+        assert (row['geography_tier']=='unknown')==bool(spec.get('routing'))
         assert row['commute_minutes']==commute_minutes(row['city'])
-        assert row['commute_type']=='drive'
+        assert row['commute_type']==('drive' if row['commute_minutes'] is not None else None)
 
 def test_refresh_keeps_new_pay_corrections_and_stable_id(monkeypatch,tmp_path):
     spec=next(s for s in SPECS if 'salary_disclosed' in s['fields'])
@@ -107,3 +117,42 @@ def test_directory_changes_preserve_identity_and_verified_dates():
         assert new[expected['field']]==expected['expected_value']
         assert new['verified_at']==expected['verified_at']
         assert 'id' not in new
+
+
+@pytest.mark.parametrize('spec',[s for s in SPECS if s.get('routing')],ids=lambda s:s['id'])
+def test_approved_unknown_worksites_persist_in_recoverable_review(monkeypatch,tmp_path,spec):
+    before=original(spec)
+    raw={'title':before['title'],'employer':before['employer_name'],'city':before['city'],
+         'work_mode':before['work_mode'],'url':before['canonical_url'],
+         'salary_text':before['salary_text']}
+    monkeypatch.setitem(PARSERS,'rss',lambda _raw,_source:[raw])
+    source={'name':before['source'],'parser':'rss','platform':'rss','enabled':True,
+            'url':'https://fixture.invalid','geo':'area'}
+    before['first_seen_at']='2026-09-13'
+    pub,queued,_=build_jobs([source],{'http_get':lambda _:'offline fixture'},'2026-10-13',manual_path=tmp_path/'none.json',previous_jobs=[before])
+    assert pub==[] and len(queued)==1
+    job=queued[0]
+    assert job['id']==spec['id'] and job['canonical_url']==spec['canonical_url']
+    assert all(job[k]==v for k,v in spec['fields'].items())
+    assert job['_queue_reason']=='ambiguous-location'
+    assert job['verification_status']=='pending-review'
+    assert job['field_reviewed_at']=='2026-10-12'
+    assert job['first_seen_at']=='2026-09-13'
+    assert job['commute_minutes'] is None and job['commute_type'] is None
+    # Later scraping cannot turn the expired review back into a public Aptos/Santa Cruz job.
+    later_pub,later_queue,_=build_jobs([source],{'http_get':lambda _:'offline fixture'},'2026-11-12',manual_path=tmp_path/'none.json',previous_jobs=queued)
+    assert later_pub==[] and len(later_queue)==1
+    assert later_queue[0]['_queue_reason']=='reviewed-fields-expired'
+    assert later_queue[0]['first_seen_at']=='2026-09-13'
+
+
+def test_current_feed_preserves_refresh_removals_and_routed_record_identity():
+    assert len({j['id'] for j in JOBS})==len(JOBS)
+    assert json.loads((ROOT/'data/jobs.json').read_text(encoding='utf-8'))['count']==len(JOBS)
+    routed=set(FIXTURE['approved_review_routing_ids'])
+    absent={c['id'] for c in FIXTURE['non_public_job_contracts'] if c['reason']=='not-present-in-current-source'}
+    assert len(routed)==3 and len(absent)==7
+    assert not (set(j['id'] for j in JOBS)&routed)
+    # Other source-absent recruitments may legitimately return; do not ban their IDs.
+    assert all(NON_PUBLIC[rid]['after']['geography_tier']=='unknown' for rid in routed)
+    assert all(NON_PUBLIC[rid]['after']['commute_minutes'] is None for rid in routed)

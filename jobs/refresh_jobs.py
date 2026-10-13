@@ -203,6 +203,8 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
                 else:
                     outcome["rejected"][reason] = outcome["rejected"].get(reason, 0) + 1
                     job = dict(job)
+                    if reason == "ambiguous-location" and job.get("field_reviewed_at"):
+                        job["verification_status"] = "pending-review"
                     job["_queue_reason"] = reason
                     queued.append(job)
             except Exception as exc:  # noqa: BLE001 -- one bad row must not drop the source
@@ -237,7 +239,7 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
             outcomes[job["source"]]["publication_candidates"] += 1
     for outcome in outcomes.values():
         outcome["deduplicated"] = outcome["eligible"] - outcome["publication_candidates"]
-    preserve_first_seen(published, previous_jobs, today)
+    preserve_first_seen(published + queued, previous_jobs, today)
     return published, queued, counts
 
 
@@ -257,7 +259,8 @@ def main():
         JOB_SOURCES,
         {"http_get": http_get, "http_json": http_json, "firecrawl_markdown": firecrawl_markdown},
         today,
-        previous_jobs=(load_json(JOBS_PATH, default={}) or {}).get("jobs", []),
+        previous_jobs=((load_json(JOBS_PATH, default={}) or {}).get("jobs", [])
+                       + (load_json(QUEUE_PATH, default={}) or {}).get("jobs", [])),
         diagnostics=diagnostics,
     )
     # Save diagnostic evidence even when the total-count publication guard fails.

@@ -4205,7 +4205,7 @@ function initBclSectionJumps(doc) {
         el.innerHTML =
           '<div class="bcl-name">Air quality: ' + esc(cat) + "</div>" +
           '<div class="bcl-sub">US AQI ' + Math.round(c.us_aqi) + (c.pm2_5 != null ? " · PM2.5 " + Math.round(c.pm2_5) + ' <span style="text-transform:none">µg/m³</span>' : "") + "</div>" +
-          '<p>Modeled estimate for Boulder Creek from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. During smoke events, confirm with the <a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a>, which uses ground monitors.</p>' + statusRetrievedHTML();
+          '<p>Modeled estimate for Boulder Creek from <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, using <a href="https://confluence.ecmwf.int/spaces/CKB/pages/202173092/CAMS+Regional+European+air+quality+analysis+and+forecast+data+documentation" target="_blank" rel="noopener">Copernicus Atmosphere Monitoring Service (CAMS)</a> data. During smoke events, confirm with the <a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a>, which uses ground monitors.</p>' + statusRetrievedHTML();
       })
       .catch(function () {
         el.innerHTML = '<div class="bcl-name">Air quality: unavailable</div><p>The estimate didn\'t load; that is not an all-clear. Check the <a href="https://fire.airnow.gov/" target="_blank" rel="noopener">AirNow Fire and Smoke Map</a>.</p>';
@@ -4702,9 +4702,9 @@ function initBclSectionJumps(doc) {
 
      Data: data/rain.json, rebuilt by rain/refresh_rain.py from NOAA ACIS,
      station USC00040673 (Ben Lomond No. 4, 435 ft, daily since 1937). The
-     method matches the rainfall article exactly, and the refresh refuses to
-     write a payload whose water-year totals disagree with an independent
-     monthly aggregation, so the tool and the article cannot drift apart.
+     refresh compares daily and monthly water-year aggregates where both
+     series exist, rejects disagreements, and lists years without a monthly
+     comparison. Historical amounts still need their source/parity checks.
 
      Freshness rules, the Mountain Status standard applied to a record rather
      than to live conditions:
@@ -5333,7 +5333,13 @@ function initBclSectionJumps(doc) {
     var excluded = (payload || {}).excluded || [];
     var named = excluded.filter(function (r) { return !r.partial; })
       .map(function (r) { return r.wy; });
+    var unchecked = ((payload || {}).method || {}).monthly_unchecked_years;
+    var coverage = !Array.isArray(unchecked) ? "Monthly comparison coverage was not supplied in this snapshot." :
+      unchecked.length ? "No monthly comparison is available for water years: " + unchecked.join(", ") + "." :
+      "Every water year represented in this snapshot has a monthly comparison.";
     return "<h2>How this is measured, and where it is silent</h2>" +
+      "<p>Daily water-year totals are compared with the monthly aggregation where both series exist. " +
+      "A disagreement prevents publication. " + esc(coverage) + "</p>" +
       "<p>Rain here is counted by <strong>water year</strong>, October 1 through September 30, named for the " +
       "calendar year it ends in. A water year holds exactly one winter, which is how storms actually arrive. " +
       "Splitting rainfall by calendar year cuts every wet season in half.</p>" +

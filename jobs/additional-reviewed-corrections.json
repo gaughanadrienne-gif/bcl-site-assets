@@ -3914,34 +3914,311 @@
       "source_urls": [
         "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174332"
       ]
-    }
-  ],
-  "held_record_groups": [
+    },
     {
+      "id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b",
+      "title": "Community Health Worker (CHW) - Associate Instructor",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2259224",
       "review_ids": [
         "BCL-J-ED5-137-12",
         "BCL-J-ED5-137-13",
         "BCL-J-ED5-137-14"
       ],
-      "record_id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b",
-      "approved_city": "Castroville",
-      "reason": "No existing supported geography tier for this city. Keep entire record group held; do not invent a tier/drive time or route an approved correction into deletion."
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Castroville",
+        "work_mode": "hybrid",
+        "commute_minutes": null,
+        "geography_tier": "unknown",
+        "commute_type": null,
+        "location_precision": "city",
+        "id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b"
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Aptos"
+          },
+          {
+            "present": true,
+            "value": "Castroville"
+          }
+        ],
+        "work_mode": [
+          {
+            "present": true,
+            "value": "on-site"
+          },
+          {
+            "present": true,
+            "value": "hybrid"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 40
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "unknown"
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ],
+        "id": [
+          {
+            "present": true,
+            "value": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b"
+          },
+          {
+            "present": true,
+            "value": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2259224"
+      ],
+      "routing": "existing-unknown-geography-review",
+      "routing_approved_on": "2026-10-13"
     },
     {
+      "id": "d4f0281ad81fbb7728af34504617d02b24811078",
+      "title": "Outdoor Science Instructor, Naturalist - Outdoor Science School",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2228004",
       "review_ids": [
         "BCL-J-ED9-194-12"
       ],
-      "record_id": "d4f0281ad81fbb7728af34504617d02b24811078",
-      "approved_city": "Corralitos",
-      "reason": "No existing supported geography tier for this city. Keep entire record group held; do not invent a tier/drive time or route an approved correction into deletion."
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Corralitos",
+        "geography_tier": "unknown",
+        "commute_minutes": null,
+        "commute_type": null,
+        "location_precision": "city",
+        "id": "d4f0281ad81fbb7728af34504617d02b24811078"
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Corralitos"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "unknown"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ],
+        "id": [
+          {
+            "present": true,
+            "value": "d4f0281ad81fbb7728af34504617d02b24811078"
+          },
+          {
+            "present": true,
+            "value": "d4f0281ad81fbb7728af34504617d02b24811078"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://santacruzcoe.org/wp-content/uploads/2026/08/Complete_ParentPacket_English_26-27.pdf",
+        "https://www.edjoin.org/Home/JobPosting/2228004"
+      ],
+      "routing": "existing-unknown-geography-review",
+      "routing_approved_on": "2026-10-13"
     },
     {
+      "id": "1e713434756b863de244ddd027831c084e352551",
+      "title": "Outdoor Science School; Residential Program Specialist",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2212045",
       "review_ids": [
         "BCL-J-ED9-207-12"
       ],
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Corralitos",
+        "geography_tier": "unknown",
+        "commute_minutes": null,
+        "commute_type": null,
+        "location_precision": "city",
+        "id": "1e713434756b863de244ddd027831c084e352551"
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Corralitos"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "unknown"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ],
+        "id": [
+          {
+            "present": true,
+            "value": "1e713434756b863de244ddd027831c084e352551"
+          },
+          {
+            "present": true,
+            "value": "1e713434756b863de244ddd027831c084e352551"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://santacruzcoe.org/wp-content/uploads/2026/08/Complete_ParentPacket_English_26-27.pdf",
+        "https://www.edjoin.org/Home/JobPosting/2212045"
+      ],
+      "routing": "existing-unknown-geography-review",
+      "routing_approved_on": "2026-10-13"
+    }
+  ],
+  "held_record_groups": [],
+  "recoverable_review_groups": [
+    {
+      "record_id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b",
+      "review_ids": [
+        "BCL-J-ED5-137-12",
+        "BCL-J-ED5-137-13",
+        "BCL-J-ED5-137-14"
+      ],
+      "city": "Castroville",
+      "reason": "ambiguous-location",
+      "routing_approved_on": "2026-10-13"
+    },
+    {
+      "record_id": "d4f0281ad81fbb7728af34504617d02b24811078",
+      "review_ids": [
+        "BCL-J-ED9-194-12"
+      ],
+      "city": "Corralitos",
+      "reason": "ambiguous-location",
+      "routing_approved_on": "2026-10-13"
+    },
+    {
       "record_id": "1e713434756b863de244ddd027831c084e352551",
-      "approved_city": "Corralitos",
-      "reason": "No existing supported geography tier for this city. Keep entire record group held; do not invent a tier/drive time or route an approved correction into deletion."
+      "review_ids": [
+        "BCL-J-ED9-207-12"
+      ],
+      "city": "Corralitos",
+      "reason": "ambiguous-location",
+      "routing_approved_on": "2026-10-13"
     }
   ]
 }

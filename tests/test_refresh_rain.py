@@ -322,3 +322,12 @@ def test_the_current_year_publishes_every_gap_it_has(live_payload):
     current = live_payload["current"]
     assert len(current["gaps"]) == current["missing_days"]
     assert current["wet_season_gaps"] == wet_season_gap_count(current["gaps"])
+
+
+def test_missing_monthly_series_is_disclosed_without_claiming_full_validation(monkeypatch):
+    from rain import refresh_rain
+    monkeypatch.setattr(refresh_rain, 'MIN_REPORTABLE_YEARS', 1)
+    payload=build_payload(_full_year(2000), [], date(2000, 9, 30), '2026-10-13T10:00:00-07:00')
+    assert payload['record']['reportable_years']==1
+    assert payload['method']['cross_checked_years']==0
+    assert payload['method']['monthly_unchecked_years']==[2000]
