@@ -1,0 +1,677 @@
+{
+  "_note": "Only the seven owner-approved Community Bridges recovered recruitment identities. No other audit corrections activated.",
+  "corrections": [
+    {
+      "id": "c65b4d0c5ab456b2c477853d04bed934386c9d18",
+      "title": "VAN DRIVER NONCOMMERCIAL DRIVERS LICENSE (On-Call)",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/166292",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-247-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 22.6,
+        "salary_min": 22.6,
+        "salary_period": "hour",
+        "salary_text": "$22.60/hour",
+        "id": "c65b4d0c5ab456b2c477853d04bed934386c9d18"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          22.6
+        ],
+        "salary_min": [
+          null,
+          22.6
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$22.60/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 22.6
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 22.6
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$22.60/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/166292"
+      ]
+    },
+    {
+      "id": "1f6b28ee88ab32b32ac2bf4c48f0a7b03a160a7b",
+      "title": "SUBSTITUTE",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/173499",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-248-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 23.54,
+        "salary_min": 23.54,
+        "salary_period": "hour",
+        "salary_text": "$23.54/hour",
+        "id": "1f6b28ee88ab32b32ac2bf4c48f0a7b03a160a7b"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          23.54
+        ],
+        "salary_min": [
+          null,
+          23.54
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23.54/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.54
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.54
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23.54/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/173499"
+      ]
+    },
+    {
+      "id": "e6ccc829fda746d5a780cff79381fbee0f50303a",
+      "title": "ADVOCATE I",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174016",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-249-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 26.04,
+        "salary_min": 23.34,
+        "salary_period": "hour",
+        "salary_text": "$23.34-$26.04/hour",
+        "id": "e6ccc829fda746d5a780cff79381fbee0f50303a"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          26.04
+        ],
+        "salary_min": [
+          null,
+          23.34
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23.34-$26.04/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 26.04
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.34
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23.34-$26.04/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174016"
+      ]
+    },
+    {
+      "id": "523f7482036363f2d2c14e89a1e734fbac1fcf16",
+      "title": "LICENSED VOCATIONAL NURSE",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174864",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-250-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 41.43,
+        "salary_min": 37.87,
+        "salary_period": "hour",
+        "salary_text": "$37.87-$41.43/hour",
+        "id": "523f7482036363f2d2c14e89a1e734fbac1fcf16"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          41.43
+        ],
+        "salary_min": [
+          null,
+          37.87
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$37.87-$41.43/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 41.43
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 37.87
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$37.87-$41.43/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174864"
+      ]
+    },
+    {
+      "id": "0e2d590b4a1af79c8da1b339956e1fd50e937266",
+      "title": "VAN DRIVER COMMERCIAL DRIVERS LICENSE",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/156968",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-251-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 23.81,
+        "salary_min": 23.81,
+        "salary_period": "hour",
+        "salary_text": "$23.81/hour",
+        "id": "0e2d590b4a1af79c8da1b339956e1fd50e937266"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          23.81
+        ],
+        "salary_min": [
+          null,
+          23.81
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23.81/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.81
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.81
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23.81/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/156968"
+      ]
+    },
+    {
+      "id": "d4f041613ce98c4b5d0d7a2e20df842f08c2f9d6",
+      "title": "FLOATING TEACHER",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/171346",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-252-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 27,
+        "salary_min": 23.54,
+        "salary_period": "hour",
+        "salary_text": "$23.54-$27/hour",
+        "id": "d4f041613ce98c4b5d0d7a2e20df842f08c2f9d6"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          27
+        ],
+        "salary_min": [
+          null,
+          23.54
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23.54-$27/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 27
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.54
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23.54-$27/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/171346"
+      ]
+    },
+    {
+      "id": "28e49edcbb7fcb6317b8458f8449ab0c80652dd2",
+      "title": "PROGRAM AIDE",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174332",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-253-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 23,
+        "salary_min": 23,
+        "salary_period": "hour",
+        "salary_text": "$23/hour",
+        "id": "28e49edcbb7fcb6317b8458f8449ab0c80652dd2"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          23
+        ],
+        "salary_min": [
+          null,
+          23
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174332"
+      ]
+    }
+  ]
+}
