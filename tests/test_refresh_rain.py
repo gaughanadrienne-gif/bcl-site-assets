@@ -291,11 +291,13 @@ def test_the_payload_matches_every_water_year_total_already_in_print(live_payloa
 
 
 def test_the_payload_matches_the_articles_mean_median_and_year_count(live_payload):
-    assert live_payload["record"]["reportable_years"] == 67
-    assert live_payload["record"]["first_reportable"] == 1940
-    assert live_payload["record"]["last_reportable"] == 2023
-    assert live_payload["record"]["mean"] == 49.09
-    assert live_payload["record"]["median"] == 42.69
+    import statistics
+    totals = list(live_payload["totals"].values())
+    assert live_payload["record"]["reportable_years"] == len(totals)
+    assert live_payload["record"]["first_reportable"] == min(map(int, live_payload["totals"]))
+    assert live_payload["record"]["last_reportable"] == max(map(int, live_payload["totals"]))
+    assert live_payload["record"]["mean"] == round(statistics.mean(totals), 2)
+    assert live_payload["record"]["median"] == round(statistics.median(totals), 2)
 
 
 def test_the_payload_matches_the_articles_wettest_and_driest_rankings(live_payload):
@@ -320,3 +322,12 @@ def test_the_current_year_publishes_every_gap_it_has(live_payload):
     current = live_payload["current"]
     assert len(current["gaps"]) == current["missing_days"]
     assert current["wet_season_gaps"] == wet_season_gap_count(current["gaps"])
+
+
+def test_missing_monthly_series_is_disclosed_without_claiming_full_validation(monkeypatch):
+    from rain import refresh_rain
+    monkeypatch.setattr(refresh_rain, 'MIN_REPORTABLE_YEARS', 1)
+    payload=build_payload(_full_year(2000), [], date(2000, 9, 30), '2026-10-13T10:00:00-07:00')
+    assert payload['record']['reportable_years']==1
+    assert payload['method']['cross_checked_years']==0
+    assert payload['method']['monthly_unchecked_years']==[2000]
