@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-08",
+  "asOf": "2026-10-15",
   "schedule": [
     {
       "week": "2026-09-03",
@@ -36,6 +36,12 @@
       "slug": "becks-shoes-boulder-creek",
       "business": "Beck's Shoes",
       "blurb": "When Beck's Shoes opened in Boulder Creek on February 3, 2023, the company was already more than a century old. Ole P. Beck founded the business in Salinas in 1919."
+    },
+    {
+      "week": "2026-10-15",
+      "slug": "air-and-fire-boulder-creek",
+      "business": "Air & Fire",
+      "blurb": "Emelia's shop carries statuary, crystals and more than 200 tarot and oracle decks, plus soaps, candles and incense made on site, in the first building on Highway 9 she has owned."
     }
   ]
 }
