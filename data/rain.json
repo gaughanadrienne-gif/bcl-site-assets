@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-13",
- "generated_at": "2026-10-13T06:50:07-07:00",
+ "updated": "2026-10-15",
+ "generated_at": "2026-10-15T06:50:04-07:00",
  "station": {
   "id": "USC00040673",
   "name": "Ben Lomond No. 4",
@@ -2218,18 +2218,20 @@
  "current": {
   "wy": 2027,
   "to_date": 0.0,
-  "through": "2026-10-12",
-  "day_index": 12,
+  "through": "2026-10-14",
+  "day_index": 14,
   "missing_days": 1,
   "accumulated_days": 0,
   "gaps": [
-   "2026-10-13"
+   "2026-10-15"
   ],
   "wet_season_gaps": 1,
-  "normal_to_date": 0.02,
+  "normal_to_date": 0.04,
   "drier_years_to_date": 0,
   "years_compared": 68,
   "cumulative": [
+   0.0,
+   0.0,
    0.0,
    0.0,
    0.0,
