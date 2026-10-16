@@ -19,6 +19,9 @@ from shared.bcl_ingest import (  # noqa: E402
 )
 from shared.review_board import render_review_board  # noqa: E402
 from jobs.normalize import include_job, normalize_job  # noqa: E402
+from jobs.identity import job_identity_url  # noqa: E402
+from jobs.source_retention import unpack_source_result, retain_source_history, split_private_results
+from jobs.source_recovery_corrections import apply_recovered_fields, load_recovery_register
 from jobs.parsers import (  # noqa: E402
     calopps, dayforce, edjoin, jobaps, neogov, oracle, paycom, paylocity,
     remote_json, rss, workday, local_employers,
@@ -68,6 +71,7 @@ _REVIEW_DIR = os.path.join(_ROOT_DIR, "review")
 _PARTIALS_DIR = os.path.join(_ROOT_DIR, "partials")
 JOBS_PATH = os.path.join(_DATA_DIR, "jobs.json")
 QUEUE_PATH = os.path.join(_REVIEW_DIR, "jobs-pending.json")
+SOURCE_HISTORY_PATH = os.path.join(_REVIEW_DIR, "jobs-source-history.json")
 YIELD_PATH = os.path.join(_REVIEW_DIR, "jobs-source-yield.json")
 REVIEW_BOARD_PATH = os.path.join(_REVIEW_DIR, "review-board.html")
 MANUAL_JOBS_PATH = os.path.join(_PARTIALS_DIR, "manual-jobs.json")
@@ -112,16 +116,6 @@ def fetch_raw(source, http_get_fn, http_json_fn, firecrawl_markdown_fn, http_pos
 _MANUAL_SOURCE = {"name": "Community submission"}
 
 
-def job_identity_url(url):
-    """Retain requisition query IDs; remove only recognized tracking fields."""
-    parts = urlsplit(str(url or "").strip())
-    query = [(key, value) for key, value in parse_qsl(parts.query, keep_blank_values=True)
-             if not key.lower().startswith("utm_")
-             and key.lower() not in {"fbclid", "gclid", "msclkid", "mc_cid", "mc_eid"}]
-    return urlunsplit((parts.scheme.lower(), parts.netloc.lower(), parts.path.rstrip("/"),
-                       urlencode(sorted(query)), parts.fragment))
-
-
 def preserve_first_seen(jobs, previous_jobs, today):
     """Carry forward valid observed dates without guessing missing history."""
     previous = {}
@@ -152,6 +146,7 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
     same `normalize_job`/`include_job` gates, so a submission can never
     bypass the geography/exclusion checks that scraped rows go through.
     """
+    recovery_register = load_recovery_register()  # Fail closed; only seven approved recovered identities.
     http_get_fn = fetchers.get("http_get", http_get)
     http_json_fn = fetchers.get("http_json", http_json)
     firecrawl_fn = fetchers.get("firecrawl_markdown", firecrawl_markdown)
@@ -162,6 +157,7 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
     # Rows produced per ENABLED source, so a source that quietly stops
     # returning anything can be alarmed on. See shared/source_yield.py.
     counts = {}
+    source_closures = {}
     outcomes = diagnostics if diagnostics is not None else {}
     for source in sources:
         if not source.get("enabled"):
@@ -180,7 +176,9 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
         source_ctx["_today"] = today
         try:
             raw_data = fetch_raw(source, http_get_fn, http_json_fn, firecrawl_fn, http_post_json_fn)
-            raw_rows = parser_fn(raw_data, source_ctx)
+            raw_rows, source_closures[source["name"]] = unpack_source_result(
+                parser_fn(raw_data, source_ctx), source, today,
+            )
         except Exception as exc:  # noqa: BLE001 -- a broken source must never abort the run
             outcome["status"] = "fetch-or-parse-failed"
             print("refresh_jobs: source %r failed: %s" % (source.get("name"), exc), file=sys.stderr)
@@ -193,7 +191,11 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
         for raw in raw_rows:
             try:
                 job = normalize_job(raw, source, today)
+                job, field_reason = apply_recovered_fields(job, today, register=recovery_register)
                 ok, reason = include_job(job)
+                if field_reason:
+                    ok, reason = False, field_reason
+                    job["verification_status"] = "pending-review"
                 if raw.get("review_required"):
                     ok, reason = False, "employer-detail-review-required"
                     job["verification_status"] = "pending-review"
@@ -230,14 +232,25 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
             print("refresh_jobs: manual submission failed: %s" % exc, file=sys.stderr)
             continue
 
+    for source in sources:
+        if source.get("enabled") and source["name"] in outcomes:
+            retain_source_history(source, outcomes[source["name"]], published, queued,
+                                  previous_jobs, source_closures.get(source["name"], {}), today)
+    queued.extend(dict(job) for job in previous_jobs or []
+                  if job.get("source") not in outcomes
+                  and (job.get("_source_review_required") or job.get("verification_status") == "closed"))
+
     # Different requisitions may legitimately share title, employer and city.
     published = dedupe_by(published, lambda j: job_identity_url(j["canonical_url"]) or j["id"])
+    queued = dedupe_by(queued, lambda j: job_identity_url(j["canonical_url"]) or j["id"])
+    public_urls = {job_identity_url(j["canonical_url"]) for j in published}
+    queued = [j for j in queued if job_identity_url(j["canonical_url"]) not in public_urls]
     for job in published:
         if job.get("source") in outcomes:
             outcomes[job["source"]]["publication_candidates"] += 1
     for outcome in outcomes.values():
         outcome["deduplicated"] = outcome["eligible"] - outcome["publication_candidates"]
-    preserve_first_seen(published, previous_jobs, today)
+    preserve_first_seen(published + queued, previous_jobs, today)
     return published, queued, counts
 
 
@@ -257,9 +270,16 @@ def main():
         JOB_SOURCES,
         {"http_get": http_get, "http_json": http_json, "firecrawl_markdown": firecrawl_markdown},
         today,
-        previous_jobs=(load_json(JOBS_PATH, default={}) or {}).get("jobs", []),
+        previous_jobs=((load_json(JOBS_PATH, default={}) or {}).get("jobs", [])
+                       + (load_json(QUEUE_PATH, default={}) or {}).get("jobs", [])
+                       + (load_json(SOURCE_HISTORY_PATH, default={}) or {}).get("jobs", [])),
         diagnostics=diagnostics,
     )
+    queued, source_history = split_private_results(queued)
+    write_json_atomic(SOURCE_HISTORY_PATH, {
+        "_note": "Private source review and verified-closure archive. Never a public fallback.",
+        "updated": today, "count": len(source_history), "jobs": source_history,
+    })
     # Save diagnostic evidence even when the total-count publication guard fails.
     # Empty parse is not certified as zero vacancies: a changed page can also be empty.
     write_json_atomic(os.path.join(_REVIEW_DIR, "jobs-source-outcomes.json"), {
