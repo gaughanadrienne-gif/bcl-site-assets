@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-15",
+ "updated": "2026-10-16",
  "count": 10,
  "rentals": [
   {
@@ -34,7 +34,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-10-08",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -70,7 +70,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -106,7 +106,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -142,7 +142,7 @@
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
    "first_seen_at": "2026-10-02",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -178,7 +178,7 @@
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
    "first_seen_at": "2026-10-14",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -214,7 +214,7 @@
    "source": "Utopia Management",
    "property_manager": "Utopia Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -250,7 +250,7 @@
    "source": "Sol Property Management",
    "property_manager": "Sol Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -273,7 +273,7 @@
    "bedrooms": 2,
    "bathrooms": 1,
    "square_feet": 758,
-   "available_date": "10/14/26",
+   "available_date": "NOW",
    "lease_term": "",
    "minimum_stay_days": null,
    "furnished": false,
@@ -281,12 +281,12 @@
    "utilities_text": "",
    "parking_text": "",
    "laundry_text": "",
-   "description_summary": "RENT$2,600 Square Feet758 Bed / Bath2 bd / 1 ba Available10/14/26 ## [Cozy Cabin near downtown Boulder Creek](https://baileypm.appfolio.com/listings/detail/7c906dec-1633-4bfb-949a-5651f8974450) 13550 Bear Creek Rd #18, Boulder Creek, CA 95006 [Map](https://baileypm.appfolio.com/listings#) Square Fee",
+   "description_summary": "RENT$2,600 Square Feet758 Bed / Bath2 bd / 1 ba AvailableNOW ## [Cozy Cabin near downtown Boulder Creek](https://baileypm.appfolio.com/listings/detail/7c906dec-1633-4bfb-949a-5651f8974450) 13550 Bear Creek Rd #18, Boulder Creek, CA 95006 [Map](https://baileypm.appfolio.com/listings#) Square Feet: 75",
    "canonical_url": "https://baileypm.appfolio.com/listings/detail/7c906dec-1633-4bfb-949a-5651f8974450",
    "source": "Bailey Property Management",
    "property_manager": "Bailey Property Management",
    "first_seen_at": "2026-10-13",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -322,7 +322,7 @@
    "source": "Bailey Property Management",
    "property_manager": "Bailey Property Management",
    "first_seen_at": "2026-10-08",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -358,7 +358,7 @@
    "source": "Anderson Christie Real Estate",
    "property_manager": "Anderson Christie Real Estate",
    "first_seen_at": "2026-10-02",
-   "last_verified_at": "2026-10-15",
+   "last_verified_at": "2026-10-16",
    "verification_status": "verified",
    "freshness_label": ""
   }
