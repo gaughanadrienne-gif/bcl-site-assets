@@ -1,6 +1,6 @@
 {
  "updated": "2026-10-20",
- "count": 255,
+ "count": 252,
  "jobs": [
   {
    "id": "02f892f6dd8ff31cd936b76ca4e2f1f58705801f",
@@ -9,7 +9,7 @@
    "title_original": "AQUATICS PROGRAM SPECIALIST",
    "employer_name": "Parks",
    "description_summary": "",
-   "employment_type": "",
+   "employment_type": "Full Time",
    "work_mode": "on-site",
    "remote_regions": "",
    "local_employer_verified": false,
@@ -37,7 +37,8 @@
    "first_seen_at": "2026-09-21",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "00a53c6fb9e19c29d6f7ab02487a17c57af09523",
@@ -157,17 +158,17 @@
    "title_original": "COOK (Extra Help)",
    "employer_name": "Probation",
    "description_summary": "",
-   "employment_type": "",
+   "employment_type": "Temporary",
    "work_mode": "on-site",
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
+   "city": "Felton",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 30,
+   "commute_minutes": 12,
    "commute_type": "drive",
    "salary_min": 29.6,
    "salary_max": 36.82,
@@ -185,7 +186,8 @@
    "first_seen_at": "2026-10-12",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "e7132e1733064974aa56d3b26b6c1e83e1163199",
@@ -342,7 +344,7 @@
    "title_original": "HEAD LIFEGUARD (Extra Help)",
    "employer_name": "Parks",
    "description_summary": "",
-   "employment_type": "",
+   "employment_type": "Temporary",
    "work_mode": "on-site",
    "remote_regions": "",
    "local_employer_verified": false,
@@ -370,7 +372,8 @@
    "first_seen_at": "2026-10-03",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "0ca80ca1fe7b094e1d65170b1a61d11b69901df2",
@@ -453,7 +456,7 @@
    "title_original": "LIFEGUARD (Extra Help)",
    "employer_name": "Parks",
    "description_summary": "",
-   "employment_type": "",
+   "employment_type": "Temporary",
    "work_mode": "on-site",
    "remote_regions": "",
    "local_employer_verified": false,
@@ -481,7 +484,8 @@
    "first_seen_at": "2026-10-03",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "8fb9b212d2c3a2090bb11bd43b0f928001306bf7",
@@ -786,7 +790,7 @@
    "title_original": "MENTAL HEALTH CLIENT SPECIALIST I (Bilingual (English/Spanish) Candidates Encouraged to Apply)",
    "employer_name": "Health Services Agency",
    "description_summary": "",
-   "employment_type": "",
+   "employment_type": "Temporary",
    "work_mode": "on-site",
    "remote_regions": "",
    "local_employer_verified": false,
@@ -814,7 +818,8 @@
    "first_seen_at": "2026-10-03",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "1725025bee0ed7166e1c0b8cbcc8f2b69915e710",
@@ -976,12 +981,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
+   "city": "Watsonville",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
-   "geography_tier": "core",
-   "commute_minutes": 30,
+   "geography_tier": "extended",
+   "commute_minutes": 50,
    "commute_type": "drive",
    "salary_min": 8197,
    "salary_max": 10376,
@@ -999,7 +1004,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "f54d4227967c8de35549b9132f4e7be8b29ff079",
@@ -2378,17 +2384,17 @@
    "employer_name": "Cabrillo College",
    "description_summary": "",
    "employment_type": "Full Time",
-   "work_mode": "on-site",
-   "remote_regions": "",
-   "local_employer_verified": false,
-   "local_employer_evidence_url": "",
+   "work_mode": "remote",
+   "remote_regions": "California",
+   "local_employer_verified": true,
+   "local_employer_evidence_url": "https://www.edjoin.org/Home/JobPosting/2284022",
    "city": "Aptos",
    "state": "CA",
    "postal_code": "",
-   "location_precision": "city",
-   "geography_tier": "core",
-   "commute_minutes": 40,
-   "commute_type": "drive",
+   "location_precision": "remote",
+   "geography_tier": "remote",
+   "commute_minutes": null,
+   "commute_type": null,
    "salary_min": 108495,
    "salary_max": 152663,
    "salary_period": "year",
@@ -2405,7 +2411,8 @@
    "first_seen_at": "2026-10-09",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "9162000ee31aabdcea3b38c47783ba03da2276f6",
@@ -2415,17 +2422,17 @@
    "employer_name": "Cabrillo College",
    "description_summary": "",
    "employment_type": "Full Time",
-   "work_mode": "on-site",
-   "remote_regions": "",
-   "local_employer_verified": false,
-   "local_employer_evidence_url": "",
+   "work_mode": "remote",
+   "remote_regions": "California",
+   "local_employer_verified": true,
+   "local_employer_evidence_url": "https://www.edjoin.org/Home/JobPosting/2284023",
    "city": "Aptos",
    "state": "CA",
    "postal_code": "",
-   "location_precision": "city",
-   "geography_tier": "core",
-   "commute_minutes": 40,
-   "commute_type": "drive",
+   "location_precision": "remote",
+   "geography_tier": "remote",
+   "commute_minutes": null,
+   "commute_type": null,
    "salary_min": 108495,
    "salary_max": 152663,
    "salary_period": "year",
@@ -2442,7 +2449,8 @@
    "first_seen_at": "2026-10-09",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "81bde56f94ad3e7a039a518bc780218d3e8f4da3",
@@ -2974,12 +2982,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Ben Lomond",
+   "city": "Felton",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 9,
+   "commute_minutes": 12,
    "commute_type": "drive",
    "salary_min": 62976,
    "salary_max": 131174,
@@ -2997,7 +3005,8 @@
    "first_seen_at": "2026-10-06",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "969488792d56cbb0613bea967ee54e16765f780f",
@@ -3677,12 +3686,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Capitola",
+   "city": "Santa Cruz",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 35,
+   "commute_minutes": 30,
    "commute_type": "drive",
    "salary_min": 19.96,
    "salary_max": 25.47,
@@ -3700,7 +3709,8 @@
    "first_seen_at": "2026-10-06",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "badf5d368c825ed4629352a3d92d7144a8dd0f97",
@@ -3751,12 +3761,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Ben Lomond",
+   "city": "Felton",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 9,
+   "commute_minutes": 12,
    "commute_type": "drive",
    "salary_min": 2670,
    "salary_max": 2670,
@@ -3774,7 +3784,8 @@
    "first_seen_at": "2026-09-29",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "302f998a9e7511147bb74b7994ec35d1008c9850",
@@ -3825,12 +3836,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Ben Lomond",
+   "city": "Felton",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 9,
+   "commute_minutes": 12,
    "commute_type": "drive",
    "salary_min": 3017,
    "salary_max": 3017,
@@ -3848,7 +3859,8 @@
    "first_seen_at": "2026-09-29",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "e2fd5405917a0908a5d41139b3d60699c351bb0e",
@@ -3862,12 +3874,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Ben Lomond",
+   "city": "Felton",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 9,
+   "commute_minutes": 12,
    "commute_type": "drive",
    "salary_min": 2670,
    "salary_max": 2670,
@@ -3885,7 +3897,8 @@
    "first_seen_at": "2026-09-29",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "53304a7807d6a61d25068830aa92e0976d69f89a",
@@ -4565,7 +4578,7 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Capitola",
+   "city": "Soquel",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
@@ -4588,7 +4601,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "a554fa83f725b411da87e3ec51bf21b22324bc8b",
@@ -4602,12 +4616,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Capitola",
+   "city": "Santa Cruz",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 35,
+   "commute_minutes": 30,
    "commute_type": "drive",
    "salary_min": 16.84,
    "salary_max": 21.49,
@@ -4625,7 +4639,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "91b8ebb6a92606fd0db4814ea39de122e8c77d8e",
@@ -4676,7 +4691,7 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Capitola",
+   "city": "Soquel",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
@@ -4699,7 +4714,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "bafb4745647a44fa97265f3613fdeb31465b13c8",
@@ -4898,12 +4914,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Ben Lomond",
+   "city": "Felton",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 9,
+   "commute_minutes": 12,
    "commute_type": "drive",
    "salary_min": 19.94,
    "salary_max": 25.46,
@@ -4921,7 +4937,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "40a4ceb79b24d619c2ac150a109d5abc35c045fb",
@@ -5009,12 +5026,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Watsonville",
+   "city": "Aptos",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
-   "geography_tier": "extended",
-   "commute_minutes": 50,
+   "geography_tier": "core",
+   "commute_minutes": 40,
    "commute_type": "drive",
    "salary_min": 58520,
    "salary_max": 97574,
@@ -5032,7 +5049,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "2f4f61cb00ec461e61192ded0b7709469f58eac8",
@@ -5442,43 +5460,6 @@
    "freshness_label": ""
   },
   {
-   "id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b",
-   "slug": "cabrillo-college-community-health-worker-chw-associate-instructor",
-   "title": "Community Health Worker (CHW) - Associate Instructor",
-   "title_original": "Community Health Worker (CHW) - Associate Instructor",
-   "employer_name": "Cabrillo College",
-   "description_summary": "",
-   "employment_type": "Part Time",
-   "work_mode": "on-site",
-   "remote_regions": "",
-   "local_employer_verified": false,
-   "local_employer_evidence_url": "",
-   "city": "Aptos",
-   "state": "CA",
-   "postal_code": "",
-   "location_precision": "city",
-   "geography_tier": "core",
-   "commute_minutes": 40,
-   "commute_type": "drive",
-   "salary_min": 1665,
-   "salary_max": 2556,
-   "salary_period": "year",
-   "salary_text": "1,665 - 2,556 Stipend",
-   "salary_disclosed": true,
-   "benefits_text": "",
-   "hours_text": "Part Time",
-   "schedule": "Part Time",
-   "category": "Education",
-   "posted_at": "2026-08-04",
-   "application_deadline": "By Date",
-   "canonical_url": "https://www.edjoin.org/Home/JobPosting/2259224",
-   "source": "Santa Cruz County schools (EDJOIN)",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-10-20",
-   "verification_status": "verified",
-   "freshness_label": ""
-  },
-  {
    "id": "1ef187e6cde7b688ecce6956475d09907db27730",
    "slug": "pajaro-valley-unified-school-district-yard-duty-supervisor-substitute-opportunities",
    "title": "Yard Duty Supervisor- Substitute Opportunities",
@@ -5564,12 +5545,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
+   "city": "Soquel",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 30,
+   "commute_minutes": 35,
    "commute_type": "drive",
    "salary_min": 3595,
    "salary_max": 3595,
@@ -5587,7 +5568,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "dbe559db52b5523edbdb33789da156766493ef1d",
@@ -5675,12 +5657,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
+   "city": "Soquel",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 30,
+   "commute_minutes": 35,
    "commute_type": "drive",
    "salary_min": 2923,
    "salary_max": 2923,
@@ -5698,7 +5680,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "412828fee1de675ce9bd3e899a1c7d31d4db6e97",
@@ -5980,7 +5963,7 @@
    "commute_type": "drive",
    "salary_min": 700,
    "salary_max": 700,
-   "salary_period": "hour",
+   "salary_period": "day",
    "salary_text": "$700/Day - Day is 8 hours Daily",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -5994,7 +5977,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "a8044e2a5fa09422f518ae588e40da2ecaba6609",
@@ -6017,7 +6001,7 @@
    "commute_type": "drive",
    "salary_min": 1665,
    "salary_max": 2556,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "1,665 - 2,556 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6031,7 +6015,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "99e5c266f229e75feffe9aa817083c10e860e40c",
@@ -6041,7 +6026,7 @@
    "employer_name": "Cabrillo College",
    "description_summary": "",
    "employment_type": "Part Time",
-   "work_mode": "on-site",
+   "work_mode": "hybrid",
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
@@ -6054,7 +6039,7 @@
    "commute_type": "drive",
    "salary_min": 1665,
    "salary_max": 2556,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "1,665 - 2,556 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6068,7 +6053,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "2681e2b388176a49f2b1567fd362d9a64a9103f9",
@@ -6091,7 +6077,7 @@
    "commute_type": "drive",
    "salary_min": 1665,
    "salary_max": 2556,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "1,665 - 2,556 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6105,7 +6091,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "f6f2ea1f59e00586042d1bbeb6a5c4a4187a0f1b",
@@ -6128,7 +6115,7 @@
    "commute_type": "drive",
    "salary_min": 1665,
    "salary_max": 2556,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "1,665 - 2,556 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6142,7 +6129,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "afce4fc2e913f387acdc7a2d81e2cd59e8cc5808",
@@ -6165,7 +6153,7 @@
    "commute_type": "drive",
    "salary_min": 1665,
    "salary_max": 2556,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "1,665 - 2,556 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6179,7 +6167,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "a269b85e15d0de28a75f4418b69b50044c202a04",
@@ -6202,7 +6191,7 @@
    "commute_type": "drive",
    "salary_min": 1665,
    "salary_max": 2556,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "1,665 - 2,556 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6216,7 +6205,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "889c922377dbb2bf00982779e7f0d0f7d5713c7e",
@@ -6239,7 +6229,7 @@
    "commute_type": "drive",
    "salary_min": 1665,
    "salary_max": 2556,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "1,665 - 2,556 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6253,7 +6243,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "0dd7ca6d40eb5ad21ac5eba350e02799a3495036",
@@ -6274,11 +6265,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 1665,
+   "salary_max": 2556,
+   "salary_period": "teaching_unit_semester",
+   "salary_text": "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Part Time",
    "schedule": "Part Time",
@@ -6290,7 +6281,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "41cd499d679be43c780f0ac7e48732a4ea2f1d61",
@@ -6313,7 +6305,7 @@
    "commute_type": "drive",
    "salary_min": 1665,
    "salary_max": 2556,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "1,665 - 2,556 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6327,7 +6319,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "e34e21eece0cca7bee206a72103e4e74e9da7cb1",
@@ -6350,7 +6343,7 @@
    "commute_type": "drive",
    "salary_min": 1665,
    "salary_max": 2556,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "1,665 - 2,556 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6364,7 +6357,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "2c16129c4ede0054ad333d9ef13c1cefb86a8e3d",
@@ -6385,11 +6379,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 1665,
+   "salary_max": 2556,
+   "salary_period": "teaching_unit_semester",
+   "salary_text": "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Part Time",
    "schedule": "Part Time",
@@ -6401,7 +6395,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "f6e00f0f3a777ff08be5e4d7f975012a9da0f6a5",
@@ -6452,16 +6447,16 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
+   "city": "Soquel",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 30,
+   "commute_minutes": 35,
    "commute_type": "drive",
    "salary_min": 2243,
    "salary_max": 2243,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$2,243 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6475,7 +6470,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "10f49b3c7256175414ea982d7e932ed3e0e1d188",
@@ -6498,7 +6494,7 @@
    "commute_type": "drive",
    "salary_min": 3595,
    "salary_max": 3595,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$3,595 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6512,7 +6508,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "aa4408d81afdc5ca038ea25e004f9d6746f3f916",
@@ -6535,7 +6532,7 @@
    "commute_type": "drive",
    "salary_min": 2243,
    "salary_max": 2243,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$2,243 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6549,7 +6546,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "1af03930bfd3fbea483fc884d4007860f461684a",
@@ -6866,11 +6864,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 1665,
+   "salary_max": 2556,
+   "salary_period": "teaching_unit_semester",
+   "salary_text": "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Part Time",
    "schedule": "Part Time",
@@ -6882,7 +6880,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "bd050def3b361932a3b1af777b253639690e57e3",
@@ -6905,7 +6904,7 @@
    "commute_type": "drive",
    "salary_min": 4512,
    "salary_max": 4512,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "Season Stipend $4,512 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -6919,7 +6918,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "4e6e0379e7a94636229c36c78b89bd1b21008d9e",
@@ -7053,7 +7053,7 @@
    "commute_type": "drive",
    "salary_min": 170,
    "salary_max": 216,
-   "salary_period": "year",
+   "salary_period": "day",
    "salary_text": "Full day pay rate= $170 for new substitute/$216 for 1 year substitute at 90 days per year or more Daily",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -7067,7 +7067,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "17ac33bd8035ed351ced70662ec973def8ab4c6e",
@@ -7377,16 +7378,16 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
+   "city": "Soquel",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 30,
+   "commute_minutes": 35,
    "commute_type": "drive",
    "salary_min": 2923,
    "salary_max": 2923,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$2,923 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -7400,44 +7401,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
-  },
-  {
-   "id": "d4f0281ad81fbb7728af34504617d02b24811078",
-   "slug": "santa-cruz-county-office-of-education-outdoor-science-instructor-naturalist-outdoor-science-school",
-   "title": "Outdoor Science Instructor, Naturalist - Outdoor Science School",
-   "title_original": "Outdoor Science Instructor, Naturalist - Outdoor Science School",
-   "employer_name": "Santa Cruz County Office Of Education",
-   "description_summary": "",
-   "employment_type": "Full Time",
-   "work_mode": "on-site",
-   "remote_regions": "",
-   "local_employer_verified": false,
-   "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
-   "state": "CA",
-   "postal_code": "",
-   "location_precision": "city",
-   "geography_tier": "core",
-   "commute_minutes": 30,
-   "commute_type": "drive",
-   "salary_min": 26.6,
-   "salary_max": 29.27,
-   "salary_period": "hour",
-   "salary_text": "$26.60 - $29.27 Per Hour",
-   "salary_disclosed": true,
-   "benefits_text": "",
-   "hours_text": "Full Time",
-   "schedule": "Full Time",
-   "category": "Education",
-   "posted_at": "2026-05-26",
-   "application_deadline": "Until Filled",
-   "canonical_url": "https://www.edjoin.org/Home/JobPosting/2228004",
-   "source": "Santa Cruz County schools (EDJOIN)",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-10-20",
-   "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "92236f0ca1cc1eefbbbb2245f8c41682ae529d07",
@@ -7460,7 +7425,7 @@
    "commute_type": "drive",
    "salary_min": 1304,
    "salary_max": 1304,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$1,304 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -7474,7 +7439,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "e067a085a4e74867594aef7fa5111e709717e4ce",
@@ -7497,7 +7463,7 @@
    "commute_type": "drive",
    "salary_min": 1304,
    "salary_max": 1304,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$1,304 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -7511,7 +7477,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "7c726669d53956cd8f19264efb5ccb2ce3f64ba8",
@@ -7534,7 +7501,7 @@
    "commute_type": "drive",
    "salary_min": 1304,
    "salary_max": 1304,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$1,304 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -7548,7 +7515,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "49c4678154340ba3a087abc0aaf744a08278ac0e",
@@ -7571,7 +7539,7 @@
    "commute_type": "drive",
    "salary_min": 1304,
    "salary_max": 1304,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$1,304 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -7585,7 +7553,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "6fc56678fa3e5f01609d72b16a66b0b0a8e6c983",
@@ -7599,12 +7568,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Ben Lomond",
+   "city": "Felton",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 9,
+   "commute_minutes": 12,
    "commute_type": "drive",
    "salary_min": 160,
    "salary_max": 160,
@@ -7622,7 +7591,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "92d1b416bdd9a04c91604c722e199c2662afbba6",
@@ -7710,16 +7680,16 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Watsonville",
+   "city": "Aptos",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
-   "geography_tier": "extended",
-   "commute_minutes": 50,
+   "geography_tier": "core",
+   "commute_minutes": 40,
    "commute_type": "drive",
    "salary_min": 2821,
    "salary_max": 2821,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$2,821 Stipend Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -7733,7 +7703,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "ddb3380ac23f62e4153492d5c931a9100ec469a5",
@@ -7747,16 +7718,16 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Watsonville",
+   "city": "Aptos",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
-   "geography_tier": "extended",
-   "commute_minutes": 50,
+   "geography_tier": "core",
+   "commute_minutes": 40,
    "commute_type": "drive",
    "salary_min": 4231,
    "salary_max": 4231,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$4,231 Stipend Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -7770,7 +7741,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "28f189d82e1d81214280b7594648dcbf36d4628c",
@@ -7821,16 +7793,16 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
+   "city": "Soquel",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 30,
+   "commute_minutes": 35,
    "commute_type": "drive",
    "salary_min": 1349,
    "salary_max": 1349,
-   "salary_period": "year",
+   "salary_period": "season",
    "salary_text": "$1,349 Stipend",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -7844,7 +7816,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "45cb8e86bd2e69471fa880c471748d87d3726dfd",
@@ -7858,12 +7831,12 @@
    "remote_regions": "",
    "local_employer_verified": false,
    "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
+   "city": "Soquel",
    "state": "CA",
    "postal_code": "",
    "location_precision": "city",
    "geography_tier": "core",
-   "commute_minutes": 30,
+   "commute_minutes": 35,
    "commute_type": "drive",
    "salary_min": 1933,
    "salary_max": 1933,
@@ -7881,44 +7854,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
-  },
-  {
-   "id": "1e713434756b863de244ddd027831c084e352551",
-   "slug": "santa-cruz-county-office-of-education-outdoor-science-school-residential-program-specialist",
-   "title": "Outdoor Science School; Residential Program Specialist",
-   "title_original": "Outdoor Science School; Residential Program Specialist",
-   "employer_name": "Santa Cruz County Office Of Education",
-   "description_summary": "",
-   "employment_type": "Part Time",
-   "work_mode": "on-site",
-   "remote_regions": "",
-   "local_employer_verified": false,
-   "local_employer_evidence_url": "",
-   "city": "Santa Cruz",
-   "state": "CA",
-   "postal_code": "",
-   "location_precision": "city",
-   "geography_tier": "core",
-   "commute_minutes": 30,
-   "commute_type": "drive",
-   "salary_min": 17.41,
-   "salary_max": 19.98,
-   "salary_period": "hour",
-   "salary_text": "$17.41 - $19.98 Per Hour",
-   "salary_disclosed": true,
-   "benefits_text": "",
-   "hours_text": "Part Time",
-   "schedule": "Part Time",
-   "category": "Education",
-   "posted_at": "2026-04-21",
-   "application_deadline": "Until Filled",
-   "canonical_url": "https://www.edjoin.org/Home/JobPosting/2212045",
-   "source": "Santa Cruz County schools (EDJOIN)",
-   "first_seen_at": "2026-09-13",
-   "last_verified_at": "2026-10-20",
-   "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "40a6ec01740b3fc8226cd120aad34f6427cf9d36",
@@ -8126,7 +8063,7 @@
    "commute_type": "drive",
    "salary_min": 1599,
    "salary_max": 2454,
-   "salary_period": "year",
+   "salary_period": "teaching_unit_semester",
    "salary_text": "$1,599 - $2,454 per teaching unit, per semester",
    "salary_disclosed": true,
    "benefits_text": "",
@@ -8140,7 +8077,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "52bb3a1aa0acdda087d7b0db5ada60b0ab5e7c4c",
@@ -8901,11 +8839,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 28,
+   "salary_max": 36,
+   "salary_period": "hour",
+   "salary_text": "$28-$36/hour",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Full Time",
    "schedule": "Full Time",
@@ -8917,7 +8855,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "64759afc688f711c78608d113a2dd68486c25a65",
@@ -8938,11 +8877,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 17,
+   "salary_max": 18,
+   "salary_period": "hour",
+   "salary_text": "$17-$18/hour",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Part Time",
    "schedule": "Part Time",
@@ -8954,7 +8893,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "b1c4cd51cdb28923b4a5fc68bed04bb053b0edf5",
@@ -8975,11 +8915,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 19,
+   "salary_max": 21,
+   "salary_period": "hour",
+   "salary_text": "$19-$21/hour",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Part-Time",
    "schedule": "Part-Time",
@@ -8991,7 +8931,8 @@
    "first_seen_at": "2026-10-04",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "be2901c42563c5433590dc0faa1e1934777c2803",
@@ -9012,11 +8953,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 17,
+   "salary_max": 20,
+   "salary_period": "hour",
+   "salary_text": "$17-$20/hour",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Part Time",
    "schedule": "Part Time",
@@ -9028,7 +8969,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "767bf621f9548e27aab8f058f79a9eca529a7f10",
@@ -9049,11 +8991,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 22,
+   "salary_max": 24,
+   "salary_period": "hour",
+   "salary_text": "$22-$24/hour",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Full Time",
    "schedule": "Full Time",
@@ -9065,7 +9007,8 @@
    "first_seen_at": "2026-09-22",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "d379ccaf897509c4e92cff07c6f72d25b9ad1aa5",
@@ -9086,11 +9029,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 25,
+   "salary_max": 28,
+   "salary_period": "hour",
+   "salary_text": "$25-$28/hour",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Full-Time",
    "schedule": "Full-Time",
@@ -9102,7 +9045,8 @@
    "first_seen_at": "2026-10-10",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "fa108d308012cb472ef23a82e0a0bbf38bd4a592",
@@ -9123,11 +9067,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 17,
+   "salary_max": 19,
+   "salary_period": "hour",
+   "salary_text": "$17-$19/hour",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Part-Time",
    "schedule": "Part-Time",
@@ -9139,7 +9083,8 @@
    "first_seen_at": "2026-09-19",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "b0e65d7f8304aa8db393b1d14ebf5d95c0460f1d",
@@ -9160,11 +9105,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 17,
+   "salary_max": 19,
+   "salary_period": "hour",
+   "salary_text": "$17-$19/hour",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Part-Time",
    "schedule": "Part-Time",
@@ -9176,7 +9121,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "58af610679398dd9e137bb31cf5928aea670eb19",
@@ -9197,11 +9143,11 @@
    "geography_tier": "core",
    "commute_minutes": 40,
    "commute_type": "drive",
-   "salary_min": null,
-   "salary_max": null,
-   "salary_period": null,
-   "salary_text": "",
-   "salary_disclosed": false,
+   "salary_min": 85000,
+   "salary_max": 90000,
+   "salary_period": "year",
+   "salary_text": "$85,000-$90,000/year",
+   "salary_disclosed": true,
    "benefits_text": "",
    "hours_text": "Full-Time",
    "schedule": "Full-Time",
@@ -9213,7 +9159,8 @@
    "first_seen_at": "2026-09-13",
    "last_verified_at": "2026-10-20",
    "verification_status": "verified",
-   "freshness_label": ""
+   "freshness_label": "",
+   "field_reviewed_at": "2026-10-12"
   },
   {
    "id": "c65b4d0c5ab456b2c477853d04bed934386c9d18",

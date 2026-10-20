@@ -1,0 +1,470 @@
+{
+  "directory": [
+    {
+      "name": "Santa Cruz County Planning & Unified Permit Center",
+      "verified_at": "2026-07-15",
+      "field": "hours_text",
+      "expected_value": "Visitor appointments: Monday-Thursday 8:00 AM-noon, booking required (last start 11:30 AM). Phone switchboard: Monday-Friday 8:00 AM-noon and 1:00-5:00 PM. See official cashier and EZ permit schedules."
+    },
+    {
+      "name": "XterminatriX Holistic Pest Control",
+      "verified_at": "2026-07-16",
+      "field": "phone",
+      "expected_value": "855-284-5239"
+    },
+    {
+      "name": "Skip's Tire & Auto Repair - Scotts Valley",
+      "verified_at": "2026-07-17",
+      "field": "hours_text",
+      "expected_value": "Monday-Saturday 7:30am-7pm; Sunday 9am-5pm"
+    },
+    {
+      "name": "Integrity Automotive Service",
+      "verified_at": "2026-07-17",
+      "field": "hours_text",
+      "expected_value": "Monday-Saturday 8am-5pm; confirm Sunday hours with the shop"
+    },
+    {
+      "name": "Burrell School Vineyards & Winery",
+      "verified_at": "2026-07-17",
+      "field": "hours_text",
+      "expected_value": "Friday–Sunday noon–5:30 p.m.; check the winery calendar for event-specific hours."
+    }
+  ],
+  "search": [
+    {
+      "id": "aba8746c69829d3b73037ca8fcef49354800eeed",
+      "after": {
+        "t": "job",
+        "n": "Recess Coach, Main St. Elementary School- 25 hrs/week",
+        "u": "/jobs",
+        "s": "Soquel Union Elementary School District Soquel, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "a554fa83f725b411da87e3ec51bf21b22324bc8b",
+      "after": {
+        "t": "job",
+        "n": "Recess Coach, Santa Cruz Elementary School- 25 hrs/week",
+        "u": "/jobs",
+        "s": "Soquel Union Elementary School District Santa Cruz, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "bed1ab4d2ec52af4174e10a87df039fad65ffba4",
+      "after": {
+        "t": "job",
+        "n": "Kindergarten (K) Instructional Aide, General Education Pool (Temporary 26/27 School Year Only, Main Street / 18.15 hrs/week)",
+        "u": "/jobs",
+        "s": "Soquel Union Elementary School District Soquel, CA",
+        "k": "Education Full Time on-site"
+      }
+    },
+    {
+      "id": "d8de78d6e7e0bf2434783d625245a7d32e8a624b",
+      "after": {
+        "t": "job",
+        "n": "Bilingual Instructional Assistant - Spanish",
+        "u": "/jobs",
+        "s": "San Lorenzo Valley Unified Felton, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "82227236e1f383f31b067105bf5276a4ff47bb45",
+      "after": {
+        "t": "job",
+        "n": "26/27 School Year - Baile Folklorico Teacher- Aptos High School- .2 FTE (1 period a day)",
+        "u": "/jobs",
+        "s": "Pajaro Valley Unified School District Aptos, CA",
+        "k": "Education Full Time on-site"
+      }
+    },
+    {
+      "id": "fa23b0d9148db717efa7a3896333bc10419f4c45",
+      "after": {
+        "t": "job",
+        "n": "Baseball Varsity - Soquel School",
+        "u": "/jobs",
+        "s": "Santa Cruz City Schools Soquel, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "8d8cb4c2ef175deaaff5193aab133307e4a90e97",
+      "after": {
+        "t": "job",
+        "n": "Baseball Junior Varsity - Soquel High School",
+        "u": "/jobs",
+        "s": "Santa Cruz City Schools Soquel, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "99e5c266f229e75feffe9aa817083c10e860e40c",
+      "after": {
+        "t": "job",
+        "n": "Mathematics - Associate Instructor",
+        "u": "/jobs",
+        "s": "Cabrillo College Aptos, CA",
+        "k": "Education Part Time hybrid"
+      }
+    },
+    {
+      "id": "49540f2000edd7cbbfe0ae576b1ab2df726aa62b",
+      "after": {
+        "t": "job",
+        "n": "Golf Coach Varsity Girls - Soquel High School",
+        "u": "/jobs",
+        "s": "Santa Cruz City Schools Soquel, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "711f32805ace4969863329edd4838e350b6b5aca",
+      "after": {
+        "t": "job",
+        "n": "Basketball Freshman Boys Coach - Soquel High School",
+        "u": "/jobs",
+        "s": "Santa Cruz City Schools Soquel, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "6fc56678fa3e5f01609d72b16a66b0b0a8e6c983",
+      "after": {
+        "t": "job",
+        "n": "Math Intervention Support (5x week, San Lorenzo Valley Middle School)",
+        "u": "/jobs",
+        "s": "San Lorenzo Valley Unified Felton, CA",
+        "k": "Education Full Time on-site"
+      }
+    },
+    {
+      "id": "4c6d6ba64d381a121342613669167cf0e36a7e26",
+      "after": {
+        "t": "job",
+        "n": "Head Girls Indoor Volleyball Frosh Coach-Aptos HIgh School",
+        "u": "/jobs",
+        "s": "Pajaro Valley Unified School District Aptos, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "ddb3380ac23f62e4153492d5c931a9100ec469a5",
+      "after": {
+        "t": "job",
+        "n": "Head Girls Indoor Volleyball JV Coach-Aptos High School",
+        "u": "/jobs",
+        "s": "Pajaro Valley Unified School District Aptos, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "0da525a027e83f66207d7fc5276425fde42e3c6e",
+      "after": {
+        "t": "job",
+        "n": "Cross Country Assistant Coach - Soquel High School",
+        "u": "/jobs",
+        "s": "Santa Cruz City Schools Soquel, CA",
+        "k": "Education Part Time on-site"
+      }
+    },
+    {
+      "id": "45cb8e86bd2e69471fa880c471748d87d3726dfd",
+      "after": {
+        "t": "job",
+        "n": "Spirit Advisor -Soquel High School",
+        "u": "/jobs",
+        "s": "Santa Cruz City Schools Soquel, CA",
+        "k": "Education Part Time on-site"
+      }
+    }
+  ],
+  "directory_cards": [
+    {
+      "name": "Santa Cruz County Planning & Unified Permit Center",
+      "after": "<li><strong><a href=\"https://cdi.santacruzcountyca.gov/UPC.aspx\" rel=\"nofollow noopener\">Santa Cruz County Planning &amp; Unified Permit Center</a></strong> <em>Planning, Building &amp; Permits</em> Building, zoning, permits, environmental review, geologic hazards, code compliance, and records help.<br><span class=\"bcl-sr-meta\">701 Ocean Street, 4th Floor, Santa Cruz · <a href=\"tel:8314542580\">831-454-2580</a> · Visitor appointments: Monday-Thursday 8:00 AM-noon, booking required (last start 11:30 AM). Phone switchboard: Monday-Friday 8:00 AM-noon and 1:00-5:00 PM. See official cashier and EZ permit schedules. · Verified 2026-07-15</span></li>"
+    },
+    {
+      "name": "XterminatriX Holistic Pest Control",
+      "after": "<li><strong><a href=\"https://xterminatrix.com/\" rel=\"nofollow noopener\">XterminatriX Holistic Pest Control</a></strong> <em>Pest control</em> Felton-based, woman-owned integrated pest management service using targeted low-toxicity methods with no anticoagulant rodent baits, serving Boulder Creek, Felton, and the San Lorenzo Valley.<br><span class=\"bcl-sr-meta\">Felton · <a href=\"tel:8552845239\">855-284-5239</a> · Service area: San Lorenzo Valley, including Boulder Creek, Felton, and Ben Lomond · Verified 2026-07-16</span></li>"
+    },
+    {
+      "name": "Skip's Tire & Auto Repair - Scotts Valley",
+      "after": "<li><strong><a href=\"https://locations.skipstire.com/ca/scotts-valley/231-mount-hermon-road\" rel=\"nofollow noopener\">Skip&#x27;s Tire &amp; Auto Repair - Scotts Valley</a></strong> <em>Tires and auto repair</em> Tire and auto-repair center offering tires, oil changes, brakes, wheel alignment, and general maintenance.<br><span class=\"bcl-sr-meta\">231 Mount Hermon Road, Scotts Valley · <a href=\"tel:8314380296\">831-438-0296</a> · Monday-Saturday 7:30am-7pm; Sunday 9am-5pm · Verified 2026-07-17</span></li>"
+    },
+    {
+      "name": "Integrity Automotive Service",
+      "after": "<li><strong><a href=\"https://www.smogcheckscottsvalley.com/\" rel=\"nofollow noopener\">Integrity Automotive Service</a></strong> <em>Auto repair and smog</em> Independent auto-repair shop and smog-check station in Scotts Valley handling general repair, brakes, tires, engine and transmission work, and oil changes.<br><span class=\"bcl-sr-meta\">107-A Whispering Pines Drive, Scotts Valley · <a href=\"tel:8314399631\">831-439-9631</a> · Monday-Saturday 8am-5pm; confirm Sunday hours with the shop · Verified 2026-07-17</span></li>"
+    },
+    {
+      "name": "Burrell School Vineyards & Winery",
+      "after": "<li><strong><a href=\"https://burrellschool.com/\" rel=\"nofollow noopener\">Burrell School Vineyards &amp; Winery</a></strong> <em>Winery and tasting room</em> Santa Cruz Mountains estate winery with a tasting room on Summit Road, open Friday through Sunday.<br><span class=\"bcl-sr-meta\">24060 Summit Road, Los Gatos · <a href=\"tel:4083536290\">(408) 353-6290</a> · Friday–Sunday noon–5:30 p.m.; check the winery calendar for event-specific hours. · Verified 2026-07-17</span></li>"
+    }
+  ],
+  "non_public_job_contracts": [
+    {
+      "id": "c65b4d0c5ab456b2c477853d04bed934386c9d18",
+      "reason": "not-present-in-current-source",
+      "after": {
+        "id": "c65b4d0c5ab456b2c477853d04bed934386c9d18",
+        "title": "VAN DRIVER NONCOMMERCIAL DRIVERS LICENSE (On-Call)",
+        "employer_name": "Community Bridges",
+        "city": "Watsonville",
+        "state": "CA",
+        "work_mode": "on-site",
+        "location_precision": "city",
+        "geography_tier": "extended",
+        "commute_minutes": 50,
+        "commute_type": "drive",
+        "salary_text": "$22.60/hour",
+        "salary_disclosed": true,
+        "salary_min": 22.6,
+        "salary_max": 22.6,
+        "salary_period": "hour",
+        "source": "Community Bridges",
+        "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/166292",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "id": "1f6b28ee88ab32b32ac2bf4c48f0a7b03a160a7b",
+      "reason": "not-present-in-current-source",
+      "after": {
+        "id": "1f6b28ee88ab32b32ac2bf4c48f0a7b03a160a7b",
+        "title": "SUBSTITUTE",
+        "employer_name": "Community Bridges",
+        "city": "Santa Cruz",
+        "state": "CA",
+        "work_mode": "on-site",
+        "location_precision": "city",
+        "geography_tier": "core",
+        "commute_minutes": 30,
+        "commute_type": "drive",
+        "salary_text": "$23.54/hour",
+        "salary_disclosed": true,
+        "salary_min": 23.54,
+        "salary_max": 23.54,
+        "salary_period": "hour",
+        "source": "Community Bridges",
+        "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/173499",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "id": "e6ccc829fda746d5a780cff79381fbee0f50303a",
+      "reason": "not-present-in-current-source",
+      "after": {
+        "id": "e6ccc829fda746d5a780cff79381fbee0f50303a",
+        "title": "ADVOCATE I",
+        "employer_name": "Community Bridges",
+        "city": "Watsonville",
+        "state": "CA",
+        "work_mode": "on-site",
+        "location_precision": "city",
+        "geography_tier": "extended",
+        "commute_minutes": 50,
+        "commute_type": "drive",
+        "salary_text": "$23.34-$26.04/hour",
+        "salary_disclosed": true,
+        "salary_min": 23.34,
+        "salary_max": 26.04,
+        "salary_period": "hour",
+        "source": "Community Bridges",
+        "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174016",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "id": "523f7482036363f2d2c14e89a1e734fbac1fcf16",
+      "reason": "not-present-in-current-source",
+      "after": {
+        "id": "523f7482036363f2d2c14e89a1e734fbac1fcf16",
+        "title": "LICENSED VOCATIONAL NURSE",
+        "employer_name": "Community Bridges",
+        "city": "Watsonville",
+        "state": "CA",
+        "work_mode": "on-site",
+        "location_precision": "city",
+        "geography_tier": "extended",
+        "commute_minutes": 50,
+        "commute_type": "drive",
+        "salary_text": "$37.87-$41.43/hour",
+        "salary_disclosed": true,
+        "salary_min": 37.87,
+        "salary_max": 41.43,
+        "salary_period": "hour",
+        "source": "Community Bridges",
+        "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174864",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "id": "0e2d590b4a1af79c8da1b339956e1fd50e937266",
+      "reason": "not-present-in-current-source",
+      "after": {
+        "id": "0e2d590b4a1af79c8da1b339956e1fd50e937266",
+        "title": "VAN DRIVER COMMERCIAL DRIVERS LICENSE",
+        "employer_name": "Community Bridges",
+        "city": "Watsonville",
+        "state": "CA",
+        "work_mode": "on-site",
+        "location_precision": "city",
+        "geography_tier": "extended",
+        "commute_minutes": 50,
+        "commute_type": "drive",
+        "salary_text": "$23.81/hour",
+        "salary_disclosed": true,
+        "salary_min": 23.81,
+        "salary_max": 23.81,
+        "salary_period": "hour",
+        "source": "Community Bridges",
+        "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/156968",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "id": "d4f041613ce98c4b5d0d7a2e20df842f08c2f9d6",
+      "reason": "not-present-in-current-source",
+      "after": {
+        "id": "d4f041613ce98c4b5d0d7a2e20df842f08c2f9d6",
+        "title": "FLOATING TEACHER",
+        "employer_name": "Community Bridges",
+        "city": "Santa Cruz",
+        "state": "CA",
+        "work_mode": "on-site",
+        "location_precision": "city",
+        "geography_tier": "core",
+        "commute_minutes": 30,
+        "commute_type": "drive",
+        "salary_text": "$23.54-$27/hour",
+        "salary_disclosed": true,
+        "salary_min": 23.54,
+        "salary_max": 27,
+        "salary_period": "hour",
+        "source": "Community Bridges",
+        "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/171346",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "id": "28e49edcbb7fcb6317b8458f8449ab0c80652dd2",
+      "reason": "not-present-in-current-source",
+      "after": {
+        "id": "28e49edcbb7fcb6317b8458f8449ab0c80652dd2",
+        "title": "PROGRAM AIDE",
+        "employer_name": "Community Bridges",
+        "city": "Santa Cruz",
+        "state": "CA",
+        "work_mode": "on-site",
+        "location_precision": "city",
+        "geography_tier": "core",
+        "commute_minutes": 30,
+        "commute_type": "drive",
+        "salary_text": "$23/hour",
+        "salary_disclosed": true,
+        "salary_min": 23,
+        "salary_max": 23,
+        "salary_period": "hour",
+        "source": "Community Bridges",
+        "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174332",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "verified"
+      }
+    },
+    {
+      "id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b",
+      "reason": "review-routing",
+      "after": {
+        "id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b",
+        "title": "Community Health Worker (CHW) - Associate Instructor",
+        "employer_name": "Cabrillo College",
+        "city": "Castroville",
+        "state": "CA",
+        "work_mode": "hybrid",
+        "location_precision": "city",
+        "geography_tier": "unknown",
+        "commute_minutes": null,
+        "commute_type": null,
+        "salary_text": "1,665 - 2,556 Stipend",
+        "salary_disclosed": true,
+        "salary_min": 1665,
+        "salary_max": 2556,
+        "salary_period": "year",
+        "source": "Santa Cruz County schools (EDJOIN)",
+        "canonical_url": "https://www.edjoin.org/Home/JobPosting/2259224",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "pending-review"
+      }
+    },
+    {
+      "id": "d4f0281ad81fbb7728af34504617d02b24811078",
+      "reason": "review-routing",
+      "after": {
+        "id": "d4f0281ad81fbb7728af34504617d02b24811078",
+        "title": "Outdoor Science Instructor, Naturalist - Outdoor Science School",
+        "employer_name": "Santa Cruz County Office Of Education",
+        "city": "Corralitos",
+        "state": "CA",
+        "work_mode": "on-site",
+        "location_precision": "city",
+        "geography_tier": "unknown",
+        "commute_minutes": null,
+        "commute_type": null,
+        "salary_text": "$26.60 - $29.27 Per Hour",
+        "salary_disclosed": true,
+        "salary_min": 26.6,
+        "salary_max": 29.27,
+        "salary_period": "hour",
+        "source": "Santa Cruz County schools (EDJOIN)",
+        "canonical_url": "https://www.edjoin.org/Home/JobPosting/2228004",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "pending-review"
+      }
+    },
+    {
+      "id": "1e713434756b863de244ddd027831c084e352551",
+      "reason": "review-routing",
+      "after": {
+        "id": "1e713434756b863de244ddd027831c084e352551",
+        "title": "Outdoor Science School; Residential Program Specialist",
+        "employer_name": "Santa Cruz County Office Of Education",
+        "city": "Corralitos",
+        "state": "CA",
+        "work_mode": "on-site",
+        "location_precision": "city",
+        "geography_tier": "unknown",
+        "commute_minutes": null,
+        "commute_type": null,
+        "salary_text": "$17.41 - $19.98 Per Hour",
+        "salary_disclosed": true,
+        "salary_min": 17.41,
+        "salary_max": 19.98,
+        "salary_period": "hour",
+        "source": "Santa Cruz County schools (EDJOIN)",
+        "canonical_url": "https://www.edjoin.org/Home/JobPosting/2212045",
+        "field_reviewed_at": "2026-10-12",
+        "verification_status": "pending-review"
+      }
+    }
+  ],
+  "approved_review_routing_ids": [
+    "d29e076d15dc3af2cb0793c62cb280e2e5c6471b",
+    "d4f0281ad81fbb7728af34504617d02b24811078",
+    "1e713434756b863de244ddd027831c084e352551"
+  ],
+  "approved_review_routing_titles": [
+    "Community Health Worker (CHW) - Associate Instructor",
+    "Outdoor Science Instructor, Naturalist - Outdoor Science School",
+    "Outdoor Science School; Residential Program Specialist"
+  ]
+}

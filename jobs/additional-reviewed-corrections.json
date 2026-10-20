@@ -1,0 +1,4224 @@
+{
+  "approval_at": "2026-10-12T21:36:25Z",
+  "allowlist_source": "libfile_aaba06df22c88191ace072e91ba382d2",
+  "corrections": [
+    {
+      "id": "aba8746c69829d3b73037ca8fcef49354800eeed",
+      "title": "Recess Coach, Main St. Elementary School- 25 hrs/week",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2227733",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED4-109-12"
+      ],
+      "fields": {
+        "city": "Soquel",
+        "geography_tier": "core",
+        "commute_minutes": 35,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "aba8746c69829d3b73037ca8fcef49354800eeed"
+      },
+      "accepted": {
+        "city": [
+          "Capitola",
+          "Soquel"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          35
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Capitola"
+          },
+          {
+            "present": true,
+            "value": "Soquel"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 35
+          },
+          {
+            "present": true,
+            "value": 35
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2227733 ; https://santacruzcoe.org/schools/santa-cruz-county-school-districts/soquel-union-elementary-school-district/"
+      ]
+    },
+    {
+      "id": "a554fa83f725b411da87e3ec51bf21b22324bc8b",
+      "title": "Recess Coach, Santa Cruz Elementary School- 25 hrs/week",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2233541",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED4-110-12"
+      ],
+      "fields": {
+        "city": "Santa Cruz",
+        "geography_tier": "core",
+        "commute_minutes": 30,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "a554fa83f725b411da87e3ec51bf21b22324bc8b"
+      },
+      "accepted": {
+        "city": [
+          "Capitola",
+          "Santa Cruz"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          35,
+          30
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Capitola"
+          },
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 35
+          },
+          {
+            "present": true,
+            "value": 30
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2233541 ; https://santacruzcoe.org/schools/santa-cruz-county-school-districts/soquel-union-elementary-school-district/"
+      ]
+    },
+    {
+      "id": "bed1ab4d2ec52af4174e10a87df039fad65ffba4",
+      "title": "Kindergarten (K) Instructional Aide, General Education Pool (Temporary 26/27 School Year Only, Main Street / 18.15 hrs/week)",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2269964",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED4-112-12"
+      ],
+      "fields": {
+        "city": "Soquel",
+        "geography_tier": "core",
+        "commute_minutes": 35,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "bed1ab4d2ec52af4174e10a87df039fad65ffba4"
+      },
+      "accepted": {
+        "city": [
+          "Capitola",
+          "Soquel"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          35
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Capitola"
+          },
+          {
+            "present": true,
+            "value": "Soquel"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 35
+          },
+          {
+            "present": true,
+            "value": 35
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2269964 ; https://santacruzcoe.org/schools/santa-cruz-county-school-districts/soquel-union-elementary-school-district/"
+      ]
+    },
+    {
+      "id": "d8de78d6e7e0bf2434783d625245a7d32e8a624b",
+      "title": "Bilingual Instructional Assistant - Spanish",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2264447",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED5-121-12"
+      ],
+      "fields": {
+        "city": "Felton",
+        "geography_tier": "core",
+        "commute_minutes": 12,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "d8de78d6e7e0bf2434783d625245a7d32e8a624b"
+      },
+      "accepted": {
+        "city": [
+          "Ben Lomond",
+          "Felton"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          9,
+          12
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Ben Lomond"
+          },
+          {
+            "present": true,
+            "value": "Felton"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 9
+          },
+          {
+            "present": true,
+            "value": 12
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2264447"
+      ]
+    },
+    {
+      "id": "82227236e1f383f31b067105bf5276a4ff47bb45",
+      "title": "26/27 School Year - Baile Folklorico Teacher- Aptos High School- .2 FTE (1 period a day)",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2264103",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED5-125-12"
+      ],
+      "fields": {
+        "city": "Aptos",
+        "geography_tier": "core",
+        "commute_minutes": 40,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "82227236e1f383f31b067105bf5276a4ff47bb45"
+      },
+      "accepted": {
+        "city": [
+          "Watsonville",
+          "Aptos"
+        ],
+        "geography_tier": [
+          "extended",
+          "core"
+        ],
+        "commute_minutes": [
+          50,
+          40
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Watsonville"
+          },
+          {
+            "present": true,
+            "value": "Aptos"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "extended"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 50
+          },
+          {
+            "present": true,
+            "value": 40
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2264103 ; https://www.cde.ca.gov/sdprofile/details.aspx?cds=44697994430518"
+      ]
+    },
+    {
+      "id": "fa23b0d9148db717efa7a3896333bc10419f4c45",
+      "title": "Baseball Varsity - Soquel School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2258358",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED6-140-12"
+      ],
+      "fields": {
+        "city": "Soquel",
+        "geography_tier": "core",
+        "commute_minutes": 35,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "fa23b0d9148db717efa7a3896333bc10419f4c45"
+      },
+      "accepted": {
+        "city": [
+          "Santa Cruz",
+          "Soquel"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          30,
+          35
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Soquel"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": 35
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2258358 ; https://www.soquel.sccs.net/contact"
+      ]
+    },
+    {
+      "id": "8d8cb4c2ef175deaaff5193aab133307e4a90e97",
+      "title": "Baseball Junior Varsity - Soquel High School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2258356",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED6-143-12"
+      ],
+      "fields": {
+        "city": "Soquel",
+        "geography_tier": "core",
+        "commute_minutes": 35,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "8d8cb4c2ef175deaaff5193aab133307e4a90e97"
+      },
+      "accepted": {
+        "city": [
+          "Santa Cruz",
+          "Soquel"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          30,
+          35
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Soquel"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": 35
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2258356 ; https://www.soquel.sccs.net/contact"
+      ]
+    },
+    {
+      "id": "66fd0947ff9e4888d2c35697cf3e40452aa87087",
+      "title": "Substitute Site Administrator Pool",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2254708",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-151-11"
+      ],
+      "fields": {
+        "salary_period": "day",
+        "id": "66fd0947ff9e4888d2c35697cf3e40452aa87087"
+      },
+      "accepted": {
+        "salary_period": [
+          "hour",
+          "day"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "hour"
+          },
+          {
+            "present": true,
+            "value": "day"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2254708"
+      ]
+    },
+    {
+      "id": "a8044e2a5fa09422f518ae588e40da2ecaba6609",
+      "title": "Philosophy - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2252038",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-152-11"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "id": "a8044e2a5fa09422f518ae588e40da2ecaba6609"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2252038"
+      ]
+    },
+    {
+      "id": "99e5c266f229e75feffe9aa817083c10e860e40c",
+      "title": "Mathematics - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2252036",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-153-11",
+        "BCL-J-ED7-153-13"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "work_mode": "hybrid",
+        "id": "99e5c266f229e75feffe9aa817083c10e860e40c"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ],
+        "work_mode": [
+          "on-site",
+          "hybrid"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ],
+        "work_mode": [
+          {
+            "present": true,
+            "value": "on-site"
+          },
+          {
+            "present": true,
+            "value": "hybrid"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2252036",
+        "https://www.edjoin.org/Home/JobPosting/2252036"
+      ]
+    },
+    {
+      "id": "2681e2b388176a49f2b1567fd362d9a64a9103f9",
+      "title": "Dental Hygiene - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2252037",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-154-11"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "id": "2681e2b388176a49f2b1567fd362d9a64a9103f9"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2252037"
+      ]
+    },
+    {
+      "id": "f6f2ea1f59e00586042d1bbeb6a5c4a4187a0f1b",
+      "title": "Nursing, Clinical - Pediatric, Psychiatric/Mental Health/Medical-Surgical - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2252039",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-155-11"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "id": "f6f2ea1f59e00586042d1bbeb6a5c4a4187a0f1b"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2252039"
+      ]
+    },
+    {
+      "id": "afce4fc2e913f387acdc7a2d81e2cd59e8cc5808",
+      "title": "Fire Technology (FT)/Emergency Medical Technician (EMT) - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2251482",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-156-11"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "id": "afce4fc2e913f387acdc7a2d81e2cd59e8cc5808"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2251482"
+      ]
+    },
+    {
+      "id": "a269b85e15d0de28a75f4418b69b50044c202a04",
+      "title": "Geography - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2251483",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-157-11"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "id": "a269b85e15d0de28a75f4418b69b50044c202a04"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2251483"
+      ]
+    },
+    {
+      "id": "889c922377dbb2bf00982779e7f0d0f7d5713c7e",
+      "title": "Ethnic Studies - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2251481",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-158-11"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "id": "889c922377dbb2bf00982779e7f0d0f7d5713c7e"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2251481"
+      ]
+    },
+    {
+      "id": "0dd7ca6d40eb5ad21ac5eba350e02799a3495036",
+      "title": "Counselor, Academic - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2251577",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-159-07"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 2556,
+        "salary_min": 1665,
+        "salary_period": "teaching_unit_semester",
+        "salary_text": "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit",
+        "id": "0dd7ca6d40eb5ad21ac5eba350e02799a3495036"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          2556
+        ],
+        "salary_min": [
+          null,
+          1665
+        ],
+        "salary_period": [
+          null,
+          "teaching_unit_semester"
+        ],
+        "salary_text": [
+          "",
+          "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 2556
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 1665
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2251577"
+      ]
+    },
+    {
+      "id": "41cd499d679be43c780f0ac7e48732a4ea2f1d61",
+      "title": "Athletics/Head Coach, Indoor Volleyball - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2251484",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-160-11"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "id": "41cd499d679be43c780f0ac7e48732a4ea2f1d61"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2251484"
+      ]
+    },
+    {
+      "id": "e34e21eece0cca7bee206a72103e4e74e9da7cb1",
+      "title": "Nursing, Certified Nursing Assistant (CNA) - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2251485",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-161-11"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "id": "e34e21eece0cca7bee206a72103e4e74e9da7cb1"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2251485"
+      ]
+    },
+    {
+      "id": "2c16129c4ede0054ad333d9ef13c1cefb86a8e3d",
+      "title": "Communication Studies - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2250915",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-162-07"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 2556,
+        "salary_min": 1665,
+        "salary_period": "teaching_unit_semester",
+        "salary_text": "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit",
+        "id": "2c16129c4ede0054ad333d9ef13c1cefb86a8e3d"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          2556
+        ],
+        "salary_min": [
+          null,
+          1665
+        ],
+        "salary_period": [
+          null,
+          "teaching_unit_semester"
+        ],
+        "salary_text": [
+          "",
+          "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 2556
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 1665
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2250915"
+      ]
+    },
+    {
+      "id": "49540f2000edd7cbbfe0ae576b1ab2df726aa62b",
+      "title": "Golf Coach Varsity Girls - Soquel High School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2250319",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-164-11",
+        "BCL-J-ED7-164-12"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "city": "Soquel",
+        "geography_tier": "core",
+        "commute_minutes": 35,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "49540f2000edd7cbbfe0ae576b1ab2df726aa62b"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ],
+        "city": [
+          "Santa Cruz",
+          "Soquel"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          30,
+          35
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ],
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Soquel"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": 35
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2250319",
+        "https://www.edjoin.org/Home/JobPosting/2250319 ; https://www.soquel.sccs.net/contact"
+      ]
+    },
+    {
+      "id": "10f49b3c7256175414ea982d7e932ed3e0e1d188",
+      "title": "Lacrosse Boys' Varsity Coach - Harbor High School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2250227",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-165-11"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "id": "10f49b3c7256175414ea982d7e932ed3e0e1d188"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2250227"
+      ]
+    },
+    {
+      "id": "aa4408d81afdc5ca038ea25e004f9d6746f3f916",
+      "title": "Golf: Boys' Coach - Harbor High School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2250228",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED7-166-11"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "id": "aa4408d81afdc5ca038ea25e004f9d6746f3f916"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2250228"
+      ]
+    },
+    {
+      "id": "d942d8e26deae7427952a0ed5f5e54fcc2072af6",
+      "title": "French - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2245005",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED8-178-07"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 2556,
+        "salary_min": 1665,
+        "salary_period": "teaching_unit_semester",
+        "salary_text": "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit",
+        "id": "d942d8e26deae7427952a0ed5f5e54fcc2072af6"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          2556
+        ],
+        "salary_min": [
+          null,
+          1665
+        ],
+        "salary_period": [
+          null,
+          "teaching_unit_semester"
+        ],
+        "salary_text": [
+          "",
+          "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 2556
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 1665
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$1,665-$2,556 per teaching unit per semester; eligible annual doctoral stipend of $111 per unit"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2245005"
+      ]
+    },
+    {
+      "id": "bd050def3b361932a3b1af777b253639690e57e3",
+      "title": "JV Softball Coach-WHS",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2240772",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED8-179-11"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "id": "bd050def3b361932a3b1af777b253639690e57e3"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2240772"
+      ]
+    },
+    {
+      "id": "c124b1fc816283645d5359417b5502361bb8cd85",
+      "title": "Substitute Teacher",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2239969",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED8-183-11"
+      ],
+      "fields": {
+        "salary_period": "day",
+        "id": "c124b1fc816283645d5359417b5502361bb8cd85"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "day"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "day"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2239969"
+      ]
+    },
+    {
+      "id": "711f32805ace4969863329edd4838e350b6b5aca",
+      "title": "Basketball Freshman Boys Coach - Soquel High School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2228519",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-193-11",
+        "BCL-J-ED9-193-12"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "city": "Soquel",
+        "geography_tier": "core",
+        "commute_minutes": 35,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "711f32805ace4969863329edd4838e350b6b5aca"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ],
+        "city": [
+          "Santa Cruz",
+          "Soquel"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          30,
+          35
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ],
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Soquel"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": 35
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2228519",
+        "https://www.edjoin.org/Home/JobPosting/2228519 ; https://www.soquel.sccs.net/contact"
+      ]
+    },
+    {
+      "id": "92236f0ca1cc1eefbbbb2245f8c41682ae529d07",
+      "title": "Basketball 6th Grade Girls' - Mission Hill Middle School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2222456",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-195-11"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "id": "92236f0ca1cc1eefbbbb2245f8c41682ae529d07"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2222456"
+      ]
+    },
+    {
+      "id": "e067a085a4e74867594aef7fa5111e709717e4ce",
+      "title": "Soccer 6/7th grade Boys Coach - Mission Hill Middle School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2222453",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-196-11"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "id": "e067a085a4e74867594aef7fa5111e709717e4ce"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2222453"
+      ]
+    },
+    {
+      "id": "7c726669d53956cd8f19264efb5ccb2ce3f64ba8",
+      "title": "Soccer 7th-8th Girls' - Mission Hill Middle School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2222464",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-197-11"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "id": "7c726669d53956cd8f19264efb5ccb2ce3f64ba8"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2222464"
+      ]
+    },
+    {
+      "id": "49c4678154340ba3a087abc0aaf744a08278ac0e",
+      "title": "Soccer 6/7th Girls' - Mission Hill Middle School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2222460",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-198-11"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "id": "49c4678154340ba3a087abc0aaf744a08278ac0e"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2222460"
+      ]
+    },
+    {
+      "id": "6fc56678fa3e5f01609d72b16a66b0b0a8e6c983",
+      "title": "Math Intervention Support (5x week, San Lorenzo Valley Middle School)",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2222233",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-199-12"
+      ],
+      "fields": {
+        "city": "Felton",
+        "geography_tier": "core",
+        "commute_minutes": 12,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "6fc56678fa3e5f01609d72b16a66b0b0a8e6c983"
+      },
+      "accepted": {
+        "city": [
+          "Ben Lomond",
+          "Felton"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          9,
+          12
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Ben Lomond"
+          },
+          {
+            "present": true,
+            "value": "Felton"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 9
+          },
+          {
+            "present": true,
+            "value": 12
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2222233 ; https://www.edjoin.org/Home/JobPosting/2222233"
+      ]
+    },
+    {
+      "id": "4c6d6ba64d381a121342613669167cf0e36a7e26",
+      "title": "Head Girls Indoor Volleyball Frosh Coach-Aptos HIgh School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2219114",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-202-11",
+        "BCL-J-ED9-202-12"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "city": "Aptos",
+        "geography_tier": "core",
+        "commute_minutes": 40,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "4c6d6ba64d381a121342613669167cf0e36a7e26"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ],
+        "city": [
+          "Watsonville",
+          "Aptos"
+        ],
+        "geography_tier": [
+          "extended",
+          "core"
+        ],
+        "commute_minutes": [
+          50,
+          40
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ],
+        "city": [
+          {
+            "present": true,
+            "value": "Watsonville"
+          },
+          {
+            "present": true,
+            "value": "Aptos"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "extended"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 50
+          },
+          {
+            "present": true,
+            "value": 40
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2219114",
+        "https://www.edjoin.org/Home/JobPosting/2219114 ; https://www.cde.ca.gov/sdprofile/details.aspx?cds=44697994430518"
+      ]
+    },
+    {
+      "id": "ddb3380ac23f62e4153492d5c931a9100ec469a5",
+      "title": "Head Girls Indoor Volleyball JV Coach-Aptos High School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2219105",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-203-11",
+        "BCL-J-ED9-203-12"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "city": "Aptos",
+        "geography_tier": "core",
+        "commute_minutes": 40,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "ddb3380ac23f62e4153492d5c931a9100ec469a5"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ],
+        "city": [
+          "Watsonville",
+          "Aptos"
+        ],
+        "geography_tier": [
+          "extended",
+          "core"
+        ],
+        "commute_minutes": [
+          50,
+          40
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ],
+        "city": [
+          {
+            "present": true,
+            "value": "Watsonville"
+          },
+          {
+            "present": true,
+            "value": "Aptos"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "extended"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 50
+          },
+          {
+            "present": true,
+            "value": 40
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2219105",
+        "https://www.edjoin.org/Home/JobPosting/2219105 ; https://www.cde.ca.gov/sdprofile/details.aspx?cds=44697994430518"
+      ]
+    },
+    {
+      "id": "0da525a027e83f66207d7fc5276425fde42e3c6e",
+      "title": "Cross Country Assistant Coach - Soquel High School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2213788",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-205-11",
+        "BCL-J-ED9-205-12"
+      ],
+      "fields": {
+        "salary_period": "season",
+        "city": "Soquel",
+        "geography_tier": "core",
+        "commute_minutes": 35,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "0da525a027e83f66207d7fc5276425fde42e3c6e"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "season"
+        ],
+        "city": [
+          "Santa Cruz",
+          "Soquel"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          30,
+          35
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "season"
+          }
+        ],
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Soquel"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": 35
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2213788",
+        "https://www.edjoin.org/Home/JobPosting/2213788 ; https://www.soquel.sccs.net/contact"
+      ]
+    },
+    {
+      "id": "45cb8e86bd2e69471fa880c471748d87d3726dfd",
+      "title": "Spirit Advisor -Soquel High School",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2213785",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-206-12"
+      ],
+      "fields": {
+        "city": "Soquel",
+        "geography_tier": "core",
+        "commute_minutes": 35,
+        "commute_type": "drive",
+        "location_precision": "city",
+        "id": "45cb8e86bd2e69471fa880c471748d87d3726dfd"
+      },
+      "accepted": {
+        "city": [
+          "Santa Cruz",
+          "Soquel"
+        ],
+        "geography_tier": [
+          "core"
+        ],
+        "commute_minutes": [
+          30,
+          35
+        ],
+        "commute_type": [
+          "drive"
+        ],
+        "location_precision": [
+          "city"
+        ]
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Soquel"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "core"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": 35
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": "drive"
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2213785 ; https://www.soquel.sccs.net/contact"
+      ]
+    },
+    {
+      "id": "7a5b99479ba150a7a43385f54edf5a424ec413ac",
+      "title": "Nursing, Clinical - Perinatal/Medical/Surgical - Associate Instructor",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2087155",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-ED9-214-11"
+      ],
+      "fields": {
+        "salary_period": "teaching_unit_semester",
+        "id": "7a5b99479ba150a7a43385f54edf5a424ec413ac"
+      },
+      "accepted": {
+        "salary_period": [
+          "year",
+          "teaching_unit_semester"
+        ]
+      },
+      "accepted_presence": {
+        "salary_period": [
+          {
+            "present": true,
+            "value": "year"
+          },
+          {
+            "present": true,
+            "value": "teaching_unit_semester"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2087155"
+      ]
+    },
+    {
+      "id": "9f1f2c5f085ccaa7a7ea36f675bc773dbb1be5ee",
+      "title": "Accounting Specialist",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/457542",
+      "source": "Seascape Beach Resort",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-238-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 36,
+        "salary_min": 28,
+        "salary_period": "hour",
+        "salary_text": "$28-$36/hour",
+        "id": "9f1f2c5f085ccaa7a7ea36f675bc773dbb1be5ee"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          36
+        ],
+        "salary_min": [
+          null,
+          28
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$28-$36/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 36
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 28
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$28-$36/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/457542"
+      ]
+    },
+    {
+      "id": "64759afc688f711c78608d113a2dd68486c25a65",
+      "title": "Banquet Server (On Call)",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/377670",
+      "source": "Seascape Beach Resort",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-239-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 18,
+        "salary_min": 17,
+        "salary_period": "hour",
+        "salary_text": "$17-$18/hour",
+        "id": "64759afc688f711c78608d113a2dd68486c25a65"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          18
+        ],
+        "salary_min": [
+          null,
+          17
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$17-$18/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 18
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 17
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$17-$18/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/377670"
+      ]
+    },
+    {
+      "id": "b1c4cd51cdb28923b4a5fc68bed04bb053b0edf5",
+      "title": "Bartender",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/465323",
+      "source": "Seascape Beach Resort",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-240-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 21,
+        "salary_min": 19,
+        "salary_period": "hour",
+        "salary_text": "$19-$21/hour",
+        "id": "b1c4cd51cdb28923b4a5fc68bed04bb053b0edf5"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          21
+        ],
+        "salary_min": [
+          null,
+          19
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$19-$21/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 21
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 19
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$19-$21/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/465323"
+      ]
+    },
+    {
+      "id": "be2901c42563c5433590dc0faa1e1934777c2803",
+      "title": "Dishwasher",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/442556",
+      "source": "Seascape Beach Resort",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-241-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 20,
+        "salary_min": 17,
+        "salary_period": "hour",
+        "salary_text": "$17-$20/hour",
+        "id": "be2901c42563c5433590dc0faa1e1934777c2803"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          20
+        ],
+        "salary_min": [
+          null,
+          17
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$17-$20/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 20
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 17
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$17-$20/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/442556"
+      ]
+    },
+    {
+      "id": "767bf621f9548e27aab8f058f79a9eca529a7f10",
+      "title": "Maintenance Technician",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/462366",
+      "source": "Seascape Beach Resort",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-242-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 24,
+        "salary_min": 22,
+        "salary_period": "hour",
+        "salary_text": "$22-$24/hour",
+        "id": "767bf621f9548e27aab8f058f79a9eca529a7f10"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          24
+        ],
+        "salary_min": [
+          null,
+          22
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$22-$24/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 24
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 22
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$22-$24/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/462366"
+      ]
+    },
+    {
+      "id": "d379ccaf897509c4e92cff07c6f72d25b9ad1aa5",
+      "title": "Owner Relations Coordinator",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/468208",
+      "source": "Seascape Beach Resort",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-243-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 28,
+        "salary_min": 25,
+        "salary_period": "hour",
+        "salary_text": "$25-$28/hour",
+        "id": "d379ccaf897509c4e92cff07c6f72d25b9ad1aa5"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          28
+        ],
+        "salary_min": [
+          null,
+          25
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$25-$28/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 28
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 25
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$25-$28/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/468208"
+      ]
+    },
+    {
+      "id": "fa108d308012cb472ef23a82e0a0bbf38bd4a592",
+      "title": "Restaurant Host",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/461413",
+      "source": "Seascape Beach Resort",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-244-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 19,
+        "salary_min": 17,
+        "salary_period": "hour",
+        "salary_text": "$17-$19/hour",
+        "id": "fa108d308012cb472ef23a82e0a0bbf38bd4a592"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          19
+        ],
+        "salary_min": [
+          null,
+          17
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$17-$19/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 19
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 17
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$17-$19/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/461413"
+      ]
+    },
+    {
+      "id": "b0e65d7f8304aa8db393b1d14ebf5d95c0460f1d",
+      "title": "Restaurant Server",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/455342",
+      "source": "Seascape Beach Resort",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-245-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 19,
+        "salary_min": 17,
+        "salary_period": "hour",
+        "salary_text": "$17-$19/hour",
+        "id": "b0e65d7f8304aa8db393b1d14ebf5d95c0460f1d"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          19
+        ],
+        "salary_min": [
+          null,
+          17
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$17-$19/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 19
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 17
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$17-$19/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/455342"
+      ]
+    },
+    {
+      "id": "58af610679398dd9e137bb31cf5928aea670eb19",
+      "title": "Sous Chef",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/434883",
+      "source": "Seascape Beach Resort",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-246-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 90000,
+        "salary_min": 85000,
+        "salary_period": "year",
+        "salary_text": "$85,000-$90,000/year",
+        "id": "58af610679398dd9e137bb31cf5928aea670eb19"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          90000
+        ],
+        "salary_min": [
+          null,
+          85000
+        ],
+        "salary_period": [
+          null,
+          "year"
+        ],
+        "salary_text": [
+          "",
+          "$85,000-$90,000/year"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 90000
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 85000
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "year"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$85,000-$90,000/year"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/2CE0D003E3DAA595D0729714541C982F/jobs/434883"
+      ]
+    },
+    {
+      "id": "c65b4d0c5ab456b2c477853d04bed934386c9d18",
+      "title": "VAN DRIVER NONCOMMERCIAL DRIVERS LICENSE (On-Call)",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/166292",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-247-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 22.6,
+        "salary_min": 22.6,
+        "salary_period": "hour",
+        "salary_text": "$22.60/hour",
+        "id": "c65b4d0c5ab456b2c477853d04bed934386c9d18"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          22.6
+        ],
+        "salary_min": [
+          null,
+          22.6
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$22.60/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 22.6
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 22.6
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$22.60/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/166292"
+      ]
+    },
+    {
+      "id": "1f6b28ee88ab32b32ac2bf4c48f0a7b03a160a7b",
+      "title": "SUBSTITUTE",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/173499",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-248-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 23.54,
+        "salary_min": 23.54,
+        "salary_period": "hour",
+        "salary_text": "$23.54/hour",
+        "id": "1f6b28ee88ab32b32ac2bf4c48f0a7b03a160a7b"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          23.54
+        ],
+        "salary_min": [
+          null,
+          23.54
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23.54/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.54
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.54
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23.54/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/173499"
+      ]
+    },
+    {
+      "id": "e6ccc829fda746d5a780cff79381fbee0f50303a",
+      "title": "ADVOCATE I",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174016",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-249-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 26.04,
+        "salary_min": 23.34,
+        "salary_period": "hour",
+        "salary_text": "$23.34-$26.04/hour",
+        "id": "e6ccc829fda746d5a780cff79381fbee0f50303a"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          26.04
+        ],
+        "salary_min": [
+          null,
+          23.34
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23.34-$26.04/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 26.04
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.34
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23.34-$26.04/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174016"
+      ]
+    },
+    {
+      "id": "523f7482036363f2d2c14e89a1e734fbac1fcf16",
+      "title": "LICENSED VOCATIONAL NURSE",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174864",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-250-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 41.43,
+        "salary_min": 37.87,
+        "salary_period": "hour",
+        "salary_text": "$37.87-$41.43/hour",
+        "id": "523f7482036363f2d2c14e89a1e734fbac1fcf16"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          41.43
+        ],
+        "salary_min": [
+          null,
+          37.87
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$37.87-$41.43/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 41.43
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 37.87
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$37.87-$41.43/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174864"
+      ]
+    },
+    {
+      "id": "0e2d590b4a1af79c8da1b339956e1fd50e937266",
+      "title": "VAN DRIVER COMMERCIAL DRIVERS LICENSE",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/156968",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-251-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 23.81,
+        "salary_min": 23.81,
+        "salary_period": "hour",
+        "salary_text": "$23.81/hour",
+        "id": "0e2d590b4a1af79c8da1b339956e1fd50e937266"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          23.81
+        ],
+        "salary_min": [
+          null,
+          23.81
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23.81/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.81
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.81
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23.81/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/156968"
+      ]
+    },
+    {
+      "id": "d4f041613ce98c4b5d0d7a2e20df842f08c2f9d6",
+      "title": "FLOATING TEACHER",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/171346",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-252-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 27,
+        "salary_min": 23.54,
+        "salary_period": "hour",
+        "salary_text": "$23.54-$27/hour",
+        "id": "d4f041613ce98c4b5d0d7a2e20df842f08c2f9d6"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          27
+        ],
+        "salary_min": [
+          null,
+          23.54
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23.54-$27/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 27
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23.54
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23.54-$27/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/171346"
+      ]
+    },
+    {
+      "id": "28e49edcbb7fcb6317b8458f8449ab0c80652dd2",
+      "title": "PROGRAM AIDE",
+      "canonical_url": "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174332",
+      "source": "Community Bridges",
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "review_ids": [
+        "BCL-J-PR-253-06"
+      ],
+      "fields": {
+        "salary_disclosed": true,
+        "salary_max": 23,
+        "salary_min": 23,
+        "salary_period": "hour",
+        "salary_text": "$23/hour",
+        "id": "28e49edcbb7fcb6317b8458f8449ab0c80652dd2"
+      },
+      "accepted": {
+        "salary_disclosed": [
+          false,
+          true
+        ],
+        "salary_max": [
+          null,
+          23
+        ],
+        "salary_min": [
+          null,
+          23
+        ],
+        "salary_period": [
+          null,
+          "hour"
+        ],
+        "salary_text": [
+          "",
+          "$23/hour"
+        ]
+      },
+      "accepted_presence": {
+        "salary_disclosed": [
+          {
+            "present": true,
+            "value": false
+          },
+          {
+            "present": true,
+            "value": true
+          }
+        ],
+        "salary_max": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23
+          }
+        ],
+        "salary_min": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": 23
+          }
+        ],
+        "salary_period": [
+          {
+            "present": true,
+            "value": null
+          },
+          {
+            "present": true,
+            "value": "hour"
+          }
+        ],
+        "salary_text": [
+          {
+            "present": true,
+            "value": ""
+          },
+          {
+            "present": true,
+            "value": "$23/hour"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.paycomonline.net/v4/ats/web.php/portal/5FDAD4C9F20D7D00310983697A309125/jobs/174332"
+      ]
+    },
+    {
+      "id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b",
+      "title": "Community Health Worker (CHW) - Associate Instructor",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2259224",
+      "review_ids": [
+        "BCL-J-ED5-137-12",
+        "BCL-J-ED5-137-13",
+        "BCL-J-ED5-137-14"
+      ],
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Castroville",
+        "work_mode": "hybrid",
+        "commute_minutes": null,
+        "geography_tier": "unknown",
+        "commute_type": null,
+        "location_precision": "city",
+        "id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b"
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Aptos"
+          },
+          {
+            "present": true,
+            "value": "Castroville"
+          }
+        ],
+        "work_mode": [
+          {
+            "present": true,
+            "value": "on-site"
+          },
+          {
+            "present": true,
+            "value": "hybrid"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 40
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "unknown"
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ],
+        "id": [
+          {
+            "present": true,
+            "value": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b"
+          },
+          {
+            "present": true,
+            "value": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://www.edjoin.org/Home/JobPosting/2259224"
+      ],
+      "routing": "existing-unknown-geography-review",
+      "routing_approved_on": "2026-10-13"
+    },
+    {
+      "id": "d4f0281ad81fbb7728af34504617d02b24811078",
+      "title": "Outdoor Science Instructor, Naturalist - Outdoor Science School",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2228004",
+      "review_ids": [
+        "BCL-J-ED9-194-12"
+      ],
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Corralitos",
+        "geography_tier": "unknown",
+        "commute_minutes": null,
+        "commute_type": null,
+        "location_precision": "city",
+        "id": "d4f0281ad81fbb7728af34504617d02b24811078"
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Corralitos"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "unknown"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ],
+        "id": [
+          {
+            "present": true,
+            "value": "d4f0281ad81fbb7728af34504617d02b24811078"
+          },
+          {
+            "present": true,
+            "value": "d4f0281ad81fbb7728af34504617d02b24811078"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://santacruzcoe.org/wp-content/uploads/2026/08/Complete_ParentPacket_English_26-27.pdf",
+        "https://www.edjoin.org/Home/JobPosting/2228004"
+      ],
+      "routing": "existing-unknown-geography-review",
+      "routing_approved_on": "2026-10-13"
+    },
+    {
+      "id": "1e713434756b863de244ddd027831c084e352551",
+      "title": "Outdoor Science School; Residential Program Specialist",
+      "source": "Santa Cruz County schools (EDJOIN)",
+      "canonical_url": "https://www.edjoin.org/Home/JobPosting/2212045",
+      "review_ids": [
+        "BCL-J-ED9-207-12"
+      ],
+      "reviewed_at": "2026-10-12",
+      "expires_at": "2026-11-11",
+      "fields": {
+        "city": "Corralitos",
+        "geography_tier": "unknown",
+        "commute_minutes": null,
+        "commute_type": null,
+        "location_precision": "city",
+        "id": "1e713434756b863de244ddd027831c084e352551"
+      },
+      "accepted_presence": {
+        "city": [
+          {
+            "present": true,
+            "value": "Santa Cruz"
+          },
+          {
+            "present": true,
+            "value": "Corralitos"
+          }
+        ],
+        "geography_tier": [
+          {
+            "present": true,
+            "value": "core"
+          },
+          {
+            "present": true,
+            "value": "unknown"
+          }
+        ],
+        "commute_minutes": [
+          {
+            "present": true,
+            "value": 30
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "commute_type": [
+          {
+            "present": true,
+            "value": "drive"
+          },
+          {
+            "present": true,
+            "value": null
+          }
+        ],
+        "location_precision": [
+          {
+            "present": true,
+            "value": "city"
+          },
+          {
+            "present": true,
+            "value": "city"
+          }
+        ],
+        "id": [
+          {
+            "present": true,
+            "value": "1e713434756b863de244ddd027831c084e352551"
+          },
+          {
+            "present": true,
+            "value": "1e713434756b863de244ddd027831c084e352551"
+          }
+        ]
+      },
+      "source_urls": [
+        "https://santacruzcoe.org/wp-content/uploads/2026/08/Complete_ParentPacket_English_26-27.pdf",
+        "https://www.edjoin.org/Home/JobPosting/2212045"
+      ],
+      "routing": "existing-unknown-geography-review",
+      "routing_approved_on": "2026-10-13"
+    }
+  ],
+  "held_record_groups": [],
+  "recoverable_review_groups": [
+    {
+      "record_id": "d29e076d15dc3af2cb0793c62cb280e2e5c6471b",
+      "review_ids": [
+        "BCL-J-ED5-137-12",
+        "BCL-J-ED5-137-13",
+        "BCL-J-ED5-137-14"
+      ],
+      "city": "Castroville",
+      "reason": "ambiguous-location",
+      "routing_approved_on": "2026-10-13"
+    },
+    {
+      "record_id": "d4f0281ad81fbb7728af34504617d02b24811078",
+      "review_ids": [
+        "BCL-J-ED9-194-12"
+      ],
+      "city": "Corralitos",
+      "reason": "ambiguous-location",
+      "routing_approved_on": "2026-10-13"
+    },
+    {
+      "record_id": "1e713434756b863de244ddd027831c084e352551",
+      "review_ids": [
+        "BCL-J-ED9-207-12"
+      ],
+      "city": "Corralitos",
+      "reason": "ambiguous-location",
+      "routing_approved_on": "2026-10-13"
+    }
+  ]
+}

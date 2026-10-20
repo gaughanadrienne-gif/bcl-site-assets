@@ -84,6 +84,7 @@ def normalize_job(raw, source, today):
         "first_seen_at": today,
         "last_verified_at": today,
         "verification_status": "verified",
+        "field_reviewed_at": "",
         "freshness_label": freshness_label(posted, today),
     }
 
@@ -126,4 +127,4 @@ def local_remote_eligible(job):
         explicit_ca = any(part.strip() in {"california", "ca"} for part in re.split(r"[;,|]", region))
     return (job.get("local_employer_verified") is True and valid_url and explicit_ca
             and classify_geo(job.get("city", "")) in {"core", "extended"}
-            and job.get("geography_tier") in {"core", "extended"})
+            and job.get("geography_tier") in {"core", "extended", "remote"})
