@@ -13,8 +13,8 @@ and agent-memory/bcl-data-article-sources.md):
     ends in. A water year holds exactly one winter.
   * Count missing DAYS per water year and exclude any year missing more than
     five of them. Monthly sums hide missing days; daily records do not.
-  * Verify every water-year total a second, independent way (ACIS monthly
-    reduce:sum) and refuse to write if the two disagree.
+  * Compare daily and ACIS monthly reduce:sum totals where both series exist,
+    refuse to write on disagreement, and disclose years without that comparison.
   * Report median alongside mean.
   * Missing data is stated, never patched, never inferred as dry.
 
@@ -345,7 +345,7 @@ def build_payload(daily_rows, monthly_rows, today, generated_at):
         raise RainDataError("only %d reportable water years, expected at least %d"
                             % (len(reportable), MIN_REPORTABLE_YEARS))
 
-    # Independent check: the monthly series must reproduce every daily total.
+    # Independent comparison where both series exist; disclose uncovered years.
     mly = monthly_water_year_totals(monthly, today)
     disagreements = [(wy, years[wy]["total"], mly[wy]) for wy in sorted(years)
                      if wy in mly and abs(years[wy]["total"] - mly[wy]) > 0.005]
@@ -407,6 +407,7 @@ def build_payload(daily_rows, monthly_rows, today, generated_at):
             "percentiles": list(PERCENTILES),
             "storm_min_inches": STORM_MIN_INCHES,
             "cross_checked_years": len(cross_checked),
+            "monthly_unchecked_years": sorted(wy for wy in years if wy not in mly),
         },
         "record": {
             "reportable_years": len(reportable),

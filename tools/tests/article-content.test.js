@@ -43,7 +43,7 @@ test("article typography ships the narrower measure and restrained heading rhyth
   assert.match(SRC, /\.bcl-article-body\{max-width:680px/);
   assert.match(SRC, /font-size:clamp\(1\.875rem,3vw,2\.5rem\)!important/);
   assert.match(SRC, /margin-top:48px!important;margin-bottom:16px!important/);
-  assert.match(SRC, /width:9px;height:16px;margin-top:\.36em;background:#d56e47/);
+  assert.doesNotMatch(SRC, /width:9px;height:16px;margin-top:\.36em;background:#d56e47/);
   assert.match(SRC, /blockquote\.bcl-pullquote/);
   assert.match(SRC, /font-size:clamp\(1\.3125rem,2\.25vw,1\.5rem\)/);
   assert.match(SRC, /hero\.src = .*record\.headerImage.*REPO/);
