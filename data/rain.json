@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-20",
- "generated_at": "2026-10-20T06:50:11-07:00",
+ "updated": "2026-10-21",
+ "generated_at": "2026-10-21T06:50:05-07:00",
  "station": {
   "id": "USC00040673",
   "name": "Ben Lomond No. 4",
@@ -26,7 +26,10 @@
    90
   ],
   "storm_min_inches": 0.5,
-  "cross_checked_years": 90
+  "cross_checked_years": 90,
+  "monthly_unchecked_years": [
+   1937
+  ]
  },
  "record": {
   "reportable_years": 68,
@@ -2218,18 +2221,19 @@
  "current": {
   "wy": 2027,
   "to_date": 0.0,
-  "through": "2026-10-19",
-  "day_index": 19,
+  "through": "2026-10-20",
+  "day_index": 20,
   "missing_days": 1,
   "accumulated_days": 0,
   "gaps": [
-   "2026-10-20"
+   "2026-10-21"
   ],
   "wet_season_gaps": 1,
-  "normal_to_date": 0.15,
+  "normal_to_date": 0.26,
   "drier_years_to_date": 0,
   "years_compared": 68,
   "cumulative": [
+   0.0,
    0.0,
    0.0,
    0.0,
