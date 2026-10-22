@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-15",
+  "asOf": "2026-10-22",
   "schedule": [
     {
       "week": "2026-09-03",
@@ -42,6 +42,12 @@
       "slug": "air-and-fire-boulder-creek",
       "business": "Air & Fire",
       "blurb": "Emelia's shop carries statuary, crystals and more than 200 tarot and oracle decks, plus soaps, candles and incense made on site, in the first building on Highway 9 she has owned."
+    },
+    {
+      "week": "2026-10-22",
+      "slug": "spotlight-redwood-mountain-spa",
+      "business": "Redwood Mountain Spa",
+      "blurb": "Kelly Ralston and Ashleigh Noce share the paths that brought them to Redwood Mountain Spa and the work they have built together in Boulder Creek."
     }
   ]
 }
