@@ -3,7 +3,7 @@
 (function () {
   'use strict';
   var BATCH = 8;
-  var CATEGORIES = ['Local News', 'Community Life', 'Business Spotlights', 'Food', 'Local Guides', 'Mountain Living', 'Town & History'];
+  var CATEGORIES = ['Local News', 'Community Life', 'Business Spotlights', 'Business Overviews', 'Food', 'Local Guides', 'Mountain Living', 'Town & History'];
   function escapeHTML(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; });
   }

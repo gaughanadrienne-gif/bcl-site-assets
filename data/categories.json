@@ -20,7 +20,12 @@
   {
    "name": "Business Spotlights",
    "url": "/around-town/category/Business+Spotlights",
-   "description": "Profiles of Boulder Creek businesses: who runs them, what they do and how to visit, from studios and shops to salons, trades and the vet."
+   "description": "Free, voluntary features based on direct interviews or substantive participation by local business owners and representatives."
+  },
+  {
+   "name": "Business Overviews",
+   "url": "/around-town/category/Business+Overviews",
+   "description": "Independently researched introductions to Boulder Creek businesses: what they offer, where to find them and practical details to know. An overview does not imply an interview or owner approval."
   },
   {
    "name": "Food",
