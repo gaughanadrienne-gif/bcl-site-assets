@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22",
+ "updated": "2026-10-24",
  "note": "Events checked against each organizer's own page or flyer; owner-verified where noted.",
  "events": [
   {
@@ -2011,6 +2011,16 @@
    "description": "Valley Women’s Club Environmental Town Hall featuring Assemblymember Gail Pellerin with updates on California environmental issues and their local impacts, plus informational displays from local organizations and agencies.",
    "category": "Community",
    "notice": "Free to attend; refreshments."
+  },
+  {
+   "title": "Halloween Dance Party with DJ T-BUB at Lille Aeske",
+   "start": "2026-10-31T20:00",
+   "end": "2026-10-31T23:00",
+   "location": "Lille Aeske Arthouse, 13160 Highway 9, Boulder Creek",
+   "url": "https://www.lilleaeske.com/events-calendar/halloween-dance-party-with-dj-t-bub",
+   "description": "Halloween night dancing with DJ T-BUB, mixing disco, funk, house and classics at the downtown arthouse.",
+   "category": "Music & Arts",
+   "notice": "$15 advance plus ticketing fees; $20 at the door. Advance tickets through the venue website."
   }
  ]
 }
