@@ -1487,6 +1487,30 @@
 
   /* ---------- jobs ---------- */
 
+  /* An explicit closing day remains active through that Pacific day. Missing,
+     invalid and open-ended dates never imply closure. Mirrors jobs/deadlines.py. */
+  function jobDeadlineDay(value) {
+    var raw = String(value || "").trim(), m, y, mo, d;
+    m = /^(\d{4})-(\d{1,2})-(\d{1,2})(?=$|[T\s])/.exec(raw);
+    if (m) { y = +m[1]; mo = +m[2]; d = +m[3]; }
+    else {
+      m = /^(\d{1,2})\/(\d{1,2})\/(\d{4}|\d{2})(?=$|\s)/.exec(raw);
+      if (m) { y = +m[3]; if (y < 100) y += 2000; mo = +m[1]; d = +m[2]; }
+      else {
+        m = /^(?:[A-Za-z]+,\s*)?([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})(?=$|\s)/.exec(raw);
+        if (!m) return null;
+        mo = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"].indexOf(m[1].toLowerCase()) + 1;
+        y = +m[3]; d = +m[2];
+      }
+    }
+    return validLocalDate(y, mo, d) ? y + "-" + pad2(mo) + "-" + pad2(d) : null;
+  }
+
+  function jobIsExpired(job, todayOpt) {
+    var closingDay = jobDeadlineDay(job && job.application_deadline);
+    return !!closingDay && closingDay < eventTodayKey(todayOpt);
+  }
+
   function jobTab(job) {
     return job && job.geography_tier === "remote" && job.local_employer_verified !== true ? "remote" : "local";
   }
@@ -1594,6 +1618,7 @@
     var tab = opts.tab || "local";
     var q = (opts.q || "").toLowerCase();
     var rows2 = rows.filter(function (j) {
+      if (jobIsExpired(j, opts.today)) return false;
       if (jobTab(j) !== tab) return false;
       if (tab === "local" && j.geography_tier === "extended" && !opts.includeExtended) return false;
       if (opts.area === "slv" && ["Boulder Creek", "Brookdale", "Ben Lomond", "Felton", "Mount Hermon", "Lompico", "Zayante", "San Lorenzo Valley"].indexOf(j.city) < 0) return false;
@@ -5688,6 +5713,12 @@ function initBclSectionJumps(doc) {
   /* The search index intentionally contains the full feed, including past
      events. Filter it against events.json at read time so recurring events and
      exhibits use their real end dates instead of a brittle title/date guess. */
+  function filterActiveJobSearchRecords(records, todayOpt) {
+    return (records || []).filter(function (rec) {
+      return !rec || rec.t !== "job" || !jobIsExpired({ application_deadline: rec.deadline }, todayOpt);
+    });
+  }
+
   function filterCurrentSearchRecords(records, events, todayOpt) {
     var active = null;
     if (Array.isArray(events)) {
@@ -5702,6 +5733,7 @@ function initBclSectionJumps(doc) {
       });
     }
     return (records || []).filter(function (rec) {
+      if (rec && rec.t === "job") return !jobIsExpired({ application_deadline: rec.deadline }, todayOpt);
       if (!rec || rec.t !== "event") return true;
       if (active) {
         var indexedStart = /^(\d{4}-\d{2}-\d{2})\b/.exec(String(rec.s || ""));
@@ -5914,7 +5946,7 @@ function initBclSectionJumps(doc) {
             '<p class="bcl-search-hint">Loading the index...</p>';
           return;
         }
-        render(searchRecords(records, q, 40), q);
+        render(searchRecords(filterActiveJobSearchRecords(records, new Date()), q, 40), q);
       }
       input.addEventListener("input", run);
 
@@ -6022,6 +6054,9 @@ function initBclSectionJumps(doc) {
     module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, pacificClock: pacificClock, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, residentsGroupsHTML: residentsGroupsHTML, residentsHelpHTML: residentsHelpHTML, RES_GROUPS: RES_GROUPS, homeDailyOrder: homeDailyOrder, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
     module.exports.flexibleLocalDate = flexibleLocalDate;
     module.exports.jobDeadlineText = jobDeadlineText;
+    module.exports.filterActiveJobSearchRecords = filterActiveJobSearchRecords;
+    module.exports.jobDeadlineDay = jobDeadlineDay;
+    module.exports.jobIsExpired = jobIsExpired;
     module.exports.rentalAvailableText = rentalAvailableText;
     module.exports.correctionHref = correctionHref;
     module.exports.listingFilterState = listingFilterState;

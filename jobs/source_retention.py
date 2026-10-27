@@ -10,7 +10,7 @@ from jobs.identity import job_identity_url
 SOURCE_FAILURES = {"empty-response", "fetch-or-parse-failed", "parser-unavailable"}
 SOURCE_REASONS = {"source-response-unverified", "source-membership-unverified"}
 RECHECKED_REASONS = {"ambiguous-location", "missing-fields", "excluded-keyword",
-                    "remote-local-evidence-required", "employer-detail-review-required"}
+                    "remote-local-evidence-required", "employer-detail-review-required", "expired-deadline"}
 
 
 @dataclass(frozen=True)

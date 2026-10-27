@@ -195,7 +195,7 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
             try:
                 job = normalize_job(raw, source, today)
                 job, field_reason = apply_reviewed_fields(job, today, register=reviewed_register)
-                ok, reason = include_job(job)
+                ok, reason = include_job(job, today=today)
                 if field_reason:
                     ok, reason = False, field_reason
                     job["verification_status"] = "pending-review"
@@ -226,7 +226,7 @@ def build_jobs(sources, fetchers, today, manual_path=MANUAL_JOBS_PATH, previous_
             job = normalize_job(raw, manual_source, today)
             # A daily rebuild is not a fresh human review of this posting.
             job["last_verified_at"] = (raw.get("renewed_at") or raw["submitted_at"])[:10]
-            ok, reason = include_job(job)
+            ok, reason = include_job(job, today=today)
             if ok:
                 published.append(job)
             else:

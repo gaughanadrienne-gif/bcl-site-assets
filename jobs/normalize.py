@@ -16,6 +16,7 @@ from shared.bcl_ingest import (
     record_fingerprint, sanitize_text, scrub_pii, freshness_label,
 )
 from shared.job_categories import classify_job
+from jobs.deadlines import job_is_expired
 
 EXCLUDE_KEYWORDS = (
     "mlm", "multi-level marketing", "pay to start", "pay-to-start",
@@ -89,10 +90,12 @@ def normalize_job(raw, source, today):
     }
 
 
-def include_job(job):
+def include_job(job, today=None):
     """Return (bool, reason). False routes the job to the review queue."""
     if not job.get("title") or not job.get("canonical_url"):
         return False, "missing-fields"
+    if job_is_expired(job, today):
+        return False, "expired-deadline"
     haystack = (job.get("title", "") + " " + job.get("description_summary", "")).lower()
     for kw in EXCLUDE_KEYWORDS:
         if kw in haystack:
