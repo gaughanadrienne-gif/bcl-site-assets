@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-22",
+  "asOf": "2026-10-29",
   "schedule": [
     {
       "week": "2026-09-03",
@@ -48,6 +48,12 @@
       "slug": "spotlight-redwood-mountain-spa",
       "business": "Redwood Mountain Spa",
       "blurb": "Kelly Ralston and Ashleigh Noce share the paths that brought them to Redwood Mountain Spa and the work they have built together in Boulder Creek."
+    },
+    {
+      "week": "2026-10-29",
+      "slug": "messy-play-kits-boulder-creek",
+      "business": "Messy Play Parties",
+      "blurb": "Robin Imholte is winding down mail-order kits and returning to the hands-on play she loves: slime, tie-dye and sensory parties, library events and community programs."
     }
   ]
 }
