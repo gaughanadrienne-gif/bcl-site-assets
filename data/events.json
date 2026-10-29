@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24",
+ "updated": "2026-10-29",
  "note": "Events checked against each organizer's own page or flyer; owner-verified where noted.",
  "events": [
   {
@@ -1075,7 +1075,8 @@
    "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
    "url": "https://santacruzpl.libnet.info/event/15202678",
    "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
-   "category": "Music & Arts"
+   "category": "Music & Arts",
+   "notice": "Adults 18 and over. Bring your own supplies for independent projects most weeks."
   },
   {
    "title": "Write Now! Writing Group",
@@ -1084,7 +1085,8 @@
    "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
    "url": "https://santacruzpl.libnet.info/event/16111358",
    "description": "A dedicated hour of writing on the last Saturday of the month: a five minute check-in, fifty minutes of silent focused work, and a five minute wrap-up.",
-   "category": "Community"
+   "category": "Community",
+   "notice": "Adults 18 and over."
   },
   {
    "title": "Halloween at BC Rec",
@@ -1092,8 +1094,9 @@
    "end": "2026-10-31T20:00",
    "location": "Downtown Rec Center, 13333 Middleton Ave, Boulder Creek",
    "url": "https://www.bcrpd.org/events",
-   "description": "Halloween open house at the rec center, 6 to 8 p.m.",
-   "category": "Family & Kids"
+   "description": "Halloween open house with Scout Troop 623 haunted house, games and crafts, a bounce house and costume contest.",
+   "category": "Family & Kids",
+   "notice": "Free. All ages."
   },
   {
    "title": "Highwire Halloween Dance Party",
@@ -2021,6 +2024,46 @@
    "description": "Halloween night dancing with DJ T-BUB, mixing disco, funk, house and classics at the downtown arthouse.",
    "category": "Music & Arts",
    "notice": "$15 advance plus ticketing fees; $20 at the door. Advance tickets through the venue website."
+  },
+  {
+   "title": "Trunk or Treat at Boulder Creek Golf Club",
+   "start": "2026-10-31T12:00",
+   "end": "2026-10-31T15:00",
+   "location": "Boulder Creek Golf Club, 16901 Big Basin Highway, Boulder Creek",
+   "url": "https://bigbasincountry.club/events/halloween-2026/",
+   "description": "A free community trunk-or-treat. Bring children in costume to collect treats from decorated vehicles.",
+   "category": "Family & Kids",
+   "notice": "Free. Bar and restaurant open."
+  },
+  {
+   "title": "Halloween Trick or Treat at Santa Cruz Mountains Art Center",
+   "start": "2026-10-31T18:00",
+   "end": "2026-10-31T20:00",
+   "location": "Santa Cruz Mountains Art Center, 9341 Mill Street, Ben Lomond",
+   "url": "https://www.mountainartcenter.org/halloween-2026/",
+   "description": "Halloween treats and spooky displays along the walkway next to the gallery, with children's artwork on display.",
+   "category": "Family & Kids",
+   "notice": "Free. Enter through the gate between the Art Center and Ben Lomond Market parking lot."
+  },
+  {
+   "title": "Jerry's Middle Finger: Halloween Ball",
+   "start": "2026-10-30T20:00",
+   "end": null,
+   "location": "Felton Music Hall, 6275 Highway 9, Felton",
+   "url": "https://www.prekindle.com/promo/id/-2852527949114852352",
+   "description": "Jerry's Middle Finger plays the Halloween Ball at Felton Music Hall, part of a two-night run.",
+   "category": "Music & Arts",
+   "notice": "21 and over. Doors at 7 p.m.; show at 8 p.m. Check official ticket seller for current price and availability."
+  },
+  {
+   "title": "Jerry's Middle Finger: Halloween Ball",
+   "start": "2026-10-31T20:00",
+   "end": null,
+   "location": "Felton Music Hall, 6275 Highway 9, Felton",
+   "url": "https://www.prekindle.com/promo/id/-2852527949114852352",
+   "description": "Jerry's Middle Finger plays the Halloween Ball at Felton Music Hall, part of a two-night run.",
+   "category": "Music & Arts",
+   "notice": "21 and over. Doors at 7 p.m.; show at 8 p.m. Check official ticket seller for current price and availability."
   }
  ]
 }
