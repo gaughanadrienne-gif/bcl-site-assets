@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29",
+ "updated": "2026-10-30",
  "note": "Events checked against each organizer's own page or flyer; owner-verified where noted.",
  "events": [
   {
@@ -2064,6 +2064,16 @@
    "description": "Jerry's Middle Finger plays the Halloween Ball at Felton Music Hall, part of a two-night run.",
    "category": "Music & Arts",
    "notice": "21 and over. Doors at 7 p.m.; show at 8 p.m. Check official ticket seller for current price and availability."
+  },
+  {
+   "title": "Dying to Talk",
+   "start": "2026-11-21T14:00",
+   "end": null,
+   "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
+   "url": "https://santacruzpl.libnet.info/events",
+   "description": "A talk on making informed end-of-life decisions: advance health care directives, dementia directives (offered free), informed consent, medical aid in dying, home funerals, and green burial compared with cremation and body composting.",
+   "category": "Community",
+   "notice": "Free. Details come from the organizer's submission; the library's online calendar did not list the event as of October 30."
   }
  ]
 }
