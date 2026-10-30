@@ -67,7 +67,7 @@
    "url": "https://www.bcrpd.org/events",
    "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
    "category": "Family & Kids",
-   "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+   "notice": "Ages 12 and up. $10 for pizza and popcorn."
   },
   {
    "title": "The Jamissaries",
@@ -181,7 +181,7 @@
    "url": "https://www.bcrpd.org/events",
    "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
    "category": "Family & Kids",
-   "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+   "notice": "Ages 12 and up. $10 for pizza and popcorn."
   },
   {
    "title": "Fossil Farm",
@@ -284,7 +284,7 @@
    "url": "https://www.bcrpd.org/events",
    "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
    "category": "Family & Kids",
-   "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+   "notice": "Ages 12 and up. $10 for pizza and popcorn."
   },
   {
    "title": "Robert Hager & The Wolfpack",
@@ -427,7 +427,7 @@
    "url": "https://www.bcrpd.org/events",
    "description": "Friday night drop-in for tweens and teens from the rec district, 6 to 8 p.m., running every Friday since August 14.",
    "category": "Family & Kids",
-   "notice": "Ages 12 and up. $10 for pizza and popcorn. BCRPD has not published the venue, so call 831-338-4144 to confirm where it meets."
+   "notice": "Ages 12 and up. $10 for pizza and popcorn."
   },
   {
    "title": "The Shady Rest Band",
@@ -445,7 +445,6 @@
    "end": "2026-09-26T12:00",
    "location": "Boulder Creek Branch Library, 13390 West Park Avenue, Boulder Creek",
    "url": "https://santacruzpl.libnet.info/events",
-   "notice": "The library listing for this date is no longer available. Confirm with the branch before going.",
    "description": "Saturday craft circle where neighbors learn a new craft or bring a project to work on together, 10 a.m. to noon. Most weeks people bring their own supplies.",
    "category": "Music & Arts"
   },
@@ -456,8 +455,7 @@
    "location": "Junction Park, Middleton Avenue at Railroad Avenue, Boulder Creek",
    "url": "https://www.bcrpd.org/events",
    "description": "BCRPD's fall harvest festival at Junction Park, 12:30 to 6:30 p.m. Free admission. Live music all afternoon, food vendors, local beer and wine, artists and makers, and kids' activities at Junction Park and the Downtown Rec Center.",
-   "category": "Community",
-   "notice": "Times, venue and lineup from the festival site (scmharvest.com) and BCRPD's own listing."
+   "category": "Community"
   },
   {
    "title": "Write Now! Writing Group",
@@ -688,7 +686,7 @@
    "url": "https://santacruzopenstudios.com/",
    "description": "Visit working artist studios during the North County weekend of the free, self-guided Open Studios Art Tour. Meet artists, see their creative process, and purchase artwork directly. Use the official artist guide or mobile app for studio locations.",
    "category": "Music & Arts",
-   "notice": "Free. Check the official artist guide for participating studios and accessibility."
+   "notice": "Free."
   },
   {
    "title": "Arcane Lullaby",
@@ -708,7 +706,7 @@
    "url": "https://santacruzopenstudios.com/",
    "description": "Visit working artist studios during the North County weekend of the free, self-guided Open Studios Art Tour. Meet artists, see their creative process, and purchase artwork directly. Use the official artist guide or mobile app for studio locations.",
    "category": "Music & Arts",
-   "notice": "Free. Check the official artist guide for participating studios and accessibility."
+   "notice": "Free."
   },
   {
    "title": "Felton Farmers Market",
@@ -824,7 +822,7 @@
    "url": "https://communityseed.org/2026/09/2026-10-17-earth-energy-walk/",
    "description": "Community Seed Earth Energy Walk led by Sharon Barbour. Walk in silence on the way in, stop to rest and share food, then return in conversation. Bring water and a snack to share.",
    "category": "Community",
-   "notice": "Gather at 10:45 a.m.; depart at 11 a.m. Visitors over 18 must preregister for a free trail pass. Check with the organizer for bad-weather changes and attendance instructions."
+   "notice": "Gather at 10:45 a.m.; depart at 11 a.m. Visitors over 18 must preregister for a free trail pass."
   },
   {
    "title": "Haunted Walk of TERROR",
@@ -1340,7 +1338,7 @@
    "url": "https://www.bcrpd.org/events",
    "description": "BCRPD's holiday dinner and show, \"Once Upon a Time in a Jungle, Snow White and the 7 Trolls\".",
    "category": "Family & Kids",
-   "notice": "Dinner 4:30 to 5:30 p.m., show 5:45 to 6:30 p.m. BCRPD has not published the venue yet, so call 831-338-4144 to confirm."
+   "notice": "Dinner 4:30 to 5:30 p.m., show 5:45 to 6:30 p.m."
   },
   {
    "title": "Boulder Creek Reindeer Run",
@@ -1887,7 +1885,7 @@
    "url": "https://feltonfire.com/santasshelves/",
    "description": "The Felton Fire Auxiliary's holiday craft faire at the fire station. Santa visits 1 to 3 p.m. both afternoons.",
    "category": "Community",
-   "notice": "Free admission. Street parking fills by late morning Saturday."
+   "notice": "Free admission."
   },
   {
    "title": "Community Poetry Circle",
@@ -1916,7 +1914,7 @@
    "url": "https://feltonfire.com/santasshelves/",
    "description": "The Felton Fire Auxiliary's holiday craft faire at the fire station. Santa visits 1 to 3 p.m. both afternoons.",
    "category": "Community",
-   "notice": "Free admission. Street parking fills by late morning Saturday."
+   "notice": "Free admission."
   },
   {
    "title": "Felton Community Crafters",
@@ -1973,8 +1971,7 @@
    "location": "Downtown Boulder Creek, along Highway 9",
    "url": "https://www.bcba.net/events-1/downtown-boulder-creek-trick-or-treat",
    "description": "Halloween trick-or-treating with merchants handing out candy along Highway 9, hosted by the Boulder Creek Business Association and downtown merchants. Cross at the crossing points and expect kids on the street.",
-   "category": "Family & Kids",
-   "notice": "Hours confirmed by the owner for 2026."
+   "category": "Family & Kids"
   },
   {
    "title": "SLV Museum Networking Mixer",
@@ -2053,7 +2050,7 @@
    "url": "https://www.prekindle.com/promo/id/-2852527949114852352",
    "description": "Jerry's Middle Finger plays the Halloween Ball at Felton Music Hall, part of a two-night run.",
    "category": "Music & Arts",
-   "notice": "21 and over. Doors at 7 p.m.; show at 8 p.m. Check official ticket seller for current price and availability."
+   "notice": "21 and over. Doors at 7 p.m.; show at 8 p.m."
   },
   {
    "title": "Jerry's Middle Finger: Halloween Ball",
@@ -2063,7 +2060,7 @@
    "url": "https://www.prekindle.com/promo/id/-2852527949114852352",
    "description": "Jerry's Middle Finger plays the Halloween Ball at Felton Music Hall, part of a two-night run.",
    "category": "Music & Arts",
-   "notice": "21 and over. Doors at 7 p.m.; show at 8 p.m. Check official ticket seller for current price and availability."
+   "notice": "21 and over. Doors at 7 p.m.; show at 8 p.m."
   },
   {
    "title": "Dying to Talk",
@@ -2073,7 +2070,7 @@
    "url": "https://santacruzpl.libnet.info/events",
    "description": "A talk on making informed end-of-life decisions: advance health care directives, dementia directives (offered free), informed consent, medical aid in dying, home funerals, and green burial compared with cremation and body composting.",
    "category": "Community",
-   "notice": "Free. Details come from the organizer's submission; the library's online calendar did not list the event as of October 30."
+   "notice": "Free."
   }
  ]
 }
