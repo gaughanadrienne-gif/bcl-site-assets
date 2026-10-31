@@ -1,6 +1,6 @@
 {
- "updated": "2026-10-30",
- "count": 9,
+ "updated": "2026-10-31",
+ "count": 8,
  "rentals": [
   {
    "id": "75bfcc9c984a941638178699f3dece27b38dd957",
@@ -34,7 +34,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-10-08",
-   "last_verified_at": "2026-10-30",
+   "last_verified_at": "2026-10-31",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -70,7 +70,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-10-30",
+   "last_verified_at": "2026-10-31",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -106,43 +106,7 @@
    "source": "Scotts Valley Property Management",
    "property_manager": "Scotts Valley Property Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-10-30",
-   "verification_status": "verified",
-   "freshness_label": ""
-  },
-  {
-   "id": "c52e75a02a68e4f408da3bc94b5de06b55ad5e7a",
-   "slug": "felton-10680-vera-ave",
-   "headline": "10680 Vera Ave, Felton",
-   "property_type": "Single Family Home",
-   "rental_scope": "entire",
-   "address_public": "10680 Vera Ave",
-   "city": "Felton",
-   "state": "CA",
-   "postal_code": "95018",
-   "locality": "Felton",
-   "location_precision": "exact",
-   "monthly_rent": 2900,
-   "total_monthly_price": 2900,
-   "deposit": null,
-   "application_fee": null,
-   "bedrooms": 2,
-   "bathrooms": 1,
-   "square_feet": 905,
-   "available_date": "Immediately",
-   "lease_term": "",
-   "minimum_stay_days": null,
-   "furnished": false,
-   "pets_policy": "",
-   "utilities_text": "",
-   "parking_text": "",
-   "laundry_text": "",
-   "description_summary": "\\\\ \\\\ $2,900/mo.\\\\ \\\\ \\\\ - \\\\ Beds: 2\\\\ \\\\ \\\\ - Baths: 1\\\\ \\\\ - sqft: 905\\\\ \\\\ \\\\ 10680 Vera Ave, Felton, 95018\\\\ \\\\ \\\\ Single Family Home\\\\ \\\\ \\\\ Available: Immediately",
-   "canonical_url": "https://www.pmisantacruz.com/santa-cruz-homes-for-rent/208/10680-vera-ave-felton-ca-95018",
-   "source": "PMI Santa Cruz",
-   "property_manager": "PMI Santa Cruz",
-   "first_seen_at": "2026-10-02",
-   "last_verified_at": "2026-10-30",
+   "last_verified_at": "2026-10-31",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -178,7 +142,7 @@
    "source": "PMI Santa Cruz",
    "property_manager": "PMI Santa Cruz",
    "first_seen_at": "2026-10-14",
-   "last_verified_at": "2026-10-30",
+   "last_verified_at": "2026-10-31",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -214,7 +178,7 @@
    "source": "Utopia Management",
    "property_manager": "Utopia Management",
    "first_seen_at": "2026-09-16",
-   "last_verified_at": "2026-10-30",
+   "last_verified_at": "2026-10-31",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -250,7 +214,7 @@
    "source": "Bailey Property Management",
    "property_manager": "Bailey Property Management",
    "first_seen_at": "2026-10-13",
-   "last_verified_at": "2026-10-30",
+   "last_verified_at": "2026-10-31",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -286,7 +250,7 @@
    "source": "Bailey Property Management",
    "property_manager": "Bailey Property Management",
    "first_seen_at": "2026-10-08",
-   "last_verified_at": "2026-10-30",
+   "last_verified_at": "2026-10-31",
    "verification_status": "verified",
    "freshness_label": ""
   },
@@ -322,7 +286,7 @@
    "source": "Anderson Christie Real Estate",
    "property_manager": "Anderson Christie Real Estate",
    "first_seen_at": "2026-10-26",
-   "last_verified_at": "2026-10-30",
+   "last_verified_at": "2026-10-31",
    "verification_status": "verified",
    "freshness_label": ""
   }
