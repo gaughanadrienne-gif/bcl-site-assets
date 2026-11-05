@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-10-29",
+  "asOf": "2026-11-05",
   "schedule": [
     {
       "week": "2026-09-03",
@@ -54,6 +54,12 @@
       "slug": "messy-play-kits-boulder-creek",
       "business": "Messy Play Parties",
       "blurb": "Robin Imholte is winding down mail-order kits and returning to the hands-on play she loves: slime, tie-dye and sensory parties, library events and community programs."
+    },
+    {
+      "week": "2026-11-05",
+      "slug": "butter-late-than-never-boulder-creek",
+      "business": "Butter Late Than Never",
+      "blurb": "Andrew Hensano spent a decade managing food and events at LinkedIn. Now he bakes Pie-ookies and Oopsie Doodles in Boulder Creek."
     }
   ]
 }
