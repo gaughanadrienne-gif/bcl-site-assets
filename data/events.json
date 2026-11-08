@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30",
+ "updated": "2026-11-07",
  "note": "Events checked against each organizer's own page or flyer; owner-verified where noted.",
  "events": [
   {
@@ -2071,6 +2071,16 @@
    "description": "A talk on making informed end-of-life decisions: advance health care directives, dementia directives (offered free), informed consent, medical aid in dying, home funerals, and green burial compared with cremation and body composting.",
    "category": "Community",
    "notice": "Free."
+  },
+  {
+   "title": "22nd Annual Family Holiday Craft Workshop",
+   "start": "2026-12-06T13:00",
+   "end": "2026-12-06T16:00",
+   "location": "Grace Episcopal Gallery, San Lorenzo Valley Museum, 12547 Highway 9, Boulder Creek",
+   "url": "https://www.slvmuseum.org/images/2026_HolidayCraftFlyer2.jpg",
+   "description": "San Lorenzo Valley Museum hosts a family holiday workshop with more than eight crafting stations. Make custom ornaments, decorate cookies, create a holiday table display, and make one-of-a-kind holiday treasures. Cookies and cider will be provided. Sponsored by Redwood Resort.",
+   "category": "Family & Kids",
+   "notice": "Free; donations appreciated. Crafts suitable for ages 3 and up."
   }
  ]
 }
