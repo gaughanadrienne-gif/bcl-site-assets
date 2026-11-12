@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-05",
+  "asOf": "2026-11-12",
   "schedule": [
     {
       "week": "2026-09-03",
@@ -60,6 +60,12 @@
       "slug": "butter-late-than-never-boulder-creek",
       "business": "Butter Late Than Never",
       "blurb": "Andrew Hensano spent a decade managing food and events at LinkedIn. Now he bakes Pie-ookies and Oopsie Doodles in Boulder Creek."
+    },
+    {
+      "week": "2026-11-12",
+      "slug": "spotlight-sirius-k9-training",
+      "business": "DogStar K9",
+      "blurb": "Hannah found Siri on Petfinder. The rescue and the work that followed led her into DogStar K9 Training."
     }
   ]
 }
