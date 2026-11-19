@@ -160,7 +160,7 @@
     return String(v == null ? "" : v).replace(/\s+/g, " ").trim().slice(0, max || 100);
   }
 
-  var CSS_ID = "bcl-tools-css-v31";
+  var CSS_ID = "bcl-tools-css-v32";
   /* The header-injection CSS breaks BCL code blocks out of Squarespace's
      Fluid Engine grid with :has(.bcl-full) rules. Browsers without :has()
      (Firefox ESR 115 and older, Safari < 15.4, Chrome < 105) drop those
@@ -448,8 +448,11 @@
       ".bcl-dir-sub{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.08em;color:#2f6754 !important;text-transform:uppercase;}",
       ".bcl-dir-desc{font-size:.8rem;color:#1c2a26 !important;line-height:1.4;display:block;overflow:visible;max-height:none;overflow-wrap:anywhere;}",
       ".bcl-dir-meta{font-size:.78rem;color:#626c66 !important;line-height:1.35;}",
-      ".bcl-dir-links{font-size:.8rem;margin-top:2px;}",
-      ".bcl-dir-links a{color:#2e6b46 !important;text-decoration:underline;}",
+      /* The phone number is the whole point of a listing on a phone, and for a
+         home daycare it is the only action on the card. 12.8px text in a 15px
+         box was measured on 2026-11-18; 44px matches the other controls. */
+      ".bcl-dir-links{font-size:1rem;margin-top:2px;}",
+      ".bcl-dir-links a{color:#2e6b46 !important;text-decoration:underline;display:inline-block;min-height:44px;line-height:44px;padding:0 2px;}",
       ".bcl-dir-badge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid #cfd8d0;border-radius:999px;padding:2px 8px;margin-top:4px;color:#3d5a4b !important;white-space:nowrap;}",
       ".bcl-dir-badge.is-bc{border-color:#2e6b46;color:#2e6b46 !important;background:#eef4ef;}",
       ".bcl-dir-serves{font-size:.78rem;color:#3d5a4b !important;line-height:1.35;}",
@@ -1480,6 +1483,19 @@
         render(false);
       });
       render(false);
+      /* A search hit or a shared filter link lands here with ?q= or ?category=.
+         On a phone the matching card sat two screens below the page hero with
+         nothing above it to show the search had worked. Bring the result count
+         to the top once, only when the visitor has not scrolled or followed an
+         in-page anchor. */
+      (function () {
+        var st = listingFilterState(location.search);
+        if (!(st.q || st.category || st.open || st.local)) return;
+        if (location.hash || !count.getBoundingClientRect || !window.scrollTo) return;
+        if ((window.pageYOffset || 0) > 40) return;
+        var top = count.getBoundingClientRect().top + (window.pageYOffset || 0) - 16;
+        if (top > 0) window.scrollTo(0, top);
+      })();
     }).catch(function () {
       unavailable(root, "The " + label + " list", 'You can still <a href="/contact">send an update</a>.');
     });
@@ -3496,6 +3512,39 @@ function initBclSectionJumps(doc) {
       .slice(0, n);
   }
 
+  /* True once an event's clock END has passed in Boulder Creek time. A row with
+     no end time (a bar show listed only by its start) is kept for the day,
+     because nothing on the page says when it is over. */
+  function evHasEnded(e, nowOpt) {
+    var end = evParts(e && e.end);
+    if (!end || end.h == null) return false;
+    var c = pacificClock(isDateLike(nowOpt) ? nowOpt : new Date());
+    if (!c) return false;
+    var endKey = end.y + "-" + pad2(end.mo) + "-" + pad2(end.d) + "T" + pad2(end.h) + ":" + pad2(end.mi || 0);
+    var nowKey = c.year + "-" + pad2(c.month) + "-" + pad2(c.date) + "T" + pad2(c.hour) + ":" + pad2(c.minute);
+    return endKey < nowKey;
+  }
+
+  /* Homepage board only (2026-11-18). nextEvents puts every ongoing run first,
+     which is right for the calendar page, but with two museum exhibits open the
+     three homepage rows were two exhibits and a storytime that had ended at
+     noon, and nothing for the weekend. Here dated events lead, one ongoing run
+     keeps a place, and anything already over today is skipped. */
+  function homeBoardEvents(rows, todayKey, n, nowOpt) {
+    var live = nextEvents(rows, todayKey, (rows || []).length, nowOpt).filter(function (e) {
+      return !evHasEnded(e, nowOpt);
+    });
+    var key = todayKey || eventTodayKey(nowOpt);
+    var dated = [], ongoing = [];
+    live.forEach(function (e) { (evIsOngoing(e, key) ? ongoing : dated).push(e); });
+    var out = dated.slice(0, ongoing.length ? Math.max(n - 1, 0) : n);
+    if (ongoing.length && out.length < n) out.push(ongoing[0]);
+    var di = out.length - (ongoing.length ? 1 : 0), oi = 1;
+    while (out.length < n && di < dated.length) out.splice(out.length - (ongoing.length ? 1 : 0), 0, dated[di++]);
+    while (out.length < n && oi < ongoing.length) out.push(ongoing[oi++]);
+    return out.slice(0, n);
+  }
+
   /* Local jobs first; only widen to the extended commute if the valley is quiet. */
   function homeJobs(rows, n) {
     var local = filterJobs(rows, { tab: "local" });
@@ -3601,7 +3650,7 @@ function initBclSectionJumps(doc) {
 
     fillHomeSlot("bcl-home-events", "events.json", {
       key: "events", loading: "Loading events…", label: "The events calendar", href: "/events", what: "calendar",
-      pick: function (rows) { return nextEvents(rows, today, 3); },
+      pick: function (rows) { return homeBoardEvents(rows, today, 3); },
       card: homeEventRow,
       empty: 'No verified upcoming events right now. Events appear here only after a person confirms the details with the organizer. <a href="/contact">Tell us about one</a>.'
     });
@@ -5540,6 +5589,7 @@ function initBclSectionJumps(doc) {
 
     fetchJSON(REPO + "/data/events.json").then(function (data) {
       var upcoming = nextEvents(data.events || [], today, (data.events || []).length);
+      upcoming = upcoming.filter(function (e) { return !evHasEnded(e); });
       var todays = upcoming.filter(function (e) {
         return eventInRange(e, { range: "today", today: today });
       }).slice(0, 3);
@@ -6051,7 +6101,7 @@ function initBclSectionJumps(doc) {
     else boot();
   }
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, pacificClock: pacificClock, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, residentsGroupsHTML: residentsGroupsHTML, residentsHelpHTML: residentsHelpHTML, RES_GROUPS: RES_GROUPS, homeDailyOrder: homeDailyOrder, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
+    module.exports = { sortCaltrans: sortCaltrans, caltransSchedule: caltransSchedule, statusRetrievedHTML: statusRetrievedHTML, fillAQI: fillAQI, fillCaltrans: fillCaltrans, fillRiver: fillRiver, monthYear: monthYear, updatedSuffix: updatedSuffix, todayKey: todayKey, dayAge: dayAge, parseHours: parseHours, isOpenAt: isOpenAt, listingOpenState: listingOpenState, pacificClock: pacificClock, listingCard: listingCard, jobHourlyEquivalent: jobHourlyEquivalent, jobDateKey: jobDateKey, jobPostedWithin: jobPostedWithin, jobEmployers: jobEmployers, PAY_BANDS: PAY_BANDS, icsForEvent: icsForEvent, icsFileName: icsFileName, eventInRange: eventInRange, eventMatchesQuery: eventMatchesQuery, eventCard: eventCard, evIsOngoing: evIsOngoing, evThroughChip: evThroughChip, riverReading: riverReading, riverFloodCategories: riverFloodCategories, riverCardHTML: riverCardHTML, riverAge: riverAge, riverAgeHTML: riverAgeHTML, RIVER_STALE_HOURS: RIVER_STALE_HOURS, caltransCardKey: caltransCardKey, dedupeCaltrans: dedupeCaltrans, statusVerdictHTML: statusVerdictHTML, articleDateFromLD: articleDateFromLD, articleDateText: articleDateText, articleCheckedText: articleCheckedText, downloadNameFromHref: downloadNameFromHref, track: track, trackText: trackText, isDateLike: isDateLike, setHeaderMenuA11y: setHeaderMenuA11y, headerMenuFocusables: headerMenuFocusables, containHeaderMenuTab: containHeaderMenuTab, articleMenuJumpLabel: articleMenuJumpLabel, RIVER: RIVER, RAIN: RAIN, RAIN_WY_DAYS: RAIN_WY_DAYS, rainMonthStarts: rainMonthStarts, rainWaterYear: rainWaterYear, rainWaterYearDay: rainWaterYearDay, rainPacificDay: rainPacificDay, rainFreshness: rainFreshness, rainFreshnessHTML: rainFreshnessHTML, rainGapNote: rainGapNote, rainSeasonSummary: rainSeasonSummary, rainRankText: rainRankText, rainSkewNote: rainSkewNote, rainStatsHTML: rainStatsHTML, rainNiceMax: rainNiceMax, rainSeasonChart: rainSeasonChart, rainSeasonLegendHTML: rainSeasonLegendHTML, rainMonthTable: rainMonthTable, rainTotalsChart: rainTotalsChart, rainYearLookup: rainYearLookup, rainOrdinal: rainOrdinal, rainLookupMessage: rainLookupMessage, rainExtremesHTML: rainExtremesHTML, rainStormsHTML: rainStormsHTML, rainControlsHTML: rainControlsHTML, rainMethodHTML: rainMethodHTML, rainHeroHTML: rainHeroHTML, rentalResourcesHTML: rentalResourcesHTML, RENTAL_RESOURCES: RENTAL_RESOURCES, rainLongDate: rainLongDate, rainAgeWords: rainAgeWords, rainInches: rainInches, isLocal: isLocal, localityRank: localityRank, arrangeListings: arrangeListings, listingBadge: listingBadge, badgeIsBoulderCreek: badgeIsBoulderCreek, servesBoulderCreek: servesBoulderCreek, showsServesBoulderCreek: showsServesBoulderCreek, directionsUrl: directionsUrl, SLV_LOCALITIES: SLV_LOCALITIES, orderedCategoryNames: orderedCategoryNames, groupLabelOf: groupLabelOf, buildDirectoryHTML: buildDirectoryHTML, buildCategoryOptions: buildCategoryOptions, buildGroupChips: buildGroupChips, groupBucketOf: groupBucketOf, orderedGroupNames: orderedGroupNames, buildCategoryStrip: buildCategoryStrip, categoryDescriptionFor: categoryDescriptionFor, categoryPathOf: categoryPathOf, CAP_EXEMPT: CAP_EXEMPT, jobTab: jobTab, filterJobs: filterJobs, jobSalaryText: jobSalaryText, jobCard: jobCard, jobAreaLabel: jobAreaLabel, JOB_VALLEY_TOWNS: JOB_VALLEY_TOWNS, jobPostedLine: jobPostedLine, JOB_DATE_MAX_AGE_DAYS: JOB_DATE_MAX_AGE_DAYS, filterRentals: filterRentals, rentalCard: rentalCard, articleSlugFromPath: articleSlugFromPath, ARTICLE_META_FILE: ARTICLE_META_FILE, pageHeadingForPath: pageHeadingForPath, nextEvents: nextEvents, homeBoardEvents: homeBoardEvents, evHasEnded: evHasEnded, homeJobs: homeJobs, homeRentals: homeRentals, homeEventRow: homeEventRow, homeJobRow: homeJobRow, homeRentalRow: homeRentalRow, spotlightWeekStart: spotlightWeekStart, spotlightWeeksApart: spotlightWeeksApart, SPOTLIGHT_MAX_AGE_DAYS: SPOTLIGHT_MAX_AGE_DAYS, spotlightRowIsUsable: spotlightRowIsUsable, spotlightPick: spotlightPick, spotlightItemIsUsable: spotlightItemIsUsable, spotlightCardHTML: spotlightCardHTML, initHomeSpotlight: initHomeSpotlight, residentsGroupsHTML: residentsGroupsHTML, residentsHelpHTML: residentsHelpHTML, RES_GROUPS: RES_GROUPS, homeDailyOrder: homeDailyOrder, SPOTLIGHT_FILE: SPOTLIGHT_FILE, SPOTLIGHT_WEEK_DOW: SPOTLIGHT_WEEK_DOW, pickRelatedArticles: pickRelatedArticles, articleCardHTML: articleCardHTML, searchTerms: searchTerms, scoreRecord: scoreRecord, searchRecords: searchRecords, groupHits: groupHits, toolSearchHref: toolSearchHref, toolSearchState: toolSearchState, toolSearchEmptyMessage: toolSearchEmptyMessage, claimToolRoot: claimToolRoot, SEARCH_ORDER: SEARCH_ORDER, shareCleanTitle: shareCleanTitle, shareCanonicalUrl: shareCanonicalUrl, shareLinks: shareLinks, shareBarHTML: shareBarHTML, initShare: initShare };
     module.exports.flexibleLocalDate = flexibleLocalDate;
     module.exports.jobDeadlineText = jobDeadlineText;
     module.exports.filterActiveJobSearchRecords = filterActiveJobSearchRecords;
