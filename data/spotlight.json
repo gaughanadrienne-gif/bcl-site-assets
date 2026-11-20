@@ -1,5 +1,5 @@
 {
-  "asOf": "2026-11-12",
+  "asOf": "2026-11-20",
   "schedule": [
     {
       "week": "2026-09-03",
@@ -66,6 +66,12 @@
       "slug": "spotlight-sirius-k9-training",
       "business": "DogStar K9",
       "blurb": "Hannah found Siri on Petfinder. The rescue and the work that followed led her into DogStar K9 Training."
+    },
+    {
+      "week": "2026-11-19",
+      "slug": "miss-brookes-class-boulder-creek",
+      "business": "Miss Brooke's Class",
+      "blurb": "Meet Brooke, the preschool teacher behind Mini & Me Music Classes, bringing local families together for drop-in music, stories and seasonal crafts."
     }
   ]
 }
