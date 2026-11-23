@@ -1,7 +1,7 @@
 {
- "updated": "2026-09-26",
+ "updated": "2026-11-23",
  "note": "Verified listings for Boulder Creek Local. Inclusion is not endorsement. Corrections: bouldercreeklocal.com/contact",
- "count": 308,
+ "count": 309,
  "listings": [
   {
    "name": "Hennig Studios",
@@ -4668,6 +4668,22 @@
    "service_area": "Boulder Creek; availability by service address",
    "verified_at": "2026-09-25",
    "no_storefront": true,
+   "lat": null,
+   "lon": null,
+   "tile": null
+  },
+  {
+   "name": "Houdesheldt Traditional Team",
+   "category": "Real Estate",
+   "subcategory": "Real estate salesperson",
+   "description": "Sheri Houdesheldt is a licensed real estate salesperson with Century 21 Masters serving the San Lorenzo Valley. California DRE #02339957.",
+   "address": null,
+   "locality": null,
+   "phone": null,
+   "website": "https://linktr.ee/SheriSellsRealEstate",
+   "hours_text": null,
+   "service_area": "San Lorenzo Valley",
+   "verified_at": "2026-11-23",
    "lat": null,
    "lon": null,
    "tile": null
