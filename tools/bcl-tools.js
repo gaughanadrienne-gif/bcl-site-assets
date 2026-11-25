@@ -3908,7 +3908,7 @@ function initBclSectionJumps(doc) {
     return '<a class="bcl-spot" href="' + esc(href) + '">' +
       '<span class="bcl-spot-img"><img src="' + esc(img) + '" alt="' + esc(alt) + '" loading="lazy"></span>' +
       '<span class="bcl-spot-body">' +
-      '<span class="bcl-spot-kick">This week\'s business spotlight</span>' +
+      '<span class="bcl-spot-kick">Featured business</span>' +
       '<span class="bcl-spot-name">' + esc(entry.business) + "</span>" +
       '<span class="bcl-spot-blurb">' + esc(entry.blurb) + "</span>" +
       '<span class="bcl-spot-go">Read the spotlight &rarr;</span>' +
