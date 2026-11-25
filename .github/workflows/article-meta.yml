@@ -1,7 +1,3 @@
-# Keeps data/articles-meta.json in step with data/articles.json.
-# Article pages read the small metadata file; any push that edits the full feed
-# (scripts, browser uploads, other agents) regenerates it here, commits it only
-# if it changed, and purges the jsDelivr @main copy once.
 name: article-meta
 
 on:
@@ -9,35 +5,60 @@ on:
     branches: [main]
     paths:
       - data/articles.json
+  pull_request:
+    paths:
+      - .github/workflows/**
+      - scripts/verify_public_feed.sh
+      - data/**
+      - scripts/build_article_meta.py
+      - tools/**
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: article-meta
-  cancel-in-progress: false
+  contents: read
 
 jobs:
-  regenerate:
+  verify-pull-request:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - run: python -m scripts.build_article_meta --check
+      - run: node --test tools/tests/home-spotlight.test.js tools/tests/search.test.js tools/tests/tool-search-continuity.test.js
+
+  regenerate:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    concurrency:
+      group: article-meta
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: "3.12"
-      - name: Regenerate metadata
-        run: python -m scripts.build_article_meta
-      - name: Commit if changed
+      - name: Regenerate from the current main branch
         run: |
-          if git diff --quiet -- data/articles-meta.json; then
-            echo "metadata already current"
-            exit 0
-          fi
           git config user.name "bcl-article-meta"
           git config user.email "actions@users.noreply.github.com"
-          git add data/articles-meta.json
-          git commit -m "data: regenerate articles-meta.json from articles.json"
-          git pull --rebase origin main
-          git push origin HEAD:main
-          curl -fsS "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/articles-meta.json" || true
+          for attempt in 1 2 3; do
+            git fetch --quiet origin main
+            git switch --detach origin/main
+            python -m scripts.build_article_meta
+            if git diff --quiet -- data/articles-meta.json; then exit 0; fi
+            git add -- data/articles-meta.json
+            git commit -m "data: regenerate articles-meta.json from articles.json"
+            if git push origin HEAD:main; then exit 0; fi
+          done
+          exit 1
+      - name: Verify public article metadata
+        run: |
+          curl -fsS --max-time 30 "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/data/articles-meta.json" >/dev/null
+          bash scripts/verify_public_feed.sh articles-meta.json

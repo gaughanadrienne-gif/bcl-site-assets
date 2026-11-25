@@ -197,7 +197,7 @@ test("spotlightItemIsUsable: the post has to be the one asked for and carry its 
 
 test("spotlightCardHTML: kicker, business name, blurb, image and link all land", () => {
   const html = t.spotlightCardHTML(ORDER.schedule[1], ITEM);
-  assert.match(html, /<span class="bcl-spot-kick">This week's business spotlight<\/span>/);
+  assert.match(html, /<span class="bcl-spot-kick">Featured business<\/span>/);
   assert.match(html, />Two</);
   assert.match(html, /Second\./);
   assert.match(html, /href="\/around-town\/two-boulder-creek"/);

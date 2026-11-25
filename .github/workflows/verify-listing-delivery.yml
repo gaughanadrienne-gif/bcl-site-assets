@@ -1,0 +1,22 @@
+name: Verify listing delivery
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/events.json
+      - data/rentals.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Read back the public calendar and rental feeds
+        run: bash scripts/verify_public_feed.sh events.json rentals.json

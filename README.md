@@ -21,31 +21,21 @@ Public asset and tool layer for [Boulder Creek Local](https://bouldercreeklocal.
     the body, ranked by shared category/tag then recency.
 - `data/directory.json`, `data/food.json` — published listings only (high-confidence, owner-approved; internal review fields stripped; home-based businesses carry no address). Generated from the private research master; do not hand-edit records here without updating the master.
 - `data/events.json` — owner-verified events only. Empty until events are confirmed with organizers.
-- `data/articles.json` — rendered bodies for the 67 article URLs in the live Squarespace sitemap. The two drafts absent from the sitemap are emitted only in a withheld list so accidental placeholder URLs receive `noindex`.
+- `data/articles.json` — reviewed article bodies. Squarespace holds approved native copies. Use the public native archive and the owner-maintained withdrawal list to establish which articles may appear in search and navigation.
 
 ## Embed snippet (Squarespace code block)
 
 ```html
 <div id="bcl-directory"></div>
-<script src="https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/tools/bcl-tools.js" defer></script>
 ```
 
-Swap the div id per page. One script tag per page is enough for any number of tools.
+Use the div ID for the page. The sitewide footer already loads the tool script at an immutable commit SHA.
 
 ## Updating data
 
-1. Edit the research master + owner workbook (private, OneDrive), regenerate the public JSON, commit, push.
-2. For article bodies, refresh `data/live-article-slugs.json` from the public Squarespace sitemap, then run `python scripts/build_articles.py --as-of YYYY-MM-DD`; the builder emits every live slug and withholds drafts absent from the sitemap.
-3. Purge jsDelivr so the change appears promptly:
-   `https://purge.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@main/data/articles.json`
-   (repeat per changed file), then verify against the CDN itself, not the purge
-   response.
-
-**The script and the data ship differently, and this trips people up.** The
-`<script>` tag in Squarespace is pinned to a commit SHA, so a new
-`bcl-tools.js` only goes live when that pin moves. But the script fetches
-`data/*.json` from `@main` at runtime, so data changes go live on push plus a
-purge, with no pin bump at all. Editing an article body is a data change.
+1. Use the appropriate data workflow and preserve unrelated records. Directory facts belong in the directory feed, with a human review before release.
+2. For article edits, use the BCL article-rewrite runbook and update only the reviewed records. Verify the current native Squarespace body, the feed, and the signed-out result. Preserve withheld material and private draft handling notes.
+3. Purge each changed data path once. Compare the served alias bytes with the immutable release, then check an affected record in the rendered page. Record delivery as unverified while the alias differs. Rebuild dependent search data from the released inputs.
 
 ## Releasing
 
@@ -54,7 +44,7 @@ immutable commit SHA, never `@main` — jsDelivr's `@main` edge caches lag per
 region by up to twelve hours, so a push alone does not reach readers.
 
 ```bash
-node --test "tools/tests/*.test.js"     # 53 tests, all must pass
+node --test "tools/tests/*.test.js"
 git commit && git push                  # note the short SHA
 curl -sI https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@<sha>/tools/bcl-tools.js
 ```

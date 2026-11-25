@@ -649,6 +649,11 @@
    "headerImage": "https://cdn.jsdelivr.net/gh/gaughanadrienne-gif/bcl-site-assets@ebb957ed5b8d06021238a92e570ceeccb5aa5c7b/brand/studio-repaints-20261007/article-reading-headers/miller-property-boulder-creek.webp",
    "imageAlt": "Watercolor illustration of a dry woodland trail at the Miller Property, winding through mixed trees and grasses, based on a 2010 reference photograph."
   },
+  "miss-brookes-class-boulder-creek": {
+   "title": "Miss Brooke's Class: music for toddlers, company for parents",
+   "headerImage": "brand/article-reading-headers/miss-brookes-class-boulder-creek.webp",
+   "imageAlt": "Watercolor of a seated teacher and a circle of young children in a redwood grove."
+  },
   "money-taxes-boulder-creek": {
    "title": "Taxes, Banking, and Money Help in Boulder Creek",
    "reviewedAt": "2026-09-04",
@@ -870,6 +875,11 @@
    "reviewedAt": "2026-10-20",
    "headerImage": "brand/article-reading-headers/spotlight-redwood-mountain-spa.webp",
    "imageAlt": "Watercolor illustration of Redwood Mountain Spa, a blue cottage with a yellow door, white porch roof and trough planters beneath redwoods."
+  },
+  "spotlight-sirius-k9-training": {
+   "title": "DogStar K9: the dog Hannah couldn't stop thinking about",
+   "headerImage": "brand/article-reading-headers/spotlight-sirius-k9-training.webp",
+   "imageAlt": "Watercolor of a black dog with upright ears sitting on a trail among redwoods."
   },
   "spotlight-supernatural-beauty": {
    "title": "SuperNatural Beauty: Boulder Creek's Med Spa",
