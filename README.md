@@ -37,6 +37,8 @@ Use the div ID for the page. The sitewide footer already loads the tool script a
 2. For article edits, use the BCL article-rewrite runbook and update only the reviewed records. Verify the current native Squarespace body, the feed, and the signed-out result. Preserve withheld material and private draft handling notes.
 3. Purge each changed data path once. Compare the served alias bytes with the immutable release, then check an affected record in the rendered page. Record delivery as unverified while the alias differs. Rebuild dependent search data from the released inputs.
 
+The rentals publisher owns that ordinary purge. On the first verification attempt for a main-branch push, the delivery check can request one additional purge of `data/rentals.json` if the public feed repeatedly serves the exact previous rental file and the triggering rental version is still current. It verifies the ordinary public URL again afterward. HTTP errors, manual dispatches and reruns do not request a recovery purge.
+
 ## Releasing
 
 Squarespace loads this script from **Code Injection > Footer**, pinned to an

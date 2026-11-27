@@ -13,10 +13,12 @@ permissions:
 jobs:
   delivery:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
       - name: Read back the public calendar and rental feeds
+        env:
+          BCL_RENTAL_BEFORE: ${{ github.event.before }}
         run: bash scripts/verify_public_feed.sh events.json rentals.json
