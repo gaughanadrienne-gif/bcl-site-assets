@@ -9,6 +9,7 @@ on:
     paths:
       - .github/workflows/**
       - scripts/verify_public_feed.sh
+      - tests/test_verify_public_feed.sh
       - data/**
       - scripts/build_article_meta.py
       - tools/**
@@ -26,6 +27,8 @@ jobs:
         with:
           persist-credentials: false
       - run: python -m scripts.build_article_meta --check
+      - name: Exercise feed verification and stale-rental recovery offline
+        run: bash tests/test_verify_public_feed.sh
       - run: node --test tools/tests/home-spotlight.test.js tools/tests/search.test.js tools/tests/tool-search-continuity.test.js
 
   regenerate:
